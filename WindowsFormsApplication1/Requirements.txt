@@ -1,0 +1,30 @@
+﻿Multi Select Date Control
+Tool - Auto Fill (all entries)
+Auto Select Nes=xt Transaction Date and field.
+Auto Populate - Daily Collection Amount
+Mobile Message Service
+Number of days taken to close the transaction.
+Actual Interest got from customer - eg: customer got - 10,000 and got all money from 100 days. then interest got is 100% that is 8% for 100 days. but if customer return all amount in 10 days.
+Best Customer (Top 3)
+Worst Customers.(Top 10)
+While Creating a customer (Existing customer) should warn for the worst customer.
+Expected Amount the given date(Future Date)
+Collection By Date (may be reports)
+Tab-Order
+Increase customer name drop down control width
+Auto Populate interest (8%)
+For Existing CUstomer Disable Name and Phone No.
+Please clarify - how company vs jawahar investment works?
+While adding customer - display the customer no and sequence number eg: if 2nd time given to same customer then it should shows as 10(2nd time.)
+Have options to show both active and non active customers in customer screen.
+Enable sorting, paging for customer page.
+change icon of the project.
+installer for the project.
+change backup folder name as [ClosedTransactions]
+How to see closed Transaction?
+Sometimes file gets locked (Cant access file in use)
+Refresh Data Automatically.
+TxnId may not be correct if last customer closes
+Handle all exceptions. (Dont show any technical exceptions. should not break the application)
+please verify all date format.
+Internal tool to do small modifications.
