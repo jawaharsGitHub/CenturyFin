@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1
         string _customerName;
         bool _isClosedTx = false;
 
-        private Customer _customer;
+        //private Customer _customer;
 
 
         public CustomerTransaction()

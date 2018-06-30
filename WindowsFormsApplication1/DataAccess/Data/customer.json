@@ -502,5 +502,17 @@
     "IsActive": true,
     "CreatedDate": "2018-06-30T00:00:00-04:00",
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 43,
+    "CustomerId": 35,
+    "Name": "Sulthan - Travels",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 1600,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
   }
 ]
