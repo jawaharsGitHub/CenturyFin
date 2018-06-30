@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1
         string _customerName;
         bool _isClosedTx = false;
 
-        private Customer _customer;
+        //private Customer _customer;
 
 
         public CustomerTransaction()
@@ -36,10 +36,10 @@ namespace WindowsFormsApplication1
 
 
 
-            btnLoan.Text = _customer.LoanAmount.ToString();
+            btnLoan.Text = _loan.ToString();
             btnBalance.Text = _balance.ToString();
-            this.Text = $"{_customer.Name} - CutomerId: {_customer.CustomerId} SequenceNo: {_customer.CustomerSeqNumber}";
-            txtCollectionAmount.Text = (_customer.LoanAmount/ 100).ToString();
+            this.Text = $"{_customerName} - CutomerId: {_customerId} SequenceNo: {_sequeneNo}";
+            txtCollectionAmount.Text = (_loan / 100).ToString();
 
             InitializeListView();
             LoadTxn();
@@ -81,32 +81,32 @@ namespace WindowsFormsApplication1
 
         private void btnAddTxn_Click(object sender, EventArgs e)
         {
-            var txn = AddTxn(_customer, dateTimePicker1.Value);
-            if (txn == null) return;
-            //var txn = new Transaction()
-            //{
-            //    AmountReceived = Convert.ToInt16(txtCollectionAmount.Text),
-            //    CustomerId = _customerId,
-            //    CustomerSequenceNo = _sequeneNo,
-            //    TransactionId = Transaction.GetNextTransactionId(),
-            //    Balance = (Transaction.GetBalance(_loan, _sequeneNo, _customerId) - Convert.ToInt16(txtCollectionAmount.Text)),
-            //    TxnDate = dateTimePicker1.Value
+            //var txn = AddTxn(_customer, dateTimePicker1.Value);
+            //if (txn == null) return;
+            var txn = new Transaction()
+            {
+                AmountReceived = Convert.ToInt16(txtCollectionAmount.Text),
+                CustomerId = _customerId,
+                CustomerSequenceNo = _sequeneNo,
+                TransactionId = Transaction.GetNextTransactionId(),
+                Balance = (Transaction.GetBalance(_loan, _sequeneNo, _customerId) - Convert.ToInt16(txtCollectionAmount.Text)),
+                TxnDate = dateTimePicker1.Value
 
-            //};
+            };
 
-            //if (txn.Balance < 0)
-            //{
-            //    MessageBox.Show("Please check that ur txn is overpaid. Txn Cancelled");
-            //    return;
-            //}
+            if (txn.Balance < 0)
+            {
+                MessageBox.Show("Please check that ur txn is overpaid. Txn Cancelled");
+                return;
+            }
 
-            //Transaction.AddTransaction(txn);
+            Transaction.AddTransaction(txn);
 
             btnBalance.Text = txn.Balance.ToString();
             LoadTxn();
             if (txn.Balance == 0) MessageBox.Show("This Txn is completed Successfully!");
 
-            lblMessage.Text = $"Txn  Added Successfully for {_customer.Name}";
+            lblMessage.Text = $"Txn  Added Successfully for {_customerName}";
 
             // Add InHand
             InHand.AddInHand(txn.AmountReceived);
@@ -126,7 +126,7 @@ namespace WindowsFormsApplication1
 
             var txns = Transaction.GetTransactionDetails(_customerId, _sequeneNo, _isClosedTx);
 
-            if (txns == null) return;
+            if (txns == null || txns.Count == 0) return;
 
 
             var dataDource = from t in txns
