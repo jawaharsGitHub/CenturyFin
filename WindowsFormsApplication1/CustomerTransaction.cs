@@ -145,12 +145,12 @@ namespace WindowsFormsApplication1
                 dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate).ToList();
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
-            var endDate = dataDource.Select(s => s.TxnDate).Max();
-            var DaysTaken = endDate.Date.Subtract(startDate).Days + 2;
+            var lastDate = dataDource.Select(s => s.TxnDate).Max();
+            var DaysTaken = lastDate.Date.Subtract(startDate).Days + 2;
 
 
             lblStartDate.Text = $"Start Date: {startDate}";
-            lblLastDate.Text = $"Last Date: {endDate}";
+            lblLastDate.Text = $"Last Date: {lastDate}";
 
             lblNoOfDays.Text = $"Days to Return {DaysTaken}";
 
@@ -159,7 +159,7 @@ namespace WindowsFormsApplication1
 
             lblPercentageGain.Text = $"{percGainPerMonth.ToString()}% Per Month({(percGainPerMonth/100)* (cus.LoanAmount - cus.Interest)} Rs/Month)";
 
-
+            dateTimePicker1.Value = lastDate.AddDays(1);
 
 
             //dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
@@ -182,6 +182,13 @@ namespace WindowsFormsApplication1
                 LoadTxn(true);
 
             }
+
+        }
+
+        private void btnNextDayTxn_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = dateTimePicker1.Value;
+            btnAddTxn_Click(null, null);
 
         }
     }

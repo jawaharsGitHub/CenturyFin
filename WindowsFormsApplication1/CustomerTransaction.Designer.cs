@@ -44,6 +44,7 @@
             this.rdbDesc = new System.Windows.Forms.RadioButton();
             this.lblNoOfDays = new System.Windows.Forms.Label();
             this.lblPercentageGain = new System.Windows.Forms.Label();
+            this.btnNextDayTxn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -68,6 +69,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnNextDayTxn);
             this.groupBox1.Controls.Add(this.btnAddTxn);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtCollectionAmount);
@@ -200,6 +202,16 @@
             this.lblPercentageGain.TabIndex = 12;
             this.lblPercentageGain.Text = "lblPercentageGain";
             // 
+            // btnNextDayTxn
+            // 
+            this.btnNextDayTxn.Location = new System.Drawing.Point(314, 52);
+            this.btnNextDayTxn.Name = "btnNextDayTxn";
+            this.btnNextDayTxn.Size = new System.Drawing.Size(75, 23);
+            this.btnNextDayTxn.TabIndex = 5;
+            this.btnNextDayTxn.Text = "Next Day";
+            this.btnNextDayTxn.UseVisualStyleBackColor = true;
+            this.btnNextDayTxn.Click += new System.EventHandler(this.btnNextDayTxn_Click);
+            // 
             // CustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,5 +257,6 @@
         private System.Windows.Forms.RadioButton rdbDesc;
         private System.Windows.Forms.Label lblNoOfDays;
         private System.Windows.Forms.Label lblPercentageGain;
+        private System.Windows.Forms.Button btnNextDayTxn;
     }
 }
