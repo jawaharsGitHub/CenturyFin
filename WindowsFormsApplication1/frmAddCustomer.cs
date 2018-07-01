@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class AddCustomer : Form
+    public partial class frmAddCustomer : Form
     {
-        public AddCustomer()
+        public frmAddCustomer()
         {
             InitializeComponent();
         }

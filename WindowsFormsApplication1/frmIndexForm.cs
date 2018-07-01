@@ -53,7 +53,7 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddCustomer ac = new AddCustomer();
+            frmAddCustomer ac = new frmAddCustomer();
             ac.ShowDialog();
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class AddCustomer
+    partial class frmAddCustomer
     {
         /// <summary>
         /// Required designer variable.
