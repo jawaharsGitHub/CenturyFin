@@ -75,61 +75,61 @@
     <Compile Include="AddCustomer.Designer.cs">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerTransaction.cs">
+    <Compile Include="frmCustomerTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CustomerTransaction.Designer.cs">
-      <DependentUpon>CustomerTransaction.cs</DependentUpon>
+    <Compile Include="frmCustomerTransaction.Designer.cs">
+      <DependentUpon>frmCustomerTransaction.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customers.cs">
+    <Compile Include="frmCustomers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customers.Designer.cs">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="frmCustomers.Designer.cs">
+      <DependentUpon>frmCustomers.cs</DependentUpon>
     </Compile>
-    <Compile Include="DailyEntry.cs">
+    <Compile Include="frmDailyEntry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DailyEntry.Designer.cs">
-      <DependentUpon>DailyEntry.cs</DependentUpon>
+    <Compile Include="frmDailyEntry.Designer.cs">
+      <DependentUpon>frmDailyEntry.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataCorrection.cs">
+    <Compile Include="frmDataCorrection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataCorrection.Designer.cs">
-      <DependentUpon>DataCorrection.cs</DependentUpon>
+    <Compile Include="frmDataCorrection.Designer.cs">
+      <DependentUpon>frmDataCorrection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Expenditure.cs">
+    <Compile Include="frmExpenditure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Expenditure.Designer.cs">
-      <DependentUpon>Expenditure.cs</DependentUpon>
+    <Compile Include="frmExpenditure.Designer.cs">
+      <DependentUpon>frmExpenditure.cs</DependentUpon>
     </Compile>
-    <Compile Include="IndexForm.cs">
+    <Compile Include="frmIndexForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IndexForm.Designer.cs">
-      <DependentUpon>IndexForm.cs</DependentUpon>
+    <Compile Include="frmIndexForm.Designer.cs">
+      <DependentUpon>frmIndexForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddCustomer.resx">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CustomerTransaction.resx">
-      <DependentUpon>CustomerTransaction.cs</DependentUpon>
+    <EmbeddedResource Include="frmCustomerTransaction.resx">
+      <DependentUpon>frmCustomerTransaction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customers.resx">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <EmbeddedResource Include="frmCustomers.resx">
+      <DependentUpon>frmCustomers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataCorrection.resx">
-      <DependentUpon>DataCorrection.cs</DependentUpon>
+    <EmbeddedResource Include="frmDataCorrection.resx">
+      <DependentUpon>frmDataCorrection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Expenditure.resx">
-      <DependentUpon>Expenditure.cs</DependentUpon>
+    <EmbeddedResource Include="frmExpenditure.resx">
+      <DependentUpon>frmExpenditure.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IndexForm.resx">
-      <DependentUpon>IndexForm.cs</DependentUpon>
+    <EmbeddedResource Include="frmIndexForm.resx">
+      <DependentUpon>frmIndexForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

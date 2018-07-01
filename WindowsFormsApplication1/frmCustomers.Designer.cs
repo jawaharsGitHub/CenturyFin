@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Customers
+    partial class frmCustomers
     {
         /// <summary>
         /// Required designer variable.

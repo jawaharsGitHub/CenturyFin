@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Expenditure : Form
+    public partial class frmExpenditure : Form
     {
-        public Expenditure()
+        public frmExpenditure()
         {
             InitializeComponent();
         }

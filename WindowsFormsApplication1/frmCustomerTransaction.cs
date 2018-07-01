@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class CustomerTransaction : Form
+    public partial class frmCustomerTransaction : Form
     {
         int _customerId;
         int _sequeneNo;
@@ -17,12 +17,12 @@ namespace WindowsFormsApplication1
         //private Customer _customer;
 
 
-        public CustomerTransaction()
+        public frmCustomerTransaction()
         {
             InitializeComponent();
         }
 
-        public CustomerTransaction(int sequenceNo, int customerId, int loan, string customerName, bool isClosedTx)
+        public frmCustomerTransaction(int sequenceNo, int customerId, int loan, string customerName, bool isClosedTx)
         {
             InitializeComponent();
 

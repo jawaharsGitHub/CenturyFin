@@ -26,7 +26,7 @@ namespace WindowsFormsApplication1
             Thread.CurrentThread.CurrentCulture = myCI;
 
 
-            Application.Run(new IndexForm());
+            Application.Run(new frmIndexForm());
         }
 
 

@@ -9,10 +9,10 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class IndexForm : Form
+    public partial class frmIndexForm : Form
     {
 
-        public IndexForm()
+        public frmIndexForm()
         {
             InitializeComponent();
             LoadAllData();
@@ -59,7 +59,7 @@ namespace WindowsFormsApplication1
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            Customers ac = new Customers();
+            frmCustomers ac = new frmCustomers();
             ac.ShowDialog();
         }
 

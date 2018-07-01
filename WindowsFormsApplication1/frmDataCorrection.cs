@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class DataCorrection : Form
+    public partial class frmDataCorrection : Form
     {
-        public DataCorrection()
+        public frmDataCorrection()
         {
             InitializeComponent();
         }

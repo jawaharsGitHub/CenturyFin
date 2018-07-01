@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class DailyEntry : Form
+    public partial class frmDailyEntry : Form
     {
-        public DailyEntry()
+        public frmDailyEntry()
         {
             InitializeComponent();
         }

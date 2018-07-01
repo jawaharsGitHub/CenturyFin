@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class IndexForm
+    partial class frmIndexForm
     {
         /// <summary>
         /// Required designer variable.

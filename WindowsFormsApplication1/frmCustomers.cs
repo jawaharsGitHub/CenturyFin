@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Customers : Form
+    public partial class frmCustomers : Form
     {
         private List<Customer> customers;
 
-        public Customers()
+        public frmCustomers()
         {
             InitializeComponent();
             // Get the table from the data set
@@ -47,7 +47,7 @@ namespace WindowsFormsApplication1
 
             var selectedCustomer = (selectedRows[0].DataBoundItem as Customer);
 
-            CustomerTransaction cd = new CustomerTransaction(selectedCustomer.CustomerSeqNumber, selectedCustomer.CustomerId, selectedCustomer.LoanAmount, selectedCustomer.Name, (selectedCustomer.IsActive == false));
+            frmCustomerTransaction cd = new frmCustomerTransaction(selectedCustomer.CustomerSeqNumber, selectedCustomer.CustomerId, selectedCustomer.LoanAmount, selectedCustomer.Name, (selectedCustomer.IsActive == false));
 
             cd.ShowDialog();
 
