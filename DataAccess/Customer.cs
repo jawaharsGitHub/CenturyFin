@@ -11,7 +11,7 @@ namespace DataAccess
     {
 
         //private static string AppConfiguration.CustomerFile =  @"H:\document\visual studio 2015\Projects\WindowsFormsApplication1\DataAccess\Data\customer.json";
-       
+
         public int CustomerSeqNumber { get; set; }
         public int CustomerId { get; set; }
         public string Name { get; set; }
@@ -70,7 +70,7 @@ namespace DataAccess
                 var json = File.ReadAllText(AppConfiguration.CustomerFile);
                 List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
 
-                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber ==  updatedCustomer.CustomerSeqNumber && c.IsActive == true).FirstOrDefault();
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber && c.IsActive == true).FirstOrDefault();
                 u.IsActive = updatedCustomer.IsActive;
 
                 string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
@@ -86,14 +86,14 @@ namespace DataAccess
             }
         }
 
-        public static Customer GetCustomerDetails(int id)
+        public static Customer GetCustomerDetails(int cusid, int cusSeqNo)
         {
 
             try
             {
                 var json = File.ReadAllText(AppConfiguration.CustomerFile);
                 List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
-                return list.Where(c => c.CustomerId == id).FirstOrDefault();
+                return list.Where(c => c.CustomerId == cusid && c.CustomerSeqNumber == cusSeqNo).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -155,7 +155,7 @@ namespace DataAccess
 
         }
 
-       
+
 
     }
 

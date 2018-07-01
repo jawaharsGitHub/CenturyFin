@@ -40,6 +40,10 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lblStartDate = new System.Windows.Forms.Label();
             this.lblLastDate = new System.Windows.Forms.Label();
+            this.rdbAsc = new System.Windows.Forms.RadioButton();
+            this.rdbDesc = new System.Windows.Forms.RadioButton();
+            this.lblNoOfDays = new System.Windows.Forms.Label();
+            this.lblPercentageGain = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -139,7 +143,7 @@
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
-            this.lblStartDate.Location = new System.Drawing.Point(477, 121);
+            this.lblStartDate.Location = new System.Drawing.Point(353, 120);
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(58, 13);
             this.lblStartDate.TabIndex = 7;
@@ -148,17 +152,63 @@
             // lblLastDate
             // 
             this.lblLastDate.AutoSize = true;
-            this.lblLastDate.Location = new System.Drawing.Point(477, 148);
+            this.lblLastDate.Location = new System.Drawing.Point(353, 147);
             this.lblLastDate.Name = "lblLastDate";
             this.lblLastDate.Size = new System.Drawing.Size(56, 13);
             this.lblLastDate.TabIndex = 8;
             this.lblLastDate.Text = "Last Date:";
+            // 
+            // rdbAsc
+            // 
+            this.rdbAsc.AutoSize = true;
+            this.rdbAsc.Location = new System.Drawing.Point(18, 143);
+            this.rdbAsc.Name = "rdbAsc";
+            this.rdbAsc.Size = new System.Drawing.Size(61, 17);
+            this.rdbAsc.TabIndex = 9;
+            this.rdbAsc.TabStop = true;
+            this.rdbAsc.Text = "By ASC";
+            this.rdbAsc.UseVisualStyleBackColor = true;
+            this.rdbAsc.CheckedChanged += new System.EventHandler(this.rdbAsc_CheckedChanged);
+            // 
+            // rdbDesc
+            // 
+            this.rdbDesc.AutoSize = true;
+            this.rdbDesc.Location = new System.Drawing.Point(120, 143);
+            this.rdbDesc.Name = "rdbDesc";
+            this.rdbDesc.Size = new System.Drawing.Size(69, 17);
+            this.rdbDesc.TabIndex = 10;
+            this.rdbDesc.TabStop = true;
+            this.rdbDesc.Text = "By DESC";
+            this.rdbDesc.UseVisualStyleBackColor = true;
+            this.rdbDesc.CheckedChanged += new System.EventHandler(this.rdbDesc_CheckedChanged);
+            // 
+            // lblNoOfDays
+            // 
+            this.lblNoOfDays.AutoSize = true;
+            this.lblNoOfDays.Location = new System.Drawing.Point(576, 120);
+            this.lblNoOfDays.Name = "lblNoOfDays";
+            this.lblNoOfDays.Size = new System.Drawing.Size(62, 13);
+            this.lblNoOfDays.TabIndex = 11;
+            this.lblNoOfDays.Text = "No Of Days";
+            // 
+            // lblPercentageGain
+            // 
+            this.lblPercentageGain.AutoSize = true;
+            this.lblPercentageGain.Location = new System.Drawing.Point(576, 147);
+            this.lblPercentageGain.Name = "lblPercentageGain";
+            this.lblPercentageGain.Size = new System.Drawing.Size(94, 13);
+            this.lblPercentageGain.TabIndex = 12;
+            this.lblPercentageGain.Text = "lblPercentageGain";
             // 
             // CustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 517);
+            this.Controls.Add(this.lblPercentageGain);
+            this.Controls.Add(this.lblNoOfDays);
+            this.Controls.Add(this.rdbDesc);
+            this.Controls.Add(this.rdbAsc);
             this.Controls.Add(this.lblLastDate);
             this.Controls.Add(this.lblStartDate);
             this.Controls.Add(this.dataGridView1);
@@ -191,5 +241,9 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.Label lblLastDate;
+        private System.Windows.Forms.RadioButton rdbAsc;
+        private System.Windows.Forms.RadioButton rdbDesc;
+        private System.Windows.Forms.Label lblNoOfDays;
+        private System.Windows.Forms.Label lblPercentageGain;
     }
 }

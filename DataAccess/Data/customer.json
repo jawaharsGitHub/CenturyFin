@@ -280,10 +280,10 @@
     "CustomerId": 21,
     "Name": "Pandi-Maligai",
     "PhoneNumber": "",
-    "LoanAmount": 10000,
+    "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "CreatedDate": "2018-06-22T00:00:00-04:00",
     "ModifiedDate": null
   },
@@ -478,6 +478,101 @@
     "IsActive": false,
     "CreatedDate": "2018-06-29T00:00:00-04:00",
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 41,
+    "CustomerId": 33,
+    "Name": "Sulthan - Travels",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 1600,
+    "IsExistingCustomer": false,
+    "IsActive": false,
+    "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 42,
+    "CustomerId": 33,
+    "Name": "Sulthan - Travels",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 2400,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 43,
+    "CustomerId": 3,
+    "Name": "Raghavan",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 400,
+    "IsExistingCustomer": true,
+    "IsActive": false,
+    "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 44,
+    "CustomerId": 3,
+    "Name": "Raghavan",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 800,
+    "IsExistingCustomer": true,
+    "IsActive": false,
+    "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 45,
+    "CustomerId": 34,
+    "Name": "MS Fancy",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 1600,
+    "IsExistingCustomer": false,
+    "IsActive": false,
+    "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 46,
+    "CustomerId": 12,
+    "Name": "Muniasamy-PorattaMaster",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 800,
+    "IsExistingCustomer": true,
+    "IsActive": false,
+    "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 47,
+    "CustomerId": 2,
+    "Name": "Iqbal",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 2400,
+    "IsExistingCustomer": true,
+    "IsActive": false,
+    "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 48,
+    "CustomerId": 2,
+    "Name": "Iqbal",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 1600,
+    "IsExistingCustomer": true,
+    "IsActive": false,
+    "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
   }
- 
 ]

@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -26,8 +27,7 @@ namespace WindowsFormsApplication1
             var newCustomerId = Customer.GetNextCustomerId();
             var nextSeqNo = Customer.GetNextCustomerSeqNo();
             Customer cus = new Customer();
-            cus.LoanAmount = Convert.ToInt32(txtLoan.Text);
-
+            
             if (chkExistingCustomer.Checked)
             {
                 cus = (Customer)cmbExistingCustomer.SelectedItem;
@@ -46,6 +46,9 @@ namespace WindowsFormsApplication1
                 cus.PhoneNumber = txtPhone.Text;
                 cus.CustomerSeqNumber = nextSeqNo;
             }
+
+            cus.LoanAmount = Convert.ToInt32(txtLoan.Text);
+
 
             cus.Interest = Convert.ToInt32(txtInterest.Text);
 
@@ -102,6 +105,23 @@ namespace WindowsFormsApplication1
 
             var interest = (loanAmount / 100) * 8;
             txtInterest.Text = interest.ToString();
+
+        }
+
+        private void cmbExistingCustomer_TextChanged(object sender, EventArgs e)
+        {
+
+            //cmbExistingCustomer.DataSource = null;
+            // load existing customer
+            //cmbExistingCustomer.DataSource = Customer.GetAllCustomer().Where(w => w.Name.Contains(cmbExistingCustomer.Text)).ToList();
+            //cmbExistingCustomer.DisplayMember = "Name";
+            //cmbExistingCustomer.ValueMember = "CustomerId";
+            //txtName.Enabled = txtPhone.Enabled = false;
+
+            cmbExistingCustomer.DroppedDown = false;
+
+
+
 
         }
     }

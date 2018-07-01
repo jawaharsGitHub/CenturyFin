@@ -121,32 +121,68 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void LoadTxn()
+        private void LoadTxn(bool isDesc = true)
         {
 
             var txns = Transaction.GetTransactionDetails(_customerId, _sequeneNo, _isClosedTx);
+            var cus = Customer.GetCustomerDetails(_customerId, _sequeneNo);
 
             if (txns == null || txns.Count == 0) return;
 
 
             var dataDource = from t in txns
-                             
-                                       select new
-                                       {
-                                           t.TransactionId,
-                                           t.TxnDate,
-                                           t.AmountReceived,
-                                           t.Balance
-                                       };
 
-            dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate).ToList();
+                             select new
+                             {
+                                 t.TransactionId,
+                                 t.TxnDate,
+                                 t.AmountReceived,
+                                 t.Balance
+                             };
+            if (isDesc)
+                dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate).ThenByDescending(t => t.Balance).ToList();
+            else
+                dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate).ToList();
+
+            var startDate = dataDource.Select(s => s.TxnDate).Min();
+            var endDate = dataDource.Select(s => s.TxnDate).Max();
+            var DaysTaken = endDate.Date.Subtract(startDate).Days + 2;
 
 
-            lblStartDate.Text = $"Start Date: {dataDource.Select(s => s.TxnDate).Min()}";
-            lblLastDate.Text = $"Last Date: {dataDource.Select(s => s.TxnDate).Max()}";
+            lblStartDate.Text = $"Start Date: {startDate}";
+            lblLastDate.Text = $"Last Date: {endDate}";
+
+            lblNoOfDays.Text = $"Days to Return {DaysTaken}";
+
+            var percGainPerMonth = Math.Round(((8.89 / DaysTaken) * 30), 2);
 
 
-            dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+            lblPercentageGain.Text = $"{percGainPerMonth.ToString()}% Per Month({(percGainPerMonth/100)* (cus.LoanAmount - cus.Interest)} Rs/Month)";
+
+
+
+
+            //dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+        }
+
+        private void rdbAsc_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbAsc.Checked)
+            {
+                LoadTxn(false);
+
+            }
+
+        }
+
+        private void rdbDesc_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbDesc.Checked)
+            {
+                LoadTxn(true);
+
+            }
+
         }
     }
 }
