@@ -79,11 +79,45 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\ClosedNotes\10\10_10.json" />
+    <None Include="Data\ClosedNotes\11\11_11.json" />
+    <None Include="Data\ClosedNotes\12\12_12.json" />
+    <None Include="Data\ClosedNotes\12\12_46.json" />
+    <None Include="Data\ClosedNotes\13\13_13.json" />
+    <None Include="Data\ClosedNotes\14\14_14.json" />
+    <None Include="Data\ClosedNotes\15\15_15.json" />
+    <None Include="Data\ClosedNotes\16\16_16.json" />
+    <None Include="Data\ClosedNotes\17\17_17.json" />
+    <None Include="Data\ClosedNotes\18\18_18.json" />
+    <None Include="Data\ClosedNotes\19\19_19.json" />
+    <None Include="Data\ClosedNotes\1\1_1.json" />
+    <None Include="Data\ClosedNotes\20\20_20.json" />
+    <None Include="Data\ClosedNotes\20\20_21.json" />
+    <None Include="Data\ClosedNotes\21\21_24.json" />
+    <None Include="Data\ClosedNotes\22\22_23.json" />
+    <None Include="Data\ClosedNotes\25\25_33.json" />
+    <None Include="Data\ClosedNotes\28\28_36.json" />
+    <None Include="Data\ClosedNotes\2\2_2.json" />
+    <None Include="Data\ClosedNotes\2\2_47.json" />
+    <None Include="Data\ClosedNotes\2\2_48.json" />
+    <None Include="Data\ClosedNotes\32\32_40.json" />
+    <None Include="Data\ClosedNotes\33\33_41.json" />
+    <None Include="Data\ClosedNotes\33\33_42.json" />
+    <None Include="Data\ClosedNotes\34\34_45.json" />
+    <None Include="Data\ClosedNotes\3\3_3.json" />
+    <None Include="Data\ClosedNotes\3\3_43.json" />
+    <None Include="Data\ClosedNotes\3\3_44.json" />
+    <None Include="Data\ClosedNotes\4\4_4.json" />
+    <None Include="Data\ClosedNotes\5\5_5.json" />
+    <None Include="Data\ClosedNotes\6\6_6.json" />
+    <None Include="Data\ClosedNotes\7\7_7.json" />
+    <None Include="Data\ClosedNotes\8\8_8.json" />
+    <None Include="Data\ClosedNotes\9\9_9.json" />
+    <None Include="Data\customer.json" />
     <None Include="Data\Expenditure.json" />
     <None Include="Data\InHand.json" />
     <None Include="Data\Investment.json" />
     <None Include="Data\transaction.json" />
-    <None Include="Data\customer.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
