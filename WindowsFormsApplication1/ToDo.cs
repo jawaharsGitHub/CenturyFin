@@ -23,12 +23,12 @@
 //TODO: Enable sorting, paging for customer page.
 //TODO: change icon of the project.
 //TODO: installer for the project.
-//TODO: change backup folder name as [ClosedNotes]
+//Done: change backup folder name as [ClosedNotes]
 //TODO: Add Customer Name in ClosedNotes Folders [ClosedNotes]
-//TODO: How to see closed Transaction?
+//Done: How to see closed Transaction?
 //TODO: Sometimes file gets locked (Cant access file in use)
 //TODO: Refresh Data Automatically.
 //TODO: TxnId may not be correct if last customer closes
 //TODO: Handle all exceptions. (Dont show any technical exceptions.should not break the application)
-//TODO: please verify all date format.
+//TODO: please verify all date format.  (only date needed, no time needed)
 //TODO: Internal tool to do small modifications.
