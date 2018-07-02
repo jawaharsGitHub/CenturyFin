@@ -583,7 +583,7 @@
     "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "CreatedDate": "2018-07-01T00:00:00-04:00",
     "ModifiedDate": null
   }
