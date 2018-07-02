@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenturyFinCorp", "WindowsFormsApplication1\CenturyFinCorp.csproj", "{91390315-6AE6-4175-95F7-0C8A75F42714}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CenturyFinCorp", "CenturyFinApp\CenturyFinCorp.csproj", "{91390315-6AE6-4175-95F7-0C8A75F42714}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{6D881868-8AC9-4EFB-B6C3-29CF886F6E19}"
 EndProject
