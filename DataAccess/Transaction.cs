@@ -11,7 +11,6 @@ namespace DataAccess
     {
 
 
-
         public int CustomerId { get; set; }
         public bool IsClosed { get; set; }
         //public Customer TxnCustomer;
@@ -19,10 +18,12 @@ namespace DataAccess
         public int TransactionId { get; set; }
         public int AmountReceived { get; set; }
         public int Balance { get; set; }
-        public DateTime TxnDate { get; set; }
+        //public DateTime TxnDate { get; set; }
         public DateTime? TxnUpdatedDate { get; set; }
         public int CustomerSequenceNo { get; set; }
+        public DateTime TxnDate { get; set; } //{ get => TxnDate; set => TxnDate = value; }
 
+        
 
         // Add
         public static string AddObjectsToJson<T>(string json, List<T> objects)

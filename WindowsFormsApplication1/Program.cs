@@ -17,8 +17,6 @@ namespace WindowsFormsApplication1
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Thread.CurrentThread.CurrentCulture = new CultureInfo("ta-IN");
-            //Thread.CurrentThread.CurrentCulture.DateTimeFormat = DateTimeFormatInfo
 
             CultureInfo myCI = new CultureInfo("ta-IN", false);
             myCI.DateTimeFormat.ShortDatePattern = "dd-MMM-yyyy";

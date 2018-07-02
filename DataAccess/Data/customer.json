@@ -146,7 +146,7 @@
   {
     "CustomerSeqNumber": 13,
     "CustomerId": 13,
-    "Name": "thiruvika-palaiya check post",
+    "Name": "Thiruvikas-Maligai-old check post",
     "PhoneNumber": "",
     "LoanAmount": 10000,
     "Interest": 800,
@@ -247,7 +247,7 @@
     "LoanAmount": 20000,
     "Interest": 1600,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "CreatedDate": "2018-06-22T00:00:00-04:00",
     "ModifiedDate": null
   },
@@ -427,7 +427,7 @@
     "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "CreatedDate": "2018-06-26T00:00:00-04:00",
     "ModifiedDate": null
   },
@@ -457,8 +457,8 @@
   },
   {
     "CustomerSeqNumber": 39,
-    "CustomerId": 31,
-    "Name": "Thiru vikas - Maligai Kadai",
+    "CustomerId": 13,
+    "Name": "Thiruvikas-Maligai-old check post",
     "PhoneNumber": "",
     "LoanAmount": 10000,
     "Interest": 800,
@@ -499,7 +499,7 @@
     "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "CreatedDate": "2018-06-30T00:00:00-04:00",
     "ModifiedDate": null
   },
@@ -573,6 +573,18 @@
     "IsExistingCustomer": true,
     "IsActive": false,
     "CreatedDate": "2018-06-30T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 49,
+    "CustomerId": 18,
+    "Name": "Syed-Ajanth Bakery",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 2400,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "CreatedDate": "2018-07-01T00:00:00-04:00",
     "ModifiedDate": null
   }
 ]

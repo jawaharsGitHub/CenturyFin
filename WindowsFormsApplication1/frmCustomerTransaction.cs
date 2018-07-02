@@ -140,7 +140,7 @@ namespace WindowsFormsApplication1
                                  t.Balance
                              };
             if (isDesc)
-                dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate).ThenByDescending(t => t.Balance).ToList();
+                dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate).ThenBy(t => t.Balance).ToList();
             else
                 dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate).ToList();
 
@@ -152,7 +152,7 @@ namespace WindowsFormsApplication1
             lblStartDate.Text = $"Start Date: {startDate}";
             lblLastDate.Text = $"Last Date: {lastDate}";
 
-            lblNoOfDays.Text = $"Days to Return {DaysTaken}";
+            lblNoOfDays.Text = $"Days taken to Return {DaysTaken}";
 
             var percGainPerMonth = Math.Round(((8.89 / DaysTaken) * 30), 2);
 

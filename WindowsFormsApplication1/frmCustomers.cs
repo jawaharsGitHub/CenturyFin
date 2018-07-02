@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
             var closedTxn = customers.Count(c => c.IsActive == false);
             var totalTxn = activeTxn + closedTxn;
 
-            this.Text = $"Active Txn: {activeTxn} Closed Txn: {closedTxn} Total Txn: {totalTxn}";
+            this.Text = $"Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
 
             if (customers == null) return;
 
@@ -36,6 +36,8 @@ namespace WindowsFormsApplication1
             dataGridView1.Columns.Add(textboxColumn);
             dataGridView1.AutoResizeColumns(
            DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+
+            txtSearch.Focus();
 
         }
 
@@ -108,6 +110,13 @@ namespace WindowsFormsApplication1
             //Transaction txn = new Transaction();
 
             Transaction.AddDailyTransactions(txns);
+        }
+
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            frmAddCustomer ac = new frmAddCustomer();
+            ac.ShowDialog();
+
         }
     }
 }

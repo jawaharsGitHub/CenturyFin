@@ -35,6 +35,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnAddCustomer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,10 +53,9 @@
             this.rdbActive.AutoSize = true;
             this.rdbActive.Location = new System.Drawing.Point(46, 13);
             this.rdbActive.Name = "rdbActive";
-            this.rdbActive.Size = new System.Drawing.Size(55, 17);
+            this.rdbActive.Size = new System.Drawing.Size(96, 17);
             this.rdbActive.TabIndex = 1;
-            this.rdbActive.TabStop = true;
-            this.rdbActive.Text = "Active";
+            this.rdbActive.Text = "Running Notes";
             this.rdbActive.UseVisualStyleBackColor = true;
             this.rdbActive.CheckedChanged += new System.EventHandler(this.rdbActive_CheckedChanged);
             // 
@@ -64,28 +64,28 @@
             this.rdbClosed.AutoSize = true;
             this.rdbClosed.Location = new System.Drawing.Point(151, 13);
             this.rdbClosed.Name = "rdbClosed";
-            this.rdbClosed.Size = new System.Drawing.Size(57, 17);
+            this.rdbClosed.Size = new System.Drawing.Size(88, 17);
             this.rdbClosed.TabIndex = 2;
-            this.rdbClosed.TabStop = true;
-            this.rdbClosed.Text = "Closed";
+            this.rdbClosed.Text = "Closed Notes";
             this.rdbClosed.UseVisualStyleBackColor = true;
             this.rdbClosed.CheckedChanged += new System.EventHandler(this.rdbClosed_CheckedChanged);
             // 
             // rdbAll
             // 
             this.rdbAll.AutoSize = true;
+            this.rdbAll.Checked = true;
             this.rdbAll.Location = new System.Drawing.Point(270, 13);
             this.rdbAll.Name = "rdbAll";
-            this.rdbAll.Size = new System.Drawing.Size(36, 17);
+            this.rdbAll.Size = new System.Drawing.Size(67, 17);
             this.rdbAll.TabIndex = 3;
             this.rdbAll.TabStop = true;
-            this.rdbAll.Text = "All";
+            this.rdbAll.Text = "All Notes";
             this.rdbAll.UseVisualStyleBackColor = true;
             this.rdbAll.CheckedChanged += new System.EventHandler(this.rdbAll_CheckedChanged);
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(375, 13);
+            this.txtSearch.Location = new System.Drawing.Point(340, 13);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(190, 20);
             this.txtSearch.TabIndex = 4;
@@ -108,11 +108,22 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // Customers
+            // btnAddCustomer
+            // 
+            this.btnAddCustomer.Location = new System.Drawing.Point(557, 13);
+            this.btnAddCustomer.Name = "btnAddCustomer";
+            this.btnAddCustomer.Size = new System.Drawing.Size(102, 23);
+            this.btnAddCustomer.TabIndex = 7;
+            this.btnAddCustomer.Text = "Add Customer";
+            this.btnAddCustomer.UseVisualStyleBackColor = true;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
+            // 
+            // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtSearch);
@@ -120,7 +131,7 @@
             this.Controls.Add(this.rdbClosed);
             this.Controls.Add(this.rdbActive);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Customers";
+            this.Name = "frmCustomers";
             this.Text = "Customers";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -137,5 +148,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnAddCustomer;
     }
 }

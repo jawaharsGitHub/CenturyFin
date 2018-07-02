@@ -10,7 +10,6 @@ namespace DataAccess
     public class Customer
     {
 
-        //private static string AppConfiguration.CustomerFile =  @"H:\document\visual studio 2015\Projects\WindowsFormsApplication1\DataAccess\Data\customer.json";
 
         public int CustomerSeqNumber { get; set; }
         public int CustomerId { get; set; }
@@ -28,9 +27,7 @@ namespace DataAccess
         public DateTime? ModifiedDate { get; set; }
 
 
-        //public List<Transaction> customerTransaction;
-
-
+        
         // Add
         public static string AddObjectsToJson<T>(string json, List<T> objects)
         {
