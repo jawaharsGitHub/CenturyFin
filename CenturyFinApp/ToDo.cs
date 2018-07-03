@@ -42,3 +42,4 @@
 //TODO: Set focus to txtSearch in customer form.
 // Done: Asc/Desc by date
 // TODO: Esc should close the form.
+//Issue: Check customer and total notes count.
