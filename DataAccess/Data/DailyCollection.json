@@ -1,0 +1,30 @@
+﻿[
+  {
+    "Date": "2018-07-01T00:00:00-04:00",
+    "YesterdayAmountInHand": 18460,
+    "CollectionAmount": 2500,
+    "GivenAmount": 0,
+    "Interest": 0,
+    "TodayInHand": 20960
+
+
+  },
+  {
+    "Date": "2018-07-02T00:00:00-04:00",
+    "YesterdayAmountInHand": 20960,
+    "CollectionAmount": 10110,
+    "GivenAmount": 15000,
+    "Interest": 1200,
+    "TodayInHand": 17270
+
+  },
+  {
+    "Date": "2018-07-03T00:00:00-04:00",
+    "YesterdayAmountInHand": 17270,
+    "CollectionAmount": 5500,
+    "GivenAmount": 0,
+    "Interest": 0,
+    "TodayInHand": 22770
+
+  }
+]

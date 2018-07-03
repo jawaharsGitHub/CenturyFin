@@ -376,7 +376,7 @@
     "CustomerId": 4,
     "Name": "Panner Selvam",
     "PhoneNumber": "",
-    "LoanAmount": 20000,
+    "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": true,
     "IsActive": true,
@@ -585,6 +585,54 @@
     "IsExistingCustomer": true,
     "IsActive": false,
     "CreatedDate": "2018-07-01T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 50,
+    "CustomerId": 35,
+    "Name": "Bavani Store - Kadamba Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 800,
+    "IsExistingCustomer": false,
+    "IsActive": false,
+    "CreatedDate": "2018-07-03T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 51,
+    "CustomerId": 36,
+    "Name": "Bavani Store - Kadamba Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 800,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "CreatedDate": "2018-07-03T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 52,
+    "CustomerId": 3,
+    "Name": "Raghavan",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 800,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "CreatedDate": "2018-07-03T00:00:00-04:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 53,
+    "CustomerId": 2,
+    "Name": "Iqbal",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 2400,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "CreatedDate": "2018-07-03T00:00:00-04:00",
     "ModifiedDate": null
   }
 ]
