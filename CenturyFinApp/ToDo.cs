@@ -32,3 +32,13 @@
 //TODO: Handle all exceptions. (Dont show any technical exceptions.should not break the application)
 //TODO: please verify all date format.  (only date needed, no time needed)
 //TODO: Internal tool to do small modifications.
+//TODO: edit transaction.
+//TODO: keyboard short cuts for all actions strat wth (Date, amount, add txn)
+//TODO: select all amount.
+//TODO: Auto Select Existing customer.
+//TODO: Show [Sequence No] - No of times 
+// TODO: Delete customer
+//TODO: Git Flow for all customers.
+//TODO: Set focus to txtSearch in customer form.
+// Done: Asc/Desc by date
+// TODO: Esc should close the form.
