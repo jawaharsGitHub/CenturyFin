@@ -14,9 +14,7 @@ namespace WindowsFormsApplication1
         string _customerName;
         bool _isClosedTx = false;
 
-        //private Customer _customer;
-
-
+        
         public frmCustomerTransaction()
         {
             InitializeComponent();
@@ -154,15 +152,15 @@ namespace WindowsFormsApplication1
 
             lblNoOfDays.Text = $"Days taken to Return {DaysTaken}";
 
-            var percGainPerMonth = Math.Round(((8.89 / DaysTaken) * 30), 2);
+            var percGainPerMonth = Math.Round(((8.89 / DaysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.
 
 
             lblPercentageGain.Text = $"{percGainPerMonth.ToString()}% Per Month({(percGainPerMonth/100)* (cus.LoanAmount - cus.Interest)} Rs/Month)";
 
             dateTimePicker1.Value = lastDate.AddDays(1);
 
-
-            //dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+            dataGridView1.ReadOnly = false;
+            
         }
 
         private void rdbAsc_CheckedChanged(object sender, EventArgs e)

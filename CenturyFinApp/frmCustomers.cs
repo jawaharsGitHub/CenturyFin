@@ -31,11 +31,12 @@ namespace WindowsFormsApplication1
             textboxColumn.Name = "CollectionAmt";
 
             dataGridView1.DataSource = customers;
+
+
             //Add TextBoxColumn dynamically to DataGridView
             //dataGridView1.Columns.Add(textboxColumn, "Collection Amount");
             dataGridView1.Columns.Add(textboxColumn);
-            dataGridView1.AutoResizeColumns(
-           DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+            dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
             txtSearch.Focus();
 
