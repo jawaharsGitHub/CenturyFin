@@ -511,30 +511,27 @@
     "CollectionAmount": 6920,
     "GivenAmount": 5000,
     "Interest": 400,
-    "TodayInHand": 25970
+    "TodayInHand": 25090
 
   },
-
-  // doubt
   {
     "Date": "2018-07-05",
-    "YesterdayAmountInHand": 25970,
+    "YesterdayAmountInHand": 25090,
     "CollectionAmount": 20650,
     "TakenFromBank": 30000,
     "GivenAmount": 60000,
     "Interest": 4800,
-    "TodayInHand": 21420 //20540?
+    "TodayInHand": 20540 //20540?
 
 
   },
-  // doubt
   {
     "Date": "2018-07-06",
-    "YesterdayAmountInHand": 21420,
+    "YesterdayAmountInHand": 20540,
     "CollectionAmount": 8760,
     "GivenAmount": 0,
     "Interest": 0,
-    "TodayInHand": 30180
+    "TodayInHand": 29300
 
   }
 ]
