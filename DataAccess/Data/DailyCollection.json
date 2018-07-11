@@ -7,8 +7,6 @@
     "GivenAmount": -111,
     "Interest": -111,
     "TodayInHand": -111
-
-
   },
   {
     "Date": "2018-04-02",
@@ -17,8 +15,6 @@
     "GivenAmount": -111,
     "Interest": -111,
     "TodayInHand": -111
-
-
   },
   {
     "Date": "2018-04-03",
@@ -27,8 +23,6 @@
     "GivenAmount": -111,
     "Interest": -111,
     "TodayInHand": -111
-
-
   },
   {
     "Date": "2018-04-04",
@@ -37,8 +31,6 @@
     "GivenAmount": -111,
     "Interest": -111,
     "TodayInHand": -111
-
-
   },
   {
     "Date": "2018-04-05",
@@ -47,11 +39,7 @@
     "GivenAmount": -111,
     "Interest": -111,
     "TodayInHand": -111
-
-
   },
-
-
   {
     "Date": "2018-04-06",
     "YesterdayAmountInHand": -111,
@@ -59,10 +47,7 @@
     "GivenAmount": -111,
     "Interest": -111,
     "TodayInHand": -111
-
-
   },
-
   {
     "Date": "2018-04-07",
     "YesterdayAmountInHand": -111,
@@ -70,10 +55,7 @@
     "GivenAmount": -111,
     "Interest": -111,
     "TodayInHand": -111
-
-
   },
-
   {
     "Date": "2018-04-08",
     "YesterdayAmountInHand": -111,
@@ -521,7 +503,7 @@
     "TakenFromBank": 30000,
     "GivenAmount": 60000,
     "Interest": 4800,
-    "TodayInHand": 20540 //20540?
+    "TodayInHand": 20540 
 
 
   },
@@ -562,8 +544,8 @@
     "Date": "2018-07-10",
     "YesterdayAmountInHand": 35860,
     "CollectionAmount": 6060,
-    "GivenAmount": 0,
-    "Interest": 0,
+    "GivenAmount": 10000,
+    "Interest": 1000,
     "TodayInHand": 41920
   }
 ]
