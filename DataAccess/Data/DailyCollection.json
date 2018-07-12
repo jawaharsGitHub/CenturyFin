@@ -503,7 +503,7 @@
     "TakenFromBank": 30000,
     "GivenAmount": 60000,
     "Interest": 4800,
-    "TodayInHand": 20540 
+    "TodayInHand": 20540
 
 
   },
@@ -546,6 +546,15 @@
     "CollectionAmount": 6060,
     "GivenAmount": 10000,
     "Interest": 1000,
-    "TodayInHand": 41920
+    "TodayInHand": 32920
+  },
+  {
+    "Date": "2018-07-11",
+    "YesterdayAmountInHand": 32920,
+    "TakenFromBank": 30000,
+    "CollectionAmount": 14610,
+    "GivenAmount": 50000,
+    "Interest": 5000,
+    "TodayInHand": 32530
   }
 ]
