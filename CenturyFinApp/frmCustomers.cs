@@ -60,9 +60,6 @@ namespace WindowsFormsApplication1
         {
             if (rdbAll.Checked)
             {
-
-
-
                 dataGridView1.DataSource = customers;
 
             }
@@ -119,5 +116,31 @@ namespace WindowsFormsApplication1
             ac.ShowDialog();
 
         }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var grid = (sender as DataGridView);
+            var rowIndex = grid.CurrentCell.RowIndex;
+
+            var seqNo = GetGridCellValue(grid, rowIndex, "CustomerSeqNumber");
+            var customerId = GetGridCellValue(grid, rowIndex, "CustomerId");
+            var createdDate = GetGridCellValue(grid, rowIndex, "CreatedDate");
+
+            // Update Customer Created Date.
+
+            Customer.CorrectCustomerData(new Customer() { CustomerId = Convert.ToInt32(customerId), CustomerSeqNumber = Convert.ToInt32(seqNo), CreatedDate = Convert.ToDateTime(createdDate) });
+            
+
+        }
+
+        private string GetGridCellValue(DataGridView grid, int rowIndex, string columnName)
+        {
+            return Convert.ToString(grid.Rows[grid.CurrentCell.RowIndex].Cells[columnName].Value);
+
+        }
     }
+
+
+   
+
 }
