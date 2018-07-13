@@ -565,6 +565,15 @@
     "GivenAmount": 0,
     "Interest": 0,
     "TodayInHand": 40240
+  },
+  {
+    "Date": "2018-07-13",
+    "YesterdayAmountInHand": 40240,
+    "TakenFromBank": 50000, // 30,000 + 20,000
+    "CollectionAmount": 21260,
+    "GivenAmount": 70000,
+    "Interest": 6700,
+    "TodayInHand": 48200  // 28.200 + 20,000
   }
 ]
 
@@ -579,7 +588,7 @@
   April - 0 -- 1st quarter
   May - 0
   June - 6,800
-  July - 13,200 -- 2nd quarter
+  July - (13,200 + 6700) = 19,900 (13 July) -- 2nd quarter
 
 
 
