@@ -157,7 +157,7 @@ namespace WindowsFormsApplication1
         {
 
             if (chkOrderByStartDate.Checked)
-                dataGridView1.DataSource = customers.OrderBy(o => o.AmountGivenDate).ToList();
+                dataGridView1.DataSource = customers.OrderBy(o => o.ClosedDate).ToList();
             else
                 dataGridView1.DataSource = customers;
 
