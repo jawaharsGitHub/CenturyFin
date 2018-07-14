@@ -55,6 +55,22 @@ namespace WindowsFormsApplication1
             Customer.AddCustomer(cus);
             txtCustomerNo.Text = newCustomerId.ToString();
 
+            // Add First Transaction.
+
+            var txn = new Transaction()
+            {
+                AmountReceived = 0,
+                CustomerId = cus.CustomerId,
+                CustomerSequenceNo = cus.CustomerSeqNumber,
+                TransactionId = Transaction.GetNextTransactionId(),
+                Balance = cus.LoanAmount,
+                TxnDate = DateTime.Today
+            };
+
+            Transaction.AddTransaction(txn);
+
+
+
             // Add Investment
 
             Investment.AddInvestment(new Investment()
@@ -101,6 +117,8 @@ namespace WindowsFormsApplication1
 
         private void txtLoan_Leave(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtLoan.Text)) return;
+
             var loanAmount = Convert.ToInt32(txtLoan.Text);
 
             var interest = (loanAmount / 100) * 8;
