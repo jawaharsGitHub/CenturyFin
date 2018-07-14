@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             // Get the table from the data set
-            customers = Customer.GetAllCustomer().OrderBy(o => o.Name).ToList(); //.Where(w => w.IsActive).ToList();
+            customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
 
             var activeTxn = customers.Count(c => c.IsActive == true);
             var closedTxn = customers.Count(c => c.IsActive == false);
@@ -34,7 +34,7 @@ namespace WindowsFormsApplication1
 
 
             //Add TextBoxColumn dynamically to DataGridView
-            //dataGridView1.Columns.Add(textboxColumn, "Collection Amount");
+
             dataGridView1.Columns.Add(textboxColumn);
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
@@ -124,12 +124,26 @@ namespace WindowsFormsApplication1
 
             var seqNo = GetGridCellValue(grid, rowIndex, "CustomerSeqNumber");
             var customerId = GetGridCellValue(grid, rowIndex, "CustomerId");
-            var createdDate = GetGridCellValue(grid, rowIndex, "AmountGivenDate");
+            var amountGivenDate = GetGridCellValue(grid, rowIndex, "AmountGivenDate");
+            var closedDate = GetGridCellValue(grid, rowIndex, "ClosedDate");
+            var interest = GetGridCellValue(grid, rowIndex, "Interest");
+            var loanAmount = GetGridCellValue(grid, rowIndex, "LoanAmount");
 
             // Update Customer Created Date.
 
-            Customer.CorrectCustomerData(new Customer() { CustomerId = Convert.ToInt32(customerId), CustomerSeqNumber = Convert.ToInt32(seqNo), AmountGivenDate = Convert.ToDateTime(createdDate) });
-            
+            Customer.CorrectCustomerData(
+                new Customer()
+                {
+                    CustomerId = Convert.ToInt32(customerId),
+                    CustomerSeqNumber = Convert.ToInt32(seqNo),
+                    AmountGivenDate = Convert.ToDateTime(amountGivenDate),
+                    ClosedDate = Convert.ToDateTime(closedDate),
+                    Interest = Convert.ToInt32(interest),
+                    LoanAmount = Convert.ToInt32(loanAmount)
+
+
+                });
+
 
         }
 
@@ -152,6 +166,6 @@ namespace WindowsFormsApplication1
     }
 
 
-   
+
 
 }

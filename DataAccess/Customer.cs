@@ -24,6 +24,7 @@ namespace DataAccess
         public bool IsActive { get; set; }
 
         public DateTime AmountGivenDate { get; set; }
+        public DateTime ClosedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
 
 
@@ -94,6 +95,9 @@ namespace DataAccess
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
 
                 u.AmountGivenDate = updatedCustomer.AmountGivenDate; // TODO: need to update all fields later
+                u.ClosedDate = updatedCustomer.ClosedDate;
+                u.Interest = updatedCustomer.Interest;
+                u.LoanAmount = updatedCustomer.LoanAmount;
 
                 string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
 
