@@ -138,6 +138,17 @@ namespace WindowsFormsApplication1
             return Convert.ToString(grid.Rows[grid.CurrentCell.RowIndex].Cells[columnName].Value);
 
         }
+
+        private void chkOrderByStartDate_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chkOrderByStartDate.Checked)
+                dataGridView1.DataSource = customers.OrderBy(o => o.CreatedDate).ToList();
+            else
+                dataGridView1.DataSource = customers;
+
+
+        }
     }
 
 

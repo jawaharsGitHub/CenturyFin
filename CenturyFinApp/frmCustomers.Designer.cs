@@ -36,6 +36,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAddCustomer = new System.Windows.Forms.Button();
+            this.chkOrderByStartDate = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,11 +120,23 @@
             this.btnAddCustomer.UseVisualStyleBackColor = true;
             this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
+            // chkOrderByStartDate
+            // 
+            this.chkOrderByStartDate.AutoSize = true;
+            this.chkOrderByStartDate.Location = new System.Drawing.Point(1008, 14);
+            this.chkOrderByStartDate.Name = "chkOrderByStartDate";
+            this.chkOrderByStartDate.Size = new System.Drawing.Size(136, 17);
+            this.chkOrderByStartDate.TabIndex = 8;
+            this.chkOrderByStartDate.Text = "OrderBy Start Date Asc";
+            this.chkOrderByStartDate.UseVisualStyleBackColor = true;
+            this.chkOrderByStartDate.CheckedChanged += new System.EventHandler(this.chkOrderByStartDate_CheckedChanged);
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.chkOrderByStartDate);
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dateTimePicker1);
@@ -150,5 +163,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAddCustomer;
+        private System.Windows.Forms.CheckBox chkOrderByStartDate;
     }
 }
