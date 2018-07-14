@@ -124,11 +124,11 @@ namespace WindowsFormsApplication1
 
             var seqNo = GetGridCellValue(grid, rowIndex, "CustomerSeqNumber");
             var customerId = GetGridCellValue(grid, rowIndex, "CustomerId");
-            var createdDate = GetGridCellValue(grid, rowIndex, "CreatedDate");
+            var createdDate = GetGridCellValue(grid, rowIndex, "AmountGivenDate");
 
             // Update Customer Created Date.
 
-            Customer.CorrectCustomerData(new Customer() { CustomerId = Convert.ToInt32(customerId), CustomerSeqNumber = Convert.ToInt32(seqNo), CreatedDate = Convert.ToDateTime(createdDate) });
+            Customer.CorrectCustomerData(new Customer() { CustomerId = Convert.ToInt32(customerId), CustomerSeqNumber = Convert.ToInt32(seqNo), AmountGivenDate = Convert.ToDateTime(createdDate) });
             
 
         }
@@ -143,7 +143,7 @@ namespace WindowsFormsApplication1
         {
 
             if (chkOrderByStartDate.Checked)
-                dataGridView1.DataSource = customers.OrderBy(o => o.CreatedDate).ToList();
+                dataGridView1.DataSource = customers.OrderBy(o => o.AmountGivenDate).ToList();
             else
                 dataGridView1.DataSource = customers;
 

@@ -23,7 +23,7 @@ namespace DataAccess
         public bool IsExistingCustomer { get; set; }
         public bool IsActive { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime AmountGivenDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
 
 
@@ -42,7 +42,7 @@ namespace DataAccess
 
         public static void AddCustomer(Customer newCustomer)
         {
-            newCustomer.CreatedDate = DateTime.Today;
+            newCustomer.AmountGivenDate = DateTime.Today;
             newCustomer.ModifiedDate = null;
             newCustomer.IsActive = true;
             List<Customer> customers = new List<Customer>() { newCustomer };
@@ -93,7 +93,7 @@ namespace DataAccess
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
 
-                u.CreatedDate = updatedCustomer.CreatedDate; // TODO: need to update all fields later
+                u.AmountGivenDate = updatedCustomer.AmountGivenDate; // TODO: need to update all fields later
 
                 string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
 
