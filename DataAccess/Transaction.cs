@@ -154,9 +154,9 @@ namespace DataAccess
 
             try
             {
-                var json = updatedTransaction.IsClosed ? $"{AppConfiguration.BackupFolderPath}/{updatedTransaction.CustomerId}/{updatedTransaction.CustomerId}_{updatedTransaction.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
+                var filePath = updatedTransaction.IsClosed ? $"{AppConfiguration.BackupFolderPath}/{updatedTransaction.CustomerId}/{updatedTransaction.CustomerId}_{updatedTransaction.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
 
-                //var json = File.ReadAllText(AppConfiguration.TransactionFile);
+                var json = File.ReadAllText(filePath);
                 List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
 
                 var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId).FirstOrDefault();
@@ -168,7 +168,7 @@ namespace DataAccess
                 string updatedString = JsonConvert.SerializeObject(list, Formatting.Indented);
 
 
-                File.WriteAllText(AppConfiguration.TransactionFile, updatedString);
+                File.WriteAllText(filePath, updatedString);
 
             }
             catch (Exception ex)

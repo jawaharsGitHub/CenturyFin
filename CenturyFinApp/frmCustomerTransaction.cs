@@ -130,19 +130,24 @@ namespace WindowsFormsApplication1
             if (txns == null || txns.Count == 0) return;
 
 
-            var dataDource = from t in txns
+            var dataDource = txns; // from t in txns
+                             //select new
+                             //{
+                             //    t.TransactionId,
+                             //    t.TxnDate,
+                             //    t.AmountReceived,
+                             //    t.Balance
+                             //};
 
-                             select new
-                             {
-                                 t.TransactionId,
-                                 t.TxnDate,
-                                 t.AmountReceived,
-                                 t.Balance
-                             };
+
+
             if (isDesc)
                 dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate).ThenBy(t => t.Balance).ToList();
             else
                 dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate).ToList();
+
+
+
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
             var lastDate = dataDource.Select(s => s.TxnDate).Max();
@@ -161,7 +166,12 @@ namespace WindowsFormsApplication1
 
             dateTimePicker1.Value = lastDate.AddDays(1);
 
-            dataGridView1.ReadOnly = false;
+            //dataGridView1.ReadOnly = false;
+
+            dataGridView1.Columns["CustomerId"].Visible = false;
+            dataGridView1.Columns["IsClosed"].Visible = false;
+            dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
+            dataGridView1.Columns["CustomerSequenceNo"].Visible = false;
 
         }
 
