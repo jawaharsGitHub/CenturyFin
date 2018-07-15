@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PL file\Career Knowledge_Latest.xlsx" />
+    <None Include="PL file\ManualTxn.ods" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
