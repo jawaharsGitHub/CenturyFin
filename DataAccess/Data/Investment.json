@@ -470,5 +470,93 @@
     "CustomerId": 2,
     "CustomerSequenceNo": 53,
     "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 2,
+    "Amount": 30000,
+    "Interest": 3000,
+    "CustomerId": 37,
+    "CustomerSequenceNo": 54,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 2,
+    "Amount": 5000,
+    "Interest": 400,
+    "CustomerId": 38,
+    "CustomerSequenceNo": 55,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 2,
+    "Amount": 10000,
+    "Interest": 800,
+    "CustomerId": 39,
+    "CustomerSequenceNo": 56,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 1,
+    "Amount": 15000,
+    "Interest": 1200,
+    "CustomerId": 40,
+    "CustomerSequenceNo": 57,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 2,
+    "Amount": 15000,
+    "Interest": 1200,
+    "CustomerId": 41,
+    "CustomerSequenceNo": 58,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 1,
+    "Amount": 15000,
+    "Interest": 1200,
+    "CustomerId": 20,
+    "CustomerSequenceNo": 59,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 1,
+    "Amount": 25000,
+    "Interest": 2000,
+    "CustomerId": 19,
+    "CustomerSequenceNo": 60,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 1,
+    "Amount": 10000,
+    "Interest": 800,
+    "CustomerId": 42,
+    "CustomerSequenceNo": 61,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 1,
+    "Amount": 30000,
+    "Interest": 3000,
+    "CustomerId": 43,
+    "CustomerSequenceNo": 62,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 1,
+    "Amount": 15000,
+    "Interest": 1200,
+    "CustomerId": 44,
+    "CustomerSequenceNo": 63,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 1,
+    "Amount": 30000,
+    "Interest": 2400,
+    "CustomerId": 25,
+    "CustomerSequenceNo": 64,
+    "CreatedDate": "00:00:00"
   }
 ]
