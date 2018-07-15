@@ -156,18 +156,22 @@
             // lblStartDate
             // 
             this.lblStartDate.AutoSize = true;
+            this.lblStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStartDate.ForeColor = System.Drawing.Color.Red;
             this.lblStartDate.Location = new System.Drawing.Point(353, 120);
             this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(58, 13);
+            this.lblStartDate.Size = new System.Drawing.Size(69, 13);
             this.lblStartDate.TabIndex = 7;
             this.lblStartDate.Text = "Start Date:";
             // 
             // lblLastDate
             // 
             this.lblLastDate.AutoSize = true;
+            this.lblLastDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastDate.ForeColor = System.Drawing.Color.LightGreen;
             this.lblLastDate.Location = new System.Drawing.Point(353, 147);
             this.lblLastDate.Name = "lblLastDate";
-            this.lblLastDate.Size = new System.Drawing.Size(56, 13);
+            this.lblLastDate.Size = new System.Drawing.Size(66, 13);
             this.lblLastDate.TabIndex = 8;
             this.lblLastDate.Text = "Last Date:";
             // 
