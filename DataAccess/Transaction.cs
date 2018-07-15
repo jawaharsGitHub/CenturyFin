@@ -43,14 +43,16 @@ namespace DataAccess
             newTxn.TxnUpdatedDate = null;
             List<Transaction> transactions = new List<Transaction>() { newTxn };
 
+            var jsonFilePath = newTxn.IsClosed ? $"{AppConfiguration.BackupFolderPath}/{newTxn.CustomerId}/{newTxn.CustomerId}_{newTxn.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
+
             // Get existing transactions
-            string baseJson = File.ReadAllText(AppConfiguration.TransactionFile);
+            string baseJson = File.ReadAllText(jsonFilePath);
 
             //Merge the transactions
             string updatedJson = AddObjectsToJson(baseJson, transactions);
 
             // Add into json
-            File.WriteAllText(AppConfiguration.TransactionFile, updatedJson);
+            File.WriteAllText(jsonFilePath, updatedJson);
 
         }
 
@@ -146,6 +148,36 @@ namespace DataAccess
                 throw;
             }
         }
+
+        public static void CorrectTransactionData(Transaction updatedTransaction)
+        {
+
+            try
+            {
+                var json = updatedTransaction.IsClosed ? $"{AppConfiguration.BackupFolderPath}/{updatedTransaction.CustomerId}/{updatedTransaction.CustomerId}_{updatedTransaction.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
+
+                //var json = File.ReadAllText(AppConfiguration.TransactionFile);
+                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+
+                var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId).FirstOrDefault();
+
+                u.AmountReceived = updatedTransaction.AmountReceived;
+                u.TxnDate = updatedTransaction.TxnDate;
+                u.Balance = updatedTransaction.Balance;
+
+                string updatedString = JsonConvert.SerializeObject(list, Formatting.Indented);
+
+
+                File.WriteAllText(AppConfiguration.TransactionFile, updatedString);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
 
         public static List<Transaction> GetTransactionDetails(int customerId, int sequenceNo, bool isClosedTxn)
         {

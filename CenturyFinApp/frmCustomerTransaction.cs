@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1
         string _customerName;
         bool _isClosedTx = false;
 
-        
+
         public frmCustomerTransaction()
         {
             InitializeComponent();
@@ -52,7 +52,8 @@ namespace WindowsFormsApplication1
                 CustomerSequenceNo = _sequeneNo,
                 TransactionId = Transaction.GetNextTransactionId(),
                 Balance = (Transaction.GetBalance(_loan, _sequeneNo, _customerId) - Convert.ToInt16(txtCollectionAmount.Text)),
-                TxnDate = dateTimePicker1.Value
+                TxnDate = dateTimePicker1.Value,
+                IsClosed = _isClosedTx
 
             };
 
@@ -88,7 +89,8 @@ namespace WindowsFormsApplication1
                 CustomerSequenceNo = _sequeneNo,
                 TransactionId = Transaction.GetNextTransactionId(),
                 Balance = (Transaction.GetBalance(_loan, _sequeneNo, _customerId) - Convert.ToInt16(txtCollectionAmount.Text)),
-                TxnDate = dateTimePicker1.Value
+                TxnDate = dateTimePicker1.Value,
+                IsClosed = _isClosedTx
 
             };
 
@@ -155,12 +157,12 @@ namespace WindowsFormsApplication1
             var percGainPerMonth = Math.Round(((8.89 / DaysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.
 
 
-            lblPercentageGain.Text = $"{percGainPerMonth.ToString()}% Per Month({(percGainPerMonth/100)* (cus.LoanAmount - cus.Interest)} Rs/Month)";
+            lblPercentageGain.Text = $"{percGainPerMonth.ToString()}% Per Month({(percGainPerMonth / 100) * (cus.LoanAmount - cus.Interest)} Rs/Month)";
 
             dateTimePicker1.Value = lastDate.AddDays(1);
 
             dataGridView1.ReadOnly = false;
-            
+
         }
 
         private void rdbAsc_CheckedChanged(object sender, EventArgs e)
@@ -189,5 +191,38 @@ namespace WindowsFormsApplication1
             btnAddTxn_Click(null, null);
 
         }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var grid = (sender as DataGridView);
+            var rowIndex = grid.CurrentCell.RowIndex;
+
+            var txnId = GetGridCellValue(grid, rowIndex, "TransactionId");
+            var txnDate = GetGridCellValue(grid, rowIndex, "TxnDate");
+            var amountReceived = GetGridCellValue(grid, rowIndex, "AmountReceived");
+            var balance = GetGridCellValue(grid, rowIndex, "Balance");
+
+            // Update transaction detail.
+
+            Transaction.CorrectTransactionData(
+                new Transaction()
+                {
+                    TransactionId = Convert.ToInt32(txnId),
+                    TxnDate = Convert.ToDateTime(txnDate),
+                    AmountReceived = Convert.ToInt32(amountReceived),
+                    Balance = Convert.ToInt32(balance),
+                    IsClosed = _isClosedTx,
+                    CustomerId = _customerId,
+                    CustomerSequenceNo = _sequeneNo
+                });
+
+        }
+
+        private string GetGridCellValue(DataGridView grid, int rowIndex, string columnName)
+        {
+            return Convert.ToString(grid.Rows[grid.CurrentCell.RowIndex].Cells[columnName].Value);
+        }
+
+
     }
 }

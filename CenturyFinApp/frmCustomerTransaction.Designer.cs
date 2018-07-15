@@ -31,6 +31,7 @@
             this.btnTxnCount = new System.Windows.Forms.Button();
             this.btnLoan = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnNextDayTxn = new System.Windows.Forms.Button();
             this.btnAddTxn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCollectionAmount = new System.Windows.Forms.TextBox();
@@ -44,7 +45,6 @@
             this.rdbDesc = new System.Windows.Forms.RadioButton();
             this.lblNoOfDays = new System.Windows.Forms.Label();
             this.lblPercentageGain = new System.Windows.Forms.Label();
-            this.btnNextDayTxn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -80,6 +80,16 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add New Transaction";
+            // 
+            // btnNextDayTxn
+            // 
+            this.btnNextDayTxn.Location = new System.Drawing.Point(314, 52);
+            this.btnNextDayTxn.Name = "btnNextDayTxn";
+            this.btnNextDayTxn.Size = new System.Drawing.Size(75, 23);
+            this.btnNextDayTxn.TabIndex = 5;
+            this.btnNextDayTxn.Text = "Next Day";
+            this.btnNextDayTxn.UseVisualStyleBackColor = true;
+            this.btnNextDayTxn.Click += new System.EventHandler(this.btnNextDayTxn_Click);
             // 
             // btnAddTxn
             // 
@@ -141,6 +151,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(714, 307);
             this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
             // lblStartDate
             // 
@@ -202,17 +213,7 @@
             this.lblPercentageGain.TabIndex = 12;
             this.lblPercentageGain.Text = "lblPercentageGain";
             // 
-            // btnNextDayTxn
-            // 
-            this.btnNextDayTxn.Location = new System.Drawing.Point(314, 52);
-            this.btnNextDayTxn.Name = "btnNextDayTxn";
-            this.btnNextDayTxn.Size = new System.Drawing.Size(75, 23);
-            this.btnNextDayTxn.TabIndex = 5;
-            this.btnNextDayTxn.Text = "Next Day";
-            this.btnNextDayTxn.UseVisualStyleBackColor = true;
-            this.btnNextDayTxn.Click += new System.EventHandler(this.btnNextDayTxn_Click);
-            // 
-            // CustomerTransaction
+            // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -229,7 +230,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLoan);
             this.Controls.Add(this.btnTxnCount);
-            this.Name = "CustomerTransaction";
+            this.Name = "frmCustomerTransaction";
             this.Text = "CustomerDetail";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
