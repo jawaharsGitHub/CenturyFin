@@ -573,7 +573,16 @@
     "CollectionAmount": 21260,
     "GivenAmount": 70000,
     "Interest": 6700,
-    "TodayInHand": 48200  // 28.200 + 20,000
+    "TodayInHand": 48200 // 28.200 + 20,000
+  },
+  {
+    "Date": "2018-07-14",
+    "YesterdayAmountInHand": 48200,
+    "TakenFromBank": 0,
+    "CollectionAmount": 6100,
+    "GivenAmount": 30000,
+    "Interest": 3000,
+    "TodayInHand": 27300
   }
 ]
 
@@ -584,11 +593,14 @@
 
   Jan - 0
   Feb - 0
-  March - 0
-  April - 0 -- 1st quarter
-  May - 0
-  June - 6,800
-  July - (13,200 + 6700) = 19,900 (13 July) -- 2nd quarter
+  March - 3600
+  April - 6,400 -- 1st quarter
+  May - 17,300
+  June - 24,000
+  July - 2,400
+  Aug -
+  Sep - 
+  Oct - (13,200 + 6700) = 19,900 (13th) = 22,900(14th) -- 2nd quarter (This is october expectation)
 
 
 
