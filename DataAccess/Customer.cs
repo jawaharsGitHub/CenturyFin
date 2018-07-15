@@ -98,6 +98,7 @@ namespace DataAccess
                 u.ClosedDate = updatedCustomer.ClosedDate;
                 u.Interest = updatedCustomer.Interest;
                 u.LoanAmount = updatedCustomer.LoanAmount;
+                u.Name = updatedCustomer.Name;
 
                 string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
 

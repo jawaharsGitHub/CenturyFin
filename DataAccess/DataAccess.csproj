@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataExtension.cs" />
     <Compile Include="Expenditure.cs" />
     <Compile Include="InHand.cs" />
     <Compile Include="Investment.cs" />

@@ -128,6 +128,7 @@ namespace WindowsFormsApplication1
             var closedDate = GetGridCellValue(grid, rowIndex, "ClosedDate");
             var interest = GetGridCellValue(grid, rowIndex, "Interest");
             var loanAmount = GetGridCellValue(grid, rowIndex, "LoanAmount");
+            var name = GetGridCellValue(grid, rowIndex, "Name");
 
             // Update Customer Created Date.
 
@@ -139,7 +140,8 @@ namespace WindowsFormsApplication1
                     AmountGivenDate = Convert.ToDateTime(amountGivenDate),
                     ClosedDate = Convert.ToDateTime(closedDate),
                     Interest = Convert.ToInt32(interest),
-                    LoanAmount = Convert.ToInt32(loanAmount)
+                    LoanAmount = Convert.ToInt32(loanAmount),
+                    Name = name
 
 
                 });

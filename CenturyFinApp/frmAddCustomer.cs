@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -27,7 +28,7 @@ namespace WindowsFormsApplication1
             var newCustomerId = Customer.GetNextCustomerId();
             var nextSeqNo = Customer.GetNextCustomerSeqNo();
             Customer cus = new Customer();
-            
+
             if (chkExistingCustomer.Checked)
             {
                 cus = (Customer)cmbExistingCustomer.SelectedItem;
@@ -101,7 +102,7 @@ namespace WindowsFormsApplication1
             if ((sender as CheckBox).Checked)
             {
                 // load existing customer
-                cmbExistingCustomer.DataSource = Customer.GetAllCustomer();
+                cmbExistingCustomer.DataSource = Customer.GetAllCustomer().DistinctBy(d => d.CustomerId).ToList();
                 cmbExistingCustomer.DisplayMember = "Name";
                 cmbExistingCustomer.ValueMember = "CustomerId";
                 txtName.Enabled = txtPhone.Enabled = false;
@@ -111,9 +112,10 @@ namespace WindowsFormsApplication1
             {
                 txtName.Enabled = txtPhone.Enabled = true;
             }
-
-
         }
+
+        
+
 
         private void txtLoan_Leave(object sender, EventArgs e)
         {
