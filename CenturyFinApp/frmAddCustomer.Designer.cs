@@ -39,11 +39,11 @@
             this.cmbExistingCustomer = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLoan = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbInvestmentType = new System.Windows.Forms.ComboBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.txtInterest = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblName
@@ -68,7 +68,7 @@
             // 
             this.lblCustomerNo.AutoSize = true;
             this.lblCustomerNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomerNo.Location = new System.Drawing.Point(19, 368);
+            this.lblCustomerNo.Location = new System.Drawing.Point(19, 365);
             this.lblCustomerNo.Name = "lblCustomerNo";
             this.lblCustomerNo.Size = new System.Drawing.Size(161, 29);
             this.lblCustomerNo.TabIndex = 2;
@@ -96,7 +96,7 @@
             // 
             this.txtCustomerNo.AutoSize = true;
             this.txtCustomerNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomerNo.Location = new System.Drawing.Point(199, 367);
+            this.txtCustomerNo.Location = new System.Drawing.Point(199, 364);
             this.txtCustomerNo.Name = "txtCustomerNo";
             this.txtCustomerNo.Size = new System.Drawing.Size(169, 29);
             this.txtCustomerNo.TabIndex = 6;
@@ -155,35 +155,12 @@
             this.txtLoan.TabIndex = 4;
             this.txtLoan.Leave += new System.EventHandler(this.txtLoan_Leave);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 307);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(203, 29);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Investment From?";
-            // 
-            // cmbInvestmentType
-            // 
-            this.cmbInvestmentType.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbInvestmentType.FormattingEnabled = true;
-            this.cmbInvestmentType.Items.AddRange(new object[] {
-            "",
-            "Jawahar",
-            "Company"});
-            this.cmbInvestmentType.Location = new System.Drawing.Point(233, 299);
-            this.cmbInvestmentType.Name = "cmbInvestmentType";
-            this.cmbInvestmentType.Size = new System.Drawing.Size(121, 37);
-            this.cmbInvestmentType.TabIndex = 6;
-            // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(219, 464);
+            this.lblMessage.Location = new System.Drawing.Point(198, 433);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(86, 31);
             this.lblMessage.TabIndex = 15;
@@ -207,16 +184,33 @@
             this.label3.TabIndex = 16;
             this.label3.Text = "Interest Amount";
             // 
-            // AddCustomer
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(233, 316);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 17;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 310);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(218, 29);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Amount Given Date";
+            // 
+            // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(666, 597);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtInterest);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblMessage);
-            this.Controls.Add(this.cmbInvestmentType);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtLoan);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbExistingCustomer);
@@ -228,7 +222,7 @@
             this.Controls.Add(this.lblCustomerNo);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
-            this.Name = "AddCustomer";
+            this.Name = "frmAddCustomer";
             this.Text = "AddCustomer";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -248,10 +242,10 @@
         private System.Windows.Forms.ComboBox cmbExistingCustomer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtLoan;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbInvestmentType;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.TextBox txtInterest;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label2;
     }
 }

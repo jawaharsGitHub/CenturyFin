@@ -16,13 +16,8 @@ namespace WindowsFormsApplication1
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
-            if (cmbInvestmentType.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("Please select Investment Type");
-                return;
-            }
 
-            var invstType = (InvestmentFrom)Enum.Parse(typeof(InvestmentFrom), cmbInvestmentType.Text);
+            //var invstType = (InvestmentFrom)Enum.Parse(typeof(InvestmentFrom), cmbInvestmentType.Text);
 
 
             var newCustomerId = Customer.GetNextCustomerId();
@@ -49,15 +44,13 @@ namespace WindowsFormsApplication1
             }
 
             cus.LoanAmount = Convert.ToInt32(txtLoan.Text);
-
-
             cus.Interest = Convert.ToInt32(txtInterest.Text);
+            cus.AmountGivenDate = dateTimePicker1.Value;
 
             Customer.AddCustomer(cus);
             txtCustomerNo.Text = newCustomerId.ToString();
 
             // Add First Transaction.
-
             var txn = new Transaction()
             {
                 AmountReceived = 0,
@@ -65,7 +58,7 @@ namespace WindowsFormsApplication1
                 CustomerSequenceNo = cus.CustomerSeqNumber,
                 TransactionId = Transaction.GetNextTransactionId(),
                 Balance = cus.LoanAmount,
-                TxnDate = DateTime.Today
+                TxnDate = dateTimePicker1.Value
             };
 
             Transaction.AddTransaction(txn);
@@ -80,16 +73,14 @@ namespace WindowsFormsApplication1
                 Amount = cus.LoanAmount,
                 Interest = Convert.ToInt16(txtInterest.Text),
                 CustomerId = cus.CustomerId,
-                CustomerSequenceNo = cus.CustomerSeqNumber,
-                InvestType = invstType
+                CustomerSequenceNo = cus.CustomerSeqNumber
+                //InvestType = invstType
 
             });
 
             lblMessage.Text = $"Customer {cus.Name} Added Successfully";
 
             //Update InHand Money
-
-
             InHand.ReduceInHand(cus.LoanAmount);
             InHand.AddInHand(cus.Interest);
 

@@ -43,7 +43,7 @@ namespace DataAccess
 
         public static void AddCustomer(Customer newCustomer)
         {
-            newCustomer.AmountGivenDate = DateTime.Today;
+            //newCustomer.AmountGivenDate = DateTime.Today;
             newCustomer.ModifiedDate = null;
             newCustomer.IsActive = true;
             List<Customer> customers = new List<Customer>() { newCustomer };
