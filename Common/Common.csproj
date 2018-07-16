@@ -46,8 +46,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="PL file\Career Knowledge_Latest.ods" />
     <None Include="PL file\Career Knowledge_Latest.xlsx" />
     <None Include="PL file\ManualTxn.ods" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PL file\BT- Credits.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
