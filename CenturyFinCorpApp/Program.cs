@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            CultureInfo myCI = new CultureInfo("ta-IN", false);
+           CultureInfo myCI = new CultureInfo("us-EN", false);
             myCI.DateTimeFormat.ShortDatePattern = "dd-MMM-yyyy";
 
             Thread.CurrentThread.CurrentCulture = myCI;

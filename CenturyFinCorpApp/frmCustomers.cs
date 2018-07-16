@@ -61,7 +61,6 @@ namespace WindowsFormsApplication1
             if (rdbAll.Checked)
             {
                 dataGridView1.DataSource = customers;
-
             }
         }
 
@@ -83,7 +82,12 @@ namespace WindowsFormsApplication1
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+            if (rdbActive.Checked)
+                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == true).ToList();
+            if (rdbClosed.Checked)
+                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList();
+            if (rdbAll.Checked)
+                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -142,16 +146,12 @@ namespace WindowsFormsApplication1
                     Interest = Convert.ToInt32(interest),
                     LoanAmount = Convert.ToInt32(loanAmount),
                     Name = name
-
-
                 });
-
-
         }
 
         private string GetGridCellValue(DataGridView grid, int rowIndex, string columnName)
         {
-            var cellValue =  Convert.ToString(grid.Rows[grid.CurrentCell.RowIndex].Cells[columnName].Value);
+            var cellValue = Convert.ToString(grid.Rows[grid.CurrentCell.RowIndex].Cells[columnName].Value);
             return (cellValue == string.Empty) ? null : cellValue;
 
         }
@@ -160,7 +160,7 @@ namespace WindowsFormsApplication1
         {
 
             if (chkOrderByStartDate.Checked)
-                dataGridView1.DataSource = customers.OrderBy(o => o.ClosedDate).ToList();
+                dataGridView1.DataSource = customers.Where(w => w.ClosedDate != null && w.ClosedDate != DateTime.MinValue).OrderBy(o => o.ClosedDate).ToList();
             else
                 dataGridView1.DataSource = customers;
 
@@ -173,8 +173,4 @@ namespace WindowsFormsApplication1
             this.dataGridView1.DataSource = customers;
         }
     }
-
-
-
-
 }
