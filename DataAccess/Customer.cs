@@ -99,7 +99,7 @@ namespace DataAccess
                     allCustomers.ForEach(un => un.Name = updatedCustomer.Name);
                 }
 
-                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId).FirstOrDefault();
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
 
                 u.AmountGivenDate = updatedCustomer.AmountGivenDate; // TODO: need to update all fields later
                 u.ClosedDate = updatedCustomer.ClosedDate;
