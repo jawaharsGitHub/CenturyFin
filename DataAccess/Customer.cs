@@ -119,6 +119,29 @@ namespace DataAccess
             }
         }
 
+        public static void UpdateCustomerClosedDate(Customer updatedCustomer)
+        {
+
+            try
+            {
+                var json = File.ReadAllText(AppConfiguration.CustomerFile);
+                List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.ClosedDate = updatedCustomer.ClosedDate;
+               
+                string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
+
+                File.WriteAllText(AppConfiguration.CustomerFile, updatedCustomers);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public static Customer GetCustomerDetails(int cusid, int cusSeqNo)
         {
 

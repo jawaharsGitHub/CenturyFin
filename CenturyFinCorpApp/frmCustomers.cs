@@ -10,12 +10,15 @@ namespace WindowsFormsApplication1
     public partial class frmCustomers : Form
     {
         private List<Customer> customers;
+        private List<Transaction> transactions;
 
         public frmCustomers()
         {
             InitializeComponent();
             // Get the table from the data set
             customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
+
+            transactions = new List<Transaction>();
 
             var activeTxn = customers.Count(c => c.IsActive == true);
             var closedTxn = customers.Count(c => c.IsActive == false);
@@ -92,26 +95,23 @@ namespace WindowsFormsApplication1
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var txns = new List<Transaction>();
+            Transaction.AddDailyTransactions(transactions);
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            transactions.ForEach(t =>
             {
-
-                txns.Add(new Transaction()
+                if (t.IsClosed && t.Balance == 0)
                 {
+                    // Update Closed Date
+                    Customer.UpdateCustomerClosedDate(
+                        new Customer()
+                        {
+                            CustomerId = t.CustomerId,
+                            CustomerSeqNumber = t.CustomerSequenceNo,
+                            ClosedDate = t.TxnDate,
+                        });
+                }
+            });
 
-                    //TxnCustomer = (row.DataBoundItem as Customer),
-                    AmountReceived = Convert.ToInt32(row.Cells["CollectionAmt"].Value),
-                    TxnDate = dateTimePicker1.Value
-
-                });
-
-
-            }
-
-            //Transaction txn = new Transaction();
-
-            Transaction.AddDailyTransactions(txns);
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
@@ -128,10 +128,44 @@ namespace WindowsFormsApplication1
 
             var seqNo = GetGridCellValue(grid, rowIndex, "CustomerSeqNumber");
             var customerId = GetGridCellValue(grid, rowIndex, "CustomerId");
+            var loanAmount = GetGridCellValue(grid, rowIndex, "LoanAmount");
+            var collectedAmount = GetGridCellValue(grid, rowIndex, "CollectionAmt");
+
+            if (string.IsNullOrEmpty(collectedAmount) == false)
+            {
+                var txn = new Transaction()
+                {
+                    AmountReceived = Convert.ToInt32(collectedAmount),
+                    CustomerId = Convert.ToInt32(customerId),
+                    CustomerSequenceNo = Convert.ToInt32(seqNo),
+                    TransactionId = Transaction.GetNextTransactionId(),
+                    Balance = (Transaction.GetBalance(Convert.ToInt32(loanAmount), Convert.ToInt32(seqNo), Convert.ToInt32(customerId)) - Convert.ToInt16(collectedAmount)),
+                    TxnDate = dateTimePicker1.Value
+                };
+
+                if (txn.Balance < 0)
+                {
+                    MessageBox.Show("Balance is less than 0. Please check your amount. Txn Aborted!");
+                    return;
+                }
+                if (txn.Balance == 0)
+                {
+                    MessageBox.Show("Good News, This txn will be closed!");
+                }
+
+                txn.IsClosed = (txn.Balance <= 0);
+
+
+                // Add new Txn.
+                transactions.Add(txn);
+                return;
+            }
+
+
             var amountGivenDate = GetGridCellValue(grid, rowIndex, "AmountGivenDate");
             var closedDate = GetGridCellValue(grid, rowIndex, "ClosedDate");
             var interest = GetGridCellValue(grid, rowIndex, "Interest");
-            var loanAmount = GetGridCellValue(grid, rowIndex, "LoanAmount");
+
             var name = GetGridCellValue(grid, rowIndex, "Name");
 
             // Update Customer Created Date.
