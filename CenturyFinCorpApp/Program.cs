@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
 
             string exeFile = (new System.Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
             string exeDir = Path.GetDirectoryName(exeFile);
-            string dataFolder = exeDir.Replace("CenturyFinApp\\bin\\Debug", "DataAccess\\Data\\");
+            string dataFolder = exeDir.Replace("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\");
 
             AddOrUpdateAppSettings("SourceFolder", dataFolder);
 
