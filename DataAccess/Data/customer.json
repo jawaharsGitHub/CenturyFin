@@ -21,8 +21,8 @@
     "Interest": 1600,
     "IsExistingCustomer": false,
     "IsActive": false,
-    "AmountGivenDate": "2018-01-27T00:00:00",
-    "ClosedDate": "2018-03-20T00:00:00",
+    "AmountGivenDate": "2018-06-07T00:00:00",
+    "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   },
   {
@@ -242,7 +242,7 @@
     "Interest": 1600,
     "IsExistingCustomer": false,
     "IsActive": false,
-    "AmountGivenDate": "2018-03-22T00:00:00",
+    "AmountGivenDate": "2018-06-13T00:00:00",
     "ClosedDate": "2018-06-13T00:00:00",
     "ModifiedDate": null
   },
@@ -255,7 +255,7 @@
     "Interest": 800,
     "IsExistingCustomer": false,
     "IsActive": false,
-    "AmountGivenDate": "2018-04-02T00:00:00",
+    "AmountGivenDate": "2018-06-14T00:00:00",
     "ClosedDate": "2018-04-16T00:00:00",
     "ModifiedDate": null
   },
@@ -723,20 +723,20 @@
     "Interest": 800,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-15T00:00:00-04:00",
+    "AmountGivenDate": "2018-06-28T00:00:00",
     "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   },
   {
     "CustomerSeqNumber": 57,
     "CustomerId": 40,
-    "Name": "Ra j - Auto Driver - Kadamba Nagar",
+    "Name": "Raj - Auto Driver - Kadamba Nagar",
     "PhoneNumber": "",
     "LoanAmount": 15000,
     "Interest": 1200,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-15T00:00:00-04:00",
+    "AmountGivenDate": "2018-07-15T00:00:00",
     "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   },
@@ -788,7 +788,7 @@
     "Interest": 800,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-15T00:00:00-04:00",
+    "AmountGivenDate": "2018-06-29T00:00:00",
     "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   },
@@ -801,7 +801,7 @@
     "Interest": 3000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-15T00:00:00-04:00",
+    "AmountGivenDate": "2018-07-11T00:00:00",
     "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   },
