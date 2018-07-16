@@ -151,7 +151,8 @@ namespace WindowsFormsApplication1
 
         private string GetGridCellValue(DataGridView grid, int rowIndex, string columnName)
         {
-            return Convert.ToString(grid.Rows[grid.CurrentCell.RowIndex].Cells[columnName].Value);
+            var cellValue =  Convert.ToString(grid.Rows[grid.CurrentCell.RowIndex].Cells[columnName].Value);
+            return (cellValue == string.Empty) ? null : cellValue;
 
         }
 

@@ -23,8 +23,8 @@ namespace DataAccess
         public bool IsExistingCustomer { get; set; }
         public bool IsActive { get; set; }
 
-        public DateTime AmountGivenDate { get; set; }
-        public DateTime ClosedDate { get; set; }
+        public DateTime? AmountGivenDate { get; set; }
+        public DateTime? ClosedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
 
 
