@@ -165,6 +165,12 @@ namespace WindowsFormsApplication1
 
 
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
+            this.dataGridView1.DataSource = customers;
+        }
     }
 
 

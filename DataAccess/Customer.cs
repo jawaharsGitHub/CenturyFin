@@ -28,7 +28,7 @@ namespace DataAccess
         public DateTime? ModifiedDate { get; set; }
 
 
-        
+
         // Add
         public static string AddObjectsToJson<T>(string json, List<T> objects)
         {
@@ -92,13 +92,19 @@ namespace DataAccess
                 var json = File.ReadAllText(AppConfiguration.CustomerFile);
                 List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
 
-                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                var allCustomers = list.Where(c => c.CustomerId == updatedCustomer.CustomerId).ToList();
+
+                if (allCustomers.FirstOrDefault().Name != updatedCustomer.Name)
+                {
+                    allCustomers.ForEach(un => un.Name = updatedCustomer.Name);
+                }
+
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId).FirstOrDefault();
 
                 u.AmountGivenDate = updatedCustomer.AmountGivenDate; // TODO: need to update all fields later
                 u.ClosedDate = updatedCustomer.ClosedDate;
                 u.Interest = updatedCustomer.Interest;
                 u.LoanAmount = updatedCustomer.LoanAmount;
-                u.Name = updatedCustomer.Name;
 
                 string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
 

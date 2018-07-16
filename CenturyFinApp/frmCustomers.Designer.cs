@@ -37,6 +37,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnAddCustomer = new System.Windows.Forms.Button();
             this.chkOrderByStartDate = new System.Windows.Forms.CheckBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,11 +132,22 @@
             this.chkOrderByStartDate.UseVisualStyleBackColor = true;
             this.chkOrderByStartDate.CheckedChanged += new System.EventHandler(this.chkOrderByStartDate_CheckedChanged);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(1150, 12);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 9;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.chkOrderByStartDate);
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.btnSave);
@@ -164,5 +176,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAddCustomer;
         private System.Windows.Forms.CheckBox chkOrderByStartDate;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
