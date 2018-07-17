@@ -154,8 +154,8 @@ namespace WindowsFormsApplication1
             var DaysTaken = lastDate.Date.Subtract(startDate).Days + 2;
 
 
-            lblStartDate.Text = $"Start Date: {startDate}";
-            lblLastDate.Text = $"Last Date: {lastDate}";
+            lblStartDate.Text = $"Start Date: {startDate.Date}";
+            lblLastDate.Text = $"Last Date: {lastDate.Date}";
 
             lblNoOfDays.Text = $"Days taken to Return {DaysTaken}";
 
