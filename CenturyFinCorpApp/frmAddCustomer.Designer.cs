@@ -44,6 +44,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblNoteCount = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblName
@@ -61,7 +63,7 @@
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(233, 93);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 35);
+            this.txtName.Size = new System.Drawing.Size(357, 35);
             this.txtName.TabIndex = 2;
             // 
             // lblCustomerNo
@@ -79,7 +81,7 @@
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhone.Location = new System.Drawing.Point(233, 147);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(100, 35);
+            this.txtPhone.Size = new System.Drawing.Size(357, 35);
             this.txtPhone.TabIndex = 3;
             // 
             // lblPhone
@@ -106,9 +108,9 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(453, 123);
+            this.btnAdd.Location = new System.Drawing.Point(466, 213);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(167, 125);
+            this.btnAdd.Size = new System.Drawing.Size(167, 81);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Add Customer";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -151,7 +153,7 @@
             this.txtLoan.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLoan.Location = new System.Drawing.Point(233, 202);
             this.txtLoan.Name = "txtLoan";
-            this.txtLoan.Size = new System.Drawing.Size(100, 35);
+            this.txtLoan.Size = new System.Drawing.Size(135, 35);
             this.txtLoan.TabIndex = 4;
             this.txtLoan.Leave += new System.EventHandler(this.txtLoan_Leave);
             // 
@@ -160,7 +162,7 @@
             this.lblMessage.AutoSize = true;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(198, 433);
+            this.lblMessage.Location = new System.Drawing.Point(18, 458);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(86, 31);
             this.lblMessage.TabIndex = 15;
@@ -171,7 +173,7 @@
             this.txtInterest.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInterest.Location = new System.Drawing.Point(233, 246);
             this.txtInterest.Name = "txtInterest";
-            this.txtInterest.Size = new System.Drawing.Size(100, 35);
+            this.txtInterest.Size = new System.Drawing.Size(135, 35);
             this.txtInterest.TabIndex = 5;
             // 
             // label3
@@ -201,11 +203,34 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "Amount Given Date";
             // 
+            // lblNoteCount
+            // 
+            this.lblNoteCount.AutoSize = true;
+            this.lblNoteCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoteCount.Location = new System.Drawing.Point(207, 406);
+            this.lblNoteCount.Name = "lblNoteCount";
+            this.lblNoteCount.Size = new System.Drawing.Size(117, 29);
+            this.lblNoteCount.TabIndex = 20;
+            this.lblNoteCount.Text = "[Note No]";
+            this.lblNoteCount.UseWaitCursor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(27, 407);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(172, 29);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Note Count No";
+            // 
             // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(666, 597);
+            this.ClientSize = new System.Drawing.Size(789, 597);
+            this.Controls.Add(this.lblNoteCount);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtInterest);
@@ -247,5 +272,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblNoteCount;
+        private System.Windows.Forms.Label label5;
     }
 }

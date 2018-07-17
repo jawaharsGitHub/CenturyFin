@@ -11,14 +11,11 @@ namespace WindowsFormsApplication1
         public frmAddCustomer()
         {
             InitializeComponent();
+            cmbExistingCustomer.Visible = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
-
-            //var invstType = (InvestmentFrom)Enum.Parse(typeof(InvestmentFrom), cmbInvestmentType.Text);
-
 
             var newCustomerId = Customer.GetNextCustomerId();
             var nextSeqNo = Customer.GetNextCustomerSeqNo();
@@ -78,12 +75,34 @@ namespace WindowsFormsApplication1
 
             });
 
-            lblMessage.Text = $"Customer {cus.Name} Added Successfully";
+            var nthTimes = Customer.GetAllCustomer().Where(w => w.CustomerId == cus.CustomerId).Count();
+
+            lblMessage.Text = $"Customer {cus.Name} ({nthTimes}{GetDaySuffix(nthTimes)} times) Added Successfully.";
+            lblNoteCount.Text = cus.CustomerSeqNumber.ToString();
 
             //Update InHand Money
             InHand.ReduceInHand(cus.LoanAmount);
             InHand.AddInHand(cus.Interest);
 
+        }
+
+        string GetDaySuffix(int day)
+        {
+            switch (day)
+            {
+                case 1:
+                case 21:
+                case 31:
+                    return "st";
+                case 2:
+                case 22:
+                    return "nd";
+                case 3:
+                case 23:
+                    return "rd";
+                default:
+                    return "th";
+            }
         }
 
         private void chkExistingCustomer_CheckedChanged(object sender, EventArgs e)

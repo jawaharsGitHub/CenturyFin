@@ -55,7 +55,7 @@ namespace WindowsFormsApplication1
                                    select new
                                    {
                                        ClosedDate = newGroup.Key,
-                                       Interest = newGroup.Sum(s => s.Interest),
+                                       TotalInterest = newGroup.Sum(s => s.Interest),
                                        IsExpectedIncome = false
                                    }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
@@ -66,7 +66,7 @@ namespace WindowsFormsApplication1
                                     select new
                                     {
                                         ClosedDate = (Convert.ToDateTime(newGroup.Key).AddDays(100)).ToString("Y"),
-                                        Interest = newGroup.Sum(s => s.Interest),
+                                        TotalInterest = newGroup.Sum(s => s.Interest),
                                         IsExpectedIncome = true
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
@@ -102,9 +102,9 @@ namespace WindowsFormsApplication1
                     }
 
                     if (d.IsExpectedIncome)
-                        existData.ExpectedIncome = d.Interest;
+                        existData.ExpectedIncome = d.TotalInterest;
                     else
-                        existData.ActualIncome = d.Interest;
+                        existData.ActualIncome = d.TotalInterest;
 
 
                 });

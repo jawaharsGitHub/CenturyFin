@@ -48,7 +48,8 @@ namespace WindowsFormsApplication1
 
         private void AdjustColumnOrder()
         {            
-            dataGridView1.Columns["CollectionAmt"].DisplayIndex = 3; 
+            dataGridView1.Columns["CollectionAmt"].DisplayIndex = 3;
+            dataGridView1.Columns["ModifiedDate"].Visible = false;
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
