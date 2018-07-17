@@ -50,6 +50,7 @@ namespace WindowsFormsApplication1
         {            
             dataGridView1.Columns["CollectionAmt"].DisplayIndex = 3;
             dataGridView1.Columns["ModifiedDate"].Visible = false;
+            dataGridView1.Columns["PhoneNumber"].Visible = false;
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -225,8 +226,7 @@ namespace WindowsFormsApplication1
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
-            this.dataGridView1.DataSource = customers;
+            rdbAll.Checked = true;
         }
     }
 }

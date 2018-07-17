@@ -168,7 +168,7 @@
             // 
             this.lblLastDate.AutoSize = true;
             this.lblLastDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastDate.ForeColor = System.Drawing.Color.LightGreen;
+            this.lblLastDate.ForeColor = System.Drawing.Color.SeaGreen;
             this.lblLastDate.Location = new System.Drawing.Point(353, 147);
             this.lblLastDate.Name = "lblLastDate";
             this.lblLastDate.Size = new System.Drawing.Size(66, 13);
