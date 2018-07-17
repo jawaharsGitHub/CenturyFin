@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="DataExtension.cs" />
     <Compile Include="Expenditure.cs" />
+    <Compile Include="IncomeReport.cs" />
     <Compile Include="InHand.cs" />
     <Compile Include="Investment.cs" />
     <Compile Include="Transaction.cs" />

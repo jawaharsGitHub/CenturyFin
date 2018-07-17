@@ -46,6 +46,7 @@ namespace DataAccess
             //newCustomer.AmountGivenDate = DateTime.Today;
             newCustomer.ModifiedDate = null;
             newCustomer.IsActive = true;
+            newCustomer.ClosedDate = null;
             List<Customer> customers = new List<Customer>() { newCustomer };
 
             // Get existing customers

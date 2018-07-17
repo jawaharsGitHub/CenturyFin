@@ -606,6 +606,18 @@
     "GivenAmount": -60000,
     "Interest": 6000,
     "TodayInHand": 14960
+  },
+  {
+    "Date": "2018-07-17",
+    "YesterdayAmountInHand": 14960,
+    "SanthanamUncle": 20000,
+    "TakenFromBank": 0,
+    "BankTxnOut": 0,
+    "InBank": 44589.84,
+    "CollectionAmount": 8200,
+    "GivenAmount": -15000,
+    "Interest": 1500,
+    "TodayInHand": 9660
   }
 ]
 
@@ -623,8 +635,17 @@
   July - 2,400
   Aug -
   Sep - 
-  Oct - (13,200 + 6700) = 19,900 (13th) = 22,900(14th) = 28,900(16th) -- 2nd quarter (This is october expectation)
+  Oct - (13,200 + 6700) = 19,900 (13th) = 22,900(14th) = 28,900(16th) = 30,400(17th) -- 2nd quarter (This is october expectation)
 
 
+
+*/
+
+/*
+
+  --------------------------------------------------------
+  Month       Expected-Income   Actual-Income
+  Jan
+  Feb
 
 */

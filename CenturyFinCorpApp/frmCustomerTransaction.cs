@@ -146,11 +146,10 @@ namespace WindowsFormsApplication1
             else
                 dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate).ToList();
 
-
-
+            var lastBalance = txns.Min(m => m.Balance);
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
-            var lastDate = dataDource.Select(s => s.TxnDate).Max();
+            var lastDate = (lastBalance == 0) ?  dataDource.Select(s => s.TxnDate).Max() : DateTime.Today;
             var DaysTaken = lastDate.Date.Subtract(startDate).Days + 2;
 
 
