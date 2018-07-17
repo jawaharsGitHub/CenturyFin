@@ -38,7 +38,7 @@ namespace WindowsFormsApplication1
                          }).Distinct();
 
             label1.Text = $"Total Collection is: {result.Sum(s => s.AmountReceived)}";
-            dataGridView1.DataSource = result.ToList();
+            dataGridView1.DataSource = result.Where(w => w.AmountReceived != 0).ToList();
 
             //dateTimePicker1.Value = dateTimePicker1.Value.AddDays(1);
         }

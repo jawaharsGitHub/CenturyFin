@@ -56,24 +56,16 @@ namespace DataAccess
 
         }
 
-        public static void AddDailyTransactions(List<Transaction> newTxn)
+        public static void AddDailyTransactions(Transaction dailyTxn)
         {
-            //newTxn.TxnDate = DateTime.Today;
-            //newTxn.TxnUpdatedDate = null;
-            //List<Transaction> transactions = newTxn;
 
-            newTxn.ForEach(f =>
-            {
-                //f.Balance = GetBalance(f.TxnCustomer);
-            });
-
-
+            var txn = new List<Transaction>() { dailyTxn };
 
             // Get existing transactions
             string baseJson = File.ReadAllText(AppConfiguration.TransactionFile);
 
             //Merge the transactions
-            string updatedJson = AddObjectsToJson(baseJson, newTxn);
+            string updatedJson = AddObjectsToJson(baseJson, txn);
 
             // Add into json
             File.WriteAllText(AppConfiguration.TransactionFile, updatedJson);

@@ -42,7 +42,13 @@ namespace WindowsFormsApplication1
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
             txtSearch.Focus();
+            AdjustColumnOrder();
 
+        }
+
+        private void AdjustColumnOrder()
+        {            
+            dataGridView1.Columns["CollectionAmt"].DisplayIndex = 3; 
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -95,22 +101,22 @@ namespace WindowsFormsApplication1
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Transaction.AddDailyTransactions(transactions);
+            //Transaction.AddDailyTransactions(transactions);
 
-            transactions.ForEach(t =>
-            {
-                if (t.IsClosed && t.Balance == 0)
-                {
-                    // Update Closed Date
-                    Customer.UpdateCustomerClosedDate(
-                        new Customer()
-                        {
-                            CustomerId = t.CustomerId,
-                            CustomerSeqNumber = t.CustomerSequenceNo,
-                            ClosedDate = t.TxnDate,
-                        });
-                }
-            });
+            //transactions.ForEach(t =>
+            //{
+            //    if (t.IsClosed && t.Balance == 0)
+            //    {
+            //        // Update Closed Date
+            //        Customer.UpdateCustomerClosedDate(
+            //            new Customer()
+            //            {
+            //                CustomerId = t.CustomerId,
+            //                CustomerSeqNumber = t.CustomerSequenceNo,
+            //                ClosedDate = t.TxnDate,
+            //            });
+            //    }
+            //});
 
         }
 
@@ -157,7 +163,22 @@ namespace WindowsFormsApplication1
 
 
                 // Add new Txn.
-                transactions.Add(txn);
+                //transactions.Add(txn);
+                Transaction.AddDailyTransactions(txn);
+                // Update txn Closed Date
+                if (txn.IsClosed && txn.Balance == 0)
+                {
+                    // Update Closed Date
+                    Customer.UpdateCustomerClosedDate(
+                        new Customer()
+                        {
+                            CustomerId = txn.CustomerId,
+                            CustomerSeqNumber = txn.CustomerSequenceNo,
+                            ClosedDate = txn.TxnDate,
+                        });
+                }
+
+
                 return;
             }
 
