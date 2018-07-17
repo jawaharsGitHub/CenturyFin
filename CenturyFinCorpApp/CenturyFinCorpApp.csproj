@@ -123,6 +123,9 @@
     <EmbeddedResource Include="frmCustomers.resx">
       <DependentUpon>frmCustomers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDailyEntry.resx">
+      <DependentUpon>frmDailyEntry.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDataCorrection.resx">
       <DependentUpon>frmDataCorrection.cs</DependentUpon>
     </EmbeddedResource>

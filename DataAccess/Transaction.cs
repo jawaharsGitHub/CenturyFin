@@ -23,7 +23,7 @@ namespace DataAccess
         public int CustomerSequenceNo { get; set; }
         public DateTime TxnDate { get; set; } //{ get => TxnDate; set => TxnDate = value; }
 
-        
+
 
         // Add
         public static string AddObjectsToJson<T>(string json, List<T> objects)
@@ -299,6 +299,57 @@ namespace DataAccess
             List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json) ?? new List<Transaction>();
             return list.Where(w => w.Balance == 0).Count();
         }
+
+
+        public static List<Transaction> GetDailyCollectionDetails(DateTime inputDate)
+        {
+
+            // Get from Ongoing Transcations
+
+            var txnFile = AppConfiguration.TransactionFile;
+
+            var json = File.ReadAllText(txnFile);
+            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            if (list == null) return null;
+            var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
+
+
+
+            //Get from Closed Transactions
+            var fromClosedTxn = ProcessDirectory(AppConfiguration.BackupFolderPath, inputDate);
+
+            fromActiveTxn.AddRange(fromClosedTxn);
+
+            return fromActiveTxn;
+
+
+        }
+
+
+        public static List<Transaction> ProcessDirectory(string targetDirectory, DateTime inputDate)
+        {
+            List<Transaction> result = new List<Transaction>();
+            // Process the list of files found in the directory.
+            string[] fileEntries = Directory.GetFiles(targetDirectory);
+            foreach (string fileName in fileEntries)
+            {
+                var json = File.ReadAllText(fileName);
+                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                if (list == null) return null;
+                var data = list.Where(c => c.TxnDate.Date == inputDate.Date);
+                if (data != null && data.Count() > 0)
+                    result.AddRange(data);
+            }
+
+
+            // Recurse into subdirectories of this directory.
+            string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
+            foreach (string subdirectory in subdirectoryEntries)
+                result.AddRange(ProcessDirectory(subdirectory, inputDate));
+
+            return result;
+        }
+
 
 
 

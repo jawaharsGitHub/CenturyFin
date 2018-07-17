@@ -44,6 +44,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnNote = new System.Windows.Forms.Button();
             this.btnInHand = new System.Windows.Forms.Button();
             this.btnOutstanding = new System.Windows.Forms.Button();
             this.btnNoClients = new System.Windows.Forms.Button();
@@ -55,7 +56,6 @@
             this.btnTotalAssets = new System.Windows.Forms.Button();
             this.btnIntOnly = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnNote = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,7 +69,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(294, 84);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Add New Customer";
+            this.button1.Text = "Daily Collection";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -229,6 +229,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Reports";
             // 
+            // btnNote
+            // 
+            this.btnNote.Location = new System.Drawing.Point(379, 22);
+            this.btnNote.Name = "btnNote";
+            this.btnNote.Size = new System.Drawing.Size(107, 77);
+            this.btnNote.TabIndex = 10;
+            this.btnNote.Text = "Total Note:";
+            this.btnNote.UseVisualStyleBackColor = true;
+            // 
             // btnInHand
             // 
             this.btnInHand.Location = new System.Drawing.Point(81, 316);
@@ -332,16 +341,7 @@
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // btnNote
-            // 
-            this.btnNote.Location = new System.Drawing.Point(379, 22);
-            this.btnNote.Name = "btnNote";
-            this.btnNote.Size = new System.Drawing.Size(107, 77);
-            this.btnNote.TabIndex = 10;
-            this.btnNote.Text = "Total Note:";
-            this.btnNote.UseVisualStyleBackColor = true;
-            // 
-            // IndexForm
+            // frmIndexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -354,7 +354,7 @@
             this.Controls.Add(this.btnClosedTxn);
             this.Controls.Add(this.btnCustomers);
             this.Controls.Add(this.button1);
-            this.Name = "IndexForm";
+            this.Name = "frmIndexForm";
             this.Text = "Welcome - Century Fin Corp.";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
