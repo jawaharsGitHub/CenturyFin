@@ -40,7 +40,7 @@ namespace WindowsFormsApplication1
             label1.Text = $"Total Collection is: {result.Sum(s => s.AmountReceived)}";
             dataGridView1.DataSource = result.ToList();
 
-            dateTimePicker1.Value = dateTimePicker1.Value.AddDays(1);
+            //dateTimePicker1.Value = dateTimePicker1.Value.AddDays(1);
         }
     }
 }

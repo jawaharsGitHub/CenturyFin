@@ -101,7 +101,7 @@ namespace DataAccess
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
 
-                u.AmountGivenDate = updatedCustomer.AmountGivenDate; // TODO: need to update all fields later
+                u.AmountGivenDate = updatedCustomer.AmountGivenDate; // Done: need to update all fields later
                 u.ClosedDate = updatedCustomer.ClosedDate;
                 u.Interest = updatedCustomer.Interest;
                 u.LoanAmount = updatedCustomer.LoanAmount;
