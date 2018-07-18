@@ -47,7 +47,6 @@ namespace WindowsFormsApplication1
         private void CalculateIncome(bool considerSalary = false)
         {
 
-            var monthlySalary = 12000;
             // Closed Account
             var closedCustomers = (from c in Customer.GetAllCustomer()
                                    where c.ClosedDate != null && c.ClosedDate != DateTime.MinValue && c.IsActive == false
@@ -114,13 +113,33 @@ namespace WindowsFormsApplication1
 
             });
 
+            finalData.Insert(0, new IncomeReport()
+            {
+                Month = "Feb, 2018",
+                ActualIncome = 0
+            });
 
+            // Move past month expected to current month expected.
+            var pastMonthExpectedIncome = (from pm in finalData
+                                           where Convert.ToDateTime(pm.Month).Month < DateTime.Now.Month
+                                           select pm);
+
+
+            var currentMonthExpectedIncome = finalData.Where(w => Convert.ToDateTime(w.Month).Month == DateTime.Now.Month).FirstOrDefault();
+            if (currentMonthExpectedIncome != null) currentMonthExpectedIncome.ExpectedIncome += pastMonthExpectedIncome.Sum(s => s.ExpectedIncome);
+
+            pastMonthExpectedIncome.ToList().ForEach(f => f.ExpectedIncome = 0);
+
+            // Consider if salary also!
             if (considerSalary)
             {
                 finalData.ForEach(fd =>
                 {
-
-                    if ((fd.ActualIncome > 0 && fd.ExpectedIncome > 0) || fd.ActualIncome > 0)
+                    if (Convert.ToDateTime(fd.Month).Month == 2)
+                    {
+                        fd.ActualIncome = (fd.ExpectedIncome - fd.MonthlySalary); // Always fr feb, actualincome is -salary
+                    }
+                    else if ((fd.ActualIncome > 0 && fd.ExpectedIncome > 0) || fd.ActualIncome > 0)
                     {
                         fd.ActualIncome = (fd.ActualIncome - fd.MonthlySalary);
                     }
@@ -131,12 +150,8 @@ namespace WindowsFormsApplication1
 
                 });
 
-                finalData.Insert(0, new IncomeReport()
-                {
-                    Month = "2018 Feb",
-                    ActualIncome = -10000
-                });
             }
+            // Bindng the real/actual source finalData (will be updated using by ref by various data)
             dgvIncome.DataSource = finalData;
 
         }
