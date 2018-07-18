@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnTxnCount = new System.Windows.Forms.Button();
             this.btnLoan = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnNextDayTxn = new System.Windows.Forms.Button();
@@ -49,18 +48,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnTxnCount
-            // 
-            this.btnTxnCount.Location = new System.Drawing.Point(2, 23);
-            this.btnTxnCount.Name = "btnTxnCount";
-            this.btnTxnCount.Size = new System.Drawing.Size(112, 50);
-            this.btnTxnCount.TabIndex = 0;
-            this.btnTxnCount.Text = "[NoOfTxn]";
-            this.btnTxnCount.UseVisualStyleBackColor = true;
-            // 
             // btnLoan
             // 
-            this.btnLoan.Location = new System.Drawing.Point(120, 23);
+            this.btnLoan.Location = new System.Drawing.Point(77, 22);
             this.btnLoan.Name = "btnLoan";
             this.btnLoan.Size = new System.Drawing.Size(112, 50);
             this.btnLoan.TabIndex = 1;
@@ -126,7 +116,7 @@
             // 
             // btnBalance
             // 
-            this.btnBalance.Location = new System.Drawing.Point(238, 23);
+            this.btnBalance.Location = new System.Drawing.Point(216, 23);
             this.btnBalance.Name = "btnBalance";
             this.btnBalance.Size = new System.Drawing.Size(112, 50);
             this.btnBalance.TabIndex = 4;
@@ -233,7 +223,6 @@
             this.Controls.Add(this.btnBalance);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLoan);
-            this.Controls.Add(this.btnTxnCount);
             this.Name = "frmCustomerTransaction";
             this.Text = "CustomerDetail";
             this.groupBox1.ResumeLayout(false);
@@ -245,8 +234,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnTxnCount;
         private System.Windows.Forms.Button btnLoan;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;

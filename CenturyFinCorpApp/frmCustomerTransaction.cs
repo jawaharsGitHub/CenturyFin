@@ -34,12 +34,19 @@ namespace WindowsFormsApplication1
 
 
 
-            btnLoan.Text = _loan.ToString();
-            btnBalance.Text = _balance.ToString();
-            this.Text = $"{_customerName} - CutomerId: {_customerId} SequenceNo: {_sequeneNo}";
+            btnLoan.Text = $"LOAN :  {_loan}";
+            btnBalance.Text = $"BALANCE :  {_balance}";
+            var closedText = (_balance == 0) ? "(CLOSED)" : string.Empty;
+
+
+            this.Text = $"{_customerName} - CutomerId: {_customerId} SequenceNo: {_sequeneNo} {closedText}";
+           
             txtCollectionAmount.Text = (_loan / 100).ToString();
 
             InitializeListView();
+
+            btnBalance.Visible = groupBox1.Visible = (_balance > 0);
+            
             LoadTxn();
         }
 
