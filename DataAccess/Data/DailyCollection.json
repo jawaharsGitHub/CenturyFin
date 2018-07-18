@@ -618,6 +618,18 @@
     "GivenAmount": -15000,
     "Interest": 1500,
     "TodayInHand": 9660
+  },
+  {
+    "Date": "2018-07-18",
+    "YesterdayAmountInHand": 9660,
+    "SanthanamUncle": 20000,
+    "TakenFromBank": 40000,
+    "BankTxnOut": 0,
+    "InBank": 4589.84,
+    "CollectionAmount": 9950,
+    "GivenAmount": -50000,
+    "Interest": 5000,
+    "TodayInHand": 14610
   }
 ]
 
