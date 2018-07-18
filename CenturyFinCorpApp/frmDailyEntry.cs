@@ -44,8 +44,10 @@ namespace WindowsFormsApplication1
             dataGridView1.DataSource = result.Where(w => w.AmountReceived != 0).ToList();
         }
 
-        private void CalculateIncome()
+        private void CalculateIncome(bool considerSalary = false)
         {
+
+            var monthlySalary = 12000;
             // Closed Account
             var closedCustomers = (from c in Customer.GetAllCustomer()
                                    where c.ClosedDate != null && c.ClosedDate != DateTime.MinValue && c.IsActive == false
@@ -113,10 +115,37 @@ namespace WindowsFormsApplication1
             });
 
 
+            if (considerSalary)
+            {
+                finalData.ForEach(fd =>
+                {
+
+                    if ((fd.ActualIncome > 0 && fd.ExpectedIncome > 0) || fd.ActualIncome > 0)
+                    {
+                        fd.ActualIncome = (fd.ActualIncome - fd.MonthlySalary);
+                    }
+                    else
+                    {
+                        fd.ExpectedIncome = (fd.ExpectedIncome - fd.MonthlySalary);
+                    }
+
+                });
+
+                finalData.Insert(0, new IncomeReport()
+                {
+                    Month = "2018 Feb",
+                    ActualIncome = -10000
+                });
+            }
             dgvIncome.DataSource = finalData;
 
         }
+
+        private void chkAddSalary_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateIncome(chkAddSalary.Checked);
+        }
     }
 
-    
+
 }

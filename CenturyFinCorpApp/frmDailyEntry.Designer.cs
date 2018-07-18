@@ -33,6 +33,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
+            this.chkAddSalary = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.SuspendLayout();
@@ -79,14 +80,26 @@
             this.dgvIncome.Location = new System.Drawing.Point(627, 86);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.ReadOnly = true;
-            this.dgvIncome.Size = new System.Drawing.Size(369, 373);
+            this.dgvIncome.Size = new System.Drawing.Size(441, 373);
             this.dgvIncome.TabIndex = 4;
+            // 
+            // chkAddSalary
+            // 
+            this.chkAddSalary.AutoSize = true;
+            this.chkAddSalary.Location = new System.Drawing.Point(760, 38);
+            this.chkAddSalary.Name = "chkAddSalary";
+            this.chkAddSalary.Size = new System.Drawing.Size(105, 17);
+            this.chkAddSalary.TabIndex = 5;
+            this.chkAddSalary.Text = "Consider Salary?";
+            this.chkAddSalary.UseVisualStyleBackColor = true;
+            this.chkAddSalary.CheckedChanged += new System.EventHandler(this.chkAddSalary_CheckedChanged);
             // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1069, 450);
+            this.Controls.Add(this.chkAddSalary);
             this.Controls.Add(this.dgvIncome);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -109,5 +122,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvIncome;
+        private System.Windows.Forms.CheckBox chkAddSalary;
     }
 }
