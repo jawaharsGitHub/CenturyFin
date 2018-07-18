@@ -1311,5 +1311,31 @@
     "AmountGivenDate": "2018-07-05T12:50:12",
     "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 102,
+    "CustomerId": 69,
+    "Name": "Kaleeswari - Kadamba Nagar - Maligai",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-17T23:41:17.2200161-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 103,
+    "CustomerId": 70,
+    "Name": "Raja - Mechanic - Kadamba Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-17T23:42:26.3053187-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
   }
 ]
