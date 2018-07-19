@@ -34,8 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvIncome = new System.Windows.Forms.DataGridView();
             this.chkAddSalary = new System.Windows.Forms.CheckBox();
-            this.btnActual = new System.Windows.Forms.Button();
-            this.btnExpected = new System.Windows.Forms.Button();
+            this.lblExpected = new System.Windows.Forms.Label();
+            this.lblActual = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.SuspendLayout();
@@ -88,7 +88,7 @@
             // chkAddSalary
             // 
             this.chkAddSalary.AutoSize = true;
-            this.chkAddSalary.Location = new System.Drawing.Point(627, 39);
+            this.chkAddSalary.Location = new System.Drawing.Point(627, 20);
             this.chkAddSalary.Name = "chkAddSalary";
             this.chkAddSalary.Size = new System.Drawing.Size(105, 17);
             this.chkAddSalary.TabIndex = 5;
@@ -96,31 +96,31 @@
             this.chkAddSalary.UseVisualStyleBackColor = true;
             this.chkAddSalary.CheckedChanged += new System.EventHandler(this.chkAddSalary_CheckedChanged);
             // 
-            // btnActual
+            // lblExpected
             // 
-            this.btnActual.Location = new System.Drawing.Point(762, 35);
-            this.btnActual.Name = "btnActual";
-            this.btnActual.Size = new System.Drawing.Size(127, 23);
-            this.btnActual.TabIndex = 6;
-            this.btnActual.Text = "Actual Income";
-            this.btnActual.UseVisualStyleBackColor = true;
+            this.lblExpected.AutoSize = true;
+            this.lblExpected.Location = new System.Drawing.Point(802, 20);
+            this.lblExpected.Name = "lblExpected";
+            this.lblExpected.Size = new System.Drawing.Size(52, 13);
+            this.lblExpected.TabIndex = 6;
+            this.lblExpected.Text = "Expected";
             // 
-            // btnExpected
+            // lblActual
             // 
-            this.btnExpected.Location = new System.Drawing.Point(908, 35);
-            this.btnExpected.Name = "btnExpected";
-            this.btnExpected.Size = new System.Drawing.Size(110, 23);
-            this.btnExpected.TabIndex = 7;
-            this.btnExpected.Text = "Expected Income";
-            this.btnExpected.UseVisualStyleBackColor = true;
+            this.lblActual.AutoSize = true;
+            this.lblActual.Location = new System.Drawing.Point(802, 51);
+            this.lblActual.Name = "lblActual";
+            this.lblActual.Size = new System.Drawing.Size(37, 13);
+            this.lblActual.TabIndex = 7;
+            this.lblActual.Text = "Actual";
             // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1069, 450);
-            this.Controls.Add(this.btnExpected);
-            this.Controls.Add(this.btnActual);
+            this.Controls.Add(this.lblActual);
+            this.Controls.Add(this.lblExpected);
             this.Controls.Add(this.chkAddSalary);
             this.Controls.Add(this.dgvIncome);
             this.Controls.Add(this.label1);
@@ -145,7 +145,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvIncome;
         private System.Windows.Forms.CheckBox chkAddSalary;
-        private System.Windows.Forms.Button btnActual;
-        private System.Windows.Forms.Button btnExpected;
+        private System.Windows.Forms.Label lblExpected;
+        private System.Windows.Forms.Label lblActual;
     }
 }

@@ -12,8 +12,9 @@ namespace WindowsFormsApplication1
         public frmDailyEntry()
         {
             InitializeComponent();
+            chkAddSalary.Checked = true; // will callCalculateIncome(true);
             LoadDailyCollection();
-            CalculateIncome();
+            //CalculateIncome(true);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,7 +50,8 @@ namespace WindowsFormsApplication1
 
             // Closed Account
             var closedCustomers = (from c in Customer.GetAllCustomer()
-                                   where c.ClosedDate != null && c.ClosedDate != DateTime.MinValue && c.IsActive == false
+                                   where c.IsActive == false
+                                   //where c.ClosedDate != null && c.ClosedDate != DateTime.MinValue && c.IsActive == false
                                    group c by Convert.ToDateTime(c.ClosedDate).ToString("Y") into newGroup
 
 
@@ -62,7 +64,8 @@ namespace WindowsFormsApplication1
 
             // Running Account (Expected Income)
             var runningCustomers = (from c in Customer.GetAllCustomer()
-                                    where (c.ClosedDate == null || c.ClosedDate != DateTime.MinValue) && c.IsActive == true
+                                    where c.IsActive == true
+                                    //where (c.ClosedDate == null || c.ClosedDate != DateTime.MinValue) && c.IsActive == true
                                     group c by Convert.ToDateTime(c.AmountGivenDate).ToString("Y") into newGroup
                                     select new
                                     {
@@ -156,8 +159,11 @@ namespace WindowsFormsApplication1
 
             // Years Expected and Actual Salary
 
-            btnActual.Text = "Actual : " + finalData.Sum(w => w.ActualIncome).ToString();
-            btnExpected.Text = "Ëxpected : " + finalData.Sum(w => w.ExpectedIncome).ToString();
+            var actual = finalData.Sum(w => w.ActualIncome);
+            var expected = finalData.Sum(w => w.ExpectedIncome);
+
+            lblActual.Text = $"Actual :  {actual} (Per Month: { (actual / DateTime.Today.Month)})";
+            lblExpected.Text = $"Ëxpected : {expected} (Per Month: { (expected / DateTime.Today.Month)})";
 
         }
 
