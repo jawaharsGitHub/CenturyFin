@@ -115,7 +115,7 @@ namespace WindowsFormsApplication1
 
             finalData.Insert(0, new IncomeReport()
             {
-                Month = "Feb, 2018",
+                Month = "2018 Feb",
                 ActualIncome = 0
             });
 
@@ -153,6 +153,11 @@ namespace WindowsFormsApplication1
             }
             // Bindng the real/actual source finalData (will be updated using by ref by various data)
             dgvIncome.DataSource = finalData;
+
+            // Years Expected and Actual Salary
+
+            btnActual.Text = "Actual : " + finalData.Sum(w => w.ActualIncome).ToString();
+            btnExpected.Text = "Ëxpected : " + finalData.Sum(w => w.ExpectedIncome).ToString();
 
         }
 
