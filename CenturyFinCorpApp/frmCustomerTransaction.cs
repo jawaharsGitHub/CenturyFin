@@ -48,6 +48,7 @@ namespace WindowsFormsApplication1
             btnBalance.Visible = groupBox1.Visible = (_balance > 0);
             
             LoadTxn();
+            lblMessage.Text = string.Empty;
         }
 
         public Transaction AddTxn(Customer cus, DateTime txnDate)

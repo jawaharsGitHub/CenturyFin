@@ -147,7 +147,7 @@ namespace WindowsFormsApplication1
                     CustomerId = Convert.ToInt32(customerId),
                     CustomerSequenceNo = Convert.ToInt32(seqNo),
                     TransactionId = Transaction.GetNextTransactionId(),
-                    Balance = (Transaction.GetBalance(Convert.ToInt32(loanAmount), Convert.ToInt32(seqNo), Convert.ToInt32(customerId)) - Convert.ToInt16(collectedAmount)),
+                    Balance = (Transaction.GetBalance(Convert.ToInt32(loanAmount), Convert.ToInt32(seqNo), Convert.ToInt32(customerId)) - Convert.ToInt16(collectedAmount)), // TODO: Balance is not updaed correctly eg: 71-104 - 19th july txn.
                     TxnDate = dateTimePicker1.Value
                 };
 

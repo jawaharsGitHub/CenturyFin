@@ -811,11 +811,11 @@
     "Name": "karmegam - Aranmanai",
     "PhoneNumber": "",
     "LoanAmount": 15000,
-    "Interest": 1500,
+    "Interest": 1000,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-07-13T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": "2018-07-19T12:47:09",
     "ModifiedDate": null
   },
   {
@@ -904,9 +904,9 @@
     "LoanAmount": 10000,
     "Interest": 800,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-03-30T11:46:18",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": "2018-07-19T12:43:26.5010455-04:00",
     "ModifiedDate": null
   },
   {
@@ -1406,14 +1406,14 @@
   {
     "CustomerSeqNumber": 109,
     "CustomerId": 76,
-    "Name": "Minuisamy - Thalaiari",
+    "Name": "Muniasamy - Thalaiari",
     "PhoneNumber": "",
     "LoanAmount": 10000,
     "Interest": 1000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-18T13:08:47.0759764-04:00",
-    "ClosedDate": null,
+    "AmountGivenDate": "2018-07-18T13:08:47",
+    "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   },
   {
