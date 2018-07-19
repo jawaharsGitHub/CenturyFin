@@ -161,10 +161,11 @@ namespace WindowsFormsApplication1
 
             var actual = finalData.Sum(w => w.ActualIncome);
             var expected = finalData.Sum(w => w.ExpectedIncome);
+            var total = (actual + expected);
 
-            lblActual.Text = $"Actual :  {actual} (Per Month: { (actual / DateTime.Today.Month)})";
-            lblExpected.Text = $"Ëxpected : {expected} (Per Month: { (expected / DateTime.Today.Month)})";
-
+            lblActual.Text = $"Actual :  {actual.ToMoney()} (Per Month: { (actual / DateTime.Today.Month).ToMoney()})";
+            lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / DateTime.Today.Month).ToMoney()})";
+            lblTotal.Text = $"TOTAL : {total.ToMoney()} (Per Month: { (total / DateTime.Today.Month).ToMoney()})";
         }
 
         private void chkAddSalary_CheckedChanged(object sender, EventArgs e)

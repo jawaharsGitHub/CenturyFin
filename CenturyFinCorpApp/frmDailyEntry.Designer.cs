@@ -36,6 +36,7 @@
             this.chkAddSalary = new System.Windows.Forms.CheckBox();
             this.lblExpected = new System.Windows.Forms.Label();
             this.lblActual = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.SuspendLayout();
@@ -99,7 +100,7 @@
             // lblExpected
             // 
             this.lblExpected.AutoSize = true;
-            this.lblExpected.Location = new System.Drawing.Point(802, 20);
+            this.lblExpected.Location = new System.Drawing.Point(802, 9);
             this.lblExpected.Name = "lblExpected";
             this.lblExpected.Size = new System.Drawing.Size(52, 13);
             this.lblExpected.TabIndex = 6;
@@ -108,17 +109,27 @@
             // lblActual
             // 
             this.lblActual.AutoSize = true;
-            this.lblActual.Location = new System.Drawing.Point(802, 51);
+            this.lblActual.Location = new System.Drawing.Point(802, 40);
             this.lblActual.Name = "lblActual";
             this.lblActual.Size = new System.Drawing.Size(37, 13);
             this.lblActual.TabIndex = 7;
             this.lblActual.Text = "Actual";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(805, 67);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(42, 13);
+            this.lblTotal.TabIndex = 8;
+            this.lblTotal.Text = "TOTAL";
             // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1069, 450);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblActual);
             this.Controls.Add(this.lblExpected);
             this.Controls.Add(this.chkAddSalary);
@@ -147,5 +158,6 @@
         private System.Windows.Forms.CheckBox chkAddSalary;
         private System.Windows.Forms.Label lblExpected;
         private System.Windows.Forms.Label lblActual;
+        private System.Windows.Forms.Label lblTotal;
     }
 }

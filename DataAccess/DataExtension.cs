@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace DataAccess
 {
@@ -16,6 +17,19 @@ namespace DataAccess
                     yield return element;
                 }
             }
+        }
+
+        public static string ToMoney(this int number)
+        {
+            NumberFormatInfo nfo = new NumberFormatInfo();
+            nfo.CurrencyGroupSeparator = ",";
+            nfo.CurrencyNegativePattern = Convert.ToInt16(number < 0);
+            // you are interested in this part of controlling the group sizes
+            nfo.CurrencyGroupSizes = new int[] { 3, 2 };
+            nfo.CurrencySymbol = ""; // "Rs.";
+
+            return number.ToString("c0", nfo); // prints 1,50,00,000
+
         }
 
     }
