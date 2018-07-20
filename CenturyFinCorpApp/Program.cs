@@ -21,12 +21,12 @@ namespace WindowsFormsApplication1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-           CultureInfo myCI = new CultureInfo("us-EN", false);
-            myCI.DateTimeFormat.ShortDatePattern = "dd-MMM-yyyy";
+           CultureInfo myCI = new CultureInfo("en-GB", false);
+            myCI.DateTimeFormat.ShortDatePattern = "dd-MM-yyyy";
 
             Thread.CurrentThread.CurrentCulture = myCI;
 
-            string exeFile = (new System.Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
+            string exeFile = (new Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
             string exeDir = Path.GetDirectoryName(exeFile);
             string dataFolder = exeDir.Replace("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\");
 
