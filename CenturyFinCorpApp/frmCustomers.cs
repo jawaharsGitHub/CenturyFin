@@ -20,11 +20,7 @@ namespace WindowsFormsApplication1
 
             transactions = new List<Transaction>();
 
-            var activeTxn = customers.Count(c => c.IsActive == true);
-            var closedTxn = customers.Count(c => c.IsActive == false);
-            var totalTxn = activeTxn + closedTxn;
-
-            this.Text = $"Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
+            
 
             if (customers == null) return;
 
@@ -49,6 +45,12 @@ namespace WindowsFormsApplication1
         private void SetCustomers()
         {
             customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
+
+            var activeTxn = customers.Count(c => c.IsActive == true);
+            var closedTxn = customers.Count(c => c.IsActive == false);
+            var totalTxn = activeTxn + closedTxn;
+
+            this.Text = $"Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
         }
 
         private void AdjustColumnOrder()

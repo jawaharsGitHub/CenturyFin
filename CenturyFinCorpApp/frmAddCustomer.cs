@@ -133,7 +133,7 @@ namespace WindowsFormsApplication1
 
             var loanAmount = Convert.ToInt32(txtLoan.Text);
 
-            var interest = (loanAmount / 100) * 8;
+            var interest = (loanAmount / 100) * 10;
             txtInterest.Text = interest.ToString();
 
         }
