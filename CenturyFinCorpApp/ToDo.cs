@@ -49,3 +49,5 @@
 //Issue: Check customer and total notes count.
 // TODO: list who not payed for the given date.
 // TODO: AUTO - Collection sheet.
+//TODO: Add Run Closed in other places also.
+// TODO: While Running Closed batch - update closed date also.
