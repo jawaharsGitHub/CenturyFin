@@ -5898,5 +5898,15 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 110,
     "TxnDate": "2018-07-19T12:54:26.1053125-04:00"
+  },
+  {
+    "CustomerId": 10,
+    "IsClosed": false,
+    "TransactionId": 1512,
+    "AmountReceived": 0,
+    "Balance": 3000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 28,
+    "TxnDate": "2018-04-13T00:00:00"
   }
 ]

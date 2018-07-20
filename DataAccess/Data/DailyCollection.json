@@ -640,8 +640,8 @@
     "InBank": 4589.84,
     "CollectionAmount": 27470,
     "GivenAmount": 0,
-    "Interest": 0,
-    "TodayInHand": 42080,
+    "Interest": -200, // return back 200 since closed in 1 week. ilai kadai
+    "TodayInHand": 41880,
     "ClosedAccounts": 2,
     "OpenedAccount":  0
   }
