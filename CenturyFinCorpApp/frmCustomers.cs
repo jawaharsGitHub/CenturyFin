@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             // Get the table from the data set
-            customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
+            SetCustomers();
 
             transactions = new List<Transaction>();
 
@@ -44,6 +44,11 @@ namespace WindowsFormsApplication1
             txtSearch.Focus();
             AdjustColumnOrder();
 
+        }
+
+        private void SetCustomers()
+        {
+            customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
         }
 
         private void AdjustColumnOrder()
@@ -79,7 +84,7 @@ namespace WindowsFormsApplication1
         {
             if (rdbClosed.Checked)
             {
-                dataGridView1.DataSource = customers.Where(w => w.IsActive == false).ToList();
+                dataGridView1.DataSource = customers.Where(w => w.IsActive == false).OrderBy(o => o.ClosedDate).ToList();
             }
         }
 
@@ -99,27 +104,6 @@ namespace WindowsFormsApplication1
                 dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList();
             if (rdbAll.Checked)
                 dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            //Transaction.AddDailyTransactions(transactions);
-
-            //transactions.ForEach(t =>
-            //{
-            //    if (t.IsClosed && t.Balance == 0)
-            //    {
-            //        // Update Closed Date
-            //        Customer.UpdateCustomerClosedDate(
-            //            new Customer()
-            //            {
-            //                CustomerId = t.CustomerId,
-            //                CustomerSeqNumber = t.CustomerSequenceNo,
-            //                ClosedDate = t.TxnDate,
-            //            });
-            //    }
-            //});
-
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
@@ -213,19 +197,9 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void chkOrderByStartDate_CheckedChanged(object sender, EventArgs e)
-        {
-
-            if (chkOrderByStartDate.Checked)
-                dataGridView1.DataSource = customers.Where(w => w.ClosedDate != null && w.ClosedDate != DateTime.MinValue).OrderBy(o => o.ClosedDate).ToList();
-            else
-                dataGridView1.DataSource = customers;
-
-
-        }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            SetCustomers();
             rdbAll.Checked = true;
         }
     }

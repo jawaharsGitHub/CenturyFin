@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1
             var txn = Transaction.GetDailyCollectionDetails(dateTimePicker1.Value);
 
             var cus = from c in Customer.GetAllCustomer()
-                      select new { c.CustomerId, c.Name };
+                      select new { c.CustomerId, c.Name, c.IsActive, c.Interest, c.LoanAmount };
 
             var result = (from t in txn
                           join c in cus
@@ -41,8 +41,15 @@ namespace WindowsFormsApplication1
                               t.Balance
                           }).Distinct();
 
-            label1.Text = $"Total Collection is: {result.Sum(s => s.AmountReceived)}";
-            dataGridView1.DataSource = result.Where(w => w.AmountReceived != 0).ToList();
+            var amountReceived = result.Sum(s => s.AmountReceived);
+
+            
+            result = result.Where(w => w.AmountReceived != 0).ToList();
+
+            label1.Text = $"Total Collection is: {amountReceived}";
+            label2.Text = $"{result.Count()} (Rs.{amountReceived}) customers paid out of {cus.Count(c => c.IsActive)} (Rs.{(cus.Where(w => w.IsActive).Sum(s => s.LoanAmount) / 100)})";
+
+            dataGridView1.DataSource = result;
         }
 
         private void CalculateIncome(bool considerSalary = false)

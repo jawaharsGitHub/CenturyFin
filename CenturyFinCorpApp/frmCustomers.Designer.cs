@@ -34,9 +34,7 @@
             this.rdbAll = new System.Windows.Forms.RadioButton();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnAddCustomer = new System.Windows.Forms.Button();
-            this.chkOrderByStartDate = new System.Windows.Forms.CheckBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -101,16 +99,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 5;
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(914, 9);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "Save Daily Collection";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // btnAddCustomer
             // 
             this.btnAddCustomer.Location = new System.Drawing.Point(557, 13);
@@ -121,20 +109,9 @@
             this.btnAddCustomer.UseVisualStyleBackColor = true;
             this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
-            // chkOrderByStartDate
-            // 
-            this.chkOrderByStartDate.AutoSize = true;
-            this.chkOrderByStartDate.Location = new System.Drawing.Point(1008, 14);
-            this.chkOrderByStartDate.Name = "chkOrderByStartDate";
-            this.chkOrderByStartDate.Size = new System.Drawing.Size(136, 17);
-            this.chkOrderByStartDate.TabIndex = 8;
-            this.chkOrderByStartDate.Text = "OrderBy Start Date Asc";
-            this.chkOrderByStartDate.UseVisualStyleBackColor = true;
-            this.chkOrderByStartDate.CheckedChanged += new System.EventHandler(this.chkOrderByStartDate_CheckedChanged);
-            // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(1150, 12);
+            this.btnRefresh.Location = new System.Drawing.Point(970, 10);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 9;
@@ -148,9 +125,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.chkOrderByStartDate);
             this.Controls.Add(this.btnAddCustomer);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.rdbAll);
@@ -173,9 +148,7 @@
         private System.Windows.Forms.RadioButton rdbAll;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAddCustomer;
-        private System.Windows.Forms.CheckBox chkOrderByStartDate;
         private System.Windows.Forms.Button btnRefresh;
     }
 }
