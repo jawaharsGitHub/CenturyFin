@@ -664,7 +664,7 @@
     "OpenedAccounts": 1,
 
     "TomorrowNeed": 30000,
-    "TomorrowDiff": 21860 // TmrNeed-TodayInHand
+    "TomorrowDiff": 21860 // (TmrNeed - TodayInHand)
     
   }
 ]
