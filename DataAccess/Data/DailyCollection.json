@@ -643,7 +643,29 @@
     "Interest": -200, // return back 200 since closed in 1 week. ilai kadai
     "TodayInHand": 41880,
     "ClosedAccounts": 2,
-    "OpenedAccount": 0
+    "OpenedAccounts": 0
+  },
+  {
+    "Date": "2018-07-20",
+    "YesterdayAmountInHand": 41880,
+    "SanthanamUncle": 20000,
+    "SendFromUSA": 20580,
+    "InBank": 10163.94,
+    "BankTxnOut": 15005.90, // Send to Ramesh Bro. (lost 5.90 Rs)
+    "TakenFromBank": 0,
+
+    "CollectionAmount": 11260,
+    "GivenAmount": -50000,
+    "Interest": 5000, // return back 200 since closed in 1 week. ilai kadai
+
+    "TodayInHand": 8140, //!!!!!!!!!!!!!!!!!! (Yes.InHand + Today Collection  + TakenFromBank - Given Amt + Interest)
+
+    "ClosedAccounts": 1,
+    "OpenedAccounts": 1,
+
+    "TomorrowNeed": 30000,
+    "TomorrowDiff": 21860 // TmrNeed-TodayInHand
+    
   }
 ]
 
