@@ -106,6 +106,7 @@ namespace DataAccess
                 u.ClosedDate = updatedCustomer.ClosedDate;
                 u.Interest = updatedCustomer.Interest;
                 u.LoanAmount = updatedCustomer.LoanAmount;
+                u.CustomerId = updatedCustomer.CustomerId;
 
                 string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
 
@@ -175,14 +176,14 @@ namespace DataAccess
             }
         }
 
-        public static void DeleteCustomerDetails(int id)
+        public static void DeleteCustomerDetails(int customerId, int sequenceNo)
         {
 
             try
             {
                 var json = File.ReadAllText(AppConfiguration.CustomerFile);
                 List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
-                var itemToDelete = list.Where(c => c.CustomerId == id).FirstOrDefault();
+                var itemToDelete = list.Where(c => c.CustomerId == customerId && c.CustomerSeqNumber == sequenceNo).FirstOrDefault();
                 list.Remove(itemToDelete);
                 string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
                 File.WriteAllText(AppConfiguration.CustomerFile, updatedCustomers);

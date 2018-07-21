@@ -273,19 +273,6 @@
     "ModifiedDate": null
   },
   {
-    "CustomerSeqNumber": 22,
-    "CustomerId": 21,
-    "Name": "Pandi-Maligai",
-    "PhoneNumber": "",
-    "LoanAmount": 30000,
-    "Interest": 2400,
-    "IsExistingCustomer": false,
-    "IsActive": true,
-    "AmountGivenDate": "2018-03-07T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
-    "ModifiedDate": null
-  },
-  {
     "CustomerSeqNumber": 23,
     "CustomerId": 22,
     "Name": "Asan-Kaikari Kadai",
@@ -301,7 +288,7 @@
   {
     "CustomerSeqNumber": 24,
     "CustomerId": 21,
-    "Name": "Pandi-Maligai",
+    "Name": "Pandi Maligai - CheckPost",
     "PhoneNumber": "",
     "LoanAmount": 30000,
     "Interest": 2400,
@@ -430,8 +417,8 @@
   },
   {
     "CustomerSeqNumber": 34,
-    "CustomerId": 26,
-    "Name": "Pandi-Check Post",
+    "CustomerId": 21,
+    "Name": "Pandi Maligai - CheckPost",
     "PhoneNumber": "",
     "LoanAmount": 35000,
     "Interest": 2800,
@@ -1180,19 +1167,6 @@
     "IsActive": true,
     "AmountGivenDate": "2018-06-23T12:33:17",
     "ClosedDate": null,
-    "ModifiedDate": null
-  },
-  {
-    "CustomerSeqNumber": 92,
-    "CustomerId": 21,
-    "Name": "Pandi-Maligai",
-    "PhoneNumber": "",
-    "LoanAmount": 35000,
-    "Interest": 2800,
-    "IsExistingCustomer": true,
-    "IsActive": true,
-    "AmountGivenDate": "2018-06-25T12:35:02",
-    "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   },
   {

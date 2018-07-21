@@ -89,6 +89,33 @@ namespace DataAccess
 
         }
 
+        //TODO: its not yet started using.
+        public static bool DeleteTransactionDetails(int customerId, int sequenceNo, bool isActive)
+        {
+
+            try
+            {
+                var txnFile = isActive ?  AppConfiguration.TransactionFile : $"{AppConfiguration.BackupFolderPath}/{customerId}/{customerId}_{sequenceNo}.json";
+                //if (isClosedTxn) File.Delete(txnFile);
+                if (isActive)
+                {
+                    var json = File.ReadAllText(txnFile);
+                    List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                    //if (list == null) return null;
+
+                    list.RemoveAll(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo);
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
 
 
         public static void AddClosedTransaction(List<Transaction> closedTxn)

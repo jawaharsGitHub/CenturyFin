@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1
 
             transactions = new List<Transaction>();
 
-            
+
 
             if (customers == null) return;
 
@@ -54,7 +54,7 @@ namespace WindowsFormsApplication1
         }
 
         private void AdjustColumnOrder()
-        {            
+        {
             dataGridView1.Columns["CollectionAmt"].DisplayIndex = 3;
             dataGridView1.Columns["ModifiedDate"].Visible = false;
             dataGridView1.Columns["PhoneNumber"].Visible = false;
@@ -203,6 +203,61 @@ namespace WindowsFormsApplication1
         {
             SetCustomers();
             rdbAll.Checked = true;
+        }
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+
+            if (dataGridView1.SelectedRows.Count > 1) return;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenuStrip strip = new ContextMenuStrip();
+                int rowIndex = dataGridView1.HitTest(e.X, e.Y).RowIndex;
+
+                var seqNo = GetGridCellValue(dataGridView1, rowIndex, "CustomerSeqNumber");
+                var customerId = GetGridCellValue(dataGridView1, rowIndex, "CustomerId");
+                var isActive = GetGridCellValue(dataGridView1, rowIndex, "IsActive");
+
+                strip.Tag = new Customer() { CustomerSeqNumber = Convert.ToInt32(seqNo), CustomerId = Convert.ToInt32(customerId), IsActive = Convert.ToBoolean(isActive) };
+
+                if (rowIndex >= 0)
+                {
+                    strip.Items.Add("Delete Customer and Txn").Name = "All";
+                    strip.Items.Add("Delete Customer only").Name = "Cus";
+                    strip.Items.Add("Delete Txn only").Name = "Txn";
+                }
+
+                strip.Show(dataGridView1, new System.Drawing.Point(e.X, e.Y));
+
+                strip.ItemClicked += Strip_ItemClicked;
+
+            }
+
+        }
+
+        private void Strip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            var cus = (Customer)((ContextMenuStrip)sender).Tag;
+
+            if (e.ClickedItem.Name == "All")
+            {
+                Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
+                Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
+            }
+            else if (e.ClickedItem.Name == "Cus")
+            {
+                Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
+            }
+            else if (e.ClickedItem.Name == "Txn")
+            {
+                Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
+            }
         }
     }
 }
