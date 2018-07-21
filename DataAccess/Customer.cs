@@ -71,6 +71,7 @@ namespace DataAccess
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber && c.IsActive == true).FirstOrDefault();
                 u.IsActive = updatedCustomer.IsActive;
+                u.ClosedDate = updatedCustomer.ClosedDate;
 
                 string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
 
@@ -212,8 +213,6 @@ namespace DataAccess
             return (list.Select(s => s.CustomerSeqNumber).Max() + 1);
 
         }
-
-
 
     }
 

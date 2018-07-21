@@ -112,7 +112,11 @@ namespace WindowsFormsApplication1
 
             btnBalance.Text = txn.Balance.ToString();
             LoadTxn();
-            if (txn.Balance == 0) MessageBox.Show("This Txn is completed Successfully!");
+            if (txn.Balance == 0)
+            {
+                MessageBox.Show("This Txn is completed Successfully!");
+                Customer.UpdateCustomerDetails(new Customer() { CustomerId = _customerId, CustomerSeqNumber = _sequeneNo, IsActive = false, ClosedDate = txn.TxnDate });
+            }
 
             lblMessage.Text = $"Txn  Added Successfully for {_customerName}";
 

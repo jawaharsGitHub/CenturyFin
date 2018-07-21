@@ -85,7 +85,7 @@ namespace WindowsFormsApplication1
                 // Delete Transactions data
                 Transaction.DeleteTransactionDetails(item.CustomerId, item.CustomerSequenceNo);
 
-                Customer.UpdateCustomerDetails(new Customer() { CustomerId = item.CustomerId, CustomerSeqNumber = item.CustomerSequenceNo, IsActive = false });
+                // Customer.UpdateCustomerDetails(new Customer() { CustomerId = item.CustomerId, CustomerSeqNumber = item.CustomerSequenceNo, IsActive = false });
 
             }
 

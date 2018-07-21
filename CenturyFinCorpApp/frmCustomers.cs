@@ -145,6 +145,7 @@ namespace WindowsFormsApplication1
                 if (txn.Balance == 0)
                 {
                     MessageBox.Show("Good News, This txn will be closed!");
+                    Customer.UpdateCustomerDetails(new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
                 }
 
                 txn.IsClosed = (txn.Balance <= 0);
