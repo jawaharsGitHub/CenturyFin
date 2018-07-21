@@ -17,5 +17,7 @@ namespace Common
         public static string ExpenditureFile { get; } = Path.Combine(ConfigurationManager.AppSettings["SourceFolder"], ConfigurationManager.AppSettings["ExpenditureFile"]); 
 
         public static string InHandFile { get; } = Path.Combine(ConfigurationManager.AppSettings["SourceFolder"], ConfigurationManager.AppSettings["InHandFile"]);
+
+        public static string DailyTxnFile { get; } = Path.Combine(ConfigurationManager.AppSettings["SourceFolder"], ConfigurationManager.AppSettings["DailyTxn"]);
     }
 }

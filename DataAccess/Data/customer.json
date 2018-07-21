@@ -277,11 +277,11 @@
     "CustomerId": 21,
     "Name": "Pandi-Maligai",
     "PhoneNumber": "",
-    "LoanAmount": 10000,
-    "Interest": 800,
+    "LoanAmount": 30000,
+    "Interest": 2400,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-22T00:00:00-04:00",
+    "AmountGivenDate": "2018-03-07T00:00:00",
     "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   },
@@ -1439,6 +1439,19 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-07-20T12:41:01.8240451-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 112,
+    "CustomerId": 78,
+    "Name": "Setu Baseer - Market",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-21T11:55:02.0469764-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }

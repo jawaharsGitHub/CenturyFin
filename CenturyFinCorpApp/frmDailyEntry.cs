@@ -179,6 +179,12 @@ namespace WindowsFormsApplication1
         {
             CalculateIncome(chkAddSalary.Checked);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            frmInHand fd = new frmInHand();
+            fd.ShowDialog();
+        }
     }
 
 

@@ -59,7 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DailyCollectionDetail.cs" />
     <Compile Include="DataExtension.cs" />
+    <Compile Include="Data\BaseClass.cs" />
     <Compile Include="Expenditure.cs" />
     <Compile Include="IncomeReport.cs" />
     <Compile Include="InHand.cs" />
@@ -122,6 +124,7 @@
     <None Include="Data\ClosedNotes\8\8_8.json" />
     <None Include="Data\ClosedNotes\9\9_9.json" />
     <None Include="Data\customer.json" />
+    <None Include="Data\DailyCollectionBkp.json" />
     <None Include="Data\Expenditure.json" />
     <None Include="Data\InHand.json" />
     <None Include="Data\Investment.json" />

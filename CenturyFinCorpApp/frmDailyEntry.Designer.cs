@@ -38,6 +38,7 @@
             this.lblActual = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.SuspendLayout();
@@ -45,7 +46,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(46, 144);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 144);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(529, 600);
             this.dataGridView1.TabIndex = 0;
@@ -59,7 +60,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(367, 10);
+            this.button1.Location = new System.Drawing.Point(317, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -81,7 +82,7 @@
             // dgvIncome
             // 
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIncome.Location = new System.Drawing.Point(627, 144);
+            this.dgvIncome.Location = new System.Drawing.Point(562, 144);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.ReadOnly = true;
             this.dgvIncome.Size = new System.Drawing.Size(441, 373);
@@ -90,7 +91,7 @@
             // chkAddSalary
             // 
             this.chkAddSalary.AutoSize = true;
-            this.chkAddSalary.Location = new System.Drawing.Point(627, 20);
+            this.chkAddSalary.Location = new System.Drawing.Point(513, 13);
             this.chkAddSalary.Name = "chkAddSalary";
             this.chkAddSalary.Size = new System.Drawing.Size(105, 17);
             this.chkAddSalary.TabIndex = 5;
@@ -101,7 +102,7 @@
             // lblExpected
             // 
             this.lblExpected.AutoSize = true;
-            this.lblExpected.Location = new System.Drawing.Point(802, 9);
+            this.lblExpected.Location = new System.Drawing.Point(640, 14);
             this.lblExpected.Name = "lblExpected";
             this.lblExpected.Size = new System.Drawing.Size(52, 13);
             this.lblExpected.TabIndex = 6;
@@ -110,7 +111,7 @@
             // lblActual
             // 
             this.lblActual.AutoSize = true;
-            this.lblActual.Location = new System.Drawing.Point(802, 40);
+            this.lblActual.Location = new System.Drawing.Point(640, 45);
             this.lblActual.Name = "lblActual";
             this.lblActual.Size = new System.Drawing.Size(37, 13);
             this.lblActual.TabIndex = 7;
@@ -119,7 +120,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(805, 67);
+            this.lblTotal.Location = new System.Drawing.Point(643, 72);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(42, 13);
             this.lblTotal.TabIndex = 8;
@@ -136,11 +137,23 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "label2";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(886, 115);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Show InHand";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 450);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1260, 450);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblActual);
@@ -173,5 +186,6 @@
         private System.Windows.Forms.Label lblActual;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
     }
 }
