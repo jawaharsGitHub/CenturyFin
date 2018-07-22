@@ -290,18 +290,21 @@ namespace DataAccess
                     return customersOutstanding;
                 }
 
-                var groupedList = (from L in list
-                                   group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                                   select newGroup).ToList();
+                //var groupedList = (from L in list
+                //                   group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
+                //                   select newGroup).ToList();
 
-                int outsideMoney = 0;
+                //int outsideMoney = 0;
 
-                foreach (var item in groupedList)
-                {
+                //foreach (var item in groupedList)
+                //{
+                //    outsideMoney += item.OrderBy(o => o.Balance).First().Balance;
+                //}
 
-                    outsideMoney += item.OrderBy(o => o.Balance).First().Balance;
-
-                }
+                var outsideMoney = (from L in list
+                            group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
+                            //from g in newGroup.ToList()
+                            select newGroup.ToList().OrderBy(w => w.Balance).First()).ToList().Sum(s => s.Balance);
 
 
                 return outsideMoney;
@@ -346,7 +349,7 @@ namespace DataAccess
         }
 
 
-        public static List<Transaction> ProcessDirectory(string targetDirectory, DateTime inputDate)
+        private static List<Transaction> ProcessDirectory(string targetDirectory, DateTime inputDate)
         {
             List<Transaction> result = new List<Transaction>();
             // Process the list of files found in the directory.

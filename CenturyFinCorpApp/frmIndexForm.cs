@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using CenturyFinCorpApp;
+using Common;
 using DataAccess;
 using Newtonsoft.Json;
 using System;
@@ -9,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace CenturyFinCorpApp
 {
     public partial class frmIndexForm : Form
     {
@@ -51,7 +52,7 @@ namespace WindowsFormsApplication1
             //Reports
             var mnuReport = new ToolStripMenuItem() { Name = "Report", Text = "Report" };
             menuStrip.Items.Add(mnuReport);
-            mnuReport.Click += (s, e) => ShowForm<frmInHand>();
+            mnuReport.Click += (s, e) => ShowForm<frmReport>();
 
             this.Controls.Add(menuStrip);
 
@@ -189,7 +190,7 @@ namespace WindowsFormsApplication1
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            InHand.AddInHand(Convert.ToInt32(txtJawaInvestment.Text), fromJawahar: true);
+            //InHand.AddInHand(Convert.ToInt32(txtJawaInvestment.Text), fromJawahar: true);
         }
 
         private void btnAddExpen_Click(object sender, EventArgs e)
@@ -246,7 +247,7 @@ namespace WindowsFormsApplication1
         private int TotalAssets()
         {
 
-            var assets = (Transaction.GetAllOutstandingAmount() + InHand.GetAllhandMoney().InHandAmount) - GetAllExpenditure();
+            var assets = (Transaction.GetAllOutstandingAmount() + InHandAndBank.GetAllhandMoney().InHandAmount) - GetAllExpenditure();
             btnTotalAssets.Text = $"Total Assets Amount: {Environment.NewLine}{assets }";
             return assets;
 
@@ -254,7 +255,7 @@ namespace WindowsFormsApplication1
 
         private void InHandMoney()
         {
-            var jawaInvestment = InHand.GetAllhandMoney();
+            var jawaInvestment = InHandAndBank.GetAllhandMoney();
             btnInHand.Text = $"InHand Amount: {Environment.NewLine}{jawaInvestment.InHandAmount}";
 
         }
@@ -278,7 +279,8 @@ namespace WindowsFormsApplication1
 
         private int GetJawaInvestment()
         {
-            return InHand.GetAllhandMoney().JawaharShare; //.GetAllInvestmet().Where(w => w.InvestType == InvestmentFrom.Jawahar).Sum(s => s.Amount); 
+            return 0;
+            //return InHandAndBank.GetAllhandMoney().JawaharShare; //.GetAllInvestmet().Where(w => w.InvestType == InvestmentFrom.Jawahar).Sum(s => s.Amount); 
 
         }
 

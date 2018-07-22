@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace CenturyFinCorpApp
 {
     static class Program
     {

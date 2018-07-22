@@ -64,7 +64,7 @@
     <Compile Include="Data\BaseClass.cs" />
     <Compile Include="Expenditure.cs" />
     <Compile Include="IncomeReport.cs" />
-    <Compile Include="InHand.cs" />
+    <Compile Include="InHandAndBank.cs" />
     <Compile Include="Investment.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="Customer.cs" />
@@ -126,7 +126,7 @@
     <None Include="Data\customer.json" />
     <None Include="Data\DailyCollectionBkp.json" />
     <None Include="Data\Expenditure.json" />
-    <None Include="Data\InHand.json" />
+    <None Include="Data\InHandAndBank.json" />
     <None Include="Data\Investment.json" />
     <None Include="Data\transaction.json" />
     <None Include="packages.config" />

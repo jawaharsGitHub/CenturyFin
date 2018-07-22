@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace CenturyFinCorpApp
 {
     public partial class frmInHand : UserControl
     {

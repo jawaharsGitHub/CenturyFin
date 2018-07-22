@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace CenturyFinCorpApp
 {
     public partial class frmCustomerTransaction : UserControl
     {
@@ -121,7 +121,7 @@ namespace WindowsFormsApplication1
             lblMessage.Text = $"Txn  Added Successfully for {_customerName}";
 
             // Add InHand
-            InHand.AddInHand(txn.AmountReceived);
+            //InHand.AddInHand(txn.AmountReceived);
 
 
 

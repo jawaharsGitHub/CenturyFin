@@ -5,23 +5,24 @@ using System.IO;
 
 namespace DataAccess
 {
-    public class InHand
+    public class InHandAndBank
     {
 
 
         public int InHandAmount { get; set; }
 
-        public int JawaharShare { get; set; }
+        public decimal InBank { get; set; }
+
         public string Date { get; set; }
 
 
 
-        public static void AddInHand(int amount, bool fromJawahar = false)
+        public static void AddInHand(InHandAndBank inHand)
         {
             var existingMoney = GetAllhandMoney();
-            existingMoney.InHandAmount += amount;
+            existingMoney = inHand;
 
-            if (fromJawahar) existingMoney.JawaharShare += amount;
+            //if (fromJawahar) existingMoney.JawaharShare += amount;
 
 
             var updatedInHand = JsonConvert.SerializeObject(existingMoney, Formatting.Indented);
@@ -43,13 +44,13 @@ namespace DataAccess
 
         }
 
-        public static InHand GetAllhandMoney()
+        public static InHandAndBank GetAllhandMoney()
         {
 
             try
             {
                 var json = File.ReadAllText(AppConfiguration.InHandFile);
-                InHand list = JsonConvert.DeserializeObject<InHand>(json) ?? new InHand();
+                InHandAndBank list = JsonConvert.DeserializeObject<InHandAndBank>(json) ?? new InHandAndBank();
                 return list;
             }
             catch (Exception ex)
@@ -71,5 +72,5 @@ namespace DataAccess
 
     }
 
-   
+
 }

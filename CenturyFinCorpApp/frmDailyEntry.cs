@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace CenturyFinCorpApp
 {
     public partial class frmDailyEntry : UserControl
     {
@@ -14,6 +14,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             chkAddSalary.Checked = true; // will callCalculateIncome(true);
             LoadDailyCollection();
+            lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
             //CalculateIncome(true);
         }
 

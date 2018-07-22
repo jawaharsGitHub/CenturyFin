@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace CenturyFinCorpApp
 {
     public partial class frmAddCustomer : UserControl
     {
@@ -81,8 +81,8 @@ namespace WindowsFormsApplication1
             lblNoteCount.Text = cus.CustomerSeqNumber.ToString();
 
             //Update InHand Money
-            InHand.ReduceInHand(cus.LoanAmount);
-            InHand.AddInHand(cus.Interest);
+            //InHand.ReduceInHand(cus.LoanAmount);
+            //InHand.AddInHand(cus.Interest);
 
         }
 
