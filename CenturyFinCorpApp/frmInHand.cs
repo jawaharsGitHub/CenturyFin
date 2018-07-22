@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.ToString();
             btnTodayInHand.Text = dailyTxn.TodayInHand.ToString();
             btnInBank.Text = dailyTxn.InBank.ToString();
-            btnTmrWanted.Text = dailyTxn.TomorrowDiff.ToString();
+            btnTmrWanted.Text = (dailyTxn.TomorrowDiff > 0) ? dailyTxn.TomorrowDiff.ToString() : $"0 (Have Extra {Math.Abs(Convert.ToInt32(dailyTxn.TomorrowDiff))} )";
 
             lblDate.Text = dailyTxn.Date;
 
@@ -71,7 +71,7 @@ namespace WindowsFormsApplication1
             dailyTxn.OpenedAccounts = Convert.ToInt32(txtOpened.Text);
             dailyTxn.TomorrowNeed = Convert.ToInt32(txtTmrNeeded.Text);
             dailyTxn.TodayInHand = (dailyTxn.YesterdayAmountInHand + dailyTxn.CollectionAmount + dailyTxn.TakenFromBank - dailyTxn.GivenAmount + dailyTxn.Interest);
-            dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - dailyTxn.TodayInHand);
+            dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - Convert.ToInt32((dailyTxn.TodayInHand + dailyTxn.InBank)));
             dailyTxn.Comments = txtComments.Text;
 
             DailyCollectionDetail.AddDaily(dailyTxn);

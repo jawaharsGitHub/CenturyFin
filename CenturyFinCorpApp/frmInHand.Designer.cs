@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblDate = new System.Windows.Forms.Label();
             this.txtCollectionAmount = new System.Windows.Forms.TextBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.txtInterest = new System.Windows.Forms.TextBox();
             this.txtGivenAmount = new System.Windows.Forms.TextBox();
             this.txtTmrNeeded = new System.Windows.Forms.TextBox();
@@ -50,6 +50,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
             this.txtComments = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.btnShow = new System.Windows.Forms.Button();
-            this.lblDate = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,22 +96,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(81, 16);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(36, 13);
+            this.lblDate.TabIndex = 24;
+            this.lblDate.Text = "[Date]";
+            // 
             // txtCollectionAmount
             // 
             this.txtCollectionAmount.Location = new System.Drawing.Point(156, 224);
             this.txtCollectionAmount.Name = "txtCollectionAmount";
             this.txtCollectionAmount.Size = new System.Drawing.Size(100, 20);
             this.txtCollectionAmount.TabIndex = 5;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(499, 46);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 52);
-            this.btnUpdate.TabIndex = 23;
-            this.btnUpdate.Text = "UPDATE";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // txtInterest
             // 
@@ -266,6 +265,16 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "SanthanamUncle";
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(499, 46);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 52);
+            this.btnUpdate.TabIndex = 23;
+            this.btnUpdate.Text = "UPDATE";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -331,7 +340,7 @@
             // 
             this.btnTmrWanted.Location = new System.Drawing.Point(635, 313);
             this.btnTmrWanted.Name = "btnTmrWanted";
-            this.btnTmrWanted.Size = new System.Drawing.Size(75, 23);
+            this.btnTmrWanted.Size = new System.Drawing.Size(162, 23);
             this.btnTmrWanted.TabIndex = 17;
             this.btnTmrWanted.Text = "button1";
             this.btnTmrWanted.UseVisualStyleBackColor = true;
@@ -372,20 +381,10 @@
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(81, 16);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(36, 13);
-            this.lblDate.TabIndex = 24;
-            this.lblDate.Text = "[Date]";
-            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 528);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnUpdate);
@@ -401,7 +400,7 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label1);
             this.Name = "frmInHand";
-            this.Text = "In Hand Money Details";
+            this.Size = new System.Drawing.Size(800, 528);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
