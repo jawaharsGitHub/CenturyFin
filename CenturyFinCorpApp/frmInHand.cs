@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.ToString();
             btnTodayInHand.Text = dailyTxn.TodayInHand.ToString();
             btnInBank.Text = dailyTxn.InBank.ToString();
-            btnTmrWanted.Text = dailyTxn.TomorrowNeed.ToString();
+            btnTmrWanted.Text = dailyTxn.TomorrowDiff.ToString();
 
             lblDate.Text = dailyTxn.Date;
 
