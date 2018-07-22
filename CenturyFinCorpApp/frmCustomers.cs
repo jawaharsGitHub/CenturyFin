@@ -51,6 +51,10 @@ namespace WindowsFormsApplication1
             var totalTxn = activeTxn + closedTxn;
 
             this.Text = $"Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
+
+            rdbActive.Text = $"Running Notes({activeTxn})";
+            rdbClosed.Text = $"Closed Notes({closedTxn})";
+            rdbAll.Text = $"Total Notes({totalTxn})";
         }
 
         private void AdjustColumnOrder()
@@ -207,7 +211,7 @@ namespace WindowsFormsApplication1
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             SetCustomers();
-            rdbAll.Checked = true;
+            rdbActive.Checked = true;
         }
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)

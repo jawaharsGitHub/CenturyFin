@@ -54,10 +54,12 @@
             // rdbActive
             // 
             this.rdbActive.AutoSize = true;
+            this.rdbActive.Checked = true;
             this.rdbActive.Location = new System.Drawing.Point(46, 13);
             this.rdbActive.Name = "rdbActive";
             this.rdbActive.Size = new System.Drawing.Size(96, 17);
             this.rdbActive.TabIndex = 1;
+            this.rdbActive.TabStop = true;
             this.rdbActive.Text = "Running Notes";
             this.rdbActive.UseVisualStyleBackColor = true;
             this.rdbActive.CheckedChanged += new System.EventHandler(this.rdbActive_CheckedChanged);
@@ -65,7 +67,7 @@
             // rdbClosed
             // 
             this.rdbClosed.AutoSize = true;
-            this.rdbClosed.Location = new System.Drawing.Point(151, 13);
+            this.rdbClosed.Location = new System.Drawing.Point(168, 13);
             this.rdbClosed.Name = "rdbClosed";
             this.rdbClosed.Size = new System.Drawing.Size(88, 17);
             this.rdbClosed.TabIndex = 2;
@@ -76,19 +78,17 @@
             // rdbAll
             // 
             this.rdbAll.AutoSize = true;
-            this.rdbAll.Checked = true;
-            this.rdbAll.Location = new System.Drawing.Point(270, 13);
+            this.rdbAll.Location = new System.Drawing.Point(282, 13);
             this.rdbAll.Name = "rdbAll";
             this.rdbAll.Size = new System.Drawing.Size(67, 17);
             this.rdbAll.TabIndex = 3;
-            this.rdbAll.TabStop = true;
             this.rdbAll.Text = "All Notes";
             this.rdbAll.UseVisualStyleBackColor = true;
             this.rdbAll.CheckedChanged += new System.EventHandler(this.rdbAll_CheckedChanged);
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(340, 13);
+            this.txtSearch.Location = new System.Drawing.Point(386, 13);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(190, 20);
             this.txtSearch.TabIndex = 4;
@@ -96,14 +96,14 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(675, 13);
+            this.dateTimePicker1.Location = new System.Drawing.Point(723, 13);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 5;
             // 
             // btnAddCustomer
             // 
-            this.btnAddCustomer.Location = new System.Drawing.Point(557, 13);
+            this.btnAddCustomer.Location = new System.Drawing.Point(591, 13);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(102, 23);
             this.btnAddCustomer.TabIndex = 7;
@@ -125,7 +125,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.dateTimePicker1);
@@ -135,7 +134,7 @@
             this.Controls.Add(this.rdbActive);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmCustomers";
-            this.Text = "Customers";
+            this.Size = new System.Drawing.Size(1370, 749);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
