@@ -3,6 +3,8 @@ using DataAccess;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,13 +14,93 @@ namespace WindowsFormsApplication1
     public partial class frmIndexForm : Form
     {
 
+        bool usingMenu = false;
+        bool isAdded = false; // for child forms
         public frmIndexForm()
         {
+
             InitializeComponent();
+
+            this.TopMost = true;
+            this.AutoScrollOffset = new Point(0, 0);
+            
             LoadAllData();
 
 
+            // Menu
+            var menuStrip = new MenuStrip();
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "MenuStrip";
+            //Customer
+            var mnuCustomer = new ToolStripMenuItem() { Name = "Customer", Text = "Customers" };
+            mnuCustomer.Click += (s, e) => ShowForm<frmCustomers>(); ;
+            menuStrip.Items.Add(mnuCustomer);
+            //Add customer
+            var mnuAddCustomer = new ToolStripMenuItem() { Name = "AddCustomer", Text = "Add Customer" };
+            menuStrip.Items.Add(mnuAddCustomer);
+            mnuAddCustomer.Click += (s, e) => ShowForm<frmAddCustomer>(); ;
+            //Daily Collection
+            var mnuDailyCollection = new ToolStripMenuItem() { Name = "DailyColl", Text = "Daily Collection" };
+            menuStrip.Items.Add(mnuDailyCollection);
+            mnuDailyCollection.Click += (s, e) => ShowForm<frmDailyEntry>(); ;
+            //ShowInHand
+            var mnuShowInHand = new ToolStripMenuItem() { Name = "InHand", Text = "Shown In Hand" };
+            menuStrip.Items.Add(mnuShowInHand);
+            mnuShowInHand.Click += (s, e) => ShowForm<frmInHand>(); ;
+            //Reports
+            var mnuReport = new ToolStripMenuItem() { Name = "Report", Text = "Report" };
+            menuStrip.Items.Add(mnuReport);
+            mnuReport.Click += (s, e) => ShowForm<frmInHand>();
 
+            this.Controls.Add(menuStrip);
+
+            usingMenu = Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]);
+
+            if (usingMenu)
+            {
+
+                button1.Visible = false;
+                btnCustomers.Visible = false;
+                btnRefresh.Visible = false;
+                btnClosedTxn.Visible = false;
+                groupBox1.Visible = false;
+                groupBox2.Visible = false;
+                groupBox3.Visible = false;
+                panel1.Visible = true;
+
+            }
+            else
+            {
+                menuStrip.Visible = false;
+                panel1.Visible = false;
+            }
+
+            panel1.Width = 1300;
+            panel1.Height = this.Height;
+
+            ShowForm<frmCustomers>(); // initial form to be loaded
+        }
+
+        private void ShowForm<T>() where T : Form, new()
+        {
+            if (isAdded)
+            {
+                panel1.Controls.RemoveAt(0);
+            }
+
+
+            isAdded = true;
+            T ac = new T();
+            ac.TopLevel = false; // very important property, pls dont remove it, then u have to restart ur system!!!
+            panel1.Controls.Add(ac);
+            if (usingMenu)
+            {
+                ac.ControlBox = false;
+                ac.FormBorderStyle = FormBorderStyle.FixedSingle;
+                ac.ShowInTaskbar = false;
+            }
+
+            ac.Show();
         }
 
         private void LoadAllData()
@@ -73,7 +155,7 @@ namespace WindowsFormsApplication1
 
             var closedIds = list.Where(w => w.Balance == 0).ToList();
 
-           
+
 
             foreach (var item in closedIds)
             {
@@ -92,11 +174,11 @@ namespace WindowsFormsApplication1
 
         }
 
-        
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            InHand.AddInHand(Convert.ToInt32(txtJawaInvestment.Text), fromJawahar : true);
+            InHand.AddInHand(Convert.ToInt32(txtJawaInvestment.Text), fromJawahar: true);
         }
 
         private void btnAddExpen_Click(object sender, EventArgs e)

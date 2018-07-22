@@ -56,6 +56,7 @@
             this.btnTotalAssets = new System.Windows.Forms.Button();
             this.btnIntOnly = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -65,7 +66,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Red;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 12);
+            this.button1.Location = new System.Drawing.Point(12, 39);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(294, 84);
             this.button1.TabIndex = 0;
@@ -77,7 +78,7 @@
             // 
             this.btnCustomers.BackColor = System.Drawing.Color.Gold;
             this.btnCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomers.Location = new System.Drawing.Point(330, 12);
+            this.btnCustomers.Location = new System.Drawing.Point(330, 39);
             this.btnCustomers.Name = "btnCustomers";
             this.btnCustomers.Size = new System.Drawing.Size(224, 84);
             this.btnCustomers.TabIndex = 1;
@@ -89,7 +90,7 @@
             // 
             this.btnClosedTxn.BackColor = System.Drawing.Color.Aqua;
             this.btnClosedTxn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClosedTxn.Location = new System.Drawing.Point(576, 12);
+            this.btnClosedTxn.Location = new System.Drawing.Point(576, 39);
             this.btnClosedTxn.Name = "btnClosedTxn";
             this.btnClosedTxn.Size = new System.Drawing.Size(229, 84);
             this.btnClosedTxn.TabIndex = 4;
@@ -333,7 +334,7 @@
             // 
             this.btnRefresh.BackColor = System.Drawing.Color.Aqua;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(822, 12);
+            this.btnRefresh.Location = new System.Drawing.Point(822, 39);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(229, 84);
             this.btnRefresh.TabIndex = 17;
@@ -341,10 +342,18 @@
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(7, 30);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1027, 508);
+            this.panel1.TabIndex = 18;
+            // 
             // frmIndexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
             this.ClientSize = new System.Drawing.Size(1109, 749);
             this.Controls.Add(this.btnRefresh);
@@ -354,8 +363,11 @@
             this.Controls.Add(this.btnClosedTxn);
             this.Controls.Add(this.btnCustomers);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
             this.Name = "frmIndexForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Welcome - Century Fin Corp.";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -395,6 +407,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button btnNote;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

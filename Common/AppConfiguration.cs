@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
 
 namespace Common
@@ -19,5 +20,7 @@ namespace Common
         public static string InHandFile { get; } = Path.Combine(ConfigurationManager.AppSettings["SourceFolder"], ConfigurationManager.AppSettings["InHandFile"]);
 
         public static string DailyTxnFile { get; } = Path.Combine(ConfigurationManager.AppSettings["SourceFolder"], ConfigurationManager.AppSettings["DailyTxn"]);
+
+        public static bool usingMenu { get; } = Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]);
     }
 }
