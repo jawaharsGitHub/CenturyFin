@@ -32,5 +32,10 @@ namespace DataAccess
 
         }
 
+        public static string ToMoney(this decimal number)
+        {
+            var no = Convert.ToInt32(number);
+            return ToMoney(no);
+        }
     }
 }

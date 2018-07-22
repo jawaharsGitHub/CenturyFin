@@ -59,8 +59,8 @@ namespace CenturyFinCorpApp
             dailyTxn.Date = dateTimePicker1.Value.ToShortDateString();
             dailyTxn.SanthanamUncle = Convert.ToInt32(txtSanthanam.Text);
             dailyTxn.YesterdayAmountInHand = dailyTxn.TodayInHand;
-            dailyTxn.SentFromUSA = Convert.ToInt32(txtSentFromUSA.Text);
-            dailyTxn.BankTxnOut = Convert.ToInt32(txtBankTxnOut.Text);
+            dailyTxn.SentFromUSA = Convert.ToDecimal(txtSentFromUSA.Text);
+            dailyTxn.BankTxnOut = Convert.ToDecimal(txtBankTxnOut.Text);
             dailyTxn.TakenFromBank = Convert.ToInt32(txtTakenFromBank.Text);
             dailyTxn.InBank = (dailyTxn.InBank + dailyTxn.SentFromUSA - dailyTxn.TakenFromBank - dailyTxn.BankTxnOut);
 
@@ -75,6 +75,14 @@ namespace CenturyFinCorpApp
             dailyTxn.Comments = txtComments.Text;
 
             DailyCollectionDetail.AddDaily(dailyTxn);
+
+            // Update In Hand and In Bank amount.
+            InHandAndBank.AddInHand(new InHandAndBank()
+            {
+                Date = dateTimePicker1.Value.ToShortDateString(),
+                InBank = dailyTxn.InBank.Value,
+                InHandAmount = dailyTxn.TodayInHand.Value
+            });
 
 
         }

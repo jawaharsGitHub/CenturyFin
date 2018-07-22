@@ -30,6 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.lblOutStanding = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblTotalAsset = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -50,13 +52,33 @@
             this.lblOutStanding.TabIndex = 1;
             this.lblOutStanding.Text = "[OutSTanding Money]";
             // 
-            // Report
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(56, 81);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Total Asset";
+            // 
+            // lblTotalAsset
+            // 
+            this.lblTotalAsset.AutoSize = true;
+            this.lblTotalAsset.Location = new System.Drawing.Point(185, 81);
+            this.lblTotalAsset.Name = "lblTotalAsset";
+            this.lblTotalAsset.Size = new System.Drawing.Size(63, 13);
+            this.lblTotalAsset.TabIndex = 3;
+            this.lblTotalAsset.Text = "[TotalAsset]";
+            // 
+            // frmReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblTotalAsset);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblOutStanding);
             this.Controls.Add(this.label1);
-            this.Name = "Report";
+            this.Name = "frmReport";
             this.Size = new System.Drawing.Size(917, 519);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -67,5 +89,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblOutStanding;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTotalAsset;
     }
 }

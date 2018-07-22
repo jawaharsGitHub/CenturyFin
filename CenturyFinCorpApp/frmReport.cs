@@ -11,6 +11,7 @@ namespace CenturyFinCorpApp
             InitializeComponent();
 
             ShowOutstandingMoney();
+            ShowFulAssetMoney();
         }
 
         private void ShowOutstandingMoney()
@@ -21,7 +22,8 @@ namespace CenturyFinCorpApp
 
         private void ShowFulAssetMoney()
         {
-            //lblOutStanding.Text = outstandingMoney;
+            var inHandAndBank = InHandAndBank.GetAllhandMoney();
+            lblTotalAsset.Text = (outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney();
         }
     }
 }
