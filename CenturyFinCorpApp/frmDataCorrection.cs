@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class frmDataCorrection : Form
+    public partial class frmDataCorrection : UserControl
     {
         public frmDataCorrection()
         {

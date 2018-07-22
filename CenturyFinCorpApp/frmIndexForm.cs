@@ -16,14 +16,15 @@ namespace WindowsFormsApplication1
 
         bool usingMenu = false;
         bool isAdded = false; // for child forms
+
         public frmIndexForm()
         {
 
             InitializeComponent();
 
-            this.TopMost = true;
+            //this.TopMost = true;
             this.AutoScrollOffset = new Point(0, 0);
-            
+
             LoadAllData();
 
 
@@ -81,23 +82,35 @@ namespace WindowsFormsApplication1
             ShowForm<frmCustomers>(); // initial form to be loaded
         }
 
-        private void ShowForm<T>() where T : Form, new()
+        public void ShowForm<T>(Customer cus = null) where T : UserControl, new()
         {
-            if (isAdded)
+            if (isAdded && panel1.Controls.Count > 0)
             {
                 panel1.Controls.RemoveAt(0);
             }
 
 
             isAdded = true;
-            T ac = new T();
-            ac.TopLevel = false; // very important property, pls dont remove it, then u have to restart ur system!!!
+            T ac;
+            if (cus == null)
+            {
+                ac = new T();
+            }
+            else
+            {
+                ac = new frmCustomerTransaction(cus) as T;
+                //ac.Parent = parentForm;
+            }
+            //ac = new T();
+            //ac.TopLevel = false;
+
+            // very important property, pls dont remove it, then u have to restart ur system!!!
             panel1.Controls.Add(ac);
             if (usingMenu)
             {
-                ac.ControlBox = false;
-                ac.FormBorderStyle = FormBorderStyle.FixedSingle;
-                ac.ShowInTaskbar = false;
+                //ac.ControlBox = false;
+                //ac.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //ac.ShowInTaskbar = false;
             }
 
             ac.Show();
@@ -136,13 +149,13 @@ namespace WindowsFormsApplication1
         private void button1_Click(object sender, EventArgs e)
         {
             frmDailyEntry ac = new frmDailyEntry();
-            ac.ShowDialog();
+            //ac.ShowDialog();
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
             frmCustomers ac = new frmCustomers();
-            ac.ShowDialog();
+            //ac.ShowDialog();
         }
 
 
@@ -154,8 +167,6 @@ namespace WindowsFormsApplication1
             if (list == null || list.Count == 0) return;
 
             var closedIds = list.Where(w => w.Balance == 0).ToList();
-
-
 
             foreach (var item in closedIds)
             {

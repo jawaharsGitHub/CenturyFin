@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class frmAddCustomer : Form
+    public partial class frmAddCustomer : UserControl
     {
         public frmAddCustomer()
         {

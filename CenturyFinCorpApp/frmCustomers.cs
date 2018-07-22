@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class frmCustomers : Form
+    public partial class frmCustomers : UserControl
     {
         private List<Customer> customers;
         private List<Transaction> transactions;
@@ -68,9 +68,13 @@ namespace WindowsFormsApplication1
 
             var selectedCustomer = (selectedRows[0].DataBoundItem as Customer);
 
-            frmCustomerTransaction cd = new frmCustomerTransaction(selectedCustomer.CustomerSeqNumber, selectedCustomer.CustomerId, selectedCustomer.LoanAmount, selectedCustomer.Name, (selectedCustomer.IsActive == false));
+            var mainForm = (frmIndexForm)(((DataGridView)sender).Parent.Parent.Parent); //new frmIndexForm(true);
 
-            cd.ShowDialog();
+            mainForm.ShowForm<frmCustomerTransaction>(selectedCustomer);
+
+            //frmCustomerTransaction cd = new frmCustomerTransaction(selectedCustomer));
+
+            //cd.ShowDialog();
 
         }
 
@@ -111,7 +115,7 @@ namespace WindowsFormsApplication1
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             frmAddCustomer ac = new frmAddCustomer();
-            ac.ShowDialog();
+            //ac.ShowDialog();
 
         }
 

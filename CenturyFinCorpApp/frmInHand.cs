@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class frmInHand : Form
+    public partial class frmInHand : UserControl
     {
 
         private DailyCollectionDetail dailyTxn;

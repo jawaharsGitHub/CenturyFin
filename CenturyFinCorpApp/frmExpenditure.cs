@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class frmExpenditure : Form
+    public partial class frmExpenditure : UserControl
     {
         public frmExpenditure()
         {

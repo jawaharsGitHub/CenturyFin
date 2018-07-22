@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class frmCustomerTransaction : Form
+    public partial class frmCustomerTransaction : UserControl
     {
         int _customerId;
         int _sequeneNo;
@@ -20,15 +20,15 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        public frmCustomerTransaction(int sequenceNo, int customerId, int loan, string customerName, bool isClosedTx)
+        public frmCustomerTransaction(Customer _customer)
         {
             InitializeComponent();
 
-            _customerId = customerId;
-            _sequeneNo = sequenceNo;
-            _loan = loan;
-            _customerName = customerName;
-            _isClosedTx = isClosedTx;
+            _customerId = _customer.CustomerId;
+            _sequeneNo = _customer.CustomerSeqNumber;
+            _loan = _customer.LoanAmount;
+            _customerName = _customer.Name;
+            _isClosedTx = (_customer.IsActive == false);
 
             _balance = _isClosedTx ? 0 : Transaction.GetBalance(_loan, _sequeneNo, _customerId);
 

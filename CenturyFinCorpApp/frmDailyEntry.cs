@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class frmDailyEntry : Form
+    public partial class frmDailyEntry : UserControl
     {
         public frmDailyEntry()
         {
@@ -183,7 +183,7 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             frmInHand fd = new frmInHand();
-            fd.ShowDialog();
+            //fd.ShowDialog();
         }
     }
 
