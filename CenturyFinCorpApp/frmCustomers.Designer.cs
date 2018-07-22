@@ -59,6 +59,7 @@
             this.rdbActive.Size = new System.Drawing.Size(96, 17);
             this.rdbActive.TabIndex = 1;
             this.rdbActive.TabStop = true;
+            this.rdbActive.Tag = "RN";
             this.rdbActive.Text = "Running Notes";
             this.rdbActive.UseVisualStyleBackColor = true;
             this.rdbActive.CheckedChanged += new System.EventHandler(this.rdbActive_CheckedChanged);
@@ -70,6 +71,7 @@
             this.rdbClosed.Name = "rdbClosed";
             this.rdbClosed.Size = new System.Drawing.Size(88, 17);
             this.rdbClosed.TabIndex = 2;
+            this.rdbClosed.Tag = "CN";
             this.rdbClosed.Text = "Closed Notes";
             this.rdbClosed.UseVisualStyleBackColor = true;
             this.rdbClosed.CheckedChanged += new System.EventHandler(this.rdbClosed_CheckedChanged);
@@ -81,6 +83,7 @@
             this.rdbAll.Name = "rdbAll";
             this.rdbAll.Size = new System.Drawing.Size(67, 17);
             this.rdbAll.TabIndex = 3;
+            this.rdbAll.Tag = "AN";
             this.rdbAll.Text = "All Notes";
             this.rdbAll.UseVisualStyleBackColor = true;
             this.rdbAll.CheckedChanged += new System.EventHandler(this.rdbAll_CheckedChanged);

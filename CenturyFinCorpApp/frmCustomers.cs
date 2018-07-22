@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using Common;
+using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,8 +21,6 @@ namespace WindowsFormsApplication1
 
             transactions = new List<Transaction>();
 
-
-
             if (customers == null) return;
 
             //Create New DataGridViewTextBoxColumn
@@ -39,6 +38,26 @@ namespace WindowsFormsApplication1
 
             txtSearch.Focus();
             AdjustColumnOrder();
+
+            if (GlobalValue.NoteOption != null)
+            {
+                switch (GlobalValue.NoteOption)
+                {
+
+                    case "RN":
+                        rdbActive.Checked = true;
+                        break;
+                    case "CN":
+                        rdbClosed.Checked = true;
+                        break;
+                    case "AL":
+                    default:
+                        rdbAll.Checked = true;
+                        break;
+                }
+            }
+
+            txtSearch.Text = GlobalValue.SearchText;
 
         }
 
@@ -84,26 +103,41 @@ namespace WindowsFormsApplication1
 
         private void rdbAll_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdbAll.Checked)
-            {
-                dataGridView1.DataSource = customers;
-            }
+            NoteOptionChanged(sender);
         }
 
         private void rdbClosed_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdbClosed.Checked)
-            {
-                dataGridView1.DataSource = customers.Where(w => w.IsActive == false).OrderBy(o => o.ClosedDate).ToList();
-            }
+            NoteOptionChanged(sender);
+
         }
 
         private void rdbActive_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdbActive.Checked)
+            NoteOptionChanged(sender);
+        }
+
+        private void NoteOptionChanged(object sender)
+        {
+            List<Customer> searchedCustomer;
+
+            if (rdbAll.Checked)
             {
-                dataGridView1.DataSource = customers.Where(w => w.IsActive == true).ToList();
+                searchedCustomer = customers;
+                GlobalValue.NoteOption = rdbAll.Tag.ToString();
             }
+            else if (rdbClosed.Checked)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive == false).OrderBy(o => o.ClosedDate).ToList();
+                GlobalValue.NoteOption = rdbClosed.Tag.ToString();
+            }
+            else
+            {
+                searchedCustomer = customers.Where(w => w.IsActive == true).ToList();
+                GlobalValue.NoteOption = rdbActive.Tag.ToString();
+            }
+
+            dataGridView1.DataSource = string.IsNullOrEmpty(txtSearch.Text) ? searchedCustomer : searchedCustomer.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -114,11 +148,13 @@ namespace WindowsFormsApplication1
                 dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList();
             if (rdbAll.Checked)
                 dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+
+            GlobalValue.SearchText = txtSearch.Text;
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            frmAddCustomer ac = new frmAddCustomer();
+            //frmAddCustomer ac = new frmAddCustomer();
             //ac.ShowDialog();
 
         }
