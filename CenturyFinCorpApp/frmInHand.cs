@@ -18,8 +18,18 @@ namespace WindowsFormsApplication1
         public frmInHand()
         {
             InitializeComponent();
+            GetDailyTxn(DateTime.Today.AddDays(-1), true);
 
-            dailyTxn = DailyCollectionDetail.GetDailyTxn();
+        }
+
+        private void GetDailyTxn(DateTime date, bool isOnLoad)
+        {
+            dailyTxn = DailyCollectionDetail.GetDailyTxn(date, isOnLoad);
+            if (dailyTxn == null)
+            {
+                MessageBox.Show("No record found");
+                return;
+            }
 
             txtSanthanam.Text = dailyTxn.SanthanamUncle.ToString();
             txtSentFromUSA.Text = dailyTxn.SentFromUSA.ToString();
@@ -38,23 +48,22 @@ namespace WindowsFormsApplication1
             btnInBank.Text = dailyTxn.InBank.ToString();
             btnTmrWanted.Text = dailyTxn.TomorrowNeed.ToString();
 
+            lblDate.Text = dailyTxn.Date;
 
-
+            txtComments.Text = dailyTxn.Comments;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
-            //var dailyTxn = new DailyCollectionDetail();
-
-            dailyTxn.Date = dateTimePicker1.Value.Date;
+            dailyTxn.Date = dateTimePicker1.Value.ToShortDateString();
             dailyTxn.SanthanamUncle = Convert.ToInt32(txtSanthanam.Text);
             dailyTxn.YesterdayAmountInHand = dailyTxn.TodayInHand;
-            dailyTxn.SentFromUSA = Convert.ToInt32(txtSentFromUSA.Text);            
+            dailyTxn.SentFromUSA = Convert.ToInt32(txtSentFromUSA.Text);
             dailyTxn.BankTxnOut = Convert.ToInt32(txtBankTxnOut.Text);
             dailyTxn.TakenFromBank = Convert.ToInt32(txtTakenFromBank.Text);
             dailyTxn.InBank = (dailyTxn.InBank + dailyTxn.SentFromUSA - dailyTxn.TakenFromBank - dailyTxn.BankTxnOut);
-            
+
             dailyTxn.CollectionAmount = Convert.ToInt32(txtCollectionAmount.Text);
             dailyTxn.GivenAmount = Convert.ToInt32(txtGivenAmount.Text);
             dailyTxn.Interest = Convert.ToInt32(txtInterest.Text);
@@ -63,8 +72,16 @@ namespace WindowsFormsApplication1
             dailyTxn.TomorrowNeed = Convert.ToInt32(txtTmrNeeded.Text);
             dailyTxn.TodayInHand = (dailyTxn.YesterdayAmountInHand + dailyTxn.CollectionAmount + dailyTxn.TakenFromBank - dailyTxn.GivenAmount + dailyTxn.Interest);
             dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - dailyTxn.TodayInHand);
+            dailyTxn.Comments = txtComments.Text;
+
+            DailyCollectionDetail.AddDaily(dailyTxn);
 
 
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            GetDailyTxn(dateTimePicker1.Value, false);
 
         }
     }

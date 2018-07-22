@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCollectionAmount = new System.Windows.Forms.TextBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.txtInterest = new System.Windows.Forms.TextBox();
             this.txtGivenAmount = new System.Windows.Forms.TextBox();
             this.txtTmrNeeded = new System.Windows.Forms.TextBox();
@@ -57,15 +59,17 @@
             this.btnInBank = new System.Windows.Forms.Button();
             this.btnTmrWanted = new System.Windows.Forms.Button();
             this.btnYesterdayInHand = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.txtCollectionAmount = new System.Windows.Forms.TextBox();
+            this.txtComments = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnShow = new System.Windows.Forms.Button();
+            this.lblDate = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblDate);
             this.groupBox1.Controls.Add(this.txtCollectionAmount);
-            this.groupBox1.Controls.Add(this.btnUpdate);
             this.groupBox1.Controls.Add(this.txtInterest);
             this.groupBox1.Controls.Add(this.txtGivenAmount);
             this.groupBox1.Controls.Add(this.txtTmrNeeded);
@@ -85,75 +89,92 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(96, 12);
+            this.groupBox1.Location = new System.Drawing.Point(35, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(412, 468);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // txtCollectionAmount
+            // 
+            this.txtCollectionAmount.Location = new System.Drawing.Point(156, 224);
+            this.txtCollectionAmount.Name = "txtCollectionAmount";
+            this.txtCollectionAmount.Size = new System.Drawing.Size(100, 20);
+            this.txtCollectionAmount.TabIndex = 5;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(499, 46);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 52);
+            this.btnUpdate.TabIndex = 23;
+            this.btnUpdate.Text = "UPDATE";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // txtInterest
             // 
             this.txtInterest.Location = new System.Drawing.Point(153, 292);
             this.txtInterest.Name = "txtInterest";
             this.txtInterest.Size = new System.Drawing.Size(100, 20);
-            this.txtInterest.TabIndex = 22;
+            this.txtInterest.TabIndex = 7;
             // 
             // txtGivenAmount
             // 
             this.txtGivenAmount.Location = new System.Drawing.Point(153, 258);
             this.txtGivenAmount.Name = "txtGivenAmount";
             this.txtGivenAmount.Size = new System.Drawing.Size(100, 20);
-            this.txtGivenAmount.TabIndex = 21;
+            this.txtGivenAmount.TabIndex = 6;
             // 
             // txtTmrNeeded
             // 
             this.txtTmrNeeded.Location = new System.Drawing.Point(153, 416);
             this.txtTmrNeeded.Name = "txtTmrNeeded";
             this.txtTmrNeeded.Size = new System.Drawing.Size(100, 20);
-            this.txtTmrNeeded.TabIndex = 20;
+            this.txtTmrNeeded.TabIndex = 10;
             // 
             // txtOpened
             // 
             this.txtOpened.Location = new System.Drawing.Point(153, 380);
             this.txtOpened.Name = "txtOpened";
             this.txtOpened.Size = new System.Drawing.Size(100, 20);
-            this.txtOpened.TabIndex = 19;
+            this.txtOpened.TabIndex = 9;
             // 
             // txtClosed
             // 
             this.txtClosed.Location = new System.Drawing.Point(153, 349);
             this.txtClosed.Name = "txtClosed";
             this.txtClosed.Size = new System.Drawing.Size(100, 20);
-            this.txtClosed.TabIndex = 18;
+            this.txtClosed.TabIndex = 8;
             // 
             // txtTakenFromBank
             // 
             this.txtTakenFromBank.Location = new System.Drawing.Point(153, 193);
             this.txtTakenFromBank.Name = "txtTakenFromBank";
             this.txtTakenFromBank.Size = new System.Drawing.Size(100, 20);
-            this.txtTakenFromBank.TabIndex = 17;
+            this.txtTakenFromBank.TabIndex = 4;
             // 
             // txtBankTxnOut
             // 
             this.txtBankTxnOut.Location = new System.Drawing.Point(153, 153);
             this.txtBankTxnOut.Name = "txtBankTxnOut";
             this.txtBankTxnOut.Size = new System.Drawing.Size(100, 20);
-            this.txtBankTxnOut.TabIndex = 16;
+            this.txtBankTxnOut.TabIndex = 3;
             // 
             // txtSentFromUSA
             // 
             this.txtSentFromUSA.Location = new System.Drawing.Point(153, 83);
             this.txtSentFromUSA.Name = "txtSentFromUSA";
             this.txtSentFromUSA.Size = new System.Drawing.Size(100, 20);
-            this.txtSentFromUSA.TabIndex = 15;
+            this.txtSentFromUSA.TabIndex = 2;
             // 
             // txtSanthanam
             // 
             this.txtSanthanam.Location = new System.Drawing.Point(153, 51);
             this.txtSanthanam.Name = "txtSanthanam";
             this.txtSanthanam.Size = new System.Drawing.Size(100, 20);
-            this.txtSanthanam.TabIndex = 14;
+            this.txtSanthanam.TabIndex = 1;
             // 
             // label14
             // 
@@ -248,7 +269,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(541, 66);
+            this.label1.Location = new System.Drawing.Point(513, 205);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 13);
             this.label1.TabIndex = 0;
@@ -257,7 +278,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(561, 142);
+            this.label4.Location = new System.Drawing.Point(533, 281);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 3;
@@ -266,7 +287,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(561, 102);
+            this.label10.Location = new System.Drawing.Point(533, 241);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(72, 13);
             this.label10.TabIndex = 1;
@@ -275,7 +296,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(561, 174);
+            this.label15.Location = new System.Drawing.Point(533, 313);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(95, 13);
             this.label15.TabIndex = 13;
@@ -283,14 +304,14 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(525, 12);
+            this.dateTimePicker1.Location = new System.Drawing.Point(484, 12);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 14;
+            this.dateTimePicker1.TabIndex = 0;
             // 
             // btnTodayInHand
             // 
-            this.btnTodayInHand.Location = new System.Drawing.Point(661, 102);
+            this.btnTodayInHand.Location = new System.Drawing.Point(633, 241);
             this.btnTodayInHand.Name = "btnTodayInHand";
             this.btnTodayInHand.Size = new System.Drawing.Size(75, 23);
             this.btnTodayInHand.TabIndex = 15;
@@ -299,7 +320,7 @@
             // 
             // btnInBank
             // 
-            this.btnInBank.Location = new System.Drawing.Point(661, 131);
+            this.btnInBank.Location = new System.Drawing.Point(633, 270);
             this.btnInBank.Name = "btnInBank";
             this.btnInBank.Size = new System.Drawing.Size(75, 23);
             this.btnInBank.TabIndex = 16;
@@ -308,7 +329,7 @@
             // 
             // btnTmrWanted
             // 
-            this.btnTmrWanted.Location = new System.Drawing.Point(663, 174);
+            this.btnTmrWanted.Location = new System.Drawing.Point(635, 313);
             this.btnTmrWanted.Name = "btnTmrWanted";
             this.btnTmrWanted.Size = new System.Drawing.Size(75, 23);
             this.btnTmrWanted.TabIndex = 17;
@@ -317,35 +338,58 @@
             // 
             // btnYesterdayInHand
             // 
-            this.btnYesterdayInHand.Location = new System.Drawing.Point(672, 61);
+            this.btnYesterdayInHand.Location = new System.Drawing.Point(644, 200);
             this.btnYesterdayInHand.Name = "btnYesterdayInHand";
             this.btnYesterdayInHand.Size = new System.Drawing.Size(75, 23);
             this.btnYesterdayInHand.TabIndex = 18;
             this.btnYesterdayInHand.Text = "button1";
             this.btnYesterdayInHand.UseVisualStyleBackColor = true;
             // 
-            // btnUpdate
+            // txtComments
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(290, 51);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 52);
-            this.btnUpdate.TabIndex = 23;
-            this.btnUpdate.Text = "UPDATE";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.txtComments.Location = new System.Drawing.Point(516, 370);
+            this.txtComments.Multiline = true;
+            this.txtComments.Name = "txtComments";
+            this.txtComments.Size = new System.Drawing.Size(192, 89);
+            this.txtComments.TabIndex = 11;
             // 
-            // txtCollectionAmount
+            // label11
             // 
-            this.txtCollectionAmount.Location = new System.Drawing.Point(156, 224);
-            this.txtCollectionAmount.Name = "txtCollectionAmount";
-            this.txtCollectionAmount.Size = new System.Drawing.Size(100, 20);
-            this.txtCollectionAmount.TabIndex = 24;
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(516, 351);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Comments";
+            // 
+            // btnShow
+            // 
+            this.btnShow.Location = new System.Drawing.Point(609, 46);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(75, 52);
+            this.btnShow.TabIndex = 20;
+            this.btnShow.Text = "SHOW";
+            this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(81, 16);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(36, 13);
+            this.lblDate.TabIndex = 24;
+            this.lblDate.Text = "[Date]";
             // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 528);
+            this.Controls.Add(this.btnShow);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.txtComments);
             this.Controls.Add(this.btnYesterdayInHand);
             this.Controls.Add(this.btnTmrWanted);
             this.Controls.Add(this.btnInBank);
@@ -398,5 +442,9 @@
         private System.Windows.Forms.Button btnYesterdayInHand;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txtCollectionAmount;
+        private System.Windows.Forms.TextBox txtComments;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnShow;
+        private System.Windows.Forms.Label lblDate;
     }
 }

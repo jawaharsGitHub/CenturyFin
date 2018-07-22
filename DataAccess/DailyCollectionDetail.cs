@@ -12,7 +12,7 @@ namespace DataAccess
 {
     public class DailyCollectionDetail : BaseClass<DailyCollectionDetail>
     {
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         public int? YesterdayAmountInHand { get; set; }
 
@@ -45,33 +45,45 @@ namespace DataAccess
         public string Comments { get; set; }
 
 
+        private static string DailyTxnFilePath = AppConfiguration.DailyTxnFile;
+
+
 
         public static void AddDaily(DailyCollectionDetail dailyCol)
         {
 
-            List<DailyCollectionDetail> dilyTxns = new List<DailyCollectionDetail>() { dailyCol };
+            List<DailyCollectionDetail> dailyTxns = new List<DailyCollectionDetail>() { dailyCol };
+
+
 
             // Get existing customers
-            string baseJson = File.ReadAllText(AppConfiguration.DailyTxnFile);
+            string baseJson = File.ReadAllText(DailyTxnFilePath);
 
             //Merge the customer
-            string updatedJson = AddObjectsToJson(baseJson, dilyTxns);
+            string updatedJson = AddObjectsToJson(baseJson, dailyTxns);
+
+
+
 
             // Add into json
-            File.WriteAllText(AppConfiguration.CustomerFile, updatedJson);
+            File.WriteAllText(DailyTxnFilePath, updatedJson);
 
         }
 
-        public static DailyCollectionDetail GetDailyTxn()
+        public static DailyCollectionDetail GetDailyTxn(DateTime date, bool isOnLoad)
         {
 
             try
             {
-                var json = File.ReadAllText(AppConfiguration.DailyTxnFile);
+                var json = File.ReadAllText(DailyTxnFilePath);
                 List<DailyCollectionDetail> list = JsonConvert.DeserializeObject<List<DailyCollectionDetail>>(json);
-                var dailyTxn = list.OrderByDescending(c => c.Date).FirstOrDefault();
 
+                DailyCollectionDetail dailyTxn = null;
 
+                //if (isOnLoad)
+                //    dailyTxn = list.OrderByDescending(c => Convert.ToDateTime(c.Date)).FirstOrDefault();
+                //else
+                dailyTxn = list.Where(c => c.Date == date.ToShortDateString()).FirstOrDefault();
 
                 return dailyTxn;
 

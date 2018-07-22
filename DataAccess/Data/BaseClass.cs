@@ -18,5 +18,20 @@ namespace DataAccess.Data
             return JsonConvert.SerializeObject(list, Formatting.Indented);
         }
 
+
+        //To update any existing data.
+        //public static string AddObjectsToJson(string json, List<DailyCollectionDetail> objects)
+        //{
+        //    List<DailyCollectionDetail> list = JsonConvert.DeserializeObject<List<DailyCollectionDetail>>(json) ?? new List<DailyCollectionDetail>();
+
+        //    list.AddRange(objects);
+
+        //    list.ForEach(d => {
+        //        d.Date = Convert.ToDateTime(d.Date).ToShortDateString();
+
+        //    });
+        //    return JsonConvert.SerializeObject(list, Formatting.Indented);
+        //}
+
     }
 }
