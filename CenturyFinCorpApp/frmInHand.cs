@@ -77,13 +77,14 @@ namespace CenturyFinCorpApp
             DailyCollectionDetail.AddDaily(dailyTxn);
 
             // Update In Hand and In Bank amount.
-            InHandAndBank.AddInHand(new InHandAndBank()
+            var inhand = new InHandAndBank()
             {
                 Date = dateTimePicker1.Value.ToShortDateString(),
                 InBank = dailyTxn.InBank.Value,
                 InHandAmount = dailyTxn.TodayInHand.Value
-            });
+            };
 
+            InHandAndBank.AddInHand(inhand, dailyTxn.TakenFromBank);
 
         }
 

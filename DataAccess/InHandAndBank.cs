@@ -15,15 +15,15 @@ namespace DataAccess
 
         public string Date { get; set; }
 
+        public int? RealInvestment { get; set; }
 
 
-        public static void AddInHand(InHandAndBank inHand)
+
+        public static void AddInHand(InHandAndBank inHand, int? takenFromBank)
         {
             var existingMoney = GetAllhandMoney();
             existingMoney = inHand;
-
-            //if (fromJawahar) existingMoney.JawaharShare += amount;
-
+            existingMoney.RealInvestment += takenFromBank;
 
             var updatedInHand = JsonConvert.SerializeObject(existingMoney, Formatting.Indented);
 
