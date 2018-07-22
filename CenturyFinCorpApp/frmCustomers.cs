@@ -214,11 +214,6 @@ namespace WindowsFormsApplication1
             rdbActive.Checked = true;
         }
 
-        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
-
-        }
-
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
 

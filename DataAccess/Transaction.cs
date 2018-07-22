@@ -240,6 +240,7 @@ namespace DataAccess
 
             try
             {
+                //TODO: Need to implement delete txn for closed txns also.
                 var json = File.ReadAllText(AppConfiguration.TransactionFile);
                 List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
                 var itemToDelete = list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).ToList();
