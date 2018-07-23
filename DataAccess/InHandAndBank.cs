@@ -22,10 +22,11 @@ namespace DataAccess
         public static void AddInHand(InHandAndBank inHand, int? takenFromBank)
         {
             var existingMoney = GetAllhandMoney();
-            existingMoney = inHand;
-            existingMoney.RealInvestment += takenFromBank;
+            
+            inHand.RealInvestment = (existingMoney.RealInvestment + takenFromBank);
+            //existingMoney = inHand;
 
-            var updatedInHand = JsonConvert.SerializeObject(existingMoney, Formatting.Indented);
+            var updatedInHand = JsonConvert.SerializeObject(inHand, Formatting.Indented);
 
             // Add into json
             File.WriteAllText(AppConfiguration.InHandFile, updatedInHand);
