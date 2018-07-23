@@ -37,13 +37,10 @@ namespace CenturyFinCorpApp
 
             dataGridView1.DataSource = customers;
 
-
             //Add TextBoxColumn dynamically to DataGridView
-
             dataGridView1.Columns.Add(textboxColumn);
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
-            txtSearch.Focus();
             AdjustColumnOrder();
 
             if (GlobalValue.NoteOption != null)
@@ -254,6 +251,7 @@ namespace CenturyFinCorpApp
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             SetCustomers();
+            txtSearch.Focus();
             txtSearch.Text = string.Empty;
             rdbActive.Checked = true;
         }
@@ -306,6 +304,11 @@ namespace CenturyFinCorpApp
             {
                 Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
             }
+        }
+
+        private void frmCustomers_Load(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
         }
     }
 }
