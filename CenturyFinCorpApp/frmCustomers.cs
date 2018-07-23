@@ -254,6 +254,7 @@ namespace CenturyFinCorpApp
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             SetCustomers();
+            txtSearch.Text = string.Empty;
             rdbActive.Checked = true;
         }
 
