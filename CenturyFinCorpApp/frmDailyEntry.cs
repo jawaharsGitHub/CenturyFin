@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,6 +13,12 @@ namespace CenturyFinCorpApp
         public frmDailyEntry()
         {
             InitializeComponent();
+
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]) == true)
+                button2.Visible = false;
+            else
+                button2.Visible = true;
+
             chkAddSalary.Checked = true; // will callCalculateIncome(true);
             LoadDailyCollection();
             lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();

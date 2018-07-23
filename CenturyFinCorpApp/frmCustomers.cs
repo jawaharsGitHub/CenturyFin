@@ -2,6 +2,7 @@
 using DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -16,6 +17,12 @@ namespace CenturyFinCorpApp
         public frmCustomers()
         {
             InitializeComponent();
+
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]) == true)
+                btnAddCustomer.Visible = false;
+            else
+                btnAddCustomer.Visible = true;
+
             // Get the table from the data set
             SetCustomers();
 
