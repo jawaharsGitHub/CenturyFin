@@ -95,7 +95,7 @@ namespace DataAccess
 
             try
             {
-                var txnFile = isActive ?  AppConfiguration.TransactionFile : $"{AppConfiguration.BackupFolderPath}/{customerId}/{customerId}_{sequenceNo}.json";
+                var txnFile = isActive ? AppConfiguration.TransactionFile : $"{AppConfiguration.BackupFolderPath}/{customerId}/{customerId}_{sequenceNo}.json";
                 //if (isClosedTxn) File.Delete(txnFile);
                 if (isActive)
                 {
@@ -217,6 +217,27 @@ namespace DataAccess
             }
         }
 
+        public static List<Transaction> GetTransactionForDate(int customerId, int sequenceNo, DateTime txnDate)
+        {
+
+            try
+            {
+                //TODO: need to do it for closed txn also?
+                var txnFile = AppConfiguration.TransactionFile;
+
+                var json = File.ReadAllText(txnFile);
+                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                if (list == null) return null;
+
+                return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo && c.TxnDate == txnDate).OrderByDescending(o => o.TransactionId).ToList();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
 
         public static List<Transaction> GetTransactionCount(int customerId, int sequenceNo)
         {
@@ -302,9 +323,9 @@ namespace DataAccess
                 //}
 
                 var outsideMoney = (from L in list
-                            group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                            //from g in newGroup.ToList()
-                            select newGroup.ToList().OrderBy(w => w.Balance).First()).ToList().Sum(s => s.Balance);
+                                    group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
+                                    //from g in newGroup.ToList()
+                                    select newGroup.ToList().OrderBy(w => w.Balance).First()).ToList().Sum(s => s.Balance);
 
 
                 return outsideMoney;

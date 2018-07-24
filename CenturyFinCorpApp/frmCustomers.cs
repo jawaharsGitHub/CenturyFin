@@ -201,7 +201,18 @@ namespace CenturyFinCorpApp
 
                 // Add new Txn.
                 //transactions.Add(txn);
-                Transaction.AddDailyTransactions(txn);
+                var existingTxn = Transaction.GetTransactionForDate(txn.CustomerId, txn.CustomerSequenceNo, txn.TxnDate);
+                if (existingTxn == null || existingTxn.Count == 0)
+                {
+                    Transaction.AddDailyTransactions(txn);
+                }
+                else
+                {
+                    txn.TransactionId = existingTxn.First().TransactionId;
+                    Transaction.UpdateTransactionDetails(txn);
+                }
+
+
                 // Update txn Closed Date
                 if (txn.IsClosed && txn.Balance == 0)
                 {
@@ -229,16 +240,16 @@ namespace CenturyFinCorpApp
             // Update Customer Created Date.
 
             Customer.CorrectCustomerData(
-                new Customer()
-                {
-                    CustomerId = Convert.ToInt32(customerId),
-                    CustomerSeqNumber = Convert.ToInt32(seqNo),
-                    AmountGivenDate = Convert.ToDateTime(amountGivenDate),
-                    ClosedDate = Convert.ToDateTime(closedDate),
-                    Interest = Convert.ToInt32(interest),
-                    LoanAmount = Convert.ToInt32(loanAmount),
-                    Name = name
-                });
+                    new Customer()
+                    {
+                        CustomerId = Convert.ToInt32(customerId),
+                        CustomerSeqNumber = Convert.ToInt32(seqNo),
+                        AmountGivenDate = Convert.ToDateTime(amountGivenDate),
+                        ClosedDate = Convert.ToDateTime(closedDate),
+                        Interest = Convert.ToInt32(interest),
+                        LoanAmount = Convert.ToInt32(loanAmount),
+                        Name = name
+                    });
         }
 
         private string GetGridCellValue(DataGridView grid, int rowIndex, string columnName)
