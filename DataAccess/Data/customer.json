@@ -1415,5 +1415,31 @@
     "AmountGivenDate": "2018-07-21T11:55:02.0469764-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 113,
+    "CustomerId": 20,
+    "Name": "KalaiSelvan-Tirupullani",
+    "PhoneNumber": "",
+    "LoanAmount": 25000,
+    "Interest": 2500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-23T21:34:26.3977423-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 114,
+    "CustomerId": 79,
+    "Name": "Masthan Maligai Market",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-23T21:34:26.3977423-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
   }
 ]
