@@ -32,6 +32,8 @@
             this.lblOutStanding = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblTotalAsset = new System.Windows.Forms.Label();
+            this.btnClosedTxn = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -70,10 +72,36 @@
             this.lblTotalAsset.TabIndex = 3;
             this.lblTotalAsset.Text = "[TotalAsset]";
             // 
+            // btnClosedTxn
+            // 
+            this.btnClosedTxn.BackColor = System.Drawing.Color.Aqua;
+            this.btnClosedTxn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClosedTxn.Location = new System.Drawing.Point(385, 39);
+            this.btnClosedTxn.Name = "btnClosedTxn";
+            this.btnClosedTxn.Size = new System.Drawing.Size(229, 84);
+            this.btnClosedTxn.TabIndex = 5;
+            this.btnClosedTxn.Text = "Run Closed Txn";
+            this.btnClosedTxn.UseVisualStyleBackColor = false;
+            this.btnClosedTxn.Click += new System.EventHandler(this.btnClosedTxn_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.Aqua;
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(385, 160);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(229, 84);
+            this.btnRefresh.TabIndex = 18;
+            this.btnRefresh.Text = "Refresh Data";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // frmReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.btnClosedTxn);
             this.Controls.Add(this.lblTotalAsset);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblOutStanding);
@@ -91,5 +119,7 @@
         private System.Windows.Forms.Label lblOutStanding;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblTotalAsset;
+        private System.Windows.Forms.Button btnClosedTxn;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
