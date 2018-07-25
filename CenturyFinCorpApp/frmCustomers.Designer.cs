@@ -44,7 +44,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(24, 46);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1237, 473);
+            this.dataGridView1.Size = new System.Drawing.Size(1237, 527);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
@@ -136,7 +136,7 @@
             this.Controls.Add(this.rdbActive);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmCustomers";
-            this.Size = new System.Drawing.Size(1370, 749);
+            this.Size = new System.Drawing.Size(1370, 592);
             this.Load += new System.EventHandler(this.frmCustomers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
