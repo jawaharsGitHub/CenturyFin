@@ -958,7 +958,7 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-07-16T12:08:58",
-    "ClosedDate": null,
+    "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   },
   {
@@ -1453,6 +1453,19 @@
     "IsActive": true,
     "AmountGivenDate": "2018-07-24T12:45:19",
     "ClosedDate": "0001-01-01T00:00:00",
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 116,
+    "CustomerId": 80,
+    "Name": "Ganesh - Fish Market",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-25T12:16:40.8700108-04:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   }
 ]

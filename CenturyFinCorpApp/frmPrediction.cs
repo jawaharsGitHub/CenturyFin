@@ -23,33 +23,32 @@ namespace CenturyFinCorpApp
 
             var inputMoney = 1000000;
 
-            var previousPrediction = new Prediction() { OutstandingAmount = inputMoney };
+            var previousPrediction = new Prediction() { NewOutstanding = inputMoney };
             List<Prediction> lst = new List<Prediction>();
 
 
 
             for (int i = 1; i <= 100; i++)
             {
-                var predict = new Prediction() { OutstandingAmount = previousPrediction.OutstandingAmount, NewCustomerNumber = i };
+                var predict = new Prediction() { OutstandingAmount = previousPrediction.NewOutstanding, NewCustomerNumber = i };
 
-                predict.CollectionAmount = (previousPrediction.OutstandingAmount / 100);
+                predict.CollectionAmount = (previousPrediction.NewOutstanding / 100) + ((predict.NewCustomerNumber - 1) * 100);
 
-                predict.OutstandingAmount = predict.OutstandingAmount - predict.CollectionAmount;
+                predict.OutstandingAmount = previousPrediction.NewOutstanding - predict.CollectionAmount;
 
-                predict.InHandBeforeGiven = predict.CollectionAmount + predict.InHandAfterGiven;
+                predict.InHandBeforeGiven = predict.CollectionAmount + previousPrediction.InHandAfterGiven;
 
                 var canGive = (predict.InHandBeforeGiven / 10000) > 0 ? (predict.InHandBeforeGiven / 10000) * 10000 : 0;
 
                 //predict.InHandAfterGiven = (predict.InHandBeforeGiven % 10000);
 
-                predict.GivenMoney = canGive; // ROund 0f 1000 inhand money.
-
+                
                 int interest = 0;
                 if (canGive >= 10000)
                 {
                     interest = (canGive / 100) * 10; // given money's 10%'
-
-                    predict.InHandAfterGiven = (predict.InHandBeforeGiven - (predict.GivenMoney - interest)) + (predict.InHandBeforeGiven % 10000);
+                    predict.GivenMoney = canGive; // ROund 0f 1000 inhand money.
+                    predict.InHandAfterGiven = (predict.InHandBeforeGiven - (predict.GivenMoney - interest)); // + (predict.InHandBeforeGiven % 10000);
                 }
 
                 predict.NewOutstanding = predict.OutstandingAmount + predict.GivenMoney;
