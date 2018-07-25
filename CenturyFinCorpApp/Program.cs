@@ -32,6 +32,10 @@ namespace CenturyFinCorpApp
 
             AddOrUpdateAppSettings("SourceFolder", dataFolder);
 
+            //
+
+            //frmPrediction.Predict();
+
             Application.Run(new frmIndexForm());
         }
 
