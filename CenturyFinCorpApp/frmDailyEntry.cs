@@ -51,7 +51,7 @@ namespace CenturyFinCorpApp
 
             var amountReceived = result.Sum(s => s.AmountReceived);
 
-            
+
             result = result.Where(w => w.AmountReceived != 0).ToList();
 
             label1.Text = $"Total Collection is: {amountReceived}";
@@ -66,10 +66,7 @@ namespace CenturyFinCorpApp
             // Closed Account
             var closedCustomers = (from c in Customer.GetAllCustomer()
                                    where c.IsActive == false
-                                   //where c.ClosedDate != null && c.ClosedDate != DateTime.MinValue && c.IsActive == false
-                                   group c by Convert.ToDateTime(c.ClosedDate).ToString("Y") into newGroup
-
-
+                                   group c by Convert.ToDateTime(c.ClosedDate).ToShortDateString() into newGroup
                                    select new
                                    {
                                        ClosedDate = newGroup.Key,
@@ -77,20 +74,13 @@ namespace CenturyFinCorpApp
                                        IsExpectedIncome = false
                                    }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
-            //var test = (from c in Customer.GetAllCustomer()
-            //            where c.IsActive == true
-            //            //where (c.ClosedDate == null || c.ClosedDate != DateTime.MinValue) && c.IsActive == true
-            //            group c by Convert.ToDateTime(c.AmountGivenDate).ToString("Y") into newGroup
-            //            select newGroup).ToList();
-
             // Running Account (Expected Income)
             var runningCustomers = (from c in Customer.GetAllCustomer()
                                     where c.IsActive == true
-                                    //where (c.ClosedDate == null || c.ClosedDate != DateTime.MinValue) && c.IsActive == true
-                                    group c by Convert.ToDateTime(c.AmountGivenDate).ToString("Y") into newGroup
+                                    group c by Convert.ToDateTime(c.AmountGivenDate).ToShortDateString() into newGroup
                                     select new
                                     {
-                                        ClosedDate = (Convert.ToDateTime(newGroup.Key).AddDays(100)).ToString("Y"), // TODO: it should be group by given data + 100 days not by key(July 2018)
+                                        ClosedDate = (Convert.ToDateTime(newGroup.Key).AddDays(100)).ToShortDateString(), // TODO: it should be group by given data + 100 days not by key(July 2018)
                                         TotalInterest = newGroup.Sum(s => s.Interest),
                                         IsExpectedIncome = true
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
@@ -100,36 +90,29 @@ namespace CenturyFinCorpApp
 
             // group by eclosed date and income type
             var data = (from x in closedCustomers
-                        group x by new { x.ClosedDate, x.IsExpectedIncome } into newGroup
+                        group x by new { ClosedMonth = Convert.ToDateTime(x.ClosedDate).ToString("Y"), IsExpectedIncome = x.IsExpectedIncome } into newGroup
                         select newGroup).ToList();
-
-
-            // group by closed date.
-            var result = (from d in data.ToList()
-                          from g in d
-                          group g by g.ClosedDate into newGroup
-                          select newGroup).ToList();
 
             var finalData = new List<IncomeReport>();
 
 
-            result.ForEach(f =>
+            data.ForEach(f =>
             {
 
                 f.ToList().ForEach(d =>
                 {
-                    var existData = finalData.Where(w => w.Month == d.ClosedDate).FirstOrDefault();
+                    var existData = finalData.Where(w => w.Month == Convert.ToDateTime(d.ClosedDate).ToString("Y")).FirstOrDefault();
 
                     if (existData == null) // Not exist
                     {
-                        existData = new IncomeReport() { Month = d.ClosedDate };
+                        existData = new IncomeReport() { Month = Convert.ToDateTime(d.ClosedDate).ToString("Y") };
                         finalData.Add(existData);
                     }
 
                     if (d.IsExpectedIncome)
-                        existData.ExpectedIncome = d.TotalInterest;
+                        existData.ExpectedIncome += d.TotalInterest;
                     else
-                        existData.ActualIncome = d.TotalInterest;
+                        existData.ActualIncome += d.TotalInterest;
 
 
                 });
