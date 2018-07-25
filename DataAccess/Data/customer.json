@@ -865,9 +865,9 @@
     "LoanAmount": 10000,
     "Interest": 800,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-06-11T11:39:09",
-    "ClosedDate": null,
+    "ClosedDate": "2018-07-24T12:38:57.8570079-04:00",
     "ModifiedDate": null
   },
   {
@@ -1440,6 +1440,19 @@
     "IsActive": true,
     "AmountGivenDate": "2018-07-23T21:34:26.3977423-04:00",
     "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 115,
+    "CustomerId": 44,
+    "Name": "karmegam - Aranmanai",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 1500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-24T12:45:19",
+    "ClosedDate": "0001-01-01T00:00:00",
     "ModifiedDate": null
   }
 ]
