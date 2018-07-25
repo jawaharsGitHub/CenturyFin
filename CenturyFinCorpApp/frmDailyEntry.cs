@@ -77,6 +77,12 @@ namespace CenturyFinCorpApp
                                        IsExpectedIncome = false
                                    }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
+            //var test = (from c in Customer.GetAllCustomer()
+            //            where c.IsActive == true
+            //            //where (c.ClosedDate == null || c.ClosedDate != DateTime.MinValue) && c.IsActive == true
+            //            group c by Convert.ToDateTime(c.AmountGivenDate).ToString("Y") into newGroup
+            //            select newGroup).ToList();
+
             // Running Account (Expected Income)
             var runningCustomers = (from c in Customer.GetAllCustomer()
                                     where c.IsActive == true
@@ -84,7 +90,7 @@ namespace CenturyFinCorpApp
                                     group c by Convert.ToDateTime(c.AmountGivenDate).ToString("Y") into newGroup
                                     select new
                                     {
-                                        ClosedDate = (Convert.ToDateTime(newGroup.Key).AddDays(100)).ToString("Y"),
+                                        ClosedDate = (Convert.ToDateTime(newGroup.Key).AddDays(100)).ToString("Y"), // TODO: it should be group by given data + 100 days not by key(July 2018)
                                         TotalInterest = newGroup.Sum(s => s.Interest),
                                         IsExpectedIncome = true
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
