@@ -53,12 +53,10 @@
             // rdbActive
             // 
             this.rdbActive.AutoSize = true;
-            this.rdbActive.Checked = true;
             this.rdbActive.Location = new System.Drawing.Point(46, 13);
             this.rdbActive.Name = "rdbActive";
             this.rdbActive.Size = new System.Drawing.Size(96, 17);
             this.rdbActive.TabIndex = 1;
-            this.rdbActive.TabStop = true;
             this.rdbActive.Tag = "RN";
             this.rdbActive.Text = "Running Notes";
             this.rdbActive.UseVisualStyleBackColor = true;

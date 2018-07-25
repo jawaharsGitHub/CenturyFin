@@ -43,23 +43,21 @@ namespace CenturyFinCorpApp
 
             AdjustColumnOrder();
 
-            if (GlobalValue.NoteOption != null)
-            {
-                switch (GlobalValue.NoteOption)
-                {
 
-                    case "RN":
-                        rdbActive.Checked = true;
-                        break;
-                    case "CN":
-                        rdbClosed.Checked = true;
-                        break;
-                    case "AL":
-                    default:
-                        rdbAll.Checked = true;
-                        break;
-                }
+            switch (GlobalValue.NoteOption)
+            {
+                case "AL":
+                    rdbAll.Checked = true;
+                    break;
+                case "CN":
+                    rdbClosed.Checked = true;
+                    break;
+                case "RL":
+                default:
+                    rdbActive.Checked = true;
+                    break;
             }
+
 
             txtSearch.Text = GlobalValue.SearchText;
 
