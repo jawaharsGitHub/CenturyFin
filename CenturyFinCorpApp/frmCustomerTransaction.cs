@@ -48,6 +48,7 @@ namespace CenturyFinCorpApp
             btnBalance.Visible = groupBox1.Visible = (_balance > 0);
             
             LoadTxn();
+            dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             lblMessage.Text = string.Empty;
         }
 

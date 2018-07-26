@@ -46,7 +46,7 @@ namespace CenturyFinCorpApp
 
             switch (GlobalValue.NoteOption)
             {
-                case "AL":
+                case "AN":
                     rdbAll.Checked = true;
                     break;
                 case "CN":
@@ -83,6 +83,8 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["CollectionAmt"].DisplayIndex = 3;
             dataGridView1.Columns["ModifiedDate"].Visible = false;
             dataGridView1.Columns["PhoneNumber"].Visible = false;
+            dataGridView1.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            //dataGridView1.Columns["ClosedDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
