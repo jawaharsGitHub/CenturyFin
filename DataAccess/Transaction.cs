@@ -296,6 +296,28 @@ namespace DataAccess
 
         }
 
+        public static List<Transaction> GetActiveTransactions()
+        {
+            var json = File.ReadAllText(AppConfiguration.TransactionFile);
+            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+
+            var result = new List<Transaction>();
+
+            var outsideMoney = (from L in list
+                                group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
+                                //from g in newGroup.ToList()
+                                select newGroup).ToList();
+
+            outsideMoney.ForEach(fe => {
+                result.Add(fe.OrderBy(o => o.Balance).First());
+            });
+            //return outsideMoney;
+
+            return result;
+
+
+        }
+
 
         public static int GetAllOutstandingAmount()
         {

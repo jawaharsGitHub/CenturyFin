@@ -26,7 +26,7 @@ namespace CenturyFinCorpApp
             // Get the table from the data set
             SetCustomers();
 
-            transactions = new List<Transaction>();
+            //transactions = new List<Transaction>();
 
             if (customers == null) return;
 
@@ -66,6 +66,8 @@ namespace CenturyFinCorpApp
         private void SetCustomers()
         {
             customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
+
+            //transactions = Transaction.GetActiveTransactions();
 
             var activeTxn = customers.Count(c => c.IsActive == true);
             var closedTxn = customers.Count(c => c.IsActive == false);
@@ -141,7 +143,21 @@ namespace CenturyFinCorpApp
                 GlobalValue.NoteOption = rdbActive.Tag.ToString();
             }
 
-            dataGridView1.DataSource = string.IsNullOrEmpty(txtSearch.Text) ? searchedCustomer : searchedCustomer.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+            //var result = from
+
+            searchedCustomer = string.IsNullOrEmpty(txtSearch.Text) ? searchedCustomer : searchedCustomer.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+
+            //var query = (from c in searchedCustomer
+            //             join t in transactions on c.CustomerId equals t.CustomerId
+            //             select new {
+            //                 c,
+            //                 t.Balance
+            //             }).ToList();
+
+            dataGridView1.DataSource = searchedCustomer;
+
+
+
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
