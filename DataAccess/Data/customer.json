@@ -1480,5 +1480,31 @@
     "AmountGivenDate": "2018-07-26T21:31:53.1065795-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 118,
+    "CustomerId": 16,
+    "Name": "vignesh-Computer System",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 2400,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-06-06T12:52:37",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 119,
+    "CustomerId": 81,
+    "Name": "Syed Thahir - Chicken Shop",
+    "PhoneNumber": "",
+    "LoanAmount": 15000,
+    "Interest": 1500,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-27T12:55:49.435067-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
   }
 ]
