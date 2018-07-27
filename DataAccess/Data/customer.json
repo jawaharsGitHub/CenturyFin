@@ -1467,5 +1467,18 @@
     "AmountGivenDate": "2018-07-25T12:16:40.8700108-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 117,
+    "CustomerId": 49,
+    "Name": "Akbar - Bharathi Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 15000,
+    "Interest": 1500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-26T21:31:53.1065795-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
   }
 ]
