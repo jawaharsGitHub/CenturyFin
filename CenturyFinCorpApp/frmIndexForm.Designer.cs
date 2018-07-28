@@ -346,7 +346,7 @@
             // 
             this.panel1.Location = new System.Drawing.Point(7, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1027, 508);
+            this.panel1.Size = new System.Drawing.Size(1027, 573);
             this.panel1.TabIndex = 18;
             // 
             // frmIndexForm
@@ -355,7 +355,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(1109, 749);
+            this.ClientSize = new System.Drawing.Size(1109, 540);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);

@@ -50,7 +50,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -190,9 +190,9 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(35, 416);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 13);
+            this.label14.Size = new System.Drawing.Size(89, 13);
             this.label14.TabIndex = 12;
-            this.label14.Text = "TomorrowNeed";
+            this.label14.Text = "TomorrowNeed ?";
             // 
             // label13
             // 
@@ -217,27 +217,27 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(35, 295);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 13);
+            this.label9.Size = new System.Drawing.Size(57, 13);
             this.label9.TabIndex = 8;
-            this.label9.Text = "Interest";
+            this.label9.Text = "Interest (+)";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(30, 261);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 13);
+            this.label8.Size = new System.Drawing.Size(83, 13);
             this.label8.TabIndex = 7;
-            this.label8.Text = "GivenAmount";
+            this.label8.Text = "GivenAmount (-)";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(28, 227);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.Size = new System.Drawing.Size(104, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "CollectionAmount";
+            this.label7.Text = "CollectionAmount (+)";
             // 
             // label6
             // 
@@ -275,20 +275,20 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "SanthanamUncle";
             // 
-            // btnUpdate
+            // btnAdd
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(499, 46);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 52);
-            this.btnUpdate.TabIndex = 23;
-            this.btnUpdate.Text = "UPDATE";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnAdd.Location = new System.Drawing.Point(499, 46);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 52);
+            this.btnAdd.TabIndex = 23;
+            this.btnAdd.Text = "ADD TODAY DETAILS";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(513, 205);
+            this.label1.Location = new System.Drawing.Point(507, 205);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 13);
             this.label1.TabIndex = 0;
@@ -297,7 +297,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(533, 281);
+            this.label4.Location = new System.Drawing.Point(527, 281);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 3;
@@ -306,7 +306,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(533, 241);
+            this.label10.Location = new System.Drawing.Point(527, 241);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(72, 13);
             this.label10.TabIndex = 1;
@@ -315,7 +315,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(533, 313);
+            this.label15.Location = new System.Drawing.Point(527, 313);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(95, 13);
             this.label15.TabIndex = 13;
@@ -330,7 +330,7 @@
             // 
             // btnTodayInHand
             // 
-            this.btnTodayInHand.Location = new System.Drawing.Point(633, 241);
+            this.btnTodayInHand.Location = new System.Drawing.Point(644, 241);
             this.btnTodayInHand.Name = "btnTodayInHand";
             this.btnTodayInHand.Size = new System.Drawing.Size(75, 23);
             this.btnTodayInHand.TabIndex = 15;
@@ -339,7 +339,7 @@
             // 
             // btnInBank
             // 
-            this.btnInBank.Location = new System.Drawing.Point(633, 270);
+            this.btnInBank.Location = new System.Drawing.Point(644, 270);
             this.btnInBank.Name = "btnInBank";
             this.btnInBank.Size = new System.Drawing.Size(75, 23);
             this.btnInBank.TabIndex = 16;
@@ -348,7 +348,7 @@
             // 
             // btnTmrWanted
             // 
-            this.btnTmrWanted.Location = new System.Drawing.Point(635, 313);
+            this.btnTmrWanted.Location = new System.Drawing.Point(644, 307);
             this.btnTmrWanted.Name = "btnTmrWanted";
             this.btnTmrWanted.Size = new System.Drawing.Size(162, 23);
             this.btnTmrWanted.TabIndex = 17;
@@ -438,7 +438,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtComments);
             this.Controls.Add(this.btnYesterdayInHand);
             this.Controls.Add(this.btnTmrWanted);
@@ -451,7 +451,7 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label1);
             this.Name = "frmInHand";
-            this.Size = new System.Drawing.Size(800, 528);
+            this.Size = new System.Drawing.Size(822, 528);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -490,7 +490,7 @@
         private System.Windows.Forms.Button btnInBank;
         private System.Windows.Forms.Button btnTmrWanted;
         private System.Windows.Forms.Button btnYesterdayInHand;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox txtCollectionAmount;
         private System.Windows.Forms.TextBox txtComments;
         private System.Windows.Forms.Label label11;

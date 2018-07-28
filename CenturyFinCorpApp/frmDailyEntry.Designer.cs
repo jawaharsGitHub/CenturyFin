@@ -49,7 +49,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 144);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(529, 700);
+            this.dataGridView1.Size = new System.Drawing.Size(578, 300);
             this.dataGridView1.TabIndex = 0;
             // 
             // dateTimePicker1
@@ -83,10 +83,10 @@
             // dgvIncome
             // 
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIncome.Location = new System.Drawing.Point(562, 144);
+            this.dgvIncome.Location = new System.Drawing.Point(641, 144);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.ReadOnly = true;
-            this.dgvIncome.Size = new System.Drawing.Size(441, 373);
+            this.dgvIncome.Size = new System.Drawing.Size(455, 373);
             this.dgvIncome.TabIndex = 4;
             // 
             // chkAddSalary
@@ -151,7 +151,7 @@
             // lblOutStanding
             // 
             this.lblOutStanding.AutoSize = true;
-            this.lblOutStanding.Location = new System.Drawing.Point(1051, 153);
+            this.lblOutStanding.Location = new System.Drawing.Point(1010, 120);
             this.lblOutStanding.Name = "lblOutStanding";
             this.lblOutStanding.Size = new System.Drawing.Size(86, 13);
             this.lblOutStanding.TabIndex = 11;
@@ -175,7 +175,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmDailyEntry";
-            this.Size = new System.Drawing.Size(1209, 524);
+            this.Size = new System.Drawing.Size(1226, 524);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             this.ResumeLayout(false);
