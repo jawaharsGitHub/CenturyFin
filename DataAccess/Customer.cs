@@ -91,6 +91,11 @@ namespace DataAccess
 
             try
             {
+                if (updatedCustomer.ClosedDate == DateTime.MinValue)
+                {
+                    updatedCustomer.ClosedDate = null;
+                }
+
                 var json = File.ReadAllText(AppConfiguration.CustomerFile);
                 List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
 
@@ -132,7 +137,7 @@ namespace DataAccess
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
                 u.ClosedDate = updatedCustomer.ClosedDate;
-               
+
                 string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
 
                 File.WriteAllText(AppConfiguration.CustomerFile, updatedCustomers);

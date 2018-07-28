@@ -308,7 +308,7 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-04-07T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   },
   {
@@ -333,8 +333,8 @@
     "Interest": 400,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-23T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "AmountGivenDate": "2018-07-14T00:00:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   },
   {
@@ -372,7 +372,7 @@
     "Interest": 1200,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-24T00:00:00-04:00",
+    "AmountGivenDate": "2018-06-23T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -386,7 +386,7 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-03-20T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   },
   {
@@ -412,7 +412,7 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-06-23T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   },
   {
@@ -646,7 +646,7 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-06-10T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   },
   {
@@ -672,7 +672,7 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-07-14T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   },
   {
@@ -685,7 +685,7 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-07-04T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   },
   {
@@ -750,7 +750,7 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-06-13T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   },
   {
@@ -802,7 +802,7 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-06-27T00:00:00",
-    "ClosedDate": "0001-01-01T00:00:00",
+    "ClosedDate": null,
     "ModifiedDate": null
   },
   {
@@ -996,7 +996,7 @@
     "Interest": 800,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-04-15T12:20:11",
+    "AmountGivenDate": "2018-07-15T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1009,7 +1009,7 @@
     "Interest": 1600,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-10T12:21:29",
+    "AmountGivenDate": "2018-07-10T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1022,7 +1022,7 @@
     "Interest": 800,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-14T12:23:27",
+    "AmountGivenDate": "2018-07-14T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1035,7 +1035,7 @@
     "Interest": 2400,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-05-15T12:25:15",
+    "AmountGivenDate": "2018-07-15T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1048,7 +1048,7 @@
     "Interest": 2400,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-05-17T12:26:17",
+    "AmountGivenDate": "2018-07-17T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1061,7 +1061,7 @@
     "Interest": 1600,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-05-17T12:27:24",
+    "AmountGivenDate": "2018-07-17T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1087,7 +1087,7 @@
     "Interest": 1600,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-18T12:29:41",
+    "AmountGivenDate": "2018-07-16T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1113,7 +1113,7 @@
     "Interest": 1600,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-05-23T12:31:08",
+    "AmountGivenDate": "2018-07-23T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1152,7 +1152,7 @@
     "Interest": 800,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-23T12:33:17",
+    "AmountGivenDate": "2018-07-16T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1178,7 +1178,7 @@
     "Interest": 1600,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-12T12:36:44",
+    "AmountGivenDate": "2018-07-12T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1230,7 +1230,7 @@
     "Interest": 800,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-13T12:47:05",
+    "AmountGivenDate": "2018-07-16T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1308,7 +1308,7 @@
     "Interest": 2400,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-04-14T12:53:00",
+    "AmountGivenDate": "2018-07-14T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
