@@ -182,6 +182,20 @@ namespace CenturyFinCorpApp
             frmInHand fd = new frmInHand();
             //fd.ShowDialog();
         }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var selectedRows = (sender as DataGridView).SelectedRows;
+
+            if (selectedRows.Count != 1) return;
+
+            var selectedCustomer = (selectedRows[0].DataBoundItem as dynamic);
+
+            var mainForm = (frmIndexForm)(((DataGridView)sender).Parent.Parent.Parent); //new frmIndexForm(true);
+
+            mainForm.ShowForm(selectedCustomer.TransactionId);
+
+        }
     }
 
 

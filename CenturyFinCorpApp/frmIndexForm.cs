@@ -83,6 +83,13 @@ namespace CenturyFinCorpApp
             ShowForm<frmCustomers>(); // initial form to be loaded
         }
 
+        public void ShowForm(int transactionId)
+        {
+            var txn = Transaction.GetTransactionDetail(transactionId);
+            var customer = Customer.GetCustomerDetails(txn.CustomerId, txn.CustomerSequenceNo);
+
+            ShowForm<frmCustomerTransaction>(customer);
+        }
         public void ShowForm<T>(Customer cus = null) where T : UserControl, new()
         {
             if (isAdded && panel1.Controls.Count > 0)

@@ -197,6 +197,24 @@ namespace DataAccess
             }
         }
 
+        public static Transaction GetTransactionDetail(int txnId)
+        {
+
+            try
+            {
+                var txnFile = AppConfiguration.TransactionFile;
+
+                var json = File.ReadAllText(txnFile);
+                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                if (list == null) return null;
+                return list.Where(c => c.TransactionId == txnId).First();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
 
         public static List<Transaction> GetTransactionDetails(int customerId, int sequenceNo, bool isClosedTxn)
         {
@@ -308,7 +326,8 @@ namespace DataAccess
                                 //from g in newGroup.ToList()
                                 select newGroup).ToList();
 
-            outsideMoney.ForEach(fe => {
+            outsideMoney.ForEach(fe =>
+            {
                 result.Add(fe.OrderBy(o => o.Balance).First());
             });
             //return outsideMoney;
