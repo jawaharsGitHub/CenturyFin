@@ -63,11 +63,21 @@
             this.txtComments = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.btnShow = new System.Windows.Forms.Button();
+            this.txtOtherExpenditure = new System.Windows.Forms.TextBox();
+            this.txtOtherInvestment = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btnCollection = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCollection);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.txtOtherInvestment);
+            this.groupBox1.Controls.Add(this.txtOtherExpenditure);
             this.groupBox1.Controls.Add(this.lblDate);
             this.groupBox1.Controls.Add(this.txtCollectionAmount);
             this.groupBox1.Controls.Add(this.txtInterest);
@@ -91,7 +101,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(35, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 468);
+            this.groupBox1.Size = new System.Drawing.Size(412, 523);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -360,7 +370,7 @@
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
             this.txtComments.Size = new System.Drawing.Size(192, 89);
-            this.txtComments.TabIndex = 11;
+            this.txtComments.TabIndex = 12;
             // 
             // label11
             // 
@@ -380,6 +390,47 @@
             this.btnShow.Text = "SHOW";
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
+            // 
+            // txtOtherExpenditure
+            // 
+            this.txtOtherExpenditure.Location = new System.Drawing.Point(156, 455);
+            this.txtOtherExpenditure.Name = "txtOtherExpenditure";
+            this.txtOtherExpenditure.Size = new System.Drawing.Size(100, 20);
+            this.txtOtherExpenditure.TabIndex = 11;
+            // 
+            // txtOtherInvestment
+            // 
+            this.txtOtherInvestment.Location = new System.Drawing.Point(156, 493);
+            this.txtOtherInvestment.Name = "txtOtherInvestment";
+            this.txtOtherInvestment.Size = new System.Drawing.Size(100, 20);
+            this.txtOtherInvestment.TabIndex = 12;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(40, 455);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(104, 13);
+            this.label16.TabIndex = 25;
+            this.label16.Text = "Other Expenditure (-)";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(40, 496);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(103, 13);
+            this.label17.TabIndex = 26;
+            this.label17.Text = "Other Investment (+)";
+            // 
+            // btnCollection
+            // 
+            this.btnCollection.Location = new System.Drawing.Point(289, 40);
+            this.btnCollection.Name = "btnCollection";
+            this.btnCollection.Size = new System.Drawing.Size(75, 56);
+            this.btnCollection.TabIndex = 27;
+            this.btnCollection.Text = "[Today Collection]";
+            this.btnCollection.UseVisualStyleBackColor = true;
             // 
             // frmInHand
             // 
@@ -445,5 +496,10 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtOtherInvestment;
+        private System.Windows.Forms.TextBox txtOtherExpenditure;
+        private System.Windows.Forms.Button btnCollection;
     }
 }

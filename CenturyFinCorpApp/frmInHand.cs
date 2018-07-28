@@ -43,6 +43,9 @@ namespace CenturyFinCorpApp
             txtOpened.Text = dailyTxn.OpenedAccounts.ToString();
             txtTmrNeeded.Text = dailyTxn.TomorrowNeed.ToString();
 
+            txtOtherExpenditure.Text = Convert.ToString(dailyTxn.OtherExpenditire);
+            txtOtherInvestment.Text = Convert.ToString(dailyTxn.OtherInvestment);
+
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.ToString();
             btnTodayInHand.Text = dailyTxn.TodayInHand.ToString();
             btnInBank.Text = dailyTxn.InBank.ToString();
@@ -51,6 +54,8 @@ namespace CenturyFinCorpApp
             lblDate.Text = dailyTxn.Date;
 
             txtComments.Text = dailyTxn.Comments;
+
+            btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails(DateTime.Today).Sum(s => s.AmountReceived));
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -70,9 +75,15 @@ namespace CenturyFinCorpApp
             dailyTxn.ClosedAccounts = Convert.ToInt32(txtClosed.Text);
             dailyTxn.OpenedAccounts = Convert.ToInt32(txtOpened.Text);
             dailyTxn.TomorrowNeed = Convert.ToInt32(txtTmrNeeded.Text);
-            dailyTxn.TodayInHand = (dailyTxn.YesterdayAmountInHand + dailyTxn.CollectionAmount + dailyTxn.TakenFromBank - dailyTxn.GivenAmount + dailyTxn.Interest);
+
+            dailyTxn.OtherExpenditire = Convert.ToInt32(txtOtherExpenditure.Text);
+            dailyTxn.OtherInvestment = Convert.ToInt32(txtOtherInvestment.Text);
+
+            dailyTxn.TodayInHand = (dailyTxn.YesterdayAmountInHand + dailyTxn.CollectionAmount + dailyTxn.TakenFromBank - dailyTxn.GivenAmount + dailyTxn.Interest + dailyTxn.OtherInvestment - dailyTxn.OtherExpenditire);
+
             dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - Convert.ToInt32((dailyTxn.TodayInHand + dailyTxn.InBank)));
             dailyTxn.Comments = txtComments.Text;
+
 
             DailyCollectionDetail.AddDaily(dailyTxn);
 

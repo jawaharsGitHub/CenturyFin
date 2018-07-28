@@ -175,7 +175,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmDailyEntry";
-            this.Size = new System.Drawing.Size(1226, 580);
+            this.Size = new System.Drawing.Size(1209, 524);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             this.ResumeLayout(false);

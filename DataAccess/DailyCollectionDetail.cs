@@ -44,6 +44,9 @@ namespace DataAccess
 
         public string Comments { get; set; }
 
+        public int OtherExpenditire { get; set; }
+
+        public int OtherInvestment { get; set; }
 
         private static string DailyTxnFilePath = AppConfiguration.DailyTxnFile;
 
