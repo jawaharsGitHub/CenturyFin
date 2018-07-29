@@ -60,6 +60,22 @@ namespace CenturyFinCorpApp
             dataGridView1.DataSource = result;
         }
 
+        private void LoadNotGivenCustomer()
+        {
+            var txn = Transaction.GetDailyCollectionDetails(dateTimePicker1.Value).Select(s => s.CustomerSequenceNo).ToList();
+
+            var cus = (from c in Customer.GetAllCustomer()
+                      where c.IsActive == true && txn.Contains(c.CustomerSeqNumber) == false
+                      select new { c.CustomerId, c.Name, c.IsActive, c.LoanAmount, c.Interest }).ToList();
+
+            //label1.Text = $"Total Collection is: {amountReceived}";
+            label2.Text = $"{cus.Count()} customers NOT PAID out of {cus.Count(c => c.IsActive)} MISSING AMOUNT: (Rs.{(cus.Sum(s => s.LoanAmount) / 100)})";
+
+            dataGridView1.DataSource = cus;
+        }
+
+
+
         private void CalculateIncome(bool considerSalary = false)
         {
 
@@ -195,6 +211,22 @@ namespace CenturyFinCorpApp
 
             mainForm.ShowForm(selectedCustomer.TransactionId);
 
+        }
+
+        private void chkNotGivenCustomer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkNotGivenCustomer.Checked)
+            {
+                // Load Not Given CUstomer;
+
+                dataGridView1.DataSource = null;
+                LoadNotGivenCustomer();
+               
+            }
+            else
+            {
+                LoadDailyCollection();
+            }
         }
     }
 

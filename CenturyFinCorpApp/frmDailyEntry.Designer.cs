@@ -40,6 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.lblOutStanding = new System.Windows.Forms.Label();
+            this.chkNotGivenCustomer = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.SuspendLayout();
@@ -158,11 +159,23 @@
             this.lblOutStanding.TabIndex = 11;
             this.lblOutStanding.Text = "OUTSTANDING";
             // 
+            // chkNotGivenCustomer
+            // 
+            this.chkNotGivenCustomer.AutoSize = true;
+            this.chkNotGivenCustomer.Location = new System.Drawing.Point(513, 37);
+            this.chkNotGivenCustomer.Name = "chkNotGivenCustomer";
+            this.chkNotGivenCustomer.Size = new System.Drawing.Size(104, 17);
+            this.chkNotGivenCustomer.TabIndex = 12;
+            this.chkNotGivenCustomer.Text = "Show Not Given";
+            this.chkNotGivenCustomer.UseVisualStyleBackColor = true;
+            this.chkNotGivenCustomer.CheckedChanged += new System.EventHandler(this.chkNotGivenCustomer_CheckedChanged);
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.chkNotGivenCustomer);
             this.Controls.Add(this.lblOutStanding);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
@@ -198,5 +211,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblOutStanding;
+        private System.Windows.Forms.CheckBox chkNotGivenCustomer;
     }
 }
