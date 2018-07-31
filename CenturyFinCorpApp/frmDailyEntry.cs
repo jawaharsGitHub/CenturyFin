@@ -63,13 +63,13 @@ namespace CenturyFinCorpApp
         private void LoadNotGivenCustomer()
         {
             var txn = Transaction.GetDailyCollectionDetails(dateTimePicker1.Value).Select(s => s.CustomerSequenceNo).ToList();
+            var activeCustomers = Customer.GetAllCustomer().Where(w => w.IsActive == true).ToList();
 
-            var cus = (from c in Customer.GetAllCustomer()
-                      where c.IsActive == true && txn.Contains(c.CustomerSeqNumber) == false
-                      select new { c.CustomerId, c.Name, c.IsActive, c.LoanAmount, c.Interest }).ToList();
+            var cus = (from c in activeCustomers
+                       where txn.Contains(c.CustomerSeqNumber) == false
+                       select new { c.CustomerId, c.Name, c.IsActive, c.LoanAmount, c.Interest }).ToList();
 
-            //label1.Text = $"Total Collection is: {amountReceived}";
-            label2.Text = $"{cus.Count()} customers NOT PAID out of {cus.Count(c => c.IsActive)} MISSING AMOUNT: (Rs.{(cus.Sum(s => s.LoanAmount) / 100)})";
+            label2.Text = $"{cus.Count()} customers NOT PAID out of {activeCustomers.Count} (MISSING AMOUNT: Rs.{(cus.Sum(s => s.LoanAmount) / 100)})";
 
             dataGridView1.DataSource = cus;
         }
@@ -221,7 +221,7 @@ namespace CenturyFinCorpApp
 
                 dataGridView1.DataSource = null;
                 LoadNotGivenCustomer();
-               
+
             }
             else
             {
