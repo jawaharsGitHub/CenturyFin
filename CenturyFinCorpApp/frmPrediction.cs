@@ -26,13 +26,13 @@ namespace CenturyFinCorpApp
             var previousPrediction = new Prediction() { NewOutstanding = inputMoney };
             List<Prediction> lst = new List<Prediction>();
 
-
+            int j = 0;
 
             for (int i = 1; i <= 100; i++)
             {
-                var predict = new Prediction() { OutstandingAmount = previousPrediction.NewOutstanding, NewCustomerNumber = i };
+                var predict = new Prediction() { OutstandingAmount = previousPrediction.NewOutstanding, NewCustomerNumber = j };
 
-                predict.CollectionAmount = (previousPrediction.NewOutstanding / 100) + ((predict.NewCustomerNumber - 1) * 100);
+                predict.CollectionAmount = (10000) + ((predict.NewCustomerNumber - 1) * 100);
 
                 predict.OutstandingAmount = previousPrediction.NewOutstanding - predict.CollectionAmount;
 
@@ -46,9 +46,15 @@ namespace CenturyFinCorpApp
                 int interest = 0;
                 if (canGive >= 10000)
                 {
-                    interest = (canGive / 100) * 10; // given money's 10%'
-                    predict.GivenMoney = canGive; // ROund 0f 1000 inhand money.
-                    predict.InHandAfterGiven = (predict.InHandBeforeGiven - (predict.GivenMoney - interest)); // + (predict.InHandBeforeGiven % 10000);
+                   
+
+                    while (predict.InHandBeforeGiven >= 10000)
+                    {
+                        interest = (canGive / 100) * 10; // given money's 10%'
+                        predict.GivenMoney = canGive; // ROund 0f 1000 inhand money.
+                        predict.InHandAfterGiven = (predict.InHandBeforeGiven - (predict.GivenMoney - interest)); // + (predict.InHandBeforeGiven % 10000);
+                        j += 1;
+                    }
                 }
 
                 predict.NewOutstanding = predict.OutstandingAmount + predict.GivenMoney;
@@ -58,6 +64,7 @@ namespace CenturyFinCorpApp
                 lst.Add(predict);
 
                 previousPrediction = predict;
+                //j += 1;
 
 
             }
