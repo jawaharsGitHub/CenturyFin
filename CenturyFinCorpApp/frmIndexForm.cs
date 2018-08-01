@@ -92,13 +92,7 @@ namespace CenturyFinCorpApp
         }
         public void ShowForm<T>(Customer cus = null) where T : UserControl, new()
         {
-            if (isAdded && panel1.Controls.Count > 0)
-            {
-                panel1.Controls.RemoveAt(0);
-            }
-
-
-            isAdded = true;
+            
             T ac;
             if (cus == null)
             {
@@ -106,11 +100,29 @@ namespace CenturyFinCorpApp
             }
             else
             {
+                var txns = Transaction.GetTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber, (cus.IsActive == false));
+
+                if (txns == null)
+                {
+                    MessageBox.Show("May be you didn't run Closed Batch, Please run and try this!");
+                    return;
+                }
+
                 ac = new frmCustomerTransaction(cus) as T;
+
                 //ac.Parent = parentForm;
             }
             //ac = new T();
             //ac.TopLevel = false;
+
+            if (isAdded && panel1.Controls.Count > 0)
+            {
+                panel1.Controls.RemoveAt(0);
+            }
+
+
+            isAdded = true;
+
 
             // very important property, pls dont remove it, then u have to restart ur system!!!
             panel1.Controls.Add(ac);

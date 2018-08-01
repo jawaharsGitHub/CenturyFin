@@ -223,10 +223,15 @@ namespace DataAccess
             {
                 var txnFile = isClosedTxn ? $"{AppConfiguration.BackupFolderPath}/{customerId}/{customerId}_{sequenceNo}.json" : AppConfiguration.TransactionFile;
 
-                var json = File.ReadAllText(txnFile);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
-                if (list == null) return null;
-                return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).OrderBy(o => o.TransactionId).ToList();
+                if (File.Exists(txnFile))
+                {
+                    var json = File.ReadAllText(txnFile);
+                    List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                    if (list == null) return null;
+                    return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).OrderBy(o => o.TransactionId).ToList();
+                }
+
+                return null;
             }
             catch (Exception ex)
             {
@@ -360,7 +365,7 @@ namespace DataAccess
 
             var data = (from c in customers
                         join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
-                        select new { c.CustomerSeqNumber, c.Name, c.AmountGivenDate, c.LoanAmount, t.Balance, NoOfDays =  (DateTime.Now - c.AmountGivenDate).Value.Days}).OrderBy(o => o.Balance).Take(top).ToList();
+                        select new { c.CustomerSeqNumber, c.Name, c.AmountGivenDate, c.LoanAmount, t.Balance, NoOfDays = (DateTime.Now - c.AmountGivenDate).Value.Days }).OrderBy(o => o.Balance).Take(top).ToList();
 
             return data;
 

@@ -423,9 +423,9 @@
     "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-04-09T00:00:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-08-01T13:36:30",
     "ModifiedDate": null
   },
   {
