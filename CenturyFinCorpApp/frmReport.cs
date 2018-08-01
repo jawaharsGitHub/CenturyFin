@@ -1,7 +1,9 @@
 ﻿using Common;
 using DataAccess;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -17,6 +19,20 @@ namespace CenturyFinCorpApp
 
             ShowOutstandingMoney();
             ShowFulAssetMoney();
+
+            CustomerGrowth();
+        }
+
+        private void CustomerGrowth()
+        {
+            var customers = (from c in Customer.GetAllCustomer()
+                             orderby c.AmountGivenDate
+                             group c by c.AmountGivenDate.Value.Month into newGroup
+
+                             select new { Month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(newGroup.Key), Count = newGroup.Count() }).ToList();
+
+            dataGridView1.DataSource = customers;
+
         }
 
         private void ShowOutstandingMoney()

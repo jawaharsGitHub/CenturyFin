@@ -34,6 +34,9 @@
             this.lblTotalAsset = new System.Windows.Forms.Label();
             this.btnClosedTxn = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -96,10 +99,29 @@
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(692, 37);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(335, 367);
+            this.dataGridView1.TabIndex = 19;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(692, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 13);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "NOTE PER MONTH:";
+            // 
             // frmReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnClosedTxn);
             this.Controls.Add(this.lblTotalAsset);
@@ -107,7 +129,8 @@
             this.Controls.Add(this.lblOutStanding);
             this.Controls.Add(this.label1);
             this.Name = "frmReport";
-            this.Size = new System.Drawing.Size(917, 519);
+            this.Size = new System.Drawing.Size(1266, 519);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,5 +144,7 @@
         private System.Windows.Forms.Label lblTotalAsset;
         private System.Windows.Forms.Button btnClosedTxn;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label3;
     }
 }
