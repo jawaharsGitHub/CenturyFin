@@ -337,6 +337,37 @@ namespace DataAccess
 
         }
 
+        public static dynamic GetTransactionsToBeClosedSoon(int top)
+        {
+            var json = File.ReadAllText(AppConfiguration.TransactionFile);
+
+            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+
+            var result = new List<Transaction>();
+
+            var outsideMoney = (from L in list
+                                group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
+                                select newGroup).ToList();
+
+            var customers = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
+
+
+            outsideMoney.ForEach(fe =>
+            {
+                result.Add(fe.OrderBy(o => o.Balance).First());
+            });
+            //return outsideMoney;
+
+            var data = (from c in customers
+                        join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
+                        select new { c.CustomerSeqNumber, c.Name, c.AmountGivenDate, c.LoanAmount, t.Balance, NoOfDays =  (DateTime.Now - c.AmountGivenDate).Value.Days}).OrderBy(o => o.Balance).Take(top).ToList();
+
+            return data;
+
+
+        }
+
+
 
         public static int GetAllOutstandingAmount()
         {

@@ -21,6 +21,16 @@ namespace CenturyFinCorpApp
             ShowFulAssetMoney();
 
             CustomerGrowth();
+
+            ToBeClosedSoon();
+
+        }
+
+        private void ToBeClosedSoon()
+        {
+            var txn = Transaction.GetTransactionsToBeClosedSoon(10);
+
+            dataGridView2.DataSource = txn;
         }
 
         private void CustomerGrowth()
