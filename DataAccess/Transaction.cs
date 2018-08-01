@@ -247,7 +247,7 @@ namespace DataAccess
                 List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
                 if (list == null) return null;
 
-                return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo && c.TxnDate == txnDate).OrderByDescending(o => o.TransactionId).ToList();
+                return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo && c.TxnDate.Date == txnDate.Date).OrderByDescending(o => o.TransactionId).ToList();
             }
             catch (Exception ex)
             {
