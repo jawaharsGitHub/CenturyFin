@@ -40,15 +40,19 @@ namespace CenturyFinCorpApp
 
 
             this.Text = $"{_customerName} - CutomerId: {_customerId} SequenceNo: {_sequeneNo} {closedText}";
-           
+
             txtCollectionAmount.Text = (_loan / 100).ToString();
 
             InitializeListView();
 
             btnBalance.Visible = groupBox1.Visible = (_balance > 0);
-            
+
             LoadTxn();
-            dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+
+            if (dataGridView1.Columns.Count > 0)
+            {
+                dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            }
             lblMessage.Text = string.Empty;
         }
 
@@ -144,13 +148,13 @@ namespace CenturyFinCorpApp
 
 
             var dataDource = txns; // from t in txns
-                             //select new
-                             //{
-                             //    t.TransactionId,
-                             //    t.TxnDate,
-                             //    t.AmountReceived,
-                             //    t.Balance
-                             //};
+                                   //select new
+                                   //{
+                                   //    t.TransactionId,
+                                   //    t.TxnDate,
+                                   //    t.AmountReceived,
+                                   //    t.Balance
+                                   //};
 
 
 
@@ -162,7 +166,7 @@ namespace CenturyFinCorpApp
             var lastBalance = txns.Min(m => m.Balance);
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
-            var lastDate = (lastBalance == 0) ?  dataDource.Select(s => s.TxnDate).Max() : DateTime.Today;
+            var lastDate = dataDource.Select(s => s.TxnDate).Max(); // (lastBalance == 0) ? dataDource.Select(s => s.TxnDate).Max() : DateTime.Today;
             var DaysTaken = lastDate.Date.Subtract(startDate).Days + 2;
 
 
