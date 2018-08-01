@@ -82,7 +82,7 @@
             // 
             this.btnClosedTxn.BackColor = System.Drawing.Color.Aqua;
             this.btnClosedTxn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClosedTxn.Location = new System.Drawing.Point(619, 28);
+            this.btnClosedTxn.Location = new System.Drawing.Point(568, 10);
             this.btnClosedTxn.Name = "btnClosedTxn";
             this.btnClosedTxn.Size = new System.Drawing.Size(229, 84);
             this.btnClosedTxn.TabIndex = 5;
@@ -94,7 +94,7 @@
             // 
             this.btnRefresh.BackColor = System.Drawing.Color.Aqua;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(619, 149);
+            this.btnRefresh.Location = new System.Drawing.Point(319, 10);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(229, 84);
             this.btnRefresh.TabIndex = 18;
@@ -105,7 +105,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(893, 37);
+            this.dataGridView1.Location = new System.Drawing.Point(837, 152);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(335, 367);
             this.dataGridView1.TabIndex = 19;
@@ -113,7 +113,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(893, 4);
+            this.label3.Location = new System.Drawing.Point(837, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 13);
             this.label3.TabIndex = 20;
@@ -124,7 +124,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(3, 149);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(525, 367);
+            this.dataGridView2.Size = new System.Drawing.Size(697, 367);
             this.dataGridView2.TabIndex = 21;
             // 
             // label4
