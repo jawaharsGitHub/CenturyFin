@@ -87,6 +87,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["PhoneNumber"].Visible = false;
             dataGridView1.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["ClosedDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            dataGridView1.Columns["Name"].Width = 250;
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
