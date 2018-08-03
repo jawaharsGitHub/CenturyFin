@@ -399,13 +399,21 @@ namespace DataAccess
                 //    outsideMoney += item.OrderBy(o => o.Balance).First().Balance;
                 //}
 
+                // This needs to validate.
                 var outsideMoney = (from L in list
+
                                     group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
                                     //from g in newGroup.ToList()
-                                    select newGroup.ToList().OrderBy(w => w.Balance).First()).ToList().Sum(s => s.Balance);
+                                    select newGroup.ToList().OrderBy(w => w.Balance).First()).ToList(); //.Sum(s => s.Balance);
+
+                // this is useful to calculate all external balances
+                var result = (from c in Customer.GetAllCustomer()
+                             join t in outsideMoney on c.CustomerSeqNumber equals t.CustomerSequenceNo
+                             orderby c.AmountGivenDate
+                             select new { c.Name, c.AmountGivenDate, c.CustomerSeqNumber, c.CustomerId, t.Balance, c.LoanAmount, t.TransactionId  }).ToList();
 
 
-                return outsideMoney;
+                return result.Sum( s => s.Balance);
 
             }
             catch (Exception ex)
@@ -433,8 +441,6 @@ namespace DataAccess
             List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
             if (list == null) return null;
             var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
-
-
 
             //Get from Closed Transactions
             var fromClosedTxn = ProcessDirectory(AppConfiguration.BackupFolderPath, inputDate);
