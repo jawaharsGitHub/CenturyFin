@@ -704,7 +704,7 @@
   {
     "CustomerSeqNumber": 57,
     "CustomerId": 40,
-    "Name": "Raj - Auto Driver - Kadamba Nagar",
+    "Name": "Raja - Auto Driver - Kadamba Nagar",
     "PhoneNumber": "",
     "LoanAmount": 15000,
     "Interest": 1200,
@@ -1322,19 +1322,6 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-07-13T13:01:34",
-    "ClosedDate": null,
-    "ModifiedDate": null
-  },
-  {
-    "CustomerSeqNumber": 106,
-    "CustomerId": 73,
-    "Name": "Raja - Auto",
-    "PhoneNumber": "",
-    "LoanAmount": 15000,
-    "Interest": 1200,
-    "IsExistingCustomer": false,
-    "IsActive": true,
-    "AmountGivenDate": "2018-07-07T13:04:50",
     "ClosedDate": null,
     "ModifiedDate": null
   },
