@@ -75,9 +75,9 @@ namespace CenturyFinCorpApp
 
             this.Text = $"Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
 
-            rdbActive.Text = $"Running Notes({activeTxn})";
-            rdbClosed.Text = $"Closed Notes({closedTxn})";
-            rdbAll.Text = $"Total Notes({totalTxn})";
+            rdbActive.Text = $"RUNNING NOTES({activeTxn})";
+            rdbClosed.Text = $"CLOSED NOTES({closedTxn})";
+            rdbAll.Text = $"ALL NOTES({totalTxn})";
         }
 
         private void AdjustColumnOrder()

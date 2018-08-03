@@ -1,5 +1,4 @@
-﻿using CenturyFinCorpApp;
-using Common;
+﻿using Common;
 using DataAccess;
 using Newtonsoft.Json;
 using System;
@@ -17,6 +16,7 @@ namespace CenturyFinCorpApp
 
         bool usingMenu = false;
         bool isAdded = false; // for child forms
+        public static MenuStrip menuStrip;
 
         public frmIndexForm()
         {
@@ -30,9 +30,13 @@ namespace CenturyFinCorpApp
 
 
             // Menu
-            var menuStrip = new MenuStrip();
-            menuStrip.Location = new Point(0, 0);
-            menuStrip.Name = "MenuStrip";
+            menuStrip = new MenuStrip
+            {
+                Location = new Point(0, 0),
+                Name = "MenuStrip"
+            };
+
+            
             //Customer
             var mnuCustomer = new ToolStripMenuItem() { Name = "Customer", Text = "Customers" };
             mnuCustomer.Click += (s, e) => ShowForm<frmCustomers>(); ;
@@ -92,7 +96,7 @@ namespace CenturyFinCorpApp
         }
         public void ShowForm<T>(Customer cus = null) where T : UserControl, new()
         {
-            
+
             T ac;
             if (cus == null)
             {
@@ -108,12 +112,8 @@ namespace CenturyFinCorpApp
                     return;
                 }
 
-                ac = new frmCustomerTransaction(cus) as T;
-
-                //ac.Parent = parentForm;
+                ac = new frmCustomerTransaction(cus, this) as T;
             }
-            //ac = new T();
-            //ac.TopLevel = false;
 
             if (isAdded && panel1.Controls.Count > 0)
             {
@@ -122,17 +122,7 @@ namespace CenturyFinCorpApp
 
 
             isAdded = true;
-
-
-            // very important property, pls dont remove it, then u have to restart ur system!!!
             panel1.Controls.Add(ac);
-            if (usingMenu)
-            {
-                //ac.ControlBox = false;
-                //ac.FormBorderStyle = FormBorderStyle.FixedSingle;
-                //ac.ShowInTaskbar = false;
-            }
-
             ac.Show();
         }
 

@@ -20,9 +20,12 @@ namespace CenturyFinCorpApp
             InitializeComponent();
         }
 
-        public frmCustomerTransaction(Customer _customer)
+        public frmCustomerTransaction(Customer _customer, Form parentForm)
         {
             InitializeComponent();
+
+            //frmIndexForm.menuStrip.Items[].Select();
+            //frmIndexForm.menuStrip.Items[3].Select();
 
             _customerId = _customer.CustomerId;
             _sequeneNo = _customer.CustomerSeqNumber;
@@ -39,11 +42,9 @@ namespace CenturyFinCorpApp
             var closedText = (_balance == 0) ? "(CLOSED)" : string.Empty;
 
 
-            this.Text = $"{_customerName} - CutomerId: {_customerId} SequenceNo: {_sequeneNo} {closedText}";
+            //parentForm.Text = $"{_customerName} - CutomerId: {_customerId} SequenceNo: {_sequeneNo} {closedText}";
 
             txtCollectionAmount.Text = (_loan / 100).ToString();
-
-            InitializeListView();
 
             btnBalance.Visible = groupBox1.Visible = (_balance > 0);
 
@@ -129,12 +130,6 @@ namespace CenturyFinCorpApp
             //InHand.AddInHand(txn.AmountReceived);
 
 
-
-        }
-
-
-        private void InitializeListView()
-        {
 
         }
 

@@ -42,7 +42,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 46);
+            this.dataGridView1.Location = new System.Drawing.Point(24, 39);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1237, 527);
             this.dataGridView1.TabIndex = 0;
@@ -53,12 +53,12 @@
             // rdbActive
             // 
             this.rdbActive.AutoSize = true;
-            this.rdbActive.Location = new System.Drawing.Point(46, 13);
+            this.rdbActive.Location = new System.Drawing.Point(24, 14);
             this.rdbActive.Name = "rdbActive";
-            this.rdbActive.Size = new System.Drawing.Size(96, 17);
+            this.rdbActive.Size = new System.Drawing.Size(116, 17);
             this.rdbActive.TabIndex = 1;
             this.rdbActive.Tag = "RN";
-            this.rdbActive.Text = "Running Notes";
+            this.rdbActive.Text = "RUNNING NOTES";
             this.rdbActive.UseVisualStyleBackColor = true;
             this.rdbActive.CheckedChanged += new System.EventHandler(this.rdbActive_CheckedChanged);
             // 
@@ -77,7 +77,7 @@
             // rdbAll
             // 
             this.rdbAll.AutoSize = true;
-            this.rdbAll.Location = new System.Drawing.Point(282, 13);
+            this.rdbAll.Location = new System.Drawing.Point(299, 14);
             this.rdbAll.Name = "rdbAll";
             this.rdbAll.Size = new System.Drawing.Size(67, 17);
             this.rdbAll.TabIndex = 3;
@@ -88,7 +88,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(386, 13);
+            this.txtSearch.Location = new System.Drawing.Point(507, 13);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(190, 20);
             this.txtSearch.TabIndex = 4;
@@ -103,7 +103,7 @@
             // 
             // btnAddCustomer
             // 
-            this.btnAddCustomer.Location = new System.Drawing.Point(591, 13);
+            this.btnAddCustomer.Location = new System.Drawing.Point(1126, 10);
             this.btnAddCustomer.Name = "btnAddCustomer";
             this.btnAddCustomer.Size = new System.Drawing.Size(102, 23);
             this.btnAddCustomer.TabIndex = 7;
