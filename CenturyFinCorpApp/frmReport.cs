@@ -17,18 +17,25 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
 
+            comboBox1.DataSource = ReportOption.GetOptions();
+
             ShowOutstandingMoney();
             ShowFulAssetMoney();
 
             CustomerGrowth();
-
-            ToBeClosedSoon();
 
         }
 
         private void ToBeClosedSoon()
         {
             var txn = Transaction.GetTransactionsToBeClosedSoon(100);
+
+            dataGridView2.DataSource = txn;
+        }
+
+        private void NotGivenForFewDays()
+        {
+            var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
             dataGridView2.DataSource = txn;
         }
@@ -88,5 +95,38 @@ namespace CenturyFinCorpApp
         {
             btnClosedTxn.Text = $"Run Closed Txn ({Transaction.GetClosedTxn()})";
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var value = ((ReportOption)comboBox1.SelectedItem).Value;
+
+            if(value == 1)
+            {
+                ToBeClosedSoon();
+            }
+            else if (value == 2)
+            {
+                NotGivenForFewDays();
+            }
+        }
+    }
+
+    public class ReportOption
+    {
+
+        public static List<ReportOption> GetOptions()
+        {
+            return new List<ReportOption>() {
+
+                new ReportOption() { Value = 1, Name =  "TO BE CLOSED SOON"   },
+                new ReportOption() { Value = 2, Name =  "NOT GIVEN FOR FEW DAYS"   }
+
+            };
+        }
+
+        public int Value { get; set; }
+
+        public string Name { get; set; }
+
     }
 }

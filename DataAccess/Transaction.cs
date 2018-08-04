@@ -381,6 +381,48 @@ namespace DataAccess
 
         }
 
+        public static dynamic GetTransactionsNotGivenForFewDays()
+        {
+            var json = File.ReadAllText(AppConfiguration.TransactionFile);
+
+            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+
+            var result = new List<Transaction>();
+
+            var outsideMoney = (from L in list
+                                group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
+                                select newGroup).ToList();
+
+            var customers = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
+
+
+            outsideMoney.ForEach(fe =>
+            {
+                result.Add(fe.OrderBy(o => o.TxnDate).Last());
+            });
+            //return outsideMoney;
+
+            var data = (from c in customers
+                        join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
+                        select new
+                        {
+                            c.CustomerSeqNumber,
+                            c.Name,
+                            t.TxnDate,
+                            c.AmountGivenDate,
+                            c.LoanAmount,
+                            t.Balance,
+                            NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays
+                            //RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
+                            //DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays > 100 ? -1 : (t.Balance / (c.LoanAmount / 100))),
+
+                        }).OrderByDescending(o => o.NotGivenFor).ToList();
+
+            return data;
+
+
+        }
+
 
 
         public static int GetAllOutstandingAmount()
