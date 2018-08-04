@@ -93,6 +93,7 @@
             this.txtSearch.Size = new System.Drawing.Size(190, 20);
             this.txtSearch.TabIndex = 4;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
             // dateTimePicker1
             // 

@@ -75,9 +75,9 @@ namespace CenturyFinCorpApp
 
             this.Text = $"Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
 
-            rdbActive.Text = $"RUNNING NOTES({activeTxn})";
-            rdbClosed.Text = $"CLOSED NOTES({closedTxn})";
-            rdbAll.Text = $"ALL NOTES({totalTxn})";
+            rdbActive.Text = $"RUNNING NOTES ({activeTxn})";
+            rdbClosed.Text = $"CLOSED NOTES ({closedTxn})";
+            rdbAll.Text = $"ALL NOTES ({totalTxn})";
         }
 
         private void AdjustColumnOrder()
@@ -337,6 +337,12 @@ namespace CenturyFinCorpApp
         private void frmCustomers_Load(object sender, EventArgs e)
         {
             txtSearch.Focus();
+        }
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["CollectionAmt"];
+            dataGridView1.BeginEdit(true);
         }
     }
 }
