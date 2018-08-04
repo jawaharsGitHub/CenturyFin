@@ -44,13 +44,14 @@
             this.rdbDesc = new System.Windows.Forms.RadioButton();
             this.lblNoOfDays = new System.Windows.Forms.Label();
             this.lblPercentageGain = new System.Windows.Forms.Label();
+            this.lblDetail = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoan
             // 
-            this.btnLoan.Location = new System.Drawing.Point(77, 22);
+            this.btnLoan.Location = new System.Drawing.Point(30, 28);
             this.btnLoan.Name = "btnLoan";
             this.btnLoan.Size = new System.Drawing.Size(112, 50);
             this.btnLoan.TabIndex = 1;
@@ -64,7 +65,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtCollectionAmount);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Location = new System.Drawing.Point(356, 13);
+            this.groupBox1.Location = new System.Drawing.Point(356, 18);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(430, 96);
             this.groupBox1.TabIndex = 2;
@@ -116,7 +117,7 @@
             // 
             // btnBalance
             // 
-            this.btnBalance.Location = new System.Drawing.Point(216, 23);
+            this.btnBalance.Location = new System.Drawing.Point(169, 29);
             this.btnBalance.Name = "btnBalance";
             this.btnBalance.Size = new System.Drawing.Size(112, 50);
             this.btnBalance.TabIndex = 4;
@@ -172,7 +173,6 @@
             this.rdbAsc.Name = "rdbAsc";
             this.rdbAsc.Size = new System.Drawing.Size(61, 17);
             this.rdbAsc.TabIndex = 9;
-            this.rdbAsc.TabStop = true;
             this.rdbAsc.Text = "By ASC";
             this.rdbAsc.UseVisualStyleBackColor = true;
             this.rdbAsc.CheckedChanged += new System.EventHandler(this.rdbAsc_CheckedChanged);
@@ -180,6 +180,7 @@
             // rdbDesc
             // 
             this.rdbDesc.AutoSize = true;
+            this.rdbDesc.Checked = true;
             this.rdbDesc.Location = new System.Drawing.Point(120, 143);
             this.rdbDesc.Name = "rdbDesc";
             this.rdbDesc.Size = new System.Drawing.Size(69, 17);
@@ -207,11 +208,21 @@
             this.lblPercentageGain.TabIndex = 12;
             this.lblPercentageGain.Text = "lblPercentageGain";
             // 
+            // lblDetail
+            // 
+            this.lblDetail.AutoSize = true;
+            this.lblDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetail.Location = new System.Drawing.Point(30, 6);
+            this.lblDetail.Name = "lblDetail";
+            this.lblDetail.Size = new System.Drawing.Size(101, 13);
+            this.lblDetail.TabIndex = 13;
+            this.lblDetail.Text = "[customer detail]";
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 517);
+            this.Controls.Add(this.lblDetail);
             this.Controls.Add(this.lblPercentageGain);
             this.Controls.Add(this.lblNoOfDays);
             this.Controls.Add(this.rdbDesc);
@@ -224,7 +235,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLoan);
             this.Name = "frmCustomerTransaction";
-            this.Text = "CustomerDetail";
+            this.Size = new System.Drawing.Size(1206, 517);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -250,5 +261,6 @@
         private System.Windows.Forms.Label lblNoOfDays;
         private System.Windows.Forms.Label lblPercentageGain;
         private System.Windows.Forms.Button btnNextDayTxn;
+        private System.Windows.Forms.Label lblDetail;
     }
 }

@@ -365,7 +365,16 @@ namespace DataAccess
 
             var data = (from c in customers
                         join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
-                        select new { c.CustomerSeqNumber, c.Name, c.AmountGivenDate, c.LoanAmount, t.Balance, NoOfDays = (DateTime.Now - c.AmountGivenDate).Value.Days }).OrderBy(o => o.Balance).Take(top).ToList();
+                        select new
+                        {
+                            c.CustomerSeqNumber,
+                            c.Name,
+                            c.AmountGivenDate,
+                            c.LoanAmount,
+                            t.Balance,
+                            RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
+                            DaysToClose = (t.Balance / (c.LoanAmount / 100))
+                        }).OrderBy(o => o.DaysToClose).Take(top).ToList();
 
             return data;
 
@@ -408,12 +417,12 @@ namespace DataAccess
 
                 // this is useful to calculate all external balances
                 var result = (from c in Customer.GetAllCustomer()
-                             join t in outsideMoney on c.CustomerSeqNumber equals t.CustomerSequenceNo
-                             orderby c.AmountGivenDate
-                             select new { c.Name, c.AmountGivenDate, c.CustomerSeqNumber, c.CustomerId, t.Balance, c.LoanAmount, t.TransactionId  }).ToList();
+                              join t in outsideMoney on c.CustomerSeqNumber equals t.CustomerSequenceNo
+                              orderby c.AmountGivenDate
+                              select new { c.Name, c.AmountGivenDate, c.CustomerSeqNumber, c.CustomerId, t.Balance, c.LoanAmount, t.TransactionId }).ToList();
 
 
-                return result.Sum( s => s.Balance);
+                return result.Sum(s => s.Balance);
 
             }
             catch (Exception ex)

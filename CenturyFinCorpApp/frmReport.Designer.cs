@@ -124,7 +124,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(3, 149);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(697, 367);
+            this.dataGridView2.Size = new System.Drawing.Size(763, 367);
             this.dataGridView2.TabIndex = 21;
             // 
             // label4

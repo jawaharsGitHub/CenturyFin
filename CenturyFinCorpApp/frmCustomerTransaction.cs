@@ -42,7 +42,7 @@ namespace CenturyFinCorpApp
             var closedText = (_balance == 0) ? "(CLOSED)" : string.Empty;
 
 
-            //parentForm.Text = $"{_customerName} - CutomerId: {_customerId} SequenceNo: {_sequeneNo} {closedText}";
+            lblDetail.Text = $"{_customerName} - CutomerId: {_customerId} SequenceNo: {_sequeneNo} {closedText}";
 
             txtCollectionAmount.Text = (_loan / 100).ToString();
 
@@ -168,7 +168,21 @@ namespace CenturyFinCorpApp
             lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";
             lblLastDate.Text = $"Last Date: {lastDate.Date.ToShortDateString()}";
 
-            lblNoOfDays.Text = $"Days taken to Return {DaysTaken}";
+            var expected = (DaysTaken * (_loan / 100)) > _loan ? -1 : (DaysTaken * (_loan / 100));
+            var actual = _loan - _balance;
+
+
+            lblNoOfDays.Text = $"Days taken to Return {DaysTaken} (Expected {expected} ACTUAL {actual})";
+
+            if (expected == -1)
+                lblNoOfDays.ForeColor = System.Drawing.Color.IndianRed;
+            else if (actual < expected)
+                lblNoOfDays.ForeColor = System.Drawing.Color.Red;
+            else if (actual > expected)
+                lblNoOfDays.ForeColor = System.Drawing.Color.Green;
+            else if (actual == expected)
+                lblNoOfDays.ForeColor = System.Drawing.Color.Honeydew;
+
 
             var interestRate = (cus.LoanAmount / cus.Interest) == 12 ? 8.69 : 11.11;
 
