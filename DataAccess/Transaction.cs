@@ -373,7 +373,7 @@ namespace DataAccess
                             c.LoanAmount,
                             t.Balance,
                             RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
-                            DaysToClose = (t.Balance / (c.LoanAmount / 100))
+                            DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays > 100 ? -1 : (t.Balance / (c.LoanAmount / 100)))
                         }).OrderBy(o => o.DaysToClose).Take(top).ToList();
 
             return data;

@@ -28,7 +28,7 @@ namespace CenturyFinCorpApp
 
         private void ToBeClosedSoon()
         {
-            var txn = Transaction.GetTransactionsToBeClosedSoon(10);
+            var txn = Transaction.GetTransactionsToBeClosedSoon(100);
 
             dataGridView2.DataSource = txn;
         }

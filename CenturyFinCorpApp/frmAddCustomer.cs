@@ -111,7 +111,7 @@ namespace CenturyFinCorpApp
             if ((sender as CheckBox).Checked)
             {
                 // load existing customer
-                cmbExistingCustomer.DataSource = Customer.GetAllCustomer().DistinctBy(d => d.CustomerId).ToList();
+                cmbExistingCustomer.DataSource = Customer.GetAllCustomer().DistinctBy(d => d.CustomerId).OrderBy(o => o.Name).ToList();
                 cmbExistingCustomer.DisplayMember = "Name";
                 cmbExistingCustomer.ValueMember = "CustomerId";
                 txtName.Enabled = txtPhone.Enabled = false;

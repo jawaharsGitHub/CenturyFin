@@ -133,7 +133,7 @@ namespace CenturyFinCorpApp
 
         }
 
-        private void LoadTxn(bool isDesc = true)
+        private void LoadTxn(bool isDesc = true, bool byBalance = false)
         {
 
             var txns = Transaction.GetTransactionDetails(_customerId, _sequeneNo, _isClosedTx);
@@ -142,18 +142,12 @@ namespace CenturyFinCorpApp
             if (txns == null || txns.Count == 0) return;
 
 
-            var dataDource = txns; // from t in txns
-                                   //select new
-                                   //{
-                                   //    t.TransactionId,
-                                   //    t.TxnDate,
-                                   //    t.AmountReceived,
-                                   //    t.Balance
-                                   //};
+            var dataDource = txns;
 
 
-
-            if (isDesc)
+            if (byBalance)
+                dataGridView1.DataSource = dataDource.OrderBy(o => o.Balance).ToList();
+            else if (isDesc)
                 dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate).ThenBy(t => t.Balance).ToList();
             else
                 dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate).ToList();
@@ -162,7 +156,7 @@ namespace CenturyFinCorpApp
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
             var lastDate = dataDource.Select(s => s.TxnDate).Max(); // (lastBalance == 0) ? dataDource.Select(s => s.TxnDate).Max() : DateTime.Today;
-            var DaysTaken = lastDate.Date.Subtract(startDate).Days + 2;
+            var DaysTaken = DateTime.Now.Date.Subtract(startDate).Days + 2;
 
 
             lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";
@@ -261,6 +255,13 @@ namespace CenturyFinCorpApp
             return Convert.ToString(grid.Rows[grid.CurrentCell.RowIndex].Cells[columnName].Value);
         }
 
+        private void chkByBalance_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkByBalance.Checked)
+            {
+                LoadTxn(byBalance: true);
 
+            }
+        }
     }
 }

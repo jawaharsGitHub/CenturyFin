@@ -45,6 +45,7 @@
             this.lblNoOfDays = new System.Windows.Forms.Label();
             this.lblPercentageGain = new System.Windows.Forms.Label();
             this.lblDetail = new System.Windows.Forms.Label();
+            this.chkByBalance = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -218,10 +219,22 @@
             this.lblDetail.TabIndex = 13;
             this.lblDetail.Text = "[customer detail]";
             // 
+            // chkByBalance
+            // 
+            this.chkByBalance.AutoSize = true;
+            this.chkByBalance.Location = new System.Drawing.Point(207, 147);
+            this.chkByBalance.Name = "chkByBalance";
+            this.chkByBalance.Size = new System.Drawing.Size(80, 17);
+            this.chkByBalance.TabIndex = 14;
+            this.chkByBalance.Text = "checkBox1";
+            this.chkByBalance.UseVisualStyleBackColor = true;
+            this.chkByBalance.CheckedChanged += new System.EventHandler(this.chkByBalance_CheckedChanged);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkByBalance);
             this.Controls.Add(this.lblDetail);
             this.Controls.Add(this.lblPercentageGain);
             this.Controls.Add(this.lblNoOfDays);
@@ -262,5 +275,6 @@
         private System.Windows.Forms.Label lblPercentageGain;
         private System.Windows.Forms.Button btnNextDayTxn;
         private System.Windows.Forms.Label lblDetail;
+        private System.Windows.Forms.CheckBox chkByBalance;
     }
 }
