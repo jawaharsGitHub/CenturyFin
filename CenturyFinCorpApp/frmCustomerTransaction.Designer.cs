@@ -222,11 +222,12 @@
             // chkByBalance
             // 
             this.chkByBalance.AutoSize = true;
-            this.chkByBalance.Location = new System.Drawing.Point(207, 147);
+            this.chkByBalance.Location = new System.Drawing.Point(201, 143);
             this.chkByBalance.Name = "chkByBalance";
-            this.chkByBalance.Size = new System.Drawing.Size(80, 17);
+            this.chkByBalance.Size = new System.Drawing.Size(109, 17);
             this.chkByBalance.TabIndex = 14;
-            this.chkByBalance.Text = "checkBox1";
+            this.chkByBalance.Text = "Order By Balance";
+            this.chkByBalance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkByBalance.UseVisualStyleBackColor = true;
             this.chkByBalance.CheckedChanged += new System.EventHandler(this.chkByBalance_CheckedChanged);
             // 

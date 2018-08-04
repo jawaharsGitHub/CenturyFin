@@ -30,14 +30,14 @@ namespace CenturyFinCorpApp
         {
             var txn = Transaction.GetTransactionsToBeClosedSoon(100);
 
-            dataGridView2.DataSource = txn;
+            dgReports.DataSource = txn;
         }
 
         private void NotGivenForFewDays()
         {
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
-            dataGridView2.DataSource = txn;
+            dgReports.DataSource = txn;
         }
 
         private void CustomerGrowth()

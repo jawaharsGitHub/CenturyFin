@@ -61,7 +61,7 @@
   <ItemGroup>
     <Compile Include="DailyCollectionDetail.cs" />
     <Compile Include="DataExtension.cs" />
-    <Compile Include="Data\BaseClass.cs" />
+    <Compile Include="BaseClass.cs" />
     <Compile Include="Expenditure.cs" />
     <Compile Include="IncomeReport.cs" />
     <Compile Include="InHandAndBank.cs" />
@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\ClosedNotes\10\10_10.json" />
+    <None Include="Data\ClosedNotes\10\10_28.json" />
     <None Include="Data\ClosedNotes\11\11_11.json" />
     <None Include="Data\ClosedNotes\12\12_12.json" />
     <None Include="Data\ClosedNotes\12\12_46.json" />
@@ -100,9 +101,12 @@
     <None Include="Data\ClosedNotes\1\1_1.json" />
     <None Include="Data\ClosedNotes\20\20_20.json" />
     <None Include="Data\ClosedNotes\20\20_21.json" />
+    <None Include="Data\ClosedNotes\20\20_59.json" />
     <None Include="Data\ClosedNotes\21\21_24.json" />
     <None Include="Data\ClosedNotes\22\22_23.json" />
+    <None Include="Data\ClosedNotes\23\23_25.json" />
     <None Include="Data\ClosedNotes\25\25_33.json" />
+    <None Include="Data\ClosedNotes\27\27_35.json" />
     <None Include="Data\ClosedNotes\28\28_36.json" />
     <None Include="Data\ClosedNotes\2\2_2.json" />
     <None Include="Data\ClosedNotes\2\2_47.json" />
@@ -116,7 +120,10 @@
     <None Include="Data\ClosedNotes\3\3_43.json" />
     <None Include="Data\ClosedNotes\3\3_44.json" />
     <None Include="Data\ClosedNotes\44\44_63.json" />
+    <None Include="Data\ClosedNotes\49\49_69.json" />
     <None Include="Data\ClosedNotes\4\4_4.json" />
+    <None Include="Data\ClosedNotes\56\56_79.json" />
+    <None Include="Data\ClosedNotes\5\5_26.json" />
     <None Include="Data\ClosedNotes\5\5_31.json" />
     <None Include="Data\ClosedNotes\5\5_5.json" />
     <None Include="Data\ClosedNotes\6\6_6.json" />

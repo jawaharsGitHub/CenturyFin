@@ -36,11 +36,11 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgReports = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgReports)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -120,13 +120,13 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "NOTE PER MONTH:";
             // 
-            // dataGridView2
+            // dgReports
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 149);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(763, 367);
-            this.dataGridView2.TabIndex = 21;
+            this.dgReports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgReports.Location = new System.Drawing.Point(3, 149);
+            this.dgReports.Name = "dgReports";
+            this.dgReports.Size = new System.Drawing.Size(763, 367);
+            this.dgReports.TabIndex = 21;
             // 
             // label4
             // 
@@ -158,7 +158,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dgReports);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnRefresh);
@@ -170,7 +170,7 @@
             this.Name = "frmReport";
             this.Size = new System.Drawing.Size(1266, 519);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgReports)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,7 +186,7 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgReports;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
     }
