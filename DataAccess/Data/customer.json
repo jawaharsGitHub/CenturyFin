@@ -385,7 +385,7 @@
     "Interest": 2400,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-03-20T00:00:00",
+    "AmountGivenDate": "2018-03-18T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1230,7 +1230,7 @@
     "Interest": 800,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-16T00:00:00",
+    "AmountGivenDate": "2018-05-10T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1517,6 +1517,32 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-07-31T12:57:39.2362907-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 122,
+    "CustomerId": 84,
+    "Name": "Kumar - Market - Kaikari Kadia - Pound Kadai Theru",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-04T21:38:59.0220398-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 123,
+    "CustomerId": 1,
+    "Name": "Manikandan T Stall Kadamba Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-04T21:39:43.0232994-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
