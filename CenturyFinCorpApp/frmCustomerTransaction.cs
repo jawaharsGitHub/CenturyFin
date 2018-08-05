@@ -156,7 +156,7 @@ namespace CenturyFinCorpApp
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
             var lastDate = dataDource.Select(s => s.TxnDate).Max(); // (lastBalance == 0) ? dataDource.Select(s => s.TxnDate).Max() : DateTime.Today;
-            var DaysTaken = DateTime.Now.Date.Subtract(startDate).Days + 2;
+            var DaysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 :  DateTime.Now.Date.Subtract(startDate).Days + 2;
 
 
             lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";
