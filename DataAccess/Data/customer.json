@@ -1545,5 +1545,31 @@
     "AmountGivenDate": "2018-08-05T00:36:47",
     "ClosedDate": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 125,
+    "CustomerId": 71,
+    "Name": "Mani - PattinamKathan - T Shop",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-06T13:21:06.3515933-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 126,
+    "CustomerId": 85,
+    "Name": "Gurusamy - Vadakku theru - petti kadai",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-06T13:21:32.4307197-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
   }
 ]
