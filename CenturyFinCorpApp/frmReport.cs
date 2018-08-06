@@ -22,7 +22,7 @@ namespace CenturyFinCorpApp
             ShowOutstandingMoney();
             ShowFulAssetMoney();
 
-            CustomerGrowth();
+            CustomerGrowth();            
 
         }
 
@@ -31,6 +31,8 @@ namespace CenturyFinCorpApp
             var txn = Transaction.GetTransactionsToBeClosedSoon(100);
 
             dgReports.DataSource = txn;
+            dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            //dgReports.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
         private void NotGivenForFewDays()
@@ -38,6 +40,8 @@ namespace CenturyFinCorpApp
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
             dgReports.DataSource = txn;
+            dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            dgReports.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
         private void CustomerGrowth()
@@ -46,9 +50,9 @@ namespace CenturyFinCorpApp
                              orderby c.AmountGivenDate
                              group c by c.AmountGivenDate.Value.Month into newGroup
 
-                             select new { Month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(newGroup.Key), Count = newGroup.Count() }).ToList();
+                             select new { Month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(newGroup.Key), Count = newGroup.Count(), GivenAmount = newGroup.Sum(s => s.LoanAmount) }).ToList();
 
-            dataGridView1.DataSource = customers;
+            dgvNotePerMonth.DataSource = customers;
 
         }
 
