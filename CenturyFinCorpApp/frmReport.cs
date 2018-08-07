@@ -22,7 +22,7 @@ namespace CenturyFinCorpApp
             ShowOutstandingMoney();
             ShowFulAssetMoney();
 
-            CustomerGrowth();            
+            CustomerGrowth();
 
         }
 
@@ -50,7 +50,14 @@ namespace CenturyFinCorpApp
                              orderby c.AmountGivenDate
                              group c by c.AmountGivenDate.Value.Month into newGroup
 
-                             select new { Month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(newGroup.Key), Count = newGroup.Count(), GivenAmount = newGroup.Sum(s => s.LoanAmount) }).ToList();
+                             select new
+                             {
+                                 Month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(newGroup.Key),
+                                 Count = newGroup.Count(),
+                                 LoanAmount = newGroup.Sum(s => s.LoanAmount),
+                                 GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)),
+                                 FutureInterest = newGroup.Sum(s => s.Interest)
+                             }).ToList();
 
             dgvNotePerMonth.DataSource = customers;
 
@@ -104,7 +111,7 @@ namespace CenturyFinCorpApp
         {
             var value = ((ReportOption)comboBox1.SelectedItem).Value;
 
-            if(value == 1)
+            if (value == 1)
             {
                 ToBeClosedSoon();
             }
