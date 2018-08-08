@@ -23,6 +23,7 @@ namespace Common
 
         public static bool usingMenu { get; } = Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]);
 
+        public static string CollectionPerDay { get; } = GetFullPath("CollectionPerDay");
 
         private static string GetFullPath(string configKey)
         {

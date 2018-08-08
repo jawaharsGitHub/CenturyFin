@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DailyCollectionDetail.cs" />
+    <Compile Include="CollectionPerDay.cs" />
     <Compile Include="DataExtension.cs" />
     <Compile Include="BaseClass.cs" />
     <Compile Include="Expenditure.cs" />
@@ -132,6 +133,7 @@
     <None Include="Data\ClosedNotes\9\9_9.json" />
     <None Include="Data\customer.json" />
     <None Include="Data\DailyCollectionBkp.json" />
+    <None Include="Data\CollectionPerDay.json" />
     <None Include="Data\Expenditure.json" />
     <None Include="Data\InHandAndBank.json" />
     <None Include="Data\Investment.json" />

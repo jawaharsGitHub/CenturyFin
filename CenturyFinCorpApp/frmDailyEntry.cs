@@ -57,6 +57,9 @@ namespace CenturyFinCorpApp
             label1.Text = $"Total Collection is: {amountReceived}";
             label2.Text = $"{result.Count()} (Rs.{amountReceived}) customers paid out of {cus.Count(c => c.IsActive)} (Rs.{(cus.Where(w => w.IsActive).Sum(s => s.LoanAmount) / 100)})";
 
+
+            //CollectionPerDay.AddObjectsToJson<CollectionPerDay>(Common.AppConfiguration.CollectionPerDay, new CollectionPerDay() { Date = dateTimePicker1.Validated });
+
             dataGridView1.DataSource = result;
         }
 
