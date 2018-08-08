@@ -20,7 +20,7 @@ namespace CenturyFinCorpApp
             comboBox1.DataSource = ReportOption.GetOptions();
 
             ShowOutstandingMoney();
-            ShowFulAssetMoney();
+            ShowTotalAssetMoney();
 
             CustomerGrowth();
 
@@ -32,7 +32,7 @@ namespace CenturyFinCorpApp
 
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-            //dgReports.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            //dgReports.Columns["CustomerId"].Visible = false;
         }
 
         private void NotGivenForFewDays()
@@ -69,7 +69,7 @@ namespace CenturyFinCorpApp
             lblOutStanding.Text = outstandingMoney.ToMoney();
         }
 
-        private void ShowFulAssetMoney()
+        private void ShowTotalAssetMoney()
         {
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
             lblTotalAsset.Text = (outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney();

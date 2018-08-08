@@ -310,5 +310,10 @@ namespace CenturyFinCorpApp
         {
             LoadAllData();
         }
+
+        private void frmIndexForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
     }
 }
