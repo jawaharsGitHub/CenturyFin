@@ -10,6 +10,10 @@ namespace CenturyFinCorpApp
 {
     public partial class frmDailyEntry : UserControl
     {
+
+        private int ActualCollection;
+        private int ExpectedCollection;
+
         public frmDailyEntry()
         {
             InitializeComponent();
@@ -54,11 +58,18 @@ namespace CenturyFinCorpApp
 
             result = result.Where(w => w.AmountReceived != 0).ToList();
 
+            ActualCollection = amountReceived;
+            ExpectedCollection = (cus.Where(w => w.IsActive).Sum(s => s.LoanAmount) / 100);
+
             label1.Text = $"Total Collection is: {amountReceived}";
-            label2.Text = $"{result.Count()} (Rs.{amountReceived}) customers paid out of {cus.Count(c => c.IsActive)} (Rs.{(cus.Where(w => w.IsActive).Sum(s => s.LoanAmount) / 100)})";
+            label2.Text = $"{result.Count()} (Rs.{amountReceived}) customers paid out of {cus.Count(c => c.IsActive)} (Rs.{ExpectedCollection})";
 
 
-            //CollectionPerDay.AddObjectsToJson<CollectionPerDay>(Common.AppConfiguration.CollectionPerDay, new CollectionPerDay() { Date = dateTimePicker1.Validated });
+            //CollectionPerDay.AddObjectsToJson<CollectionPerDay>(Common.AppConfiguration.CollectionPerDay, 
+            //   new List<CollectionPerDay>()(new CollectionPerDay() {
+            //        Date = dateTimePicker1.Value.Date.ToShortDateString(),
+            //        ActualCollection = ActualCollection,
+            //        ExpectedCollection = ExpectedCollection}));
 
             dataGridView1.DataSource = result;
         }

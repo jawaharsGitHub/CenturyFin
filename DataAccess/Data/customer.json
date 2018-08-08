@@ -359,7 +359,7 @@
     "Interest": 1600,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-24T00:00:00-04:00",
+    "AmountGivenDate": "2018-06-24T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1386,7 +1386,7 @@
     "Interest": 3000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-21T11:55:02.0469764-04:00",
+    "AmountGivenDate": "2018-07-21T11:55:02",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1569,6 +1569,32 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-08-06T13:21:32.4307197-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 127,
+    "CustomerId": 86,
+    "Name": "Dharmaraj - Ironing Shop",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-07-06T21:49:34",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 128,
+    "CustomerId": 87,
+    "Name": "Kathiravan - Fancy Store KTR Complex",
+    "PhoneNumber": "",
+    "LoanAmount": 25000,
+    "Interest": 2500,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-07T21:58:03.6980153-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
