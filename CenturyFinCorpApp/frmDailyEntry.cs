@@ -39,11 +39,11 @@ namespace CenturyFinCorpApp
             var txn = Transaction.GetDailyCollectionDetails(dateTimePicker1.Value);
 
             var cus = from c in Customer.GetAllCustomer()
-                      select new { c.CustomerId, c.Name, c.IsActive, c.Interest, c.LoanAmount };
+                      select new { c.CustomerSeqNumber, c.Name, c.IsActive, c.Interest, c.LoanAmount };
 
             var result = (from t in txn
                           join c in cus
-                          on t.CustomerId equals c.CustomerId
+                          on t.CustomerSequenceNo equals c.CustomerSeqNumber
                           select new
                           {
                               t.TransactionId,

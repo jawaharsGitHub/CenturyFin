@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CenturyFinCorpApp
@@ -67,7 +68,26 @@ namespace CenturyFinCorpApp
         {
             customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
 
-            //transactions = Transaction.GetActiveTransactions();
+            // For Get the data i need.
+            //StringBuilder sb = new StringBuilder();
+            //StringBuilder sb2 = new StringBuilder();
+
+            //var c1 = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate);
+
+            //foreach (var item in c1)
+            //{
+            //    sb.AppendLine(item.AmountGivenDate.ToString());
+
+            //}
+
+            //var c2 = Customer.GetAllCustomer().Where(w => w.ClosedDate != null).OrderBy(o => o.ClosedDate);
+
+            //foreach (var item in c2)
+            //{
+            //    sb2.AppendLine(item.ClosedDate.ToString());
+
+            //}
+
 
             var activeTxn = customers.Count(c => c.IsActive == true);
             var closedTxn = customers.Count(c => c.IsActive == false);

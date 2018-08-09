@@ -1360,7 +1360,7 @@
     "Interest": 3000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-18T13:09:19.7955619-04:00",
+    "AmountGivenDate": "2018-07-18T13:09:19",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1595,6 +1595,19 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-08-07T21:58:03.6980153-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 129,
+    "CustomerId": 23,
+    "Name": "Dharmar Driver Anna",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-09T12:31:55.5244874-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }

@@ -41,9 +41,9 @@
 //TODO: select all amount.
 //TODO: Auto Select Existing customer.
 //TODO: Show [Sequence No] - No of times 
-// TODO: Delete customer
+// Done: Delete customer
 //TODO: Git Flow for all customers.
-//TODO: Set focus to txtSearch in customer form.
+//Done: Set focus to txtSearch in customer form.
 
 // TODO: Esc should close the form.
 //Issue: Check customer and total notes count.
@@ -53,3 +53,4 @@
 // TODO: While Running Closed batch - update closed date also.
 
 // TODO: InHand have only add (with tet update), so implement update also.
+// TODO: Move Daily Txn as seperate file.
