@@ -43,7 +43,7 @@ namespace CenturyFinCorpApp
                 //});
                 ////var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId).FirstOrDefault();
 
-                
+
 
                 //string updatedString = JsonConvert.SerializeObject(list, Formatting.Indented);
 
@@ -55,8 +55,7 @@ namespace CenturyFinCorpApp
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
     }

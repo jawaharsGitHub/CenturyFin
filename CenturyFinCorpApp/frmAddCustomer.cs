@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using Common.ExtensionMethod;
+using DataAccess.PrimaryTypes;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -78,10 +79,6 @@ namespace CenturyFinCorpApp
 
             lblMessage.Text = $"Customer {cus.Name} ({nthTimes}{GetDaySuffix(nthTimes)} times) Added Successfully.";
             lblNoteCount.Text = cus.CustomerSeqNumber.ToString();
-
-            //Update InHand Money
-            //InHand.ReduceInHand(cus.LoanAmount);
-            //InHand.AddInHand(cus.Interest);
 
         }
 

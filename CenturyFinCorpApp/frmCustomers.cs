@@ -1,11 +1,10 @@
 ﻿using Common;
-using DataAccess;
+using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CenturyFinCorpApp
@@ -13,7 +12,6 @@ namespace CenturyFinCorpApp
     public partial class frmCustomers : UserControl
     {
         private List<Customer> customers;
-        private List<Transaction> transactions;
 
         public frmCustomers()
         {
@@ -26,8 +24,6 @@ namespace CenturyFinCorpApp
 
             // Get the table from the data set
             SetCustomers();
-
-            //transactions = new List<Transaction>();
 
             if (customers == null) return;
 

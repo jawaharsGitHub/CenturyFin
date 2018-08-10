@@ -59,16 +59,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DailyCollectionDetail.cs" />
-    <Compile Include="CollectionPerDay.cs" />
-    <Compile Include="DataExtension.cs" />
-    <Compile Include="BaseClass.cs" />
-    <Compile Include="Expenditure.cs" />
-    <Compile Include="IncomeReport.cs" />
-    <Compile Include="InHandAndBank.cs" />
-    <Compile Include="Investment.cs" />
-    <Compile Include="Transaction.cs" />
-    <Compile Include="Customer.cs" />
+    <Compile Include="ExtendedTypes\CustomerDailyTxn.cs" />
+    <Compile Include="PrimaryTypes\DailyCollectionDetail.cs" />
+    <Compile Include="PrimaryTypes\CollectionPerDay.cs" />
+    <Compile Include="BaseTypes\BaseClass.cs" />
+    <Compile Include="PrimaryTypes\Expenditure.cs" />
+    <Compile Include="PrimaryTypes\IncomeReport.cs" />
+    <Compile Include="PrimaryTypes\InHandAndBank.cs" />
+    <Compile Include="PrimaryTypes\Investment.cs" />
+    <Compile Include="PrimaryTypes\Transaction.cs" />
+    <Compile Include="PrimaryTypes\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

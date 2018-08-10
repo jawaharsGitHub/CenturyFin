@@ -1,4 +1,6 @@
-﻿using DataAccess;
+﻿using Common.ExtensionMethod;
+using DataAccess.ExtendedTypes;
+using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -26,7 +28,8 @@ namespace CenturyFinCorpApp
             chkAddSalary.Checked = true; // will callCalculateIncome(true);
             LoadDailyCollection();
             lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
-            //CalculateIncome(true);
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -44,13 +47,13 @@ namespace CenturyFinCorpApp
             var result = (from t in txn
                           join c in cus
                           on t.CustomerSequenceNo equals c.CustomerSeqNumber
-                          select new
+                          select new CustomerDailyTxn
                           {
-                              t.TransactionId,
-                              t.TxnDate,
-                              c.Name,
-                              t.AmountReceived,
-                              t.Balance
+                              TransactionId = t.TransactionId,
+                              TxnDate = t.TxnDate,
+                              CustomerName = c.Name,
+                              AmountReceived = t.AmountReceived,
+                              Balance = t.Balance
                           }).Distinct();
 
             var amountReceived = result.Sum(s => s.AmountReceived);
@@ -72,6 +75,7 @@ namespace CenturyFinCorpApp
             //        ExpectedCollection = ExpectedCollection}));
 
             dataGridView1.DataSource = result;
+            dataGridView1.Columns["AmountReceived"].ReadOnly = false;
         }
 
         private void LoadNotGivenCustomer()

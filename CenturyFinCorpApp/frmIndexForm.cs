@@ -1,5 +1,6 @@
 ﻿using Common;
 using DataAccess;
+using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -204,7 +205,7 @@ namespace CenturyFinCorpApp
 
         private void btnAddExpen_Click(object sender, EventArgs e)
         {
-            DataAccess.Expenditure.AddExpenditure(new DataAccess.Expenditure() { Amount = Convert.ToInt32(txtExpenditure.Text), Reason = txtReason.Text });
+            Expenditure.AddExpenditure(new Expenditure() { Amount = Convert.ToInt32(txtExpenditure.Text), Reason = txtReason.Text });
         }
 
         private void btnAllTransaction_Click(object sender, EventArgs e)
@@ -295,7 +296,7 @@ namespace CenturyFinCorpApp
 
         private int GetExpenditure()
         {
-            return DataAccess.Expenditure.GetTotalExpenditure();
+            return Expenditure.GetTotalExpenditure();
 
         }
 

@@ -46,11 +46,13 @@
 //Done: Set focus to txtSearch in customer form.
 
 // TODO: Esc should close the form.
-//Issue: Check customer and total notes count.
+// Issue: Check customer and total notes count.
 // TODO: list who not payed for the given date.
 // TODO: AUTO - Collection sheet.
-//TODO: Add Run Closed in other places also.
+// TODO: Add Run Closed in other places also.
 // TODO: While Running Closed batch - update closed date also.
 
 // TODO: InHand have only add (with tet update), so implement update also.
 // TODO: Move Daily Txn as seperate file.
+// TODO: Logging activity
+// TODO: Put daily Txn FIle Seperatedly like closed notes.
