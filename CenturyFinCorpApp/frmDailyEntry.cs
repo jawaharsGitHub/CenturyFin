@@ -92,8 +92,6 @@ namespace CenturyFinCorpApp
             dataGridView1.DataSource = cus;
         }
 
-
-
         private void CalculateIncome(bool considerSalary = false)
         {
 

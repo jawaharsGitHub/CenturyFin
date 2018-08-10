@@ -1,4 +1,5 @@
-﻿using Common.ExtensionMethod;
+﻿using Common;
+using Common.ExtensionMethod;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Linq;
@@ -77,28 +78,9 @@ namespace CenturyFinCorpApp
 
             var nthTimes = Customer.GetAllCustomer().Where(w => w.CustomerId == cus.CustomerId).Count();
 
-            lblMessage.Text = $"Customer {cus.Name} ({nthTimes}{GetDaySuffix(nthTimes)} times) Added Successfully.";
+            lblMessage.Text = $"Customer {cus.Name} ({nthTimes}{General.GetDaySuffix(nthTimes)} times) Added Successfully.";
             lblNoteCount.Text = cus.CustomerSeqNumber.ToString();
 
-        }
-
-        string GetDaySuffix(int day)
-        {
-            switch (day)
-            {
-                case 1:
-                case 21:
-                case 31:
-                    return "st";
-                case 2:
-                case 22:
-                    return "nd";
-                case 3:
-                case 23:
-                    return "rd";
-                default:
-                    return "th";
-            }
         }
 
         private void chkExistingCustomer_CheckedChanged(object sender, EventArgs e)

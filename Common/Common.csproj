@@ -44,6 +44,7 @@
     <Compile Include="AppConfiguration.cs" />
     <Compile Include="DataCorrector.cs" />
     <Compile Include="ExtensionMethod\DataExtension.cs" />
+    <Compile Include="General.cs" />
     <Compile Include="GlobalValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
