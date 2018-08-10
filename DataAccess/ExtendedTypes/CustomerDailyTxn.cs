@@ -1,9 +1,18 @@
-﻿using DataAccess.PrimaryTypes;
+﻿using System;
 
 namespace DataAccess.ExtendedTypes
 {
-    public class CustomerDailyTxn : Transaction
+    public class CustomerDailyTxn
     {
-        public string CustomerName { get; set; }
+        public string CustomerName { get;  set; }
+
+        public int TransactionId { get; set; }
+
+        public int AmountReceived { get; set; }
+
+        public int Balance { get; set; }
+
+        public DateTime TxnDate { get; set; }
+
     }
 }
