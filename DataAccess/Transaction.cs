@@ -373,8 +373,8 @@ namespace DataAccess
                             c.LoanAmount,
                             t.Balance,
                             RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
-                            //DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays > 100 ? -1 : (t.Balance / (c.LoanAmount / 100)))
-                            DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100  - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100))
+                            DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
+                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : ((c.AmountGivenDate.Value.AddDays(101) - DateTime.Today.Date).Days)
                         }).OrderBy(o => o.DaysToClose).Take(top).ToList();
 
             return data;
@@ -382,157 +382,156 @@ namespace DataAccess
 
         }
 
-        public static dynamic GetTransactionsNotGivenForFewDays()
+    public static dynamic GetTransactionsNotGivenForFewDays()
+    {
+        var json = File.ReadAllText(AppConfiguration.TransactionFile);
+
+        List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+
+        var result = new List<Transaction>();
+
+        var outsideMoney = (from L in list
+                            group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
+                            select newGroup).ToList();
+
+        var customers = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
+
+
+        outsideMoney.ForEach(fe =>
         {
-            var json = File.ReadAllText(AppConfiguration.TransactionFile);
+            result.Add(fe.OrderBy(o => o.TxnDate).Last());
+        });
 
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+        var data = (from c in customers
+                    join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
+                    select new
+                    {
+                        c.CustomerSeqNumber,
+                        c.Name,
+                        t.TxnDate,
+                        c.AmountGivenDate,
+                        c.LoanAmount,
+                        t.Balance,
+                        NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays
+                        //RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
+                        //DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays > 100 ? -1 : (t.Balance / (c.LoanAmount / 100))),
 
-            var result = new List<Transaction>();
+                    }).Where(w => w.NotGivenFor > 2).OrderByDescending(o => o.NotGivenFor).ToList();
 
-            var outsideMoney = (from L in list
-                                group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                                select newGroup).ToList();
-
-            var customers = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
-
-
-            outsideMoney.ForEach(fe =>
-            {
-                result.Add(fe.OrderBy(o => o.TxnDate).Last());
-            });
-            //return outsideMoney;
-
-            var data = (from c in customers
-                        join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
-                        select new
-                        {
-                            c.CustomerSeqNumber,
-                            c.Name,
-                            t.TxnDate,
-                            c.AmountGivenDate,
-                            c.LoanAmount,
-                            t.Balance,
-                            NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays
-                            //RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
-                            //DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays > 100 ? -1 : (t.Balance / (c.LoanAmount / 100))),
-
-                        }).OrderByDescending(o => o.NotGivenFor).ToList();
-
-            return data;
-
-
-        }
-
-
-
-        public static int GetAllOutstandingAmount()
-        {
-
-            try
-            {
-                var json = File.ReadAllText(AppConfiguration.TransactionFile);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
-                if (list == null)
-                {
-
-                    var customersOutstanding = (Customer.GetAllCustomer() ?? new List<Customer>()).Where(w => w.IsActive).Sum(s => s.LoanAmount);
-                    return customersOutstanding;
-                }
-
-                //var groupedList = (from L in list
-                //                   group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                //                   select newGroup).ToList();
-
-                //int outsideMoney = 0;
-
-                //foreach (var item in groupedList)
-                //{
-                //    outsideMoney += item.OrderBy(o => o.Balance).First().Balance;
-                //}
-
-                // This needs to validate.
-                var outsideMoney = (from L in list
-
-                                    group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                                    //from g in newGroup.ToList()
-                                    select newGroup.ToList().OrderBy(w => w.Balance).First()).ToList(); //.Sum(s => s.Balance);
-
-                // this is useful to calculate all external balances
-                var result = (from c in Customer.GetAllCustomer()
-                              join t in outsideMoney on c.CustomerSeqNumber equals t.CustomerSequenceNo
-                              orderby c.AmountGivenDate
-                              select new { c.Name, c.AmountGivenDate, c.CustomerSeqNumber, c.CustomerId, t.Balance, c.LoanAmount, t.TransactionId }).ToList();
-
-
-                return result.Sum(s => s.Balance);
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
-        public static int GetClosedTxn()
-        {
-            var json = File.ReadAllText(AppConfiguration.TransactionFile);
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json) ?? new List<Transaction>();
-            return list.Where(w => w.Balance == 0).Count();
-        }
-
-
-        public static List<Transaction> GetDailyCollectionDetails(DateTime inputDate)
-        {
-
-            // Get from Ongoing Transcations
-
-            var txnFile = AppConfiguration.TransactionFile;
-
-            var json = File.ReadAllText(txnFile);
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
-            if (list == null) return null;
-            var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
-
-            //Get from Closed Transactions
-            var fromClosedTxn = ProcessDirectory(AppConfiguration.BackupFolderPath, inputDate);
-
-            fromActiveTxn.AddRange(fromClosedTxn);
-
-            return fromActiveTxn;
-
-
-        }
-
-
-        private static List<Transaction> ProcessDirectory(string targetDirectory, DateTime inputDate)
-        {
-            List<Transaction> result = new List<Transaction>();
-            // Process the list of files found in the directory.
-            string[] fileEntries = Directory.GetFiles(targetDirectory);
-            foreach (string fileName in fileEntries)
-            {
-                var json = File.ReadAllText(fileName);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
-                if (list == null) return null;
-                var data = list.Where(c => c.TxnDate.Date == inputDate.Date);
-                if (data != null && data.Count() > 0)
-                    result.AddRange(data);
-            }
-
-
-            // Recurse into subdirectories of this directory.
-            string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
-            foreach (string subdirectory in subdirectoryEntries)
-                result.AddRange(ProcessDirectory(subdirectory, inputDate));
-
-            return result;
-        }
-
-
+        return data;
 
 
     }
+
+
+
+    public static int GetAllOutstandingAmount()
+    {
+
+        try
+        {
+            var json = File.ReadAllText(AppConfiguration.TransactionFile);
+            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            if (list == null)
+            {
+
+                var customersOutstanding = (Customer.GetAllCustomer() ?? new List<Customer>()).Where(w => w.IsActive).Sum(s => s.LoanAmount);
+                return customersOutstanding;
+            }
+
+            //var groupedList = (from L in list
+            //                   group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
+            //                   select newGroup).ToList();
+
+            //int outsideMoney = 0;
+
+            //foreach (var item in groupedList)
+            //{
+            //    outsideMoney += item.OrderBy(o => o.Balance).First().Balance;
+            //}
+
+            // This needs to validate.
+            var outsideMoney = (from L in list
+
+                                group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
+                                //from g in newGroup.ToList()
+                                select newGroup.ToList().OrderBy(w => w.Balance).First()).ToList(); //.Sum(s => s.Balance);
+
+            // this is useful to calculate all external balances
+            var result = (from c in Customer.GetAllCustomer()
+                          join t in outsideMoney on c.CustomerSeqNumber equals t.CustomerSequenceNo
+                          orderby c.AmountGivenDate
+                          select new { c.Name, c.AmountGivenDate, c.CustomerSeqNumber, c.CustomerId, t.Balance, c.LoanAmount, t.TransactionId }).ToList();
+
+
+            return result.Sum(s => s.Balance);
+
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+    }
+    public static int GetClosedTxn()
+    {
+        var json = File.ReadAllText(AppConfiguration.TransactionFile);
+        List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json) ?? new List<Transaction>();
+        return list.Where(w => w.Balance == 0).Count();
+    }
+
+
+    public static List<Transaction> GetDailyCollectionDetails(DateTime inputDate)
+    {
+
+        // Get from Ongoing Transcations
+
+        var txnFile = AppConfiguration.TransactionFile;
+
+        var json = File.ReadAllText(txnFile);
+        List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+        if (list == null) return null;
+        var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
+
+        //Get from Closed Transactions
+        var fromClosedTxn = ProcessDirectory(AppConfiguration.BackupFolderPath, inputDate);
+
+        fromActiveTxn.AddRange(fromClosedTxn);
+
+        return fromActiveTxn;
+
+
+    }
+
+
+    private static List<Transaction> ProcessDirectory(string targetDirectory, DateTime inputDate)
+    {
+        List<Transaction> result = new List<Transaction>();
+        // Process the list of files found in the directory.
+        string[] fileEntries = Directory.GetFiles(targetDirectory);
+        foreach (string fileName in fileEntries)
+        {
+            var json = File.ReadAllText(fileName);
+            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            if (list == null) return null;
+            var data = list.Where(c => c.TxnDate.Date == inputDate.Date);
+            if (data != null && data.Count() > 0)
+                result.AddRange(data);
+        }
+
+
+        // Recurse into subdirectories of this directory.
+        string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
+        foreach (string subdirectory in subdirectoryEntries)
+            result.AddRange(ProcessDirectory(subdirectory, inputDate));
+
+        return result;
+    }
+
+
+
+
+}
 
 
 }
