@@ -69,46 +69,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAddCustomer.cs">
+    <Compile Include="UserControl\frmAddCustomer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmAddCustomer.Designer.cs">
+    <Compile Include="UserControl\frmAddCustomer.Designer.cs">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCustomerTransaction.cs">
+    <Compile Include="UserControl\frmCustomerTransaction.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmCustomerTransaction.Designer.cs">
+    <Compile Include="UserControl\frmCustomerTransaction.Designer.cs">
       <DependentUpon>frmCustomerTransaction.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCustomers.cs">
+    <Compile Include="UserControl\frmCustomers.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmCustomers.Designer.cs">
+    <Compile Include="UserControl\frmCustomers.Designer.cs">
       <DependentUpon>frmCustomers.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInHand.cs">
+    <Compile Include="UserControl\frmInHand.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmInHand.Designer.cs">
+    <Compile Include="UserControl\frmInHand.Designer.cs">
       <DependentUpon>frmInHand.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDailyEntry.cs">
+    <Compile Include="UserControl\frmDailyEntry.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmDailyEntry.Designer.cs">
+    <Compile Include="UserControl\frmDailyEntry.Designer.cs">
       <DependentUpon>frmDailyEntry.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDataCorrection.cs">
+    <Compile Include="UserControl\frmDataCorrection.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmDataCorrection.Designer.cs">
+    <Compile Include="UserControl\frmDataCorrection.Designer.cs">
       <DependentUpon>frmDataCorrection.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmExpenditure.cs">
+    <Compile Include="UserControl\frmExpenditure.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmExpenditure.Designer.cs">
+    <Compile Include="UserControl\frmExpenditure.Designer.cs">
       <DependentUpon>frmExpenditure.cs</DependentUpon>
     </Compile>
     <Compile Include="frmIndexForm.cs">
@@ -117,46 +117,46 @@
     <Compile Include="frmIndexForm.Designer.cs">
       <DependentUpon>frmIndexForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPrediction.cs">
+    <Compile Include="UserControl\frmPrediction.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmPrediction.Designer.cs">
+    <Compile Include="UserControl\frmPrediction.Designer.cs">
       <DependentUpon>frmPrediction.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="frmReport.cs">
+    <Compile Include="UserControl\frmReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="frmReport.Designer.cs">
+    <Compile Include="UserControl\frmReport.Designer.cs">
       <DependentUpon>frmReport.cs</DependentUpon>
     </Compile>
     <Compile Include="ToDo.cs" />
-    <EmbeddedResource Include="frmAddCustomer.resx">
+    <EmbeddedResource Include="UserControl\frmAddCustomer.resx">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCustomerTransaction.resx">
+    <EmbeddedResource Include="UserControl\frmCustomerTransaction.resx">
       <DependentUpon>frmCustomerTransaction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCustomers.resx">
+    <EmbeddedResource Include="UserControl\frmCustomers.resx">
       <DependentUpon>frmCustomers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInHand.resx">
+    <EmbeddedResource Include="UserControl\frmInHand.resx">
       <DependentUpon>frmInHand.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDailyEntry.resx">
+    <EmbeddedResource Include="UserControl\frmDailyEntry.resx">
       <DependentUpon>frmDailyEntry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDataCorrection.resx">
+    <EmbeddedResource Include="UserControl\frmDataCorrection.resx">
       <DependentUpon>frmDataCorrection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExpenditure.resx">
+    <EmbeddedResource Include="UserControl\frmExpenditure.resx">
       <DependentUpon>frmExpenditure.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmIndexForm.resx">
       <DependentUpon>frmIndexForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPrediction.resx">
+    <EmbeddedResource Include="UserControl\frmPrediction.resx">
       <DependentUpon>frmPrediction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -169,7 +169,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="frmReport.resx">
+    <EmbeddedResource Include="UserControl\frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
