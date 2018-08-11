@@ -32,17 +32,11 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvIncome = new System.Windows.Forms.DataGridView();
-            this.chkAddSalary = new System.Windows.Forms.CheckBox();
-            this.lblExpected = new System.Windows.Forms.Label();
-            this.lblActual = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.lblOutStanding = new System.Windows.Forms.Label();
             this.chkNotGivenCustomer = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -82,53 +76,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             // 
-            // dgvIncome
-            // 
-            this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIncome.Location = new System.Drawing.Point(641, 144);
-            this.dgvIncome.Name = "dgvIncome";
-            this.dgvIncome.ReadOnly = true;
-            this.dgvIncome.Size = new System.Drawing.Size(455, 373);
-            this.dgvIncome.TabIndex = 4;
-            // 
-            // chkAddSalary
-            // 
-            this.chkAddSalary.AutoSize = true;
-            this.chkAddSalary.Location = new System.Drawing.Point(513, 13);
-            this.chkAddSalary.Name = "chkAddSalary";
-            this.chkAddSalary.Size = new System.Drawing.Size(105, 17);
-            this.chkAddSalary.TabIndex = 5;
-            this.chkAddSalary.Text = "Consider Salary?";
-            this.chkAddSalary.UseVisualStyleBackColor = true;
-            this.chkAddSalary.CheckedChanged += new System.EventHandler(this.chkAddSalary_CheckedChanged);
-            // 
-            // lblExpected
-            // 
-            this.lblExpected.AutoSize = true;
-            this.lblExpected.Location = new System.Drawing.Point(640, 14);
-            this.lblExpected.Name = "lblExpected";
-            this.lblExpected.Size = new System.Drawing.Size(52, 13);
-            this.lblExpected.TabIndex = 6;
-            this.lblExpected.Text = "Expected";
-            // 
-            // lblActual
-            // 
-            this.lblActual.AutoSize = true;
-            this.lblActual.Location = new System.Drawing.Point(640, 45);
-            this.lblActual.Name = "lblActual";
-            this.lblActual.Size = new System.Drawing.Size(37, 13);
-            this.lblActual.TabIndex = 7;
-            this.lblActual.Text = "Actual";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(643, 72);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(42, 13);
-            this.lblTotal.TabIndex = 8;
-            this.lblTotal.Text = "TOTAL";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -153,7 +100,7 @@
             // lblOutStanding
             // 
             this.lblOutStanding.AutoSize = true;
-            this.lblOutStanding.Location = new System.Drawing.Point(1010, 120);
+            this.lblOutStanding.Location = new System.Drawing.Point(635, 144);
             this.lblOutStanding.Name = "lblOutStanding";
             this.lblOutStanding.Size = new System.Drawing.Size(86, 13);
             this.lblOutStanding.TabIndex = 11;
@@ -179,11 +126,6 @@
             this.Controls.Add(this.lblOutStanding);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.lblActual);
-            this.Controls.Add(this.lblExpected);
-            this.Controls.Add(this.chkAddSalary);
-            this.Controls.Add(this.dgvIncome);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker1);
@@ -191,7 +133,6 @@
             this.Name = "frmDailyEntry";
             this.Size = new System.Drawing.Size(1226, 524);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,11 +144,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvIncome;
-        private System.Windows.Forms.CheckBox chkAddSalary;
-        private System.Windows.Forms.Label lblExpected;
-        private System.Windows.Forms.Label lblActual;
-        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblOutStanding;

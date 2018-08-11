@@ -24,8 +24,6 @@ namespace CenturyFinCorpApp
             ShowOutstandingMoney();
             ShowTotalAssetMoney();
 
-            CustomerGrowth();
-
         }
 
         private void ToBeClosedSoon()
@@ -44,25 +42,6 @@ namespace CenturyFinCorpApp
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dgReports.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-        }
-
-        private void CustomerGrowth()
-        {
-            var customers = (from c in Customer.GetAllCustomer()
-                             orderby c.AmountGivenDate
-                             group c by c.AmountGivenDate.Value.Month into newGroup
-
-                             select new
-                             {
-                                 Month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(newGroup.Key),
-                                 Count = newGroup.Count(),
-                                 LoanAmount = newGroup.Sum(s => s.LoanAmount),
-                                 GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)),
-                                 FutureInterest = newGroup.Sum(s => s.Interest)
-                             }).ToList();
-
-            dgvNotePerMonth.DataSource = customers;
-
         }
 
         private void ShowOutstandingMoney()

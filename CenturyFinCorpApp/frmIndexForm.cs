@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using CenturyFinCorpApp.UsrCtrl;
+using Common;
 using DataAccess;
 using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
@@ -58,6 +59,10 @@ namespace CenturyFinCorpApp
             var mnuReport = new ToolStripMenuItem() { Name = "Report", Text = "Report" };
             menuStrip.Items.Add(mnuReport);
             mnuReport.Click += (s, e) => ShowForm<frmReport>();
+            //Reports
+            var mnuGeneralReport = new ToolStripMenuItem() { Name = "GenReport", Text = "General-Report" };
+            menuStrip.Items.Add(mnuGeneralReport);
+            mnuGeneralReport.Click += (s, e) => ShowForm<frmGeneralReport>();
 
             this.Controls.Add(menuStrip);
 

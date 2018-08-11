@@ -34,12 +34,9 @@
             this.lblTotalAsset = new System.Windows.Forms.Label();
             this.btnClosedTxn = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.dgvNotePerMonth = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
             this.dgReports = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,23 +100,6 @@
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // dgvNotePerMonth
-            // 
-            this.dgvNotePerMonth.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNotePerMonth.Location = new System.Drawing.Point(837, 152);
-            this.dgvNotePerMonth.Name = "dgvNotePerMonth";
-            this.dgvNotePerMonth.Size = new System.Drawing.Size(335, 367);
-            this.dgvNotePerMonth.TabIndex = 19;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(837, 119);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 13);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "NOTE PER MONTH:";
-            // 
             // dgReports
             // 
             this.dgReports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -159,8 +139,6 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dgReports);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dgvNotePerMonth);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnClosedTxn);
             this.Controls.Add(this.lblTotalAsset);
@@ -169,7 +147,6 @@
             this.Controls.Add(this.label1);
             this.Name = "frmReport";
             this.Size = new System.Drawing.Size(1266, 519);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -184,8 +161,6 @@
         private System.Windows.Forms.Label lblTotalAsset;
         private System.Windows.Forms.Button btnClosedTxn;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.DataGridView dgvNotePerMonth;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dgReports;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
