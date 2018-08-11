@@ -56,7 +56,7 @@ namespace CenturyFinCorpApp
             menuStrip.Items.Add(mnuShowInHand);
             mnuShowInHand.Click += (s, e) => ShowForm<frmInHand>(); ;
             //Reports
-            var mnuReport = new ToolStripMenuItem() { Name = "Report", Text = "Report" };
+            var mnuReport = new ToolStripMenuItem() { Name = "DynReport", Text = "Dynamic-Report" };
             menuStrip.Items.Add(mnuReport);
             mnuReport.Click += (s, e) => ShowForm<frmReport>();
             //Reports
