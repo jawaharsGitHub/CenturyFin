@@ -100,6 +100,7 @@
     <None Include="Data\ClosedNotes\18\18_49.json" />
     <None Include="Data\ClosedNotes\19\19_19.json" />
     <None Include="Data\ClosedNotes\1\1_1.json" />
+    <None Include="Data\ClosedNotes\1\1_98.json" />
     <None Include="Data\ClosedNotes\20\20_20.json" />
     <None Include="Data\ClosedNotes\20\20_21.json" />
     <None Include="Data\ClosedNotes\20\20_59.json" />
@@ -120,20 +121,24 @@
     <None Include="Data\ClosedNotes\3\3_3.json" />
     <None Include="Data\ClosedNotes\3\3_43.json" />
     <None Include="Data\ClosedNotes\3\3_44.json" />
+    <None Include="Data\ClosedNotes\3\3_52.json" />
     <None Include="Data\ClosedNotes\44\44_63.json" />
     <None Include="Data\ClosedNotes\49\49_69.json" />
+    <None Include="Data\ClosedNotes\4\4_32_NeedToVerify.json" />
     <None Include="Data\ClosedNotes\4\4_4.json" />
     <None Include="Data\ClosedNotes\56\56_79.json" />
     <None Include="Data\ClosedNotes\5\5_26.json" />
     <None Include="Data\ClosedNotes\5\5_31.json" />
     <None Include="Data\ClosedNotes\5\5_5.json" />
     <None Include="Data\ClosedNotes\6\6_6.json" />
+    <None Include="Data\ClosedNotes\71\71_104.json" />
     <None Include="Data\ClosedNotes\7\7_7.json" />
     <None Include="Data\ClosedNotes\8\8_8.json" />
     <None Include="Data\ClosedNotes\9\9_9.json" />
-    <None Include="Data\customer.json" />
-    <None Include="Data\DailyCollectionBkp.json" />
     <None Include="Data\CollectionPerDay.json" />
+    <None Include="Data\customer.json" />
+    <None Include="Data\DailyCollection.json" />
+    <None Include="Data\DailyCollectionBkp.json" />
     <None Include="Data\Expenditure.json" />
     <None Include="Data\InHandAndBank.json" />
     <None Include="Data\Investment.json" />
@@ -147,7 +152,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\DailyCollection.json" />
+    <Folder Include="Data\DailyBatchFile\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

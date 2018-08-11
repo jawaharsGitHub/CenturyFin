@@ -69,6 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UsrCtrl\frmBatches.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmBatches.Designer.cs">
+      <DependentUpon>frmBatches.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrl\frmAddCustomer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +144,9 @@
       <DependentUpon>frmReport.cs</DependentUpon>
     </Compile>
     <Compile Include="ToDo.cs" />
+    <EmbeddedResource Include="UsrCtrl\frmBatches.resx">
+      <DependentUpon>frmBatches.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmAddCustomer.resx">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </EmbeddedResource>

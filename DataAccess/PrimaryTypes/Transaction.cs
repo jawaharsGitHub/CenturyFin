@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace DataAccess.PrimaryTypes
 {
@@ -42,7 +43,7 @@ namespace DataAccess.PrimaryTypes
             newTxn.TxnUpdatedDate = null;
             List<Transaction> transactions = new List<Transaction>() { newTxn };
 
-            var jsonFilePath = newTxn.IsClosed ? $"{AppConfiguration.BackupFolderPath}/{newTxn.CustomerId}/{newTxn.CustomerId}_{newTxn.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
+            var jsonFilePath = newTxn.IsClosed ? $"{AppConfiguration.ClosedNotesFile}/{newTxn.CustomerId}/{newTxn.CustomerId}_{newTxn.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
 
             // Get existing transactions
             string baseJson = File.ReadAllText(jsonFilePath);
@@ -87,13 +88,28 @@ namespace DataAccess.PrimaryTypes
 
         }
 
+        public static void AddBatchTransactions(List<Transaction> newTxns, string fileName)
+        {
+            var fullFilePath = Path.Combine(AppConfiguration.DailyBatchFile, fileName);
+            List<Transaction> transactions = newTxns;
+
+            var jsonText = JsonConvert.SerializeObject(newTxns, Formatting.Indented);
+
+            if (File.Exists(fullFilePath)) File.Delete(fullFilePath);
+
+            // Add into json
+            File.WriteAllText(fullFilePath, jsonText);
+
+        }
+
+
         //TODO: its not yet started using.
         public static bool DeleteTransactionDetails(int customerId, int sequenceNo, bool isActive)
         {
 
             try
             {
-                var txnFile = isActive ? AppConfiguration.TransactionFile : $"{AppConfiguration.BackupFolderPath}/{customerId}/{customerId}_{sequenceNo}.json";
+                var txnFile = isActive ? AppConfiguration.TransactionFile : $"{AppConfiguration.ClosedNotesFile}/{customerId}/{customerId}_{sequenceNo}.json";
                 //if (isClosedTxn) File.Delete(txnFile);
                 if (isActive)
                 {
@@ -119,7 +135,7 @@ namespace DataAccess.PrimaryTypes
             var customer = closedTxn.First();
 
 
-            string customerBackupFolderPath = Path.Combine(AppConfiguration.BackupFolderPath, customer.CustomerId.ToString());
+            string customerBackupFolderPath = Path.Combine(AppConfiguration.ClosedNotesFile, customer.CustomerId.ToString());
 
             if (Directory.Exists(customerBackupFolderPath) == false)
             {
@@ -165,7 +181,7 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var filePath = updatedTransaction.IsClosed ? $"{AppConfiguration.BackupFolderPath}/{updatedTransaction.CustomerId}/{updatedTransaction.CustomerId}_{updatedTransaction.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
+                var filePath = updatedTransaction.IsClosed ? $"{AppConfiguration.ClosedNotesFile}/{updatedTransaction.CustomerId}/{updatedTransaction.CustomerId}_{updatedTransaction.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
 
                 var json = File.ReadAllText(filePath);
                 List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
@@ -211,7 +227,7 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var txnFile = isClosedTxn ? $"{AppConfiguration.BackupFolderPath}/{customerId}/{customerId}_{sequenceNo}.json" : AppConfiguration.TransactionFile;
+                var txnFile = isClosedTxn ? $"{AppConfiguration.ClosedNotesFile}/{customerId}/{customerId}_{sequenceNo}.json" : AppConfiguration.TransactionFile;
 
                 if (File.Exists(txnFile))
                 {
@@ -248,6 +264,69 @@ namespace DataAccess.PrimaryTypes
                 throw ex;
             }
         }
+
+        public static List<Transaction> GetTransactionForDate(DateTime txnDate)
+        {
+
+            try
+            {
+                //TODO: need to do it for closed txn also?
+                var txnFile = AppConfiguration.TransactionFile;
+
+                var json = File.ReadAllText(txnFile);
+                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                if (list == null) return null;
+
+                return list.Where(c => c.TxnDate.Date == txnDate.Date).OrderByDescending(o => o.TransactionId).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static List<Transaction> GetClosedTransactionForDate(DateTime txnDate)
+        {
+
+            try
+            {
+                //TODO: need to do it for closed txn also?
+                var txnFile = AppConfiguration.ClosedNotesFile;
+
+
+                //var sb = new StringBuilder();
+                var result = new List<Transaction>();
+
+                foreach (var folder in Directory.GetDirectories(txnFile))
+                {
+                    foreach (var file in Directory.GetFiles(folder))
+                    {
+                        //sb.AppendLine($"{folder}/{file}");
+
+                        //Transaction
+                        var json = File.ReadAllText(file);
+                        List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                        //if (list == null) return null;
+
+                        var data = list.Where(w => w.TxnDate.Date == txnDate.Date).OrderByDescending(o => o.TransactionId).ToList();
+
+                        result.AddRange(data);
+
+                    }
+
+                }
+
+                return result;
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public static List<Transaction> GetTransactionCount(int customerId, int sequenceNo)
         {
@@ -466,17 +545,19 @@ namespace DataAccess.PrimaryTypes
 
             // Get from Ongoing Transcations
 
-            var txnFile = AppConfiguration.TransactionFile;
+            //var txnFile = AppConfiguration.TransactionFile;  // old approach.
 
+            var txnFile = Path.Combine(AppConfiguration.DailyBatchFile, inputDate.ToString("dd-MM-yyyy"));
+            if (File.Exists(txnFile) == false) return null;
             var json = File.ReadAllText(txnFile);
             List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
             if (list == null) return null;
             var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
 
             //Get from Closed Transactions
-            var fromClosedTxn = ProcessDirectory(AppConfiguration.BackupFolderPath, inputDate);
+            //var fromClosedTxn = ProcessDirectory(AppConfiguration.ClosedNotesFile, inputDate); // old approach.
 
-            fromActiveTxn.AddRange(fromClosedTxn);
+            //fromActiveTxn.AddRange(fromClosedTxn); // old approach.
 
             return fromActiveTxn;
 

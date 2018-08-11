@@ -13,7 +13,7 @@ namespace Common
 
         public static string InvestmentFile { get; } = GetFullPath("InvestmentFile"); 
 
-        public static string BackupFolderPath { get; } = GetFullPath("BackupFolderPath"); 
+        public static string ClosedNotesFile { get; } = GetFullPath("ClosedNotesFile"); 
 
         public static string ExpenditureFile { get; } = GetFullPath("ExpenditureFile"); 
 
@@ -24,6 +24,8 @@ namespace Common
         public static bool usingMenu { get; } = Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]);
 
         public static string CollectionPerDay { get; } = GetFullPath("CollectionPerDay");
+
+        public static string DailyBatchFile { get; } = GetFullPath("DailyBatchFile");
 
         private static string GetFullPath(string configKey)
         {

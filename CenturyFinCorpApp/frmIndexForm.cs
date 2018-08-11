@@ -31,40 +31,7 @@ namespace CenturyFinCorpApp
             LoadAllData();
 
 
-            // Menu
-            menuStrip = new MenuStrip
-            {
-                Location = new Point(0, 0),
-                Name = "MenuStrip"
-            };
-
-            
-            //Customer
-            var mnuCustomer = new ToolStripMenuItem() { Name = "Customer", Text = "Customers" };
-            mnuCustomer.Click += (s, e) => ShowForm<frmCustomers>(); ;
-            menuStrip.Items.Add(mnuCustomer);
-            //Add customer
-            var mnuAddCustomer = new ToolStripMenuItem() { Name = "AddCustomer", Text = "Add Customer" };
-            menuStrip.Items.Add(mnuAddCustomer);
-            mnuAddCustomer.Click += (s, e) => ShowForm<frmAddCustomer>(); ;
-            //Daily Collection
-            var mnuDailyCollection = new ToolStripMenuItem() { Name = "DailyColl", Text = "Daily Collection" };
-            menuStrip.Items.Add(mnuDailyCollection);
-            mnuDailyCollection.Click += (s, e) => ShowForm<frmDailyEntry>(); ;
-            //ShowInHand
-            var mnuShowInHand = new ToolStripMenuItem() { Name = "InHand", Text = "Shown In Hand" };
-            menuStrip.Items.Add(mnuShowInHand);
-            mnuShowInHand.Click += (s, e) => ShowForm<frmInHand>(); ;
-            //Reports
-            var mnuReport = new ToolStripMenuItem() { Name = "DynReport", Text = "Dynamic-Report" };
-            menuStrip.Items.Add(mnuReport);
-            mnuReport.Click += (s, e) => ShowForm<frmReport>();
-            //Reports
-            var mnuGeneralReport = new ToolStripMenuItem() { Name = "GenReport", Text = "General-Report" };
-            menuStrip.Items.Add(mnuGeneralReport);
-            mnuGeneralReport.Click += (s, e) => ShowForm<frmGeneralReport>();
-
-            this.Controls.Add(menuStrip);
+            CreateMenu();
 
             usingMenu = Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]);
 
@@ -91,6 +58,48 @@ namespace CenturyFinCorpApp
             panel1.Height = this.Height;
 
             ShowForm<frmCustomers>(); // initial form to be loaded
+        }
+
+        private void CreateMenu()
+        {
+            // Menu
+            menuStrip = new MenuStrip
+            {
+                Location = new Point(0, 0),
+                Name = "MenuStrip"
+            };
+
+
+            //Customer
+            var mnuCustomer = new ToolStripMenuItem() { Name = "Customer", Text = "Customers" };
+            mnuCustomer.Click += (s, e) => ShowForm<frmCustomers>(); ;
+            menuStrip.Items.Add(mnuCustomer);
+            //Add customer
+            var mnuAddCustomer = new ToolStripMenuItem() { Name = "AddCustomer", Text = "Add Customer" };
+            menuStrip.Items.Add(mnuAddCustomer);
+            mnuAddCustomer.Click += (s, e) => ShowForm<frmAddCustomer>(); ;
+            //Daily Collection
+            var mnuDailyCollection = new ToolStripMenuItem() { Name = "DailyColl", Text = "Daily Collection" };
+            menuStrip.Items.Add(mnuDailyCollection);
+            mnuDailyCollection.Click += (s, e) => ShowForm<frmDailyEntry>(); ;
+            //ShowInHand
+            var mnuShowInHand = new ToolStripMenuItem() { Name = "InHand", Text = "Shown In Hand" };
+            menuStrip.Items.Add(mnuShowInHand);
+            mnuShowInHand.Click += (s, e) => ShowForm<frmInHand>(); ;
+            //Dynamic Reports
+            var mnuReport = new ToolStripMenuItem() { Name = "DynReport", Text = "Dynamic-Report" };
+            menuStrip.Items.Add(mnuReport);
+            mnuReport.Click += (s, e) => ShowForm<frmReport>();
+            //General Reports
+            var mnuGeneralReport = new ToolStripMenuItem() { Name = "GenReport", Text = "General-Report" };
+            menuStrip.Items.Add(mnuGeneralReport);
+            mnuGeneralReport.Click += (s, e) => ShowForm<frmGeneralReport>();
+            //Batches
+            var mnuBatch = new ToolStripMenuItem() { Name = "batch", Text = "Batch Jobs" };
+            menuStrip.Items.Add(mnuBatch);
+            mnuBatch.Click += (s, e) => ShowForm<frmBatches>();
+
+            this.Controls.Add(menuStrip);
         }
 
         public void ShowForm(int transactionId)
@@ -153,7 +162,7 @@ namespace CenturyFinCorpApp
         private void TotalNote()
         {
             var noOfDistinctClients = GetNumberOfClients();
-            var closedNotesCount = Directory.GetFiles(AppConfiguration.BackupFolderPath, "*.*", SearchOption.AllDirectories).Length;
+            var closedNotesCount = Directory.GetFiles(AppConfiguration.ClosedNotesFile, "*.*", SearchOption.AllDirectories).Length;
             btnNote.Text = "Total Note: " + (noOfDistinctClients + closedNotesCount);
         }
 
