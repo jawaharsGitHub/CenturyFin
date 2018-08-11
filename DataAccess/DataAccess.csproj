@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedTypes\CustomerDailyTxn.cs" />
+    <Compile Include="ExtendedTypes\ExtDailyTxn.cs" />
     <Compile Include="PrimaryTypes\DailyCollectionDetail.cs" />
     <Compile Include="PrimaryTypes\CollectionPerDay.cs" />
     <Compile Include="BaseTypes\BaseClass.cs" />

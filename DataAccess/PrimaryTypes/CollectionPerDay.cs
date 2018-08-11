@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.PrimaryTypes
 {
-    public class CollectionPerDay : BaseClass<CollectionPerDay>
+    public class CollectionPerDay : BaseClass
     {
 
         public string Date { get; set; }

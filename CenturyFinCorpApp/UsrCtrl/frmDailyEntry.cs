@@ -1,4 +1,5 @@
-﻿using Common.ExtensionMethod;
+﻿using Common;
+using Common.ExtensionMethod;
 using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
@@ -25,10 +26,22 @@ namespace CenturyFinCorpApp
             else
                 button2.Visible = true;
 
-            LoadDailyCollection();
+            LoadDailyCollection(true);
+            LoadAllHsitoryDailyCollections();
+
             lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
 
+        }
 
+        private void LoadAllHsitoryDailyCollections()
+        {
+            var data = DataAccess.BaseClass.GetAllDetails<DailyCollectionDetail>(AppConfiguration.DailyTxnFile);
+
+            var result = (from d in data
+                          select
+                          new ExtDailyTxn() { Date = d.Date, CollectionAmount = d.CollectionAmount }).ToList();
+
+            dgvAllDailyCollection.DataSource = result;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,10 +49,18 @@ namespace CenturyFinCorpApp
             LoadDailyCollection();
         }
 
-        private void LoadDailyCollection()
+        private void LoadDailyCollection(bool versionZero = false)
         {
-            var txn = Transaction.GetDailyCollectionDetails(dateTimePicker1.Value);
+            var txn = new List<Transaction>();
 
+            if (versionZero)
+            {
+                txn = Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value);
+            }
+            else
+            {
+                txn = Transaction.GetDailyCollectionDetails(dateTimePicker1.Value);
+            }
             var cus = from c in Customer.GetAllCustomer()
                       select new { c.CustomerSeqNumber, c.Name, c.IsActive, c.Interest, c.LoanAmount };
 
@@ -47,17 +68,17 @@ namespace CenturyFinCorpApp
 
             if (txn != null)
             {
-                 result = (from t in txn
-                              join c in cus
-                              on t.CustomerSequenceNo equals c.CustomerSeqNumber
-                              select new CustomerDailyTxn
-                              {
-                                  TransactionId = t.TransactionId,
-                                  TxnDate = t.TxnDate,
-                                  CustomerName = c.Name,
-                                  AmountReceived = t.AmountReceived,
-                                  Balance = t.Balance
-                              }).Distinct().ToList();
+                result = (from t in txn
+                          join c in cus
+                          on t.CustomerSequenceNo equals c.CustomerSeqNumber
+                          select new CustomerDailyTxn
+                          {
+                              TransactionId = t.TransactionId,
+                              TxnDate = t.TxnDate,
+                              CustomerName = c.Name,
+                              AmountReceived = t.AmountReceived,
+                              Balance = t.Balance
+                          }).Distinct().ToList();
             }
 
             var amountReceived = result.Sum(s => s.AmountReceived);
@@ -130,6 +151,12 @@ namespace CenturyFinCorpApp
             {
                 LoadDailyCollection();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            LoadDailyCollection(true);
+
         }
     }
 

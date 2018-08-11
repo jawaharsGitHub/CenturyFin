@@ -52,7 +52,7 @@ namespace CenturyFinCorpApp
 
             txtComments.Text = dailyTxn.Comments;
 
-            btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails(DateTime.Today).Sum(s => s.AmountReceived));
+            btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(DateTime.Today).Sum(s => s.AmountReceived));
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)

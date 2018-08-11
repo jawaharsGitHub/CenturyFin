@@ -548,7 +548,7 @@ namespace DataAccess.PrimaryTypes
             //var txnFile = AppConfiguration.TransactionFile;  // old approach.
 
             var txnFile = Path.Combine(AppConfiguration.DailyBatchFile, inputDate.ToString("dd-MM-yyyy"));
-            if (File.Exists(txnFile) == false) return null;
+            if (File.Exists(txnFile) == false) return new List<Transaction>();
             var json = File.ReadAllText(txnFile);
             List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
             if (list == null) return null;
@@ -558,6 +558,28 @@ namespace DataAccess.PrimaryTypes
             //var fromClosedTxn = ProcessDirectory(AppConfiguration.ClosedNotesFile, inputDate); // old approach.
 
             //fromActiveTxn.AddRange(fromClosedTxn); // old approach.
+
+            return fromActiveTxn;
+
+
+        }
+
+        public static List<Transaction> GetDailyCollectionDetails_V0(DateTime inputDate)
+        {
+
+            //Get from Ongoing Transcations
+
+            var txnFile = AppConfiguration.TransactionFile;
+
+            var json = File.ReadAllText(txnFile);
+            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            if (list == null) return null;
+            var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
+
+            //Get from Closed Transactions
+            var fromClosedTxn = ProcessDirectory(AppConfiguration.ClosedNotesFile, inputDate);
+
+            fromActiveTxn.AddRange(fromClosedTxn);
 
             return fromActiveTxn;
 

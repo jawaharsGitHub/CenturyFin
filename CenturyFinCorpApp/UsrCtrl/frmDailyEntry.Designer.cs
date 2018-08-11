@@ -36,7 +36,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.lblOutStanding = new System.Windows.Forms.Label();
             this.chkNotGivenCustomer = new System.Windows.Forms.CheckBox();
+            this.dgvAllDailyCollection = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -50,18 +54,18 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(111, 10);
+            this.dateTimePicker1.Location = new System.Drawing.Point(57, 9);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(317, 11);
+            this.button1.Location = new System.Drawing.Point(390, 10);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(105, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Show";
+            this.button1.Text = "ShowFromBatch";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -89,7 +93,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(886, 115);
+            this.button2.Location = new System.Drawing.Point(904, 11);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(103, 23);
             this.button2.TabIndex = 10;
@@ -100,7 +104,7 @@
             // lblOutStanding
             // 
             this.lblOutStanding.AutoSize = true;
-            this.lblOutStanding.Location = new System.Drawing.Point(635, 144);
+            this.lblOutStanding.Location = new System.Drawing.Point(510, 16);
             this.lblOutStanding.Name = "lblOutStanding";
             this.lblOutStanding.Size = new System.Drawing.Size(86, 13);
             this.lblOutStanding.TabIndex = 11;
@@ -117,11 +121,41 @@
             this.chkNotGivenCustomer.UseVisualStyleBackColor = true;
             this.chkNotGivenCustomer.CheckedChanged += new System.EventHandler(this.chkNotGivenCustomer_CheckedChanged);
             // 
+            // dgvAllDailyCollection
+            // 
+            this.dgvAllDailyCollection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAllDailyCollection.Location = new System.Drawing.Point(727, 183);
+            this.dgvAllDailyCollection.Name = "dgvAllDailyCollection";
+            this.dgvAllDailyCollection.Size = new System.Drawing.Size(320, 338);
+            this.dgvAllDailyCollection.TabIndex = 13;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(727, 151);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(114, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Daily Collection History";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(263, 9);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(105, 23);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "Show V-0";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dgvAllDailyCollection);
             this.Controls.Add(this.chkNotGivenCustomer);
             this.Controls.Add(this.lblOutStanding);
             this.Controls.Add(this.button2);
@@ -133,6 +167,7 @@
             this.Name = "frmDailyEntry";
             this.Size = new System.Drawing.Size(1226, 524);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,5 +183,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label lblOutStanding;
         private System.Windows.Forms.CheckBox chkNotGivenCustomer;
+        private System.Windows.Forms.DataGridView dgvAllDailyCollection;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button3;
     }
 }

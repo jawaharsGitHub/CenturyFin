@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DataAccess.PrimaryTypes
 {
-    public class DailyCollectionDetail : BaseClass<DailyCollectionDetail>
+    public class DailyCollectionDetail : BaseClass
     {
         public string Date { get; set; }
 
