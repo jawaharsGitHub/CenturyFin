@@ -333,7 +333,7 @@
     "Interest": 400,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-14T00:00:00",
+    "AmountGivenDate": "2018-05-05T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1294,9 +1294,9 @@
     "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-03-13T00:00:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-08-10T21:30:39.1600152-04:00",
     "ModifiedDate": null
   },
   {
@@ -1477,7 +1477,7 @@
     "Interest": 1500,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-27T12:55:49.435067-04:00",
+    "AmountGivenDate": "2018-07-27T12:55:49",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1529,7 +1529,7 @@
     "Interest": 1000,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-08-04T21:39:43.0232994-04:00",
+    "AmountGivenDate": "2018-08-04T21:39:43",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1608,6 +1608,19 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-08-09T12:31:55.5244874-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 130,
+    "CustomerId": 88,
+    "Name": "Jayakumar - Bovonto Agency",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-10T21:28:32.50958-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }

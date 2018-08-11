@@ -16,12 +16,11 @@ namespace CenturyFinCorpApp
         [STAThread]
         static void Main()
         {
-            //Common.DataCorrection();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-           CultureInfo myCI = new CultureInfo("en-GB", false);
+            CultureInfo myCI = new CultureInfo("en-GB", false);
             myCI.DateTimeFormat.ShortDatePattern = "dd-MM-yyyy";
 
             Thread.CurrentThread.CurrentCulture = myCI;
