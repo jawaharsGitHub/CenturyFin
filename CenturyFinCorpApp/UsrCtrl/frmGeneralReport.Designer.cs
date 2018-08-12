@@ -35,6 +35,7 @@
             this.chkAddSalary = new System.Windows.Forms.CheckBox();
             this.dgvNotePerMonth = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -102,10 +103,20 @@
             this.label3.TabIndex = 21;
             this.label3.Text = "NOTE PER MONTH:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 519);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "label1";
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvNotePerMonth);
             this.Controls.Add(this.lblTotal);
@@ -114,7 +125,7 @@
             this.Controls.Add(this.chkAddSalary);
             this.Controls.Add(this.dgvIncome);
             this.Name = "frmGeneralReport";
-            this.Size = new System.Drawing.Size(1071, 530);
+            this.Size = new System.Drawing.Size(1071, 560);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).EndInit();
             this.ResumeLayout(false);
@@ -131,5 +142,6 @@
         private System.Windows.Forms.CheckBox chkAddSalary;
         private System.Windows.Forms.DataGridView dgvNotePerMonth;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
     }
 }
