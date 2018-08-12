@@ -709,9 +709,9 @@
     "LoanAmount": 15000,
     "Interest": 1200,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-06-30T00:00:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-08-11T21:57:53.8048439-04:00",
     "ModifiedDate": null
   },
   {
@@ -1621,6 +1621,32 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-08-10T21:28:32.50958-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 131,
+    "CustomerId": 89,
+    "Name": "Md Rabik - Vanmalai Water -  Madurai Road",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-11T22:06:43.2451078-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 132,
+    "CustomerId": 90,
+    "Name": "Bala - Nanni vayal - Share auto",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-11T22:07:33.4698961-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
