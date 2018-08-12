@@ -424,7 +424,6 @@ namespace DataAccess.PrimaryTypes
             {
                 result.Add(fe.OrderBy(o => o.Balance).First());
             });
-            //return outsideMoney;
 
             var data = (from c in customers
                         join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
@@ -437,8 +436,8 @@ namespace DataAccess.PrimaryTypes
                             t.Balance,
                             RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
                             DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
-                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : ((c.AmountGivenDate.Value.AddDays(101) - DateTime.Today.Date).Days)
-                        }).OrderBy(o => o.DaysToClose).Take(top).ToList();
+                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(101) - DateTime.Today.Date).Days)
+                        }).OrderBy(o => o.NeedToClose).Take(top).ToList();
 
             return data;
 

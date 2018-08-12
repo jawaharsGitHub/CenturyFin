@@ -25,6 +25,16 @@ namespace CenturyFinCorpApp
 
             InitializeComponent();
 
+            var customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
+
+
+            var activeTxn = customers.Count(c => c.IsActive == true);
+            var closedTxn = customers.Count(c => c.IsActive == false);
+            var totalTxn = activeTxn + closedTxn;
+
+            this.Text = $"WELCOME - CENTURY FIN CORP. Running Notes({activeTxn}) Closed Notes({closedTxn}) Total Notes({totalTxn})";
+
+
             //this.TopMost = true;
             this.AutoScrollOffset = new Point(0, 0);
 

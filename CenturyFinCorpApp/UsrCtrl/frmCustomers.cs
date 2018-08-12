@@ -89,7 +89,7 @@ namespace CenturyFinCorpApp
             var closedTxn = customers.Count(c => c.IsActive == false);
             var totalTxn = activeTxn + closedTxn;
 
-            this.Text = $"Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
+            this.Text = $"WELCOME TO Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
 
             rdbActive.Text = $"RUNNING NOTES ({activeTxn})";
             rdbClosed.Text = $"CLOSED NOTES ({closedTxn})";
