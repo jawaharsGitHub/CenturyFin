@@ -30,6 +30,7 @@ namespace CenturyFinCorpApp
             LoadAllHsitoryDailyCollections();
 
             lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
+            AdjustColumnOrder();
 
         }
 
@@ -49,6 +50,14 @@ namespace CenturyFinCorpApp
             LoadDailyCollection();
         }
 
+        private void AdjustColumnOrder()
+        {
+            dataGridView1.Columns["CustomerId"].Visible = false;
+            dataGridView1.Columns["CustomerSeqId"].Visible = false;
+            dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+        }
+
+
         private void LoadDailyCollection(bool versionZero = false)
         {
             var txn = new List<Transaction>();
@@ -62,7 +71,7 @@ namespace CenturyFinCorpApp
                 txn = Transaction.GetDailyCollectionDetails(dateTimePicker1.Value);
             }
             var cus = from c in Customer.GetAllCustomer()
-                      select new { c.CustomerSeqNumber, c.Name, c.IsActive, c.Interest, c.LoanAmount };
+                      select new { c.CustomerSeqNumber, c.Name, c.IsActive, c.Interest, c.LoanAmount, c.CustomerId };
 
             var result = new List<CustomerDailyTxn>();
 
@@ -77,7 +86,9 @@ namespace CenturyFinCorpApp
                               TxnDate = t.TxnDate,
                               CustomerName = c.Name,
                               AmountReceived = t.AmountReceived,
-                              Balance = t.Balance
+                              Balance = t.Balance,
+                              CustomerId = c.CustomerId,
+                              CustomerSeqId = c.CustomerSeqNumber
                           }).Distinct().ToList();
             }
 
@@ -156,6 +167,31 @@ namespace CenturyFinCorpApp
         private void button3_Click(object sender, EventArgs e)
         {
             LoadDailyCollection(true);
+
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var grid = (sender as DataGridView);
+            var rowIndex = grid.CurrentCell.RowIndex;
+
+            var seqNo = FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerSeqId");
+            var customerId = FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerId");
+            var txnId = FormGeneral.GetGridCellValue(grid, rowIndex, "TransactionId");
+            var amountReceived = FormGeneral.GetGridCellValue(grid, rowIndex, "AmountReceived");
+
+            Transaction.UpdateTransactionDetails(new Transaction()
+            {
+                AmountReceived = amountReceived.ToInt32(),
+                TransactionId = txnId.ToInt32(),
+                CustomerId = customerId.ToInt32(),
+                CustomerSequenceNo = seqNo.ToInt32()
+            });
+
+        }
+
+        private void dgvAllDailyCollection_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

@@ -201,10 +201,10 @@ namespace CenturyFinCorpApp
             var grid = (sender as DataGridView);
             var rowIndex = grid.CurrentCell.RowIndex;
 
-            var seqNo = GetGridCellValue(grid, rowIndex, "CustomerSeqNumber");
-            var customerId = GetGridCellValue(grid, rowIndex, "CustomerId");
-            var loanAmount = GetGridCellValue(grid, rowIndex, "LoanAmount");
-            var collectedAmount = GetGridCellValue(grid, rowIndex, "CollectionAmt");
+            var seqNo = FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerSeqNumber");
+            var customerId = FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerId");
+            var loanAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "LoanAmount");
+            var collectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
             if (string.IsNullOrEmpty(collectedAmount) == false)
             {
@@ -264,11 +264,11 @@ namespace CenturyFinCorpApp
             }
 
 
-            var amountGivenDate = GetGridCellValue(grid, rowIndex, "AmountGivenDate");
-            var closedDate = GetGridCellValue(grid, rowIndex, "ClosedDate");
-            var interest = GetGridCellValue(grid, rowIndex, "Interest");
 
-            var name = GetGridCellValue(grid, rowIndex, "Name");
+            var amountGivenDate = FormGeneral.GetGridCellValue(grid, rowIndex, "AmountGivenDate");
+            var closedDate = FormGeneral.GetGridCellValue(grid, rowIndex, "ClosedDate");
+            var interest = FormGeneral.GetGridCellValue(grid, rowIndex, "Interest");
+            var name = FormGeneral.GetGridCellValue(grid, rowIndex, "Name");
 
             // Update Customer Created Date.
 
@@ -283,13 +283,6 @@ namespace CenturyFinCorpApp
                         LoanAmount = Convert.ToInt32(loanAmount),
                         Name = name
                     });
-        }
-
-        private string GetGridCellValue(DataGridView grid, int rowIndex, string columnName)
-        {
-            var cellValue = Convert.ToString(grid.Rows[grid.CurrentCell.RowIndex].Cells[columnName].Value);
-            return (cellValue == string.Empty) ? null : cellValue;
-
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -310,9 +303,9 @@ namespace CenturyFinCorpApp
                 ContextMenuStrip strip = new ContextMenuStrip();
                 int rowIndex = dataGridView1.HitTest(e.X, e.Y).RowIndex;
 
-                var seqNo = GetGridCellValue(dataGridView1, rowIndex, "CustomerSeqNumber");
-                var customerId = GetGridCellValue(dataGridView1, rowIndex, "CustomerId");
-                var isActive = GetGridCellValue(dataGridView1, rowIndex, "IsActive");
+                var seqNo = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "CustomerSeqNumber");
+                var customerId = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "CustomerId");
+                var isActive = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "IsActive");
 
                 strip.Tag = new Customer() { CustomerSeqNumber = Convert.ToInt32(seqNo), CustomerId = Convert.ToInt32(customerId), IsActive = Convert.ToBoolean(isActive) };
 

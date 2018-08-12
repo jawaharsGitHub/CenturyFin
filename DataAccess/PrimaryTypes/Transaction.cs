@@ -159,7 +159,7 @@ namespace DataAccess.PrimaryTypes
                 var json = File.ReadAllText(AppConfiguration.TransactionFile);
                 List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
 
-                var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId).FirstOrDefault();
+                var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId && c.CustomerSequenceNo == updatedTransaction.CustomerSequenceNo && c.CustomerId == updatedTransaction.CustomerId).FirstOrDefault();
 
                 u.AmountReceived = updatedTransaction.AmountReceived;
                 u.TxnUpdatedDate = DateTime.Today;

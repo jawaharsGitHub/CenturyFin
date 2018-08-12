@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormGeneral.cs" />
     <Compile Include="UsrCtrl\frmBatches.cs">
       <SubType>UserControl</SubType>
     </Compile>

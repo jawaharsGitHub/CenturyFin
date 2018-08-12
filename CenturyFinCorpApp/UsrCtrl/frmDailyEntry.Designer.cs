@@ -50,6 +50,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(578, 300);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // dateTimePicker1
@@ -128,6 +129,7 @@
             this.dgvAllDailyCollection.Name = "dgvAllDailyCollection";
             this.dgvAllDailyCollection.Size = new System.Drawing.Size(320, 338);
             this.dgvAllDailyCollection.TabIndex = 13;
+            this.dgvAllDailyCollection.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllDailyCollection_CellContentClick);
             // 
             // label3
             // 
