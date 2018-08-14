@@ -1,4 +1,8 @@
 ﻿
+using System;
+using System.IO;
+using System.Reflection;
+
 namespace Common
 {
     public static class General
@@ -20,6 +24,15 @@ namespace Common
                 default:
                     return "th";
             }
+        }
+
+        public static string GetDataFolder(string oldValue, string newValue)
+        {
+            string exeFile = (new Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
+            string exeDir = Path.GetDirectoryName(exeFile);
+            string dataFolder = exeDir.Replace("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\");
+
+            return dataFolder;
         }
 
     }

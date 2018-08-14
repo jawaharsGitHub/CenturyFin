@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,6 +17,12 @@ namespace TamilNaduElections
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            var dataFolder = General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "TamilNaduElections\\DB\\");
+
+            AppConfiguration.AddOrUpdateAppSettings("SourceFolder", dataFolder);
+
+
             Application.Run(new Form1());
         }
     }
