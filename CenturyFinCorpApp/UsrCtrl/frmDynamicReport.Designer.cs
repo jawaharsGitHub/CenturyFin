@@ -1,6 +1,6 @@
 ﻿namespace CenturyFinCorpApp
 {
-    partial class frmReport
+    partial class frmDynamicReport
     {
         /// <summary> 
         /// Required designer variable.

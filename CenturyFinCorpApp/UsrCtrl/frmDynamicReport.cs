@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace CenturyFinCorpApp
 {
-    public partial class frmReport : UserControl
+    public partial class frmDynamicReport : UserControl
     {
         int outstandingMoney = 0;
-        public frmReport()
+        public frmDynamicReport()
         {
             InitializeComponent();
 

@@ -58,6 +58,7 @@ namespace CenturyFinCorpApp
 
             txtSearch.Text = GlobalValue.SearchText;
 
+
         }
 
         private void SetCustomers()
@@ -94,6 +95,11 @@ namespace CenturyFinCorpApp
             rdbActive.Text = $"RUNNING NOTES ({activeTxn})";
             rdbClosed.Text = $"CLOSED NOTES ({closedTxn})";
             rdbAll.Text = $"ALL NOTES ({totalTxn})";
+
+            // Customer day and count ratio.
+            var days = (DateTime.Today - new DateTime(2018, 1, 25)).TotalDays;
+
+            label1.Text = $"{totalTxn} customers in {days} days {Environment.NewLine} {Math.Round(totalTxn/days, 1)} customer(s) per day";
         }
 
         private void AdjustColumnOrder()
@@ -350,7 +356,7 @@ namespace CenturyFinCorpApp
 
         private void txtSearch_Leave(object sender, EventArgs e)
         {
-            
+
             dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["CollectionAmt"];
             dataGridView1.BeginEdit(true);
         }
