@@ -108,6 +108,10 @@ namespace CenturyFinCorpApp
             var mnuBatch = new ToolStripMenuItem() { Name = "batch", Text = "Batch Jobs" };
             menuStrip.Items.Add(mnuBatch);
             mnuBatch.Click += (s, e) => ShowForm<frmBatches>();
+            //Outstanding
+            var mnuOutstanding = new ToolStripMenuItem() { Name = "Outstanding", Text = "Outstanding" };
+            menuStrip.Items.Add(mnuOutstanding);
+            mnuOutstanding.Click += (s, e) => ShowForm<frmOutstanding>();
 
             this.Controls.Add(menuStrip);
         }

@@ -130,6 +130,12 @@
     <Compile Include="frmIndexForm.Designer.cs">
       <DependentUpon>frmIndexForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrl\frmOutstanding.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmOutstanding.Designer.cs">
+      <DependentUpon>frmOutstanding.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrl\frmPrediction.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmIndexForm.resx">
       <DependentUpon>frmIndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmOutstanding.resx">
+      <DependentUpon>frmOutstanding.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmPrediction.resx">
       <DependentUpon>frmPrediction.cs</DependentUpon>
