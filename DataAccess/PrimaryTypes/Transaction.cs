@@ -426,7 +426,9 @@ namespace DataAccess.PrimaryTypes
             });
 
             var data = (from c in customers
-                        join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
+                        join t in result on
+                        new { CustomerSeqNumber = c.CustomerSeqNumber, c.CustomerId } equals new { CustomerSeqNumber = t.CustomerSequenceNo, t.CustomerId }
+
                         select new
                         {
                             c.Name,
@@ -519,7 +521,11 @@ namespace DataAccess.PrimaryTypes
 
                 // this is useful to calculate all external balances
                 var result = (from c in Customer.GetAllCustomer()
-                              join t in outsideMoney on c.CustomerSeqNumber equals t.CustomerSequenceNo
+                              join t in outsideMoney on new { CustomerSeqNumber = c.CustomerSeqNumber, c.CustomerId } equals new
+                              {
+                                  CustomerSeqNumber = t.CustomerSequenceNo,
+                                  t.CustomerId
+                              }
                               orderby c.AmountGivenDate
                               select new { c.Name, c.AmountGivenDate, c.CustomerSeqNumber, c.CustomerId, t.Balance, c.LoanAmount, t.TransactionId }).ToList();
 
@@ -544,9 +550,9 @@ namespace DataAccess.PrimaryTypes
 
             // Get from Ongoing Transcations
 
-            //var txnFile = AppConfiguration.TransactionFile;  // old approach.
+            var txnFile = AppConfiguration.TransactionFile;  // old approach.
 
-            var txnFile = Path.Combine(AppConfiguration.DailyBatchFile, inputDate.ToString("dd-MM-yyyy"));
+            //var txnFile = Path.Combine(AppConfiguration.DailyBatchFile, inputDate.ToString("dd-MM-yyyy")); // new approach
             if (File.Exists(txnFile) == false) return new List<Transaction>();
             var json = File.ReadAllText(txnFile);
             List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
@@ -554,9 +560,9 @@ namespace DataAccess.PrimaryTypes
             var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
 
             //Get from Closed Transactions
-            //var fromClosedTxn = ProcessDirectory(AppConfiguration.ClosedNotesFile, inputDate); // old approach.
+            var fromClosedTxn = ProcessDirectory(AppConfiguration.ClosedNotesFile, inputDate); // old approach.
 
-            //fromActiveTxn.AddRange(fromClosedTxn); // old approach.
+            fromActiveTxn.AddRange(fromClosedTxn); // old approach.
 
             return fromActiveTxn;
 
