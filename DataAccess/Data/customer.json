@@ -1048,7 +1048,7 @@
     "Interest": 1600,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-17T00:00:00",
+    "AmountGivenDate": "2018-05-16T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1463,9 +1463,9 @@
     "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": true,
-    "IsActive": true,
-    "AmountGivenDate": "2018-06-06T12:52:37",
-    "ClosedDate": null,
+    "IsActive": false,
+    "AmountGivenDate": "2018-05-05T00:00:00",
+    "ClosedDate": "2018-08-14T00:00:00",
     "ModifiedDate": null
   },
   {
@@ -1490,7 +1490,7 @@
     "Interest": 5000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-29T22:23:51.0038048-04:00",
+    "AmountGivenDate": "2018-07-29T22:23:51",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1640,13 +1640,39 @@
   {
     "CustomerSeqNumber": 132,
     "CustomerId": 90,
-    "Name": "Bala - Nanni vayal - Share auto",
+    "Name": "Bala - Vanni vayal - Share auto",
     "PhoneNumber": "",
     "LoanAmount": 20000,
     "Interest": 2000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-08-11T22:07:33.4698961-04:00",
+    "AmountGivenDate": "2018-08-11T22:07:33",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 133,
+    "CustomerId": 16,
+    "Name": "vignesh-Computer System",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-14T22:22:49",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 134,
+    "CustomerId": 56,
+    "Name": "Raj Bavani - Maligai",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-14T22:23:06.2224092-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }

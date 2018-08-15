@@ -429,14 +429,15 @@ namespace DataAccess.PrimaryTypes
                         join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
                         select new
                         {
-                            c.CustomerSeqNumber,
+                            
                             c.Name,
+                            RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
+                            DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
+                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(101) - DateTime.Today.Date).Days),
                             c.AmountGivenDate,
                             c.LoanAmount,
                             t.Balance,
-                            RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
-                            DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
-                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(101) - DateTime.Today.Date).Days)
+                            c.CustomerSeqNumber,
                         }).OrderBy(o => o.NeedToClose).Take(top).ToList();
 
             return data;
