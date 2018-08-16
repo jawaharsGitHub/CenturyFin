@@ -70,11 +70,15 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.btnCanGive = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.btnCollection);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
@@ -178,6 +182,7 @@
             this.txtGivenAmount.Name = "txtGivenAmount";
             this.txtGivenAmount.Size = new System.Drawing.Size(100, 20);
             this.txtGivenAmount.TabIndex = 6;
+            this.txtGivenAmount.Leave += new System.EventHandler(this.txtGivenAmount_Leave);
             // 
             // txtTmrNeeded
             // 
@@ -452,6 +457,24 @@
             this.label18.TabIndex = 24;
             this.label18.Text = "CAN GIVE (TOTAL)";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(260, 264);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.TabIndex = 28;
+            this.label19.Text = "label19";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(263, 298);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 13);
+            this.label20.TabIndex = 29;
+            this.label20.Text = "label20";
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -525,5 +548,7 @@
         private System.Windows.Forms.Button btnCollection;
         private System.Windows.Forms.Button btnCanGive;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
     }
 }
