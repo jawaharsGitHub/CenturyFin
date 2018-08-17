@@ -1,4 +1,6 @@
-﻿namespace DataAccess.PrimaryTypes
+﻿using Common;
+
+namespace DataAccess.PrimaryTypes
 {
     public class CollectionPerDay : BaseClass
     {

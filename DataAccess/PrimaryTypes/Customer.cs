@@ -1,14 +1,14 @@
 ﻿using Common;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace DataAccess.PrimaryTypes
 {
     public class Customer : BaseClass
     {
+
+        private static string JsonFilePath = AppConfiguration.CustomerFile;
 
         public int CustomerSeqNumber { get; set; }
 
@@ -40,16 +40,16 @@ namespace DataAccess.PrimaryTypes
             newCustomer.ModifiedDate = null;
             newCustomer.IsActive = true;
             newCustomer.ClosedDate = null;
-            List<Customer> customers = new List<Customer>() { newCustomer };
+            //List<Customer> customers = new List<Customer>() { newCustomer };
 
             // Get existing customers
-            string baseJson = File.ReadAllText(AppConfiguration.CustomerFile);
+            //string baseJson = File.ReadAllText(JsonFilePath);
 
             //Merge the customer
-            string updatedJson = AddObjectsToJson(baseJson, customers);
+            InsertSingleObjectToListJson(JsonFilePath, newCustomer);
 
             // Add into json
-            File.WriteAllText(AppConfiguration.CustomerFile, updatedJson);
+            //File.WriteAllText(JsonFilePath, updatedJson);
 
         }
 
@@ -58,17 +58,18 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var json = File.ReadAllText(AppConfiguration.CustomerFile);
-                List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
-
+                //var json = File.ReadAllText(JsonFilePath);
+                //List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber && c.IsActive == true).FirstOrDefault();
                 u.IsActive = updatedCustomer.IsActive;
                 u.ClosedDate = updatedCustomer.ClosedDate;
 
-                string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
+                //string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
+                //File.WriteAllText(JsonFilePath, updatedCustomers);
 
+                WriteObjectsToFile(list, JsonFilePath);
 
-                File.WriteAllText(AppConfiguration.CustomerFile, updatedCustomers);
 
             }
             catch (Exception ex)
@@ -88,8 +89,11 @@ namespace DataAccess.PrimaryTypes
                     updatedCustomer.ClosedDate = null;
                 }
 
-                var json = File.ReadAllText(AppConfiguration.CustomerFile);
-                List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+                //var json = File.ReadAllText(JsonFilePath);
+                //List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
 
                 var allCustomers = list.Where(c => c.CustomerId == updatedCustomer.CustomerId).ToList();
 
@@ -106,10 +110,10 @@ namespace DataAccess.PrimaryTypes
                 u.LoanAmount = updatedCustomer.LoanAmount;
                 u.CustomerId = updatedCustomer.CustomerId;
 
-                string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
+                //string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
+                //File.WriteAllText(JsonFilePath, updatedCustomers);
 
-
-                File.WriteAllText(AppConfiguration.CustomerFile, updatedCustomers);
+                WriteObjectsToFile(list, JsonFilePath);
 
             }
             catch (Exception ex)
@@ -124,15 +128,20 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var json = File.ReadAllText(AppConfiguration.CustomerFile);
-                List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+                //var json = File.ReadAllText(JsonFilePath);
+                //List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
                 u.ClosedDate = updatedCustomer.ClosedDate;
 
-                string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
+                //string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
 
-                File.WriteAllText(AppConfiguration.CustomerFile, updatedCustomers);
+                //File.WriteAllText(JsonFilePath, updatedCustomers);
+
+                WriteObjectsToFile(list, JsonFilePath);
+
 
             }
             catch (Exception ex)
@@ -147,8 +156,9 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var json = File.ReadAllText(AppConfiguration.CustomerFile);
-                List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+                //var json = File.ReadAllText(JsonFilePath);
+                //List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
                 return list.Where(c => c.CustomerId == cusid && c.CustomerSeqNumber == cusSeqNo).FirstOrDefault();
             }
             catch (Exception ex)
@@ -162,8 +172,9 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var json = File.ReadAllText(AppConfiguration.CustomerFile);
-                List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+                //var json = File.ReadAllText(JsonFilePath);
+                //List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
                 return list;
             }
             catch (Exception ex)
@@ -177,12 +188,18 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var json = File.ReadAllText(AppConfiguration.CustomerFile);
-                List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+                //var json = File.ReadAllText(JsonFilePath);
+                //List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
                 var itemToDelete = list.Where(c => c.CustomerId == customerId && c.CustomerSeqNumber == sequenceNo).FirstOrDefault();
                 list.Remove(itemToDelete);
-                string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
-                File.WriteAllText(AppConfiguration.CustomerFile, updatedCustomers);
+
+                WriteObjectsToFile(list, JsonFilePath);
+
+                //string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
+                //File.WriteAllText(JsonFilePath, updatedCustomers);
             }
             catch (Exception ex)
             {
@@ -192,17 +209,22 @@ namespace DataAccess.PrimaryTypes
 
         public static int GetNextCustomerId()
         {
-            var json = File.ReadAllText(AppConfiguration.CustomerFile);
-            List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+            //var json = File.ReadAllText(JsonFilePath);
+            //List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+            List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
             if (list == null || list.Count == 0) return 1;
-            return (list.Select(s => s.CustomerId).Max() + 1);
+
+            return (list.Max(m => m.CustomerId) + 1);
 
         }
 
         public static int GetNextCustomerSeqNo()
         {
-            var json = File.ReadAllText(AppConfiguration.CustomerFile);
-            List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+            //var json = File.ReadAllText(JsonFilePath);
+            //List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(json);
+            List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
             if (list == null || list.Count == 0) return 1;
             return (list.Select(s => s.CustomerSeqNumber).Max() + 1);
 

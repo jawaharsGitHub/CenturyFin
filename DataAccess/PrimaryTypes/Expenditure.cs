@@ -1,8 +1,6 @@
 ﻿using Common;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace DataAccess.PrimaryTypes
@@ -10,6 +8,8 @@ namespace DataAccess.PrimaryTypes
 
     public class Expenditure : BaseClass
     {
+
+        private static string JsonFilePath = AppConfiguration.ExpenditureFile;
         public string Date { get; set; }
 
         public int Amount { get; set; }
@@ -21,13 +21,15 @@ namespace DataAccess.PrimaryTypes
         {
             expenditure.Date = DateTime.Today.ToLongTimeString();
 
-            string baseJson = File.ReadAllText(AppConfiguration.ExpenditureFile);
+            //string baseJson = File.ReadAllText(AppConfiguration.ExpenditureFile);
 
-            //Merge the customer
-            string updatedJson = AddSingleObjectToJson(baseJson, expenditure);
+            ////Merge the customer
+            //string updatedJson = InsertSingleObjectToJson(baseJson, expenditure);
 
-            // Add into json
-            File.WriteAllText(AppConfiguration.ExpenditureFile, updatedJson);
+            //// Add into json
+            //File.WriteAllText(AppConfiguration.ExpenditureFile, updatedJson);
+
+            InsertSingleObjectToListJson(AppConfiguration.ExpenditureFile, expenditure);
 
         }
 
@@ -36,8 +38,10 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var json = File.ReadAllText(AppConfiguration.ExpenditureFile);
-                List<Expenditure> list = JsonConvert.DeserializeObject<List<Expenditure>>(json);
+                //var json = File.ReadAllText(AppConfiguration.ExpenditureFile);
+                //List<Expenditure> list = JsonConvert.DeserializeObject<List<Expenditure>>(json);
+
+                var list = ReadFileAsObjects<Expenditure>(JsonFilePath);
                 return list;
             }
             catch (Exception ex)

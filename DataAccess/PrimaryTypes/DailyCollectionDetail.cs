@@ -1,14 +1,14 @@
 ﻿using Common;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace DataAccess.PrimaryTypes
 {
     public class DailyCollectionDetail : BaseClass
     {
+
+        private static string JsonFilePath = AppConfiguration.DailyTxnFile;
         public string Date { get; set; }
 
         public int? YesterdayAmountInHand { get; set; }
@@ -45,26 +45,23 @@ namespace DataAccess.PrimaryTypes
 
         public int OtherInvestment { get; set; }
 
-        private static string DailyTxnFilePath = AppConfiguration.DailyTxnFile;
+        //private static string DailyTxnFilePath = AppConfiguration.DailyTxnFile;
 
         public static void AddDaily(DailyCollectionDetail dailyCol)
         {
 
-            List<DailyCollectionDetail> dailyTxns = new List<DailyCollectionDetail>() { dailyCol };
-
-
+            //List<DailyCollectionDetail> dailyTxns = new List<DailyCollectionDetail>() { dailyCol };
 
             // Get existing customers
-            string baseJson = File.ReadAllText(DailyTxnFilePath);
+            //string baseJson = File.ReadAllText(DailyTxnFilePath);
 
-            //Merge the customer
-            string updatedJson = AddObjectsToJson(baseJson, dailyTxns);
+            ////Merge the customer
+            //string updatedJson = InsertObjectsToJson(baseJson, dailyTxns);
 
+            //// Add into json
+            //File.WriteAllText(DailyTxnFilePath, updatedJson);
 
-
-
-            // Add into json
-            File.WriteAllText(DailyTxnFilePath, updatedJson);
+            InsertSingleObjectToListJson(JsonFilePath, dailyCol);
 
         }
 
@@ -73,12 +70,14 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var json = File.ReadAllText(DailyTxnFilePath);
-                List<DailyCollectionDetail> list = JsonConvert.DeserializeObject<List<DailyCollectionDetail>>(json);
+                //var json = File.ReadAllText(DailyTxnFilePath);
+                //List<DailyCollectionDetail> list = JsonConvert.DeserializeObject<List<DailyCollectionDetail>>(json);
 
-                DailyCollectionDetail dailyTxn = null;
-                
-                dailyTxn = list.Where(c => c.Date == date.ToShortDateString()).FirstOrDefault();
+                List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
+
+                //DailyCollectionDetail dailyTxn = null;
+
+                var dailyTxn = list.Where(c => c.Date == date.ToShortDateString()).FirstOrDefault();
 
                 return dailyTxn;
 

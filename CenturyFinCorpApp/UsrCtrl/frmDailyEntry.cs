@@ -36,7 +36,7 @@ namespace CenturyFinCorpApp
 
         private void LoadAllHsitoryDailyCollections()
         {
-            var data = DataAccess.BaseClass.GetAllDetails<DailyCollectionDetail>(AppConfiguration.DailyTxnFile);
+            var data = BaseClass.ReadFileAsObjects<DailyCollectionDetail>(AppConfiguration.DailyTxnFile);
 
             var result = (from d in data
                           select

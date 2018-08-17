@@ -63,7 +63,6 @@
     <Compile Include="ExtendedTypes\ExtDailyTxn.cs" />
     <Compile Include="PrimaryTypes\DailyCollectionDetail.cs" />
     <Compile Include="PrimaryTypes\CollectionPerDay.cs" />
-    <Compile Include="BaseTypes\BaseClass.cs" />
     <Compile Include="PrimaryTypes\Expenditure.cs" />
     <Compile Include="PrimaryTypes\IncomeReport.cs" />
     <Compile Include="PrimaryTypes\InHandAndBank.cs" />
@@ -154,6 +153,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BaseTypes\" />
     <Folder Include="Data\DailyBatchFile\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

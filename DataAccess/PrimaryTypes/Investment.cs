@@ -1,13 +1,13 @@
 ﻿using Common;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace DataAccess.PrimaryTypes
 {
     public class Investment : BaseClass
     {
+
+        private static string JsonFilePath = AppConfiguration.InvestmentFile;
         public InvestmentFrom InvestType { get; set; }
 
         public int Amount { get; set; }
@@ -28,13 +28,15 @@ namespace DataAccess.PrimaryTypes
             //List<Customer> customers = new List<Customer>() { investment };
 
             // Get existing customers
-            string baseJson = File.ReadAllText(AppConfiguration.InvestmentFile);
+            //string baseJson = File.ReadAllText(AppConfiguration.InvestmentFile);
 
             //Merge the customer
-            string updatedJson = AddSingleObjectToJson(baseJson, investment);
+            //string updatedJson = InsertSingleObjectToJson(baseJson, investment);
 
             // Add into json
-            File.WriteAllText(AppConfiguration.InvestmentFile, updatedJson);
+            //File.WriteAllText(AppConfiguration.InvestmentFile, updatedJson);
+
+            InsertSingleObjectToListJson(JsonFilePath, investment);
 
         }
 
@@ -43,8 +45,11 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var json = File.ReadAllText(AppConfiguration.InvestmentFile);
-                List<Investment> list = JsonConvert.DeserializeObject<List<Investment>>(json);
+                //var json = File.ReadAllText(AppConfiguration.InvestmentFile);
+                //List<Investment> list = JsonConvert.DeserializeObject<List<Investment>>(json);
+
+                var list = ReadFileAsObjects<Investment>(JsonFilePath);
+
                 return list;
             }
             catch (Exception ex)

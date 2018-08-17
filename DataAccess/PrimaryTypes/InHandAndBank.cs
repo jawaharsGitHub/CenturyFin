@@ -1,12 +1,13 @@
 ﻿using Common;
-using Newtonsoft.Json;
 using System;
-using System.IO;
 
 namespace DataAccess.PrimaryTypes
 {
-    public class InHandAndBank
+    public class InHandAndBank : BaseClass
     {
+
+        private static string JsonFilePath = AppConfiguration.InHandFile;
+
         public int InHandAmount { get; set; }
 
         public decimal InBank { get; set; }
@@ -20,26 +21,17 @@ namespace DataAccess.PrimaryTypes
         public static void AddInHand(InHandAndBank inHand, int? takenFromBank)
         {
             var existingMoney = GetAllhandMoney();
-            
+
             inHand.RealInvestment = (existingMoney.RealInvestment + takenFromBank);
             //existingMoney = inHand;
 
-            var updatedInHand = JsonConvert.SerializeObject(inHand, Formatting.Indented);
+            //var updatedInHand = JsonConvert.SerializeObject(inHand, Formatting.Indented);
 
-            // Add into json
-            File.WriteAllText(AppConfiguration.InHandFile, updatedInHand);
+            //// Add into json
+            //File.WriteAllText(AppConfiguration.InHandFile, updatedInHand);
 
-        }
+            InsertSingleObjectToSingleJson(JsonFilePath, inHand);
 
-        public static void ReduceInHand(int amount)
-        {
-            var existingMoney = GetAllhandMoney();
-            existingMoney.InHandAmount -= amount;
-
-            var updatedInHand = JsonConvert.SerializeObject(existingMoney, Formatting.Indented);
-
-            // Add into json
-            File.WriteAllText(AppConfiguration.InHandFile, updatedInHand);
 
         }
 
@@ -48,9 +40,10 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var json = File.ReadAllText(AppConfiguration.InHandFile);
-                InHandAndBank list = JsonConvert.DeserializeObject<InHandAndBank>(json) ?? new InHandAndBank();
-                return list;
+                //var json = File.ReadAllText(AppConfiguration.InHandFile);
+                //InHandAndBank list = JsonConvert.DeserializeObject<InHandAndBank>(json) ?? new InHandAndBank();
+                //var list = ReadFileAsObjects
+                return ReadFileAsSingleObject<InHandAndBank>(JsonFilePath);
             }
             catch (Exception ex)
             {
