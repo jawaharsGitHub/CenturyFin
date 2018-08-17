@@ -432,7 +432,7 @@ namespace DataAccess.PrimaryTypes
                         select new
                         {
                             c.Name,
-                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(101) - DateTime.Today.Date).Days),
+                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(100) - DateTime.Today.Date).Days),
                             RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
                             DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
                             t.Balance,

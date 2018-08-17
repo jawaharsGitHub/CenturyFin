@@ -44,6 +44,18 @@ namespace CenturyFinCorpApp
             dgReports.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
+        private void XCustomer()
+        {
+
+            // get all active customers
+            var activeCus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
+
+            var xCus = Customer.GetAllCustomer().Where(w => activeCus.Select(s => s.CustomerId).Contains(w.CustomerId) == false && w.IsActive == false).ToList();
+
+            dgReports.DataSource = xCus.Select(s => new { s.Name, s.CustomerId}).Distinct().ToList();
+
+
+        }
         private void ShowOutstandingMoney()
         {
             outstandingMoney = Transaction.GetAllOutstandingAmount();
@@ -100,6 +112,10 @@ namespace CenturyFinCorpApp
             {
                 NotGivenForFewDays();
             }
+            else if (value == 3)
+            {
+                XCustomer();
+            }
         }
     }
 
@@ -111,7 +127,8 @@ namespace CenturyFinCorpApp
             return new List<ReportOption>() {
 
                 new ReportOption() { Value = 1, Name =  "TO BE CLOSED SOON"   },
-                new ReportOption() { Value = 2, Name =  "NOT GIVEN FOR FEW DAYS"   }
+                new ReportOption() { Value = 2, Name =  "NOT GIVEN FOR FEW DAYS"   },
+                new ReportOption() { Value = 3, Name =  "X-Customer"   }
 
             };
         }

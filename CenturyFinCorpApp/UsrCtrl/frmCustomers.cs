@@ -356,7 +356,7 @@ namespace CenturyFinCorpApp
 
         private void txtSearch_Leave(object sender, EventArgs e)
         {
-
+            if (dataGridView1.Rows.Count == 0) return;
             dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["CollectionAmt"];
             dataGridView1.BeginEdit(true);
         }
