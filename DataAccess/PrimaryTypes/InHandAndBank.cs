@@ -58,12 +58,6 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static string AddObjectsToJson<T>(string json, T objects)
-        {
-            T list = JsonConvert.DeserializeObject<T>(json);
-
-            return JsonConvert.SerializeObject(list, Formatting.Indented);
-        }
 
 
     }

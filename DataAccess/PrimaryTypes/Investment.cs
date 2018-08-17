@@ -6,7 +6,7 @@ using System.IO;
 
 namespace DataAccess.PrimaryTypes
 {
-    public class Investment
+    public class Investment : BaseClass
     {
         public InvestmentFrom InvestType { get; set; }
 
@@ -31,7 +31,7 @@ namespace DataAccess.PrimaryTypes
             string baseJson = File.ReadAllText(AppConfiguration.InvestmentFile);
 
             //Merge the customer
-            string updatedJson = AddObjectsToJson(baseJson, investment);
+            string updatedJson = AddSingleObjectToJson(baseJson, investment);
 
             // Add into json
             File.WriteAllText(AppConfiguration.InvestmentFile, updatedJson);
@@ -53,12 +53,6 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static string AddObjectsToJson<T>(string json, T objects)
-        {
-            List<T> list = JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
-            list.Add(objects);
-            return JsonConvert.SerializeObject(list, Formatting.Indented);
-        }
 
     }
 

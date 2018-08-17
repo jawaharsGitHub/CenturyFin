@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DataAccess.PrimaryTypes
 {
-    public class Transaction
+    public class Transaction : BaseClass
     {
 
         public int CustomerId { get; set; }
@@ -29,13 +29,6 @@ namespace DataAccess.PrimaryTypes
 
 
 
-        private static string AddObjectsToJson<T>(string json, List<T> objects)
-        {
-            List<T> list = JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
-
-            list.AddRange(objects);
-            return JsonConvert.SerializeObject(list, Formatting.Indented);
-        }
 
         public static void AddTransaction(Transaction newTxn)
         {

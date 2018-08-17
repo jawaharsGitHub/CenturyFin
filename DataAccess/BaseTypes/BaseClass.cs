@@ -15,6 +15,14 @@ namespace DataAccess
             return JsonConvert.SerializeObject(list, Formatting.Indented);
         }
 
+        public static string AddSingleObjectToJson<T>(string json, T objects)
+        {
+            List<T> list = JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
+
+            list.Add(objects);
+            return JsonConvert.SerializeObject(list, Formatting.Indented);
+        }
+
         public static List<T> GetAllDetails<T>(string filePath)
         {
             var jsonText = File.ReadAllText(filePath);

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DataAccess.PrimaryTypes
 {
-    public class Customer
+    public class Customer : BaseClass
     {
 
         public int CustomerSeqNumber { get; set; }
@@ -33,14 +33,6 @@ namespace DataAccess.PrimaryTypes
         public DateTime? ModifiedDate { get; set; }
 
 
-        // Add
-        public static string AddObjectsToJson<T>(string json, List<T> objects)
-        {
-            List<T> list = JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
-
-            list.AddRange(objects);
-            return JsonConvert.SerializeObject(list, Formatting.Indented);
-        }
 
         public static void AddCustomer(Customer newCustomer)
         {
