@@ -52,7 +52,7 @@ namespace CenturyFinCorpApp
 
             var xCus = Customer.GetAllCustomer().Where(w => activeCus.Select(s => s.CustomerId).Contains(w.CustomerId) == false && w.IsActive == false).ToList();
 
-            dgReports.DataSource = xCus.Select(s => new { s.Name, s.CustomerId}).Distinct().ToList();
+            dgReports.DataSource = xCus.Select(s => new { s.Name, s.CustomerId }).Distinct().ToList();
 
 
         }
@@ -106,11 +106,11 @@ namespace CenturyFinCorpApp
 
             if (value == 1)
             {
-                ToBeClosedSoon();
+                NotGivenForFewDays();
             }
             else if (value == 2)
             {
-                NotGivenForFewDays();
+                ToBeClosedSoon();
             }
             else if (value == 3)
             {
@@ -125,9 +125,8 @@ namespace CenturyFinCorpApp
         public static List<ReportOption> GetOptions()
         {
             return new List<ReportOption>() {
-
-                new ReportOption() { Value = 1, Name =  "TO BE CLOSED SOON"   },
-                new ReportOption() { Value = 2, Name =  "NOT GIVEN FOR FEW DAYS"   },
+                new ReportOption() { Value = 1, Name =  "NOT GIVEN FOR FEW DAYS"   },
+                new ReportOption() { Value = 2, Name =  "TO BE CLOSED SOON"   },
                 new ReportOption() { Value = 3, Name =  "X-Customer"   }
 
             };

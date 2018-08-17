@@ -54,5 +54,9 @@
 
 // TODO: InHand have only add (with tet update), so implement update also.
 // TODO: Move Daily Txn as seperate file.
-// TODO: Logging activity
+// TODO: Logging activity  (using log4net)
 // TODO: Put daily Txn FIle Seperatedly like closed notes.
+//Done: X-customer - to know the reason why they didn't get money.
+//TODO: if you create a new customer instead of being existing customer, then u will update customer id in customer, but we need to update in all transactions also (need to automate).
+
+
