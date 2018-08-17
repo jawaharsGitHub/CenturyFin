@@ -73,6 +73,7 @@
     </Compile>
     <None Include="Export Data For Habitation Directory.xls" />
     <None Include="Polling Stations_Ramnad District.pdf" />
+    <None Include="Polling Stations_Tamilnadu.pdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -83,6 +84,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Rural-33.CSV" />
+    <None Include="tamilnadu_assembly Map.pdf" />
+    <None Include="Thiruvadanai - Ward Details.ods" />
     <None Include="tn_municipality_details.pdf" />
     <None Include="tn_townpanchayat_details.pdf" />
     <None Include="Villages Panchayats.pdf" />
