@@ -20,6 +20,16 @@
     "TxnDate": "2018-07-16T00:00:00"
   },
   {
+    "CustomerId": 46,
+    "IsClosed": false,
+    "TransactionId": 1564,
+    "AmountReceived": 100,
+    "Balance": 9500,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 66,
+    "TxnDate": "2018-07-16T00:00:00"
+  },
+  {
     "CustomerId": 37,
     "IsClosed": false,
     "TransactionId": 1418,
@@ -120,17 +130,7 @@
     "TxnDate": "2018-07-16T12:22:43"
   },
   {
-    "CustomerId": 41,
-    "IsClosed": false,
-    "TransactionId": 1246,
-    "AmountReceived": 150,
-    "Balance": 12600,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 58,
-    "TxnDate": "2018-07-16T00:00:00-04:00"
-  },
-  {
-    "CustomerId": 48,
+    "CustomerId": 44,
     "IsClosed": false,
     "TransactionId": 1245,
     "AmountReceived": 300,
@@ -178,6 +178,16 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 59,
     "TxnDate": "2018-07-16T00:00:00"
+  },
+  {
+    "CustomerId": 41,
+    "IsClosed": false,
+    "TransactionId": 1246,
+    "AmountReceived": 150,
+    "Balance": 12600,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 58,
+    "TxnDate": "2018-07-16T00:00:00-04:00"
   },
   {
     "CustomerId": 56,

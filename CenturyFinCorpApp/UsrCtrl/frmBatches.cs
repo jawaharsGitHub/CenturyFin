@@ -1,6 +1,7 @@
 ﻿using Common;
 using DataAccess.PrimaryTypes;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -8,6 +9,8 @@ namespace CenturyFinCorpApp.UsrCtrl
 {
     public partial class frmBatches : UserControl
     {
+
+        private string DailyBatchFile = AppConfiguration.DailyBatchFile;
         public frmBatches()
         {
             InitializeComponent();
@@ -16,9 +19,9 @@ namespace CenturyFinCorpApp.UsrCtrl
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (Directory.Exists(AppConfiguration.DailyBatchFile) == false)
+            if (Directory.Exists(DailyBatchFile) == false)
             {
-                Directory.CreateDirectory(AppConfiguration.DailyBatchFile);
+                Directory.CreateDirectory(DailyBatchFile);
             }
 
             var firstDate = new DateTime(2018, 1, 25);
@@ -43,6 +46,10 @@ namespace CenturyFinCorpApp.UsrCtrl
                 lastDate = lastDate.AddDays(-1);
             }
 
+            var option = MessageBox.Show("Generated Daily Txns - Completed!", "Daily Txn", MessageBoxButtons.OKCancel);
+
+            if (option == DialogResult.OK)
+                Process.Start(DailyBatchFile);
         }
     }
 }

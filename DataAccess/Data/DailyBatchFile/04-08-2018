@@ -1,5 +1,25 @@
 [
   {
+    "CustomerId": 8,
+    "IsClosed": false,
+    "TransactionId": 2872,
+    "AmountReceived": 1200,
+    "Balance": 5400,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 80,
+    "TxnDate": "2018-08-04T22:41:27"
+  },
+  {
+    "CustomerId": 46,
+    "IsClosed": false,
+    "TransactionId": 2596,
+    "AmountReceived": 100,
+    "Balance": 8200,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 66,
+    "TxnDate": "2018-08-04T00:00:00"
+  },
+  {
     "CustomerId": 4,
     "IsClosed": false,
     "TransactionId": 2199,
@@ -90,16 +110,6 @@
     "TxnDate": "2018-08-04T21:29:35.3440085-04:00"
   },
   {
-    "CustomerId": 46,
-    "IsClosed": false,
-    "TransactionId": 2183,
-    "AmountReceived": 100,
-    "Balance": 8700,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 66,
-    "TxnDate": "2018-08-04T21:29:35.3440085-04:00"
-  },
-  {
     "CustomerId": 51,
     "IsClosed": false,
     "TransactionId": 2182,
@@ -130,7 +140,7 @@
     "TxnDate": "2018-08-04T21:29:35.3440085-04:00"
   },
   {
-    "CustomerId": 36,
+    "CustomerId": 35,
     "IsClosed": false,
     "TransactionId": 2179,
     "AmountReceived": 100,
@@ -320,16 +330,6 @@
     "TxnDate": "2018-08-04T21:25:51.6113633-04:00"
   },
   {
-    "CustomerId": 41,
-    "IsClosed": false,
-    "TransactionId": 2159,
-    "AmountReceived": 150,
-    "Balance": 9750,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 58,
-    "TxnDate": "2018-08-04T21:25:51.6113633-04:00"
-  },
-  {
     "CustomerId": 69,
     "IsClosed": false,
     "TransactionId": 2157,
@@ -380,16 +380,6 @@
     "TxnDate": "2018-08-04T21:25:51.6113633-04:00"
   },
   {
-    "CustomerId": 57,
-    "IsClosed": false,
-    "TransactionId": 2151,
-    "AmountReceived": 1200,
-    "Balance": 17800,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 80,
-    "TxnDate": "2018-08-04T21:25:51.6113633-04:00"
-  },
-  {
     "CustomerId": 78,
     "IsClosed": false,
     "TransactionId": 2150,
@@ -428,6 +418,16 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 98,
     "TxnDate": "2018-08-04T00:00:00"
+  },
+  {
+    "CustomerId": 41,
+    "IsClosed": false,
+    "TransactionId": 2159,
+    "AmountReceived": 150,
+    "Balance": 9750,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 58,
+    "TxnDate": "2018-08-04T21:25:51.6113633-04:00"
   },
   {
     "CustomerId": 71,

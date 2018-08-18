@@ -1,5 +1,15 @@
 [
   {
+    "CustomerId": 46,
+    "IsClosed": false,
+    "TransactionId": 1661,
+    "AmountReceived": 100,
+    "Balance": 9400,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 66,
+    "TxnDate": "2018-07-17T00:00:00"
+  },
+  {
     "CustomerId": 70,
     "IsClosed": false,
     "TransactionId": 1416,
@@ -60,7 +70,7 @@
     "TxnDate": "2018-07-17T13:33:46.5974119-04:00"
   },
   {
-    "CustomerId": 36,
+    "CustomerId": 35,
     "IsClosed": false,
     "TransactionId": 1408,
     "AmountReceived": 100,
@@ -130,16 +140,6 @@
     "TxnDate": "2018-07-17T13:33:46.5974119-04:00"
   },
   {
-    "CustomerId": 46,
-    "IsClosed": false,
-    "TransactionId": 1401,
-    "AmountReceived": 100,
-    "Balance": 9900,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 66,
-    "TxnDate": "2018-07-17T13:33:46.5974119-04:00"
-  },
-  {
     "CustomerId": 29,
     "IsClosed": false,
     "TransactionId": 1400,
@@ -157,16 +157,6 @@
     "Balance": 6400,
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 38,
-    "TxnDate": "2018-07-17T13:33:46.5974119-04:00"
-  },
-  {
-    "CustomerId": 41,
-    "IsClosed": false,
-    "TransactionId": 1398,
-    "AmountReceived": 150,
-    "Balance": 12450,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 58,
     "TxnDate": "2018-07-17T13:33:46.5974119-04:00"
   },
   {
@@ -230,16 +220,6 @@
     "TxnDate": "2018-07-17T13:25:47.6570173-04:00"
   },
   {
-    "CustomerId": 59,
-    "IsClosed": false,
-    "TransactionId": 1372,
-    "AmountReceived": 0,
-    "Balance": 20000,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 84,
-    "TxnDate": "2018-07-17T00:00:00"
-  },
-  {
     "CustomerId": 7,
     "IsClosed": false,
     "TransactionId": 1371,
@@ -288,6 +268,16 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 52,
     "TxnDate": "2018-07-17T13:33:46"
+  },
+  {
+    "CustomerId": 41,
+    "IsClosed": false,
+    "TransactionId": 1398,
+    "AmountReceived": 150,
+    "Balance": 12450,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 58,
+    "TxnDate": "2018-07-17T13:33:46.5974119-04:00"
   },
   {
     "CustomerId": 56,

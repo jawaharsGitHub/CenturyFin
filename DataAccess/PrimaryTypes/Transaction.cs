@@ -421,17 +421,13 @@ namespace DataAccess.PrimaryTypes
         {
 
             // Get from Ongoing Transcations
-            if (File.Exists(JsonFilePath) == false) return new List<Transaction>();
+            var txnFile = Path.Combine(AppConfiguration.DailyBatchFile, inputDate.ToString("dd-MM-yyyy")); // new approach
+            if (File.Exists(txnFile) == false) return new List<Transaction>();
 
-            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+            var list = ReadFileAsObjects<Transaction>(txnFile);
 
             if (list == null) return null;
             var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
-
-            //Get from Closed Transactions
-            var fromClosedTxn = ProcessDirectory(AppConfiguration.ClosedNotesFile, inputDate); // old approach.
-
-            fromActiveTxn.AddRange(fromClosedTxn); // old approach.
 
             return fromActiveTxn;
         }

@@ -1,5 +1,15 @@
 [
   {
+    "CustomerId": 59,
+    "IsClosed": false,
+    "TransactionId": 2739,
+    "AmountReceived": 400,
+    "Balance": 9800,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 84,
+    "TxnDate": "2018-07-13T00:00:00"
+  },
+  {
     "CustomerId": 72,
     "IsClosed": false,
     "TransactionId": 1449,
@@ -8,6 +18,16 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 105,
     "TxnDate": "2018-07-13T13:01:34"
+  },
+  {
+    "CustomerId": 46,
+    "IsClosed": false,
+    "TransactionId": 1434,
+    "AmountReceived": 100,
+    "Balance": 9700,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 66,
+    "TxnDate": "2018-07-13T00:00:00"
   },
   {
     "CustomerId": 55,
@@ -60,7 +80,7 @@
     "TxnDate": "2018-07-13T12:22:43"
   },
   {
-    "CustomerId": 48,
+    "CustomerId": 44,
     "IsClosed": false,
     "TransactionId": 1243,
     "AmountReceived": 300,
@@ -100,16 +120,6 @@
     "TxnDate": "2018-07-13T00:00:00"
   },
   {
-    "CustomerId": 41,
-    "IsClosed": false,
-    "TransactionId": 1118,
-    "AmountReceived": 150,
-    "Balance": 13050,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 58,
-    "TxnDate": "2018-07-13T00:00:00"
-  },
-  {
     "CustomerId": 21,
     "IsClosed": false,
     "TransactionId": 1093,
@@ -130,6 +140,16 @@
     "TxnDate": "2018-07-13T00:00:00"
   },
   {
+    "CustomerId": 16,
+    "IsClosed": false,
+    "TransactionId": 2709,
+    "AmountReceived": 2000,
+    "Balance": 15000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 118,
+    "TxnDate": "2018-07-13T00:00:00"
+  },
+  {
     "CustomerId": 20,
     "IsClosed": false,
     "TransactionId": 1154,
@@ -137,6 +157,16 @@
     "Balance": 6100,
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 59,
+    "TxnDate": "2018-07-13T00:00:00"
+  },
+  {
+    "CustomerId": 41,
+    "IsClosed": false,
+    "TransactionId": 1118,
+    "AmountReceived": 150,
+    "Balance": 13050,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 58,
     "TxnDate": "2018-07-13T00:00:00"
   },
   {
