@@ -1675,5 +1675,18 @@
     "AmountGivenDate": "2018-08-14T22:23:06.2224092-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 135,
+    "CustomerId": 91,
+    "Name": "Anthony - Master Bakery",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-17T22:02:22.9970653-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
   }
 ]
