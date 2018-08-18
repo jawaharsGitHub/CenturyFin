@@ -241,7 +241,7 @@ namespace DataAccess.PrimaryTypes
                 {
                     //var json = File.ReadAllText(txnFile);
                     //List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
-                    var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+                    var list = ReadFileAsObjects<Transaction>(txnFile);
                     if (list == null) return null;
                     return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).OrderBy(o => o.TransactionId).ToList();
                 }
