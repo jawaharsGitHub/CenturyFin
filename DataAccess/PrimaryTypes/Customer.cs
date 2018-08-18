@@ -163,6 +163,81 @@ namespace DataAccess.PrimaryTypes
             return (list.Select(s => s.CustomerSeqNumber).Max() + 1);
         }
 
+        public static dynamic GetCreditScore(int _customerId, int _sequeneNo)
+        {
+
+            var cus = Customer.GetCustomerDetails(_customerId, _sequeneNo);
+
+            var _isClosedTx = (cus.IsActive == false);
+
+            var txns = Transaction.GetTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber, _isClosedTx);
+
+            if (txns == null || txns.Count == 0) return null;
+
+            var dataDource = txns;
+
+
+            //if (byBalance)
+            //    dataGridView1.DataSource = dataDource.OrderBy(o => o.Balance).ToList();
+            //else if (isDesc)
+            //    dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate).ThenBy(t => t.Balance).ToList();
+            //else
+            //    dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate).ToList();
+
+            var lastBalance = txns.Min(m => m.Balance);
+
+            var startDate = dataDource.Select(s => s.TxnDate).Min();
+            var lastDate = dataDource.Select(s => s.TxnDate).Max();
+            var DaysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
+
+
+            //lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";
+            //lblLastDate.Text = $"Last Date: {lastDate.Date.ToShortDateString()}";
+
+            var expected = (DaysTaken * (cus.LoanAmount / 100)) > cus.LoanAmount ? -1 : (DaysTaken * (cus.LoanAmount / 100));
+
+            var _balance = _isClosedTx ? 0 : Transaction.GetBalance(cus.LoanAmount, cus.CustomerSeqNumber, cus.CustomerId);
+            var actual = cus.LoanAmount - _balance;
+
+            var dayTaken = DaysTaken;
+            var _expected = expected;
+            var _actual = actual;
+
+
+            //lblNoOfDays.Text = $"Days taken to Return {DaysTaken} (Expected {expected} ACTUAL {actual})";
+
+            //if (expected == -1)
+            //    lblNoOfDays.ForeColor = System.Drawing.Color.IndianRed;
+            //else if (actual < expected)
+            //    lblNoOfDays.ForeColor = System.Drawing.Color.Red;
+            //else if (actual > expected)
+            //    lblNoOfDays.ForeColor = System.Drawing.Color.Green;
+            //else if (actual == expected)
+            //    lblNoOfDays.ForeColor = System.Drawing.Color.Honeydew;
+
+
+            var interestRate = (cus.LoanAmount / cus.Interest) == 12 ? 8.69 : 11.11;
+
+
+            var percGainPerMonth = Math.Round(((interestRate / DaysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.
+
+            //var percentage = percGainPerMonth;
+            var interestPerMonth = (percGainPerMonth / 100) * (cus.LoanAmount - cus.Interest);
+
+            //lblPercentageGain.Text = $"{percGainPerMonth.ToString()}% Per Month({(percGainPerMonth / 100) * (cus.LoanAmount - cus.Interest)} Rs/Month)";
+
+            //dateTimePicker1.Value = lastDate.AddDays(1);
+
+            //dataGridView1.Columns["CustomerId"].Visible = false;
+            //dataGridView1.Columns["IsClosed"].Visible = false;
+            //dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
+            //dataGridView1.Columns["CustomerSequenceNo"].Visible = false;
+
+            return new { cus.CustomerId, cus.Name, interestRate, percGainPerMonth, interestPerMonth };
+
+
+        }
+
     }
 
 }

@@ -134,7 +134,7 @@ namespace CenturyFinCorpApp
             var lastBalance = txns.Min(m => m.Balance);
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
-            var lastDate = dataDource.Select(s => s.TxnDate).Max(); // (lastBalance == 0) ? dataDource.Select(s => s.TxnDate).Max() : DateTime.Today;
+            var lastDate = dataDource.Select(s => s.TxnDate).Max();
             var DaysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 :  DateTime.Now.Date.Subtract(startDate).Days + 2;
 
 
