@@ -1,9 +1,6 @@
 ﻿using Common;
 using System;
-using System.Configuration;
 using System.Globalization;
-using System.IO;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 

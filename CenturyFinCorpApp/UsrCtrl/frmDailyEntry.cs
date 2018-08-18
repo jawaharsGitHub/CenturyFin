@@ -153,10 +153,8 @@ namespace CenturyFinCorpApp
             if (chkNotGivenCustomer.Checked)
             {
                 // Load Not Given CUstomer;
-
                 dataGridView1.DataSource = null;
                 LoadNotGivenCustomer();
-
             }
             else
             {
@@ -167,7 +165,6 @@ namespace CenturyFinCorpApp
         private void button3_Click(object sender, EventArgs e)
         {
             LoadDailyCollection(true);
-
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -189,11 +186,7 @@ namespace CenturyFinCorpApp
             });
 
         }
-
-        private void dgvAllDailyCollection_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
     }
 
 

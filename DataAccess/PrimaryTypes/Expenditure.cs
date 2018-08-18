@@ -11,9 +11,7 @@ namespace DataAccess.PrimaryTypes
 
         private static string JsonFilePath = AppConfiguration.ExpenditureFile;
         public string Date { get; set; }
-
         public int Amount { get; set; }
-
         public string Reason { get; set; }
 
 
@@ -21,26 +19,13 @@ namespace DataAccess.PrimaryTypes
         {
             expenditure.Date = DateTime.Today.ToLongTimeString();
 
-            //string baseJson = File.ReadAllText(AppConfiguration.ExpenditureFile);
-
-            ////Merge the customer
-            //string updatedJson = InsertSingleObjectToJson(baseJson, expenditure);
-
-            //// Add into json
-            //File.WriteAllText(AppConfiguration.ExpenditureFile, updatedJson);
-
             InsertSingleObjectToListJson(AppConfiguration.ExpenditureFile, expenditure);
-
         }
 
         public static List<Expenditure> GetAllExpenditure()
         {
-
             try
             {
-                //var json = File.ReadAllText(AppConfiguration.ExpenditureFile);
-                //List<Expenditure> list = JsonConvert.DeserializeObject<List<Expenditure>>(json);
-
                 var list = ReadFileAsObjects<Expenditure>(JsonFilePath);
                 return list;
             }
@@ -52,7 +37,6 @@ namespace DataAccess.PrimaryTypes
 
         public static int GetTotalExpenditure()
         {
-
             try
             {
                 var json = GetAllExpenditure();

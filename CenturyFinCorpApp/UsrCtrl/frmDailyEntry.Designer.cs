@@ -129,7 +129,6 @@
             this.dgvAllDailyCollection.Name = "dgvAllDailyCollection";
             this.dgvAllDailyCollection.Size = new System.Drawing.Size(320, 338);
             this.dgvAllDailyCollection.TabIndex = 13;
-            this.dgvAllDailyCollection.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllDailyCollection_CellContentClick);
             // 
             // label3
             // 

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Common.ExtensionMethod;
+﻿using Common.ExtensionMethod;
 using DataAccess.PrimaryTypes;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace CenturyFinCorpApp.UsrCtrl
 {
@@ -27,7 +23,6 @@ namespace CenturyFinCorpApp.UsrCtrl
         private void ShowRemaingDays()
         {
             var after100day = DateTime.Today.AddDays(100);
-
             //var days = (new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month)) - today).Days;
 
             var days = (new DateTime(after100day.Year, after100day.Month, DateTime.DaysInMonth(after100day.Year, after100day.Month)) - after100day).Days;

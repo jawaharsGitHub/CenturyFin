@@ -1,11 +1,9 @@
 ﻿using Common;
 using Common.ExtensionMethod;
-using DataAccess;
 using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -32,7 +30,6 @@ namespace CenturyFinCorpApp
 
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-            //dgReports.Columns["CustomerId"].Visible = false;
         }
 
         private void NotGivenForFewDays()
@@ -46,7 +43,6 @@ namespace CenturyFinCorpApp
 
         private void XCustomer()
         {
-
             // get all active customers
             var activeCus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
 
@@ -88,9 +84,6 @@ namespace CenturyFinCorpApp
 
                 // Delete Transactions data
                 Transaction.DeleteTransactionDetails(item.CustomerId, item.CustomerSequenceNo);
-
-                // Customer.UpdateCustomerDetails(new Customer() { CustomerId = item.CustomerId, CustomerSeqNumber = item.CustomerSequenceNo, IsActive = false });
-
             }
 
         }

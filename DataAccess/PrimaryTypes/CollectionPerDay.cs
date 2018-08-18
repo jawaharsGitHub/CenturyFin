@@ -6,9 +6,7 @@ namespace DataAccess.PrimaryTypes
     {
 
         public string Date { get; set; }
-
         public int ActualCollection { get; set; }
-
         public int ExpectedCollection { get; set; }
     }
 }

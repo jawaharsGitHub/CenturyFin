@@ -1,5 +1,4 @@
-﻿using DataAccess;
-using DataAccess.PrimaryTypes;
+﻿using DataAccess.PrimaryTypes;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -24,9 +23,6 @@ namespace CenturyFinCorpApp
         public frmCustomerTransaction(Customer _customer, Form parentForm)
         {
             InitializeComponent();
-
-            //frmIndexForm.menuStrip.Items[].Select();
-            //frmIndexForm.menuStrip.Items[3].Select();
 
             _customerId = _customer.CustomerId;
             _sequeneNo = _customer.CustomerSeqNumber;
@@ -72,16 +68,6 @@ namespace CenturyFinCorpApp
 
             };
 
-            //var txn = new Transaction()
-            //{
-            //    TxnCustomer = cus,
-            //    TransactionId = Transaction.GetNextTransactionId(),
-            //    //Balance = (Transaction.GetBalance(_loan, _sequeneNo, _customerId) - Convert.ToInt16(txtCollectionAmount.Text)),
-            //    TxnDate = dateTimePicker1.Value
-
-            //};
-
-
             if (txn.Balance < 0)
             {
                 MessageBox.Show("Please check that ur txn is overpaid. Txn Cancelled");
@@ -95,8 +81,6 @@ namespace CenturyFinCorpApp
 
         private void btnAddTxn_Click(object sender, EventArgs e)
         {
-            //var txn = AddTxn(_customer, dateTimePicker1.Value);
-            //if (txn == null) return;
             var txn = new Transaction()
             {
                 AmountReceived = Convert.ToInt16(txtCollectionAmount.Text),
@@ -127,11 +111,6 @@ namespace CenturyFinCorpApp
 
             lblMessage.Text = $"Txn  Added Successfully for {_customerName}";
 
-            // Add InHand
-            //InHand.AddInHand(txn.AmountReceived);
-
-
-
         }
 
         private void LoadTxn(bool isDesc = true, bool byBalance = false)
@@ -141,7 +120,6 @@ namespace CenturyFinCorpApp
             var cus = Customer.GetCustomerDetails(_customerId, _sequeneNo);
 
             if (txns == null || txns.Count == 0) return;
-
 
             var dataDource = txns;
 
@@ -189,8 +167,6 @@ namespace CenturyFinCorpApp
 
             dateTimePicker1.Value = lastDate.AddDays(1);
 
-            //dataGridView1.ReadOnly = false;
-
             dataGridView1.Columns["CustomerId"].Visible = false;
             dataGridView1.Columns["IsClosed"].Visible = false;
             dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
@@ -203,7 +179,6 @@ namespace CenturyFinCorpApp
             if (rdbAsc.Checked)
             {
                 LoadTxn(false);
-
             }
 
         }
@@ -213,7 +188,6 @@ namespace CenturyFinCorpApp
             if (rdbDesc.Checked)
             {
                 LoadTxn(true);
-
             }
 
         }
@@ -236,7 +210,6 @@ namespace CenturyFinCorpApp
             var balance = GetGridCellValue(grid, rowIndex, "Balance");
 
             // Update transaction detail.
-
             Transaction.CorrectTransactionData(
                 new Transaction()
                 {
@@ -261,7 +234,6 @@ namespace CenturyFinCorpApp
             if (chkByBalance.Checked)
             {
                 LoadTxn(byBalance: true);
-
             }
         }
     }

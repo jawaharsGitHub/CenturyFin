@@ -61,19 +61,13 @@ namespace CenturyFinCorpApp
 
             Transaction.AddTransaction(txn);
 
-
-
             // Add Investment
-
             Investment.AddInvestment(new Investment()
             {
-
                 Amount = cus.LoanAmount,
                 Interest = Convert.ToInt16(txtInterest.Text),
                 CustomerId = cus.CustomerId,
                 CustomerSequenceNo = cus.CustomerSeqNumber
-                //InvestType = invstType
-
             });
 
             var nthTimes = Customer.GetAllCustomer().Where(w => w.CustomerId == cus.CustomerId).Count();
@@ -118,19 +112,7 @@ namespace CenturyFinCorpApp
 
         private void cmbExistingCustomer_TextChanged(object sender, EventArgs e)
         {
-
-            //cmbExistingCustomer.DataSource = null;
-            // load existing customer
-            //cmbExistingCustomer.DataSource = Customer.GetAllCustomer().Where(w => w.Name.Contains(cmbExistingCustomer.Text)).ToList();
-            //cmbExistingCustomer.DisplayMember = "Name";
-            //cmbExistingCustomer.ValueMember = "CustomerId";
-            //txtName.Enabled = txtPhone.Enabled = false;
-
             cmbExistingCustomer.DroppedDown = false;
-
-
-
-
         }
     }
 }

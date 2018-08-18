@@ -124,10 +124,6 @@ namespace CenturyFinCorpApp
 
             mainForm.ShowForm<frmCustomerTransaction>(selectedCustomer);
 
-            //frmCustomerTransaction cd = new frmCustomerTransaction(selectedCustomer));
-
-            //cd.ShowDialog();
-
         }
 
         private void rdbAll_CheckedChanged(object sender, EventArgs e)
@@ -166,21 +162,9 @@ namespace CenturyFinCorpApp
                 GlobalValue.NoteOption = rdbActive.Tag.ToString();
             }
 
-            //var result = from
-
             searchedCustomer = string.IsNullOrEmpty(txtSearch.Text) ? searchedCustomer : searchedCustomer.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
 
-            //var query = (from c in searchedCustomer
-            //             join t in transactions on c.CustomerId equals t.CustomerId
-            //             select new {
-            //                 c,
-            //                 t.Balance
-            //             }).ToList();
-
             dataGridView1.DataSource = searchedCustomer;
-
-
-
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -237,9 +221,7 @@ namespace CenturyFinCorpApp
 
                 txn.IsClosed = (txn.Balance <= 0);
 
-
                 // Add new Txn.
-                //transactions.Add(txn);
                 var existingTxn = Transaction.GetTransactionForDate(txn.CustomerId, txn.CustomerSequenceNo, txn.TxnDate);
                 if (existingTxn == null || existingTxn.Count == 0)
                 {
@@ -250,7 +232,6 @@ namespace CenturyFinCorpApp
                     txn.TransactionId = existingTxn.First().TransactionId;
                     Transaction.UpdateTransactionDetails(txn);
                 }
-
 
                 // Update txn Closed Date
                 if (txn.IsClosed && txn.Balance == 0)
@@ -264,8 +245,6 @@ namespace CenturyFinCorpApp
                             ClosedDate = txn.TxnDate,
                         });
                 }
-
-
                 return;
             }
 
