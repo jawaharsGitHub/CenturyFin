@@ -55,38 +55,32 @@ namespace CenturyFinCorpApp
 
         private void CreditScore()
         {
-            var customerRating = (from c in Customer.GetAllCustomer()
-                                  group c by new { c.CustomerId, c.Name } into newGroup
-                                  select newGroup).ToList();
+            try
+            {
+                var data = (from c in Customer.GetAllCustomer()
+                            where c.IsActive == false
+                            select Customer.GetCreditScore(c.CustomerId, c.CustomerSeqNumber)).ToList();
 
-            //var data = (from x in customerRating
-            //            group x by new { x.CustomerId, x.Name } into ng
-            //            select ng).ToList();
+                dgReports.DataSource = (from d in data
+                                        group d by new { d.CustomerId, d.Name } into ng
+                                        select new
+                                        {
+                                            ng.ToList().Count,
+                                            ng.Key.CustomerId,
+                                            ng.Key.Name,
+                                            InterestRate = (ng.ToList().Sum(s => s.InterestRate) / ng.ToList().Count).RoundMoney(),
+                                            PercGainPerMonth = (ng.ToList().Sum(s => s.PercGainPerMonth) / ng.ToList().Count).RoundMoney(),
+                                            InterestPerMonth = (ng.ToList().Sum(s => s.InterestPerMonth) / ng.ToList().Count).RoundMoney(),
+                                            DaysTaken = (ng.ToList().Sum(s => s.DaysTaken) / ng.ToList().Count)
+                                        }).OrderByDescending(o => o.DaysTaken).ToList();
 
-            //dgReports.DataSource = (from ng in data
-            //                            //group x by new { x.CustomerId, x.Name } into ng
-            //                        select new
-            //                        {
-            //                            ng.ToList().Count,
-            //                            ng.Key.CustomerId,
-            //                            ng.Key.Name,
-            //                            InterestRate = ng.ToList().Sum(s => s.interestRate),
-            //                            PercGainPerMonth = ng.ToList().Sum(s => s.percGainPerMonth),
-            //                            InterestPerMonth = ng.ToList().Sum(s => s.interestPerMonth)
-            //                        }).ToList();
-
-
-
-            dgReports.DataSource = (from d in customerRating
-                                    select new
-                                    {
-                                        d.Key.CustomerId,
-                                        d.Key.Name,
-                                        d.ToList().Count,
-                                    }).OrderByDescending(o => o.Count).ToList();
-
-
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+
         private void ShowOutstandingMoney()
         {
             outstandingMoney = Transaction.GetAllOutstandingAmount();
@@ -160,7 +154,7 @@ namespace CenturyFinCorpApp
                 new ReportOption() { Value = 1, Name =  "NOT GIVEN FOR FEW DAYS"   },
                 new ReportOption() { Value = 2, Name =  "TO BE CLOSED SOON"   },
                 new ReportOption() { Value = 3, Name =  "X-CUSTOMER"   },
-                new ReportOption() { Value = 4, Name =  "CREDIT SCORE"   }
+                new ReportOption() { Value = 4, Name =  "CREDIT REPORT"   }
 
             };
         }

@@ -1,4 +1,5 @@
 ﻿using Common;
+using DataAccess.ExtendedTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -163,7 +164,7 @@ namespace DataAccess.PrimaryTypes
             return (list.Select(s => s.CustomerSeqNumber).Max() + 1);
         }
 
-        public static dynamic GetCreditScore(int _customerId, int _sequeneNo)
+        public static CreditReport GetCreditScore(int _customerId, int _sequeneNo)
         {
 
             var cus = Customer.GetCustomerDetails(_customerId, _sequeneNo);
@@ -188,18 +189,18 @@ namespace DataAccess.PrimaryTypes
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
             var lastDate = dataDource.Select(s => s.TxnDate).Max();
-            var DaysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
+            var daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
 
 
             //lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";
             //lblLastDate.Text = $"Last Date: {lastDate.Date.ToShortDateString()}";
 
-            var expected = (DaysTaken * (cus.LoanAmount / 100)) > cus.LoanAmount ? -1 : (DaysTaken * (cus.LoanAmount / 100));
+            var expected = (daysTaken * (cus.LoanAmount / 100)) > cus.LoanAmount ? -1 : (daysTaken * (cus.LoanAmount / 100));
 
             var _balance = _isClosedTx ? 0 : Transaction.GetBalance(cus.LoanAmount, cus.CustomerSeqNumber, cus.CustomerId);
             var actual = cus.LoanAmount - _balance;
 
-            var dayTaken = DaysTaken;
+            var dayTaken = daysTaken;
             var _expected = expected;
             var _actual = actual;
 
@@ -219,7 +220,7 @@ namespace DataAccess.PrimaryTypes
             var interestRate = (cus.LoanAmount / cus.Interest) == 12 ? 8.69 : 11.11;
 
 
-            var percGainPerMonth = Math.Round(((interestRate / DaysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.
+            var percGainPerMonth = Math.Round(((interestRate / daysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.
 
             //var percentage = percGainPerMonth;
             var interestPerMonth = (percGainPerMonth / 100) * (cus.LoanAmount - cus.Interest);
@@ -233,7 +234,15 @@ namespace DataAccess.PrimaryTypes
             //dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
             //dataGridView1.Columns["CustomerSequenceNo"].Visible = false;
 
-            return new { cus.CustomerId, cus.Name, interestRate, percGainPerMonth, interestPerMonth };
+            return new CreditReport
+            {
+                CustomerId = cus.CustomerId,
+                Name = cus.Name,
+                InterestRate = interestRate,
+                PercGainPerMonth = percGainPerMonth,
+                InterestPerMonth = interestPerMonth,
+                DaysTaken = daysTaken
+            };
 
 
         }

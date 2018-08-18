@@ -37,5 +37,10 @@ namespace Common.ExtensionMethod
             var no = Convert.ToInt32(number);
             return ToMoney(no);
         }
+
+        public static double RoundMoney(this double number)
+        {
+            return Math.Round(number, 2);
+        }
     }
 }
