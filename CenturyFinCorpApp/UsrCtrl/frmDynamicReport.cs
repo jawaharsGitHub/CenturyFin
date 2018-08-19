@@ -4,6 +4,7 @@ using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -157,6 +158,49 @@ namespace CenturyFinCorpApp
 
             return myKeyValuePair;
 
+        }
+
+        private void dgReports_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var value = ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
+
+            if (value == 1)
+            {
+                if (this.dgReports.Columns["NotGivenFor"] == null) return;
+                if (e.RowIndex >= 0 && e.ColumnIndex == this.dgReports.Columns["NotGivenFor"].Index)
+                {
+                    if (e.Value != null)
+                    {
+                        int dayNotGiven = Convert.ToInt32(e.Value);
+                        if (dayNotGiven >= 7)
+                        {
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                    }
+                }
+            }
+
+            else if (value == 2)
+            {
+                if (this.dgReports.Columns["NeedToClose"] == null) return;
+                if (e.RowIndex >= 0 && e.ColumnIndex == this.dgReports.Columns["NeedToClose"].Index)
+                {
+                    if (e.Value != null)
+                    {
+                        int needToClose = Convert.ToInt32(e.Value);
+                        if (needToClose == 0)
+                        {
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                        else if (needToClose <= 7)
+                        {
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Orange;
+                        }
+                    }
+                }
+            }
         }
     }
 }

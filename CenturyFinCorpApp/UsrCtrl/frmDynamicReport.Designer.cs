@@ -107,6 +107,7 @@
             this.dgReports.Name = "dgReports";
             this.dgReports.Size = new System.Drawing.Size(763, 367);
             this.dgReports.TabIndex = 21;
+            this.dgReports.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgReports_CellFormatting);
             // 
             // label4
             // 
@@ -129,7 +130,7 @@
             this.comboBox1.ValueMember = "Key";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // frmReport
+            // frmDynamicReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -142,7 +143,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblOutStanding);
             this.Controls.Add(this.label1);
-            this.Name = "frmReport";
+            this.Name = "frmDynamicReport";
             this.Size = new System.Drawing.Size(1266, 519);
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).EndInit();
             this.ResumeLayout(false);
