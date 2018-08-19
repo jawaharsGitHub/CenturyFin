@@ -323,12 +323,13 @@ namespace DataAccess.PrimaryTypes
 
                         select new
                         {
-                            c.Name,
-                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(100) - DateTime.Today.Date).Days),
                             RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
-                            DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
-                            t.Balance,
+                            c.Name,
                             c.LoanAmount,
+                            t.Balance,
+                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(100) - DateTime.Today.Date).Days),
+                            
+                            DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
                             c.AmountGivenDate,
                             c.CustomerSeqNumber,
                         }).OrderBy(o => o.NeedToClose).Take(top).ToList();
@@ -360,13 +361,13 @@ namespace DataAccess.PrimaryTypes
                         join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
                         select new
                         {
-                            c.CustomerSeqNumber,
                             c.Name,
-                            t.TxnDate,
-                            c.AmountGivenDate,
                             c.LoanAmount,
                             t.Balance,
-                            NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays
+                            NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays,
+                            LastTxnDate = t.TxnDate,
+                            c.AmountGivenDate,
+                            c.CustomerSeqNumber,
                         }).Where(w => w.NotGivenFor > 2).OrderByDescending(o => o.NotGivenFor).ToList();
 
             return data;

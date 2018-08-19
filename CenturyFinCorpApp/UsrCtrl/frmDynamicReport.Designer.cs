@@ -119,17 +119,14 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.DisplayMember = "Name";
+            this.comboBox1.DisplayMember = "Value";
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "TO BE CLOSED SOON",
-            "NOT GIVEN FOR FEW DAYS"});
             this.comboBox1.Location = new System.Drawing.Point(411, 122);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(278, 21);
             this.comboBox1.TabIndex = 23;
-            this.comboBox1.ValueMember = "Value";
+            this.comboBox1.ValueMember = "Key";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // frmReport

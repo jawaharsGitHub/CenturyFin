@@ -17,7 +17,7 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
 
-            comboBox1.DataSource = ReportOption.GetOptions();
+            comboBox1.DataSource = GetOptions();
 
             ShowOutstandingMoney();
             ShowTotalAssetMoney();
@@ -38,7 +38,7 @@ namespace CenturyFinCorpApp
 
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-            dgReports.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            dgReports.Columns["LastTxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
         private void XCustomer()
@@ -124,7 +124,7 @@ namespace CenturyFinCorpApp
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var value = ((ReportOption)comboBox1.SelectedItem).Value;
+            var value = ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
 
             if (value == 1)
             {
@@ -143,25 +143,19 @@ namespace CenturyFinCorpApp
                 CreditScore();
             }
         }
-    }
 
-    public class ReportOption
-    {
-
-        public static List<ReportOption> GetOptions()
+        public static List<KeyValuePair<int, string>> GetOptions()
         {
-            return new List<ReportOption>() {
-                new ReportOption() { Value = 1, Name =  "NOT GIVEN FOR FEW DAYS"   },
-                new ReportOption() { Value = 2, Name =  "TO BE CLOSED SOON"   },
-                new ReportOption() { Value = 3, Name =  "X-CUSTOMER"   },
-                new ReportOption() { Value = 4, Name =  "CREDIT REPORT"   }
+            var myKeyValuePair = new List<KeyValuePair<int, string>>()
+               {
+                   new KeyValuePair<int, string>(1, "NOT GIVEN FOR FEW DAYS"),
+                   new KeyValuePair<int, string>(2, "TO BE CLOSED SOON"),
+                   new KeyValuePair<int, string>(3, "X-CUSTOMER"),
+                   new KeyValuePair<int, string>(4, "CREDIT REPORT")
+               };
 
-            };
+            return myKeyValuePair;
+
         }
-
-        public int Value { get; set; }
-
-        public string Name { get; set; }
-
     }
 }
