@@ -1003,13 +1003,13 @@
   {
     "CustomerSeqNumber": 81,
     "CustomerId": 9,
-    "Name": "Naga Periasamy",
+    "Name": "Naga Periasamy (Periasamy)",
     "PhoneNumber": "",
     "LoanAmount": 10000,
     "Interest": 800,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-14T00:00:00",
+    "AmountGivenDate": "2018-05-10T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1120,13 +1120,13 @@
   {
     "CustomerSeqNumber": 90,
     "CustomerId": 9,
-    "Name": "Naga Periasamy",
+    "Name": "Naga Periasamy (Naga)",
     "PhoneNumber": "",
     "LoanAmount": 10000,
     "Interest": 800,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-23T12:32:46",
+    "AmountGivenDate": "2018-06-22T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1686,6 +1686,32 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-08-17T22:02:22.9970653-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 136,
+    "CustomerId": 92,
+    "Name": "Ravindran - Bharathi Nagar - Contractor",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-18T22:13:15.7843466-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 137,
+    "CustomerId": 25,
+    "Name": "Md Karu - Muttia business",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-18T22:27:08.8114996-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }

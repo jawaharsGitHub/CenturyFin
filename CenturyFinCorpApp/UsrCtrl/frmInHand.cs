@@ -111,8 +111,8 @@ namespace CenturyFinCorpApp
 
             txtInterest.Text = (amt / 10).ToString();
 
-            givenAmount = Convert.ToInt16((amt * 1000));
-            interest = Convert.ToInt16((amt * 1000) / 10);
+            givenAmount = Convert.ToInt32((amt * 1000));
+            interest = Convert.ToInt32((amt * 1000) / 10);
             label19.Text = givenAmount.ToString();
             label20.Text = interest.ToString();
         }

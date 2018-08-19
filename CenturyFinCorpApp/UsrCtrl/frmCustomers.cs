@@ -99,7 +99,7 @@ namespace CenturyFinCorpApp
             // Customer day and count ratio.
             var days = (DateTime.Today - new DateTime(2018, 1, 25)).TotalDays;
 
-            label1.Text = $"{totalTxn} customers in {days} days {Environment.NewLine} {Math.Round(totalTxn/days, 1)} customer(s) per day";
+            label1.Text = $"{totalTxn} customers in {days} days {Environment.NewLine} {Math.Round(totalTxn/days, 2)} customer(s) per day";
         }
 
         private void AdjustColumnOrder()

@@ -63,11 +63,11 @@ namespace DataAccess.PrimaryTypes
 
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
 
-                var allCustomers = list.Where(c => c.CustomerId == updatedCustomer.CustomerId).ToList();
+                var oneCustomers = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).First();
 
-                if (allCustomers.FirstOrDefault().Name != updatedCustomer.Name)
+                if (oneCustomers.Name != updatedCustomer.Name)
                 {
-                    allCustomers.ForEach(un => un.Name = updatedCustomer.Name);
+                    oneCustomers.Name = updatedCustomer.Name;
                 }
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
