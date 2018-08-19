@@ -234,6 +234,18 @@ namespace DataAccess.PrimaryTypes
             //dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
             //dataGridView1.Columns["CustomerSequenceNo"].Visible = false;
 
+            // Get missing paid days.
+
+            List<DateTime> col = txns.Select(s => s.TxnDate.Date).ToList();
+            var _missingLastDate = _isClosedTx ? lastDate : DateTime.Today.Date;
+
+
+            var range = (Enumerable.Range(0, (int)(_missingLastDate - startDate).TotalDays + 1)
+                                  .Select(i => startDate.AddDays(i).Date)).ToList();
+
+            var missingDays = range.Except(col).ToList().Count;
+
+
             return new CreditReport
             {
                 CustomerId = cus.CustomerId,
@@ -241,7 +253,8 @@ namespace DataAccess.PrimaryTypes
                 InterestRate = interestRate,
                 PercGainPerMonth = percGainPerMonth,
                 InterestPerMonth = interestPerMonth,
-                DaysTaken = daysTaken
+                DaysTaken = daysTaken,
+                MissingDays = missingDays
             };
 
 

@@ -8,5 +8,6 @@
         public double PercGainPerMonth { get; set; }
         public double InterestPerMonth { get; set; }
         public int DaysTaken { get; set; }
+        public int MissingDays { get; set; }
     }
 }

@@ -71,7 +71,8 @@ namespace CenturyFinCorpApp
                                             InterestRate = (ng.ToList().Sum(s => s.InterestRate) / ng.ToList().Count).RoundMoney(),
                                             PercGainPerMonth = (ng.ToList().Sum(s => s.PercGainPerMonth) / ng.ToList().Count).RoundMoney(),
                                             InterestPerMonth = (ng.ToList().Sum(s => s.InterestPerMonth) / ng.ToList().Count).RoundMoney(),
-                                            DaysTaken = (ng.ToList().Sum(s => s.DaysTaken) / ng.ToList().Count)
+                                            DaysTaken = (ng.ToList().Sum(s => s.DaysTaken) / ng.ToList().Count),
+                                            MissingDays = ng.ToList().Sum(s => s.MissingDays) / ng.ToList().Count
                                         }).OrderByDescending(o => o.DaysTaken).ToList();
 
             }

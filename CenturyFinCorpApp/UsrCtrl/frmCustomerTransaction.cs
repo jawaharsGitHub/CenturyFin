@@ -1,5 +1,6 @@
 ﻿using DataAccess.PrimaryTypes;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -135,7 +136,20 @@ namespace CenturyFinCorpApp
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
             var lastDate = dataDource.Select(s => s.TxnDate).Max();
-            var DaysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 :  DateTime.Now.Date.Subtract(startDate).Days + 2;
+            var DaysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
+
+
+
+            // Get missing paid days.
+
+            List<DateTime> col = txns.Select(s => s.TxnDate.Date).ToList();
+            var _missingLastDate = _isClosedTx ? lastDate : DateTime.Today.Date;
+
+            
+            var range = (Enumerable.Range(0, (int)(_missingLastDate - startDate).TotalDays + 1)
+                                  .Select(i => startDate.AddDays(i).Date)).ToList();
+
+            var missing = range.Except(col).ToList();
 
 
             lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";
@@ -144,8 +158,8 @@ namespace CenturyFinCorpApp
             var expected = (DaysTaken * (_loan / 100)) > _loan ? -1 : (DaysTaken * (_loan / 100));
             var actual = _loan - _balance;
 
-
-            lblNoOfDays.Text = $"Days taken to Return {DaysTaken} (Expected {expected} ACTUAL {actual})";
+             
+            lblNoOfDays.Text = $"Days taken to Return {DaysTaken} (Expected {expected} ACTUAL {actual}) - MISSING DAYS: {missing.Count}";
 
             if (expected == -1)
                 lblNoOfDays.ForeColor = System.Drawing.Color.IndianRed;
