@@ -81,37 +81,49 @@ namespace CenturyFinCorpApp
 
 
             //Customer
-            var mnuCustomer = new ToolStripMenuItem() { Name = "Customer", Text = "Customers" };
+            var mnuCustomer = new ToolStripMenuItem() { Name = "Customer", Text = "CUSTOMERS" };
             mnuCustomer.Click += (s, e) => ShowForm<frmCustomers>(); ;
             menuStrip.Items.Add(mnuCustomer);
             //Add customer
-            var mnuAddCustomer = new ToolStripMenuItem() { Name = "AddCustomer", Text = "Add Customer" };
+            var mnuAddCustomer = new ToolStripMenuItem() { Name = "AddCustomer", Text = "ADD-CUSTOMER" };
             menuStrip.Items.Add(mnuAddCustomer);
             mnuAddCustomer.Click += (s, e) => ShowForm<frmAddCustomer>(); ;
             //Daily Collection
-            var mnuDailyCollection = new ToolStripMenuItem() { Name = "DailyColl", Text = "Daily Collection" };
+            var mnuDailyCollection = new ToolStripMenuItem() { Name = "DailyColl", Text = "DAILY-COLLECTION" };
             menuStrip.Items.Add(mnuDailyCollection);
             mnuDailyCollection.Click += (s, e) => ShowForm<frmDailyEntry>(); ;
             //ShowInHand
-            var mnuShowInHand = new ToolStripMenuItem() { Name = "InHand", Text = "Shown In Hand" };
+            var mnuShowInHand = new ToolStripMenuItem() { Name = "InHand", Text = "INHAND-DETAILS" };
             menuStrip.Items.Add(mnuShowInHand);
             mnuShowInHand.Click += (s, e) => ShowForm<frmInHand>(); ;
-            //Dynamic Reports
-            var mnuReport = new ToolStripMenuItem() { Name = "DynReport", Text = "Dynamic-Report" };
-            menuStrip.Items.Add(mnuReport);
-            mnuReport.Click += (s, e) => ShowForm<frmDynamicReport>();
             //General Reports
-            var mnuGeneralReport = new ToolStripMenuItem() { Name = "GenReport", Text = "General-Report" };
+            var mnuGeneralReport = new ToolStripMenuItem() { Name = "GenReport", Text = "GENERAL-REPORT" };
             menuStrip.Items.Add(mnuGeneralReport);
             mnuGeneralReport.Click += (s, e) => ShowForm<frmGeneralReport>();
+            //Dynamic Reports
+            var mnuReport = new ToolStripMenuItem() { Name = "DynReport", Text = "DYNAMIC-REPORT" };
+            menuStrip.Items.Add(mnuReport);
+            mnuReport.Click += (s, e) => ShowForm<frmDynamicReport>();
             //Batches
-            var mnuBatch = new ToolStripMenuItem() { Name = "batch", Text = "Batch Jobs" };
+            var mnuBatch = new ToolStripMenuItem() { Name = "batch", Text = "BATCH-JOBS" };
             menuStrip.Items.Add(mnuBatch);
             mnuBatch.Click += (s, e) => ShowForm<frmBatches>();
             //Outstanding
-            var mnuOutstanding = new ToolStripMenuItem() { Name = "Outstanding", Text = "Outstanding" };
+            var mnuOutstanding = new ToolStripMenuItem() { Name = "Outstanding", Text = "OUTSTANDING" };
             menuStrip.Items.Add(mnuOutstanding);
             mnuOutstanding.Click += (s, e) => ShowForm<frmOutstanding>();
+            //Credit Report
+            var mnuCreditReport = new ToolStripMenuItem() { Name = "CreditReport", Text = "CREDIT-REPORT" };
+            menuStrip.Items.Add(mnuCreditReport);
+            mnuCreditReport.Click += (s, e) => ShowForm<frmCreditReport>();
+            //Health
+            var mnuHealth = new ToolStripMenuItem() { Name = "health", Text = "HEALTH" };
+            menuStrip.Items.Add(mnuHealth);
+            mnuHealth.Click += (s, e) => ShowForm<frmHealth>();
+            //Politics
+            var mnuPolitics = new ToolStripMenuItem() { Name = "politics", Text = "POLITICS" };
+            menuStrip.Items.Add(mnuPolitics);
+            mnuPolitics.Click += (s, e) => ShowForm<frmPolitics>();
 
             this.Controls.Add(menuStrip);
         }

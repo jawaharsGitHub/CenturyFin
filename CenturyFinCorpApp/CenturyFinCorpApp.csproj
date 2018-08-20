@@ -82,6 +82,12 @@
     <Compile Include="UsrCtrl\frmAddCustomer.Designer.cs">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrl\frmCreditReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmCreditReport.Designer.cs">
+      <DependentUpon>frmCreditReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrl\frmCustomerTransaction.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -99,6 +105,12 @@
     </Compile>
     <Compile Include="UsrCtrl\frmGeneralReport.Designer.cs">
       <DependentUpon>frmGeneralReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsrCtrl\frmHealth.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmHealth.Designer.cs">
+      <DependentUpon>frmHealth.cs</DependentUpon>
     </Compile>
     <Compile Include="UsrCtrl\frmInHand.cs">
       <SubType>UserControl</SubType>
@@ -136,6 +148,12 @@
     <Compile Include="UsrCtrl\frmOutstanding.Designer.cs">
       <DependentUpon>frmOutstanding.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrl\frmPolitics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmPolitics.Designer.cs">
+      <DependentUpon>frmPolitics.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrl\frmPrediction.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,6 +175,9 @@
     <EmbeddedResource Include="UsrCtrl\frmAddCustomer.resx">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmCreditReport.resx">
+      <DependentUpon>frmCreditReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmCustomerTransaction.resx">
       <DependentUpon>frmCustomerTransaction.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmGeneralReport.resx">
       <DependentUpon>frmGeneralReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmHealth.resx">
+      <DependentUpon>frmHealth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmInHand.resx">
       <DependentUpon>frmInHand.cs</DependentUpon>
@@ -183,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmOutstanding.resx">
       <DependentUpon>frmOutstanding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmPolitics.resx">
+      <DependentUpon>frmPolitics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmPrediction.resx">
       <DependentUpon>frmPrediction.cs</DependentUpon>

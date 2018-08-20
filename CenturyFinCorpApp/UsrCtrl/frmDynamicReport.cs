@@ -54,35 +54,6 @@ namespace CenturyFinCorpApp
 
         }
 
-        private void CreditScore()
-        {
-            try
-            {
-                var data = (from c in Customer.GetAllCustomer()
-                            where c.IsActive == false
-                            select Customer.GetCreditScore(c.CustomerId, c.CustomerSeqNumber)).ToList();
-
-                dgReports.DataSource = (from d in data
-                                        group d by new { d.CustomerId, d.Name } into ng
-                                        select new
-                                        {
-                                            ng.ToList().Count,
-                                            ng.Key.CustomerId,
-                                            ng.Key.Name,
-                                            InterestRate = (ng.ToList().Sum(s => s.InterestRate) / ng.ToList().Count).RoundMoney(),
-                                            PercGainPerMonth = (ng.ToList().Sum(s => s.PercGainPerMonth) / ng.ToList().Count).RoundMoney(),
-                                            InterestPerMonth = (ng.ToList().Sum(s => s.InterestPerMonth) / ng.ToList().Count).RoundMoney(),
-                                            DaysTaken = (ng.ToList().Sum(s => s.DaysTaken) / ng.ToList().Count),
-                                            MissingDays = ng.ToList().Sum(s => s.MissingDays) / ng.ToList().Count
-                                        }).OrderByDescending(o => o.DaysTaken).ToList();
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         private void ShowOutstandingMoney()
         {
             outstandingMoney = Transaction.GetAllOutstandingAmount();
@@ -140,10 +111,7 @@ namespace CenturyFinCorpApp
             {
                 XCustomer();
             }
-            else if (value == 4)
-            {
-                CreditScore();
-            }
+            
         }
 
         public static List<KeyValuePair<int, string>> GetOptions()
@@ -152,8 +120,7 @@ namespace CenturyFinCorpApp
                {
                    new KeyValuePair<int, string>(1, "NOT GIVEN FOR FEW DAYS"),
                    new KeyValuePair<int, string>(2, "TO BE CLOSED SOON"),
-                   new KeyValuePair<int, string>(3, "X-CUSTOMER"),
-                   new KeyValuePair<int, string>(4, "CREDIT REPORT")
+                   new KeyValuePair<int, string>(3, "X-CUSTOMER")
                };
 
             return myKeyValuePair;
