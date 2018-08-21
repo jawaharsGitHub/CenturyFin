@@ -70,8 +70,8 @@ namespace CenturyFinCorpApp
             dailyTxn.InBank = (dailyTxn.InBank + dailyTxn.SentFromUSA - dailyTxn.TakenFromBank - dailyTxn.BankTxnOut);
 
             dailyTxn.CollectionAmount = Convert.ToInt32(txtCollectionAmount.Text);
-            dailyTxn.GivenAmount = givenAmount; //Convert.ToInt32(txtGivenAmount.Text) * 1000;
-            dailyTxn.Interest = interest; //Convert.ToInt32(Convert.ToDecimal(txtInterest.Text) * 1000);
+            dailyTxn.GivenAmount = Convert.ToInt32(txtGivenAmount.Text);
+            dailyTxn.Interest = Convert.ToInt32(txtInterest.Text);
             dailyTxn.ClosedAccounts = Convert.ToInt32(txtClosed.Text);
             dailyTxn.OpenedAccounts = Convert.ToInt32(txtOpened.Text);
             dailyTxn.TomorrowNeed = Convert.ToInt32(txtTmrNeeded.Text);
@@ -111,10 +111,10 @@ namespace CenturyFinCorpApp
 
             txtInterest.Text = (amt / 10).ToString();
 
-            givenAmount = Convert.ToInt32((amt * 1000));
-            interest = Convert.ToInt32((amt * 1000) / 10);
-            label19.Text = givenAmount.ToString();
-            label20.Text = interest.ToString();
+            //givenAmount = Convert.ToInt32((amt * 1000));
+            //interest = Convert.ToInt32((amt * 1000) / 10);
+            //label19.Text = givenAmount.ToString();
+            //label20.Text = interest.ToString();
         }
     }
 }
