@@ -9,5 +9,6 @@
         public double InterestPerMonth { get; set; }
         public int DaysTaken { get; set; }
         public int MissingDays { get; set; }
+        public double CreditScore { get; set; }
     }
 }

@@ -42,5 +42,10 @@ namespace Common.ExtensionMethod
         {
             return Math.Round(number, 2);
         }
+
+        public static double RoundPoints(this double number)
+        {
+            return Math.Round(number, 1);
+        }
     }
 }

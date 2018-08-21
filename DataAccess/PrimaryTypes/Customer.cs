@@ -234,8 +234,10 @@ namespace DataAccess.PrimaryTypes
             //dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
             //dataGridView1.Columns["CustomerSequenceNo"].Visible = false;
 
-            // Get missing paid days.
+            // Credit Score Calculation.
+            // TODO: Need to move as a seperate method - CalculateCreditScore()
 
+            double _creditScore = 0;
             List<DateTime> col = txns.Select(s => s.TxnDate.Date).ToList();
             var _missingLastDate = _isClosedTx ? lastDate : DateTime.Today.Date;
 
@@ -246,19 +248,69 @@ namespace DataAccess.PrimaryTypes
             var missingDays = range.Except(col).ToList().Count;
 
 
+            _creditScore -= missingDays;  // 1.Missing Days (value = -1)
+
+
+            _creditScore -= (daysTaken > 100) ? ((daysTaken - 100) * 0.75) : 0; // 2.Above 100 Days (value = -1.5)
+
+
+            var perDayAmount = (cus.LoanAmount / 100);  // 3.Lumb amount (value = +0.75)
+            var lumbCount = (from t in txns
+                             where t.AmountReceived > (cus.LoanAmount / 100)
+                             select ((t.AmountReceived - perDayAmount) / perDayAmount)).ToList();
+            _creditScore += (lumbCount.Sum() * 0.75);
+
+
+            if (_isClosedTx)    // 4.Number days saved(value = 1)
+                _creditScore += (daysTaken < 100) ? ((100 - daysTaken) * 1) : 0;
+
+            // Credit Score Calculation
+
             return new CreditReport
             {
                 CustomerId = cus.CustomerId,
                 Name = cus.Name,
+                CreditScore = _creditScore,
                 InterestRate = interestRate,
                 PercGainPerMonth = percGainPerMonth,
                 InterestPerMonth = interestPerMonth,
                 DaysTaken = daysTaken,
-                MissingDays = missingDays
+                MissingDays = missingDays,
+
             };
 
 
         }
+
+        //public static double GetCreditScore(List<Transaction> txns, )
+        //{
+        //    double _creditScore = 0;
+        //    List<DateTime> col = txns.Select(s => s.TxnDate.Date).ToList();
+        //    var _missingLastDate = _isClosedTx ? lastDate : DateTime.Today.Date;
+
+
+        //    var range = (Enumerable.Range(0, (int)(_missingLastDate - startDate).TotalDays + 1)
+        //                          .Select(i => startDate.AddDays(i).Date)).ToList();
+
+        //    var missingDays = range.Except(col).ToList().Count;
+
+
+        //    _creditScore -= missingDays;  // 1.Missing Days (value = -1)
+
+
+        //    _creditScore -= (daysTaken > 100) ? ((daysTaken - 100) * 0.75) : 0; // 2.Above 100 Days (value = -1.5)
+
+
+        //    var perDayAmount = (cus.LoanAmount / 100);  // 3.Lumb amount (value = +0.75)
+        //    var lumbCount = (from t in txns
+        //                     where t.AmountReceived > (cus.LoanAmount / 100)
+        //                     select ((t.AmountReceived - perDayAmount) / perDayAmount)).ToList();
+        //    _creditScore += (lumbCount.Sum() * 0.75);
+
+
+        //    if (_isClosedTx)    // 4.Number days saved(value = 1)
+        //        _creditScore += (daysTaken < 100) ? ((100 - daysTaken) * 1) : 0;
+        //}
 
     }
 

@@ -21,7 +21,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             try
             {
                 var data = (from c in Customer.GetAllCustomer()
-                            where c.IsActive == false
+                            //where c.IsActive == false
                             select Customer.GetCreditScore(c.CustomerId, c.CustomerSeqNumber)).ToList();
 
                 dataGridView1.DataSource = (from d in data
@@ -31,12 +31,13 @@ namespace CenturyFinCorpApp.UsrCtrl
                                                 ng.ToList().Count,
                                                 ng.Key.CustomerId,
                                                 ng.Key.Name,
+                                                CreditScore = (ng.ToList().Sum(s => s.CreditScore) / ng.ToList().Count).RoundPoints(),
                                                 InterestRate = (ng.ToList().Sum(s => s.InterestRate) / ng.ToList().Count).RoundMoney(),
                                                 PercGainPerMonth = (ng.ToList().Sum(s => s.PercGainPerMonth) / ng.ToList().Count).RoundMoney(),
                                                 InterestPerMonth = (ng.ToList().Sum(s => s.InterestPerMonth) / ng.ToList().Count).RoundMoney(),
                                                 DaysTaken = (ng.ToList().Sum(s => s.DaysTaken) / ng.ToList().Count),
                                                 MissingDays = ng.ToList().Sum(s => s.MissingDays) / ng.ToList().Count
-                                            }).OrderByDescending(o => o.DaysTaken).ToList();
+                                            }).OrderBy(o => o.CreditScore).ToList();
 
             }
             catch (Exception ex)

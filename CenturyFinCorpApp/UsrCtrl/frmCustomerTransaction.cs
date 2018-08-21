@@ -136,30 +136,49 @@ namespace CenturyFinCorpApp
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
             var lastDate = dataDource.Select(s => s.TxnDate).Max();
-            var DaysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
+            var daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
 
 
+            // Calculate Credit Score 
+            // TODO: Need to move as a seperate method - CalculateCreditScore()
 
-            // Get missing paid days.
-
+            double _creditScore = 0;
             List<DateTime> col = txns.Select(s => s.TxnDate.Date).ToList();
             var _missingLastDate = _isClosedTx ? lastDate : DateTime.Today.Date;
 
-            
+
             var range = (Enumerable.Range(0, (int)(_missingLastDate - startDate).TotalDays + 1)
                                   .Select(i => startDate.AddDays(i).Date)).ToList();
 
             var missing = range.Except(col).ToList();
 
+            
+            _creditScore -= missing.Count;  // 1.Missing Days (value = -1)
+
+            
+            _creditScore -= (daysTaken > 100) ? ((daysTaken - 100) * 0.75) : 0; // 2.Above 100 Days (value = -1.5)
+
+            
+            var perDayAmount = (cus.LoanAmount / 100);  // 3.Lumb amount (value = +0.75)
+            var lumbCount = (from t in txns
+                             where t.AmountReceived > (cus.LoanAmount / 100)
+                             select ((t.AmountReceived - perDayAmount) / perDayAmount)).ToList();
+            _creditScore += (lumbCount.Sum() * 0.75);
+
+            
+            if (_isClosedTx)    // 4.Number days saved(value = 1)
+                _creditScore += (daysTaken < 100) ? ((100 - daysTaken) * 1) : 0;
+
+            btnCreditScore.Text = $"CREDIT SCORE IS: {Environment.NewLine} {_creditScore}";
 
             lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";
             lblLastDate.Text = $"Last Date: {lastDate.Date.ToShortDateString()}";
 
-            var expected = (DaysTaken * (_loan / 100)) > _loan ? -1 : (DaysTaken * (_loan / 100));
+            var expected = (daysTaken * (_loan / 100)) > _loan ? -1 : (daysTaken * (_loan / 100));
             var actual = _loan - _balance;
 
-             
-            lblNoOfDays.Text = $"Days taken to Return {DaysTaken} (Expected {expected} ACTUAL {actual}) - MISSING DAYS: {missing.Count}";
+
+            lblNoOfDays.Text = $"Days taken to Return {daysTaken} (Expected {expected} ACTUAL {actual}) - MISSING DAYS: {missing.Count}";
 
             if (expected == -1)
                 lblNoOfDays.ForeColor = System.Drawing.Color.IndianRed;
@@ -174,7 +193,7 @@ namespace CenturyFinCorpApp
             var interestRate = (cus.LoanAmount / cus.Interest) == 12 ? 8.69 : 11.11;
 
 
-            var percGainPerMonth = Math.Round(((interestRate / DaysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.
+            var percGainPerMonth = Math.Round(((interestRate / daysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.
 
 
             lblPercentageGain.Text = $"{percGainPerMonth.ToString()}% Per Month({(percGainPerMonth / 100) * (cus.LoanAmount - cus.Interest)} Rs/Month)";

@@ -46,6 +46,7 @@
             this.lblPercentageGain = new System.Windows.Forms.Label();
             this.lblDetail = new System.Windows.Forms.Label();
             this.chkByBalance = new System.Windows.Forms.CheckBox();
+            this.btnCreditScore = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -231,10 +232,22 @@
             this.chkByBalance.UseVisualStyleBackColor = true;
             this.chkByBalance.CheckedChanged += new System.EventHandler(this.chkByBalance_CheckedChanged);
             // 
+            // btnCreditScore
+            // 
+            this.btnCreditScore.BackColor = System.Drawing.Color.Gold;
+            this.btnCreditScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreditScore.Location = new System.Drawing.Point(538, 207);
+            this.btnCreditScore.Name = "btnCreditScore";
+            this.btnCreditScore.Size = new System.Drawing.Size(175, 91);
+            this.btnCreditScore.TabIndex = 15;
+            this.btnCreditScore.Text = "[CREDIT SCORE]";
+            this.btnCreditScore.UseVisualStyleBackColor = false;
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCreditScore);
             this.Controls.Add(this.chkByBalance);
             this.Controls.Add(this.lblDetail);
             this.Controls.Add(this.lblPercentageGain);
@@ -277,5 +290,6 @@
         private System.Windows.Forms.Button btnNextDayTxn;
         private System.Windows.Forms.Label lblDetail;
         private System.Windows.Forms.CheckBox chkByBalance;
+        private System.Windows.Forms.Button btnCreditScore;
     }
 }
