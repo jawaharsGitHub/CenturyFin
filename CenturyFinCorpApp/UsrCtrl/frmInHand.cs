@@ -25,6 +25,7 @@ namespace CenturyFinCorpApp
             dailyTxn = DailyCollectionDetail.GetDailyTxn(date, isOnLoad);
             if (dailyTxn == null)
             {
+                dailyTxn = DailyCollectionDetail.GetDailyTxn(date.AddDays(-1), isOnLoad);
                 lblDate1.Text = lblDate2.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
                 btnAdd.Text = "ADD";
                 return;
@@ -64,6 +65,7 @@ namespace CenturyFinCorpApp
 
         private void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
+            if (dailyTxn == null) dailyTxn = new DailyCollectionDetail();
 
             dailyTxn.Date = dateTimePicker1.Value.ToShortDateString();
             dailyTxn.SanthanamUncle = Convert.ToInt32(txtSanthanam.Text);
@@ -91,15 +93,7 @@ namespace CenturyFinCorpApp
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
 
-            // Update In Hand and In Bank amount.
-            var inhand = new InHandAndBank()
-            {
-                Date = dateTimePicker1.Value.ToShortDateString(),
-                InBank = dailyTxn.InBank.Value,
-                InHandAmount = dailyTxn.TodayInHand.Value
-            };
-
-            InHandAndBank.AddInHand(inhand, dailyTxn.TakenFromBank);
+            
 
         }
 

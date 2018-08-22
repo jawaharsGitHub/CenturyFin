@@ -67,6 +67,17 @@ namespace DataAccess.PrimaryTypes
                 else
                 {
                     InsertSingleObjectToListJson(JsonFilePath, dailyCol);
+
+                    // Update In Hand and In Bank amount.
+                    var inhand = new InHandAndBank()
+                    {
+                        Date = dailyCol.Date,
+                        InBank = dailyCol.InBank.Value,
+                        InHandAmount = dailyCol.TodayInHand.Value
+                    };
+
+                    InHandAndBank.AddInHand(inhand, dailyCol.TakenFromBank);
+
                 }
 
             }
