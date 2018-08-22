@@ -35,7 +35,6 @@
             this.btnClosedTxn = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.dgReports = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).BeginInit();
             this.SuspendLayout();
@@ -109,15 +108,6 @@
             this.dgReports.TabIndex = 21;
             this.dgReports.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgReports_CellFormatting);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 133);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "TO BE CLOSED SOON:";
-            // 
             // comboBox1
             // 
             this.comboBox1.DisplayMember = "Value";
@@ -135,7 +125,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.dgReports);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnClosedTxn);
@@ -160,7 +149,6 @@
         private System.Windows.Forms.Button btnClosedTxn;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView dgReports;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
     }
 }
