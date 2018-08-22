@@ -25,12 +25,12 @@ namespace CenturyFinCorpApp.UsrCtrl
                             select Customer.GetCreditScore(c.CustomerId, c.CustomerSeqNumber)).ToList();
 
                 dataGridView1.DataSource = (from d in data
-                                            group d by new { d.CustomerId, d.Name } into ng
+                                            group d by new { d.CustomerId } into ng
                                             select new
                                             {
                                                 ng.ToList().Count,
                                                 ng.Key.CustomerId,
-                                                ng.Key.Name,
+                                                Name = ng.ToList().First().Name,
                                                 CreditScore = (ng.ToList().Sum(s => s.CreditScore) / ng.ToList().Count).RoundPoints(),
                                                 InterestRate = (ng.ToList().Sum(s => s.InterestRate) / ng.ToList().Count).RoundMoney(),
                                                 PercGainPerMonth = (ng.ToList().Sum(s => s.PercGainPerMonth) / ng.ToList().Count).RoundMoney(),
