@@ -104,6 +104,10 @@ namespace CenturyFinCorpApp
             var mnuReport = new ToolStripMenuItem() { Name = "DynReport", Text = "DYNAMIC-REPORT" };
             menuStrip.Items.Add(mnuReport);
             mnuReport.Click += (s, e) => ShowForm<frmDynamicReport>();
+            //Credit Report
+            var mnuCreditReport = new ToolStripMenuItem() { Name = "CreditReport", Text = "CREDIT-REPORT" };
+            menuStrip.Items.Add(mnuCreditReport);
+            mnuCreditReport.Click += (s, e) => ShowForm<frmCreditReport>();
             //Batches
             var mnuBatch = new ToolStripMenuItem() { Name = "batch", Text = "BATCH-JOBS" };
             menuStrip.Items.Add(mnuBatch);
@@ -112,10 +116,6 @@ namespace CenturyFinCorpApp
             var mnuOutstanding = new ToolStripMenuItem() { Name = "Outstanding", Text = "OUTSTANDING" };
             menuStrip.Items.Add(mnuOutstanding);
             mnuOutstanding.Click += (s, e) => ShowForm<frmOutstanding>();
-            //Credit Report
-            var mnuCreditReport = new ToolStripMenuItem() { Name = "CreditReport", Text = "CREDIT-REPORT" };
-            menuStrip.Items.Add(mnuCreditReport);
-            mnuCreditReport.Click += (s, e) => ShowForm<frmCreditReport>();
             //Health
             var mnuHealth = new ToolStripMenuItem() { Name = "health", Text = "HEALTH" };
             menuStrip.Items.Add(mnuHealth);

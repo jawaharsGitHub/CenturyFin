@@ -10,5 +10,6 @@
         public int DaysTaken { get; set; }
         public int MissingDays { get; set; }
         public double CreditScore { get; set; }
+        public int Count { get; set; }
     }
 }

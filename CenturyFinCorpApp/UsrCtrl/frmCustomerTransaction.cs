@@ -169,6 +169,10 @@ namespace CenturyFinCorpApp
             if (_isClosedTx)    // 4.Number days saved(value = 1)
                 _creditScore += (daysTaken < 100) ? ((100 - daysTaken) * 1) : 0;
 
+
+            // TOOD: 5.Extra credit score for each transactions from 2nd txns.
+
+
             btnCreditScore.Text = $"CREDIT SCORE IS: {Environment.NewLine} {_creditScore}";
 
             lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";

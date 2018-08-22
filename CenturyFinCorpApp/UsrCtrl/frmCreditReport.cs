@@ -1,4 +1,5 @@
 ﻿using Common.ExtensionMethod;
+using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,9 @@ namespace CenturyFinCorpApp.UsrCtrl
 {
     public partial class frmCreditReport : UserControl
     {
+
+        private static List<CreditReport> _fullCreditReport;
+
         public frmCreditReport()
         {
             InitializeComponent();
@@ -21,23 +25,59 @@ namespace CenturyFinCorpApp.UsrCtrl
             try
             {
                 var data = (from c in Customer.GetAllCustomer()
-                            //where c.IsActive == false
+                                //where c.IsActive == false
                             select Customer.GetCreditScore(c.CustomerId, c.CustomerSeqNumber)).ToList();
 
-                dataGridView1.DataSource = (from d in data
-                                            group d by new { d.CustomerId } into ng
-                                            select new
-                                            {
-                                                ng.ToList().Count,
-                                                ng.Key.CustomerId,
-                                                Name = ng.ToList().First().Name,
-                                                CreditScore = (ng.ToList().Sum(s => s.CreditScore) / ng.ToList().Count).RoundPoints(),
-                                                InterestRate = (ng.ToList().Sum(s => s.InterestRate) / ng.ToList().Count).RoundMoney(),
-                                                PercGainPerMonth = (ng.ToList().Sum(s => s.PercGainPerMonth) / ng.ToList().Count).RoundMoney(),
-                                                InterestPerMonth = (ng.ToList().Sum(s => s.InterestPerMonth) / ng.ToList().Count).RoundMoney(),
-                                                DaysTaken = (ng.ToList().Sum(s => s.DaysTaken) / ng.ToList().Count),
-                                                MissingDays = ng.ToList().Sum(s => s.MissingDays) / ng.ToList().Count
-                                            }).OrderBy(o => o.CreditScore).ToList();
+                _fullCreditReport = (from d in data
+                                     group d by new { d.CustomerId } into ng
+                                     select new CreditReport()
+                                     {
+                                         Count = ng.ToList().Count,
+                                         CustomerId = ng.Key.CustomerId,
+                                         Name = ng.ToList().First().Name,
+                                         CreditScore = (ng.ToList().Sum(s => s.CreditScore) / ng.ToList().Count).RoundPoints(),
+                                         InterestRate = (ng.ToList().Sum(s => s.InterestRate) / ng.ToList().Count).RoundMoney(),
+                                         PercGainPerMonth = (ng.ToList().Sum(s => s.PercGainPerMonth) / ng.ToList().Count).RoundMoney(),
+                                         InterestPerMonth = (ng.ToList().Sum(s => s.InterestPerMonth) / ng.ToList().Count).RoundMoney(),
+                                         DaysTaken = (ng.ToList().Sum(s => s.DaysTaken) / ng.ToList().Count),
+                                         MissingDays = ng.ToList().Sum(s => s.MissingDays) / ng.ToList().Count
+                                     }).OrderBy(o => o.CreditScore).ToList();
+
+                dataGridView1.DataSource = _fullCreditReport;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void BadCredit()
+        {
+            try
+            {
+                var data = (from c in _fullCreditReport
+                            where c.CreditScore < 0
+                            select c).OrderBy(o => o.CreditScore).ToList();
+
+                dataGridView1.DataSource = data;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void GoodCredit()
+        {
+            try
+            {
+                var data = (from c in _fullCreditReport
+                            where c.CreditScore >= 0
+                            select c).OrderByDescending(o => o.CreditScore).ToList();
+
+                dataGridView1.DataSource = data;
 
             }
             catch (Exception ex)
@@ -50,7 +90,9 @@ namespace CenturyFinCorpApp.UsrCtrl
         {
             var myKeyValuePair = new List<KeyValuePair<int, string>>()
                {
-                   new KeyValuePair<int, string>(1, "CREDIT REPORT")
+                   new KeyValuePair<int, string>(1, "CREDIT REPORT"),
+                   new KeyValuePair<int, string>(2, "BAD CREDIT"),
+                   new KeyValuePair<int, string>(3, "GOOD CREDIT")
                };
 
             return myKeyValuePair;
@@ -64,6 +106,14 @@ namespace CenturyFinCorpApp.UsrCtrl
             if (value == 1)
             {
                 CreditScore();
+            }
+            else if (value == 2)
+            {
+                BadCredit();
+            }
+            else if (value == 3)
+            {
+                GoodCredit();
             }
         }
     }
