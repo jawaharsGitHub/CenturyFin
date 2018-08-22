@@ -11,12 +11,12 @@ namespace CenturyFinCorpApp
 
         private DailyCollectionDetail dailyTxn;
 
-        private int givenAmount;
-        private int interest;
+        //private int givenAmount;
+        //private int interest;
         public frmInHand()
         {
             InitializeComponent();
-            GetDailyTxn(DateTime.Today.AddDays(-1), true);
+            GetDailyTxn(DateTime.Today, true);
 
         }
 
@@ -25,9 +25,13 @@ namespace CenturyFinCorpApp
             dailyTxn = DailyCollectionDetail.GetDailyTxn(date, isOnLoad);
             if (dailyTxn == null)
             {
-                MessageBox.Show("No record found");
+                lblDate.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
+                btnAdd.Text = "ADD";
                 return;
             }
+
+            lblDate.Text = $"Data For {dailyTxn.Date}";
+            btnAdd.Text = "UPDATE";
 
             txtSanthanam.Text = dailyTxn.SanthanamUncle.ToString();
             txtSentFromUSA.Text = dailyTxn.SentFromUSA.ToString();
@@ -51,14 +55,14 @@ namespace CenturyFinCorpApp
             btnTmrWanted.BackColor = (dailyTxn.TomorrowDiff > 0) ? Color.Red : Color.Green;
             btnCanGive.Text = (dailyTxn.TodayInHand + dailyTxn.InBank).ToString();
 
-            lblDate.Text = dailyTxn.Date;
+
 
             txtComments.Text = dailyTxn.Comments;
 
             btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(DateTime.Today).Sum(s => s.AmountReceived));
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
 
             dailyTxn.Date = dateTimePicker1.Value.ToShortDateString();
@@ -85,7 +89,7 @@ namespace CenturyFinCorpApp
             dailyTxn.Comments = txtComments.Text;
 
 
-            DailyCollectionDetail.AddDaily(dailyTxn);
+            DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
 
             // Update In Hand and In Bank amount.
             var inhand = new InHandAndBank()

@@ -30,9 +30,54 @@ namespace DataAccess.PrimaryTypes
         public int OtherInvestment { get; set; }
 
 
-        public static void AddDaily(DailyCollectionDetail dailyCol)
+        public static void AddOrUpdateDaily(DailyCollectionDetail dailyCol)
         {
-            InsertSingleObjectToListJson(JsonFilePath, dailyCol);
+
+
+            var list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
+            if (list != null && list.Count > 0)
+            {
+                var data = list.Where(w => w.Date == dailyCol.Date).ToList().FirstOrDefault();
+
+                if (data != null)
+                {
+                    //data = dailyCol;
+
+                    data.BankTxnOut = dailyCol.BankTxnOut;
+                    data.ClosedAccounts = dailyCol.ClosedAccounts;
+                    data.CollectionAmount = dailyCol.CollectionAmount;
+                    data.Comments = dailyCol.Comments;
+                    data.Date = dailyCol.Date;
+                    data.GivenAmount = dailyCol.GivenAmount;
+                    data.InBank = dailyCol.InBank;
+                    data.Interest = dailyCol.Interest;
+                    data.OpenedAccounts = dailyCol.OpenedAccounts;
+                    data.OtherExpenditire = dailyCol.OtherExpenditire;
+                    data.OtherInvestment = dailyCol.OtherInvestment;
+                    data.SanthanamUncle = dailyCol.SanthanamUncle;
+                    data.SentFromUSA = dailyCol.SentFromUSA;
+                    data.TakenFromBank = dailyCol.TakenFromBank;
+                    data.TodayInHand = dailyCol.TodayInHand;
+                    data.TomorrowDiff = dailyCol.TomorrowDiff;
+                    data.TomorrowNeed = dailyCol.TomorrowNeed;
+                    data.YesterdayAmountInHand = dailyCol.YesterdayAmountInHand;
+
+                    WriteObjectsToFile(list, JsonFilePath);
+                }
+                else
+                {
+                    InsertSingleObjectToListJson(JsonFilePath, dailyCol);
+                }
+
+            }
+
+
+        }
+        public static void UpdateDaily(DailyCollectionDetail dailyCol)
+        {
+
+
+
         }
 
         public static DailyCollectionDetail GetDailyTxn(DateTime date, bool isOnLoad)
