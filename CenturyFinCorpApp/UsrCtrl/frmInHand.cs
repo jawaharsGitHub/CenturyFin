@@ -25,12 +25,12 @@ namespace CenturyFinCorpApp
             dailyTxn = DailyCollectionDetail.GetDailyTxn(date, isOnLoad);
             if (dailyTxn == null)
             {
-                lblDate.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
+                lblDate1.Text = lblDate2.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
                 btnAdd.Text = "ADD";
                 return;
             }
 
-            lblDate.Text = $"Data For {dailyTxn.Date}";
+            lblDate1.Text = lblDate2.Text = $"Data For {dailyTxn.Date}";
             btnAdd.Text = "UPDATE";
 
             txtSanthanam.Text = dailyTxn.SanthanamUncle.ToString();
@@ -119,6 +119,20 @@ namespace CenturyFinCorpApp
             //interest = Convert.ToInt32((amt * 1000) / 10);
             //label19.Text = givenAmount.ToString();
             //label20.Text = interest.ToString();
+        }
+
+        private void btnNextDay_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = dateTimePicker1.Value.AddDays(1);
+            GetDailyTxn(dateTimePicker1.Value, false);
+
+        }
+
+        private void btnPrevDay_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = dateTimePicker1.Value.AddDays(-1);
+            GetDailyTxn(dateTimePicker1.Value, false);
+
         }
     }
 }

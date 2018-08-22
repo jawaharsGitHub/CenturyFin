@@ -36,7 +36,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.txtOtherInvestment = new System.Windows.Forms.TextBox();
             this.txtOtherExpenditure = new System.Windows.Forms.TextBox();
-            this.lblDate = new System.Windows.Forms.Label();
+            this.lblDate1 = new System.Windows.Forms.Label();
             this.txtCollectionAmount = new System.Windows.Forms.TextBox();
             this.txtInterest = new System.Windows.Forms.TextBox();
             this.txtGivenAmount = new System.Windows.Forms.TextBox();
@@ -72,6 +72,9 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.btnCanGive = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
+            this.lblDate2 = new System.Windows.Forms.Label();
+            this.btnPrevDay = new System.Windows.Forms.Button();
+            this.btnNextDay = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,7 +87,7 @@
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.txtOtherInvestment);
             this.groupBox1.Controls.Add(this.txtOtherExpenditure);
-            this.groupBox1.Controls.Add(this.lblDate);
+            this.groupBox1.Controls.Add(this.lblDate1);
             this.groupBox1.Controls.Add(this.txtCollectionAmount);
             this.groupBox1.Controls.Add(this.txtInterest);
             this.groupBox1.Controls.Add(this.txtGivenAmount);
@@ -171,14 +174,16 @@
             this.txtOtherExpenditure.Size = new System.Drawing.Size(100, 20);
             this.txtOtherExpenditure.TabIndex = 11;
             // 
-            // lblDate
+            // lblDate1
             // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(81, 16);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(36, 13);
-            this.lblDate.TabIndex = 24;
-            this.lblDate.Text = "[Date]";
+            this.lblDate1.AutoSize = true;
+            this.lblDate1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate1.ForeColor = System.Drawing.Color.Red;
+            this.lblDate1.Location = new System.Drawing.Point(81, 16);
+            this.lblDate1.Name = "lblDate1";
+            this.lblDate1.Size = new System.Drawing.Size(64, 24);
+            this.lblDate1.TabIndex = 24;
+            this.lblDate1.Text = "[Date]";
             // 
             // txtCollectionAmount
             // 
@@ -389,7 +394,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(639, 34);
+            this.dateTimePicker1.Location = new System.Drawing.Point(697, 32);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 0;
@@ -475,10 +480,44 @@
             this.label18.TabIndex = 24;
             this.label18.Text = "CAN GIVE (TOTAL)";
             // 
+            // lblDate2
+            // 
+            this.lblDate2.AutoSize = true;
+            this.lblDate2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate2.ForeColor = System.Drawing.Color.Red;
+            this.lblDate2.Location = new System.Drawing.Point(665, 151);
+            this.lblDate2.Name = "lblDate2";
+            this.lblDate2.Size = new System.Drawing.Size(64, 24);
+            this.lblDate2.TabIndex = 30;
+            this.lblDate2.Text = "[Date]";
+            // 
+            // btnPrevDay
+            // 
+            this.btnPrevDay.Location = new System.Drawing.Point(647, 30);
+            this.btnPrevDay.Name = "btnPrevDay";
+            this.btnPrevDay.Size = new System.Drawing.Size(41, 24);
+            this.btnPrevDay.TabIndex = 30;
+            this.btnPrevDay.Text = "<<";
+            this.btnPrevDay.UseVisualStyleBackColor = true;
+            this.btnPrevDay.Click += new System.EventHandler(this.btnPrevDay_Click);
+            // 
+            // btnNextDay
+            // 
+            this.btnNextDay.Location = new System.Drawing.Point(903, 32);
+            this.btnNextDay.Name = "btnNextDay";
+            this.btnNextDay.Size = new System.Drawing.Size(41, 24);
+            this.btnNextDay.TabIndex = 31;
+            this.btnNextDay.Text = ">>";
+            this.btnNextDay.UseVisualStyleBackColor = true;
+            this.btnNextDay.Click += new System.EventHandler(this.btnNextDay_Click);
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnNextDay);
+            this.Controls.Add(this.btnPrevDay);
+            this.Controls.Add(this.lblDate2);
             this.Controls.Add(this.btnCanGive);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.btnShow);
@@ -540,7 +579,7 @@
         private System.Windows.Forms.TextBox txtComments;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnShow;
-        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblDate1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtOtherInvestment;
@@ -550,5 +589,8 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblDate2;
+        private System.Windows.Forms.Button btnPrevDay;
+        private System.Windows.Forms.Button btnNextDay;
     }
 }
