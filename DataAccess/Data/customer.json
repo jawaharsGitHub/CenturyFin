@@ -787,9 +787,9 @@
     "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-06-27T00:00:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-08-18T00:00:00",
     "ModifiedDate": null
   },
   {
@@ -1067,8 +1067,8 @@
   },
   {
     "CustomerSeqNumber": 86,
-    "CustomerId": 60,
-    "Name": "Nagoor Gani - Kaikari Shop",
+    "CustomerId": 22,
+    "Name": "Asan-Kaikari Kadai (20k - Closed)",
     "PhoneNumber": "",
     "LoanAmount": 20000,
     "Interest": 1600,
@@ -1419,7 +1419,7 @@
   {
     "CustomerSeqNumber": 115,
     "CustomerId": 44,
-    "Name": "Bala - Ilai Kadai (2)",
+    "Name": "Bala - Ilai Kadai (One time return)",
     "PhoneNumber": "",
     "LoanAmount": 20000,
     "Interest": 1500,
@@ -1620,7 +1620,7 @@
     "Interest": 3000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-08-10T21:28:32.50958-04:00",
+    "AmountGivenDate": "2018-08-10T21:28:32",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1711,20 +1711,46 @@
     "Interest": 5000,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-08-18T22:27:08.8114996-04:00",
+    "AmountGivenDate": "2018-08-18T22:27:08",
     "ClosedDate": null,
     "ModifiedDate": null
   },
   {
     "CustomerSeqNumber": 138,
     "CustomerId": 88,
-    "Name": "Jayakumar - Bovonto Agency",
+    "Name": "Jayakumar - Bovonto Agency (One Time)",
     "PhoneNumber": "",
     "LoanAmount": 15000,
     "Interest": 1050,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-08-20T22:05:04.9695082-04:00",
+    "AmountGivenDate": "2018-08-20T22:05:04",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 139,
+    "CustomerId": 93,
+    "Name": "Shajahan - Water cane",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-21T22:14:59.5430159-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 140,
+    "CustomerId": 62,
+    "Name": "Durai - Britannia",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-21T22:15:41.6210593-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
