@@ -25,7 +25,6 @@ namespace CenturyFinCorpApp.UsrCtrl
             try
             {
                 var data = (from c in Customer.GetAllCustomer()
-                                //where c.IsActive == false
                             select Customer.GetCreditScore(c.CustomerId, c.CustomerSeqNumber)).ToList();
 
                 _fullCreditReport = (from d in data
@@ -35,12 +34,12 @@ namespace CenturyFinCorpApp.UsrCtrl
                                          Count = ng.ToList().Count,
                                          CustomerId = ng.Key.CustomerId,
                                          Name = ng.ToList().First().Name,
-                                         CreditScore = (ng.ToList().Sum(s => s.CreditScore) / ng.ToList().Count).RoundPoints(),
-                                         InterestRate = (ng.ToList().Sum(s => s.InterestRate) / ng.ToList().Count).RoundMoney(),
-                                         PercGainPerMonth = (ng.ToList().Sum(s => s.PercGainPerMonth) / ng.ToList().Count).RoundMoney(),
-                                         InterestPerMonth = (ng.ToList().Sum(s => s.InterestPerMonth) / ng.ToList().Count).RoundMoney(),
-                                         DaysTaken = (ng.ToList().Sum(s => s.DaysTaken) / ng.ToList().Count),
-                                         MissingDays = ng.ToList().Sum(s => s.MissingDays) / ng.ToList().Count
+                                         CreditScore = ng.ToList().Average(s => s.CreditScore).RoundPoints(),
+                                         InterestRate = ng.ToList().Average(s => s.InterestRate).RoundMoney(),
+                                         PercGainPerMonth = ng.ToList().Average(s => s.PercGainPerMonth).RoundMoney(),
+                                         InterestPerMonth = ng.ToList().Average(s => s.InterestPerMonth).RoundMoney(),
+                                         DaysTaken = ng.ToList().Average(s => s.DaysTaken).ToInt32(),
+                                         MissingDays = ng.ToList().Average(s => s.MissingDays).ToInt32()
                                      }).OrderBy(o => o.CreditScore).ToList();
 
                 dataGridView1.DataSource = _fullCreditReport;

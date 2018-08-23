@@ -327,8 +327,8 @@ namespace DataAccess.PrimaryTypes
                             c.Name,
                             c.LoanAmount,
                             t.Balance,
+                            CreditScore = Customer.GetCreditScore(c.CustomerId),
                             NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(100) - DateTime.Today.Date).Days),
-                            
                             DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
                             c.AmountGivenDate,
                             c.CustomerSeqNumber,
@@ -364,10 +364,11 @@ namespace DataAccess.PrimaryTypes
                             c.Name,
                             c.LoanAmount,
                             t.Balance,
+                            CreditScore = Customer.GetCreditScore(c.CustomerId),
                             NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays,
                             LastTxnDate = t.TxnDate,
                             c.AmountGivenDate,
-                            c.CustomerSeqNumber,
+                            c.CustomerSeqNumber                            
                         }).Where(w => w.NotGivenFor > 2).OrderByDescending(o => o.NotGivenFor).ToList();
 
             return data;

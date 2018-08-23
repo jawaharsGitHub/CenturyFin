@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.ExtensionMethod;
 using DataAccess.ExtendedTypes;
 using System;
 using System.Collections.Generic;
@@ -281,6 +282,17 @@ namespace DataAccess.PrimaryTypes
 
 
         }
+
+        public static double GetCreditScore(int _customerId)
+        {
+            var creditScores = (from c in Customer.GetAllCustomer()
+                                where c.CustomerId == _customerId
+                                select GetCreditScore(_customerId, c.CustomerSeqNumber)).ToList();
+
+            return creditScores.Average(a => a.CreditScore).RoundPoints();
+
+        }
+
 
         //public static double GetCreditScore(List<Transaction> txns, )
         //{

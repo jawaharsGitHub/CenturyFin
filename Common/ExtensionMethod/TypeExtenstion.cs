@@ -12,5 +12,11 @@ namespace Common.ExtensionMethod
             return Convert.ToInt32(value);
 
         }
+
+        public static int ToInt32(this double value)
+        {
+            return Convert.ToInt32(value);
+
+        }
     }
 }
