@@ -1068,14 +1068,14 @@
   {
     "CustomerSeqNumber": 86,
     "CustomerId": 22,
-    "Name": "Asan-Kaikari Kadai (20k - Closed - Nagoor Gani)",
+    "Name": "Asan-Kaikari Kadai (Nagoor Gani)",
     "PhoneNumber": "",
     "LoanAmount": 20000,
     "Interest": 1600,
     "IsExistingCustomer": false,
-    "IsActive": true,
-    "AmountGivenDate": "2018-07-16T00:00:00",
-    "ClosedDate": null,
+    "IsActive": false,
+    "AmountGivenDate": "2018-05-17T00:00:00",
+    "ClosedDate": "2018-08-21T22:17:43",
     "ModifiedDate": null
   },
   {
