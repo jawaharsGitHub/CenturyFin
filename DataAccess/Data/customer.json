@@ -1068,7 +1068,7 @@
   {
     "CustomerSeqNumber": 86,
     "CustomerId": 22,
-    "Name": "Asan-Kaikari Kadai (20k - Closed)",
+    "Name": "Asan-Kaikari Kadai (20k - Closed - Nagoor Gani)",
     "PhoneNumber": "",
     "LoanAmount": 20000,
     "Interest": 1600,
@@ -1398,9 +1398,9 @@
     "LoanAmount": 25000,
     "Interest": 2500,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-07-23T21:34:26.3977423-04:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-08-23T22:10:19.4780557-04:00",
     "ModifiedDate": null
   },
   {
@@ -1803,6 +1803,19 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-08-22T00:00:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 145,
+    "CustomerId": 20,
+    "Name": "KalaiSelvan-Tirupullani",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-23T22:10:31.0695255-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
