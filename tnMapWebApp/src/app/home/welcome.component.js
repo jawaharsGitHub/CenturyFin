@@ -10,6 +10,9 @@ var WelcomeComponent = (function () {
     function WelcomeComponent() {
         this.pageTitle = 'Welcome';
     }
+    WelcomeComponent.prototype.Test = function () {
+        alert("hi");
+    };
     return WelcomeComponent;
 }());
 WelcomeComponent = __decorate([
