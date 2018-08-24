@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include=".vscode\settings.json" />
-    <Content Include=".vscode\tasks.json" />
+    <Compile Remove=".vscode\**" />
+    <EmbeddedResource Remove=".vscode\**" />
+    <None Remove=".vscode\**" />
   </ItemGroup>
 
 </Project>
