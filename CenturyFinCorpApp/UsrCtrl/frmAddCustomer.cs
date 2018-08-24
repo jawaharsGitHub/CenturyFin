@@ -17,9 +17,9 @@ namespace CenturyFinCorpApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
-            var newCustomerId = Customer.GetNextCustomerId();
-            var nextSeqNo = Customer.GetNextCustomerSeqNo();
+            var nextIds = Customer.GetNextCustomerId();
+            var newCustomerId = nextIds.NewCustomerId;
+            var nextSeqNo = nextIds.NewCustomerSeqId;
             Customer cus = new Customer();
 
             if (chkExistingCustomer.Checked)
@@ -27,14 +27,20 @@ namespace CenturyFinCorpApp
                 cus = (Customer)cmbExistingCustomer.SelectedItem;
                 cus.CustomerSeqNumber = nextSeqNo;
                 cus.IsExistingCustomer = true;
-                newCustomerId = cus.CustomerId;
-
-                //Update Active flag of existing customer.
-                cus.IsActive = false;
-                //Customer.UpdateCustomerDetails(cus);
+                newCustomerId = cus.CustomerId;                
+                cus.IsActive = false;   //Update Active flag of existing customer.
             }
             else
             {
+                var isDuplicateName = Customer.IsDuplicateName(txtName.Text);
+
+                if (isDuplicateName)
+                {
+                    var msg = $"Customer Name [{txtName.Text}] already exist, Please verify!";
+                    MessageBox.Show(msg);
+                    lblMessage.Text = msg;
+                    return;
+                }
                 cus.CustomerId = newCustomerId;
                 cus.Name = txtName.Text;
                 cus.PhoneNumber = txtPhone.Text;
@@ -96,7 +102,7 @@ namespace CenturyFinCorpApp
             }
         }
 
-        
+
 
 
         private void txtLoan_Leave(object sender, EventArgs e)

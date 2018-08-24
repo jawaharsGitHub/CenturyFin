@@ -52,6 +52,24 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static bool IsDuplicateName(string name)
+        {
+            try
+            {
+                var count = (from c in GetAllCustomer()
+                             where c.Name.Trim() == name
+                             select c).Count();
+
+                return (count > 0);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public static void CorrectCustomerData(Customer updatedCustomer)
         {
 
@@ -147,13 +165,18 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static int GetNextCustomerId()
+        public static (int NewCustomerId, int NewCustomerSeqId) GetNextCustomerId()
         {
             List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
 
-            if (list == null || list.Count == 0) return 1;
+            if (list == null || list.Count == 0) return (1, 1);
 
-            return (list.Max(m => m.CustomerId) + 1);
+            var newCustomerId = (list.Max(m => m.CustomerId) + 1);
+
+            var newCustomerSeqId = (list.Max(m => m.CustomerSeqNumber) + 1);
+
+            return (newCustomerId, newCustomerSeqId);
+            //return new { NewCustomerId = (list.Max(m => m.CustomerId) + 1), NewCustomerSeqId = (list.Max(m => m.CustomerSeqNumber) + 1) };
 
         }
 
