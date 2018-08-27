@@ -96,7 +96,8 @@ namespace DataAccess.PrimaryTypes
                 List<Transaction> list = ReadFileAsObjects<Transaction>(AppConfiguration.TransactionFile);
 
                 var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId && c.CustomerSequenceNo == updatedTransaction.CustomerSequenceNo && c.CustomerId == updatedTransaction.CustomerId).FirstOrDefault();
-
+                
+                u.Balance = ((u.Balance + u.AmountReceived) - updatedTransaction.AmountReceived); // Very important calculation when corrected collection amount more than 1 time for he same date.
                 u.AmountReceived = updatedTransaction.AmountReceived;
                 u.TxnUpdatedDate = DateTime.Today;
 
