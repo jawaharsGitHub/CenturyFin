@@ -619,7 +619,7 @@
     "Interest": 800,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-03T00:00:00",
+    "AmountGivenDate": "2018-07-05T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -645,7 +645,7 @@
     "Interest": 2400,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-03T00:00:00-04:00",
+    "AmountGivenDate": "2018-06-07T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -970,7 +970,7 @@
     "Interest": 1600,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-26T12:18:42",
+    "AmountGivenDate": "2018-06-25T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1152,7 +1152,7 @@
     "Interest": 400,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-28T12:35:39",
+    "AmountGivenDate": "2018-06-27T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1204,7 +1204,7 @@
     "Interest": 1200,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-22T12:42:57",
+    "AmountGivenDate": "2018-06-20T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1230,7 +1230,7 @@
     "Interest": 800,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-10T12:48:23",
+    "AmountGivenDate": "2018-07-07T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1333,9 +1333,9 @@
     "LoanAmount": 5000,
     "Interest": 500,
     "IsExistingCustomer": false,
-    "IsActive": true,
-    "AmountGivenDate": "2018-07-18T13:08:17.1208624-04:00",
-    "ClosedDate": null,
+    "IsActive": false,
+    "AmountGivenDate": "2018-07-18T13:08:17",
+    "ClosedDate": "2018-08-25T21:53:14",
     "ModifiedDate": null
   },
   {
@@ -1672,7 +1672,7 @@
     "Interest": 500,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-08-14T22:23:06.2224092-04:00",
+    "AmountGivenDate": "2018-08-14T22:23:06",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1816,6 +1816,19 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-08-23T22:10:31.0695255-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 146,
+    "CustomerId": 94,
+    "Name": "Balamurugan - PounduKadai - Mani Store Maligai",
+    "PhoneNumber": "",
+    "LoanAmount": 40000,
+    "Interest": 4000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-25T21:57:41.754567-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
