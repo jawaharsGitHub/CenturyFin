@@ -8,13 +8,14 @@ namespace CenturyFinCorpApp
 {
     static class Program
     {
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-
+            LogHelper.WriteDebugLog($"started application @ {DateTime.Today.ToLongTimeString()}");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
