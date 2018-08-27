@@ -5,20 +5,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var core_1 = require("@angular/core");
+var platform_browser_1 = require("@angular/platform-browser");
 var WelcomeComponent = (function () {
-    function WelcomeComponent() {
-        this.pageTitle = 'Welcome';
+    function WelcomeComponent(domSanitizer) {
+        this.domSanitizer = domSanitizer;
+        this.name = "Hello";
+        this.srcValue = './assets/files/tnDist1.svg';
     }
-    WelcomeComponent.prototype.Test = function () {
-        alert("hi");
+    WelcomeComponent.prototype.ngOnInit = function () {
+        var URL = './assets/files/tnDist1.svg';
+        this.srcValue = this.domSanitizer.bypassSecurityTrustResourceUrl(URL);
+    };
+    WelcomeComponent.prototype.ShowDistrict = function () {
+        var URL = './assets/files/dist.svg';
+        this.srcValue = this.domSanitizer.bypassSecurityTrustResourceUrl(URL);
+        //alert(this.srcValue);
+    };
+    WelcomeComponent.prototype.ShowState = function () {
+        var URL = './assets/files/tnDist1.svg';
+        this.srcValue = this.domSanitizer.bypassSecurityTrustResourceUrl(URL);
     };
     return WelcomeComponent;
 }());
 WelcomeComponent = __decorate([
     core_1.Component({
         templateUrl: './app/home/welcome.component.html'
-    })
+    }),
+    __metadata("design:paramtypes", [platform_browser_1.DomSanitizer])
 ], WelcomeComponent);
 exports.WelcomeComponent = WelcomeComponent;
 //# sourceMappingURL=welcome.component.js.map
