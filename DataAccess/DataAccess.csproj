@@ -343,6 +343,7 @@
     <None Include="Data\Expenditure.json" />
     <None Include="Data\InHandAndBank.json" />
     <None Include="Data\Investment.json" />
+    <None Include="Data\PersonalOutstanding.json" />
     <None Include="Data\transaction.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

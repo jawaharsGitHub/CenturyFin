@@ -27,6 +27,8 @@ namespace Common
 
         public static string DailyBatchFile { get; } = GetFullPath("DailyBatchFile");
 
+        public static string OutstandingFile { get; } = GetFullPath("OutstandingFile");
+
         private static string GetFullPath(string configKey)
         {
             return Path.Combine(ConfigurationManager.AppSettings["SourceFolder"], ConfigurationManager.AppSettings[configKey]);
