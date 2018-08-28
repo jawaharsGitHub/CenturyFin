@@ -34,7 +34,7 @@ namespace CenturyFinCorpApp
             lblDate1.Text = lblDate2.Text = $"Data For {dailyTxn.Date}";
             btnAdd.Text = "UPDATE";
 
-            txtSanthanam.Text = dailyTxn.SanthanamUncle.ToString();
+            
             txtSentFromUSA.Text = dailyTxn.SentFromUSA.ToString();
 
             txtBankTxnOut.Text = dailyTxn.BankTxnOut.ToString();
@@ -68,7 +68,6 @@ namespace CenturyFinCorpApp
             if (dailyTxn == null) dailyTxn = new DailyCollectionDetail();
 
             dailyTxn.Date = dateTimePicker1.Value.ToShortDateString();
-            dailyTxn.SanthanamUncle = Convert.ToInt32(txtSanthanam.Text);
             dailyTxn.YesterdayAmountInHand = dailyTxn.TodayInHand;
             dailyTxn.SentFromUSA = Convert.ToDecimal(txtSentFromUSA.Text);
             dailyTxn.BankTxnOut = Convert.ToDecimal(txtBankTxnOut.Text);

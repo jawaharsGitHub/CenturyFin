@@ -12,7 +12,6 @@ namespace DataAccess.PrimaryTypes
 
         public string Date { get; set; }
         public int? YesterdayAmountInHand { get; set; }
-        public int? SanthanamUncle { get; set; }
         public decimal? SentFromUSA { get; set; }
         public decimal? InBank { get; set; }
         public decimal? BankTxnOut { get; set; }
@@ -54,7 +53,6 @@ namespace DataAccess.PrimaryTypes
                     data.OpenedAccounts = dailyCol.OpenedAccounts;
                     data.OtherExpenditire = dailyCol.OtherExpenditire;
                     data.OtherInvestment = dailyCol.OtherInvestment;
-                    data.SanthanamUncle = dailyCol.SanthanamUncle;
                     data.SentFromUSA = dailyCol.SentFromUSA;
                     data.TakenFromBank = dailyCol.TakenFromBank;
                     data.TodayInHand = dailyCol.TodayInHand;

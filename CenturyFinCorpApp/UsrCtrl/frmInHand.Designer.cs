@@ -46,7 +46,6 @@
             this.txtTakenFromBank = new System.Windows.Forms.TextBox();
             this.txtBankTxnOut = new System.Windows.Forms.TextBox();
             this.txtSentFromUSA = new System.Windows.Forms.TextBox();
-            this.txtSanthanam = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -56,7 +55,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -97,7 +95,6 @@
             this.groupBox1.Controls.Add(this.txtTakenFromBank);
             this.groupBox1.Controls.Add(this.txtBankTxnOut);
             this.groupBox1.Controls.Add(this.txtSentFromUSA);
-            this.groupBox1.Controls.Add(this.txtSanthanam);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
@@ -107,7 +104,6 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(35, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(584, 523);
@@ -249,13 +245,6 @@
             this.txtSentFromUSA.Size = new System.Drawing.Size(100, 20);
             this.txtSentFromUSA.TabIndex = 2;
             // 
-            // txtSanthanam
-            // 
-            this.txtSanthanam.Location = new System.Drawing.Point(153, 51);
-            this.txtSanthanam.Name = "txtSanthanam";
-            this.txtSanthanam.Size = new System.Drawing.Size(100, 20);
-            this.txtSanthanam.TabIndex = 1;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -336,15 +325,6 @@
             this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "SendFromUSA";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "SanthanamUncle";
             // 
             // btnAdd
             // 
@@ -554,7 +534,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label15;
@@ -566,7 +545,6 @@
         private System.Windows.Forms.TextBox txtTakenFromBank;
         private System.Windows.Forms.TextBox txtBankTxnOut;
         private System.Windows.Forms.TextBox txtSentFromUSA;
-        private System.Windows.Forms.TextBox txtSanthanam;
         private System.Windows.Forms.TextBox txtInterest;
         private System.Windows.Forms.TextBox txtGivenAmount;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
