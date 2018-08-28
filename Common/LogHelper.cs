@@ -21,9 +21,10 @@ namespace Common
         /// This method will write log in Log_USERNAME_date{yyyyMMdd}.log file
         /// </summary>
         /// <param name="message"></param>
-        public static void WriteDebugLog(string message)
+        public static void WriteLog(string message, int? customerId = null, int? customerSeqId = null)
         {
-            _debugLogger.DebugFormat(message);
+            _debugLogger.DebugFormat($"[{customerId}-{customerSeqId}] {message}");
+            // _debugLogger.DebugFormat(message);
         }
     }
 }

@@ -211,11 +211,13 @@ namespace CenturyFinCorpApp
                 if (txn.Balance < 0)
                 {
                     MessageBox.Show("Balance is less than 0. Please check your amount. Txn Aborted!");
+                    LogHelper.WriteLog($"Balance is less than 0. Please check your amount. Txn Aborted!", txn.CustomerId, txn.CustomerSequenceNo);
                     return;
                 }
                 if (txn.Balance == 0)
                 {
                     MessageBox.Show("Good News, This txn will be closed!");
+                    LogHelper.WriteLog("Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
                     Customer.UpdateCustomerDetails(new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
                 }
 

@@ -15,7 +15,7 @@ namespace CenturyFinCorpApp
         [STAThread]
         static void Main()
         {
-            LogHelper.WriteDebugLog($"started application @ {DateTime.Today.ToLongTimeString()}");
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -27,7 +27,11 @@ namespace CenturyFinCorpApp
             var dataFolder = General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\");
 
             if (AppConfiguration.AddOrUpdateAppSettings("SourceFolder", dataFolder))
+            {
+                LogHelper.WriteLog($"started application");
                 Application.Run(new frmIndexForm());
+                
+            }
 
             //
 
