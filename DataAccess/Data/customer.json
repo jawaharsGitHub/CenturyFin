@@ -1096,12 +1096,12 @@
     "CustomerId": 6,
     "Name": "Raj Roja - Soopu Kadai",
     "PhoneNumber": "",
-    "LoanAmount": 20000,
-    "Interest": 1600,
+    "LoanAmount": 10000,
+    "Interest": 800,
     "IsExistingCustomer": true,
-    "IsActive": true,
-    "AmountGivenDate": "2018-07-23T00:00:00",
-    "ClosedDate": null,
+    "IsActive": false,
+    "AmountGivenDate": "2018-05-23T00:00:00",
+    "ClosedDate": "2018-08-27T21:13:57",
     "ModifiedDate": null
   },
   {
@@ -1829,6 +1829,19 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-08-25T21:57:41.754567-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 147,
+    "CustomerId": 6,
+    "Name": "Raj Roja - Soopu Kadai",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-27T21:10:24",
     "ClosedDate": null,
     "ModifiedDate": null
   }
