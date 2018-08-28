@@ -18,6 +18,15 @@ namespace CenturyFinCorpApp.UsrCtrl
             CustomerGrowth();
 
             ShowRemaingDays();
+
+            GetCustomerCount();
+        }
+
+        private void GetCustomerCount()
+        {
+            var count = Customer.GetAllCustomer().Select(s => s.CustomerId).Distinct().Count();
+            btnCustomerCount.Text = $"Customer Count - {count.ToString()}";
+
         }
 
         private void ShowRemaingDays()

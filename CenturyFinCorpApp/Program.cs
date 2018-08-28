@@ -8,7 +8,7 @@ namespace CenturyFinCorpApp
 {
     static class Program
     {
-        
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -26,13 +26,14 @@ namespace CenturyFinCorpApp
 
             var dataFolder = General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\");
 
-            AppConfiguration.AddOrUpdateAppSettings("SourceFolder", dataFolder);
+            if (AppConfiguration.AddOrUpdateAppSettings("SourceFolder", dataFolder))
+                Application.Run(new frmIndexForm());
 
             //
 
             //frmPrediction.Predict();
 
-            Application.Run(new frmIndexForm());
+
         }
 
 

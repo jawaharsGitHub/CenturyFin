@@ -36,6 +36,7 @@
             this.dgvNotePerMonth = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnCustomerCount = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -112,10 +113,20 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "label1";
             // 
+            // btnCustomerCount
+            // 
+            this.btnCustomerCount.Location = new System.Drawing.Point(1120, 107);
+            this.btnCustomerCount.Name = "btnCustomerCount";
+            this.btnCustomerCount.Size = new System.Drawing.Size(145, 23);
+            this.btnCustomerCount.TabIndex = 23;
+            this.btnCustomerCount.Text = "[Customer Count]";
+            this.btnCustomerCount.UseVisualStyleBackColor = true;
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCustomerCount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvNotePerMonth);
@@ -125,7 +136,7 @@
             this.Controls.Add(this.chkAddSalary);
             this.Controls.Add(this.dgvIncome);
             this.Name = "frmGeneralReport";
-            this.Size = new System.Drawing.Size(1071, 560);
+            this.Size = new System.Drawing.Size(1286, 560);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).EndInit();
             this.ResumeLayout(false);
@@ -143,5 +154,6 @@
         private System.Windows.Forms.DataGridView dgvNotePerMonth;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnCustomerCount;
     }
 }

@@ -54,7 +54,7 @@ namespace CenturyFinCorpApp
             Customer.AddCustomer(cus);
             txtCustomerNo.Text = newCustomerId.ToString();
 
-            // Add First Transaction.
+            // Add First(Default) Transaction.
             var txn = new Transaction()
             {
                 AmountReceived = 0,
@@ -101,9 +101,6 @@ namespace CenturyFinCorpApp
                 txtName.Enabled = txtPhone.Enabled = true;
             }
         }
-
-
-
 
         private void txtLoan_Leave(object sender, EventArgs e)
         {

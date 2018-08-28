@@ -34,7 +34,7 @@ namespace Common
         }
 
 
-        public static void AddOrUpdateAppSettings(string key, string value)
+        public static bool AddOrUpdateAppSettings(string key, string value)
         {
             try
             {
@@ -50,10 +50,12 @@ namespace Common
                 }
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+                return true;
             }
             catch (ConfigurationErrorsException)
             {
                 Console.WriteLine("Error writing app settings");
+                return false;
             }
         }
     }
