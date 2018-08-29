@@ -139,7 +139,12 @@ namespace CenturyFinCorpApp
                     if (e.Value != null)
                     {
                         int dayNotGiven = Convert.ToInt32(e.Value);
-                        if (dayNotGiven >= 7)
+                        if (dayNotGiven >= 15)
+                        {
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Orange;
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                        else if (dayNotGiven >= 7)
                         {
                             dgReports.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
                             dgReports.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
