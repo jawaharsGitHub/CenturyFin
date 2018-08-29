@@ -1,4 +1,5 @@
-﻿using DataAccess.PrimaryTypes;
+﻿using Common.ExtensionMethod;
+using DataAccess.PrimaryTypes;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -50,7 +51,7 @@ namespace CenturyFinCorpApp
             txtOtherInvestment.Text = Convert.ToString(dailyTxn.OtherInvestment);
 
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.ToString();
-            btnTodayInHand.Text = dailyTxn.TodayInHand.ToString();
+            btnTodayInHand.Text = dailyTxn.TodayInHand.TokFormat();
             btnInBank.Text = dailyTxn.InBank.ToString();
             btnTmrWanted.Text = (dailyTxn.TomorrowDiff > 0) ? dailyTxn.TomorrowDiff.ToString() : $"0 --- (Have Extra {Math.Abs(Convert.ToInt32(dailyTxn.TomorrowDiff))} )";
             btnTmrWanted.BackColor = (dailyTxn.TomorrowDiff > 0) ? Color.Red : Color.Green;

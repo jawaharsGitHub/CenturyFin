@@ -18,5 +18,16 @@ namespace Common.ExtensionMethod
             return Convert.ToInt32(value);
 
         }
+
+        public static string TokFormat(this int? value)
+        {
+            if (value == null)
+                throw new Exception("value should not ne null");
+
+            int number = Convert.ToInt32(value);
+
+            return string.Format("{0:n0}", number);
+
+        }
     }
 }

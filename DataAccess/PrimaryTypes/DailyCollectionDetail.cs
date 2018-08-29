@@ -38,31 +38,29 @@ namespace DataAccess.PrimaryTypes
             {
                 var data = list.Where(w => w.Date == dailyCol.Date).ToList().FirstOrDefault();
 
-                if (data != null)
+                if (data != null) // Update
                 {
-                    //data = dailyCol;
-
-                    data.BankTxnOut = dailyCol.BankTxnOut;
-                    data.ClosedAccounts = dailyCol.ClosedAccounts;
-                    data.CollectionAmount = dailyCol.CollectionAmount;
+                    //data.BankTxnOut = dailyCol.BankTxnOut;
+                    //data.ClosedAccounts = dailyCol.ClosedAccounts;
+                    //data.CollectionAmount = dailyCol.CollectionAmount;
                     data.Comments = dailyCol.Comments;
-                    data.Date = dailyCol.Date;
-                    data.GivenAmount = dailyCol.GivenAmount;
-                    data.InBank = dailyCol.InBank;
-                    data.Interest = dailyCol.Interest;
-                    data.OpenedAccounts = dailyCol.OpenedAccounts;
-                    data.OtherExpenditire = dailyCol.OtherExpenditire;
-                    data.OtherInvestment = dailyCol.OtherInvestment;
-                    data.SentFromUSA = dailyCol.SentFromUSA;
-                    data.TakenFromBank = dailyCol.TakenFromBank;
-                    data.TodayInHand = dailyCol.TodayInHand;
-                    data.TomorrowDiff = dailyCol.TomorrowDiff;
-                    data.TomorrowNeed = dailyCol.TomorrowNeed;
-                    data.YesterdayAmountInHand = dailyCol.YesterdayAmountInHand;
+                    //data.Date = dailyCol.Date;
+                    //data.GivenAmount = dailyCol.GivenAmount;
+                    //data.InBank = dailyCol.InBank;
+                    //data.Interest = dailyCol.Interest;
+                    //data.OpenedAccounts = dailyCol.OpenedAccounts;
+                    //data.OtherExpenditire = dailyCol.OtherExpenditire;
+                    //data.OtherInvestment = dailyCol.OtherInvestment;
+                    //data.SentFromUSA = dailyCol.SentFromUSA;
+                    //data.TakenFromBank = dailyCol.TakenFromBank;
+                    //data.TodayInHand = dailyCol.TodayInHand;
+                    //data.TomorrowDiff = dailyCol.TomorrowDiff;
+                    //data.TomorrowNeed = dailyCol.TomorrowNeed;
+                    //data.YesterdayAmountInHand = dailyCol.YesterdayAmountInHand;
 
                     WriteObjectsToFile(list, JsonFilePath);
                 }
-                else
+                else // New (Insert)
                 {
                     InsertSingleObjectToListJson(JsonFilePath, dailyCol);
 
