@@ -839,9 +839,9 @@
     "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-06-29T11:28:11",
-    "ClosedDate": null,
+    "ClosedDate": "2018-08-28T21:44:29.0378037-04:00",
     "ModifiedDate": null
   },
   {
@@ -1243,7 +1243,7 @@
     "Interest": 800,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-04T12:49:02",
+    "AmountGivenDate": "2018-06-21T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1412,7 +1412,7 @@
     "Interest": 5000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-23T21:34:26.3977423-04:00",
+    "AmountGivenDate": "2018-07-23T21:34:26",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1422,11 +1422,11 @@
     "Name": "Bala - Ilai Kadai (One time return)",
     "PhoneNumber": "",
     "LoanAmount": 20000,
-    "Interest": 1500,
+    "Interest": 3000,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-07-24T12:45:19",
-    "ClosedDate": null,
+    "ClosedDate": "2018-08-28T21:49:02.9474404-04:00",
     "ModifiedDate": null
   },
   {
@@ -1503,7 +1503,7 @@
     "Interest": 1500,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-31T12:57:39.2362907-04:00",
+    "AmountGivenDate": "2018-07-31T12:57:39",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1842,6 +1842,32 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-08-27T21:10:24",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 148,
+    "CustomerId": 83,
+    "Name": "Gopal - Bharathinagar - Checku Ennai (Venkateshan)",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-28T21:52:25",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 149,
+    "CustomerId": 44,
+    "Name": "Bala - Ilai Kadai",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-28T21:54:17.5279574-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
