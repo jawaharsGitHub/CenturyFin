@@ -103,6 +103,12 @@
     <Compile Include="UsrCtrl\frmCustomers.Designer.cs">
       <DependentUpon>frmCustomers.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrl\frmDataCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmDataCheck.Designer.cs">
+      <DependentUpon>frmDataCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrl\frmGeneralReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmCustomers.resx">
       <DependentUpon>frmCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmDataCheck.resx">
+      <DependentUpon>frmDataCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmGeneralReport.resx">
       <DependentUpon>frmGeneralReport.cs</DependentUpon>

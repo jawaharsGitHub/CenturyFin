@@ -104,6 +104,10 @@ namespace CenturyFinCorpApp
             var mnuReport = new ToolStripMenuItem() { Name = "DynReport", Text = "DYNAMIC-REPORT" };
             menuStrip.Items.Add(mnuReport);
             mnuReport.Click += (s, e) => ShowForm<frmDynamicReport>();
+            //Data Check Report
+            var mnuDataCheckRpt = new ToolStripMenuItem() { Name = "dataCheckReport", Text = "DATA-CHECK-REPORT" };
+            menuStrip.Items.Add(mnuDataCheckRpt);
+            mnuDataCheckRpt.Click += (s, e) => ShowForm<frmDataCheck>();
             //Credit Report
             var mnuCreditReport = new ToolStripMenuItem() { Name = "CreditReport", Text = "CREDIT-REPORT" };
             menuStrip.Items.Add(mnuCreditReport);
