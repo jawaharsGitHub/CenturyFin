@@ -76,7 +76,6 @@
     <Content Include="PL file\BT- Credits.txt" />
     <Content Include="PL file\doubts.txt" />
     <Content Include="PL file\Manikandan Closed details..txt" />
-    <Content Include="PL file\Txn For Closed\mani t stall.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -90,8 +90,10 @@
             this.groupBox1.Controls.Add(this.txtInterest);
             this.groupBox1.Controls.Add(this.txtGivenAmount);
             this.groupBox1.Controls.Add(this.txtTmrNeeded);
+            this.groupBox1.Controls.Add(this.btnTodayInHand);
             this.groupBox1.Controls.Add(this.txtOpened);
             this.groupBox1.Controls.Add(this.txtClosed);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.txtTakenFromBank);
             this.groupBox1.Controls.Add(this.txtBankTxnOut);
             this.groupBox1.Controls.Add(this.txtSentFromUSA);
@@ -339,7 +341,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(662, 227);
+            this.label1.Location = new System.Drawing.Point(662, 206);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 13);
             this.label1.TabIndex = 0;
@@ -357,7 +359,8 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(682, 263);
+            this.label10.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label10.Location = new System.Drawing.Point(421, 139);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(72, 13);
             this.label10.TabIndex = 1;
@@ -381,9 +384,11 @@
             // 
             // btnTodayInHand
             // 
-            this.btnTodayInHand.Location = new System.Drawing.Point(799, 263);
+            this.btnTodayInHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTodayInHand.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnTodayInHand.Location = new System.Drawing.Point(373, 162);
             this.btnTodayInHand.Name = "btnTodayInHand";
-            this.btnTodayInHand.Size = new System.Drawing.Size(75, 23);
+            this.btnTodayInHand.Size = new System.Drawing.Size(164, 112);
             this.btnTodayInHand.TabIndex = 15;
             this.btnTodayInHand.Text = "button1";
             this.btnTodayInHand.UseVisualStyleBackColor = true;
@@ -408,7 +413,7 @@
             // 
             // btnYesterdayInHand
             // 
-            this.btnYesterdayInHand.Location = new System.Drawing.Point(799, 222);
+            this.btnYesterdayInHand.Location = new System.Drawing.Point(799, 201);
             this.btnYesterdayInHand.Name = "btnYesterdayInHand";
             this.btnYesterdayInHand.Size = new System.Drawing.Size(75, 23);
             this.btnYesterdayInHand.TabIndex = 18;
@@ -507,9 +512,7 @@
             this.Controls.Add(this.btnYesterdayInHand);
             this.Controls.Add(this.btnTmrWanted);
             this.Controls.Add(this.btnInBank);
-            this.Controls.Add(this.btnTodayInHand);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label15);
