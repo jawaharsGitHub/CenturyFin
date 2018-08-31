@@ -272,21 +272,25 @@ namespace DataAccess.PrimaryTypes
             var missingDays = range.Except(col).ToList().Count;
 
 
-            _creditScore -= missingDays;  // 1.Missing Days (value = -1)
+            var perDayAmount = (cus.LoanAmount / 100);
+
+            var perDayValue = (perDayAmount / 100);
+
+            _creditScore -= missingDays * perDayValue;  // 1.Missing Days (value = -1)
 
 
-            _creditScore -= (daysTaken > 100) ? ((daysTaken - 100) * 0.75) : 0; // 2.Above 100 Days (value = -1.5)
+            _creditScore -= (daysTaken > 100) ? ((daysTaken - 100) * 0.75 * perDayValue) : 0; // 2.Above 100 Days (value = -1.5)
 
 
-            var perDayAmount = (cus.LoanAmount / 100);  // 3.Lumb amount (value = +0.75)
+              // 3.Lumb amount (value = +0.75)
             var lumbCount = (from t in txns
                              where t.AmountReceived > (cus.LoanAmount / 100)
                              select ((t.AmountReceived - perDayAmount) / perDayAmount)).ToList();
-            _creditScore += (lumbCount.Sum() * 0.75);
+            _creditScore += (lumbCount.Sum() * 0.75 * perDayValue);
 
 
             if (_isClosedTx)    // 4.Number days saved(value = 1)
-                _creditScore += (daysTaken < 100) ? ((100 - daysTaken) * 1) : 0;
+                _creditScore += (daysTaken < 100) ? ((100 - daysTaken) * 1 * perDayValue) : 0;
 
             // Credit Score Calculation
 

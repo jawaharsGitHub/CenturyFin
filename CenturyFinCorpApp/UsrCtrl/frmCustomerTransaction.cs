@@ -150,24 +150,28 @@ namespace CenturyFinCorpApp
             var range = (Enumerable.Range(0, (int)(_missingLastDate - startDate).TotalDays + 1)
                                   .Select(i => startDate.AddDays(i).Date)).ToList();
 
+            var perDayAmount = (cus.LoanAmount / 100);
+
+            var perDayValue = (perDayAmount / 100);
+
             var missing = range.Except(col).ToList();
 
             
-            _creditScore -= missing.Count;  // 1.Missing Days (value = -1)
+            _creditScore -= missing.Count * perDayValue;  // 1.Missing Days (value = -1)
 
             
-            _creditScore -= (daysTaken > 100) ? ((daysTaken - 100) * 0.75) : 0; // 2.Above 100 Days (value = -1.5)
+            _creditScore -= (daysTaken > 100) ? ((daysTaken - 100) * 0.75 * perDayValue) : 0; // 2.Above 100 Days (value = -1.5)
 
             
-            var perDayAmount = (cus.LoanAmount / 100);  // 3.Lumb amount (value = +0.75)
+            // 3.Lumb amount (value = +0.75)
             var lumbCount = (from t in txns
                              where t.AmountReceived > (cus.LoanAmount / 100)
                              select ((t.AmountReceived - perDayAmount) / perDayAmount)).ToList();
-            _creditScore += (lumbCount.Sum() * 0.75);
+            _creditScore += (lumbCount.Sum() * 0.75 * perDayValue);
 
             
             if (_isClosedTx)    // 4.Number days saved(value = 1)
-                _creditScore += (daysTaken < 100) ? ((100 - daysTaken) * 1) : 0;
+                _creditScore += (daysTaken < 100) ? ((100 - daysTaken) * 1 * perDayValue) : 0;
 
 
             // TOOD: 5.Extra credit score for each transactions from 2nd txns.
