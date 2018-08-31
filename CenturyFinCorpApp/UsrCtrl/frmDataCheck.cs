@@ -21,7 +21,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             comboBox1.DataSource = GetOptions();
 
-            CheckEachTxn();
+            //CheckEachTxn();
 
         }
 
@@ -30,6 +30,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             var myKeyValuePair = new List<KeyValuePair<int, string>>()
                {
                    new KeyValuePair<int, string>(1, "Check MinBalance And AmountReceived"),
+                   new KeyValuePair<int, string>(2, "Check EachAndEvery Txn"),
                };
 
             return myKeyValuePair;
@@ -44,12 +45,17 @@ namespace CenturyFinCorpApp.UsrCtrl
             {
                 MinBalanceAndReceivedAmount();
             }
+            else if (value == 2)
+            {
+                CheckEachTxn();
+            }
+
 
         }
 
         private void MinBalanceAndReceivedAmount()
         {
-            var txn = Transaction.GetTransactionsNotGivenForFewDays();
+            // var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
             var details = (from c in Customer.GetAllCustomer()
                            select new
@@ -84,8 +90,10 @@ namespace CenturyFinCorpApp.UsrCtrl
         {
             //var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
-            Transaction currentTxn;
+            //Transaction currentTxn;
             Transaction nextTxn;
+
+            var data = new List<LogData>();
 
             var details = (from c in Customer.GetAllCustomer()// .Where(w => w.CustomerSeqNumber == 1)
                            select new
@@ -104,6 +112,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                 {
 
                     LogHelper.WriteLog($"NO TXN - {f.Name}-{f.CustomerSeqNumber}");
+                    data.Add(new LogData() { LogType = "NO-TXN", CustomerId = f.CustomerId,  CusSeqNo = f.CustomerSeqNumber, Name =  f.Name });
 
                 }
                 else
@@ -111,15 +120,32 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                     var firstItem = f.txn.First();
 
-                    if(firstItem.AmountReceived > 0)
+                    if (firstItem.AmountReceived > 0)
                     {
-                        LogHelper.WriteLog($"ADD FIRST TXN {firstItem.TxnDate}-{firstItem.CustomerId}-{firstItem.CustomerSequenceNo}-{f.Name}");
-
+                        ///LogHelper.WriteLog($"ADD FIRST TXN {firstItem.TxnDate}-{firstItem.CustomerId}-{firstItem.CustomerSequenceNo}-{f.Name}");
+                        data.Add(new LogData() {
+                            LogType = "NO-FIRST-TXN",
+                            TxnDate = firstItem.TxnDate.Date,
+                            TxnId = firstItem.TransactionId,
+                            CusSeqNo = f.CustomerSeqNumber,
+                            CustomerId = f.CustomerId,
+                            Name = f.Name });
                     }
 
                     if (firstItem.Balance != f.LoanAmount)
                     {
-                        LogHelper.WriteLog($"LOANNOTCORRECT {firstItem.TxnDate}-{firstItem.CustomerId}-{firstItem.CustomerSequenceNo}-{f.Name}");
+                        //LogHelper.WriteLog($"LOANNOTCORRECT {firstItem.TxnDate}-{firstItem.CustomerId}-{firstItem.CustomerSequenceNo}-{f.Name}");
+
+                        data.Add(new LogData()
+                        {
+                            LogType = "LOAN-NOT-CORRECT",
+                            TxnDate = firstItem.TxnDate.Date,
+                            TxnId = firstItem.TransactionId,
+                            CusSeqNo = f.CustomerSeqNumber,
+                            CustomerId = f.CustomerId,
+                            Name = f.Name
+                        });
+
 
                     }
 
@@ -128,13 +154,32 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                         if (f.txn.Where(w => w.TxnDate.Date == t.TxnDate.Date).Count() > 1)
                         {
-                            LogHelper.WriteLog($">1 {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
+                            //LogHelper.WriteLog($">1 {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
+                            data.Add(new LogData()
+                            {
+                                LogType = ">1-TXN",
+                                TxnDate = firstItem.TxnDate.Date,
+                                TxnId = firstItem.TransactionId,
+                                CusSeqNo = f.CustomerSeqNumber,
+                                CustomerId = f.CustomerId,
+                                Name = f.Name
+                            });
 
                         }
 
                         else if (f.txn.Where(w => w.TxnDate.Date == t.TxnDate.Date).Count() == 0)
                         {
-                            LogHelper.WriteLog($"ZERO - {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
+                            //LogHelper.WriteLog($"ZERO - {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
+
+                            data.Add(new LogData()
+                            {
+                                LogType = "ZERO-TXN",
+                                TxnDate = firstItem.TxnDate.Date,
+                                TxnId = firstItem.TransactionId,
+                                CusSeqNo = f.CustomerSeqNumber,
+                                CustomerId = f.CustomerId,
+                                Name = f.Name
+                            });
 
                         }
 
@@ -144,7 +189,16 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                             if (nextTxn != null && nextTxn.Balance != (t.Balance - nextTxn.AmountReceived))
                             {
-                                LogHelper.WriteLog($"VERIFY - {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
+                                //LogHelper.WriteLog($"VERIFY - {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
+                                data.Add(new LogData()
+                                {
+                                    LogType = "NEED-TO-VERIFY",
+                                    TxnDate = firstItem.TxnDate.Date,
+                                    TxnId = firstItem.TransactionId,
+                                    CusSeqNo = f.CustomerSeqNumber,
+                                    CustomerId = f.CustomerId,
+                                    Name = f.Name
+                                });
 
                             }
 
@@ -152,7 +206,16 @@ namespace CenturyFinCorpApp.UsrCtrl
                         }
                         else
                         {
-                            LogHelper.WriteLog($"ELSE - {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
+                            //LogHelper.WriteLog($"ELSE - {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
+                            data.Add(new LogData()
+                            {
+                                LogType = "ELSE_TXN",
+                                TxnDate = firstItem.TxnDate.Date,
+                                TxnId = firstItem.TransactionId,
+                                CusSeqNo = f.CustomerSeqNumber,
+                                CustomerId = f.CustomerId,
+                                Name = f.Name
+                            });
 
                         }
 
@@ -165,13 +228,26 @@ namespace CenturyFinCorpApp.UsrCtrl
                 }
             });
 
-
-
-
-            // dataGridView1.DataSource = data.Where(w => w.IsCorrect == false).ToList(); ;
+            dataGridView1.DataSource = data.ToList();
 
         }
 
+        //string FormatLog(dynamic d)
+        //{
+        //    d.Name = "";
 
+        //}
+
+
+    }
+
+    public class LogData
+    {
+        public int TxnId { get; set; }
+        public DateTime TxnDate { get; set; }
+        public int CustomerId { get; set; }
+        public int CusSeqNo { get; set; }
+        public string Name { get; set; }
+        public string LogType { get; set; }
     }
 }
