@@ -44,7 +44,7 @@ namespace CenturyFinCorpApp
 
             txtCollectionAmount.Text = (_loan / 100).ToString();
 
-            btnBalance.Visible = groupBox1.Visible = (_balance > 0);
+            //btnBalance.Visible = groupBox1.Visible = (_balance > 0);
 
             LoadTxn();
 
@@ -128,9 +128,9 @@ namespace CenturyFinCorpApp
             if (byBalance)
                 dataGridView1.DataSource = dataDource.OrderBy(o => o.Balance).ToList();
             else if (isDesc)
-                dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate).ThenBy(t => t.Balance).ToList();
+                dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate.Date).ThenBy(t => t.Balance).ToList();
             else
-                dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate).ToList();
+                dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
 
             var lastBalance = txns.Min(m => m.Balance);
 
@@ -150,9 +150,9 @@ namespace CenturyFinCorpApp
             var range = (Enumerable.Range(0, (int)(_missingLastDate - startDate).TotalDays + 1)
                                   .Select(i => startDate.AddDays(i).Date)).ToList();
 
-            var perDayAmount = (cus.LoanAmount / 100);
+            double perDayAmount = (cus.LoanAmount / 100);
 
-            var perDayValue = (perDayAmount / 100);
+            double perDayValue = (perDayAmount / 100.0);
 
             var missing = range.Except(col).ToList();
 

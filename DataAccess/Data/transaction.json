@@ -13634,10 +13634,10 @@
     "IsClosed": false,
     "TransactionId": 3077,
     "AmountReceived": 900,
-    "Balance": 27300,
+    "Balance": 26700,
     "TxnUpdatedDate": "2018-08-21T00:00:00-04:00",
     "CustomerSequenceNo": 130,
-    "TxnDate": "2018-08-21T22:03:59.3151695-04:00"
+    "TxnDate": "2018-08-21T22:03:59"
   },
   {
     "CustomerId": 79,
@@ -18878,5 +18878,15 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 97,
     "TxnDate": "2018-08-30T21:48:33"
+  },
+  {
+    "CustomerId": 38,
+    "IsClosed": false,
+    "TransactionId": 3636,
+    "AmountReceived": 0,
+    "Balance": 5000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 55,
+    "TxnDate": "2018-07-04T00:00:00"
   }
 ]

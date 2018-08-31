@@ -157,7 +157,7 @@ namespace DataAccess.PrimaryTypes
                 {
                     var list = ReadFileAsObjects<Transaction>(txnFile);
                     if (list == null) return null;
-                    return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).OrderBy(o => o.TransactionId).ToList();
+                    return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).OrderBy(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
                 }
 
                 return null;
