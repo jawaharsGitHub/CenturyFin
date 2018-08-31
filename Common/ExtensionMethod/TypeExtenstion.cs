@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Common.ExtensionMethod
 {
@@ -29,5 +30,13 @@ namespace Common.ExtensionMethod
             return string.Format("{0:n0}", number);
 
         }
+
+        public static T NextOf<T>(this IList<T> list, T item)
+        {
+            var indexOf = list.IndexOf(item);
+            if (indexOf == list.Count - 1) return default(T);
+            return list[indexOf == list.Count - 1 ? 0 : indexOf + 1];
+        }
+
     }
 }

@@ -1204,7 +1204,7 @@
     "Interest": 1200,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-06-20T00:00:00",
+    "AmountGivenDate": "2018-06-22T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1269,7 +1269,7 @@
     "Interest": 1000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-17T23:41:17.2200161-04:00",
+    "AmountGivenDate": "2018-07-17T23:41:17",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1828,7 +1828,7 @@
     "Interest": 4000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-08-25T21:57:41.754567-04:00",
+    "AmountGivenDate": "2018-08-25T21:57:41",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1848,7 +1848,7 @@
   {
     "CustomerSeqNumber": 148,
     "CustomerId": 83,
-    "Name": "Gopal - Bharathinagar - Checku Ennai (Venkateshan)",
+    "Name": "Venkateshan - Gopal - Bharathinagar - Checku Ennai ",
     "PhoneNumber": "",
     "LoanAmount": 10000,
     "Interest": 1000,
@@ -1868,6 +1868,45 @@
     "IsExistingCustomer": true,
     "IsActive": true,
     "AmountGivenDate": "2018-08-28T21:54:17.5279574-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 150,
+    "CustomerId": 95,
+    "Name": "Rajkumar - Bisleri Agency - Kadamba Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-30T21:41:58.4041276-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 151,
+    "CustomerId": 96,
+    "Name": "MuthuRaj - D-Block Muttai Business",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-30T21:42:32.3730095-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 152,
+    "CustomerId": 41,
+    "Name": "vijay - palani valasai",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-08-30T21:43:00.6564879-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
