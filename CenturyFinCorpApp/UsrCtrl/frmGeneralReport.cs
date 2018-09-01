@@ -102,7 +102,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             finalData.Insert(0, new IncomeReport()
             {
-                Month = "2018 Feb",
+                Month = "Feb 2018",
                 ActualIncome = 0
             });
 
@@ -163,11 +163,11 @@ namespace CenturyFinCorpApp.UsrCtrl
         {
             var customers = (from c in Customer.GetAllCustomer()
                              orderby c.AmountGivenDate
-                             group c by c.AmountGivenDate.Value.Month into newGroup
+                             group c by c.AmountGivenDate.Value.ToString("Y") into newGroup
 
                              select new
                              {
-                                 Month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(newGroup.Key),
+                                 Month = newGroup.Key,
                                  Count = newGroup.Count(),
                                  LoanAmount = newGroup.Sum(s => s.LoanAmount),
                                  GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)),
