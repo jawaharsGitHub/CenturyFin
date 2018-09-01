@@ -92,7 +92,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                                c.Name,
                                c.AmountGivenDate,
                                c.LoanAmount,
-                               txn = Transaction.GetTransactionDetails(c.CustomerId, c.CustomerSeqNumber, (c.IsActive == false))
+                               txn = Transaction.GetTransactionDetails(c.CustomerId, c.CustomerSeqNumber, (c.IsActive == false)),
+                               c.IsActive
                            }).ToList();
 
             details.ForEach(f =>
@@ -102,7 +103,14 @@ namespace CenturyFinCorpApp.UsrCtrl
                 {
 
                     LogHelper.WriteLog($"NO TXN - {f.Name}-{f.CustomerSeqNumber}");
-                    data.Add(new LogData() { LogType = "NO-TXN", CustomerId = f.CustomerId, CusSeqNo = f.CustomerSeqNumber, Name = f.Name });
+                    data.Add(new LogData()
+                    {
+                        LogType = "NO-TXN",
+                        CustomerId = f.CustomerId,
+                        CusSeqNo = f.CustomerSeqNumber,
+                        Name = f.Name,
+                        IsActive = f.IsActive
+                    });
 
                 }
                 else
@@ -119,7 +127,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                             TxnId = firstItem.TransactionId,
                             CusSeqNo = f.CustomerSeqNumber,
                             CustomerId = f.CustomerId,
-                            Name = f.Name
+                            Name = f.Name,
+                            IsActive = f.IsActive
                         });
                     }
 
@@ -132,7 +141,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                             TxnId = firstItem.TransactionId,
                             CusSeqNo = f.CustomerSeqNumber,
                             CustomerId = f.CustomerId,
-                            Name = f.Name
+                            Name = f.Name,
+                            IsActive = f.IsActive
                         });
                     }
 
@@ -146,7 +156,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                             TxnId = firstItem.TransactionId,
                             CusSeqNo = f.CustomerSeqNumber,
                             CustomerId = f.CustomerId,
-                            Name = f.Name
+                            Name = f.Name,
+                            IsActive = f.IsActive
                         });
 
 
@@ -157,16 +168,16 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                         if (f.txn.Where(w => w.TxnDate.Date == t.TxnDate.Date).Count() > 1)
                         {
-                            LogHelper.WriteLog($">1 {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
-                            data.Add(new LogData()
-                            {
-                                LogType = ">1-TXN",
-                                TxnDate = t.TxnDate.Date,
-                                TxnId = t.TransactionId,
-                                CusSeqNo = f.CustomerSeqNumber,
-                                CustomerId = f.CustomerId,
-                                Name = f.Name
-                            });
+                            //LogHelper.WriteLog($">1 {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
+                            //data.Add(new LogData()
+                            //{
+                            //    LogType = ">1-TXN",
+                            //    TxnDate = t.TxnDate.Date,
+                            //    TxnId = t.TransactionId,
+                            //    CusSeqNo = f.CustomerSeqNumber,
+                            //    CustomerId = f.CustomerId,
+                            //    Name = f.Name
+                            //});
 
                         }
 
@@ -179,7 +190,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                                 TxnId = t.TransactionId,
                                 CusSeqNo = f.CustomerSeqNumber,
                                 CustomerId = f.CustomerId,
-                                Name = f.Name
+                                Name = f.Name,
+                                IsActive = f.IsActive
                             });
 
                         }
@@ -193,11 +205,12 @@ namespace CenturyFinCorpApp.UsrCtrl
                                 data.Add(new LogData()
                                 {
                                     LogType = "NEED-TO-VERIFY",
-                                    TxnDate = t.TxnDate.Date,
-                                    TxnId = t.TransactionId,
+                                    TxnDate = nextTxn.TxnDate.Date,
+                                    TxnId = nextTxn.TransactionId,
                                     CusSeqNo = f.CustomerSeqNumber,
                                     CustomerId = f.CustomerId,
-                                    Name = f.Name
+                                    Name = f.Name,
+                                    IsActive = f.IsActive
                                 });
 
                             }
@@ -209,7 +222,12 @@ namespace CenturyFinCorpApp.UsrCtrl
                 }
             });
 
-            dataGridView1.DataSource = data.ToList();
+            dataGridView2.DataSource = (from d in data
+                           where d.LogType == "NEED-TO-VERIFY"
+                           group d by new { d.Name, d.CusSeqNo } into newGroup
+                           select new { newGroup.Key.Name, newGroup.Key.CusSeqNo }).ToList();
+
+            dataGridView1.DataSource = data.OrderBy(o => o.IsActive).ToList();
 
         }
 
@@ -223,5 +241,6 @@ namespace CenturyFinCorpApp.UsrCtrl
         public int CusSeqNo { get; set; }
         public string Name { get; set; }
         public string LogType { get; set; }
+        public bool IsActive { get; set; }
     }
 }
