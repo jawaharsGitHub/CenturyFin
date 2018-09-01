@@ -1061,7 +1061,7 @@
     "Interest": 2500,
     "IsExistingCustomer": true,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-15T12:28:23",
+    "AmountGivenDate": "2018-07-13T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1165,7 +1165,7 @@
     "Interest": 1600,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-07-12T00:00:00",
+    "AmountGivenDate": "2018-06-11T00:00:00",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1255,9 +1255,9 @@
     "LoanAmount": 30000,
     "Interest": 2400,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-06-28T00:00:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-08-31T21:48:03",
     "ModifiedDate": null
   },
   {
