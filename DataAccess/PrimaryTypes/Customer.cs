@@ -272,9 +272,9 @@ namespace DataAccess.PrimaryTypes
             var missingDays = range.Except(col).ToList().Count;
 
 
-            var perDayAmount = (cus.LoanAmount / 100);
+            double perDayAmount = (cus.LoanAmount / 100);
 
-            var perDayValue = (perDayAmount / 100);
+            double perDayValue = (perDayAmount / 100.0);
 
             _creditScore -= missingDays * perDayValue;  // 1.Missing Days (value = -1)
 
