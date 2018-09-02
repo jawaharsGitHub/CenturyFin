@@ -1909,5 +1909,44 @@
     "AmountGivenDate": "2018-08-30T21:43:00.6564879-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 153,
+    "CustomerId": 33,
+    "Name": "Sulthan - Travels",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-01T22:20:31.4275834-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 154,
+    "CustomerId": 97,
+    "Name": "NandhaKumar - Sriram Agency",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-01T22:20:54.8857974-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 155,
+    "CustomerId": 98,
+    "Name": "Muthu - Maligai - Market",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-01T22:22:10.8697258-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
   }
 ]
