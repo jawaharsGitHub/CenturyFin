@@ -101,8 +101,6 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                 if (f.txn.Count() == 0)
                 {
-
-                    LogHelper.WriteLog($"NO TXN - {f.Name}-{f.CustomerSeqNumber}");
                     data.Add(new LogData()
                     {
                         LogType = "NO-TXN",
@@ -131,6 +129,21 @@ namespace CenturyFinCorpApp.UsrCtrl
                             IsActive = f.IsActive
                         });
                     }
+
+                    if (f.txn.Where(w => w.AmountReceived == 0).Count() > 1)
+                    {
+                        data.Add(new LogData()
+                        {
+                            LogType = "DUMMY-TXN",
+                            TxnDate = firstItem.TxnDate.Date,
+                            TxnId = firstItem.TransactionId,
+                            CusSeqNo = f.CustomerSeqNumber,
+                            CustomerId = f.CustomerId,
+                            Name = f.Name,
+                            IsActive = f.IsActive
+                        });
+                    }
+
 
                     if (firstItem.TxnDate.Date != f.AmountGivenDate.Value.Date)
                     {
@@ -168,7 +181,6 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                         if (f.txn.Where(w => w.TxnDate.Date == t.TxnDate.Date).Count() > 1)
                         {
-                            //LogHelper.WriteLog($">1 {t.TxnDate}-{t.CustomerId}-{t.CustomerSequenceNo}-{f.Name}");
                             //data.Add(new LogData()
                             //{
                             //    LogType = ">1-TXN",
