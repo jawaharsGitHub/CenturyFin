@@ -99,7 +99,7 @@ namespace CenturyFinCorpApp
             // Customer day and count ratio.
             var days = (DateTime.Today - new DateTime(2018, 1, 25)).TotalDays;
 
-            label1.Text = $"{totalTxn} customers in {days} days {Environment.NewLine} {Math.Round(totalTxn/days, 2)} customer(s) per day";
+            label1.Text = $"{totalTxn} customers in {days} days {Environment.NewLine} {Math.Round(totalTxn / days, 2)} customer(s) per day";
         }
 
         private void AdjustColumnOrder()
@@ -231,8 +231,15 @@ namespace CenturyFinCorpApp
                 }
                 else
                 {
-                    txn.TransactionId = existingTxn.First().TransactionId;
-                    Transaction.UpdateTransactionDetails(txn);
+                    if (existingTxn.First().AmountReceived == 0) // Customer is giving money in the same day fo given date.
+                    {
+                        Transaction.AddDailyTransactions(txn);
+                    }
+                    else
+                    {
+                        txn.TransactionId = existingTxn.First().TransactionId;
+                        Transaction.UpdateTransactionDetails(txn);
+                    }
                 }
 
                 // Update txn Closed Date
