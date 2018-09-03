@@ -43,7 +43,8 @@ namespace CenturyFinCorpApp
                           new ExtDailyTxn() {
                               Date = $"{d.Date} ({Convert.ToDateTime(d.Date).DayOfWeek.ToString()})",
                               CollectionAmount = d.CollectionAmount,
-                              ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) }).ToList();
+                              //ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
+                          }).ToList();
 
             dgvAllDailyCollection.DataSource = result;
         }
@@ -73,8 +74,11 @@ namespace CenturyFinCorpApp
             {
                 txn = Transaction.GetDailyCollectionDetails(chooseDate);
             }
+
+            //var cccc = Customer.GetAllCustomer().Where(w => w.CustomerSeqNumber == 8).ToList();
+
             var cus = from c in Customer.GetAllCustomer()
-                      where c.AmountGivenDate.Value.Date <= chooseDate && (c.ClosedDate >= chooseDate || c.ClosedDate == null)
+                      where c.AmountGivenDate.Value.Date <= chooseDate.Date && (c.ClosedDate == null || c.ClosedDate.Value.Date >= chooseDate.Date)
                       select new { c.CustomerSeqNumber, c.Name, c.IsActive, c.Interest, c.LoanAmount, c.CustomerId, c.AmountGivenDate };
 
             var result = new List<CustomerDailyTxn>();

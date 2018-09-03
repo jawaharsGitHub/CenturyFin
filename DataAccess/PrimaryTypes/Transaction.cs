@@ -430,6 +430,8 @@ namespace DataAccess.PrimaryTypes
             var list = ReadFileAsObjects<Transaction>(txnFile);
 
             if (list == null) return null;
+
+            //list = list.Where(w => w.CustomerSequenceNo == 8).ToList();
             var fromActiveTxn = list.Where(c => (c.TxnDate.Date == inputDate.Date && c.AmountReceived > 0)).ToList();
 
             return fromActiveTxn;

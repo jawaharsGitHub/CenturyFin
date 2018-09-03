@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.ExtensionMethod;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
@@ -65,26 +66,7 @@ namespace CenturyFinCorpApp
         {
             customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
 
-            // For Get the data i need.
-            //StringBuilder sb = new StringBuilder();
-            //StringBuilder sb2 = new StringBuilder();
-
-            //var c1 = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate);
-
-            //foreach (var item in c1)
-            //{
-            //    sb.AppendLine(item.AmountGivenDate.ToString());
-
-            //}
-
-            //var c2 = Customer.GetAllCustomer().Where(w => w.ClosedDate != null).OrderBy(o => o.ClosedDate);
-
-            //foreach (var item in c2)
-            //{
-            //    sb2.AppendLine(item.ClosedDate.ToString());
-
-            //}
-
+            var allGivenAmount = customers.Sum(s => s.LoanAmount);
 
             var activeTxn = customers.Count(c => c.IsActive == true);
             var closedTxn = customers.Count(c => c.IsActive == false);
@@ -99,7 +81,7 @@ namespace CenturyFinCorpApp
             // Customer day and count ratio.
             var days = (DateTime.Today - new DateTime(2018, 1, 25)).TotalDays;
 
-            label1.Text = $"{totalTxn} customers in {days} days {Environment.NewLine} {Math.Round(totalTxn / days, 2)} customer(s) per day";
+            label1.Text = $"{totalTxn} customers in {days} days {Environment.NewLine} {Math.Round(totalTxn / days, 2)} customer(s) per day {Environment.NewLine} {Math.Round(allGivenAmount / days).TokFormat()} Rs. per day";
         }
 
         private void AdjustColumnOrder()

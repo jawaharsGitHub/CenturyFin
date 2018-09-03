@@ -33,8 +33,21 @@ namespace Common.ExtensionMethod
 
             int number = Convert.ToInt32(value);
 
-            return string.Format("{0:n0}", number);
+            return number.TokFormat();
 
+        }
+
+        public static string TokFormat(this double value)
+        {
+            int number = Convert.ToInt32(value);
+
+            return number.TokFormat();
+
+        }
+
+        public static string TokFormat(this int value)
+        {
+            return string.Format("{0:n0}", value);
         }
 
         public static T NextOf<T>(this IList<T> list, T item)
