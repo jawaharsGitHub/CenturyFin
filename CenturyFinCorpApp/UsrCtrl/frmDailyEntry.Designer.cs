@@ -39,6 +39,8 @@
             this.dgvAllDailyCollection = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             this.SuspendLayout();
@@ -46,7 +48,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 144);
+            this.dataGridView1.Location = new System.Drawing.Point(18, 183);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(578, 300);
             this.dataGridView1.TabIndex = 0;
@@ -62,7 +64,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(390, 10);
+            this.button1.Location = new System.Drawing.Point(440, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(105, 23);
             this.button1.TabIndex = 2;
@@ -105,7 +107,7 @@
             // lblOutStanding
             // 
             this.lblOutStanding.AutoSize = true;
-            this.lblOutStanding.Location = new System.Drawing.Point(510, 16);
+            this.lblOutStanding.Location = new System.Drawing.Point(560, 16);
             this.lblOutStanding.Name = "lblOutStanding";
             this.lblOutStanding.Size = new System.Drawing.Size(86, 13);
             this.lblOutStanding.TabIndex = 11;
@@ -114,7 +116,7 @@
             // chkNotGivenCustomer
             // 
             this.chkNotGivenCustomer.AutoSize = true;
-            this.chkNotGivenCustomer.Location = new System.Drawing.Point(513, 37);
+            this.chkNotGivenCustomer.Location = new System.Drawing.Point(492, 160);
             this.chkNotGivenCustomer.Name = "chkNotGivenCustomer";
             this.chkNotGivenCustomer.Size = new System.Drawing.Size(104, 17);
             this.chkNotGivenCustomer.TabIndex = 12;
@@ -125,15 +127,15 @@
             // dgvAllDailyCollection
             // 
             this.dgvAllDailyCollection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAllDailyCollection.Location = new System.Drawing.Point(727, 183);
+            this.dgvAllDailyCollection.Location = new System.Drawing.Point(645, 183);
             this.dgvAllDailyCollection.Name = "dgvAllDailyCollection";
-            this.dgvAllDailyCollection.Size = new System.Drawing.Size(320, 338);
+            this.dgvAllDailyCollection.Size = new System.Drawing.Size(471, 338);
             this.dgvAllDailyCollection.TabIndex = 13;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(727, 151);
+            this.label3.Location = new System.Drawing.Point(645, 151);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 13);
             this.label3.TabIndex = 14;
@@ -141,7 +143,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(263, 9);
+            this.button3.Location = new System.Drawing.Point(313, 9);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(105, 23);
             this.button3.TabIndex = 15;
@@ -149,11 +151,33 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // btnPrev
+            // 
+            this.btnPrev.Location = new System.Drawing.Point(18, 9);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(33, 23);
+            this.btnPrev.TabIndex = 16;
+            this.btnPrev.Text = "<<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(263, 11);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(33, 23);
+            this.btnNext.TabIndex = 17;
+            this.btnNext.Text = ">>";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvAllDailyCollection);
@@ -187,5 +211,7 @@
         private System.Windows.Forms.DataGridView dgvAllDailyCollection;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnNext;
     }
 }

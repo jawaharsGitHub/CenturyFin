@@ -26,7 +26,7 @@ namespace CenturyFinCorpApp
             else
                 button2.Visible = true;
 
-            LoadDailyCollection(true);
+            LoadDailyCollection(dateTimePicker1.Value, true);
             LoadAllHsitoryDailyCollections();
 
             lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
@@ -40,14 +40,17 @@ namespace CenturyFinCorpApp
 
             var result = (from d in data
                           select
-                          new ExtDailyTxn() { Date = d.Date, CollectionAmount = d.CollectionAmount }).ToList();
+                          new ExtDailyTxn() {
+                              Date = $"{d.Date} ({Convert.ToDateTime(d.Date).DayOfWeek.ToString()})",
+                              CollectionAmount = d.CollectionAmount,
+                              ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) }).ToList();
 
             dgvAllDailyCollection.DataSource = result;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadDailyCollection();
+            LoadDailyCollection(dateTimePicker1.Value);
         }
 
         private void AdjustColumnOrder()
@@ -58,20 +61,21 @@ namespace CenturyFinCorpApp
         }
 
 
-        private void LoadDailyCollection(bool versionZero = false)
+        private int? LoadDailyCollection(DateTime chooseDate, bool versionZero = false)
         {
             var txn = new List<Transaction>();
 
             if (versionZero)
             {
-                txn = Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value);
+                txn = Transaction.GetDailyCollectionDetails_V0(chooseDate);
             }
             else
             {
-                txn = Transaction.GetDailyCollectionDetails(dateTimePicker1.Value);
+                txn = Transaction.GetDailyCollectionDetails(chooseDate);
             }
             var cus = from c in Customer.GetAllCustomer()
-                      select new { c.CustomerSeqNumber, c.Name, c.IsActive, c.Interest, c.LoanAmount, c.CustomerId };
+                      where c.AmountGivenDate.Value.Date <= chooseDate && (c.ClosedDate >= chooseDate || c.ClosedDate == null)
+                      select new { c.CustomerSeqNumber, c.Name, c.IsActive, c.Interest, c.LoanAmount, c.CustomerId, c.AmountGivenDate };
 
             var result = new List<CustomerDailyTxn>();
 
@@ -95,13 +99,13 @@ namespace CenturyFinCorpApp
             var amountReceived = result.Sum(s => s.AmountReceived);
 
 
-            result = result.Where(w => w.AmountReceived != 0).ToList();
+            //result = result.Where(w => w.AmountReceived != 0).ToList();
 
             ActualCollection = amountReceived;
-            ExpectedCollection = (cus.Where(w => w.IsActive).Sum(s => s.LoanAmount) / 100);
+            ExpectedCollection = (cus.Sum(s => s.LoanAmount) / 100);
 
             label1.Text = $"Total Collection is: {amountReceived}";
-            label2.Text = $"{result.Count()} (Rs.{amountReceived}) customers paid out of {cus.Count(c => c.IsActive)} (Rs.{ExpectedCollection})";
+            label2.Text = $"{result.Count()} (Rs.{amountReceived}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection})";
 
 
             //CollectionPerDay.AddObjectsToJson<CollectionPerDay>(Common.AppConfiguration.CollectionPerDay, 
@@ -112,6 +116,8 @@ namespace CenturyFinCorpApp
 
             dataGridView1.DataSource = result;
             dataGridView1.Columns["AmountReceived"].ReadOnly = false;
+
+            return ExpectedCollection;
         }
 
         private void LoadNotGivenCustomer()
@@ -158,13 +164,13 @@ namespace CenturyFinCorpApp
             }
             else
             {
-                LoadDailyCollection();
+                LoadDailyCollection(dateTimePicker1.Value);
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            LoadDailyCollection(true);
+            LoadDailyCollection(dateTimePicker1.Value, true);
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -186,7 +192,18 @@ namespace CenturyFinCorpApp
             });
 
         }
-        
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = dateTimePicker1.Value.AddDays(1);
+            LoadDailyCollection(dateTimePicker1.Value, true);
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = dateTimePicker1.Value.AddDays(-1);
+            LoadDailyCollection(dateTimePicker1.Value, true);
+        }
     }
 
 
