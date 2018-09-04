@@ -424,7 +424,7 @@ namespace DataAccess.PrimaryTypes
         {
 
             // Get from Ongoing Transcations
-            var txnFile = Path.Combine(AppConfiguration.DailyBatchFile, inputDate.ToString("dd-MM-yyyy")); // new approach
+            var txnFile = Path.Combine(AppConfiguration.DailyBatchFile, inputDate.ToString("dd-MM-yyyy")); // TODO: Ned to fix this as data is not showing till run daily txn batch // new approach
             if (File.Exists(txnFile) == false) return new List<Transaction>();
 
             var list = ReadFileAsObjects<Transaction>(txnFile);
