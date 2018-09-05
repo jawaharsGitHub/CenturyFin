@@ -397,9 +397,9 @@
     "LoanAmount": 35000,
     "Interest": 2800,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-06-23T00:00:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-09-04T22:03:59.1391363-04:00",
     "ModifiedDate": null
   },
   {
@@ -1880,7 +1880,7 @@
     "Interest": 5000,
     "IsExistingCustomer": false,
     "IsActive": true,
-    "AmountGivenDate": "2018-08-30T21:41:58.4041276-04:00",
+    "AmountGivenDate": "2018-08-30T21:41:58",
     "ClosedDate": null,
     "ModifiedDate": null
   },
@@ -1946,6 +1946,19 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-09-01T22:22:10.8697258-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 156,
+    "CustomerId": 21,
+    "Name": "Pandi Maligai - CheckPost",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-04T22:12:02.0248114-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
