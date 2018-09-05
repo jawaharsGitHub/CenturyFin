@@ -117,7 +117,7 @@ namespace DataAccess.PrimaryTypes
             {
                 var filePath = updatedTransaction.IsClosed ? $"{AppConfiguration.ClosedNotesFile}/{updatedTransaction.CustomerId}/{updatedTransaction.CustomerId}_{updatedTransaction.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
 
-                List<Transaction> list = ReadFileAsObjects<Transaction>(JsonFilePath);
+                List<Transaction> list = ReadFileAsObjects<Transaction>(filePath);
 
                 var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId).FirstOrDefault();
 
@@ -125,7 +125,7 @@ namespace DataAccess.PrimaryTypes
                 u.TxnDate = updatedTransaction.TxnDate;
                 u.Balance = updatedTransaction.Balance;
 
-                WriteObjectsToFile(list, AppConfiguration.TransactionFile);
+                WriteObjectsToFile(list, filePath);
             }
             catch (Exception ex)
             {

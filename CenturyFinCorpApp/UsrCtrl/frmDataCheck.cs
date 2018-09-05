@@ -130,19 +130,19 @@ namespace CenturyFinCorpApp.UsrCtrl
                         });
                     }
 
-                    if (f.txn.Where(w => w.AmountReceived == 0).Count() > 1)
+                    f.txn.Where(w => w.AmountReceived == 0 && f.AmountGivenDate.Value.Date != w.TxnDate.Date).ToList().ForEach(fe =>
                     {
                         data.Add(new LogData()
                         {
                             LogType = "DUMMY-TXN",
-                            TxnDate = firstItem.TxnDate.Date,
-                            TxnId = firstItem.TransactionId,
+                            TxnDate = fe.TxnDate.Date,
+                            TxnId = fe.TransactionId,
                             CusSeqNo = f.CustomerSeqNumber,
                             CustomerId = f.CustomerId,
                             Name = f.Name,
                             IsActive = f.IsActive
                         });
-                    }
+                    });
 
 
                     if (firstItem.TxnDate.Date != f.AmountGivenDate.Value.Date)
@@ -235,9 +235,9 @@ namespace CenturyFinCorpApp.UsrCtrl
             });
 
             dataGridView2.DataSource = (from d in data
-                           where d.LogType == "NEED-TO-VERIFY"
-                           group d by new { d.Name, d.CusSeqNo } into newGroup
-                           select new { newGroup.Key.Name, newGroup.Key.CusSeqNo }).ToList();
+                                        where d.LogType == "NEED-TO-VERIFY"
+                                        group d by new { d.Name, d.CusSeqNo } into newGroup
+                                        select new { newGroup.Key.Name, newGroup.Key.CusSeqNo }).ToList();
 
             dataGridView1.DataSource = data.OrderBy(o => o.IsActive).ToList();
 
