@@ -19,7 +19,7 @@
   },
   {
     "Name": "Santhanam Uncle",
-    "Amount": 15000,
+    "Amount": 0, // return on sep 4th 2018.
     "Date": "01-09-2018",
     "Notes": "for bank loan as vanitha salary not yet credited."
   },
@@ -57,7 +57,13 @@
     "Name": "G",
     "Amount": 200000,
     "Date": "01-02-2017",
-    "Notes": "Setu Money"
+    "Notes": "Seetu Money"
+  },
+  {
+    "Name": "Ramesh Bro",
+    "Amount": 15000,
+    "Date": "01-08-2017",
+    "Notes": "Help"
   }
 
 ]
