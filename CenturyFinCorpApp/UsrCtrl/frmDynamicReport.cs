@@ -22,7 +22,13 @@ namespace CenturyFinCorpApp
 
             ShowOutstandingMoney();
             ShowTotalAssetMoney();
+            RefreshClosed();
 
+        }
+
+        private void RefreshClosed()
+        {
+            btnClosedTxn.Text = $"Run Closed Txn ({Transaction.GetClosedTxn()})";
         }
 
         private void ToBeClosedSoon()
@@ -87,6 +93,8 @@ namespace CenturyFinCorpApp
                 // Delete Transactions data
                 Transaction.DeleteTransactionDetails(item.CustomerId, item.CustomerSequenceNo);
             }
+
+            RefreshClosed();
 
         }
 
