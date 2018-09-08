@@ -32,13 +32,12 @@ namespace CenturyFinCorpApp.UsrCtrl
         private void ShowRemaingDays()
         {
             var after100day = DateTime.Today.AddDays(100);
-            //var days = (new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month)) - today).Days;
+            var today = DateTime.Today;
 
             var days = (new DateTime(after100day.Year, after100day.Month, DateTime.DaysInMonth(after100day.Year, after100day.Month)) - after100day).Days;
-            // var remianingInMonth = DateTime.Now.Date - DateTime.
 
             label1.Text = $"Remaining Days to start next month cycle: {days}";
-            //label2.Text = $"Remaining Days in this month: {days}";
+            label2.Text = $"Remaining Days in this month: {(today.Day - DateTime.DaysInMonth(today.Year, today.Month))}";
         }
 
         private void CalculateIncome(bool considerSalary = false)
