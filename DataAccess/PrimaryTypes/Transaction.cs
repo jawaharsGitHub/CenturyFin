@@ -431,8 +431,7 @@ namespace DataAccess.PrimaryTypes
 
             if (list == null) return null;
 
-            //list = list.Where(w => w.CustomerSequenceNo == 8).ToList();
-            var fromActiveTxn = list.Where(c => (c.TxnDate.Date == inputDate.Date && c.AmountReceived > 0)).ToList();
+            var fromActiveTxn = list.Where(c => (c.TxnDate.Date == inputDate.Date)).ToList(); // && c.AmountReceived > 0
 
             return fromActiveTxn;
         }
@@ -441,7 +440,7 @@ namespace DataAccess.PrimaryTypes
         {
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
             if (list == null) return null;
-            var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date && c.AmountReceived > 0).ToList();
+            var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList(); //  && c.AmountReceived > 0
 
             //Get from Closed Transactions
             var fromClosedTxn = ProcessDirectory(ClosedTxnFilePath, inputDate);

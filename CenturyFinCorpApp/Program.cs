@@ -1,12 +1,8 @@
 ﻿using Common;
-using DataAccess.PrimaryTypes;
 using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-using System.Linq;
-using System.Text;
-using Newtonsoft.Json;
 
 namespace CenturyFinCorpApp
 {
@@ -32,20 +28,14 @@ namespace CenturyFinCorpApp
 
             if (AppConfiguration.AddOrUpdateAppSettings("SourceFolder", dataFolder))
             {
-                LogHelper.WriteLog($"started application");
+                //LogHelper.WriteLog($"started application");
                 Application.Run(new frmIndexForm());
                 
             }
 
-            //
-
             //frmPrediction.Predict();
 
-
         }
-
-
-
 
     }
 

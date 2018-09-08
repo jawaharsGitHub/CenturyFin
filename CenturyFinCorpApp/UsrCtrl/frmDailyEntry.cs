@@ -75,7 +75,6 @@ namespace CenturyFinCorpApp
                 txn = Transaction.GetDailyCollectionDetails(chooseDate);
             }
 
-            //var cccc = Customer.GetAllCustomer().Where(w => w.CustomerSeqNumber == 8).ToList();
 
             var cus = from c in Customer.GetAllCustomer()
                       where c.AmountGivenDate.Value.Date <= chooseDate.Date && (c.ClosedDate == null || c.ClosedDate.Value.Date >= chooseDate.Date)
