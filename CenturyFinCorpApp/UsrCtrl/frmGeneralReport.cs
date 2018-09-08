@@ -1,9 +1,9 @@
-﻿using Common.ExtensionMethod;
+﻿using Common;
+using Common.ExtensionMethod;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -31,13 +31,10 @@ namespace CenturyFinCorpApp.UsrCtrl
 
         private void ShowRemaingDays()
         {
-            var after100day = DateTime.Today.AddDays(100);
-            var today = DateTime.Today;
+            
 
-            var days = (new DateTime(after100day.Year, after100day.Month, DateTime.DaysInMonth(after100day.Year, after100day.Month)) - after100day).Days;
-
-            label1.Text = $"Remaining Days to start next month cycle: {days}";
-            label2.Text = $"Remaining Days in this month: {(today.Day - DateTime.DaysInMonth(today.Year, today.Month))}";
+            label1.Text = $"Remaining Days to start next month cycle: {DateHelper.RemaingDaysToNextCycle}";
+            label2.Text = $"Remaining Days in this month: {DateHelper.RemaingDaysOfMonth}";
         }
 
         private void CalculateIncome(bool considerSalary = false)
