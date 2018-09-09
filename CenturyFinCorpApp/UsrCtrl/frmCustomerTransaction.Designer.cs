@@ -47,6 +47,8 @@
             this.lblDetail = new System.Windows.Forms.Label();
             this.chkByBalance = new System.Windows.Forms.CheckBox();
             this.btnCreditScore = new System.Windows.Forms.Button();
+            this.cmbReturnType = new System.Windows.Forms.ComboBox();
+            this.cmbReturnDay = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -236,17 +238,39 @@
             // 
             this.btnCreditScore.BackColor = System.Drawing.Color.Gold;
             this.btnCreditScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreditScore.Location = new System.Drawing.Point(538, 207);
+            this.btnCreditScore.Location = new System.Drawing.Point(536, 317);
             this.btnCreditScore.Name = "btnCreditScore";
             this.btnCreditScore.Size = new System.Drawing.Size(175, 91);
             this.btnCreditScore.TabIndex = 15;
             this.btnCreditScore.Text = "[CREDIT SCORE]";
             this.btnCreditScore.UseVisualStyleBackColor = false;
             // 
+            // cmbReturnType
+            // 
+            this.cmbReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReturnType.FormattingEnabled = true;
+            this.cmbReturnType.Location = new System.Drawing.Point(536, 217);
+            this.cmbReturnType.Name = "cmbReturnType";
+            this.cmbReturnType.Size = new System.Drawing.Size(121, 21);
+            this.cmbReturnType.TabIndex = 16;
+            //this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
+            // 
+            // cmbReturnDay
+            // 
+            this.cmbReturnDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReturnDay.FormattingEnabled = true;
+            this.cmbReturnDay.Location = new System.Drawing.Point(536, 261);
+            this.cmbReturnDay.Name = "cmbReturnDay";
+            this.cmbReturnDay.Size = new System.Drawing.Size(121, 21);
+            this.cmbReturnDay.TabIndex = 17;
+            //this.cmbReturnDay.SelectedIndexChanged += new System.EventHandler(this.cmbReturnDay_SelectedIndexChanged);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbReturnDay);
+            this.Controls.Add(this.cmbReturnType);
             this.Controls.Add(this.btnCreditScore);
             this.Controls.Add(this.chkByBalance);
             this.Controls.Add(this.lblDetail);
@@ -291,5 +315,7 @@
         private System.Windows.Forms.Label lblDetail;
         private System.Windows.Forms.CheckBox chkByBalance;
         private System.Windows.Forms.Button btnCreditScore;
+        private System.Windows.Forms.ComboBox cmbReturnType;
+        private System.Windows.Forms.ComboBox cmbReturnDay;
     }
 }

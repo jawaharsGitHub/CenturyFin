@@ -42,6 +42,7 @@ namespace CenturyFinCorpApp
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
             AdjustColumnOrder();
+            chkAllColumns.Checked = false;
 
 
             switch (GlobalValue.NoteOption)
@@ -105,11 +106,20 @@ namespace CenturyFinCorpApp
         private void AdjustColumnOrder()
         {
             dataGridView1.Columns["CollectionAmt"].DisplayIndex = 3;
-            dataGridView1.Columns["ModifiedDate"].Visible = false;
-            dataGridView1.Columns["PhoneNumber"].Visible = false;
+            //dataGridView1.Columns["ModifiedDate"].Visible = false;
+            //dataGridView1.Columns["PhoneNumber"].Visible = false;
             dataGridView1.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["ClosedDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["Name"].Width = 250;
+        }
+
+        private void SetColumnVisibility(bool show = false)
+        {
+            dataGridView1.Columns["ModifiedDate"].Visible = show;
+            dataGridView1.Columns["PhoneNumber"].Visible = show;
+            dataGridView1.Columns["CollectionSpotId"].Visible = show;
+            dataGridView1.Columns["ReturnDay"].Visible = show;
+            dataGridView1.Columns["ReturnType"].Visible = show;
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -375,6 +385,17 @@ namespace CenturyFinCorpApp
 
             dataGridView1.DataSource = searchedCustomer;
 
+        }
+
+        private void chkAllColumns_CheckedChanged(object sender, EventArgs e)
+        {
+            SetColumnVisibility(chkAllColumns.Checked);
+
+        }
+
+        private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
+        {
+             lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()}";
         }
     }
 }

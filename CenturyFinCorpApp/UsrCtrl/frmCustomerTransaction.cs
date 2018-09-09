@@ -1,4 +1,5 @@
 ﻿using DataAccess.PrimaryTypes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace CenturyFinCorpApp
         int _balance;
         string _customerName;
         bool _isClosedTx = false;
+        [JsonIgnore]
+        private Customer customer;
 
 
         public frmCustomerTransaction()
@@ -25,6 +28,7 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
 
+            customer = _customer;
             _customerId = _customer.CustomerId;
             _sequeneNo = _customer.CustomerSeqNumber;
             _loan = _customer.LoanAmount;
@@ -47,12 +51,25 @@ namespace CenturyFinCorpApp
             //btnBalance.Visible = groupBox1.Visible = (_balance > 0);
 
             LoadTxn();
+            LoadCustomerCollectionType();
 
             if (dataGridView1.Columns.Count > 0)
             {
                 dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             }
             lblMessage.Text = string.Empty;
+        }
+
+        private void LoadCustomerCollectionType()
+        {
+            cmbReturnType.DataSource = Enum.GetValues(typeof(ReturnTypeEnum));
+            cmbReturnDay.DataSource = Enum.GetValues(typeof(DayOfWeek));
+
+            cmbReturnType.SelectedItem = customer.ReturnType;
+            cmbReturnDay.SelectedItem = customer.ReturnDay;
+
+            this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
+            this.cmbReturnDay.SelectedIndexChanged += new System.EventHandler(this.cmbReturnDay_SelectedIndexChanged);
         }
 
         public Transaction AddTxn(Customer cus, DateTime txnDate)
@@ -156,20 +173,20 @@ namespace CenturyFinCorpApp
 
             var missing = range.Except(col).ToList();
 
-            
+
             _creditScore -= missing.Count * perDayValue;  // 1.Missing Days (value = -1)
 
-            
+
             _creditScore -= (daysTaken > 100) ? ((daysTaken - 100) * 0.75 * perDayValue) : 0; // 2.Above 100 Days (value = -1.5)
 
-            
+
             // 3.Lumb amount (value = +0.75)
             var lumbCount = (from t in txns
                              where t.AmountReceived > (cus.LoanAmount / 100)
                              select ((t.AmountReceived - perDayAmount) / perDayAmount)).ToList();
             _creditScore += (lumbCount.Sum() * 0.75 * perDayValue);
 
-            
+
             if (_isClosedTx)    // 4.Number days saved(value = 1)
                 _creditScore += (daysTaken < 100) ? ((100 - daysTaken) * 1 * perDayValue) : 0;
 
@@ -276,6 +293,20 @@ namespace CenturyFinCorpApp
             {
                 LoadTxn(byBalance: true);
             }
+        }
+
+        private void cmbReturnType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: need to resue this code
+            customer.ReturnType = (ReturnTypeEnum)Enum.Parse(typeof(ReturnTypeEnum), cmbReturnType.SelectedValue.ToString());
+            Customer.UpdateCustomerReturyType(customer);
+        }
+
+        private void cmbReturnDay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: need to resue this code
+            customer.ReturnDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), cmbReturnDay.SelectedValue.ToString());
+            Customer.UpdateCustomerReturyType(customer);
         }
     }
 }

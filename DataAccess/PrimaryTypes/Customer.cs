@@ -125,6 +125,24 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static void UpdateCustomerReturyType(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.ReturnType = updatedCustomer.ReturnType;
+                u.ReturnDay = updatedCustomer.ReturnDay;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static Customer GetCustomerDetails(int cusid, int cusSeqNo)
         {
             try
