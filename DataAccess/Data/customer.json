@@ -683,9 +683,9 @@
     "LoanAmount": 10000,
     "Interest": 800,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-06-28T00:00:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-09-08T22:11:15.2582902-04:00",
     "ModifiedDate": null
   },
   {
@@ -1972,6 +1972,32 @@
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-09-07T22:13:20.7053696-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 158,
+    "CustomerId": 30,
+    "Name": "Rani - Regunathapuram",
+    "PhoneNumber": "",
+    "LoanAmount": 15000,
+    "Interest": 1500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-08T22:18:04.546338-04:00",
+    "ClosedDate": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 159,
+    "CustomerId": 39,
+    "Name": "veera murugan - driver",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-08T22:18:39.1924631-04:00",
     "ClosedDate": null,
     "ModifiedDate": null
   }
