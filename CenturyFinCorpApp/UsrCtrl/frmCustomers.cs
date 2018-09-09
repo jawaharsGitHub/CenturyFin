@@ -73,7 +73,13 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(1, "By Amount"),
                    new KeyValuePair<int, string>(2, "By Sequence No"),
                    new KeyValuePair<int, string>(3, "By Customer Id"),
-                   new KeyValuePair<int, string>(4, "By Customer Name")
+                   new KeyValuePair<int, string>(4, "By Customer Name"),
+                   new KeyValuePair<int, string>(5, "Return By Today"),
+                   new KeyValuePair<int, string>(6, "Return By Tomorrow"),
+                   new KeyValuePair<int, string>(7, "By Return Day"),
+                   new KeyValuePair<int, string>(8, "By Return Type"),
+                   new KeyValuePair<int, string>(9, "By CollectionSpot")
+
                };
 
             return myKeyValuePair;
@@ -106,8 +112,10 @@ namespace CenturyFinCorpApp
         private void AdjustColumnOrder()
         {
             dataGridView1.Columns["CollectionAmt"].DisplayIndex = 3;
-            //dataGridView1.Columns["ModifiedDate"].Visible = false;
-            //dataGridView1.Columns["PhoneNumber"].Visible = false;
+            dataGridView1.Columns["ReturnDay"].DisplayIndex = 4;
+            dataGridView1.Columns["ReturnType"].DisplayIndex = 5;
+            dataGridView1.Columns["CollectionSpotId"].DisplayIndex = 6;
+            
             dataGridView1.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["ClosedDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["Name"].Width = 250;
@@ -115,8 +123,8 @@ namespace CenturyFinCorpApp
 
         private void SetColumnVisibility(bool show = false)
         {
-            dataGridView1.Columns["ModifiedDate"].Visible = show;
-            dataGridView1.Columns["PhoneNumber"].Visible = show;
+            dataGridView1.Columns["ModifiedDate"].Visible = false;
+            dataGridView1.Columns["PhoneNumber"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
             dataGridView1.Columns["ReturnType"].Visible = show;
@@ -378,12 +386,33 @@ namespace CenturyFinCorpApp
             {
                 searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.CustomerId).ToList();
             }
-            else // (value == 4)
+            else if (value == 4)
             {
                 searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.Name).ToList();
             }
+            else if (value == 5)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive && w.ReturnDay == DateTime.Today.DayOfWeek).ToList();
+            }
+            else if (value == 6)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive && w.ReturnDay == DateTime.Today.AddDays(1).DayOfWeek).ToList();
+            }
+            else if (value == 7)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.ReturnDay).ToList();
+            }
+            else if (value == 8)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.ReturnType).ToList();
+            }
+            else//  (value == 9)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive).OrderByDescending(o => o.CollectionSpotId).ToList();
+            }
 
             dataGridView1.DataSource = searchedCustomer;
+            AdjustColumnOrder();
 
         }
 
@@ -395,7 +424,7 @@ namespace CenturyFinCorpApp
 
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
         {
-             lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()}";
+            lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()}";
         }
     }
 }
