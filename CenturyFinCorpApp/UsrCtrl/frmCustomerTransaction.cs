@@ -1,4 +1,5 @@
-﻿using DataAccess.PrimaryTypes;
+﻿using Common.ExtensionMethod;
+using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -65,11 +66,18 @@ namespace CenturyFinCorpApp
             cmbReturnType.DataSource = Enum.GetValues(typeof(ReturnTypeEnum));
             cmbReturnDay.DataSource = Enum.GetValues(typeof(DayOfWeek));
 
+            cmbCollectionSpot.DataSource = Customer.GetAllUniqueCustomers();
+            cmbCollectionSpot.ValueMember = "CustomerId";
+            cmbCollectionSpot.DisplayMember = "Name";
+
+
             cmbReturnType.SelectedItem = customer.ReturnType;
             cmbReturnDay.SelectedItem = customer.ReturnDay;
+            cmbCollectionSpot.SelectedValue = customer.CollectionSpotId == 0 ? customer.CustomerId : customer.CollectionSpotId;
 
             this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
             this.cmbReturnDay.SelectedIndexChanged += new System.EventHandler(this.cmbReturnDay_SelectedIndexChanged);
+            this.cmbCollectionSpot.SelectedIndexChanged += new System.EventHandler(this.cmbCollectionSpot_SelectedIndexChanged);
         }
 
         public Transaction AddTxn(Customer cus, DateTime txnDate)
@@ -306,6 +314,13 @@ namespace CenturyFinCorpApp
         {
             //TODO: need to resue this code
             customer.ReturnDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), cmbReturnDay.SelectedValue.ToString());
+            Customer.UpdateCustomerReturyType(customer);
+        }
+
+        private void cmbCollectionSpot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO: need to resue this code
+            customer.CollectionSpotId = cmbCollectionSpot.SelectedValue.ToInt32();
             Customer.UpdateCustomerReturyType(customer);
         }
     }

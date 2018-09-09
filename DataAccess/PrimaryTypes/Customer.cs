@@ -134,6 +134,7 @@ namespace DataAccess.PrimaryTypes
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
                 u.ReturnType = updatedCustomer.ReturnType;
                 u.ReturnDay = updatedCustomer.ReturnDay;
+                u.CollectionSpotId = updatedCustomer.CollectionSpotId;
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
@@ -162,6 +163,18 @@ namespace DataAccess.PrimaryTypes
             {
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
                 return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static List<Customer> GetAllUniqueCustomers()
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+                return list.Distinct().ToList();
             }
             catch (Exception ex)
             {

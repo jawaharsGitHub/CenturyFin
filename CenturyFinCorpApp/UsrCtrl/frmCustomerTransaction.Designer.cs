@@ -49,6 +49,7 @@
             this.btnCreditScore = new System.Windows.Forms.Button();
             this.cmbReturnType = new System.Windows.Forms.ComboBox();
             this.cmbReturnDay = new System.Windows.Forms.ComboBox();
+            this.cmbCollectionSpot = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -249,26 +250,34 @@
             // 
             this.cmbReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnType.FormattingEnabled = true;
-            this.cmbReturnType.Location = new System.Drawing.Point(536, 217);
+            this.cmbReturnType.Location = new System.Drawing.Point(536, 192);
             this.cmbReturnType.Name = "cmbReturnType";
             this.cmbReturnType.Size = new System.Drawing.Size(121, 21);
             this.cmbReturnType.TabIndex = 16;
-            //this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
             // 
             // cmbReturnDay
             // 
             this.cmbReturnDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnDay.FormattingEnabled = true;
-            this.cmbReturnDay.Location = new System.Drawing.Point(536, 261);
+            this.cmbReturnDay.Location = new System.Drawing.Point(536, 238);
             this.cmbReturnDay.Name = "cmbReturnDay";
             this.cmbReturnDay.Size = new System.Drawing.Size(121, 21);
             this.cmbReturnDay.TabIndex = 17;
-            //this.cmbReturnDay.SelectedIndexChanged += new System.EventHandler(this.cmbReturnDay_SelectedIndexChanged);
+            // 
+            // cmbCollectionSpot
+            // 
+            this.cmbCollectionSpot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCollectionSpot.FormattingEnabled = true;
+            this.cmbCollectionSpot.Location = new System.Drawing.Point(536, 276);
+            this.cmbCollectionSpot.Name = "cmbCollectionSpot";
+            this.cmbCollectionSpot.Size = new System.Drawing.Size(250, 21);
+            this.cmbCollectionSpot.TabIndex = 18;
             // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbCollectionSpot);
             this.Controls.Add(this.cmbReturnDay);
             this.Controls.Add(this.cmbReturnType);
             this.Controls.Add(this.btnCreditScore);
@@ -317,5 +326,6 @@
         private System.Windows.Forms.Button btnCreditScore;
         private System.Windows.Forms.ComboBox cmbReturnType;
         private System.Windows.Forms.ComboBox cmbReturnDay;
+        private System.Windows.Forms.ComboBox cmbCollectionSpot;
     }
 }

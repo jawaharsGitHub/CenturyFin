@@ -26,6 +26,12 @@ namespace Common.ExtensionMethod
 
         }
 
+        public static int ToInt32(this object value)
+        {
+            return Convert.ToInt32(value);
+
+        }
+
         public static string TokFormat(this int? value)
         {
             if (value == null)
