@@ -18,7 +18,7 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
 
-            //cmdFilters.DataSource = GetOptions();
+            cmbFilters.DataSource = GetOptions();
 
             if (Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]) == true)
                 btnAddCustomer.Visible = false;
@@ -63,6 +63,22 @@ namespace CenturyFinCorpApp
 
 
         }
+
+
+        public static List<KeyValuePair<int, string>> GetOptions()
+        {
+            var myKeyValuePair = new List<KeyValuePair<int, string>>()
+               {
+                   new KeyValuePair<int, string>(1, "By Amount"),
+                   new KeyValuePair<int, string>(2, "By Sequence No"),
+                   new KeyValuePair<int, string>(3, "By Customer Id"),
+                   new KeyValuePair<int, string>(4, "By Customer Name")
+               };
+
+            return myKeyValuePair;
+
+        }
+
 
         private void SetCustomers()
         {
@@ -331,6 +347,34 @@ namespace CenturyFinCorpApp
             if (dataGridView1.Rows.Count == 0) return;
             dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["CollectionAmt"];
             dataGridView1.BeginEdit(true);
+        }
+
+        private void cmbFilters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (customers == null) return;
+            var value = ((KeyValuePair<int, string>)cmbFilters.SelectedItem).Key;
+            List<Customer> searchedCustomer;
+
+            if (value == 1)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive).OrderByDescending(o => o.LoanAmount).ToList();
+            }
+            else if (value == 2)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.CustomerSeqNumber).ToList();
+            }
+            else if (value == 3)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.CustomerId).ToList();
+            }
+            else // (value == 4)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.Name).ToList();
+            }
+
+            dataGridView1.DataSource = searchedCustomer;
+
         }
     }
 }

@@ -37,7 +37,7 @@
             this.btnAddCustomer = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmdFilters = new System.Windows.Forms.ComboBox();
+            this.cmbFilters = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,19 +133,22 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "label1";
             // 
-            // cmdFilters
+            // cmbFilters
             // 
-            this.cmdFilters.FormattingEnabled = true;
-            this.cmdFilters.Location = new System.Drawing.Point(24, 77);
-            this.cmdFilters.Name = "cmdFilters";
-            this.cmdFilters.Size = new System.Drawing.Size(176, 21);
-            this.cmdFilters.TabIndex = 11;
+            this.cmbFilters.DisplayMember = "value";
+            this.cmbFilters.FormattingEnabled = true;
+            this.cmbFilters.Location = new System.Drawing.Point(24, 77);
+            this.cmbFilters.Name = "cmbFilters";
+            this.cmbFilters.Size = new System.Drawing.Size(176, 21);
+            this.cmbFilters.TabIndex = 11;
+            this.cmbFilters.ValueMember = "key";
+            this.cmbFilters.SelectedIndexChanged += new System.EventHandler(this.cmbFilters_SelectedIndexChanged);
             // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.cmdFilters);
+            this.Controls.Add(this.cmbFilters);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnAddCustomer);
@@ -175,6 +178,6 @@
         private System.Windows.Forms.Button btnAddCustomer;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmdFilters;
+        private System.Windows.Forms.ComboBox cmbFilters;
     }
 }
