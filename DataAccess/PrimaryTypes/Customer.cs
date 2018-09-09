@@ -11,6 +11,7 @@ namespace DataAccess.PrimaryTypes
     {
 
         private static string JsonFilePath = AppConfiguration.CustomerFile;
+        private DayOfWeek? _returnDay;
 
         public int CustomerSeqNumber { get; set; }
         public int CustomerId { get; set; }
@@ -24,7 +25,11 @@ namespace DataAccess.PrimaryTypes
         public DateTime? ClosedDate { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
         public int CollectionSpotId { get; set; }
-        public DayOfWeek ReturnDay { get; set; }
+        public DayOfWeek? ReturnDay
+        {
+            get { return (ReturnType == ReturnTypeEnum.Daily) ? null : _returnDay; }
+            set { _returnDay = value; }
+        }
         public DateTime? ModifiedDate { get; set; }
 
 
@@ -35,6 +40,8 @@ namespace DataAccess.PrimaryTypes
             newCustomer.ClosedDate = null;
 
             InsertSingleObjectToListJson(JsonFilePath, newCustomer);
+
+
         }
 
         public static void UpdateCustomerDetails(Customer updatedCustomer, bool isActive, DateTime? closedDate)
@@ -328,7 +335,7 @@ namespace DataAccess.PrimaryTypes
             _creditScore -= (daysTaken > 100) ? ((daysTaken - 100) * 0.75 * perDayValue) : 0; // 2.Above 100 Days (value = -1.5)
 
 
-              // 3.Lumb amount (value = +0.75)
+            // 3.Lumb amount (value = +0.75)
             var lumbCount = (from t in txns
                              where t.AmountReceived > (customer.LoanAmount / 100)
                              select ((t.AmountReceived - perDayAmount) / perDayAmount)).ToList();
@@ -365,7 +372,7 @@ namespace DataAccess.PrimaryTypes
             return creditScores.Average(a => a.CreditScore).RoundPoints();
 
         }
-       
+
     }
 
     public enum ReturnTypeEnum
