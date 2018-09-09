@@ -17,7 +17,7 @@ namespace CenturyFinCorpApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var nextIds = Customer.GetNextCustomerId();
+            var nextIds = Customer.GetNextIds();
             var newCustomerId = nextIds.NewCustomerId;
             var nextSeqNo = nextIds.NewCustomerSeqId;
             Customer cus = new Customer();
