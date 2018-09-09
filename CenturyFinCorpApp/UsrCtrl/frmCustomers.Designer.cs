@@ -37,13 +37,14 @@
             this.btnAddCustomer = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.cmdFilters = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 67);
+            this.dataGridView1.Location = new System.Drawing.Point(15, 114);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1237, 527);
             this.dataGridView1.TabIndex = 0;
@@ -132,10 +133,19 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "label1";
             // 
+            // cmdFilters
+            // 
+            this.cmdFilters.FormattingEnabled = true;
+            this.cmdFilters.Location = new System.Drawing.Point(24, 77);
+            this.cmdFilters.Name = "cmdFilters";
+            this.cmdFilters.Size = new System.Drawing.Size(176, 21);
+            this.cmdFilters.TabIndex = 11;
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmdFilters);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnAddCustomer);
@@ -165,5 +175,6 @@
         private System.Windows.Forms.Button btnAddCustomer;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmdFilters;
     }
 }

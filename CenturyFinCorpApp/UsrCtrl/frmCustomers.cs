@@ -18,6 +18,8 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
 
+            //cmdFilters.DataSource = GetOptions();
+
             if (Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]) == true)
                 btnAddCustomer.Visible = false;
             else
