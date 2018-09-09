@@ -1,4 +1,5 @@
 ﻿using Common;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +21,8 @@ namespace DataAccess.PrimaryTypes
         public DateTime? TxnUpdatedDate { get; set; }
         public int CustomerSequenceNo { get; set; }
         public DateTime TxnDate { get; set; }
+        [JsonIgnore]
+        private Customer _customer;
 
 
         public static void AddTransaction(Transaction newTxn)
@@ -147,17 +150,17 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static List<Transaction> GetTransactionDetails(int customerId, int sequenceNo, bool isClosedTxn)
+        public static List<Transaction> GetTransactionDetails(Customer customer)
         {
             try
             {
-                var txnFile = isClosedTxn ? $"{ClosedTxnFilePath}/{customerId}/{customerId}_{sequenceNo}.json" : JsonFilePath;
+                var txnFile = (customer.IsActive == false) ? $"{ClosedTxnFilePath}/{customer.CustomerId}/{customer.CustomerId}_{customer.CustomerSeqNumber}.json" : JsonFilePath;
 
                 if (File.Exists(txnFile))
                 {
                     var list = ReadFileAsObjects<Transaction>(txnFile);
                     if (list == null) return null;
-                    return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).OrderBy(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
+                    return list.Where(c => c.CustomerId == customer.CustomerId && c.CustomerSequenceNo == customer.CustomerSeqNumber).OrderBy(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
                 }
 
                 return null;
@@ -168,7 +171,7 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static List<Transaction> GetTransactionForDate(int customerId, int sequenceNo, DateTime txnDate)
+        public static List<Transaction> GetTransactionForDate(Transaction txn)
         {
             try
             {
@@ -176,7 +179,7 @@ namespace DataAccess.PrimaryTypes
                 var list = ReadFileAsObjects<Transaction>(JsonFilePath);
                 if (list == null) return null;
 
-                return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo && c.TxnDate.Date == txnDate.Date).OrderByDescending(o => o.TransactionId).ToList();
+                return list.Where(c => c.CustomerId == txn.CustomerId && c.CustomerSequenceNo == txn.CustomerSequenceNo && c.TxnDate.Date == txn.TxnDate.Date).OrderByDescending(o => o.TransactionId).ToList();
             }
             catch (Exception ex)
             {
@@ -270,13 +273,13 @@ namespace DataAccess.PrimaryTypes
 
         }
 
-        public static int GetBalance(int loanAmount, int sequenceNo, int customerNo)
+        public static int GetBalance(Customer customer)
         {
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
-            if (list == null || list.Count == 0) return loanAmount - 0;
+            if (list == null || list.Count == 0) return customer.LoanAmount - 0;
 
-            var paidAmount = (list.Where(s => s.CustomerSequenceNo == sequenceNo && s.CustomerId == customerNo).Sum(s => s.AmountReceived));
-            return (loanAmount - paidAmount);
+            var paidAmount = (list.Where(s => s.CustomerSequenceNo == customer.CustomerSeqNumber && s.CustomerId == customer.CustomerId).Sum(s => s.AmountReceived));
+            return (customer.LoanAmount - paidAmount);
 
         }
 

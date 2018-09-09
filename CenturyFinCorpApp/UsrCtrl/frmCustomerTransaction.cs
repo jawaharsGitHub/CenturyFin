@@ -10,11 +10,11 @@ namespace CenturyFinCorpApp
 {
     public partial class frmCustomerTransaction : UserControl
     {
-        int _customerId;
-        int _sequeneNo;
-        int _loan;
+        //int _customerId;
+        //int _sequeneNo;
+        //int _loan;
         int _balance;
-        string _customerName;
+        //string _customerName;
         bool _isClosedTx = false;
         [JsonIgnore]
         private Customer customer;
@@ -30,24 +30,24 @@ namespace CenturyFinCorpApp
             InitializeComponent();
 
             customer = _customer;
-            _customerId = _customer.CustomerId;
-            _sequeneNo = _customer.CustomerSeqNumber;
-            _loan = _customer.LoanAmount;
-            _customerName = _customer.Name;
-            _isClosedTx = (_customer.IsActive == false);
+            //_customerId = _customer.CustomerId;
+            //_sequeneNo = _customer.CustomerSeqNumber;
+            //_loan = _customer.LoanAmount;
+            //_customerName = _customer.Name;
+            _isClosedTx = (customer.IsActive == false);
 
-            _balance = _isClosedTx ? 0 : Transaction.GetBalance(_loan, _sequeneNo, _customerId);
+            _balance = _isClosedTx ? 0 : Transaction.GetBalance(customer);
 
 
 
-            btnLoan.Text = $"LOAN :  {_loan}";
+            btnLoan.Text = $"LOAN :  {customer.LoanAmount}";
             btnBalance.Text = $"BALANCE :  {_balance}";
             var closedText = (_balance == 0) ? "(CLOSED)" : string.Empty;
 
 
-            lblDetail.Text = $"{_customerName} - CutomerId: {_customerId} SequenceNo: {_sequeneNo} {closedText}";
+            lblDetail.Text = $"{customer.Name} - CutomerId: {customer.CustomerId} SequenceNo: {customer.CustomerSeqNumber} {closedText}";
 
-            txtCollectionAmount.Text = (_loan / 100).ToString();
+            txtCollectionAmount.Text = (customer.LoanAmount / 100).ToString();
 
             //btnBalance.Visible = groupBox1.Visible = (_balance > 0);
 
@@ -85,10 +85,10 @@ namespace CenturyFinCorpApp
             var txn = new Transaction()
             {
                 AmountReceived = Convert.ToInt16(txtCollectionAmount.Text),
-                CustomerId = _customerId,
-                CustomerSequenceNo = _sequeneNo,
+                CustomerId = customer.CustomerId,
+                CustomerSequenceNo = customer.CustomerSeqNumber,
                 TransactionId = Transaction.GetNextTransactionId(),
-                Balance = (Transaction.GetBalance(_loan, _sequeneNo, _customerId) - Convert.ToInt16(txtCollectionAmount.Text)),
+                Balance = (Transaction.GetBalance(customer) - Convert.ToInt16(txtCollectionAmount.Text)),
                 TxnDate = dateTimePicker1.Value,
                 IsClosed = _isClosedTx
 
@@ -110,10 +110,10 @@ namespace CenturyFinCorpApp
             var txn = new Transaction()
             {
                 AmountReceived = Convert.ToInt16(txtCollectionAmount.Text),
-                CustomerId = _customerId,
-                CustomerSequenceNo = _sequeneNo,
+                CustomerId = customer.CustomerId,
+                CustomerSequenceNo = customer.CustomerSeqNumber,
                 TransactionId = Transaction.GetNextTransactionId(),
-                Balance = (Transaction.GetBalance(_loan, _sequeneNo, _customerId) - Convert.ToInt16(txtCollectionAmount.Text)),
+                Balance = (Transaction.GetBalance(customer) - Convert.ToInt16(txtCollectionAmount.Text)),
                 TxnDate = dateTimePicker1.Value,
                 IsClosed = _isClosedTx
 
@@ -132,18 +132,18 @@ namespace CenturyFinCorpApp
             if (txn.Balance == 0)
             {
                 MessageBox.Show("This Txn is completed Successfully!");
-                Customer.UpdateCustomerDetails(new Customer() { CustomerId = _customerId, CustomerSeqNumber = _sequeneNo, IsActive = false, ClosedDate = txn.TxnDate });
+                Customer.UpdateCustomerDetails(customer, false, txn.TxnDate); //new Customer() { CustomerId = _customerId, CustomerSeqNumber = _sequeneNo, IsActive = false, ClosedDate = txn.TxnDate });
             }
 
-            lblMessage.Text = $"Txn  Added Successfully for {_customerName}";
+            lblMessage.Text = $"Txn  Added Successfully for {customer.Name}";
 
         }
 
         private void LoadTxn(bool isDesc = true, bool byBalance = false)
         {
 
-            var txns = Transaction.GetTransactionDetails(_customerId, _sequeneNo, _isClosedTx);
-            var cus = Customer.GetCustomerDetails(_customerId, _sequeneNo);
+            var txns = Transaction.GetTransactionDetails(customer);
+            var cus = Customer.GetCustomerDetails(customer);
 
             if (txns == null || txns.Count == 0) return;
 
@@ -207,8 +207,8 @@ namespace CenturyFinCorpApp
             lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";
             lblLastDate.Text = $"Last Date: {lastDate.Date.ToShortDateString()}";
 
-            var expected = (daysTaken * (_loan / 100)) > _loan ? -1 : (daysTaken * (_loan / 100));
-            var actual = _loan - _balance;
+            var expected = (daysTaken * (customer.LoanAmount / 100)) > customer.LoanAmount ? -1 : (daysTaken * (customer.LoanAmount / 100));
+            var actual = customer.LoanAmount - _balance;
 
 
             lblNoOfDays.Text = $"Days taken to Return {daysTaken} (Expected {expected} ACTUAL {actual}) - MISSING DAYS: {missing.Count}";
@@ -284,8 +284,8 @@ namespace CenturyFinCorpApp
                     AmountReceived = Convert.ToInt32(amountReceived),
                     Balance = Convert.ToInt32(balance),
                     IsClosed = _isClosedTx,
-                    CustomerId = _customerId,
-                    CustomerSequenceNo = _sequeneNo
+                    CustomerId = customer.CustomerId,
+                    CustomerSequenceNo = customer.CustomerSeqNumber
                 });
 
         }

@@ -37,15 +37,15 @@ namespace DataAccess.PrimaryTypes
             InsertSingleObjectToListJson(JsonFilePath, newCustomer);
         }
 
-        public static void UpdateCustomerDetails(Customer updatedCustomer)
+        public static void UpdateCustomerDetails(Customer updatedCustomer, bool isActive, DateTime? closedDate)
         {
             try
             {
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber && c.IsActive == true).FirstOrDefault();
-                u.IsActive = updatedCustomer.IsActive;
-                u.ClosedDate = updatedCustomer.ClosedDate;
+                u.IsActive = isActive;
+                u.ClosedDate = closedDate;
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
@@ -144,12 +144,25 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static Customer GetCustomerDetails(int cusid, int cusSeqNo)
+        public static Customer GetCustomerDetails(Customer customer)
         {
             try
             {
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
-                return list.Where(c => c.CustomerId == cusid && c.CustomerSeqNumber == cusSeqNo).FirstOrDefault();
+                return list.Where(c => c.CustomerId == customer.CustomerId && c.CustomerSeqNumber == customer.CustomerSeqNumber).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static Customer GetCustomerDetails(Transaction txn)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+                return list.Where(c => c.CustomerId == txn.CustomerId && c.CustomerSeqNumber == txn.CustomerSequenceNo).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -221,14 +234,14 @@ namespace DataAccess.PrimaryTypes
             return (list.Select(s => s.CustomerSeqNumber).Max() + 1);
         }
 
-        public static CreditReport GetCreditScore(int _customerId, int _sequeneNo)
+        public static CreditReport GetCreditScore(Customer customer)
         {
 
-            var cus = Customer.GetCustomerDetails(_customerId, _sequeneNo);
+            //var cus = Customer.GetCustomerDetails(cu);
 
-            var _isClosedTx = (cus.IsActive == false);
+            var _isClosedTx = (customer.IsActive == false);
 
-            var txns = Transaction.GetTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber, _isClosedTx);
+            var txns = Transaction.GetTransactionDetails(customer);
 
             if (txns == null || txns.Count == 0) return null;
 
@@ -252,10 +265,10 @@ namespace DataAccess.PrimaryTypes
             //lblStartDate.Text = $"Start Date: {startDate.Date.ToShortDateString()}";
             //lblLastDate.Text = $"Last Date: {lastDate.Date.ToShortDateString()}";
 
-            var expected = (daysTaken * (cus.LoanAmount / 100)) > cus.LoanAmount ? -1 : (daysTaken * (cus.LoanAmount / 100));
+            var expected = (daysTaken * (customer.LoanAmount / 100)) > customer.LoanAmount ? -1 : (daysTaken * (customer.LoanAmount / 100));
 
-            var _balance = _isClosedTx ? 0 : Transaction.GetBalance(cus.LoanAmount, cus.CustomerSeqNumber, cus.CustomerId);
-            var actual = cus.LoanAmount - _balance;
+            var _balance = _isClosedTx ? 0 : Transaction.GetBalance(customer);
+            var actual = customer.LoanAmount - _balance;
 
             var dayTaken = daysTaken;
             var _expected = expected;
@@ -274,13 +287,13 @@ namespace DataAccess.PrimaryTypes
             //    lblNoOfDays.ForeColor = System.Drawing.Color.Honeydew;
 
 
-            var interestRate = (cus.LoanAmount / cus.Interest) == 12 ? 8.69 : 11.11;
+            var interestRate = (customer.LoanAmount / customer.Interest) == 12 ? 8.69 : 11.11;
 
 
             var percGainPerMonth = Math.Round(((interestRate / daysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.
 
             //var percentage = percGainPerMonth;
-            var interestPerMonth = (percGainPerMonth / 100) * (cus.LoanAmount - cus.Interest);
+            var interestPerMonth = (percGainPerMonth / 100) * (customer.LoanAmount - customer.Interest);
 
             //lblPercentageGain.Text = $"{percGainPerMonth.ToString()}% Per Month({(percGainPerMonth / 100) * (cus.LoanAmount - cus.Interest)} Rs/Month)";
 
@@ -305,7 +318,7 @@ namespace DataAccess.PrimaryTypes
             var missingDays = range.Except(col).ToList().Count;
 
 
-            double perDayAmount = (cus.LoanAmount / 100);
+            double perDayAmount = (customer.LoanAmount / 100);
 
             double perDayValue = (perDayAmount / 100.0);
 
@@ -317,7 +330,7 @@ namespace DataAccess.PrimaryTypes
 
               // 3.Lumb amount (value = +0.75)
             var lumbCount = (from t in txns
-                             where t.AmountReceived > (cus.LoanAmount / 100)
+                             where t.AmountReceived > (customer.LoanAmount / 100)
                              select ((t.AmountReceived - perDayAmount) / perDayAmount)).ToList();
             _creditScore += (lumbCount.Sum() * 0.75 * perDayValue);
 
@@ -329,8 +342,8 @@ namespace DataAccess.PrimaryTypes
 
             return new CreditReport
             {
-                CustomerId = cus.CustomerId,
-                Name = cus.Name,
+                CustomerId = customer.CustomerId,
+                Name = customer.Name,
                 CreditScore = _creditScore,
                 InterestRate = interestRate,
                 PercGainPerMonth = percGainPerMonth,
@@ -347,7 +360,7 @@ namespace DataAccess.PrimaryTypes
         {
             var creditScores = (from c in Customer.GetAllCustomer()
                                 where c.CustomerId == _customerId
-                                select GetCreditScore(_customerId, c.CustomerSeqNumber)).ToList();
+                                select GetCreditScore(c)).ToList();
 
             return creditScores.Average(a => a.CreditScore).RoundPoints();
 

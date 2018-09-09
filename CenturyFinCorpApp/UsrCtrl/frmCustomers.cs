@@ -115,7 +115,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["ReturnDay"].DisplayIndex = 4;
             dataGridView1.Columns["ReturnType"].DisplayIndex = 5;
             dataGridView1.Columns["CollectionSpotId"].DisplayIndex = 6;
-            
+
             dataGridView1.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["ClosedDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["Name"].Width = 250;
@@ -209,9 +209,15 @@ namespace CenturyFinCorpApp
             var grid = (sender as DataGridView);
             var rowIndex = grid.CurrentCell.RowIndex;
 
-            var seqNo = FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerSeqNumber");
-            var customerId = FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerId");
-            var loanAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "LoanAmount");
+            var cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
+
+
+            var seqNo = cus.CustomerSeqNumber; // FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerSeqNumber");
+            var customerId = cus.CustomerId; // FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerId");
+            var loanAmount = cus.LoanAmount; // FormGeneral.GetGridCellValue(grid, rowIndex, "LoanAmount");
+
+
+
             var collectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
             if (string.IsNullOrEmpty(collectedAmount) == false)
@@ -219,10 +225,10 @@ namespace CenturyFinCorpApp
                 var txn = new Transaction()
                 {
                     AmountReceived = Convert.ToInt32(collectedAmount),
-                    CustomerId = Convert.ToInt32(customerId),
-                    CustomerSequenceNo = Convert.ToInt32(seqNo),
+                    CustomerId = customerId,
+                    CustomerSequenceNo = seqNo,
                     TransactionId = Transaction.GetNextTransactionId(),
-                    Balance = (Transaction.GetBalance(Convert.ToInt32(loanAmount), Convert.ToInt32(seqNo), Convert.ToInt32(customerId)) - Convert.ToInt16(collectedAmount)), // TODO: Balance is not updaed correctly eg: 71-104 - 19th july txn.
+                    Balance = (Transaction.GetBalance(cus) - Convert.ToInt16(collectedAmount)), // TODO: Balance is not updaed correctly eg: 71-104 - 19th july txn.
                     TxnDate = dateTimePicker1.Value
                 };
 
@@ -236,13 +242,13 @@ namespace CenturyFinCorpApp
                 {
                     MessageBox.Show("Good News, This txn will be closed!");
                     LogHelper.WriteLog("Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
-                    Customer.UpdateCustomerDetails(new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
+                    Customer.UpdateCustomerDetails(cus, false, txn.TxnDate); //  new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
                 }
 
                 txn.IsClosed = (txn.Balance <= 0);
 
                 // Add new Txn.
-                var existingTxn = Transaction.GetTransactionForDate(txn.CustomerId, txn.CustomerSequenceNo, txn.TxnDate);
+                var existingTxn = Transaction.GetTransactionForDate(txn);
                 if (existingTxn == null || existingTxn.Count == 0)
                 {
                     Transaction.AddDailyTransactions(txn);
@@ -277,24 +283,26 @@ namespace CenturyFinCorpApp
 
 
 
-            var amountGivenDate = FormGeneral.GetGridCellValue(grid, rowIndex, "AmountGivenDate");
-            var closedDate = FormGeneral.GetGridCellValue(grid, rowIndex, "ClosedDate");
-            var interest = FormGeneral.GetGridCellValue(grid, rowIndex, "Interest");
-            var name = FormGeneral.GetGridCellValue(grid, rowIndex, "Name");
+            //var amountGivenDate = cus.AmountGivenDate; // FormGeneral.GetGridCellValue(grid, rowIndex, "AmountGivenDate");
+            //var closedDate = cus.ClosedDate; //  FormGeneral.GetGridCellValue(grid, rowIndex, "ClosedDate");
+            //var interest = cus.Interest; // FormGeneral.GetGridCellValue(grid, rowIndex, "Interest");
+            //var name = cus.Name; // FormGeneral.GetGridCellValue(grid, rowIndex, "Name");
 
             // Update Customer Created Date.
 
-            Customer.CorrectCustomerData(
-                    new Customer()
-                    {
-                        CustomerId = Convert.ToInt32(customerId),
-                        CustomerSeqNumber = Convert.ToInt32(seqNo),
-                        AmountGivenDate = Convert.ToDateTime(amountGivenDate),
-                        ClosedDate = Convert.ToDateTime(closedDate),
-                        Interest = Convert.ToInt32(interest),
-                        LoanAmount = Convert.ToInt32(loanAmount),
-                        Name = name
-                    });
+            Customer.CorrectCustomerData(cus);
+
+            //Customer.CorrectCustomerData(
+            //        new Customer()
+            //        {
+            //            CustomerId = customerId,
+            //            CustomerSeqNumber = Convert.ToInt32(seqNo),
+            //            AmountGivenDate = Convert.ToDateTime(amountGivenDate),
+            //            ClosedDate = Convert.ToDateTime(closedDate),
+            //            Interest = Convert.ToInt32(interest),
+            //            LoanAmount = Convert.ToInt32(loanAmount),
+            //            Name = name
+            //        });
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

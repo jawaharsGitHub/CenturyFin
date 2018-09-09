@@ -135,7 +135,7 @@ namespace CenturyFinCorpApp
         public void ShowForm(int transactionId)
         {
             var txn = Transaction.GetTransactionDetail(transactionId);
-            var customer = Customer.GetCustomerDetails(txn.CustomerId, txn.CustomerSequenceNo);
+            var customer = Customer.GetCustomerDetails(txn);
 
             ShowForm<frmCustomerTransaction>(customer);
         }
@@ -149,7 +149,7 @@ namespace CenturyFinCorpApp
             }
             else
             {
-                var txns = Transaction.GetTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber, (cus.IsActive == false));
+                var txns = Transaction.GetTransactionDetails(cus);
 
                 if (txns == null)
                 {

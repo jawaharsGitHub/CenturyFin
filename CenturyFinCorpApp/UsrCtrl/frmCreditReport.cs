@@ -25,7 +25,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             try
             {
                 var data = (from c in Customer.GetAllCustomer()
-                            select Customer.GetCreditScore(c.CustomerId, c.CustomerSeqNumber)).ToList();
+                            select Customer.GetCreditScore(c)).ToList();
 
                 _fullCreditReport = (from d in data
                                      group d by new { d.CustomerId } into ng

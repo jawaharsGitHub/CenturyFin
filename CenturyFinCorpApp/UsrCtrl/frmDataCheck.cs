@@ -56,7 +56,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                                c.CustomerSeqNumber,
                                c.Name,
                                c.LoanAmount,
-                               txn = Transaction.GetTransactionDetails(c.CustomerId, c.CustomerSeqNumber, (c.IsActive == false))
+                               txn = Transaction.GetTransactionDetails(c)
                            });
 
             var data = (from t in details
@@ -92,7 +92,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                                c.Name,
                                c.AmountGivenDate,
                                c.LoanAmount,
-                               txn = Transaction.GetTransactionDetails(c.CustomerId, c.CustomerSeqNumber, (c.IsActive == false)),
+                               txn = Transaction.GetTransactionDetails(c),
                                c.IsActive
                            }).ToList();
 
