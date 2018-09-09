@@ -13,6 +13,7 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
             cmbExistingCustomer.Visible = false;
+            LoadCustomerCollectionType();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -50,6 +51,9 @@ namespace CenturyFinCorpApp
             cus.LoanAmount = Convert.ToInt32(txtLoan.Text);
             cus.Interest = Convert.ToInt32(txtInterest.Text);
             cus.AmountGivenDate = dateTimePicker1.Value;
+            cus.ReturnType = (ReturnTypeEnum)cmbReturnType.SelectedItem;
+            cus.ReturnDay = (DayOfWeek)cmbReturnDay.SelectedItem;
+            cus.CollectionSpotId = cmbCollectionSpot.SelectedValue.ToInt32();
 
             Customer.AddCustomer(cus);
             txtCustomerNo.Text = newCustomerId.ToString();
@@ -116,6 +120,21 @@ namespace CenturyFinCorpApp
         private void cmbExistingCustomer_TextChanged(object sender, EventArgs e)
         {
             cmbExistingCustomer.DroppedDown = false;
+        }
+
+        private void LoadCustomerCollectionType()
+        {
+            cmbReturnType.DataSource = Enum.GetValues(typeof(ReturnTypeEnum));
+            cmbReturnDay.DataSource = Enum.GetValues(typeof(DayOfWeek));
+
+            cmbCollectionSpot.DataSource = Customer.GetAllUniqueCustomers();
+            cmbCollectionSpot.ValueMember = "CustomerId";
+            cmbCollectionSpot.DisplayMember = "Name";
+
+
+            cmbReturnType.SelectedItem = ReturnTypeEnum.Daily;
+            cmbReturnDay.SelectedItem = DayOfWeek.Sunday;
+            cmbCollectionSpot.SelectedValue = 0;
         }
     }
 }
