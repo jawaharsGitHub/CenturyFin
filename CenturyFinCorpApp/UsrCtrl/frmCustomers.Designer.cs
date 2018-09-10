@@ -139,6 +139,7 @@
             // cmbFilters
             // 
             this.cmbFilters.DisplayMember = "value";
+            this.cmbFilters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFilters.FormattingEnabled = true;
             this.cmbFilters.Location = new System.Drawing.Point(24, 77);
             this.cmbFilters.Name = "cmbFilters";
