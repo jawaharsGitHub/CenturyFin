@@ -119,8 +119,38 @@ namespace CenturyFinCorpApp
             {
                 XCustomer();
             }
-            
+            else if (value == 4)
+            {
+                CustomerCollectionSpot();
+            }
+
         }
+
+        private void CustomerCollectionSpot()
+        {
+
+            var cus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
+            cus.ForEach(c =>
+            {
+                if (c.CollectionSpotId == 0) c.CollectionSpotId = c.CustomerId;
+            });
+
+            // get all active customers
+            var activeCus = (from c in cus
+                             group c by c.CollectionSpotId into newGroup
+                             select new
+                             {
+                                 Spot = cus.Where(w => w.CustomerId == newGroup.Key).First().Name,
+                                 Count = newGroup.Count(),
+                                 Amount = newGroup.Sum(s => (s.LoanAmount / 100))
+                             }).OrderByDescending(o => o.Count).ToList();
+
+
+            dgReports.DataSource = activeCus;
+
+
+        }
+
 
         public static List<KeyValuePair<int, string>> GetOptions()
         {
@@ -128,7 +158,8 @@ namespace CenturyFinCorpApp
                {
                    new KeyValuePair<int, string>(1, "NOT GIVEN FOR FEW DAYS"),
                    new KeyValuePair<int, string>(2, "TO BE CLOSED SOON"),
-                   new KeyValuePair<int, string>(3, "X-CUSTOMER")
+                   new KeyValuePair<int, string>(3, "X-CUSTOMER"),
+                   new KeyValuePair<int, string>(4, "CUSTOMER-COLLECTION SPOT")
                };
 
             return myKeyValuePair;

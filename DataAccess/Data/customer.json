@@ -442,9 +442,9 @@
     "IsActive": true,
     "AmountGivenDate": "2018-05-28T00:00:00",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 2,
     "CollectionSpotId": 0,
-    "ReturnDay": null,
+    "ReturnDay": 6,
     "ModifiedDate": null
   },
   {
@@ -858,7 +858,7 @@
     "IsActive": true,
     "AmountGivenDate": "2018-07-02T00:00:00",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 1,
     "CollectionSpotId": 0,
     "ReturnDay": null,
     "ModifiedDate": null
@@ -1018,9 +1018,9 @@
     "IsActive": true,
     "AmountGivenDate": "2018-06-15T11:25:00",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 2,
     "CollectionSpotId": 0,
-    "ReturnDay": null,
+    "ReturnDay": 3,
     "ModifiedDate": null
   },
   {
@@ -1082,9 +1082,9 @@
     "IsActive": true,
     "AmountGivenDate": "2018-06-23T11:50:34",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 2,
     "CollectionSpotId": 0,
-    "ReturnDay": null,
+    "ReturnDay": 6,
     "ModifiedDate": null
   },
   {
@@ -1130,9 +1130,9 @@
     "IsActive": true,
     "AmountGivenDate": "2018-07-05T12:04:39",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 2,
     "CollectionSpotId": 0,
-    "ReturnDay": null,
+    "ReturnDay": 6,
     "ModifiedDate": null
   },
   {
@@ -1306,7 +1306,7 @@
     "IsActive": true,
     "AmountGivenDate": "2018-07-13T00:00:00",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 1,
     "CollectionSpotId": 0,
     "ReturnDay": null,
     "ModifiedDate": null
@@ -1578,9 +1578,9 @@
     "IsActive": true,
     "AmountGivenDate": "2018-07-17T23:42:26.3053187-04:00",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 2,
     "CollectionSpotId": 0,
-    "ReturnDay": null,
+    "ReturnDay": 6,
     "ModifiedDate": null
   },
   {
@@ -1834,9 +1834,9 @@
     "IsActive": true,
     "AmountGivenDate": "2018-07-29T22:23:51",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 2,
     "CollectionSpotId": 0,
-    "ReturnDay": null,
+    "ReturnDay": 1,
     "ModifiedDate": null
   },
   {
