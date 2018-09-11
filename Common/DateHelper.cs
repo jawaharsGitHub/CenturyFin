@@ -24,11 +24,10 @@ namespace Common
             }
         }
 
-        public static string DaysToMonth(string prefix)
+        public static string DaysToMonth(string prefix, DateTime startDate, DateTime endDate)
         {
-            //DateTime startDate =  new DateTime(2018, 1, 25);
-            DateTime endDate = new DateTime(2019, 1, 24);
-            var totalDays = (endDate - DateTime.Today).TotalDays;
+
+            var totalDays = (endDate - startDate).TotalDays;
             //var totalYears = Math.Truncate(totalDays / 365);
             var totalMonths = Math.Truncate((totalDays % 365) / 30);
             var remainingDays = Math.Truncate((totalDays % 365) % 30);

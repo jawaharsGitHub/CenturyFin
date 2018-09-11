@@ -107,10 +107,11 @@ namespace CenturyFinCorpApp
             var days = (DateTime.Today - new DateTime(2018, 1, 25)).TotalDays;
 
             label1.Text = $"{totalTxn} customers in {days} days {Environment.NewLine} " +
+                $"{DateHelper.DaysToMonth("Running Days", new DateTime(2018, 1, 25), DateTime.Today)} {Environment.NewLine} " +
                 $"{Math.Round(totalTxn / days, 2)} customer(s) per day {Environment.NewLine} " +
                 $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day{Environment.NewLine} " +
                 $"need {365 - totalTxn} in {365 - days} days [Shortage: {days - totalTxn}] {Environment.NewLine} " +
-                $"{DateHelper.DaysToMonth("Days Left")}";
+                $"{DateHelper.DaysToMonth("Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";
         }
 
         private void AdjustColumnOrder()
