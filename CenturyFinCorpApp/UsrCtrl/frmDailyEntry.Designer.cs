@@ -41,8 +41,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.dgAvgPerDay = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -127,15 +129,15 @@
             // dgvAllDailyCollection
             // 
             this.dgvAllDailyCollection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAllDailyCollection.Location = new System.Drawing.Point(645, 183);
+            this.dgvAllDailyCollection.Location = new System.Drawing.Point(623, 180);
             this.dgvAllDailyCollection.Name = "dgvAllDailyCollection";
-            this.dgvAllDailyCollection.Size = new System.Drawing.Size(471, 338);
+            this.dgvAllDailyCollection.Size = new System.Drawing.Size(362, 338);
             this.dgvAllDailyCollection.TabIndex = 13;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(645, 151);
+            this.label3.Location = new System.Drawing.Point(620, 151);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 13);
             this.label3.TabIndex = 14;
@@ -171,11 +173,20 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // dgAvgPerDay
+            // 
+            this.dgAvgPerDay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAvgPerDay.Location = new System.Drawing.Point(1000, 180);
+            this.dgAvgPerDay.Name = "dgAvgPerDay";
+            this.dgAvgPerDay.Size = new System.Drawing.Size(256, 201);
+            this.dgAvgPerDay.TabIndex = 18;
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.dgAvgPerDay);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.button3);
@@ -190,9 +201,10 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmDailyEntry";
-            this.Size = new System.Drawing.Size(1226, 524);
+            this.Size = new System.Drawing.Size(1281, 544);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,5 +225,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.DataGridView dgAvgPerDay;
     }
 }

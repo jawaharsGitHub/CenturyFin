@@ -43,6 +43,16 @@ namespace Common.ExtensionMethod
             return Math.Round(number, 2);
         }
 
+        public static double RoundMoneyOnly(this double? number)
+        {
+            return Math.Round(number.Value);
+        }
+
+        public static double RoundMoney(this double? number)
+        {
+            return RoundMoney(number.Value);
+        }
+
         public static double RoundPoints(this double number)
         {
             return Math.Round(number, 1);

@@ -93,7 +93,7 @@
             this.dgvNotePerMonth.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNotePerMonth.Location = new System.Drawing.Point(521, 107);
             this.dgvNotePerMonth.Name = "dgvNotePerMonth";
-            this.dgvNotePerMonth.Size = new System.Drawing.Size(547, 405);
+            this.dgvNotePerMonth.Size = new System.Drawing.Size(435, 405);
             this.dgvNotePerMonth.TabIndex = 13;
             // 
             // label3

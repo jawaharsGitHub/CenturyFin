@@ -40,13 +40,27 @@ namespace CenturyFinCorpApp
 
             var result = (from d in data
                           select
-                          new ExtDailyTxn() {
-                              Date = $"{d.Date} ({Convert.ToDateTime(d.Date).DayOfWeek.ToString()})",
+                          new ExtDailyTxn()
+                          {
+                              Date = Convert.ToDateTime(d.Date).ToString("dd-MM-yyyy dddd"),
                               CollectionAmount = d.CollectionAmount,
                               //ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
                           }).ToList();
 
             dgvAllDailyCollection.DataSource = result;
+
+            // Customer Collectin Average By Day.
+            var averagePerDay = (from r in result
+                                 group r by Convert.ToDateTime(r.Date).DayOfWeek into newGroup
+                                 select new
+                                 {
+                                     Day = newGroup.Key,
+                                     Avg = newGroup.Average(a => a.CollectionAmount).RoundMoneyOnly()
+
+                                 }).OrderByDescending(o => o.Avg).ToList();
+
+
+            dgAvgPerDay.DataSource = averagePerDay;
         }
 
         private void button1_Click(object sender, EventArgs e)

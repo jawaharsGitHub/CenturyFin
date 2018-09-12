@@ -173,6 +173,9 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             dgvNotePerMonth.DataSource = customers;
 
+            
+
+
         }
     }
 }

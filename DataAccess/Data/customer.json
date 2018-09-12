@@ -1435,7 +1435,7 @@
     "AmountGivenDate": "2018-06-11T00:00:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 34,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -1851,7 +1851,7 @@
     "AmountGivenDate": "2018-07-31T12:57:39",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 34,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -2091,7 +2091,7 @@
     "AmountGivenDate": "2018-08-18T22:13:15.7843466-04:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 34,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -2283,7 +2283,7 @@
     "AmountGivenDate": "2018-08-28T21:52:25",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 34,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -2471,9 +2471,9 @@
     "LoanAmount": 5000,
     "Interest": 500,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-09-09T22:10:52.3982743-04:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-09-11T21:55:25.4152913-04:00",
     "ReturnType": 0,
     "CollectionSpotId": 41,
     "ReturnDay": null,
@@ -2492,6 +2492,22 @@
     "ClosedDate": null,
     "ReturnType": 0,
     "CollectionSpotId": 9,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 162,
+    "CustomerId": 100,
+    "Name": "Saravana Kumar Sathankulam Water cane",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-11T22:04:44.5642421-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 0,
     "ReturnDay": null,
     "ModifiedDate": null
   }
