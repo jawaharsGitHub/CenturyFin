@@ -74,7 +74,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
 
 
-            dataGridView1.DataSource = data.Where(w => w.IsCorrect == false).ToList(); ;
+            dataGridView1.DataSource = data.Where(w => w.IsCorrect == false).ToList();
 
         }
 

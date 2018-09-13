@@ -1,6 +1,5 @@
 ﻿//Done: Auto Select Next Transaction Date and field.
 //Done: Auto Populate - Daily Collection Amount
-//TODO: Mobile Message Service
 //Done: Number of days taken to close the transaction.
 //Done: Actual Interest got from customer - eg: customer got - 10,000 and got all money from 100 days.then interest got is 100% that is 8% for 100 days.but if customer return all amount in 10 days.
 //Done: Start txn date should not be the first collection date, it should be the date the money given
@@ -15,13 +14,21 @@
 //Done: change backup folder name as [ClosedNotes]
 //Done: How to see closed Transaction?
 // Done: Asc/Desc by date
+//Done: Best Customer (Top 3)
+//Done: Worst Customers.(Top 10)
+//Done: edit transaction.
+// Done: Delete customer
+//Done: Set focus to txtSearch in customer form.
+// Done: Move Daily Txn as seperate file.(did using Batch)
+//Done: X-customer - to know the reason why they didn't get money.
+// Done: new menu - 1. Politics  2. Health
+// Done: Collection Spot
 
+//=====================================================================
 
-
+//TODO: Mobile Message Service
 //TODO: Multi Select Date Control
 //TODO: Tool - Auto Fill(all entries)
-//TODO: Best Customer (Top 3)
-//TODO: Worst Customers.(Top 10)
 //TODO: While Creating a customer(Existing customer) should warn for the worst customer.
 //TODO: Expected Amount the given date(Future Date)
 //TODO: Tab-Order
@@ -36,30 +43,24 @@
 //TODO: Handle all exceptions. (Dont show any technical exceptions.should not break the application)
 //TODO: please verify all date format.  (only date needed, no time needed)
 //TODO: Internal tool to do small modifications.
-//Done: edit transaction.
 //TODO: keyboard short cuts for all actions strat wth (Date, amount, add txn)
 //TODO: select all amount.
 //TODO: Auto Select Existing customer.
 //TODO: Show [Sequence No] - No of times 
-// Done: Delete customer
 //TODO: Git Flow for all customers.
-//Done: Set focus to txtSearch in customer form.
-
 // TODO: Esc should close the form.
 // Issue: Check customer and total notes count.
 // TODO: list who not payed for the given date.
 // TODO: AUTO - Collection sheet.
 // TODO: Add Run Closed in other places also.
 // TODO: While Running Closed batch - update closed date also.
-
 // TODO: InHand have only add (with tet update), so implement update also.
-// TODO: Move Daily Txn as seperate file.
 // TODO: Logging activity  (using log4net)
 // TODO: Put daily Txn FIle Seperatedly like closed notes.
-//Done: X-customer - to know the reason why they didn't get money.
 //TODO: if you create a new customer instead of being existing customer, then u will update customer id in customer, but we need to update in all transactions also (need to automate).
 //TODO: implement credit Report feature. (as a seperate menu)
 //TODO: Deployment project.
-// TODO: new menu - 1. Politics  2. Health
+//Add/Update Phone Number and address of customer.
+
 
 

@@ -50,6 +50,7 @@
             this.cmbReturnType = new System.Windows.Forms.ComboBox();
             this.cmbReturnDay = new System.Windows.Forms.ComboBox();
             this.cmbCollectionSpot = new System.Windows.Forms.ComboBox();
+            this.btnCorrect = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -273,10 +274,21 @@
             this.cmbCollectionSpot.Size = new System.Drawing.Size(250, 21);
             this.cmbCollectionSpot.TabIndex = 18;
             // 
+            // btnCorrect
+            // 
+            this.btnCorrect.Location = new System.Drawing.Point(536, 450);
+            this.btnCorrect.Name = "btnCorrect";
+            this.btnCorrect.Size = new System.Drawing.Size(157, 23);
+            this.btnCorrect.TabIndex = 19;
+            this.btnCorrect.Text = "Correct Data";
+            this.btnCorrect.UseVisualStyleBackColor = true;
+            this.btnCorrect.Click += new System.EventHandler(this.btnCorrect_Click);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCorrect);
             this.Controls.Add(this.cmbCollectionSpot);
             this.Controls.Add(this.cmbReturnDay);
             this.Controls.Add(this.cmbReturnType);
@@ -327,5 +339,6 @@
         private System.Windows.Forms.ComboBox cmbReturnType;
         private System.Windows.Forms.ComboBox cmbReturnDay;
         private System.Windows.Forms.ComboBox cmbCollectionSpot;
+        private System.Windows.Forms.Button btnCorrect;
     }
 }

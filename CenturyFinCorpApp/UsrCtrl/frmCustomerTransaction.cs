@@ -18,6 +18,7 @@ namespace CenturyFinCorpApp
         bool _isClosedTx = false;
         [JsonIgnore]
         private Customer customer;
+        private List<Transaction> txns;
 
 
         public frmCustomerTransaction()
@@ -142,8 +143,20 @@ namespace CenturyFinCorpApp
         private void LoadTxn(bool isDesc = true, bool byBalance = false)
         {
 
-            var txns = Transaction.GetTransactionDetails(customer);
+            txns = Transaction.GetTransactionDetails(customer);
             var cus = Customer.GetCustomerDetails(customer);
+
+            // Cross verify txn.
+            var totalReceived = txns.Sum(s => s.AmountReceived);
+            var lastBalance = txns.Min(m => m.Balance);
+            var expectedBalance = cus.LoanAmount - totalReceived;
+            var isCorrect = (expectedBalance == lastBalance);
+            btnCorrect.Visible = !isCorrect;
+
+            if (isCorrect == false)
+            {
+                MessageBox.Show($"Loan: {cus.LoanAmount} Total Received: {totalReceived} Actual Balance: {lastBalance} Expected Balance: {expectedBalance}");
+            }
 
             if (txns == null || txns.Count == 0) return;
 
@@ -157,7 +170,7 @@ namespace CenturyFinCorpApp
             else
                 dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
 
-            var lastBalance = txns.Min(m => m.Balance);
+
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
             var lastDate = dataDource.Select(s => s.TxnDate).Max();
@@ -322,6 +335,27 @@ namespace CenturyFinCorpApp
             //TODO: need to resue this code
             customer.CollectionSpotId = cmbCollectionSpot.SelectedValue.ToInt32();
             Customer.UpdateCustomerReturyType(customer);
+        }
+
+        private void btnCorrect_Click(object sender, EventArgs e)
+        {
+            txns.ForEach(t =>
+            {
+
+                if (txns.Where(w => w.TxnDate.Date == t.TxnDate.Date).Count() == 1)
+                {
+                    var nextTxn = txns.NextOf(t);
+
+                    if (nextTxn != null && nextTxn.Balance != (t.Balance - nextTxn.AmountReceived))
+                    {
+                        nextTxn.Balance = (t.Balance - nextTxn.AmountReceived);
+                        Transaction.CorrectTransactionData(nextTxn);
+                    }
+                }
+
+            });
+
+
         }
     }
 }
