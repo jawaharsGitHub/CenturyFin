@@ -1,4 +1,5 @@
 ﻿using Common.ExtensionMethod;
+using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
@@ -10,11 +11,7 @@ namespace CenturyFinCorpApp
 {
     public partial class frmCustomerTransaction : UserControl
     {
-        //int _customerId;
-        //int _sequeneNo;
-        //int _loan;
         int _balance;
-        //string _customerName;
         bool _isClosedTx = false;
         [JsonIgnore]
         private Customer customer;
@@ -31,10 +28,6 @@ namespace CenturyFinCorpApp
             InitializeComponent();
 
             customer = _customer;
-            //_customerId = _customer.CustomerId;
-            //_sequeneNo = _customer.CustomerSeqNumber;
-            //_loan = _customer.LoanAmount;
-            //_customerName = _customer.Name;
             _isClosedTx = (customer.IsActive == false);
 
             _balance = _isClosedTx ? 0 : Transaction.GetBalance(customer);

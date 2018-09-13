@@ -375,14 +375,6 @@ namespace DataAccess.PrimaryTypes
 
     }
 
-    public enum ReturnTypeEnum
-    {
-        Daily,
-        Alternate,
-        Weekly,
-        BiWeekly,
-        BiMonthly,
-        Monthly
-    }
+    
 
 }

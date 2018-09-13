@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.ExtensionMethod;
+using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Linq;
