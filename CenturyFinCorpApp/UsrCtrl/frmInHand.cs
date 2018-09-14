@@ -17,6 +17,7 @@ namespace CenturyFinCorpApp
         public frmInHand()
         {
             InitializeComponent();
+            GetDailyTxn(DateTime.Today.AddDays(-1), true);
             GetDailyTxn(DateTime.Today, true);
 
         }
