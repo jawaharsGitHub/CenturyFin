@@ -142,11 +142,15 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var actual = finalData.Sum(w => w.ActualIncome);
             var expected = finalData.Sum(w => w.ExpectedIncome);
+            var salary = finalData.Sum(w => w.MonthlySalary);
             var total = (actual + expected);
 
             lblActual.Text = $"Actual :  {actual.ToMoney()} (Per Month: { (actual / DateTime.Today.Month).ToMoney()})";
             lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / DateTime.Today.Month).ToMoney()})";
             lblTotal.Text = $"TOTAL : {total.ToMoney()} (Per Month: { (total / DateTime.Today.Month).ToMoney()})";
+            
+            lblSalary.Text = $"Salary : {salary}";
+            lblSalary.Visible = considerSalary;
 
 
         }

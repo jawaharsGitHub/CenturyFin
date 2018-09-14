@@ -123,6 +123,26 @@ namespace CenturyFinCorpApp
             {
                 CustomerCollectionSpot();
             }
+            else if (value == 5)
+            {
+                AmountGroups();
+            }
+
+        }
+
+        private void AmountGroups()
+        {
+            var cus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
+
+            var groupsByAmount = (from c in cus
+                                  group c by c.LoanAmount into newGroup
+                                  select new {
+                                      Amount = newGroup.Key,
+                                      Count = newGroup.Count(),
+                                      Total = (newGroup.Key * newGroup.Count())
+                                  }).OrderByDescending(o => o.Amount).ToList();
+
+            dgReports.DataSource = groupsByAmount;
 
         }
 
@@ -159,7 +179,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(1, "NOT GIVEN FOR FEW DAYS"),
                    new KeyValuePair<int, string>(2, "TO BE CLOSED SOON"),
                    new KeyValuePair<int, string>(3, "X-CUSTOMER"),
-                   new KeyValuePair<int, string>(4, "CUSTOMER-COLLECTION SPOT")
+                   new KeyValuePair<int, string>(4, "CUSTOMER-COLLECTION SPOT"),
+                   new KeyValuePair<int, string>(5, "AMOUNT-GROUPS")
                };
 
             return myKeyValuePair;

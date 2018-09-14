@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCustomerCount = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblSalary = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +54,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(170, 76);
+            this.lblTotal.Location = new System.Drawing.Point(167, 58);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(42, 13);
             this.lblTotal.TabIndex = 12;
@@ -62,7 +63,7 @@
             // lblActual
             // 
             this.lblActual.AutoSize = true;
-            this.lblActual.Location = new System.Drawing.Point(167, 49);
+            this.lblActual.Location = new System.Drawing.Point(167, 34);
             this.lblActual.Name = "lblActual";
             this.lblActual.Size = new System.Drawing.Size(37, 13);
             this.lblActual.TabIndex = 11;
@@ -71,7 +72,7 @@
             // lblExpected
             // 
             this.lblExpected.AutoSize = true;
-            this.lblExpected.Location = new System.Drawing.Point(167, 18);
+            this.lblExpected.Location = new System.Drawing.Point(167, 7);
             this.lblExpected.Name = "lblExpected";
             this.lblExpected.Size = new System.Drawing.Size(52, 13);
             this.lblExpected.TabIndex = 10;
@@ -80,7 +81,7 @@
             // chkAddSalary
             // 
             this.chkAddSalary.AutoSize = true;
-            this.chkAddSalary.Location = new System.Drawing.Point(40, 17);
+            this.chkAddSalary.Location = new System.Drawing.Point(39, 3);
             this.chkAddSalary.Name = "chkAddSalary";
             this.chkAddSalary.Size = new System.Drawing.Size(105, 17);
             this.chkAddSalary.TabIndex = 9;
@@ -93,7 +94,7 @@
             this.dgvNotePerMonth.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNotePerMonth.Location = new System.Drawing.Point(521, 107);
             this.dgvNotePerMonth.Name = "dgvNotePerMonth";
-            this.dgvNotePerMonth.Size = new System.Drawing.Size(435, 405);
+            this.dgvNotePerMonth.Size = new System.Drawing.Size(569, 405);
             this.dgvNotePerMonth.TabIndex = 13;
             // 
             // label3
@@ -132,10 +133,20 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "label2";
             // 
+            // lblSalary
+            // 
+            this.lblSalary.AutoSize = true;
+            this.lblSalary.Location = new System.Drawing.Point(167, 81);
+            this.lblSalary.Name = "lblSalary";
+            this.lblSalary.Size = new System.Drawing.Size(49, 13);
+            this.lblSalary.TabIndex = 25;
+            this.lblSalary.Text = "SALARY";
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblSalary);
             this.Controls.Add(this.dgvIncome);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCustomerCount);
@@ -167,5 +178,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCustomerCount;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSalary;
     }
 }
