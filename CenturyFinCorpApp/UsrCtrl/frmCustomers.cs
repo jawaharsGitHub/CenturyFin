@@ -247,7 +247,7 @@ namespace CenturyFinCorpApp
                 {
                     MessageBox.Show("Good News, This txn will be closed!");
                     LogHelper.WriteLog("Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
-                    Customer.UpdateCustomerDetails(cus, false, txn.TxnDate); //  new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
+                    Customer.CloseCustomerTxn(cus, false, txn.TxnDate); //  new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
                 }
 
                 txn.IsClosed = (txn.Balance <= 0);

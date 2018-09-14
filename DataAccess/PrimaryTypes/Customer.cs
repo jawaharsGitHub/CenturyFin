@@ -44,7 +44,7 @@ namespace DataAccess.PrimaryTypes
 
         }
 
-        public static void UpdateCustomerDetails(Customer updatedCustomer, bool isActive, DateTime? closedDate)
+        public static void CloseCustomerTxn(Customer updatedCustomer, bool isActive, DateTime? closedDate)
         {
             try
             {
@@ -132,7 +132,7 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static void UpdateCustomerReturyType(Customer updatedCustomer)
+        public static void UpdateCustomerReturnType(Customer updatedCustomer)
         {
             try
             {

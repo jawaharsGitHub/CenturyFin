@@ -126,7 +126,7 @@ namespace CenturyFinCorpApp
             if (txn.Balance == 0)
             {
                 MessageBox.Show("This Txn is completed Successfully!");
-                Customer.UpdateCustomerDetails(customer, false, txn.TxnDate); //new Customer() { CustomerId = _customerId, CustomerSeqNumber = _sequeneNo, IsActive = false, ClosedDate = txn.TxnDate });
+                Customer.CloseCustomerTxn(customer, false, txn.TxnDate); //new Customer() { CustomerId = _customerId, CustomerSeqNumber = _sequeneNo, IsActive = false, ClosedDate = txn.TxnDate });
             }
 
             lblMessage.Text = $"Txn  Added Successfully for {customer.Name}";
@@ -313,21 +313,21 @@ namespace CenturyFinCorpApp
         {
             //TODO: need to resue this code
             customer.ReturnType = (ReturnTypeEnum)Enum.Parse(typeof(ReturnTypeEnum), cmbReturnType.SelectedValue.ToString());
-            Customer.UpdateCustomerReturyType(customer);
+            Customer.UpdateCustomerReturnType(customer);
         }
 
         private void cmbReturnDay_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO: need to resue this code
             customer.ReturnDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), cmbReturnDay.SelectedValue.ToString());
-            Customer.UpdateCustomerReturyType(customer);
+            Customer.UpdateCustomerReturnType(customer);
         }
 
         private void cmbCollectionSpot_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO: need to resue this code
             customer.CollectionSpotId = cmbCollectionSpot.SelectedValue.ToInt32();
-            Customer.UpdateCustomerReturyType(customer);
+            Customer.UpdateCustomerReturnType(customer);
         }
 
         private void btnCorrect_Click(object sender, EventArgs e)

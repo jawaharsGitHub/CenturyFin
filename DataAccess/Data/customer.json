@@ -2526,5 +2526,21 @@
     "CollectionSpotId": 41,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 164,
+    "CustomerId": 81,
+    "Name": "Syed Thahir Chicken Shop",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-13T22:17:30.1159401-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 25,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
