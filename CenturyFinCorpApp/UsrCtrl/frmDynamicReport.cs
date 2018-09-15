@@ -69,7 +69,7 @@ namespace CenturyFinCorpApp
         private void ShowTotalAssetMoney()
         {
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
-            lblTotalAsset.Text = (outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney();
+            lblTotalAsset.Text = $"{(outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()})";
         }
 
 
