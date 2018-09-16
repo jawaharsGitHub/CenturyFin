@@ -443,7 +443,7 @@
     "AmountGivenDate": "2018-05-28T00:00:00",
     "ClosedDate": null,
     "ReturnType": 2,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 10,
     "ReturnDay": 6,
     "ModifiedDate": null
   },
@@ -795,7 +795,7 @@
     "AmountGivenDate": "2018-06-07T00:00:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 18,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -827,7 +827,7 @@
     "AmountGivenDate": "2018-07-04T00:00:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 12,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -859,7 +859,7 @@
     "AmountGivenDate": "2018-07-02T00:00:00",
     "ClosedDate": null,
     "ReturnType": 1,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 35,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -1163,7 +1163,7 @@
     "AmountGivenDate": "2018-07-16T12:08:58",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 35,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -1307,7 +1307,7 @@
     "AmountGivenDate": "2018-07-13T00:00:00",
     "ClosedDate": null,
     "ReturnType": 1,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 18,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -1515,7 +1515,7 @@
     "AmountGivenDate": "2018-07-07T00:00:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 35,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -1627,7 +1627,7 @@
     "AmountGivenDate": "2018-07-18T13:07:51",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 12,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -1691,7 +1691,7 @@
     "AmountGivenDate": "2018-07-20T12:41:01.8240451-04:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 21,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -1787,7 +1787,7 @@
     "AmountGivenDate": "2018-07-26T21:31:53",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 18,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -1815,9 +1815,9 @@
     "LoanAmount": 15000,
     "Interest": 1500,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-07-27T12:55:49",
-    "ClosedDate": null,
+    "ClosedDate": "2018-09-15T21:58:43.6412931-04:00",
     "ReturnType": 0,
     "CollectionSpotId": 25,
     "ReturnDay": null,
@@ -1899,7 +1899,7 @@
     "AmountGivenDate": "2018-08-05T00:36:47",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 18,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -1963,7 +1963,7 @@
     "AmountGivenDate": "2018-08-07T21:58:03.6980153-04:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 34,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -2059,7 +2059,7 @@
     "AmountGivenDate": "2018-08-14T22:23:06",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 35,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -2139,7 +2139,7 @@
     "AmountGivenDate": "2018-08-21T22:14:59.5430159-04:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 89,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -2155,7 +2155,7 @@
     "AmountGivenDate": "2018-08-21T22:15:41.6210593-04:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 7,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -2507,7 +2507,7 @@
     "AmountGivenDate": "2018-09-11T22:04:44.5642421-04:00",
     "ClosedDate": null,
     "ReturnType": 0,
-    "CollectionSpotId": 0,
+    "CollectionSpotId": 89,
     "ReturnDay": null,
     "ModifiedDate": null
   },
@@ -2540,6 +2540,54 @@
     "ClosedDate": null,
     "ReturnType": 0,
     "CollectionSpotId": 25,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 165,
+    "CustomerId": 18,
+    "Name": "Syed Ajanth Bakery",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-15T22:03:08.6089803-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 0,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 166,
+    "CustomerId": 102,
+    "Name": "Murugesan - Vadakku Theru - Chaku Business",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-15T22:03:08.6089803-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 0,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 167,
+    "CustomerId": 103,
+    "Name": "Alahar Vadakku Theru Chaku Business ",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-15T22:04:39.4227359-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 102,
     "ReturnDay": null,
     "ModifiedDate": null
   }
