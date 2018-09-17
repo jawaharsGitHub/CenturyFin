@@ -1015,9 +1015,9 @@
     "LoanAmount": 25000,
     "Interest": 2000,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-06-15T11:25:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-09-16T22:08:01.4723088-04:00",
     "ReturnType": 2,
     "CollectionSpotId": 0,
     "ReturnDay": 3,
@@ -2442,9 +2442,9 @@
     "IsActive": true,
     "AmountGivenDate": "2018-09-08T22:18:04.546338-04:00",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 2,
     "CollectionSpotId": 12,
-    "ReturnDay": null,
+    "ReturnDay": 0,
     "ModifiedDate": null
   },
   {
@@ -2589,6 +2589,22 @@
     "ReturnType": 0,
     "CollectionSpotId": 102,
     "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 168,
+    "CustomerId": 47,
+    "Name": "Dinesh Bharathi Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 25000,
+    "Interest": 2500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-16T22:11:35.4416662-04:00",
+    "ClosedDate": null,
+    "ReturnType": 2,
+    "CollectionSpotId": 0,
+    "ReturnDay": 1,
     "ModifiedDate": null
   }
 ]
