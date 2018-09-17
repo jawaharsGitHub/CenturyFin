@@ -1,9 +1,6 @@
 ﻿using Common;
 using System;
-using System.Configuration;
 using System.Globalization;
-using System.IO;
-using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -11,13 +8,14 @@ namespace CenturyFinCorpApp
 {
     static class Program
     {
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -28,17 +26,16 @@ namespace CenturyFinCorpApp
 
             var dataFolder = General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\");
 
-            AppConfiguration.AddOrUpdateAppSettings("SourceFolder", dataFolder);
-
-            //
+            if (AppConfiguration.AddOrUpdateAppSettings("SourceFolder", dataFolder))
+            {
+                //LogHelper.WriteLog($"started application");
+                Application.Run(new frmIndexForm());
+                
+            }
 
             //frmPrediction.Predict();
 
-            Application.Run(new frmIndexForm());
         }
-
-
-
 
     }
 

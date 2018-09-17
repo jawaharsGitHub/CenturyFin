@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
-using Common;
+﻿using Common;
 using DataAccess.PrimaryTypes;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 namespace CenturyFinCorpApp.UsrCtrl
 {
     public partial class frmBatches : UserControl
     {
+
+        private string DailyBatchFile = AppConfiguration.DailyBatchFile;
         public frmBatches()
         {
             InitializeComponent();
@@ -23,9 +19,9 @@ namespace CenturyFinCorpApp.UsrCtrl
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (Directory.Exists(AppConfiguration.DailyBatchFile) == false)
+            if (Directory.Exists(DailyBatchFile) == false)
             {
-                Directory.CreateDirectory(AppConfiguration.DailyBatchFile);
+                Directory.CreateDirectory(DailyBatchFile);
             }
 
             var firstDate = new DateTime(2018, 1, 25);
@@ -39,7 +35,6 @@ namespace CenturyFinCorpApp.UsrCtrl
                 //1. Search Transaction.json
                 var activeTxn = Transaction.GetTransactionForDate(lastDate);
 
-
                 //2. Search Closed Notes.
                 var closedTxn = Transaction.GetClosedTransactionForDate(lastDate);
 
@@ -47,15 +42,14 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                 Transaction.AddBatchTransactions(activeTxn, $"{lastDate.ToString("dd-MM-yyyy")}");
 
-                // Save daily txn.
-
-
-                //Transaction.AddBatchTransactions(a)
-
                 // Set to previous day.
                 lastDate = lastDate.AddDays(-1);
             }
 
+            var option = MessageBox.Show("Generated Daily Txns - Completed!", "Daily Txn", MessageBoxButtons.OKCancel);
+
+            if (option == DialogResult.OK)
+                Process.Start(DailyBatchFile);
         }
     }
 }

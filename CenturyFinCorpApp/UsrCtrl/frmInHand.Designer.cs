@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.btnCollection = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.txtOtherInvestment = new System.Windows.Forms.TextBox();
             this.txtOtherExpenditure = new System.Windows.Forms.TextBox();
-            this.lblDate = new System.Windows.Forms.Label();
+            this.lblDate1 = new System.Windows.Forms.Label();
             this.txtCollectionAmount = new System.Windows.Forms.TextBox();
             this.txtInterest = new System.Windows.Forms.TextBox();
             this.txtGivenAmount = new System.Windows.Forms.TextBox();
@@ -44,7 +46,6 @@
             this.txtTakenFromBank = new System.Windows.Forms.TextBox();
             this.txtBankTxnOut = new System.Windows.Forms.TextBox();
             this.txtSentFromUSA = new System.Windows.Forms.TextBox();
-            this.txtSanthanam = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -54,7 +55,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -70,8 +70,9 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.btnCanGive = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.lblDate2 = new System.Windows.Forms.Label();
+            this.btnPrevDay = new System.Windows.Forms.Button();
+            this.btnNextDay = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,17 +85,18 @@
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.txtOtherInvestment);
             this.groupBox1.Controls.Add(this.txtOtherExpenditure);
-            this.groupBox1.Controls.Add(this.lblDate);
+            this.groupBox1.Controls.Add(this.lblDate1);
             this.groupBox1.Controls.Add(this.txtCollectionAmount);
             this.groupBox1.Controls.Add(this.txtInterest);
             this.groupBox1.Controls.Add(this.txtGivenAmount);
             this.groupBox1.Controls.Add(this.txtTmrNeeded);
+            this.groupBox1.Controls.Add(this.btnTodayInHand);
             this.groupBox1.Controls.Add(this.txtOpened);
             this.groupBox1.Controls.Add(this.txtClosed);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.txtTakenFromBank);
             this.groupBox1.Controls.Add(this.txtBankTxnOut);
             this.groupBox1.Controls.Add(this.txtSentFromUSA);
-            this.groupBox1.Controls.Add(this.txtSanthanam);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
@@ -104,13 +106,30 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(35, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 523);
+            this.groupBox1.Size = new System.Drawing.Size(584, 523);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(263, 298);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 13);
+            this.label20.TabIndex = 29;
+            this.label20.Text = "label20";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(260, 264);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.TabIndex = 28;
+            this.label19.Text = "label19";
             // 
             // btnCollection
             // 
@@ -153,14 +172,16 @@
             this.txtOtherExpenditure.Size = new System.Drawing.Size(100, 20);
             this.txtOtherExpenditure.TabIndex = 11;
             // 
-            // lblDate
+            // lblDate1
             // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(81, 16);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(36, 13);
-            this.lblDate.TabIndex = 24;
-            this.lblDate.Text = "[Date]";
+            this.lblDate1.AutoSize = true;
+            this.lblDate1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate1.ForeColor = System.Drawing.Color.Red;
+            this.lblDate1.Location = new System.Drawing.Point(81, 16);
+            this.lblDate1.Name = "lblDate1";
+            this.lblDate1.Size = new System.Drawing.Size(64, 24);
+            this.lblDate1.TabIndex = 24;
+            this.lblDate1.Text = "[Date]";
             // 
             // txtCollectionAmount
             // 
@@ -225,13 +246,6 @@
             this.txtSentFromUSA.Name = "txtSentFromUSA";
             this.txtSentFromUSA.Size = new System.Drawing.Size(100, 20);
             this.txtSentFromUSA.TabIndex = 2;
-            // 
-            // txtSanthanam
-            // 
-            this.txtSanthanam.Location = new System.Drawing.Point(153, 51);
-            this.txtSanthanam.Name = "txtSanthanam";
-            this.txtSanthanam.Size = new System.Drawing.Size(100, 20);
-            this.txtSanthanam.TabIndex = 1;
             // 
             // label14
             // 
@@ -314,29 +328,20 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "SendFromUSA";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "SanthanamUncle";
-            // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(499, 46);
+            this.btnAdd.Location = new System.Drawing.Point(654, 68);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 52);
             this.btnAdd.TabIndex = 23;
             this.btnAdd.Text = "ADD TODAY DETAILS";
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnAdd.Click += new System.EventHandler(this.btnAddOrUpdate_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(507, 205);
+            this.label1.Location = new System.Drawing.Point(662, 206);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 13);
             this.label1.TabIndex = 0;
@@ -345,7 +350,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(527, 281);
+            this.label4.Location = new System.Drawing.Point(682, 303);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 3;
@@ -354,7 +359,8 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(527, 241);
+            this.label10.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label10.Location = new System.Drawing.Point(421, 139);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(72, 13);
             this.label10.TabIndex = 1;
@@ -363,7 +369,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(527, 338);
+            this.label15.Location = new System.Drawing.Point(682, 360);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(95, 13);
             this.label15.TabIndex = 13;
@@ -371,23 +377,25 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(484, 12);
+            this.dateTimePicker1.Location = new System.Drawing.Point(697, 32);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 0;
             // 
             // btnTodayInHand
             // 
-            this.btnTodayInHand.Location = new System.Drawing.Point(644, 241);
+            this.btnTodayInHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTodayInHand.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnTodayInHand.Location = new System.Drawing.Point(373, 162);
             this.btnTodayInHand.Name = "btnTodayInHand";
-            this.btnTodayInHand.Size = new System.Drawing.Size(75, 23);
+            this.btnTodayInHand.Size = new System.Drawing.Size(164, 112);
             this.btnTodayInHand.TabIndex = 15;
             this.btnTodayInHand.Text = "button1";
             this.btnTodayInHand.UseVisualStyleBackColor = true;
             // 
             // btnInBank
             // 
-            this.btnInBank.Location = new System.Drawing.Point(644, 270);
+            this.btnInBank.Location = new System.Drawing.Point(799, 292);
             this.btnInBank.Name = "btnInBank";
             this.btnInBank.Size = new System.Drawing.Size(75, 23);
             this.btnInBank.TabIndex = 16;
@@ -396,7 +404,7 @@
             // 
             // btnTmrWanted
             // 
-            this.btnTmrWanted.Location = new System.Drawing.Point(644, 332);
+            this.btnTmrWanted.Location = new System.Drawing.Point(799, 354);
             this.btnTmrWanted.Name = "btnTmrWanted";
             this.btnTmrWanted.Size = new System.Drawing.Size(162, 23);
             this.btnTmrWanted.TabIndex = 17;
@@ -405,7 +413,7 @@
             // 
             // btnYesterdayInHand
             // 
-            this.btnYesterdayInHand.Location = new System.Drawing.Point(644, 200);
+            this.btnYesterdayInHand.Location = new System.Drawing.Point(799, 201);
             this.btnYesterdayInHand.Name = "btnYesterdayInHand";
             this.btnYesterdayInHand.Size = new System.Drawing.Size(75, 23);
             this.btnYesterdayInHand.TabIndex = 18;
@@ -414,7 +422,7 @@
             // 
             // txtComments
             // 
-            this.txtComments.Location = new System.Drawing.Point(516, 395);
+            this.txtComments.Location = new System.Drawing.Point(671, 417);
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
             this.txtComments.Size = new System.Drawing.Size(192, 89);
@@ -423,7 +431,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(516, 376);
+            this.label11.Location = new System.Drawing.Point(671, 398);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 13);
             this.label11.TabIndex = 19;
@@ -431,7 +439,7 @@
             // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(609, 46);
+            this.btnShow.Location = new System.Drawing.Point(764, 68);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(75, 52);
             this.btnShow.TabIndex = 20;
@@ -441,7 +449,7 @@
             // 
             // btnCanGive
             // 
-            this.btnCanGive.Location = new System.Drawing.Point(644, 303);
+            this.btnCanGive.Location = new System.Drawing.Point(799, 325);
             this.btnCanGive.Name = "btnCanGive";
             this.btnCanGive.Size = new System.Drawing.Size(75, 23);
             this.btnCanGive.TabIndex = 25;
@@ -451,34 +459,50 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(527, 314);
+            this.label18.Location = new System.Drawing.Point(682, 336);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(101, 13);
             this.label18.TabIndex = 24;
             this.label18.Text = "CAN GIVE (TOTAL)";
             // 
-            // label19
+            // lblDate2
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(260, 264);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 13);
-            this.label19.TabIndex = 28;
-            this.label19.Text = "label19";
+            this.lblDate2.AutoSize = true;
+            this.lblDate2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate2.ForeColor = System.Drawing.Color.Red;
+            this.lblDate2.Location = new System.Drawing.Point(665, 151);
+            this.lblDate2.Name = "lblDate2";
+            this.lblDate2.Size = new System.Drawing.Size(64, 24);
+            this.lblDate2.TabIndex = 30;
+            this.lblDate2.Text = "[Date]";
             // 
-            // label20
+            // btnPrevDay
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(263, 298);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(41, 13);
-            this.label20.TabIndex = 29;
-            this.label20.Text = "label20";
+            this.btnPrevDay.Location = new System.Drawing.Point(647, 30);
+            this.btnPrevDay.Name = "btnPrevDay";
+            this.btnPrevDay.Size = new System.Drawing.Size(41, 24);
+            this.btnPrevDay.TabIndex = 30;
+            this.btnPrevDay.Text = "<<";
+            this.btnPrevDay.UseVisualStyleBackColor = true;
+            this.btnPrevDay.Click += new System.EventHandler(this.btnPrevDay_Click);
+            // 
+            // btnNextDay
+            // 
+            this.btnNextDay.Location = new System.Drawing.Point(903, 32);
+            this.btnNextDay.Name = "btnNextDay";
+            this.btnNextDay.Size = new System.Drawing.Size(41, 24);
+            this.btnNextDay.TabIndex = 31;
+            this.btnNextDay.Text = ">>";
+            this.btnNextDay.UseVisualStyleBackColor = true;
+            this.btnNextDay.Click += new System.EventHandler(this.btnNextDay_Click);
             // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnNextDay);
+            this.Controls.Add(this.btnPrevDay);
+            this.Controls.Add(this.lblDate2);
             this.Controls.Add(this.btnCanGive);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.btnShow);
@@ -488,15 +512,13 @@
             this.Controls.Add(this.btnYesterdayInHand);
             this.Controls.Add(this.btnTmrWanted);
             this.Controls.Add(this.btnInBank);
-            this.Controls.Add(this.btnTodayInHand);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label1);
             this.Name = "frmInHand";
-            this.Size = new System.Drawing.Size(822, 528);
+            this.Size = new System.Drawing.Size(977, 528);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -515,7 +537,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label15;
@@ -527,7 +548,6 @@
         private System.Windows.Forms.TextBox txtTakenFromBank;
         private System.Windows.Forms.TextBox txtBankTxnOut;
         private System.Windows.Forms.TextBox txtSentFromUSA;
-        private System.Windows.Forms.TextBox txtSanthanam;
         private System.Windows.Forms.TextBox txtInterest;
         private System.Windows.Forms.TextBox txtGivenAmount;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -540,7 +560,7 @@
         private System.Windows.Forms.TextBox txtComments;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnShow;
-        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblDate1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtOtherInvestment;
@@ -550,5 +570,8 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblDate2;
+        private System.Windows.Forms.Button btnPrevDay;
+        private System.Windows.Forms.Button btnNextDay;
     }
 }

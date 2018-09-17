@@ -1,5 +1,35 @@
 [
   {
+    "CustomerId": 65,
+    "IsClosed": false,
+    "TransactionId": 3685,
+    "AmountReceived": 200,
+    "Balance": 18800,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 94,
+    "TxnDate": "2018-06-21T21:53:13"
+  },
+  {
+    "CustomerId": 68,
+    "IsClosed": false,
+    "TransactionId": 3480,
+    "AmountReceived": 0,
+    "Balance": 10000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 100,
+    "TxnDate": "2018-06-21T21:49:02"
+  },
+  {
+    "CustomerId": 59,
+    "IsClosed": false,
+    "TransactionId": 2730,
+    "AmountReceived": 600,
+    "Balance": 13600,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 84,
+    "TxnDate": "2018-06-21T00:00:00"
+  },
+  {
     "CustomerId": 19,
     "IsClosed": false,
     "TransactionId": 1161,
@@ -80,6 +110,16 @@
     "TxnDate": "2018-06-21T12:24:00"
   },
   {
+    "CustomerId": 16,
+    "IsClosed": false,
+    "TransactionId": 2707,
+    "AmountReceived": 2000,
+    "Balance": 19000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 118,
+    "TxnDate": "2018-06-21T00:00:00"
+  },
+  {
     "CustomerId": 18,
     "IsClosed": false,
     "TransactionId": 1080,
@@ -98,6 +138,16 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 59,
     "TxnDate": "2018-06-21T00:00:00"
+  },
+  {
+    "CustomerId": 22,
+    "IsClosed": false,
+    "TransactionId": 3214,
+    "AmountReceived": 400,
+    "Balance": 13600,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 86,
+    "TxnDate": "2018-06-21T22:17:43"
   },
   {
     "CustomerId": 23,
@@ -178,5 +228,25 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 79,
     "TxnDate": "2018-06-21T00:00:00"
+  },
+  {
+    "CustomerId": 6,
+    "IsClosed": false,
+    "TransactionId": 3456,
+    "AmountReceived": 100,
+    "Balance": 7200,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 88,
+    "TxnDate": "2018-06-21T21:13:57"
+  },
+  {
+    "CustomerId": 8,
+    "IsClosed": false,
+    "TransactionId": 2867,
+    "AmountReceived": 1600,
+    "Balance": 11000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 80,
+    "TxnDate": "2018-06-21T22:41:27"
   }
 ]

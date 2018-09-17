@@ -7,40 +7,59 @@ namespace Common
     public class BaseClass
     {
 
-        public static string AddObjectsToJson<T>(string json, List<T> objects)
+        public static void InsertObjectsToJson<T>(string filePath, List<T> objectsToAdd)
         {
-            if (File.Exists(json) == false) File.Create(json);
-            List<T> list = JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
+            if (File.Exists(filePath) == false) File.Create(filePath);
 
-            list.AddRange(objects);
-            return JsonConvert.SerializeObject(list, Formatting.Indented);
+            List<T> list = ReadFileAsObjects<T>(filePath);
+
+            list.AddRange(objectsToAdd); // add to existing customer.
+
+            WriteObjectsToFile(list, filePath);
+
         }
 
-        public static List<T> GetAllDetails<T>(string filePath)
+        public static void InsertSingleObjectToListJson<T>(string filePath, T singleObject)
+        {
+            List<T> list = new List<T>() { singleObject };
+
+            InsertObjectsToJson(filePath, list);
+        }
+
+        // TODO: Need to change as json array file.
+        public static void InsertSingleObjectToSingleJson<T>(string filePath, T singleObject)
+        {
+            WriteSingleObjectToFile(singleObject, filePath);
+        }
+
+        public static List<T> ReadFileAsObjects<T>(string filePath)
         {
             var jsonText = File.ReadAllText(filePath);
-
             List<T> list = JsonConvert.DeserializeObject<List<T>>(jsonText) ?? new List<T>();
-
-            //list.AddRange(objects);
-            //return JsonConvert.SerializeObject(list, Formatting.Indented);
             return list;
         }
 
+        public static void WriteObjectsToFile<T>(List<T> listObject, string filePath)
+        {
+            string jsonString = JsonConvert.SerializeObject(listObject, Formatting.Indented);
+            File.WriteAllText(filePath, jsonString);
+        }
 
-        //To update any existing data.
-        //public static string AddObjectsToJson(string json, List<DailyCollectionDetail> objects)
-        //{
-        //    List<DailyCollectionDetail> list = JsonConvert.DeserializeObject<List<DailyCollectionDetail>>(json) ?? new List<DailyCollectionDetail>();
 
-        //    list.AddRange(objects);
+        public static T ReadFileAsSingleObject<T>(string filePath)
+        {
+            var jsonText = File.ReadAllText(filePath);
+            T obj = JsonConvert.DeserializeObject<T>(jsonText);
+            return obj;
+        }
 
-        //    list.ForEach(d => {
-        //        d.Date = Convert.ToDateTime(d.Date).ToShortDateString();
+        public static void WriteSingleObjectToFile<T>(T listObject, string filePath)
+        {
+            string jsonString = JsonConvert.SerializeObject(listObject, Formatting.Indented);
+            File.WriteAllText(filePath, jsonString);
+        }
 
-        //    });
-        //    return JsonConvert.SerializeObject(list, Formatting.Indented);
-        //}
+
 
     }
 }

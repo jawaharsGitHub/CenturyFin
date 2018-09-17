@@ -1,19 +1,17 @@
 ﻿using Common;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace DataAccess.PrimaryTypes
 {
 
-    public class Expenditure
+    public class Expenditure : BaseClass
     {
+
+        private static string JsonFilePath = AppConfiguration.ExpenditureFile;
         public string Date { get; set; }
-
         public int Amount { get; set; }
-
         public string Reason { get; set; }
 
 
@@ -21,23 +19,14 @@ namespace DataAccess.PrimaryTypes
         {
             expenditure.Date = DateTime.Today.ToLongTimeString();
 
-            string baseJson = File.ReadAllText(AppConfiguration.ExpenditureFile);
-
-            //Merge the customer
-            string updatedJson = AddObjectsToJson(baseJson, expenditure);
-
-            // Add into json
-            File.WriteAllText(AppConfiguration.ExpenditureFile, updatedJson);
-
+            InsertSingleObjectToListJson(AppConfiguration.ExpenditureFile, expenditure);
         }
 
         public static List<Expenditure> GetAllExpenditure()
         {
-
             try
             {
-                var json = File.ReadAllText(AppConfiguration.ExpenditureFile);
-                List<Expenditure> list = JsonConvert.DeserializeObject<List<Expenditure>>(json);
+                var list = ReadFileAsObjects<Expenditure>(JsonFilePath);
                 return list;
             }
             catch (Exception ex)
@@ -48,7 +37,6 @@ namespace DataAccess.PrimaryTypes
 
         public static int GetTotalExpenditure()
         {
-
             try
             {
                 var json = GetAllExpenditure();
@@ -59,14 +47,6 @@ namespace DataAccess.PrimaryTypes
                 throw ex;
             }
         }
-
-        public static string AddObjectsToJson<T>(string json, T objects)
-        {
-            List<T> list = JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
-            list.Add(objects);
-            return JsonConvert.SerializeObject(list, Formatting.Indented);
-        }
-
     }
 
 }

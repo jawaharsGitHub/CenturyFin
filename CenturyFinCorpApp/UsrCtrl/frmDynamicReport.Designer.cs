@@ -33,9 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblTotalAsset = new System.Windows.Forms.Label();
             this.btnClosedTxn = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.dgReports = new System.Windows.Forms.DataGridView();
-            this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).BeginInit();
             this.SuspendLayout();
@@ -80,25 +78,13 @@
             // 
             this.btnClosedTxn.BackColor = System.Drawing.Color.Aqua;
             this.btnClosedTxn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClosedTxn.Location = new System.Drawing.Point(568, 10);
+            this.btnClosedTxn.Location = new System.Drawing.Point(480, 10);
             this.btnClosedTxn.Name = "btnClosedTxn";
             this.btnClosedTxn.Size = new System.Drawing.Size(229, 84);
             this.btnClosedTxn.TabIndex = 5;
             this.btnClosedTxn.Text = "Run Closed Txn";
             this.btnClosedTxn.UseVisualStyleBackColor = false;
             this.btnClosedTxn.Click += new System.EventHandler(this.btnClosedTxn_Click);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.Aqua;
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(319, 10);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(229, 84);
-            this.btnRefresh.TabIndex = 18;
-            this.btnRefresh.Text = "Refresh Data";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // dgReports
             // 
@@ -107,45 +93,32 @@
             this.dgReports.Name = "dgReports";
             this.dgReports.Size = new System.Drawing.Size(763, 367);
             this.dgReports.TabIndex = 21;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 133);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "TO BE CLOSED SOON:";
+            this.dgReports.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgReports_CellFormatting);
             // 
             // comboBox1
             // 
-            this.comboBox1.DisplayMember = "Name";
+            this.comboBox1.DisplayMember = "Value";
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "TO BE CLOSED SOON",
-            "NOT GIVEN FOR FEW DAYS"});
             this.comboBox1.Location = new System.Drawing.Point(411, 122);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(278, 21);
             this.comboBox1.TabIndex = 23;
-            this.comboBox1.ValueMember = "Value";
+            this.comboBox1.ValueMember = "Key";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // frmReport
+            // frmDynamicReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.dgReports);
-            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnClosedTxn);
             this.Controls.Add(this.lblTotalAsset);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblOutStanding);
             this.Controls.Add(this.label1);
-            this.Name = "frmReport";
+            this.Name = "frmDynamicReport";
             this.Size = new System.Drawing.Size(1266, 519);
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).EndInit();
             this.ResumeLayout(false);
@@ -160,9 +133,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblTotalAsset;
         private System.Windows.Forms.Button btnClosedTxn;
-        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView dgReports;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
     }
 }

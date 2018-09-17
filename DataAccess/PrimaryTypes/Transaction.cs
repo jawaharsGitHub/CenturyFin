@@ -4,102 +4,52 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace DataAccess.PrimaryTypes
 {
-    public class Transaction
+    public class Transaction : BaseClass
     {
 
+        private static string ClosedTxnFilePath = AppConfiguration.ClosedNotesFile;
+        private static string JsonFilePath = AppConfiguration.TransactionFile;
+
         public int CustomerId { get; set; }
-
         public bool IsClosed { get; set; }
-
         public int TransactionId { get; set; }
-
         public int AmountReceived { get; set; }
-
         public int Balance { get; set; }
-
         public DateTime? TxnUpdatedDate { get; set; }
-
         public int CustomerSequenceNo { get; set; }
-
         public DateTime TxnDate { get; set; }
+        [JsonIgnore]
+        private Customer _customer;
 
-
-
-        private static string AddObjectsToJson<T>(string json, List<T> objects)
-        {
-            List<T> list = JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
-
-            list.AddRange(objects);
-            return JsonConvert.SerializeObject(list, Formatting.Indented);
-        }
 
         public static void AddTransaction(Transaction newTxn)
         {
-            //newTxn.TxnDate = DateTime.Today;
             newTxn.TxnUpdatedDate = null;
-            List<Transaction> transactions = new List<Transaction>() { newTxn };
 
-            var jsonFilePath = newTxn.IsClosed ? $"{AppConfiguration.ClosedNotesFile}/{newTxn.CustomerId}/{newTxn.CustomerId}_{newTxn.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
+            var jsonFilePath = newTxn.IsClosed ? $"{ClosedTxnFilePath}/{newTxn.CustomerId}/{newTxn.CustomerId}_{newTxn.CustomerSequenceNo}.json" : JsonFilePath;
 
-            // Get existing transactions
-            string baseJson = File.ReadAllText(jsonFilePath);
-
-            //Merge the transactions
-            string updatedJson = AddObjectsToJson(baseJson, transactions);
-
-            // Add into json
-            File.WriteAllText(jsonFilePath, updatedJson);
-
+            InsertSingleObjectToListJson(jsonFilePath, newTxn);
         }
 
-        public static void AddDailyTransactions(Transaction dailyTxn)
+        public static void AddDailyTransactions(Transaction txn)
         {
-
-            var txn = new List<Transaction>() { dailyTxn };
-
-            // Get existing transactions
-            string baseJson = File.ReadAllText(AppConfiguration.TransactionFile);
-
-            //Merge the transactions
-            string updatedJson = AddObjectsToJson(baseJson, txn);
-
-            // Add into json
-            File.WriteAllText(AppConfiguration.TransactionFile, updatedJson);
-
+            InsertSingleObjectToListJson(JsonFilePath, txn);
         }
 
         public static void AddTransactions(List<Transaction> newTxns)
         {
-
-            List<Transaction> transactions = newTxns;
-
-            // Get existing transactions
-            string baseJson = File.ReadAllText(AppConfiguration.TransactionFile);
-
-            //Merge the transactions
-            string updatedJson = AddObjectsToJson(baseJson, transactions);
-
-            // Add into json
-            File.WriteAllText(AppConfiguration.TransactionFile, updatedJson);
-
+            InsertObjectsToJson(JsonFilePath, newTxns);
         }
 
         public static void AddBatchTransactions(List<Transaction> newTxns, string fileName)
         {
             var fullFilePath = Path.Combine(AppConfiguration.DailyBatchFile, fileName);
-            List<Transaction> transactions = newTxns;
-
-            var jsonText = JsonConvert.SerializeObject(newTxns, Formatting.Indented);
-
             if (File.Exists(fullFilePath)) File.Delete(fullFilePath);
 
-            // Add into json
-            File.WriteAllText(fullFilePath, jsonText);
-
+            WriteObjectsToFile(newTxns, fullFilePath);
         }
 
 
@@ -109,13 +59,10 @@ namespace DataAccess.PrimaryTypes
 
             try
             {
-                var txnFile = isActive ? AppConfiguration.TransactionFile : $"{AppConfiguration.ClosedNotesFile}/{customerId}/{customerId}_{sequenceNo}.json";
-                //if (isClosedTxn) File.Delete(txnFile);
+                var filePath = isActive ? JsonFilePath : $"{ClosedTxnFilePath}/{customerId}/{customerId}_{sequenceNo}.json";
                 if (isActive)
                 {
-                    var json = File.ReadAllText(txnFile);
-                    List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
-                    //if (list == null) return null;
+                    var list = ReadFileAsObjects<Transaction>(filePath);
 
                     list.RemoveAll(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo);
                     return true;
@@ -131,11 +78,9 @@ namespace DataAccess.PrimaryTypes
 
         public static void AddClosedTransaction(List<Transaction> closedTxn)
         {
-
             var customer = closedTxn.First();
 
-
-            string customerBackupFolderPath = Path.Combine(AppConfiguration.ClosedNotesFile, customer.CustomerId.ToString());
+            string customerBackupFolderPath = Path.Combine(ClosedTxnFilePath, customer.CustomerId.ToString());
 
             if (Directory.Exists(customerBackupFolderPath) == false)
             {
@@ -144,30 +89,22 @@ namespace DataAccess.PrimaryTypes
 
             string backupFileName = Path.Combine(customerBackupFolderPath, $"{customer.CustomerId.ToString()}_{customer.CustomerSequenceNo.ToString()}.json");
 
-            var content = JsonConvert.SerializeObject(closedTxn, Formatting.Indented);
-
-            // Add into json
-            File.WriteAllText(backupFileName, content);
-
+            WriteObjectsToFile(closedTxn, backupFileName);
         }
 
         public static void UpdateTransactionDetails(Transaction updatedTransaction)
         {
-
             try
             {
-                var json = File.ReadAllText(AppConfiguration.TransactionFile);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                List<Transaction> list = ReadFileAsObjects<Transaction>(AppConfiguration.TransactionFile);
 
                 var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId && c.CustomerSequenceNo == updatedTransaction.CustomerSequenceNo && c.CustomerId == updatedTransaction.CustomerId).FirstOrDefault();
-
+                
+                u.Balance = ((u.Balance + u.AmountReceived) - updatedTransaction.AmountReceived); // Very important calculation when corrected collection amount more than 1 time for he same date.
                 u.AmountReceived = updatedTransaction.AmountReceived;
                 u.TxnUpdatedDate = DateTime.Today;
 
-                string updatedString = JsonConvert.SerializeObject(list, Formatting.Indented);
-
-
-                File.WriteAllText(AppConfiguration.TransactionFile, updatedString);
+                WriteObjectsToFile(list, AppConfiguration.TransactionFile);
 
             }
             catch (Exception ex)
@@ -183,8 +120,7 @@ namespace DataAccess.PrimaryTypes
             {
                 var filePath = updatedTransaction.IsClosed ? $"{AppConfiguration.ClosedNotesFile}/{updatedTransaction.CustomerId}/{updatedTransaction.CustomerId}_{updatedTransaction.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
 
-                var json = File.ReadAllText(filePath);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                List<Transaction> list = ReadFileAsObjects<Transaction>(filePath);
 
                 var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId).FirstOrDefault();
 
@@ -192,11 +128,7 @@ namespace DataAccess.PrimaryTypes
                 u.TxnDate = updatedTransaction.TxnDate;
                 u.Balance = updatedTransaction.Balance;
 
-                string updatedString = JsonConvert.SerializeObject(list, Formatting.Indented);
-
-
-                File.WriteAllText(filePath, updatedString);
-
+                WriteObjectsToFile(list, filePath);
             }
             catch (Exception ex)
             {
@@ -206,13 +138,9 @@ namespace DataAccess.PrimaryTypes
 
         public static Transaction GetTransactionDetail(int txnId)
         {
-
             try
             {
-                var txnFile = AppConfiguration.TransactionFile;
-
-                var json = File.ReadAllText(txnFile);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                var list = ReadFileAsObjects<Transaction>(JsonFilePath);
                 if (list == null) return null;
                 return list.Where(c => c.TransactionId == txnId).First();
             }
@@ -222,19 +150,17 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static List<Transaction> GetTransactionDetails(int customerId, int sequenceNo, bool isClosedTxn)
+        public static List<Transaction> GetTransactionDetails(Customer customer)
         {
-
             try
             {
-                var txnFile = isClosedTxn ? $"{AppConfiguration.ClosedNotesFile}/{customerId}/{customerId}_{sequenceNo}.json" : AppConfiguration.TransactionFile;
+                var txnFile = (customer.IsActive == false) ? $"{ClosedTxnFilePath}/{customer.CustomerId}/{customer.CustomerId}_{customer.CustomerSeqNumber}.json" : JsonFilePath;
 
                 if (File.Exists(txnFile))
                 {
-                    var json = File.ReadAllText(txnFile);
-                    List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                    var list = ReadFileAsObjects<Transaction>(txnFile);
                     if (list == null) return null;
-                    return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).OrderBy(o => o.TransactionId).ToList();
+                    return list.Where(c => c.CustomerId == customer.CustomerId && c.CustomerSequenceNo == customer.CustomerSeqNumber).OrderBy(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
                 }
 
                 return null;
@@ -245,19 +171,15 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static List<Transaction> GetTransactionForDate(int customerId, int sequenceNo, DateTime txnDate)
+        public static List<Transaction> GetTransactionForDate(Transaction txn)
         {
-
             try
             {
                 //TODO: need to do it for closed txn also?
-                var txnFile = AppConfiguration.TransactionFile;
-
-                var json = File.ReadAllText(txnFile);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                var list = ReadFileAsObjects<Transaction>(JsonFilePath);
                 if (list == null) return null;
 
-                return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo && c.TxnDate.Date == txnDate.Date).OrderByDescending(o => o.TransactionId).ToList();
+                return list.Where(c => c.CustomerId == txn.CustomerId && c.CustomerSequenceNo == txn.CustomerSequenceNo && c.TxnDate.Date == txn.TxnDate.Date).OrderByDescending(o => o.TransactionId).ToList();
             }
             catch (Exception ex)
             {
@@ -267,14 +189,11 @@ namespace DataAccess.PrimaryTypes
 
         public static List<Transaction> GetTransactionForDate(DateTime txnDate)
         {
-
             try
             {
                 //TODO: need to do it for closed txn also?
-                var txnFile = AppConfiguration.TransactionFile;
+                var list = ReadFileAsObjects<Transaction>(JsonFilePath);
 
-                var json = File.ReadAllText(txnFile);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
                 if (list == null) return null;
 
                 return list.Where(c => c.TxnDate.Date == txnDate.Date).OrderByDescending(o => o.TransactionId).ToList();
@@ -288,38 +207,23 @@ namespace DataAccess.PrimaryTypes
 
         public static List<Transaction> GetClosedTransactionForDate(DateTime txnDate)
         {
-
             try
             {
                 //TODO: need to do it for closed txn also?
-                var txnFile = AppConfiguration.ClosedNotesFile;
-
-
-                //var sb = new StringBuilder();
                 var result = new List<Transaction>();
 
-                foreach (var folder in Directory.GetDirectories(txnFile))
+                foreach (var folder in Directory.GetDirectories(ClosedTxnFilePath))
                 {
                     foreach (var file in Directory.GetFiles(folder))
                     {
-                        //sb.AppendLine($"{folder}/{file}");
-
-                        //Transaction
-                        var json = File.ReadAllText(file);
-                        List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
-                        //if (list == null) return null;
-
+                        var list = ReadFileAsObjects<Transaction>(file);
                         var data = list.Where(w => w.TxnDate.Date == txnDate.Date).OrderByDescending(o => o.TransactionId).ToList();
 
                         result.AddRange(data);
-
                     }
-
                 }
 
                 return result;
-
-
             }
             catch (Exception ex)
             {
@@ -330,11 +234,9 @@ namespace DataAccess.PrimaryTypes
 
         public static List<Transaction> GetTransactionCount(int customerId, int sequenceNo)
         {
-
             try
             {
-                var json = File.ReadAllText(AppConfiguration.TransactionFile);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                var list = ReadFileAsObjects<Transaction>(JsonFilePath);
                 if (list == null) return null;
                 return list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == c.CustomerSequenceNo).OrderBy(o => o.TransactionId).ToList();
             }
@@ -346,16 +248,15 @@ namespace DataAccess.PrimaryTypes
 
         public static void DeleteTransactionDetails(int customerId, int sequenceNo)
         {
-
             try
             {
                 //TODO: Need to implement delete txn for closed txns also.
-                var json = File.ReadAllText(AppConfiguration.TransactionFile);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+
                 var itemToDelete = list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).ToList();
                 list.RemoveAll((c) => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo);
-                string updatedCustomers = JsonConvert.SerializeObject(list, Formatting.Indented);
-                File.WriteAllText(AppConfiguration.TransactionFile, updatedCustomers);
+
+                WriteObjectsToFile(list, JsonFilePath);
             }
             catch (Exception ex)
             {
@@ -365,34 +266,31 @@ namespace DataAccess.PrimaryTypes
 
         public static int GetNextTransactionId()
         {
-            var json = File.ReadAllText(AppConfiguration.TransactionFile);
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+
             if (list == null || list.Count == 0) return 1;
             return (list.Select(s => s.TransactionId).Max() + 1);
 
         }
 
-        public static int GetBalance(int loanAmount, int sequenceNo, int customerNo)
+        public static int GetBalance(Customer customer)
         {
-            var json = File.ReadAllText(AppConfiguration.TransactionFile);
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
-            if (list == null || list.Count == 0) return loanAmount - 0;
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+            if (list == null || list.Count == 0) return customer.LoanAmount - 0;
 
-            var paidAmount = (list.Where(s => s.CustomerSequenceNo == sequenceNo && s.CustomerId == customerNo).Sum(s => s.AmountReceived));
-            return loanAmount - paidAmount;
+            var paidAmount = (list.Where(s => s.CustomerSequenceNo == customer.CustomerSeqNumber && s.CustomerId == customer.CustomerId).Sum(s => s.AmountReceived));
+            return (customer.LoanAmount - paidAmount);
 
         }
 
         public static List<Transaction> GetActiveTransactions()
         {
-            var json = File.ReadAllText(AppConfiguration.TransactionFile);
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
 
             var result = new List<Transaction>();
 
             var outsideMoney = (from L in list
                                 group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                                //from g in newGroup.ToList()
                                 select newGroup).ToList();
 
             outsideMoney.ForEach(fe =>
@@ -407,9 +305,7 @@ namespace DataAccess.PrimaryTypes
 
         public static dynamic GetTransactionsToBeClosedSoon(int top)
         {
-            var json = File.ReadAllText(AppConfiguration.TransactionFile);
-
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
 
             var result = new List<Transaction>();
 
@@ -431,12 +327,13 @@ namespace DataAccess.PrimaryTypes
 
                         select new
                         {
-                            c.Name,
-                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(100) - DateTime.Today.Date).Days),
                             RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
-                            DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
-                            t.Balance,
+                            c.Name,
                             c.LoanAmount,
+                            t.Balance,
+                            CreditScore = Customer.GetCreditScore(c.CustomerId),
+                            NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(100) - DateTime.Today.Date).Days),
+                            DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
                             c.AmountGivenDate,
                             c.CustomerSeqNumber,
                         }).OrderBy(o => o.NeedToClose).Take(top).ToList();
@@ -448,9 +345,7 @@ namespace DataAccess.PrimaryTypes
 
         public static dynamic GetTransactionsNotGivenForFewDays()
         {
-            var json = File.ReadAllText(AppConfiguration.TransactionFile);
-
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
 
             var result = new List<Transaction>();
 
@@ -470,53 +365,35 @@ namespace DataAccess.PrimaryTypes
                         join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
                         select new
                         {
-                            c.CustomerSeqNumber,
                             c.Name,
-                            t.TxnDate,
-                            c.AmountGivenDate,
                             c.LoanAmount,
                             t.Balance,
-                            NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays
-                            //RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
-                            //DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays > 100 ? -1 : (t.Balance / (c.LoanAmount / 100))),
-
+                            CreditScore = Customer.GetCreditScore(c.CustomerId),
+                            NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays,
+                            LastTxnDate = t.TxnDate,
+                            c.AmountGivenDate,
+                            c.CustomerSeqNumber                            
                         }).Where(w => w.NotGivenFor > 2).OrderByDescending(o => o.NotGivenFor).ToList();
 
             return data;
-
-
         }
 
         public static int GetAllOutstandingAmount()
         {
-
             try
             {
-                var json = File.ReadAllText(AppConfiguration.TransactionFile);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+                var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+
                 if (list == null)
                 {
-
                     var customersOutstanding = (Customer.GetAllCustomer() ?? new List<Customer>()).Where(w => w.IsActive).Sum(s => s.LoanAmount);
                     return customersOutstanding;
                 }
-
-                //var groupedList = (from L in list
-                //                   group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                //                   select newGroup).ToList();
-
-                //int outsideMoney = 0;
-
-                //foreach (var item in groupedList)
-                //{
-                //    outsideMoney += item.OrderBy(o => o.Balance).First().Balance;
-                //}
 
                 // This needs to validate.
                 var outsideMoney = (from L in list
 
                                     group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                                    //from g in newGroup.ToList()
                                     select newGroup.ToList().OrderBy(w => w.Balance).First()).ToList(); //.Sum(s => s.Balance);
 
                 // this is useful to calculate all external balances
@@ -538,10 +415,11 @@ namespace DataAccess.PrimaryTypes
                 throw ex;
             }
         }
+
         public static int GetClosedTxn()
         {
-            var json = File.ReadAllText(AppConfiguration.TransactionFile);
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json) ?? new List<Transaction>();
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+
             return list.Where(w => w.Balance == 0).Count();
         }
 
@@ -549,46 +427,30 @@ namespace DataAccess.PrimaryTypes
         {
 
             // Get from Ongoing Transcations
-
-            var txnFile = AppConfiguration.TransactionFile;  // old approach.
-
-            //var txnFile = Path.Combine(AppConfiguration.DailyBatchFile, inputDate.ToString("dd-MM-yyyy")); // new approach
+            var txnFile = Path.Combine(AppConfiguration.DailyBatchFile, inputDate.ToString("dd-MM-yyyy")); // TODO: Ned to fix this as data is not showing till run daily txn batch // new approach
             if (File.Exists(txnFile) == false) return new List<Transaction>();
-            var json = File.ReadAllText(txnFile);
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+
+            var list = ReadFileAsObjects<Transaction>(txnFile);
+
             if (list == null) return null;
-            var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
 
-            //Get from Closed Transactions
-            var fromClosedTxn = ProcessDirectory(AppConfiguration.ClosedNotesFile, inputDate); // old approach.
-
-            fromActiveTxn.AddRange(fromClosedTxn); // old approach.
+            var fromActiveTxn = list.Where(c => (c.TxnDate.Date == inputDate.Date)).ToList(); // && c.AmountReceived > 0
 
             return fromActiveTxn;
-
-
         }
 
         public static List<Transaction> GetDailyCollectionDetails_V0(DateTime inputDate)
         {
-
-            //Get from Ongoing Transcations
-
-            var txnFile = AppConfiguration.TransactionFile;
-
-            var json = File.ReadAllText(txnFile);
-            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
             if (list == null) return null;
-            var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList();
+            var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).ToList(); //  && c.AmountReceived > 0
 
             //Get from Closed Transactions
-            var fromClosedTxn = ProcessDirectory(AppConfiguration.ClosedNotesFile, inputDate);
+            var fromClosedTxn = ProcessDirectory(ClosedTxnFilePath, inputDate);
 
             fromActiveTxn.AddRange(fromClosedTxn);
 
             return fromActiveTxn;
-
-
         }
 
         private static List<Transaction> ProcessDirectory(string targetDirectory, DateTime inputDate)
@@ -598,9 +460,8 @@ namespace DataAccess.PrimaryTypes
             string[] fileEntries = Directory.GetFiles(targetDirectory);
             foreach (string fileName in fileEntries)
             {
-                var json = File.ReadAllText(fileName);
-                List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
-                if (list == null) return null;
+                var list = ReadFileAsObjects<Transaction>(fileName);
+                // if (list == null) return null;
                 var data = list.Where(c => c.TxnDate.Date == inputDate.Date);
                 if (data != null && data.Count() > 0)
                     result.AddRange(data);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Common.ExtensionMethod
 {
@@ -12,5 +13,55 @@ namespace Common.ExtensionMethod
             return Convert.ToInt32(value);
 
         }
+
+        public static int ToInt32(this double value)
+        {
+            return Convert.ToInt32(value);
+
+        }
+
+        public static int ToInt32(this int? value)
+        {
+            return Convert.ToInt32(value);
+
+        }
+
+        public static int ToInt32(this object value)
+        {
+            return Convert.ToInt32(value);
+
+        }
+
+        public static string TokFormat(this int? value)
+        {
+            if (value == null)
+                throw new Exception("value should not ne null");
+
+            int number = Convert.ToInt32(value);
+
+            return number.TokFormat();
+
+        }
+
+        public static string TokFormat(this double value)
+        {
+            int number = Convert.ToInt32(value);
+
+            return number.TokFormat();
+
+        }
+
+        public static string TokFormat(this int value)
+        {
+            return string.Format("{0:n0}", value);
+        }
+
+        public static T NextOf<T>(this IList<T> list, T item)
+        {
+            var indexOf = list.IndexOf(item);
+            if (indexOf == list.Count - 1) return default(T);
+            return list[indexOf == list.Count - 1 ? 0 : indexOf + 1];
+        }
+
     }
 }

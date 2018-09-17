@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Common;
 using Common.ExtensionMethod;
 using DataAccess.PrimaryTypes;
-using System.Globalization;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace CenturyFinCorpApp.UsrCtrl
 {
@@ -22,18 +18,23 @@ namespace CenturyFinCorpApp.UsrCtrl
             CustomerGrowth();
 
             ShowRemaingDays();
+
+            GetCustomerCount();
+        }
+
+        private void GetCustomerCount()
+        {
+            var count = Customer.GetAllCustomer().Select(s => s.CustomerId).Distinct().Count();
+            btnCustomerCount.Text = $"Customer Count - {count.ToString()}";
+
         }
 
         private void ShowRemaingDays()
         {
-            var after100day = DateTime.Today.AddDays(100);
+            
 
-            //var days = (new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month)) - today).Days;
-
-            var days = (new DateTime(after100day.Year, after100day.Month, DateTime.DaysInMonth(after100day.Year, after100day.Month)) - after100day).Days;
-
-
-            label1.Text = $"Remaining Days to start next month cycle: {days}";
+            label1.Text = $"Remaining Days to start next month cycle: {DateHelper.RemaingDaysToNextCycle}";
+            label2.Text = $"Remaining Days in this month: {DateHelper.RemaingDaysOfMonth}";
         }
 
         private void CalculateIncome(bool considerSalary = false)
@@ -98,7 +99,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             finalData.Insert(0, new IncomeReport()
             {
-                Month = "2018 Feb",
+                Month = "Feb 2018",
                 ActualIncome = 0
             });
 
@@ -141,11 +142,15 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var actual = finalData.Sum(w => w.ActualIncome);
             var expected = finalData.Sum(w => w.ExpectedIncome);
+            var salary = finalData.Sum(w => w.MonthlySalary);
             var total = (actual + expected);
 
             lblActual.Text = $"Actual :  {actual.ToMoney()} (Per Month: { (actual / DateTime.Today.Month).ToMoney()})";
             lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / DateTime.Today.Month).ToMoney()})";
             lblTotal.Text = $"TOTAL : {total.ToMoney()} (Per Month: { (total / DateTime.Today.Month).ToMoney()})";
+            
+            lblSalary.Text = $"Salary : {salary}";
+            lblSalary.Visible = considerSalary;
 
 
         }
@@ -159,11 +164,11 @@ namespace CenturyFinCorpApp.UsrCtrl
         {
             var customers = (from c in Customer.GetAllCustomer()
                              orderby c.AmountGivenDate
-                             group c by c.AmountGivenDate.Value.Month into newGroup
+                             group c by c.AmountGivenDate.Value.ToString("Y") into newGroup
 
                              select new
                              {
-                                 Month = DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(newGroup.Key),
+                                 Month = newGroup.Key,
                                  Count = newGroup.Count(),
                                  LoanAmount = newGroup.Sum(s => s.LoanAmount),
                                  GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)),
@@ -171,6 +176,9 @@ namespace CenturyFinCorpApp.UsrCtrl
                              }).ToList();
 
             dgvNotePerMonth.DataSource = customers;
+
+            
+
 
         }
     }

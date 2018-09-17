@@ -1,292 +1,302 @@
 [
   {
-    "TransactionId": 145,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 145,
     "AmountReceived": 200,
     "Balance": 19800,
-    "IsClosed": false,
-    "TxnDate": "2018-02-02T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-02T00:25:42"
   },
   {
-    "TransactionId": 146,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 146,
     "AmountReceived": 200,
     "Balance": 19600,
-    "IsClosed": false,
-    "TxnDate": "2018-02-03T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-03T00:25:42"
   },
   {
-    "TransactionId": 147,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 147,
     "AmountReceived": 200,
     "Balance": 19400,
-    "IsClosed": false,
-    "TxnDate": "2018-02-04T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-04T00:25:42"
   },
   {
-    "TransactionId": 148,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 148,
     "AmountReceived": 200,
     "Balance": 19200,
-    "IsClosed": false,
-    "TxnDate": "2018-02-05T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-05T00:25:42"
   },
   {
-    "TransactionId": 149,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 149,
     "AmountReceived": 200,
     "Balance": 19000,
-    "IsClosed": false,
-    "TxnDate": "2018-02-06T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-06T00:25:42"
   },
   {
-    "TransactionId": 150,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 150,
     "AmountReceived": 200,
     "Balance": 18800,
-    "IsClosed": false,
-    "TxnDate": "2018-02-07T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-07T00:25:42"
   },
   {
-    "TransactionId": 151,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 151,
     "AmountReceived": 200,
     "Balance": 18600,
-    "IsClosed": false,
-    "TxnDate": "2018-02-08T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-08T00:25:42"
   },
   {
-    "TransactionId": 152,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 152,
     "AmountReceived": 200,
     "Balance": 18400,
-    "IsClosed": false,
-    "TxnDate": "2018-02-11T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-11T00:25:42"
   },
   {
-    "TransactionId": 153,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 153,
     "AmountReceived": 200,
     "Balance": 18200,
-    "IsClosed": false,
-    "TxnDate": "2018-02-12T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-12T00:25:42"
   },
   {
-    "TransactionId": 154,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 154,
     "AmountReceived": 200,
     "Balance": 18000,
-    "IsClosed": false,
-    "TxnDate": "2018-02-14T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-14T00:25:42"
   },
   {
-    "TransactionId": 155,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 155,
     "AmountReceived": 200,
     "Balance": 17800,
-    "IsClosed": false,
-    "TxnDate": "2018-02-15T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-15T00:25:42"
   },
   {
-    "TransactionId": 156,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 156,
     "AmountReceived": 200,
     "Balance": 17600,
-    "IsClosed": false,
-    "TxnDate": "2018-02-17T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-17T00:25:42"
   },
   {
-    "TransactionId": 157,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 157,
     "AmountReceived": 200,
     "Balance": 17400,
-    "IsClosed": false,
-    "TxnDate": "2018-02-18T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-18T00:25:42"
   },
   {
-    "TransactionId": 158,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 158,
     "AmountReceived": 200,
     "Balance": 17200,
-    "IsClosed": false,
-    "TxnDate": "2018-02-19T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-19T00:25:42"
   },
   {
-    "TransactionId": 159,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 159,
     "AmountReceived": 200,
     "Balance": 17000,
-    "IsClosed": false,
-    "TxnDate": "2018-02-21T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-21T00:25:42"
   },
   {
-    "TransactionId": 160,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 160,
     "AmountReceived": 200,
     "Balance": 16800,
-    "IsClosed": false,
-    "TxnDate": "2018-02-22T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-22T00:25:42"
   },
   {
-    "TransactionId": 161,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 161,
     "AmountReceived": 200,
     "Balance": 16600,
-    "IsClosed": false,
-    "TxnDate": "2018-02-24T00:25:42",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-24T00:25:42"
   },
   {
-    "TransactionId": 162,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 162,
     "AmountReceived": 200,
     "Balance": 16400,
-    "IsClosed": false,
-    "TxnDate": "2018-02-25T00:28:35",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-25T00:28:35"
   },
   {
-    "TransactionId": 163,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 163,
     "AmountReceived": 200,
     "Balance": 16200,
-    "IsClosed": false,
-    "TxnDate": "2018-02-28T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-28T00:29:22"
   },
   {
-    "TransactionId": 164,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 164,
     "AmountReceived": 200,
     "Balance": 16000,
-    "IsClosed": false,
-    "TxnDate": "2018-03-01T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-01T00:29:22"
   },
   {
-    "TransactionId": 165,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 165,
     "AmountReceived": 200,
     "Balance": 15800,
-    "IsClosed": false,
-    "TxnDate": "2018-03-03T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-03T00:29:22"
   },
   {
-    "TransactionId": 166,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 166,
     "AmountReceived": 200,
     "Balance": 15600,
-    "IsClosed": false,
-    "TxnDate": "2018-03-05T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-05T00:29:22"
   },
   {
-    "TransactionId": 167,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 167,
     "AmountReceived": 200,
     "Balance": 15400,
-    "IsClosed": false,
-    "TxnDate": "2018-03-07T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-07T00:29:22"
   },
   {
-    "TransactionId": 168,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 168,
     "AmountReceived": 400,
     "Balance": 15000,
-    "IsClosed": false,
-    "TxnDate": "2018-03-10T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-10T00:29:22"
   },
   {
-    "TransactionId": 169,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 169,
     "AmountReceived": 200,
     "Balance": 14800,
-    "IsClosed": false,
-    "TxnDate": "2018-03-11T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-11T00:29:22"
   },
   {
-    "TransactionId": 170,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 170,
     "AmountReceived": 200,
     "Balance": 14600,
-    "IsClosed": false,
-    "TxnDate": "2018-03-12T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-12T00:29:22"
   },
   {
-    "TransactionId": 171,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 171,
     "AmountReceived": 200,
     "Balance": 14400,
-    "IsClosed": false,
-    "TxnDate": "2018-03-13T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-13T00:29:22"
   },
   {
-    "TransactionId": 172,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 172,
     "AmountReceived": 7000,
     "Balance": 7400,
-    "IsClosed": false,
-    "TxnDate": "2018-03-14T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-14T00:29:22"
   },
   {
-    "TransactionId": 173,
-    "CustomerSequenceNo": 4,
     "CustomerId": 4,
+    "IsClosed": false,
+    "TransactionId": 173,
     "AmountReceived": 7400,
     "Balance": 0,
-    "IsClosed": false,
-    "TxnDate": "2018-03-15T00:29:22",
-    "TxnUpdatedDate": null
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-03-15T00:29:22"
+  },
+  {
+    "CustomerId": 4,
+    "IsClosed": true,
+    "TransactionId": 3636,
+    "AmountReceived": 0,
+    "Balance": 20000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 4,
+    "TxnDate": "2018-02-01T00:29:22"
   }
 ]

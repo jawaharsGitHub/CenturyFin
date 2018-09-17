@@ -1,4 +1,5 @@
-﻿using DataAccess.PrimaryTypes;
+﻿using Common.ExtensionMethod;
+using DataAccess.PrimaryTypes;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -11,12 +12,13 @@ namespace CenturyFinCorpApp
 
         private DailyCollectionDetail dailyTxn;
 
-        private int givenAmount;
-        private int interest;
+        //private int givenAmount;
+        //private int interest;
         public frmInHand()
         {
             InitializeComponent();
             GetDailyTxn(DateTime.Today.AddDays(-1), true);
+            GetDailyTxn(DateTime.Today, true);
 
         }
 
@@ -25,11 +27,16 @@ namespace CenturyFinCorpApp
             dailyTxn = DailyCollectionDetail.GetDailyTxn(date, isOnLoad);
             if (dailyTxn == null)
             {
-                MessageBox.Show("No record found");
+                dailyTxn = DailyCollectionDetail.GetDailyTxn(date.AddDays(-1), isOnLoad);
+                lblDate1.Text = lblDate2.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
+                btnAdd.Text = "ADD";
                 return;
             }
 
-            txtSanthanam.Text = dailyTxn.SanthanamUncle.ToString();
+            lblDate1.Text = lblDate2.Text = $"Data For {dailyTxn.Date}";
+            btnAdd.Text = "UPDATE";
+
+            
             txtSentFromUSA.Text = dailyTxn.SentFromUSA.ToString();
 
             txtBankTxnOut.Text = dailyTxn.BankTxnOut.ToString();
@@ -45,24 +52,24 @@ namespace CenturyFinCorpApp
             txtOtherInvestment.Text = Convert.ToString(dailyTxn.OtherInvestment);
 
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.ToString();
-            btnTodayInHand.Text = dailyTxn.TodayInHand.ToString();
+            btnTodayInHand.Text = dailyTxn.TodayInHand.TokFormat();
             btnInBank.Text = dailyTxn.InBank.ToString();
             btnTmrWanted.Text = (dailyTxn.TomorrowDiff > 0) ? dailyTxn.TomorrowDiff.ToString() : $"0 --- (Have Extra {Math.Abs(Convert.ToInt32(dailyTxn.TomorrowDiff))} )";
             btnTmrWanted.BackColor = (dailyTxn.TomorrowDiff > 0) ? Color.Red : Color.Green;
             btnCanGive.Text = (dailyTxn.TodayInHand + dailyTxn.InBank).ToString();
 
-            lblDate.Text = dailyTxn.Date;
+
 
             txtComments.Text = dailyTxn.Comments;
 
             btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(DateTime.Today).Sum(s => s.AmountReceived));
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
+            if (dailyTxn == null) dailyTxn = new DailyCollectionDetail();
 
             dailyTxn.Date = dateTimePicker1.Value.ToShortDateString();
-            dailyTxn.SanthanamUncle = Convert.ToInt32(txtSanthanam.Text);
             dailyTxn.YesterdayAmountInHand = dailyTxn.TodayInHand;
             dailyTxn.SentFromUSA = Convert.ToDecimal(txtSentFromUSA.Text);
             dailyTxn.BankTxnOut = Convert.ToDecimal(txtBankTxnOut.Text);
@@ -70,8 +77,8 @@ namespace CenturyFinCorpApp
             dailyTxn.InBank = (dailyTxn.InBank + dailyTxn.SentFromUSA - dailyTxn.TakenFromBank - dailyTxn.BankTxnOut);
 
             dailyTxn.CollectionAmount = Convert.ToInt32(txtCollectionAmount.Text);
-            dailyTxn.GivenAmount = givenAmount; //Convert.ToInt32(txtGivenAmount.Text) * 1000;
-            dailyTxn.Interest = interest; //Convert.ToInt32(Convert.ToDecimal(txtInterest.Text) * 1000);
+            dailyTxn.GivenAmount = Convert.ToInt32(txtGivenAmount.Text);
+            dailyTxn.Interest = Convert.ToInt32(txtInterest.Text);
             dailyTxn.ClosedAccounts = Convert.ToInt32(txtClosed.Text);
             dailyTxn.OpenedAccounts = Convert.ToInt32(txtOpened.Text);
             dailyTxn.TomorrowNeed = Convert.ToInt32(txtTmrNeeded.Text);
@@ -85,17 +92,9 @@ namespace CenturyFinCorpApp
             dailyTxn.Comments = txtComments.Text;
 
 
-            DailyCollectionDetail.AddDaily(dailyTxn);
+            DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
 
-            // Update In Hand and In Bank amount.
-            var inhand = new InHandAndBank()
-            {
-                Date = dateTimePicker1.Value.ToShortDateString(),
-                InBank = dailyTxn.InBank.Value,
-                InHandAmount = dailyTxn.TodayInHand.Value
-            };
-
-            InHandAndBank.AddInHand(inhand, dailyTxn.TakenFromBank);
+            
 
         }
 
@@ -111,10 +110,24 @@ namespace CenturyFinCorpApp
 
             txtInterest.Text = (amt / 10).ToString();
 
-            givenAmount = Convert.ToInt16((amt * 1000));
-            interest = Convert.ToInt16((amt * 1000) / 10);
-            label19.Text = givenAmount.ToString();
-            label20.Text = interest.ToString();
+            //givenAmount = Convert.ToInt32((amt * 1000));
+            //interest = Convert.ToInt32((amt * 1000) / 10);
+            //label19.Text = givenAmount.ToString();
+            //label20.Text = interest.ToString();
+        }
+
+        private void btnNextDay_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = dateTimePicker1.Value.AddDays(1);
+            GetDailyTxn(dateTimePicker1.Value, false);
+
+        }
+
+        private void btnPrevDay_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = dateTimePicker1.Value.AddDays(-1);
+            GetDailyTxn(dateTimePicker1.Value, false);
+
         }
     }
 }

@@ -27,6 +27,8 @@ namespace Common
 
         public static string DailyBatchFile { get; } = GetFullPath("DailyBatchFile");
 
+        public static string OutstandingFile { get; } = GetFullPath("OutstandingFile");
+
         private static string GetFullPath(string configKey)
         {
             return Path.Combine(ConfigurationManager.AppSettings["SourceFolder"], ConfigurationManager.AppSettings[configKey]);
@@ -34,7 +36,7 @@ namespace Common
         }
 
 
-        public static void AddOrUpdateAppSettings(string key, string value)
+        public static bool AddOrUpdateAppSettings(string key, string value)
         {
             try
             {
@@ -50,10 +52,12 @@ namespace Common
                 }
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+                return true;
             }
             catch (ConfigurationErrorsException)
             {
                 Console.WriteLine("Error writing app settings");
+                return false;
             }
         }
     }

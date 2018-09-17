@@ -1,11 +1,10 @@
 ﻿using Common;
 using Common.ExtensionMethod;
-using DataAccess;
 using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,11 +18,17 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
 
-            comboBox1.DataSource = ReportOption.GetOptions();
+            comboBox1.DataSource = GetOptions();
 
             ShowOutstandingMoney();
             ShowTotalAssetMoney();
+            RefreshClosed();
 
+        }
+
+        private void RefreshClosed()
+        {
+            btnClosedTxn.Text = $"Run Closed Txn ({Transaction.GetClosedTxn()})";
         }
 
         private void ToBeClosedSoon()
@@ -32,7 +37,6 @@ namespace CenturyFinCorpApp
 
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-            //dgReports.Columns["CustomerId"].Visible = false;
         }
 
         private void NotGivenForFewDays()
@@ -41,21 +45,21 @@ namespace CenturyFinCorpApp
 
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-            dgReports.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            dgReports.Columns["LastTxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
         private void XCustomer()
         {
-
             // get all active customers
             var activeCus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
 
             var xCus = Customer.GetAllCustomer().Where(w => activeCus.Select(s => s.CustomerId).Contains(w.CustomerId) == false && w.IsActive == false).ToList();
 
-            dgReports.DataSource = xCus.Select(s => new { s.Name, s.CustomerId}).Distinct().ToList();
+            dgReports.DataSource = xCus.Select(s => new { s.Name, s.CustomerId }).Distinct().ToList();
 
 
         }
+
         private void ShowOutstandingMoney()
         {
             outstandingMoney = Transaction.GetAllOutstandingAmount();
@@ -65,7 +69,7 @@ namespace CenturyFinCorpApp
         private void ShowTotalAssetMoney()
         {
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
-            lblTotalAsset.Text = (outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney();
+            lblTotalAsset.Text = $"{(outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()})";
         }
 
 
@@ -88,10 +92,9 @@ namespace CenturyFinCorpApp
 
                 // Delete Transactions data
                 Transaction.DeleteTransactionDetails(item.CustomerId, item.CustomerSequenceNo);
-
-                // Customer.UpdateCustomerDetails(new Customer() { CustomerId = item.CustomerId, CustomerSeqNumber = item.CustomerSequenceNo, IsActive = false });
-
             }
+
+            RefreshClosed();
 
         }
 
@@ -102,40 +105,134 @@ namespace CenturyFinCorpApp
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var value = ((ReportOption)comboBox1.SelectedItem).Value;
+            var value = ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
 
             if (value == 1)
             {
-                ToBeClosedSoon();
+                NotGivenForFewDays();
             }
             else if (value == 2)
             {
-                NotGivenForFewDays();
+                ToBeClosedSoon();
             }
             else if (value == 3)
             {
                 XCustomer();
             }
+            else if (value == 4)
+            {
+                CustomerCollectionSpot();
+            }
+            else if (value == 5)
+            {
+                AmountGroups();
+            }
+
         }
-    }
 
-    public class ReportOption
-    {
-
-        public static List<ReportOption> GetOptions()
+        private void AmountGroups()
         {
-            return new List<ReportOption>() {
+            var cus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
 
-                new ReportOption() { Value = 1, Name =  "TO BE CLOSED SOON"   },
-                new ReportOption() { Value = 2, Name =  "NOT GIVEN FOR FEW DAYS"   },
-                new ReportOption() { Value = 3, Name =  "X-Customer"   }
+            var groupsByAmount = (from c in cus
+                                  group c by c.LoanAmount into newGroup
+                                  select new {
+                                      Amount = newGroup.Key,
+                                      Count = newGroup.Count(),
+                                      Total = (newGroup.Key * newGroup.Count())
+                                  }).OrderByDescending(o => o.Amount).ToList();
 
-            };
+            dgReports.DataSource = groupsByAmount;
+
         }
 
-        public int Value { get; set; }
+        private void CustomerCollectionSpot()
+        {
 
-        public string Name { get; set; }
+            var cus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
+            cus.ForEach(c =>
+            {
+                if (c.CollectionSpotId == 0) c.CollectionSpotId = c.CustomerId;
+            });
 
+            // get all active customers
+            var activeCus = (from c in cus
+                             group c by c.CollectionSpotId into newGroup
+                             select new
+                             {
+                                 Spot = cus.Where(w => w.CustomerId == newGroup.Key).First().Name,
+                                 Count = newGroup.Count(),
+                                 Amount = newGroup.Sum(s => (s.LoanAmount / 100))
+                             }).OrderByDescending(o => o.Count).ToList();
+
+
+            dgReports.DataSource = activeCus;
+
+
+        }
+
+
+        public static List<KeyValuePair<int, string>> GetOptions()
+        {
+            var myKeyValuePair = new List<KeyValuePair<int, string>>()
+               {
+                   new KeyValuePair<int, string>(1, "NOT GIVEN FOR FEW DAYS"),
+                   new KeyValuePair<int, string>(2, "TO BE CLOSED SOON"),
+                   new KeyValuePair<int, string>(3, "X-CUSTOMER"),
+                   new KeyValuePair<int, string>(4, "CUSTOMER-COLLECTION SPOT"),
+                   new KeyValuePair<int, string>(5, "AMOUNT-GROUPS")
+               };
+
+            return myKeyValuePair;
+
+        }
+
+        private void dgReports_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var value = ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
+
+            if (value == 1)
+            {
+                if (this.dgReports.Columns["NotGivenFor"] == null) return;
+                if (e.RowIndex >= 0 && e.ColumnIndex == this.dgReports.Columns["NotGivenFor"].Index)
+                {
+                    if (e.Value != null)
+                    {
+                        int dayNotGiven = Convert.ToInt32(e.Value);
+                        if (dayNotGiven >= 15)
+                        {
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Orange;
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                        else if (dayNotGiven >= 7)
+                        {
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                    }
+                }
+            }
+
+            else if (value == 2)
+            {
+                if (this.dgReports.Columns["NeedToClose"] == null) return;
+                if (e.RowIndex >= 0 && e.ColumnIndex == this.dgReports.Columns["NeedToClose"].Index)
+                {
+                    if (e.Value != null)
+                    {
+                        int needToClose = Convert.ToInt32(e.Value);
+                        if (needToClose == 0)
+                        {
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                        else if (needToClose <= 7)
+                        {
+                            dgReports.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Orange;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

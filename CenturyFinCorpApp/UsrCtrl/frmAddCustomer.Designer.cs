@@ -46,6 +46,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblNoteCount = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cmbReturnType = new System.Windows.Forms.ComboBox();
+            this.cmbReturnDay = new System.Windows.Forms.ComboBox();
+            this.cmbCollectionSpot = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblName
@@ -70,7 +76,7 @@
             // 
             this.lblCustomerNo.AutoSize = true;
             this.lblCustomerNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomerNo.Location = new System.Drawing.Point(19, 365);
+            this.lblCustomerNo.Location = new System.Drawing.Point(783, 130);
             this.lblCustomerNo.Name = "lblCustomerNo";
             this.lblCustomerNo.Size = new System.Drawing.Size(161, 29);
             this.lblCustomerNo.TabIndex = 2;
@@ -98,7 +104,7 @@
             // 
             this.txtCustomerNo.AutoSize = true;
             this.txtCustomerNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomerNo.Location = new System.Drawing.Point(199, 364);
+            this.txtCustomerNo.Location = new System.Drawing.Point(963, 129);
             this.txtCustomerNo.Name = "txtCustomerNo";
             this.txtCustomerNo.Size = new System.Drawing.Size(169, 29);
             this.txtCustomerNo.TabIndex = 6;
@@ -162,7 +168,7 @@
             this.lblMessage.AutoSize = true;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(18, 458);
+            this.lblMessage.Location = new System.Drawing.Point(782, 252);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(86, 31);
             this.lblMessage.TabIndex = 15;
@@ -188,7 +194,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(233, 316);
+            this.dateTimePicker1.Location = new System.Drawing.Point(247, 316);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 17;
@@ -207,7 +213,7 @@
             // 
             this.lblNoteCount.AutoSize = true;
             this.lblNoteCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoteCount.Location = new System.Drawing.Point(207, 406);
+            this.lblNoteCount.Location = new System.Drawing.Point(971, 171);
             this.lblNoteCount.Name = "lblNoteCount";
             this.lblNoteCount.Size = new System.Drawing.Size(117, 29);
             this.lblNoteCount.TabIndex = 20;
@@ -218,17 +224,79 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(27, 407);
+            this.label5.Location = new System.Drawing.Point(791, 172);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(172, 29);
             this.label5.TabIndex = 19;
             this.label5.Text = "Note Count No";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(27, 360);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(145, 29);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Return Type";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(27, 409);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(131, 29);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Return Day";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(27, 461);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(177, 29);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Collection Spot";
+            // 
+            // cmbReturnType
+            // 
+            this.cmbReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReturnType.FormattingEnabled = true;
+            this.cmbReturnType.Location = new System.Drawing.Point(233, 367);
+            this.cmbReturnType.Name = "cmbReturnType";
+            this.cmbReturnType.Size = new System.Drawing.Size(121, 21);
+            this.cmbReturnType.TabIndex = 24;
+            // 
+            // cmbReturnDay
+            // 
+            this.cmbReturnDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReturnDay.FormattingEnabled = true;
+            this.cmbReturnDay.Location = new System.Drawing.Point(233, 417);
+            this.cmbReturnDay.Name = "cmbReturnDay";
+            this.cmbReturnDay.Size = new System.Drawing.Size(121, 21);
+            this.cmbReturnDay.TabIndex = 25;
+            // 
+            // cmbCollectionSpot
+            // 
+            this.cmbCollectionSpot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCollectionSpot.FormattingEnabled = true;
+            this.cmbCollectionSpot.Location = new System.Drawing.Point(233, 470);
+            this.cmbCollectionSpot.Name = "cmbCollectionSpot";
+            this.cmbCollectionSpot.Size = new System.Drawing.Size(225, 21);
+            this.cmbCollectionSpot.TabIndex = 26;
+            // 
             // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(789, 597);
+            this.Controls.Add(this.cmbCollectionSpot);
+            this.Controls.Add(this.cmbReturnDay);
+            this.Controls.Add(this.cmbReturnType);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblNoteCount);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
@@ -248,7 +316,7 @@
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Name = "frmAddCustomer";
-            this.Text = "AddCustomer";
+            this.Size = new System.Drawing.Size(1224, 597);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,5 +342,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNoteCount;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmbReturnType;
+        private System.Windows.Forms.ComboBox cmbReturnDay;
+        private System.Windows.Forms.ComboBox cmbCollectionSpot;
     }
 }

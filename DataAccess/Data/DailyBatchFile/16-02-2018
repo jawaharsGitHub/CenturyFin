@@ -20,6 +20,16 @@
     "TxnDate": "2018-02-16T22:42:19"
   },
   {
+    "CustomerId": 12,
+    "IsClosed": true,
+    "TransactionId": 3636,
+    "AmountReceived": 0,
+    "Balance": 5000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 12,
+    "TxnDate": "2018-02-16T11:05:42"
+  },
+  {
     "CustomerId": 2,
     "IsClosed": false,
     "TransactionId": 91,

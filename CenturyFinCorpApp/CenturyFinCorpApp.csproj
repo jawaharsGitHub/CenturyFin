@@ -58,6 +58,9 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,6 +85,12 @@
     <Compile Include="UsrCtrl\frmAddCustomer.Designer.cs">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrl\frmCreditReport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmCreditReport.Designer.cs">
+      <DependentUpon>frmCreditReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrl\frmCustomerTransaction.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,11 +103,23 @@
     <Compile Include="UsrCtrl\frmCustomers.Designer.cs">
       <DependentUpon>frmCustomers.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrl\frmDataCheck.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmDataCheck.Designer.cs">
+      <DependentUpon>frmDataCheck.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrl\frmGeneralReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UsrCtrl\frmGeneralReport.Designer.cs">
       <DependentUpon>frmGeneralReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsrCtrl\frmHealth.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmHealth.Designer.cs">
+      <DependentUpon>frmHealth.cs</DependentUpon>
     </Compile>
     <Compile Include="UsrCtrl\frmInHand.cs">
       <SubType>UserControl</SubType>
@@ -136,6 +157,12 @@
     <Compile Include="UsrCtrl\frmOutstanding.Designer.cs">
       <DependentUpon>frmOutstanding.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrl\frmPolitics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmPolitics.Designer.cs">
+      <DependentUpon>frmPolitics.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrl\frmPrediction.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,14 +184,23 @@
     <EmbeddedResource Include="UsrCtrl\frmAddCustomer.resx">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmCreditReport.resx">
+      <DependentUpon>frmCreditReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmCustomerTransaction.resx">
       <DependentUpon>frmCustomerTransaction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmCustomers.resx">
       <DependentUpon>frmCustomers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmDataCheck.resx">
+      <DependentUpon>frmDataCheck.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmGeneralReport.resx">
       <DependentUpon>frmGeneralReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmHealth.resx">
+      <DependentUpon>frmHealth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmInHand.resx">
       <DependentUpon>frmInHand.cs</DependentUpon>
@@ -184,6 +220,9 @@
     <EmbeddedResource Include="UsrCtrl\frmOutstanding.resx">
       <DependentUpon>frmOutstanding.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmPolitics.resx">
+      <DependentUpon>frmPolitics.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmPrediction.resx">
       <DependentUpon>frmPrediction.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,7 +239,9 @@
     <EmbeddedResource Include="UsrCtrl\frmDynamicReport.resx">
       <DependentUpon>frmDynamicReport.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -238,6 +279,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
