@@ -72,6 +72,7 @@
     <Compile Include="PrimaryTypes\IncomeReport.cs" />
     <Compile Include="PrimaryTypes\InHandAndBank.cs" />
     <Compile Include="PrimaryTypes\Investment.cs" />
+    <Compile Include="PrimaryTypes\Petrol.cs" />
     <Compile Include="PrimaryTypes\Transaction.cs" />
     <Compile Include="PrimaryTypes\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -345,6 +346,7 @@
     <None Include="Data\InHandAndBank.json" />
     <None Include="Data\Investment.json" />
     <None Include="Data\PersonalOutstanding.json" />
+    <None Include="Data\Petrol.json" />
     <None Include="Data\transaction.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

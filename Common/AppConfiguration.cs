@@ -29,6 +29,8 @@ namespace Common
 
         public static string OutstandingFile { get; } = GetFullPath("OutstandingFile");
 
+        public static string PetrolFile { get; } = GetFullPath("PetrolFile");
+
         private static string GetFullPath(string configKey)
         {
             return Path.Combine(ConfigurationManager.AppSettings["SourceFolder"], ConfigurationManager.AppSettings[configKey]);

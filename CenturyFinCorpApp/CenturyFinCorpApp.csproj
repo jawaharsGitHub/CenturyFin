@@ -157,6 +157,12 @@
     <Compile Include="UsrCtrl\frmOutstanding.Designer.cs">
       <DependentUpon>frmOutstanding.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrl\frmPetrol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmPetrol.Designer.cs">
+      <DependentUpon>frmPetrol.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrl\frmPolitics.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmOutstanding.resx">
       <DependentUpon>frmOutstanding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmPetrol.resx">
+      <DependentUpon>frmPetrol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmPolitics.resx">
       <DependentUpon>frmPolitics.cs</DependentUpon>

@@ -153,7 +153,7 @@ namespace CenturyFinCorpApp
                                  Spot = cus.Where(w => w.CustomerId == newGroup.Key).First().Name,
                                  Count = newGroup.Count(),
                                  Amount = newGroup.Sum(s => (s.LoanAmount / 100))
-                             }).OrderByDescending(o => o.Count).ToList();
+                             }).OrderByDescending(o => o.Count);
 
             //try
             //{
@@ -184,7 +184,10 @@ namespace CenturyFinCorpApp
             //}
 
 
-            dgReports.DataSource = activeCus;
+
+            dgReports.DataSource = activeCus.Where(w => w.Count > 1).ToList();
+
+            lblDetails.Text = $"Single Collection Spot {activeCus.Count(w => w.Count == 1)} {Environment.NewLine} Total Collection Spot {activeCus.Count()}";
 
 
         }

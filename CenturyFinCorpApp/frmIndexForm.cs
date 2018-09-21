@@ -128,6 +128,10 @@ namespace CenturyFinCorpApp
             var mnuPolitics = new ToolStripMenuItem() { Name = "politics", Text = "POLITICS" };
             menuStrip.Items.Add(mnuPolitics);
             mnuPolitics.Click += (s, e) => ShowForm<frmPolitics>();
+            //Petrol
+            var mnuPetrol = new ToolStripMenuItem() { Name = "petrol", Text = "PETROL" };
+            menuStrip.Items.Add(mnuPetrol);
+            mnuPetrol.Click += (s, e) => ShowForm<frmPetrol>();
 
             this.Controls.Add(menuStrip);
         }
