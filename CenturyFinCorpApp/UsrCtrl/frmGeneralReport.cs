@@ -11,6 +11,8 @@ namespace CenturyFinCorpApp.UsrCtrl
 {
     public partial class frmGeneralReport : UserControl
     {
+        int outstandingMoney = 0;
+
         public frmGeneralReport()
         {
             InitializeComponent();
@@ -20,6 +22,9 @@ namespace CenturyFinCorpApp.UsrCtrl
             ShowRemaingDays();
 
             GetCustomerCount();
+
+            ShowOutstandingMoney();
+            ShowTotalAssetMoney();
         }
 
         private void GetCustomerCount()
@@ -180,6 +185,18 @@ namespace CenturyFinCorpApp.UsrCtrl
             
 
 
+        }
+
+        private void ShowOutstandingMoney()
+        {
+            outstandingMoney = Transaction.GetAllOutstandingAmount();
+            lblOutStanding.Text = outstandingMoney.ToMoney();
+        }
+
+        private void ShowTotalAssetMoney()
+        {
+            var inHandAndBank = InHandAndBank.GetAllhandMoney();
+            lblTotalAsset.Text = $"{(outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()})";
         }
     }
 }

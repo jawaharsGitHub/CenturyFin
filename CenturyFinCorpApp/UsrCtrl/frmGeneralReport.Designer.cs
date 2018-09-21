@@ -39,6 +39,10 @@
             this.btnCustomerCount = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSalary = new System.Windows.Forms.Label();
+            this.lblTotalAsset = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblOutStanding = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -142,10 +146,50 @@
             this.lblSalary.TabIndex = 25;
             this.lblSalary.Text = "SALARY";
             // 
+            // lblTotalAsset
+            // 
+            this.lblTotalAsset.AutoSize = true;
+            this.lblTotalAsset.Location = new System.Drawing.Point(647, 34);
+            this.lblTotalAsset.Name = "lblTotalAsset";
+            this.lblTotalAsset.Size = new System.Drawing.Size(63, 13);
+            this.lblTotalAsset.TabIndex = 29;
+            this.lblTotalAsset.Text = "[TotalAsset]";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(518, 34);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Total Asset";
+            // 
+            // lblOutStanding
+            // 
+            this.lblOutStanding.AutoSize = true;
+            this.lblOutStanding.Location = new System.Drawing.Point(647, 7);
+            this.lblOutStanding.Name = "lblOutStanding";
+            this.lblOutStanding.Size = new System.Drawing.Size(111, 13);
+            this.lblOutStanding.TabIndex = 27;
+            this.lblOutStanding.Text = "[OutSTanding Money]";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(518, 7);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "OutStanding Money";
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblTotalAsset);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblOutStanding);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.lblSalary);
             this.Controls.Add(this.dgvIncome);
             this.Controls.Add(this.label2);
@@ -179,5 +223,9 @@
         private System.Windows.Forms.Button btnCustomerCount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblSalary;
+        private System.Windows.Forms.Label lblTotalAsset;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblOutStanding;
+        private System.Windows.Forms.Label label5;
     }
 }

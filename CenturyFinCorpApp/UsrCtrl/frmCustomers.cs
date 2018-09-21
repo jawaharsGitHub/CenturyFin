@@ -74,6 +74,7 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(2, "By Sequence No"),
                    new KeyValuePair<int, string>(3, "By Customer Id"),
                    new KeyValuePair<int, string>(4, "By Customer Name"),
+                   new KeyValuePair<int, string>(10, "Return By Yesterday"),
                    new KeyValuePair<int, string>(5, "Return By Today"),
                    new KeyValuePair<int, string>(6, "Return By Tomorrow"),
                    new KeyValuePair<int, string>(7, "By Return Day"),
@@ -419,9 +420,13 @@ namespace CenturyFinCorpApp
             {
                 searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.ReturnType).ToList();
             }
-            else//  (value == 9)
+            else if  (value == 9)
             {
                 searchedCustomer = customers.Where(w => w.IsActive).OrderByDescending(o => o.CollectionSpotId).ToList();
+            }
+            else//  (value == 10)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive && w.ReturnDay == DateTime.Today.AddDays(-1).DayOfWeek).ToList();
             }
 
             dataGridView1.DataSource = searchedCustomer;

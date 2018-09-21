@@ -13,15 +13,14 @@ namespace CenturyFinCorpApp
 {
     public partial class frmDynamicReport : UserControl
     {
-        int outstandingMoney = 0;
+        
         public frmDynamicReport()
         {
             InitializeComponent();
 
             comboBox1.DataSource = GetOptions();
 
-            ShowOutstandingMoney();
-            ShowTotalAssetMoney();
+            
             RefreshClosed();
 
         }
@@ -60,17 +59,7 @@ namespace CenturyFinCorpApp
 
         }
 
-        private void ShowOutstandingMoney()
-        {
-            outstandingMoney = Transaction.GetAllOutstandingAmount();
-            lblOutStanding.Text = outstandingMoney.ToMoney();
-        }
-
-        private void ShowTotalAssetMoney()
-        {
-            var inHandAndBank = InHandAndBank.GetAllhandMoney();
-            lblTotalAsset.Text = $"{(outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()})";
-        }
+       
 
 
         private void btnClosedTxn_Click(object sender, System.EventArgs e)
