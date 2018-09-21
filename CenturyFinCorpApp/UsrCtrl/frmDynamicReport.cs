@@ -13,14 +13,14 @@ namespace CenturyFinCorpApp
 {
     public partial class frmDynamicReport : UserControl
     {
-        
+
         public frmDynamicReport()
         {
             InitializeComponent();
 
             comboBox1.DataSource = GetOptions();
 
-            
+
             RefreshClosed();
 
         }
@@ -59,7 +59,7 @@ namespace CenturyFinCorpApp
 
         }
 
-       
+
 
 
         private void btnClosedTxn_Click(object sender, System.EventArgs e)
@@ -125,7 +125,8 @@ namespace CenturyFinCorpApp
 
             var groupsByAmount = (from c in cus
                                   group c by c.LoanAmount into newGroup
-                                  select new {
+                                  select new
+                                  {
                                       Amount = newGroup.Key,
                                       Count = newGroup.Count(),
                                       Total = (newGroup.Key * newGroup.Count())
@@ -153,6 +154,34 @@ namespace CenturyFinCorpApp
                                  Count = newGroup.Count(),
                                  Amount = newGroup.Sum(s => (s.LoanAmount / 100))
                              }).OrderByDescending(o => o.Count).ToList();
+
+            //try
+            //{
+
+
+            //    foreach (var c in cus.GroupBy(g => g.CollectionSpotId))
+            //    {
+
+            //        foreach (var item in c)
+            //        {
+            //            if(cus.Where(w => w.CustomerId == c.Key).FirstOrDefault() == null)
+            //            {
+
+            //            }
+            //            var Spot = cus.Where(w => w.CustomerId == c.Key).First().Name;
+            //            var Count = c.Count();
+            //            var Amount = c.Sum(s => (s.LoanAmount / 100));
+
+
+            //        }
+
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    throw;
+            //}
 
 
             dgReports.DataSource = activeCus;
