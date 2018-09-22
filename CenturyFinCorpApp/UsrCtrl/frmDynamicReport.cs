@@ -186,8 +186,11 @@ namespace CenturyFinCorpApp
 
 
             dgReports.DataSource = activeCus.Where(w => w.Count > 1).ToList();
+            var singleCount = activeCus.Where(w => w.Count == 1);
+            var multipleCount = activeCus.Where(w => w.Count > 1);
 
-            lblDetails.Text = $"Single Collection Spot {activeCus.Count(w => w.Count == 1)} {Environment.NewLine} Total Collection Spot {activeCus.Count()}";
+            lblDetails.Text = $"Single Collection Spot {singleCount.Count()} ({singleCount.Sum(s => s.Amount)}) {Environment.NewLine} " +
+                $"Total Collection Spot {multipleCount.Count()} ({multipleCount.Sum(s => s.Amount)})";
 
 
         }
