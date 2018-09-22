@@ -14,7 +14,7 @@ namespace DataAccess.PrimaryTypes
 
         public decimal PetrolPrice { get; set; }
 
-        public decimal Litre { get; set; }
+        public decimal Volume { get; set; }
 
         public int Speedometer { get; set; }
 
