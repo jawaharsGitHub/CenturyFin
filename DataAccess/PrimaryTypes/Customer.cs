@@ -12,6 +12,7 @@ namespace DataAccess.PrimaryTypes
 
         private static string JsonFilePath = AppConfiguration.CustomerFile;
         private DayOfWeek? _returnDay;
+        private int _collSpot;
 
         public int CustomerSeqNumber { get; set; }
         public int CustomerId { get; set; }
@@ -24,7 +25,11 @@ namespace DataAccess.PrimaryTypes
         public DateTime? AmountGivenDate { get; set; }
         public DateTime? ClosedDate { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
-        public int CollectionSpotId { get; set; }
+        public int CollectionSpotId
+        {
+            get { return (_collSpot == 0) ? CustomerId : _collSpot; }
+            set { _collSpot = value; }
+        }
         public DayOfWeek? ReturnDay
         {
             get { return (ReturnType == ReturnTypeEnum.Daily) ? null : _returnDay; }
@@ -375,6 +380,6 @@ namespace DataAccess.PrimaryTypes
 
     }
 
-    
+
 
 }

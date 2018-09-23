@@ -39,7 +39,7 @@
             // 
             this.btnClosedTxn.BackColor = System.Drawing.Color.Aqua;
             this.btnClosedTxn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClosedTxn.Location = new System.Drawing.Point(92, 21);
+            this.btnClosedTxn.Location = new System.Drawing.Point(193, 13);
             this.btnClosedTxn.Name = "btnClosedTxn";
             this.btnClosedTxn.Size = new System.Drawing.Size(229, 84);
             this.btnClosedTxn.TabIndex = 5;
@@ -71,7 +71,7 @@
             // lblDetails
             // 
             this.lblDetails.AutoSize = true;
-            this.lblDetails.Location = new System.Drawing.Point(25, 122);
+            this.lblDetails.Location = new System.Drawing.Point(22, 108);
             this.lblDetails.Name = "lblDetails";
             this.lblDetails.Size = new System.Drawing.Size(113, 13);
             this.lblDetails.TabIndex = 24;

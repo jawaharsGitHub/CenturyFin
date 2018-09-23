@@ -43,6 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblOutStanding = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +105,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(543, 76);
+            this.label3.Location = new System.Drawing.Point(528, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 13);
             this.label3.TabIndex = 21;
@@ -182,10 +183,20 @@
             this.label5.TabIndex = 26;
             this.label5.Text = "OutStanding Money";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1133, 171);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 30;
+            this.label6.Text = "label6";
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblTotalAsset);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblOutStanding);
@@ -227,5 +238,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblOutStanding;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -190,7 +190,8 @@ namespace CenturyFinCorpApp
             var multipleCount = activeCus.Where(w => w.Count > 1);
 
             lblDetails.Text = $"Single Collection Spot {singleCount.Count()} ({singleCount.Sum(s => s.Amount)}) {Environment.NewLine} " +
-                $"Total Collection Spot {multipleCount.Count()} ({multipleCount.Sum(s => s.Amount)})";
+                $"Multi Collection Spot {multipleCount.Count()} ({multipleCount.Sum(s => s.Amount)}) {Environment.NewLine}" +
+                $"Total Spots {singleCount.Count() + multipleCount.Count()} ({singleCount.Sum(s => s.Amount) + multipleCount.Sum(s => s.Amount)})";
 
 
         }

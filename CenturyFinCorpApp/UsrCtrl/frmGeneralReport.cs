@@ -36,9 +36,10 @@ namespace CenturyFinCorpApp.UsrCtrl
 
         private void ShowRemaingDays()
         {
-            
 
-            label1.Text = $"Remaining Days to start next month cycle: {DateHelper.RemaingDaysToNextCycle}";
+            var data = DateHelper.RemaingDaysToNextCycle;
+
+            label1.Text = $"Remaining Days to start next month ({data.MonthName}) cycle: {data.NoOfDays}";
             label2.Text = $"Remaining Days in this month: {DateHelper.RemaingDaysOfMonth}";
         }
 
@@ -153,7 +154,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             lblActual.Text = $"Actual :  {actual.ToMoney()} (Per Month: { (actual / DateTime.Today.Month).ToMoney()})";
             lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / DateTime.Today.Month).ToMoney()})";
             lblTotal.Text = $"TOTAL : {total.ToMoney()} (Per Month: { (total / DateTime.Today.Month).ToMoney()})";
-            
+
             lblSalary.Text = $"Salary : {salary}";
             lblSalary.Visible = considerSalary;
 
@@ -182,7 +183,13 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             dgvNotePerMonth.DataSource = customers;
 
-            
+            label6.Text = $"LA: {customers.Sum(s => s.LoanAmount).ToMoney()} {Environment.NewLine}" +
+                $"GA: {customers.Sum(s => s.GivenAmount).ToMoney()} {Environment.NewLine}" +
+                $"FA: {customers.Sum(s => s.FutureInterest).ToMoney()} {Environment.NewLine}" +
+                $"C: {customers.Sum(s => s.Count)} {Environment.NewLine}";
+
+
+
 
 
         }

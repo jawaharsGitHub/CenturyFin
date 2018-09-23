@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Common.ExtensionMethod
 {
@@ -51,9 +52,24 @@ namespace Common.ExtensionMethod
 
         }
 
-        public static string TokFormat(this int value)
+        public static string TokFormat(this decimal? value)
         {
-            return string.Format("{0:n0}", value);
+            int number = Convert.ToInt32(value);
+
+            return number.TokFormat();
+
+        }
+
+        public static string TokFormat(this int number)
+        {
+            NumberFormatInfo nfo = new NumberFormatInfo();
+            nfo.CurrencyGroupSeparator = ",";
+            nfo.CurrencyNegativePattern = Convert.ToInt16(number < 0);
+            // you are interested in this part of controlling the group sizes
+            nfo.CurrencyGroupSizes = new int[] { 3, 2 };
+            nfo.CurrencySymbol = ""; // "Rs.";
+
+            return number.ToString("c0", nfo); // prints 1,50,00,000
         }
 
         public static T NextOf<T>(this IList<T> list, T item)

@@ -92,7 +92,17 @@ namespace CenturyFinCorpApp
 
             var cus = from c in Customer.GetAllCustomer()
                       where c.AmountGivenDate.Value.Date <= chooseDate.Date && (c.ClosedDate == null || c.ClosedDate.Value.Date >= chooseDate.Date)
-                      select new { c.CustomerSeqNumber, c.Name, c.IsActive, c.Interest, c.LoanAmount, c.CustomerId, c.AmountGivenDate };
+                      select new
+                      {
+                          c.CustomerSeqNumber,
+                          c.Name,
+                          CS = c.CollectionSpotId,
+                          c.IsActive,
+                          c.Interest,
+                          c.LoanAmount,
+                          c.CustomerId,
+                          c.AmountGivenDate
+                      };
 
             var result = new List<CustomerDailyTxn>();
 
@@ -106,6 +116,7 @@ namespace CenturyFinCorpApp
                               TransactionId = t.TransactionId,
                               TxnDate = t.TxnDate,
                               CustomerName = c.Name,
+                              CSId = c.CS,
                               AmountReceived = t.AmountReceived,
                               Balance = t.Balance,
                               CustomerId = c.CustomerId,
@@ -124,10 +135,12 @@ namespace CenturyFinCorpApp
             label1.Text = $"Total Collection is: {amountReceived.ToMoney()}";
             label2.Text = $"{result.Count(c => c.AmountReceived > 0)} (Rs.{amountReceived.ToMoney()}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection.ToMoney()}) {Environment.NewLine}" +
                 $"CLOSED:{result.Count(c => c.Balance == 0)} NEW. {result.Count(c => c.AmountReceived == 0)}";
-            
+
 
             dataGridView1.DataSource = result;
             dataGridView1.Columns["AmountReceived"].ReadOnly = false;
+
+            lblCollSpot.Text = $"Went to {result.GroupBy(g => g.CSId).Count()} place to collect?";
 
             return ExpectedCollection;
         }
