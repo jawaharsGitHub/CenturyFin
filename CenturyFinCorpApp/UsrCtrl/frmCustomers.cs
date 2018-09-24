@@ -131,6 +131,7 @@ namespace CenturyFinCorpApp
         {
             dataGridView1.Columns["ModifiedDate"].Visible = false;
             dataGridView1.Columns["PhoneNumber"].Visible = false;
+            dataGridView1.Columns["IdAndName"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
             dataGridView1.Columns["ReturnType"].Visible = show;

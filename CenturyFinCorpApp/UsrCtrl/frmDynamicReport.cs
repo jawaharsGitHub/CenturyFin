@@ -152,7 +152,8 @@ namespace CenturyFinCorpApp
                              {
                                  Spot = cus.Where(w => w.CustomerId == newGroup.Key).First().Name,
                                  Count = newGroup.Count(),
-                                 Amount = newGroup.Sum(s => (s.LoanAmount / 100))
+                                 Amount = newGroup.Sum(s => (s.LoanAmount / 100)),
+                                 Customers = string.Join($", {Environment.NewLine}", newGroup.Select(i => $"{i.CustomerId}-{i.Name}" ))
                              }).OrderByDescending(o => o.Count);
 
             //try

@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.ExtensionMethod;
 using DataAccess.ExtendedTypes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,9 @@ namespace DataAccess.PrimaryTypes
             set { _returnDay = value; }
         }
         public DateTime? ModifiedDate { get; set; }
+
+        [JsonIgnore]
+        public string IdAndName => $"{CustomerId}-{Name}";
 
 
         public static void AddCustomer(Customer newCustomer)

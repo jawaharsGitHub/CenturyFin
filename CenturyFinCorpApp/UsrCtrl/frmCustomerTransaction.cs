@@ -62,7 +62,7 @@ namespace CenturyFinCorpApp
 
             cmbCollectionSpot.DataSource = Customer.GetAllUniqueCustomers();
             cmbCollectionSpot.ValueMember = "CustomerId";
-            cmbCollectionSpot.DisplayMember = "Name";
+            cmbCollectionSpot.DisplayMember = "IdAndName";
 
 
             cmbReturnType.SelectedItem = customer.ReturnType;
