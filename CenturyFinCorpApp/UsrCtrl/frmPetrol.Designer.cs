@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dgvPetrol = new System.Windows.Forms.DataGridView();
+            this.lblAvgKm = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPetrol)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,20 +41,33 @@
             this.dgvPetrol.Size = new System.Drawing.Size(555, 338);
             this.dgvPetrol.TabIndex = 20;
             // 
+            // lblAvgKm
+            // 
+            this.lblAvgKm.AutoSize = true;
+            this.lblAvgKm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvgKm.Location = new System.Drawing.Point(248, 63);
+            this.lblAvgKm.Name = "lblAvgKm";
+            this.lblAvgKm.Size = new System.Drawing.Size(152, 24);
+            this.lblAvgKm.TabIndex = 21;
+            this.lblAvgKm.Text = "[Avg km Per day]";
+            // 
             // frmPetrol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblAvgKm);
             this.Controls.Add(this.dgvPetrol);
             this.Name = "frmPetrol";
             this.Size = new System.Drawing.Size(958, 654);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPetrol)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dgvPetrol;
+        private System.Windows.Forms.Label lblAvgKm;
     }
 }
