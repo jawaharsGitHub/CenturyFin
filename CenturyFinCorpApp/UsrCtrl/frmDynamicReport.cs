@@ -140,10 +140,10 @@ namespace CenturyFinCorpApp
         {
 
             var cus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
-            cus.ForEach(c =>
-            {
-                if (c.CollectionSpotId == 0) c.CollectionSpotId = c.CustomerId;
-            });
+            //cus.ForEach(c =>
+            //{
+            //    if (c.CollectionSpotId == 0) c.CollectionSpotId = c.CustomerId;
+            //});
 
             // get all active customers
             var activeCus = (from c in cus

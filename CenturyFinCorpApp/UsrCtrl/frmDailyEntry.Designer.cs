@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.lblOutStanding = new System.Windows.Forms.Label();
             this.chkNotGivenCustomer = new System.Windows.Forms.CheckBox();
             this.dgvAllDailyCollection = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
@@ -106,15 +105,6 @@
             this.button2.Text = "Show InHand";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // lblOutStanding
-            // 
-            this.lblOutStanding.AutoSize = true;
-            this.lblOutStanding.Location = new System.Drawing.Point(560, 16);
-            this.lblOutStanding.Name = "lblOutStanding";
-            this.lblOutStanding.Size = new System.Drawing.Size(86, 13);
-            this.lblOutStanding.TabIndex = 11;
-            this.lblOutStanding.Text = "OUTSTANDING";
             // 
             // chkNotGivenCustomer
             // 
@@ -204,7 +194,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvAllDailyCollection);
             this.Controls.Add(this.chkNotGivenCustomer);
-            this.Controls.Add(this.lblOutStanding);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -229,7 +218,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label lblOutStanding;
         private System.Windows.Forms.CheckBox chkNotGivenCustomer;
         private System.Windows.Forms.DataGridView dgvAllDailyCollection;
         private System.Windows.Forms.Label label3;

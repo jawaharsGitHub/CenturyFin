@@ -67,7 +67,7 @@ namespace CenturyFinCorpApp
 
             cmbReturnType.SelectedItem = customer.ReturnType;
             cmbReturnDay.SelectedItem = customer.ReturnDay;
-            cmbCollectionSpot.SelectedValue = customer.CollectionSpotId == 0 ? customer.CustomerId : customer.CollectionSpotId;
+            cmbCollectionSpot.SelectedValue = customer.CollectionSpotId;
 
             this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
             this.cmbReturnDay.SelectedIndexChanged += new System.EventHandler(this.cmbReturnDay_SelectedIndexChanged);

@@ -11,7 +11,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 {
     public partial class frmGeneralReport : UserControl
     {
-        int outstandingMoney = 0;
+        (int actual, int includesProfit) outstandingMoney;
 
         public frmGeneralReport()
         {
@@ -185,7 +185,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             label6.Text = $"LA: {customers.Sum(s => s.LoanAmount).ToMoney()} {Environment.NewLine}" +
                 $"GA: {customers.Sum(s => s.GivenAmount).ToMoney()} {Environment.NewLine}" +
-                $"FA: {customers.Sum(s => s.FutureInterest).ToMoney()} {Environment.NewLine}" +
+                $"FI: {customers.Sum(s => s.FutureInterest).ToMoney()} {Environment.NewLine}" +
                 $"C: {customers.Sum(s => s.Count)} {Environment.NewLine}";
 
 
@@ -197,13 +197,13 @@ namespace CenturyFinCorpApp.UsrCtrl
         private void ShowOutstandingMoney()
         {
             outstandingMoney = Transaction.GetAllOutstandingAmount();
-            lblOutStanding.Text = outstandingMoney.ToMoney();
+            lblOutStanding.Text = outstandingMoney.includesProfit.ToMoney();
         }
 
         private void ShowTotalAssetMoney()
         {
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
-            lblTotalAsset.Text = $"{(outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()})";
+            lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
         }
     }
 }

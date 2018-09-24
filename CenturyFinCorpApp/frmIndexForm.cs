@@ -304,8 +304,8 @@ namespace CenturyFinCorpApp
 
         private int TotalAssets()
         {
-
-            var assets = (Transaction.GetAllOutstandingAmount() + InHandAndBank.GetAllhandMoney().InHandAmount) - GetAllExpenditure();
+            var os = Transaction.GetAllOutstandingAmount();
+            var assets = (os.includesProfit + InHandAndBank.GetAllhandMoney().InHandAmount) - GetAllExpenditure();
             btnTotalAssets.Text = $"Total Assets Amount: {Environment.NewLine}{assets }";
             return assets;
 
@@ -350,7 +350,7 @@ namespace CenturyFinCorpApp
 
         private void Outstanding()
         {
-            int outStanding = Transaction.GetAllOutstandingAmount();
+            int outStanding = Transaction.GetAllOutstandingAmount().includesProfit;
             btnOutstanding.Text = $"OutStanding Amount: {Environment.NewLine}{outStanding}";
 
         }

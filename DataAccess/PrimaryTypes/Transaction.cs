@@ -378,7 +378,7 @@ namespace DataAccess.PrimaryTypes
             return data;
         }
 
-        public static int GetAllOutstandingAmount()
+        public static (int actual, int includesProfit) GetAllOutstandingAmount()
         {
             try
             {
@@ -386,8 +386,8 @@ namespace DataAccess.PrimaryTypes
 
                 if (list == null)
                 {
-                    var customersOutstanding = (Customer.GetAllCustomer() ?? new List<Customer>()).Where(w => w.IsActive).Sum(s => s.LoanAmount);
-                    return customersOutstanding;
+                    var customersOutstanding = (Customer.GetAllCustomer() ?? new List<Customer>()).Where(w => w.IsActive);
+                    return (customersOutstanding.Sum(s => s.LoanAmount - s.Interest), customersOutstanding.Sum(s => s.LoanAmount));
                 }
 
                 // This needs to validate.
@@ -404,10 +404,18 @@ namespace DataAccess.PrimaryTypes
                                   t.CustomerId
                               }
                               orderby c.AmountGivenDate
-                              select new { c.Name, c.AmountGivenDate, c.CustomerSeqNumber, c.CustomerId, t.Balance, c.LoanAmount, t.TransactionId }).ToList();
+                              select new {
+                                  c.Name,
+                                  c.AmountGivenDate,
+                                  c.CustomerSeqNumber,
+                                  c.CustomerId,
+                                  t.Balance,
+                                  c.LoanAmount,
+                                  c.Interest,
+                                  t.TransactionId }).ToList();
 
 
-                return result.Sum(s => s.Balance);
+                return (result.Sum(s => s.Balance - s.Interest), result.Sum(s => s.Balance));
 
             }
             catch (Exception ex)

@@ -29,7 +29,7 @@ namespace CenturyFinCorpApp
             LoadDailyCollection(dateTimePicker1.Value, true);
             LoadAllHsitoryDailyCollections();
 
-            lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
+            //lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
             AdjustColumnOrder();
 
         }
