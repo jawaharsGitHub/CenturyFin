@@ -13,5 +13,6 @@ namespace DataAccess.ExtendedTypes
         public DateTime TxnDate { get; set; }
         public int CustomerId { get; set; }
         public int CustomerSeqId { get; set; }
+        public int Interest { get; set; }
     }
 }

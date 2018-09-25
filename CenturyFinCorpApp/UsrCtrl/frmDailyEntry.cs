@@ -72,6 +72,7 @@ namespace CenturyFinCorpApp
         {
             dataGridView1.Columns["CustomerId"].Visible = false;
             dataGridView1.Columns["CustomerSeqId"].Visible = false;
+            dataGridView1.Columns["Interest"].Visible = false;
             dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
@@ -120,7 +121,8 @@ namespace CenturyFinCorpApp
                               AmountReceived = t.AmountReceived,
                               Balance = t.Balance,
                               CustomerId = c.CustomerId,
-                              CustomerSeqId = c.CustomerSeqNumber
+                              CustomerSeqId = c.CustomerSeqNumber,
+                              Interest = c.Interest
                           }).Distinct().ToList();
             }
 
@@ -134,7 +136,7 @@ namespace CenturyFinCorpApp
 
             label1.Text = $"Total Collection is: {amountReceived.ToMoney()}";
             label2.Text = $"{result.Count(c => c.AmountReceived > 0)} (Rs.{amountReceived.ToMoney()}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection.ToMoney()}) {Environment.NewLine}" +
-                $"CLOSED:{result.Count(c => c.Balance == 0)} NEW. {result.Count(c => c.AmountReceived == 0)}";
+                $"CLOSED:{result.Count(c => c.Balance == 0)} ({result.Where(w => w.Balance == 0).Sum(s => s.Interest)}) NEW. {result.Count(c => c.AmountReceived == 0)}";
 
 
             dataGridView1.DataSource = result;
