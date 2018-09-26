@@ -203,7 +203,7 @@ namespace DataAccess.PrimaryTypes
             try
             {
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
-                return list.Distinct().ToList();
+                return list.DistinctBy(d => d.CustomerId).ToList();
             }
             catch (Exception ex)
             {
