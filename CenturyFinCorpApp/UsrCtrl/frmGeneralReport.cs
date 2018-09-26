@@ -84,11 +84,11 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                 f.ToList().ForEach(d =>
                 {
-                    var existData = finalData.Where(w => w.Month == Convert.ToDateTime(d.ClosedDate).ToString("Y")).FirstOrDefault();
+                    var existData = finalData.Where(w => w.MonthYear == Convert.ToDateTime(d.ClosedDate).ToString("Y")).FirstOrDefault();
 
                     if (existData == null) // Not exist
                     {
-                        existData = new IncomeReport() { Month = Convert.ToDateTime(d.ClosedDate).ToString("Y") };
+                        existData = new IncomeReport() { MonthYear = Convert.ToDateTime(d.ClosedDate).ToString("Y") };
                         finalData.Add(existData);
                     }
 
@@ -105,17 +105,23 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             finalData.Insert(0, new IncomeReport()
             {
-                Month = "Feb 2018",
+                MonthYear = "Feb 2018",
                 ActualIncome = 0
             });
 
             // Move past month expected to current month expected.
             var pastMonthExpectedIncome = (from pm in finalData
-                                           where Convert.ToDateTime(pm.Month).Month < DateTime.Now.Month
+                                           where (Convert.ToDateTime(pm.MonthYear).Month < DateTime.Now.Month && Convert.ToDateTime(pm.MonthYear).Year == DateTime.Now.Year)
                                            select pm);
 
 
-            var currentMonthExpectedIncome = finalData.Where(w => Convert.ToDateTime(w.Month).Month == DateTime.Now.Month).FirstOrDefault();
+            // TODO: Need generic fix for this calculation!!!!
+            var currentMonthExpectedIncome = (from d in finalData
+                                              where
+                                              (Convert.ToDateTime(d.MonthYear).Year == DateTime.Now.Year && Convert.ToDateTime(d.MonthYear).Month < DateTime.Now.Month)
+                                              || (Convert.ToDateTime(d.MonthYear).Year < DateTime.Now.Year)
+                                              select d).FirstOrDefault();
+
             if (currentMonthExpectedIncome != null) currentMonthExpectedIncome.ExpectedIncome += pastMonthExpectedIncome.Sum(s => s.ExpectedIncome);
 
             pastMonthExpectedIncome.ToList().ForEach(f => f.ExpectedIncome = 0);
@@ -125,7 +131,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             {
                 finalData.ForEach(fd =>
                 {
-                    if (Convert.ToDateTime(fd.Month).Month == 2)
+                    if (Convert.ToDateTime(fd.MonthYear).Month == 2 && Convert.ToDateTime(fd.MonthYear).Year == 2018)
                     {
                         fd.ActualIncome = (fd.ExpectedIncome - fd.MonthlySalary); // Always fr feb, actualincome is -salary
                     }
