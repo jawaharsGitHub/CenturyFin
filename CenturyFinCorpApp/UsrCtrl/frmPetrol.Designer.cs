@@ -36,16 +36,16 @@
             // dgvPetrol
             // 
             this.dgvPetrol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPetrol.Location = new System.Drawing.Point(164, 124);
+            this.dgvPetrol.Location = new System.Drawing.Point(20, 59);
             this.dgvPetrol.Name = "dgvPetrol";
-            this.dgvPetrol.Size = new System.Drawing.Size(555, 338);
+            this.dgvPetrol.Size = new System.Drawing.Size(678, 605);
             this.dgvPetrol.TabIndex = 20;
             // 
             // lblAvgKm
             // 
             this.lblAvgKm.AutoSize = true;
             this.lblAvgKm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvgKm.Location = new System.Drawing.Point(248, 63);
+            this.lblAvgKm.Location = new System.Drawing.Point(704, 73);
             this.lblAvgKm.Name = "lblAvgKm";
             this.lblAvgKm.Size = new System.Drawing.Size(152, 24);
             this.lblAvgKm.TabIndex = 21;
@@ -58,7 +58,7 @@
             this.Controls.Add(this.lblAvgKm);
             this.Controls.Add(this.dgvPetrol);
             this.Name = "frmPetrol";
-            this.Size = new System.Drawing.Size(958, 654);
+            this.Size = new System.Drawing.Size(1284, 702);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPetrol)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

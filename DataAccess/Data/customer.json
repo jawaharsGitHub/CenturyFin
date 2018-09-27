@@ -999,9 +999,9 @@
     "LoanAmount": 10000,
     "Interest": 800,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-07-10T00:00:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-09-26T21:44:18.4047465-04:00",
     "ReturnType": 0,
     "CollectionSpotId": 46,
     "ReturnDay": null,
@@ -2749,6 +2749,22 @@
     "ReturnType": 0,
     "CollectionSpotId": 46,
     "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 178,
+    "CustomerId": 107,
+    "Name": "Muneeswaran - Ilamanur",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-26T21:50:30.0664009-04:00",
+    "ClosedDate": null,
+    "ReturnType": 2,
+    "CollectionSpotId": 3,
+    "ReturnDay": 3,
     "ModifiedDate": null
   }
 ]
