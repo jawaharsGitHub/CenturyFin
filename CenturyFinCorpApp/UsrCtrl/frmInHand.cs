@@ -53,6 +53,8 @@ namespace CenturyFinCorpApp
 
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.TokFormat();
             btnTodayInHand.Text = dailyTxn.TodayInHand.TokFormat();
+
+            lblCanGive.Text = $"Actually we can give - {(dailyTxn.TodayInHand / 4500) * 5000} {Environment.NewLine}with extra {(dailyTxn.TodayInHand % 4500)}";
             btnInBank.Text = dailyTxn.InBank.TokFormat();
             btnTmrWanted.Text = (dailyTxn.TomorrowDiff > 0) ? dailyTxn.TomorrowDiff.ToString() : $"0 --- (Have Extra {Math.Abs(Convert.ToInt32(dailyTxn.TomorrowDiff))} )";
             btnTmrWanted.BackColor = (dailyTxn.TomorrowDiff > 0) ? Color.Red : Color.Green;

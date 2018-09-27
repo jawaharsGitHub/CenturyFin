@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblCanGive = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.btnCollection = new System.Windows.Forms.Button();
@@ -41,8 +42,10 @@
             this.txtInterest = new System.Windows.Forms.TextBox();
             this.txtGivenAmount = new System.Windows.Forms.TextBox();
             this.txtTmrNeeded = new System.Windows.Forms.TextBox();
+            this.btnTodayInHand = new System.Windows.Forms.Button();
             this.txtOpened = new System.Windows.Forms.TextBox();
             this.txtClosed = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.txtTakenFromBank = new System.Windows.Forms.TextBox();
             this.txtBankTxnOut = new System.Windows.Forms.TextBox();
             this.txtSentFromUSA = new System.Windows.Forms.TextBox();
@@ -58,10 +61,8 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.btnTodayInHand = new System.Windows.Forms.Button();
             this.btnInBank = new System.Windows.Forms.Button();
             this.btnTmrWanted = new System.Windows.Forms.Button();
             this.btnYesterdayInHand = new System.Windows.Forms.Button();
@@ -78,6 +79,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblCanGive);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.btnCollection);
@@ -112,6 +114,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // lblCanGive
+            // 
+            this.lblCanGive.AutoSize = true;
+            this.lblCanGive.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lblCanGive.Location = new System.Drawing.Point(370, 295);
+            this.lblCanGive.Name = "lblCanGive";
+            this.lblCanGive.Size = new System.Drawing.Size(54, 13);
+            this.lblCanGive.TabIndex = 30;
+            this.lblCanGive.Text = "[CanGive]";
             // 
             // label20
             // 
@@ -212,6 +224,17 @@
             this.txtTmrNeeded.Size = new System.Drawing.Size(100, 20);
             this.txtTmrNeeded.TabIndex = 10;
             // 
+            // btnTodayInHand
+            // 
+            this.btnTodayInHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTodayInHand.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnTodayInHand.Location = new System.Drawing.Point(373, 162);
+            this.btnTodayInHand.Name = "btnTodayInHand";
+            this.btnTodayInHand.Size = new System.Drawing.Size(164, 112);
+            this.btnTodayInHand.TabIndex = 15;
+            this.btnTodayInHand.Text = "button1";
+            this.btnTodayInHand.UseVisualStyleBackColor = true;
+            // 
             // txtOpened
             // 
             this.txtOpened.Location = new System.Drawing.Point(153, 380);
@@ -225,6 +248,16 @@
             this.txtClosed.Name = "txtClosed";
             this.txtClosed.Size = new System.Drawing.Size(100, 20);
             this.txtClosed.TabIndex = 8;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.label10.Location = new System.Drawing.Point(421, 139);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "TodayInHand";
             // 
             // txtTakenFromBank
             // 
@@ -356,16 +389,6 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "InBank";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label10.Location = new System.Drawing.Point(421, 139);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "TodayInHand";
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -381,17 +404,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 0;
-            // 
-            // btnTodayInHand
-            // 
-            this.btnTodayInHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTodayInHand.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnTodayInHand.Location = new System.Drawing.Point(373, 162);
-            this.btnTodayInHand.Name = "btnTodayInHand";
-            this.btnTodayInHand.Size = new System.Drawing.Size(164, 112);
-            this.btnTodayInHand.TabIndex = 15;
-            this.btnTodayInHand.Text = "button1";
-            this.btnTodayInHand.UseVisualStyleBackColor = true;
             // 
             // btnInBank
             // 
@@ -573,5 +585,6 @@
         private System.Windows.Forms.Label lblDate2;
         private System.Windows.Forms.Button btnPrevDay;
         private System.Windows.Forms.Button btnNextDay;
+        private System.Windows.Forms.Label lblCanGive;
     }
 }
