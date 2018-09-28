@@ -1623,9 +1623,9 @@
     "LoanAmount": 5000,
     "Interest": 500,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-07-18T13:07:51",
-    "ClosedDate": null,
+    "ClosedDate": "2018-09-27T21:49:57.1927382-04:00",
     "ReturnType": 0,
     "CollectionSpotId": 12,
     "ReturnDay": null,
@@ -2076,7 +2076,7 @@
     "ClosedDate": null,
     "ReturnType": 2,
     "CollectionSpotId": 91,
-    "ReturnDay": 4,
+    "ReturnDay": 5,
     "ModifiedDate": null
   },
   {
@@ -2378,9 +2378,9 @@
     "IsActive": true,
     "AmountGivenDate": "2018-09-01T22:20:54.8857974-04:00",
     "ClosedDate": null,
-    "ReturnType": 0,
+    "ReturnType": 2,
     "CollectionSpotId": 97,
-    "ReturnDay": null,
+    "ReturnDay": 5,
     "ModifiedDate": null
   },
   {
@@ -2674,7 +2674,7 @@
   {
     "CustomerSeqNumber": 173,
     "CustomerId": 105,
-    "Name": "Sekar - Murugan Canteen",
+    "Name": "Sekar Murugan Canteen",
     "PhoneNumber": "",
     "LoanAmount": 20000,
     "Interest": 2000,
@@ -2765,6 +2765,38 @@
     "ReturnType": 2,
     "CollectionSpotId": 3,
     "ReturnDay": 3,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 179,
+    "CustomerId": 74,
+    "Name": "Sabi Bai",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-27T21:57:56.7337484-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 51,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 180,
+    "CustomerId": 108,
+    "Name": "Senthil Kumar Sarojini Maligai Market Sriram Agency Appa",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-09-27T21:58:29.8433208-04:00",
+    "ClosedDate": null,
+    "ReturnType": 2,
+    "CollectionSpotId": 97,
+    "ReturnDay": 5,
     "ModifiedDate": null
   }
 ]

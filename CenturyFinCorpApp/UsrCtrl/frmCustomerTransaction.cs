@@ -36,6 +36,7 @@ namespace CenturyFinCorpApp
 
             btnLoan.Text = $"LOAN :  {customer.LoanAmount}";
             btnBalance.Text = $"BALANCE :  {_balance}";
+            btnInterest.Text = $"INTEREST :  {customer.Interest}";
             var closedText = (_balance == 0) ? "(CLOSED)" : string.Empty;
 
 
