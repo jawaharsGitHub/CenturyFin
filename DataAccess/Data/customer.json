@@ -1703,9 +1703,9 @@
     "LoanAmount": 30000,
     "Interest": 3000,
     "IsExistingCustomer": false,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-07-21T11:55:02",
-    "ClosedDate": null,
+    "ClosedDate": "2018-10-02T12:04:34.1592648-04:00",
     "ReturnType": 0,
     "CollectionSpotId": 78,
     "ReturnDay": null,
@@ -2813,6 +2813,22 @@
     "ReturnType": 2,
     "CollectionSpotId": 105,
     "ReturnDay": 2,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 182,
+    "CustomerId": 78,
+    "Name": "Setu Baseer Market",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-02T12:05:30.7053814-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 78,
+    "ReturnDay": null,
     "ModifiedDate": null
   }
 ]
