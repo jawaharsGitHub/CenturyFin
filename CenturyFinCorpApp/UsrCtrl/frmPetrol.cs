@@ -27,8 +27,10 @@ namespace CenturyFinCorpApp.UsrCtrl
             var data = BaseClass.ReadFileAsObjects<Petrol>(Petrol.JsonFilePath).OrderBy(o => o.Date).ToList(); ;
             dgvPetrol.DataSource = data;
 
-            var firstDate = data.First(f => f.Speedometer > 0);
-            var lastDate = data.Last(f => f.Speedometer > 0);
+            var firstDate = data.FirstOrDefault(f => f.Speedometer > 0);
+            var lastDate = data.LastOrDefault(f => f.Speedometer > 0);
+
+            if (firstDate == null || lastDate == null) return;
 
             var totalRunKm = lastDate.Speedometer - firstDate.Speedometer;
 

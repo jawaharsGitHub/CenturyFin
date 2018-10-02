@@ -346,6 +346,7 @@
     <None Include="Data\InHandAndBank.json" />
     <None Include="Data\Investment.json" />
     <None Include="Data\PersonalOutstanding.json" />
+    <None Include="Data\OldPetrol.json" />
     <None Include="Data\Petrol.json" />
     <None Include="Data\transaction.json" />
     <None Include="packages.config">
