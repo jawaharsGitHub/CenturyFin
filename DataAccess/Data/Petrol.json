@@ -1,9 +1,16 @@
 ﻿[
   {
     "Date": "2018-10-01T00:00:00",
-    "Amount": 188,
-    "PetrolPrice": 88.35,
-    "Volume": 1.15,
+    "Amount": 178,
+    "PetrolPrice": 166,
+    "Volume": 2.15,
     "Speedometer": 0
+  },
+  {
+    "Date": "2018-10-02T00:00:00",
+    "Amount": 0,
+    "PetrolPrice": 0,
+    "Volume": 0,
+    "Speedometer": 59
   }
 ]
