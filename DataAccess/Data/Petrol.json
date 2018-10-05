@@ -2,15 +2,15 @@
   {
     "Date": "2018-10-01T00:00:00",
     "Amount": 178,
-    "PetrolPrice": 166,
+    "PetrolPrice": 88.35,
     "Volume": 2.15,
     "Speedometer": 0
   },
   {
     "Date": "2018-10-02T00:00:00",
-    "Amount": 0,
-    "PetrolPrice": 0,
-    "Volume": 0,
+    "Amount": 100,
+    "PetrolPrice": 88.35,
+    "Volume": 1.15,
     "Speedometer": 59
   },
   {
@@ -19,5 +19,12 @@
     "PetrolPrice": 0,
     "Volume": 0,
     "Speedometer": 80
+  },
+  {
+    "Date": "2018-10-04T00:00:00",
+    "Amount": 200,
+    "PetrolPrice": 88.69,
+    "Volume": 2.26,
+    "Speedometer": 138
   }
 ]
