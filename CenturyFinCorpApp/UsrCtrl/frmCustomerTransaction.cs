@@ -343,6 +343,7 @@ namespace CenturyFinCorpApp
                     if (nextTxn != null && nextTxn.Balance != (t.Balance - nextTxn.AmountReceived))
                     {
                         nextTxn.Balance = (t.Balance - nextTxn.AmountReceived);
+                        nextTxn.IsClosed = _isClosedTx;
                         Transaction.CorrectTransactionData(nextTxn);
                     }
                 }
