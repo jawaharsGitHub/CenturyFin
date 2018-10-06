@@ -2676,8 +2676,8 @@
     "CustomerId": 105,
     "Name": "Sekar Murugan Canteen",
     "PhoneNumber": "",
-    "LoanAmount": 20000,
-    "Interest": 2000,
+    "LoanAmount": 40000,
+    "Interest": 4000,
     "IsExistingCustomer": false,
     "IsActive": true,
     "AmountGivenDate": "2018-09-20T22:01:48.647722-04:00",
@@ -2797,22 +2797,6 @@
     "ReturnType": 2,
     "CollectionSpotId": 97,
     "ReturnDay": 5,
-    "ModifiedDate": null
-  },
-  {
-    "CustomerSeqNumber": 181,
-    "CustomerId": 109,
-    "Name": "Selvi Collectorate Canteen",
-    "PhoneNumber": "",
-    "LoanAmount": 20000,
-    "Interest": 2000,
-    "IsExistingCustomer": false,
-    "IsActive": true,
-    "AmountGivenDate": "2018-10-01T22:03:35.6785717-04:00",
-    "ClosedDate": null,
-    "ReturnType": 2,
-    "CollectionSpotId": 105,
-    "ReturnDay": 2,
     "ModifiedDate": null
   },
   {
