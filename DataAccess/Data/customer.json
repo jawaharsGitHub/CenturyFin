@@ -1224,7 +1224,7 @@
     "Interest": 1600,
     "IsExistingCustomer": false,
     "IsActive": false,
-    "AmountGivenDate": "2018-05-05T00:00:00",
+    "AmountGivenDate": "2018-05-04T00:00:00",
     "ClosedDate": "2018-08-22T00:00:00",
     "ReturnType": 0,
     "CollectionSpotId": 8,
@@ -2876,6 +2876,22 @@
     "ClosedDate": null,
     "ReturnType": 0,
     "CollectionSpotId": 111,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 186,
+    "CustomerId": 112,
+    "Name": "anwar - t master",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-05T22:09:29.3476233-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 112,
     "ReturnDay": null,
     "ModifiedDate": null
   }
