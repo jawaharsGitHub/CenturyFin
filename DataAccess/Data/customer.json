@@ -2894,5 +2894,21 @@
     "CollectionSpotId": 113,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 188,
+    "CustomerId": 65,
+    "Name": "Seeni Bharathi Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-08T22:14:57.1516482-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 65,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
