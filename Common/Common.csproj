@@ -68,7 +68,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="PL file\Aug 3rd Data.docx" />
     <None Include="PL file\Career Knowledge_Latest.ods" />
     <None Include="PL file\CLOSED NOTES.ods" />
     <None Include="PL file\ManualTxn.ods" />
@@ -76,10 +75,7 @@
     <None Include="PL file\RUNNING NOTES.ods" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PL file\balance mismatch.txt" />
     <Content Include="PL file\BT- Credits.txt" />
-    <Content Include="PL file\doubts.txt" />
-    <Content Include="PL file\Manikandan Closed details..txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
