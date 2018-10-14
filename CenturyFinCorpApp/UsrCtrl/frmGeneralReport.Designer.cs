@@ -47,6 +47,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblBizAsset = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.lblCloseCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -56,7 +57,7 @@
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIncome.Location = new System.Drawing.Point(15, 107);
             this.dgvIncome.Name = "dgvIncome";
-            this.dgvIncome.Size = new System.Drawing.Size(445, 405);
+            this.dgvIncome.Size = new System.Drawing.Size(538, 405);
             this.dgvIncome.TabIndex = 0;
             // 
             // lblTotal
@@ -100,7 +101,7 @@
             // dgvNotePerMonth
             // 
             this.dgvNotePerMonth.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNotePerMonth.Location = new System.Drawing.Point(521, 107);
+            this.dgvNotePerMonth.Location = new System.Drawing.Point(592, 107);
             this.dgvNotePerMonth.Name = "dgvNotePerMonth";
             this.dgvNotePerMonth.Size = new System.Drawing.Size(569, 405);
             this.dgvNotePerMonth.TabIndex = 13;
@@ -108,7 +109,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(528, 91);
+            this.label3.Location = new System.Drawing.Point(589, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 13);
             this.label3.TabIndex = 21;
@@ -125,7 +126,7 @@
             // 
             // btnCustomerCount
             // 
-            this.btnCustomerCount.Location = new System.Drawing.Point(1120, 107);
+            this.btnCustomerCount.Location = new System.Drawing.Point(1167, 106);
             this.btnCustomerCount.Name = "btnCustomerCount";
             this.btnCustomerCount.Size = new System.Drawing.Size(145, 23);
             this.btnCustomerCount.TabIndex = 23;
@@ -135,7 +136,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(518, 519);
+            this.label2.Location = new System.Drawing.Point(589, 515);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 24;
@@ -153,7 +154,7 @@
             // lblTotalAsset
             // 
             this.lblTotalAsset.AutoSize = true;
-            this.lblTotalAsset.Location = new System.Drawing.Point(647, 45);
+            this.lblTotalAsset.Location = new System.Drawing.Point(708, 45);
             this.lblTotalAsset.Name = "lblTotalAsset";
             this.lblTotalAsset.Size = new System.Drawing.Size(63, 13);
             this.lblTotalAsset.TabIndex = 29;
@@ -162,7 +163,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(518, 45);
+            this.label4.Location = new System.Drawing.Point(579, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 28;
@@ -171,7 +172,7 @@
             // lblOutStanding
             // 
             this.lblOutStanding.AutoSize = true;
-            this.lblOutStanding.Location = new System.Drawing.Point(647, 7);
+            this.lblOutStanding.Location = new System.Drawing.Point(708, 7);
             this.lblOutStanding.Name = "lblOutStanding";
             this.lblOutStanding.Size = new System.Drawing.Size(111, 13);
             this.lblOutStanding.TabIndex = 27;
@@ -180,7 +181,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(518, 7);
+            this.label5.Location = new System.Drawing.Point(579, 7);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(101, 13);
             this.label5.TabIndex = 26;
@@ -189,7 +190,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1133, 171);
+            this.label6.Location = new System.Drawing.Point(1180, 170);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 30;
@@ -198,7 +199,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(518, 67);
+            this.label7.Location = new System.Drawing.Point(579, 67);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(108, 13);
             this.label7.TabIndex = 31;
@@ -207,7 +208,7 @@
             // lblBizAsset
             // 
             this.lblBizAsset.AutoSize = true;
-            this.lblBizAsset.Location = new System.Drawing.Point(648, 26);
+            this.lblBizAsset.Location = new System.Drawing.Point(709, 26);
             this.lblBizAsset.Name = "lblBizAsset";
             this.lblBizAsset.Size = new System.Drawing.Size(53, 13);
             this.lblBizAsset.TabIndex = 33;
@@ -216,16 +217,26 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(519, 26);
+            this.label9.Location = new System.Drawing.Point(580, 26);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 13);
             this.label9.TabIndex = 32;
             this.label9.Text = "Business Asset";
             // 
+            // lblCloseCount
+            // 
+            this.lblCloseCount.AutoSize = true;
+            this.lblCloseCount.Location = new System.Drawing.Point(15, 547);
+            this.lblCloseCount.Name = "lblCloseCount";
+            this.lblCloseCount.Size = new System.Drawing.Size(71, 13);
+            this.lblCloseCount.TabIndex = 34;
+            this.lblCloseCount.Text = "lblCloseCount";
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCloseCount);
             this.Controls.Add(this.lblBizAsset);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
@@ -246,7 +257,7 @@
             this.Controls.Add(this.lblExpected);
             this.Controls.Add(this.chkAddSalary);
             this.Name = "frmGeneralReport";
-            this.Size = new System.Drawing.Size(1286, 560);
+            this.Size = new System.Drawing.Size(1320, 560);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).EndInit();
             this.ResumeLayout(false);
@@ -275,5 +286,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblBizAsset;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblCloseCount;
     }
 }

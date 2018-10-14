@@ -14,5 +14,7 @@ namespace DataAccess.PrimaryTypes
                 return (Convert.ToDateTime(MonthYear).Month >= 6 || Convert.ToDateTime(MonthYear).Year >= 2019) ? 12000 : 10000;
             }
         }
+        public int CloseCount { get; set; }
+
     }
 }

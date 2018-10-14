@@ -125,9 +125,9 @@ namespace CenturyFinCorpApp
             menuStrip.Items.Add(mnuHealth);
             mnuHealth.Click += (s, e) => ShowForm<frmHealth>();
             //Politics
-            var mnuPolitics = new ToolStripMenuItem() { Name = "politics", Text = "POLITICS" };
-            menuStrip.Items.Add(mnuPolitics);
-            mnuPolitics.Click += (s, e) => ShowForm<frmConfig>();
+            var mnuConfigs = new ToolStripMenuItem() { Name = "config", Text = "CONFIGS" };
+            menuStrip.Items.Add(mnuConfigs);
+            mnuConfigs.Click += (s, e) => ShowForm<frmConfig>();
             //Petrol
             var mnuPetrol = new ToolStripMenuItem() { Name = "petrol", Text = "PETROL" };
             menuStrip.Items.Add(mnuPetrol);

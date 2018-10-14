@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CenturyFinCorpApp.UsrCtrl
@@ -54,7 +55,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                                    {
                                        ClosedDate = newGroup.Key,
                                        TotalInterest = newGroup.Sum(s => s.Interest),
-                                       IsExpectedIncome = false
+                                       IsExpectedIncome = false,
+                                       Count = newGroup.Count()
                                    }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
             // Running Account (Expected Income)
@@ -65,7 +67,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                                     {
                                         ClosedDate = (Convert.ToDateTime(newGroup.Key).AddDays(100)).ToShortDateString(), // TODO: it should be group by given data + 100 days not by key(July 2018)
                                         TotalInterest = newGroup.Sum(s => s.Interest),
-                                        IsExpectedIncome = true
+                                        IsExpectedIncome = true,
+                                        Count = newGroup.Count()
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
             // Merge Both result
@@ -78,13 +81,17 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var finalData = new List<IncomeReport>();
 
+            StringBuilder closedDetailForCurrentMonth = new StringBuilder();
+            closedDetailForCurrentMonth.Append($"For {DateTime.Now.ToString("MMMM")}");
 
             data.ForEach(f =>
             {
 
+                IncomeReport existData = null;
+
                 f.ToList().ForEach(d =>
                 {
-                    var existData = finalData.Where(w => w.MonthYear == Convert.ToDateTime(d.ClosedDate).ToString("Y")).FirstOrDefault();
+                    existData = finalData.Where(w => w.MonthYear == Convert.ToDateTime(d.ClosedDate).ToString("Y")).FirstOrDefault();
 
                     if (existData == null) // Not exist
                     {
@@ -93,12 +100,33 @@ namespace CenturyFinCorpApp.UsrCtrl
                     }
 
                     if (d.IsExpectedIncome)
+                    {
                         existData.ExpectedIncome += d.TotalInterest;
+
+                    }
                     else
+                    {
                         existData.ActualIncome += d.TotalInterest;
+                    }
 
 
                 });
+
+                var closedData = f.Sum(s => s.Count);
+
+                existData.CloseCount += closedData;
+
+                if (DateTime.Today.Month == Convert.ToDateTime(f.Key.ClosedMonth).Month)
+                {
+                    if (f.Key.IsExpectedIncome)
+                    {
+                        closedDetailForCurrentMonth.Append($" Expected Close: {closedData}");
+                    }
+                    else
+                    {
+                        closedDetailForCurrentMonth.Append($" Actual Close: {closedData}");
+                    }
+                }
 
 
             });
@@ -106,7 +134,8 @@ namespace CenturyFinCorpApp.UsrCtrl
             finalData.Insert(0, new IncomeReport()
             {
                 MonthYear = "Feb 2018",
-                ActualIncome = 0
+                ActualIncome = 0,
+                CloseCount = 0
             });
 
             // Move past month expected to current month expected.
@@ -160,6 +189,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             lblActual.Text = $"Actual :  {actual.ToMoney()} (Per Month: { (actual / DateTime.Today.Month).ToMoney()})";
             lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / DateTime.Today.Month).ToMoney()})";
             lblTotal.Text = $"TOTAL : {total.ToMoney()} (Per Month: { (total / DateTime.Today.Month).ToMoney()})";
+            lblCloseCount.Text = $"Close Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
 
             lblSalary.Text = $"Salary : {salary}";
             lblSalary.Visible = considerSalary;
@@ -181,18 +211,19 @@ namespace CenturyFinCorpApp.UsrCtrl
                              select new
                              {
                                  Month = newGroup.Key,
-                                 Count = newGroup.Count(),
+                                 GivenCount = newGroup.Count(),
                                  LoanAmount = newGroup.Sum(s => s.LoanAmount),
                                  GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)),
-                                 FutureInterest = newGroup.Sum(s => s.Interest)
+                                 FutureInterest = newGroup.Sum(s => s.Interest),
                              }).ToList();
+
 
             dgvNotePerMonth.DataSource = customers;
 
             label6.Text = $"LA: {customers.Sum(s => s.LoanAmount).ToMoney()} {Environment.NewLine}" +
                 $"GA: {customers.Sum(s => s.GivenAmount).ToMoney()} {Environment.NewLine}" +
                 $"FI: {customers.Sum(s => s.FutureInterest).ToMoney()} {Environment.NewLine}" +
-                $"C: {customers.Sum(s => s.Count)} {Environment.NewLine}";
+                $"C: {customers.Sum(s => s.GivenCount)} {Environment.NewLine}";
 
 
 

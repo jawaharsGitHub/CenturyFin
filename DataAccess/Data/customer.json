@@ -2343,9 +2343,9 @@
     "LoanAmount": 20000,
     "Interest": 2000,
     "IsExistingCustomer": true,
-    "IsActive": true,
+    "IsActive": false,
     "AmountGivenDate": "2018-08-30T21:43:00.6564879-04:00",
-    "ClosedDate": null,
+    "ClosedDate": "2018-10-13T22:07:01.7358197-04:00",
     "ReturnType": 0,
     "CollectionSpotId": 41,
     "ReturnDay": null,
@@ -2989,6 +2989,22 @@
     "ReturnType": 2,
     "CollectionSpotId": 115,
     "ReturnDay": 4,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 194,
+    "CustomerId": 41,
+    "Name": "vijay palani valasai",
+    "PhoneNumber": "",
+    "LoanAmount": 40000,
+    "Interest": 4000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-13T22:14:30.4956531-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 41,
+    "ReturnDay": null,
     "ModifiedDate": null
   }
 ]

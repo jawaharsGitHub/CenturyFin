@@ -336,7 +336,7 @@ namespace DataAccess.PrimaryTypes
                             DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
                             c.AmountGivenDate,
                             c.CustomerSeqNumber,
-                        }).OrderBy(o => o.NeedToClose).Take(top).ToList();
+                        }).OrderBy(o => o.NeedToClose).ThenBy(t => t.Balance).Take(top).ToList();
 
             return data;
 
