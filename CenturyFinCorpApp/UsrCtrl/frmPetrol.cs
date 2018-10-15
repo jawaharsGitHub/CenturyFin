@@ -37,7 +37,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var totalRunKm = lastDate.Speedometer - firstDate.Speedometer;
 
-            var runningDays = (lastDate.Date - firstDate.Date).TotalDays + 1;
+            var runningDays = (DateTime.Today.Date - firstDate.Date).TotalDays + 1;
 
             var avgPrice = data.Where(w => w.Date >= firstDate.Date).Average(a => a.Amount);
             var fullPrice = data.Where(w => w.Date >= firstDate.Date).Sum(a => a.Amount);
