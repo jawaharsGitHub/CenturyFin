@@ -38,6 +38,12 @@ namespace Common.ExtensionMethod
             return ToMoney(no);
         }
 
+        public static string ToMoney(this int? number)
+        {
+            var no = Convert.ToInt32(number);
+            return ToMoney(no);
+        }
+
         public static double RoundMoney(this double number)
         {
             return Math.Round(number, 2);

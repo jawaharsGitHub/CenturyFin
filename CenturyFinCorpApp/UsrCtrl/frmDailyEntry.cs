@@ -47,6 +47,11 @@ namespace CenturyFinCorpApp
                               //ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
                           }).ToList();
 
+            var max = result.OrderBy(o => o.CollectionAmount).Last();
+
+
+            lblMax.Text = $"Max Cxn - {max.CollectionAmount.ToMoney()} on {max.Date}";
+
             dgvAllDailyCollection.DataSource = result;
 
             // Customer Collectin Average By Day.
@@ -136,7 +141,7 @@ namespace CenturyFinCorpApp
 
             label1.Text = $"Total Collection is: {amountReceived.ToMoney()}";
             label2.Text = $"{result.Count(c => c.AmountReceived > 0)} (Rs.{amountReceived.ToMoney()}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection.ToMoney()}) {Environment.NewLine}" +
-                $"CLOSED:{result.Count(c => c.Balance == 0)} ({result.Where(w => w.Balance == 0).Sum(s => s.Interest)}) NEW. {result.Count(c => c.AmountReceived == 0)}";
+                $"CLOSED:{result.Count(c => c.Balance == 0)} ({result.Where(w => w.Balance == 0).Sum(s => s.Interest).ToMoney()}) NEW. {result.Count(c => c.AmountReceived == 0)}({result.Where(w => w.AmountReceived == 0).Sum(s => s.Interest).ToMoney()})";
 
 
             dataGridView1.DataSource = result;

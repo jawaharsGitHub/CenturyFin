@@ -42,6 +42,7 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.dgAvgPerDay = new System.Windows.Forms.DataGridView();
             this.lblCollSpot = new System.Windows.Forms.Label();
+            this.lblMax = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).BeginInit();
@@ -181,11 +182,23 @@
             this.lblCollSpot.TabIndex = 19;
             this.lblCollSpot.Text = "[Total Collection Spot]";
             // 
+            // lblMax
+            // 
+            this.lblMax.AutoSize = true;
+            this.lblMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMax.ForeColor = System.Drawing.Color.Coral;
+            this.lblMax.Location = new System.Drawing.Point(740, 139);
+            this.lblMax.Name = "lblMax";
+            this.lblMax.Size = new System.Drawing.Size(85, 29);
+            this.lblMax.TabIndex = 20;
+            this.lblMax.Text = "label4";
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.lblMax);
             this.Controls.Add(this.lblCollSpot);
             this.Controls.Add(this.dgAvgPerDay);
             this.Controls.Add(this.btnNext);
@@ -226,5 +239,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.DataGridView dgAvgPerDay;
         private System.Windows.Forms.Label lblCollSpot;
+        private System.Windows.Forms.Label lblMax;
     }
 }
