@@ -125,9 +125,13 @@ namespace CenturyFinCorpApp
             menuStrip.Items.Add(mnuHealth);
             mnuHealth.Click += (s, e) => ShowForm<frmHealth>();
             //Politics
-            var mnuPolitics = new ToolStripMenuItem() { Name = "politics", Text = "POLITICS" };
-            menuStrip.Items.Add(mnuPolitics);
-            mnuPolitics.Click += (s, e) => ShowForm<frmPolitics>();
+            var mnuConfigs = new ToolStripMenuItem() { Name = "config", Text = "CONFIGS" };
+            menuStrip.Items.Add(mnuConfigs);
+            mnuConfigs.Click += (s, e) => ShowForm<frmConfig>();
+            //Petrol
+            var mnuPetrol = new ToolStripMenuItem() { Name = "petrol", Text = "PETROL" };
+            menuStrip.Items.Add(mnuPetrol);
+            mnuPetrol.Click += (s, e) => ShowForm<frmPetrol>();
 
             this.Controls.Add(menuStrip);
         }
@@ -300,8 +304,8 @@ namespace CenturyFinCorpApp
 
         private int TotalAssets()
         {
-
-            var assets = (Transaction.GetAllOutstandingAmount() + InHandAndBank.GetAllhandMoney().InHandAmount) - GetAllExpenditure();
+            var os = Transaction.GetAllOutstandingAmount();
+            var assets = (os.includesProfit + InHandAndBank.GetAllhandMoney().InHandAmount) - GetAllExpenditure();
             btnTotalAssets.Text = $"Total Assets Amount: {Environment.NewLine}{assets }";
             return assets;
 
@@ -346,7 +350,7 @@ namespace CenturyFinCorpApp
 
         private void Outstanding()
         {
-            int outStanding = Transaction.GetAllOutstandingAmount();
+            int outStanding = Transaction.GetAllOutstandingAmount().includesProfit;
             btnOutstanding.Text = $"OutStanding Amount: {Environment.NewLine}{outStanding}";
 
         }

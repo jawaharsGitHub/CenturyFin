@@ -74,6 +74,7 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(2, "By Sequence No"),
                    new KeyValuePair<int, string>(3, "By Customer Id"),
                    new KeyValuePair<int, string>(4, "By Customer Name"),
+                   new KeyValuePair<int, string>(10, "Return By Yesterday"),
                    new KeyValuePair<int, string>(5, "Return By Today"),
                    new KeyValuePair<int, string>(6, "Return By Tomorrow"),
                    new KeyValuePair<int, string>(7, "By Return Day"),
@@ -109,9 +110,9 @@ namespace CenturyFinCorpApp
             label1.Text = $"{totalTxn} notes in {days} days {Environment.NewLine} " +
                 $"{DateHelper.DaysToMonth("Running Days", new DateTime(2018, 1, 25), DateTime.Today)} {Environment.NewLine} " +
                 $"{Math.Round(totalTxn / days, 2)} note(s) per day {Environment.NewLine} " +
-                $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day{Environment.NewLine} " +
-                $"need {365 - totalTxn} in {365 - days} days [Shortage: {days - totalTxn}] {Environment.NewLine} " +
-                $"{DateHelper.DaysToMonth("Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";
+                $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month) {Environment.NewLine}" +
+                $"  need {365 - totalTxn} in {365 - days} days [Shortage: {days - totalTxn}] {Environment.NewLine} " +
+                $"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";
         }
 
         private void AdjustColumnOrder()
@@ -130,6 +131,7 @@ namespace CenturyFinCorpApp
         {
             dataGridView1.Columns["ModifiedDate"].Visible = false;
             dataGridView1.Columns["PhoneNumber"].Visible = false;
+            dataGridView1.Columns["IdAndName"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
             dataGridView1.Columns["ReturnType"].Visible = show;
@@ -419,9 +421,13 @@ namespace CenturyFinCorpApp
             {
                 searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.ReturnType).ToList();
             }
-            else//  (value == 9)
+            else if  (value == 9)
             {
                 searchedCustomer = customers.Where(w => w.IsActive).OrderByDescending(o => o.CollectionSpotId).ToList();
+            }
+            else//  (value == 10)
+            {
+                searchedCustomer = customers.Where(w => w.IsActive && w.ReturnDay == DateTime.Today.AddDays(-1).DayOfWeek).ToList();
             }
 
             dataGridView1.DataSource = searchedCustomer;

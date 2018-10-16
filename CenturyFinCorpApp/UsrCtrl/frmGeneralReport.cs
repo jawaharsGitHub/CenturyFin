@@ -5,12 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CenturyFinCorpApp.UsrCtrl
 {
     public partial class frmGeneralReport : UserControl
     {
+        (int actual, int includesProfit) outstandingMoney;
+
         public frmGeneralReport()
         {
             InitializeComponent();
@@ -20,6 +23,9 @@ namespace CenturyFinCorpApp.UsrCtrl
             ShowRemaingDays();
 
             GetCustomerCount();
+
+            ShowOutstandingMoney();
+            ShowTotalAssetMoney();
         }
 
         private void GetCustomerCount()
@@ -31,9 +37,10 @@ namespace CenturyFinCorpApp.UsrCtrl
 
         private void ShowRemaingDays()
         {
-            
 
-            label1.Text = $"Remaining Days to start next month cycle: {DateHelper.RemaingDaysToNextCycle}";
+            var data = DateHelper.RemaingDaysToNextCycle;
+
+            label1.Text = $"Remaining Days to start next month ({data.MonthName}) cycle: {data.NoOfDays}";
             label2.Text = $"Remaining Days in this month: {DateHelper.RemaingDaysOfMonth}";
         }
 
@@ -48,7 +55,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                                    {
                                        ClosedDate = newGroup.Key,
                                        TotalInterest = newGroup.Sum(s => s.Interest),
-                                       IsExpectedIncome = false
+                                       IsExpectedIncome = false,
+                                       Count = newGroup.Count()
                                    }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
             // Running Account (Expected Income)
@@ -59,7 +67,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                                     {
                                         ClosedDate = (Convert.ToDateTime(newGroup.Key).AddDays(100)).ToShortDateString(), // TODO: it should be group by given data + 100 days not by key(July 2018)
                                         TotalInterest = newGroup.Sum(s => s.Interest),
-                                        IsExpectedIncome = true
+                                        IsExpectedIncome = true,
+                                        Count = newGroup.Count()
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
             // Merge Both result
@@ -72,44 +81,76 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var finalData = new List<IncomeReport>();
 
+            StringBuilder closedDetailForCurrentMonth = new StringBuilder();
+            closedDetailForCurrentMonth.Append($"For {DateTime.Now.ToString("MMMM")}");
 
             data.ForEach(f =>
             {
 
+                IncomeReport existData = null;
+
                 f.ToList().ForEach(d =>
                 {
-                    var existData = finalData.Where(w => w.Month == Convert.ToDateTime(d.ClosedDate).ToString("Y")).FirstOrDefault();
+                    existData = finalData.Where(w => w.MonthYear == Convert.ToDateTime(d.ClosedDate).ToString("Y")).FirstOrDefault();
 
                     if (existData == null) // Not exist
                     {
-                        existData = new IncomeReport() { Month = Convert.ToDateTime(d.ClosedDate).ToString("Y") };
+                        existData = new IncomeReport() { MonthYear = Convert.ToDateTime(d.ClosedDate).ToString("Y") };
                         finalData.Add(existData);
                     }
 
                     if (d.IsExpectedIncome)
+                    {
                         existData.ExpectedIncome += d.TotalInterest;
+
+                    }
                     else
+                    {
                         existData.ActualIncome += d.TotalInterest;
+                    }
 
 
                 });
+
+                var closedData = f.Sum(s => s.Count);
+
+                existData.CloseCount += closedData;
+
+                if (DateTime.Today.Month == Convert.ToDateTime(f.Key.ClosedMonth).Month)
+                {
+                    if (f.Key.IsExpectedIncome)
+                    {
+                        closedDetailForCurrentMonth.Append($" Expected Close: {closedData}");
+                    }
+                    else
+                    {
+                        closedDetailForCurrentMonth.Append($" Actual Close: {closedData}");
+                    }
+                }
 
 
             });
 
             finalData.Insert(0, new IncomeReport()
             {
-                Month = "Feb 2018",
-                ActualIncome = 0
+                MonthYear = "Feb 2018",
+                ActualIncome = 0,
+                CloseCount = 0
             });
 
             // Move past month expected to current month expected.
             var pastMonthExpectedIncome = (from pm in finalData
-                                           where Convert.ToDateTime(pm.Month).Month < DateTime.Now.Month
+                                           where (Convert.ToDateTime(pm.MonthYear).Month < DateTime.Now.Month && Convert.ToDateTime(pm.MonthYear).Year == DateTime.Now.Year)
                                            select pm);
 
 
-            var currentMonthExpectedIncome = finalData.Where(w => Convert.ToDateTime(w.Month).Month == DateTime.Now.Month).FirstOrDefault();
+            // TODO: Need generic fix for this calculation!!!!
+            var currentMonthExpectedIncome = (from d in finalData
+                                              where
+                                              (Convert.ToDateTime(d.MonthYear).Year == DateTime.Now.Year && Convert.ToDateTime(d.MonthYear).Month < DateTime.Now.Month)
+                                              || (Convert.ToDateTime(d.MonthYear).Year < DateTime.Now.Year)
+                                              select d).FirstOrDefault();
+
             if (currentMonthExpectedIncome != null) currentMonthExpectedIncome.ExpectedIncome += pastMonthExpectedIncome.Sum(s => s.ExpectedIncome);
 
             pastMonthExpectedIncome.ToList().ForEach(f => f.ExpectedIncome = 0);
@@ -119,7 +160,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             {
                 finalData.ForEach(fd =>
                 {
-                    if (Convert.ToDateTime(fd.Month).Month == 2)
+                    if (Convert.ToDateTime(fd.MonthYear).Month == 2 && Convert.ToDateTime(fd.MonthYear).Year == 2018)
                     {
                         fd.ActualIncome = (fd.ExpectedIncome - fd.MonthlySalary); // Always fr feb, actualincome is -salary
                     }
@@ -148,7 +189,8 @@ namespace CenturyFinCorpApp.UsrCtrl
             lblActual.Text = $"Actual :  {actual.ToMoney()} (Per Month: { (actual / DateTime.Today.Month).ToMoney()})";
             lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / DateTime.Today.Month).ToMoney()})";
             lblTotal.Text = $"TOTAL : {total.ToMoney()} (Per Month: { (total / DateTime.Today.Month).ToMoney()})";
-            
+            lblCloseCount.Text = $"Close Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
+
             lblSalary.Text = $"Salary : {salary}";
             lblSalary.Visible = considerSalary;
 
@@ -169,17 +211,37 @@ namespace CenturyFinCorpApp.UsrCtrl
                              select new
                              {
                                  Month = newGroup.Key,
-                                 Count = newGroup.Count(),
+                                 GivenCount = newGroup.Count(),
                                  LoanAmount = newGroup.Sum(s => s.LoanAmount),
                                  GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)),
-                                 FutureInterest = newGroup.Sum(s => s.Interest)
+                                 FutureInterest = newGroup.Sum(s => s.Interest),
                              }).ToList();
+
 
             dgvNotePerMonth.DataSource = customers;
 
-            
+            label6.Text = $"LA: {customers.Sum(s => s.LoanAmount).ToMoney()} {Environment.NewLine}" +
+                $"GA: {customers.Sum(s => s.GivenAmount).ToMoney()} {Environment.NewLine}" +
+                $"FI: {customers.Sum(s => s.FutureInterest).ToMoney()} {Environment.NewLine}" +
+                $"C: {customers.Sum(s => s.GivenCount)} {Environment.NewLine}";
 
 
+
+
+
+        }
+
+        private void ShowOutstandingMoney()
+        {
+            outstandingMoney = Transaction.GetAllOutstandingAmount();
+            lblOutStanding.Text = outstandingMoney.includesProfit.ToMoney();
+        }
+
+        private void ShowTotalAssetMoney()
+        {
+            var inHandAndBank = InHandAndBank.GetAllhandMoney();
+            lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
+            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()}) out of ~13-Lacs as of Oct 12 2018.";
         }
     }
 }

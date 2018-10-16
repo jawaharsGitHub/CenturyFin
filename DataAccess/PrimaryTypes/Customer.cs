@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.ExtensionMethod;
 using DataAccess.ExtendedTypes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace DataAccess.PrimaryTypes
 
         private static string JsonFilePath = AppConfiguration.CustomerFile;
         private DayOfWeek? _returnDay;
+        private int _collSpot;
 
         public int CustomerSeqNumber { get; set; }
         public int CustomerId { get; set; }
@@ -24,13 +26,20 @@ namespace DataAccess.PrimaryTypes
         public DateTime? AmountGivenDate { get; set; }
         public DateTime? ClosedDate { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
-        public int CollectionSpotId { get; set; }
+        public int CollectionSpotId
+        {
+            get { return (_collSpot == 0) ? CustomerId : _collSpot; }
+            set { _collSpot = value; }
+        }
         public DayOfWeek? ReturnDay
         {
             get { return (ReturnType == ReturnTypeEnum.Daily) ? null : _returnDay; }
             set { _returnDay = value; }
         }
         public DateTime? ModifiedDate { get; set; }
+
+        [JsonIgnore]
+        public string IdAndName => $"{CustomerId}-{Name}";
 
 
         public static void AddCustomer(Customer newCustomer)
@@ -194,7 +203,7 @@ namespace DataAccess.PrimaryTypes
             try
             {
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
-                return list.Distinct().ToList();
+                return list.DistinctBy(d => d.CustomerId).ToList();
             }
             catch (Exception ex)
             {
@@ -375,6 +384,6 @@ namespace DataAccess.PrimaryTypes
 
     }
 
-    
+
 
 }

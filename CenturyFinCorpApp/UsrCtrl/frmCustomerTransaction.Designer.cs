@@ -51,13 +51,14 @@
             this.cmbReturnDay = new System.Windows.Forms.ComboBox();
             this.cmbCollectionSpot = new System.Windows.Forms.ComboBox();
             this.btnCorrect = new System.Windows.Forms.Button();
+            this.btnInterest = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoan
             // 
-            this.btnLoan.Location = new System.Drawing.Point(30, 28);
+            this.btnLoan.Location = new System.Drawing.Point(3, 28);
             this.btnLoan.Name = "btnLoan";
             this.btnLoan.Size = new System.Drawing.Size(112, 50);
             this.btnLoan.TabIndex = 1;
@@ -123,7 +124,7 @@
             // 
             // btnBalance
             // 
-            this.btnBalance.Location = new System.Drawing.Point(169, 29);
+            this.btnBalance.Location = new System.Drawing.Point(121, 28);
             this.btnBalance.Name = "btnBalance";
             this.btnBalance.Size = new System.Drawing.Size(112, 50);
             this.btnBalance.TabIndex = 4;
@@ -284,10 +285,20 @@
             this.btnCorrect.UseVisualStyleBackColor = true;
             this.btnCorrect.Click += new System.EventHandler(this.btnCorrect_Click);
             // 
+            // btnInterest
+            // 
+            this.btnInterest.Location = new System.Drawing.Point(239, 28);
+            this.btnInterest.Name = "btnInterest";
+            this.btnInterest.Size = new System.Drawing.Size(112, 50);
+            this.btnInterest.TabIndex = 20;
+            this.btnInterest.Text = "[Interest]";
+            this.btnInterest.UseVisualStyleBackColor = true;
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnInterest);
             this.Controls.Add(this.btnCorrect);
             this.Controls.Add(this.cmbCollectionSpot);
             this.Controls.Add(this.cmbReturnDay);
@@ -340,5 +351,6 @@
         private System.Windows.Forms.ComboBox cmbReturnDay;
         private System.Windows.Forms.ComboBox cmbCollectionSpot;
         private System.Windows.Forms.Button btnCorrect;
+        private System.Windows.Forms.Button btnInterest;
     }
 }

@@ -13,15 +13,14 @@ namespace CenturyFinCorpApp
 {
     public partial class frmDynamicReport : UserControl
     {
-        int outstandingMoney = 0;
+
         public frmDynamicReport()
         {
             InitializeComponent();
 
             comboBox1.DataSource = GetOptions();
 
-            ShowOutstandingMoney();
-            ShowTotalAssetMoney();
+
             RefreshClosed();
 
         }
@@ -60,17 +59,7 @@ namespace CenturyFinCorpApp
 
         }
 
-        private void ShowOutstandingMoney()
-        {
-            outstandingMoney = Transaction.GetAllOutstandingAmount();
-            lblOutStanding.Text = outstandingMoney.ToMoney();
-        }
 
-        private void ShowTotalAssetMoney()
-        {
-            var inHandAndBank = InHandAndBank.GetAllhandMoney();
-            lblTotalAsset.Text = $"{(outstandingMoney + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()})";
-        }
 
 
         private void btnClosedTxn_Click(object sender, System.EventArgs e)
@@ -136,7 +125,8 @@ namespace CenturyFinCorpApp
 
             var groupsByAmount = (from c in cus
                                   group c by c.LoanAmount into newGroup
-                                  select new {
+                                  select new
+                                  {
                                       Amount = newGroup.Key,
                                       Count = newGroup.Count(),
                                       Total = (newGroup.Key * newGroup.Count())
@@ -150,10 +140,10 @@ namespace CenturyFinCorpApp
         {
 
             var cus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
-            cus.ForEach(c =>
-            {
-                if (c.CollectionSpotId == 0) c.CollectionSpotId = c.CustomerId;
-            });
+            //cus.ForEach(c =>
+            //{
+            //    if (c.CollectionSpotId == 0) c.CollectionSpotId = c.CustomerId;
+            //});
 
             // get all active customers
             var activeCus = (from c in cus
@@ -162,11 +152,47 @@ namespace CenturyFinCorpApp
                              {
                                  Spot = cus.Where(w => w.CustomerId == newGroup.Key).First().Name,
                                  Count = newGroup.Count(),
-                                 Amount = newGroup.Sum(s => (s.LoanAmount / 100))
-                             }).OrderByDescending(o => o.Count).ToList();
+                                 Amount = newGroup.Sum(s => (s.LoanAmount / 100)),
+                                 Customers = string.Join($", {Environment.NewLine}", newGroup.Select(i => $"{i.CustomerId}-{i.Name}" ))
+                             }).OrderByDescending(o => o.Count);
+
+            //try
+            //{
 
 
-            dgReports.DataSource = activeCus;
+            //    foreach (var c in cus.GroupBy(g => g.CollectionSpotId))
+            //    {
+
+            //        foreach (var item in c)
+            //        {
+            //            if(cus.Where(w => w.CustomerId == c.Key).FirstOrDefault() == null)
+            //            {
+
+            //            }
+            //            var Spot = cus.Where(w => w.CustomerId == c.Key).First().Name;
+            //            var Count = c.Count();
+            //            var Amount = c.Sum(s => (s.LoanAmount / 100));
+
+
+            //        }
+
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    throw;
+            //}
+
+
+
+            dgReports.DataSource = activeCus.Where(w => w.Count > 1).ToList();
+            var singleCount = activeCus.Where(w => w.Count == 1);
+            var multipleCount = activeCus.Where(w => w.Count > 1);
+
+            lblDetails.Text = $"Single Collection Spot {singleCount.Count()} ({singleCount.Sum(s => s.Amount)}) {Environment.NewLine} " +
+                $"Multi Collection Spot {multipleCount.Count()} ({multipleCount.Sum(s => s.Amount)}) {Environment.NewLine}" +
+                $"Total Spots {singleCount.Count() + multipleCount.Count()} ({singleCount.Sum(s => s.Amount) + multipleCount.Sum(s => s.Amount)})";
 
 
         }

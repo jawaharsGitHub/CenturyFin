@@ -29,7 +29,7 @@ namespace CenturyFinCorpApp
             LoadDailyCollection(dateTimePicker1.Value, true);
             LoadAllHsitoryDailyCollections();
 
-            lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
+            //lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
             AdjustColumnOrder();
 
         }
@@ -46,6 +46,11 @@ namespace CenturyFinCorpApp
                               CollectionAmount = d.CollectionAmount,
                               //ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
                           }).ToList();
+
+            var max = result.OrderBy(o => o.CollectionAmount).Last();
+
+
+            lblMax.Text = $"Max Cxn - {max.CollectionAmount.ToMoney()} on {max.Date}";
 
             dgvAllDailyCollection.DataSource = result;
 
@@ -72,6 +77,7 @@ namespace CenturyFinCorpApp
         {
             dataGridView1.Columns["CustomerId"].Visible = false;
             dataGridView1.Columns["CustomerSeqId"].Visible = false;
+            dataGridView1.Columns["Interest"].Visible = false;
             dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
@@ -92,7 +98,17 @@ namespace CenturyFinCorpApp
 
             var cus = from c in Customer.GetAllCustomer()
                       where c.AmountGivenDate.Value.Date <= chooseDate.Date && (c.ClosedDate == null || c.ClosedDate.Value.Date >= chooseDate.Date)
-                      select new { c.CustomerSeqNumber, c.Name, c.IsActive, c.Interest, c.LoanAmount, c.CustomerId, c.AmountGivenDate };
+                      select new
+                      {
+                          c.CustomerSeqNumber,
+                          c.Name,
+                          CS = c.CollectionSpotId,
+                          c.IsActive,
+                          c.Interest,
+                          c.LoanAmount,
+                          c.CustomerId,
+                          c.AmountGivenDate
+                      };
 
             var result = new List<CustomerDailyTxn>();
 
@@ -106,10 +122,12 @@ namespace CenturyFinCorpApp
                               TransactionId = t.TransactionId,
                               TxnDate = t.TxnDate,
                               CustomerName = c.Name,
+                              CSId = c.CS,
                               AmountReceived = t.AmountReceived,
                               Balance = t.Balance,
                               CustomerId = c.CustomerId,
-                              CustomerSeqId = c.CustomerSeqNumber
+                              CustomerSeqId = c.CustomerSeqNumber,
+                              Interest = c.Interest
                           }).Distinct().ToList();
             }
 
@@ -119,20 +137,17 @@ namespace CenturyFinCorpApp
             //result = result.Where(w => w.AmountReceived != 0).ToList();
 
             ActualCollection = amountReceived;
-            ExpectedCollection = (cus.Sum(s => s.LoanAmount) / 100);
+            ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date).Sum(s => s.LoanAmount) / 100);
 
-            label1.Text = $"Total Collection is: {amountReceived}";
-            label2.Text = $"{result.Count()} (Rs.{amountReceived}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection})";
+            label1.Text = $"Total Collection is: {amountReceived.ToMoney()}";
+            label2.Text = $"{result.Count(c => c.AmountReceived > 0)} (Rs.{amountReceived.ToMoney()}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection.ToMoney()}) {Environment.NewLine}" +
+                $"CLOSED:{result.Count(c => c.Balance == 0)} ({result.Where(w => w.Balance == 0).Sum(s => s.Interest).ToMoney()}) NEW. {result.Count(c => c.AmountReceived == 0)}({result.Where(w => w.AmountReceived == 0).Sum(s => s.Interest).ToMoney()})";
 
-
-            //CollectionPerDay.AddObjectsToJson<CollectionPerDay>(Common.AppConfiguration.CollectionPerDay, 
-            //   new List<CollectionPerDay>()(new CollectionPerDay() {
-            //        Date = dateTimePicker1.Value.Date.ToShortDateString(),
-            //        ActualCollection = ActualCollection,
-            //        ExpectedCollection = ExpectedCollection}));
 
             dataGridView1.DataSource = result;
             dataGridView1.Columns["AmountReceived"].ReadOnly = false;
+
+            lblCollSpot.Text = $"Went to {result.GroupBy(g => g.CSId).Count()} place to collect?";
 
             return ExpectedCollection;
         }

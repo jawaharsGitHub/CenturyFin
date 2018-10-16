@@ -157,11 +157,17 @@
     <Compile Include="UsrCtrl\frmOutstanding.Designer.cs">
       <DependentUpon>frmOutstanding.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsrCtrl\frmPolitics.cs">
+    <Compile Include="UsrCtrl\frmPetrol.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UsrCtrl\frmPolitics.Designer.cs">
-      <DependentUpon>frmPolitics.cs</DependentUpon>
+    <Compile Include="UsrCtrl\frmPetrol.Designer.cs">
+      <DependentUpon>frmPetrol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsrCtrl\frmConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrl\frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="UsrCtrl\frmPrediction.cs">
       <SubType>UserControl</SubType>
@@ -220,8 +226,11 @@
     <EmbeddedResource Include="UsrCtrl\frmOutstanding.resx">
       <DependentUpon>frmOutstanding.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UsrCtrl\frmPolitics.resx">
-      <DependentUpon>frmPolitics.cs</DependentUpon>
+    <EmbeddedResource Include="UsrCtrl\frmPetrol.resx">
+      <DependentUpon>frmPetrol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrl\frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmPrediction.resx">
       <DependentUpon>frmPrediction.cs</DependentUpon>

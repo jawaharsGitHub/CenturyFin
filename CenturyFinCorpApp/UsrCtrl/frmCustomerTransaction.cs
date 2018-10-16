@@ -36,6 +36,7 @@ namespace CenturyFinCorpApp
 
             btnLoan.Text = $"LOAN :  {customer.LoanAmount}";
             btnBalance.Text = $"BALANCE :  {_balance}";
+            btnInterest.Text = $"INTEREST :  {customer.Interest}";
             var closedText = (_balance == 0) ? "(CLOSED)" : string.Empty;
 
 
@@ -62,12 +63,12 @@ namespace CenturyFinCorpApp
 
             cmbCollectionSpot.DataSource = Customer.GetAllUniqueCustomers();
             cmbCollectionSpot.ValueMember = "CustomerId";
-            cmbCollectionSpot.DisplayMember = "Name";
+            cmbCollectionSpot.DisplayMember = "IdAndName";
 
 
             cmbReturnType.SelectedItem = customer.ReturnType;
             cmbReturnDay.SelectedItem = customer.ReturnDay;
-            cmbCollectionSpot.SelectedValue = customer.CollectionSpotId == 0 ? customer.CustomerId : customer.CollectionSpotId;
+            cmbCollectionSpot.SelectedValue = customer.CollectionSpotId;
 
             this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
             this.cmbReturnDay.SelectedIndexChanged += new System.EventHandler(this.cmbReturnDay_SelectedIndexChanged);
@@ -342,6 +343,7 @@ namespace CenturyFinCorpApp
                     if (nextTxn != null && nextTxn.Balance != (t.Balance - nextTxn.AmountReceived))
                     {
                         nextTxn.Balance = (t.Balance - nextTxn.AmountReceived);
+                        nextTxn.IsClosed = _isClosedTx;
                         Transaction.CorrectTransactionData(nextTxn);
                     }
                 }

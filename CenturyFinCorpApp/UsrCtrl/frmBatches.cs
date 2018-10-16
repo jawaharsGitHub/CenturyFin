@@ -51,5 +51,13 @@ namespace CenturyFinCorpApp.UsrCtrl
             if (option == DialogResult.OK)
                 Process.Start(DailyBatchFile);
         }
+
+        private void btnYearlyBatch_Click(object sender, EventArgs e)
+        {
+            // Need to create static data instead of each time creating dynamic data.
+            // eg: Credit Report.
+            // Flexible to use if need the closed txns.
+            // CLsoed Txns.
+        }
     }
 }
