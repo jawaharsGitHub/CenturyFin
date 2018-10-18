@@ -303,7 +303,8 @@ namespace DataAccess.PrimaryTypes
             //    lblNoOfDays.ForeColor = System.Drawing.Color.Honeydew;
 
 
-            var interestRate = (customer.LoanAmount / customer.Interest) == 12 ? 8.69 : 11.11;
+            //TODO: need to handle interest 0 scenario. eg: vanitha have no interest.
+            var interestRate = (customer.Interest == 0) ? 0 : ((customer.LoanAmount / customer.Interest) == 12 ? 8.69 : 11.11);
 
 
             var percGainPerMonth = Math.Round(((interestRate / daysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.

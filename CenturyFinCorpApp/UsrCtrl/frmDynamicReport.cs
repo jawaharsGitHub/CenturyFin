@@ -116,6 +116,28 @@ namespace CenturyFinCorpApp
             {
                 AmountGroups();
             }
+            else if (value == 6)
+            {
+                InterestGroups();
+            }
+
+        }
+
+        private void InterestGroups()
+        {
+            var cus = Customer.GetAllCustomer().Where(w => w.IsActive == false).ToList();
+
+            var groupsByInterest = (from c in cus
+                                  group c by c.CustomerId into newGroup
+                                  select new
+                                  {
+                                      CustomerId = newGroup.Key,
+                                      Name = newGroup.First().Name,
+                                      TotalInterest = newGroup.Sum(s => s.Interest),
+                                      Count = newGroup.Count()
+                                  }).OrderByDescending(o => o.TotalInterest).ToList();
+
+            dgReports.DataSource = groupsByInterest;
 
         }
 
@@ -153,38 +175,8 @@ namespace CenturyFinCorpApp
                                  Spot = cus.Where(w => w.CustomerId == newGroup.Key).First().Name,
                                  Count = newGroup.Count(),
                                  Amount = newGroup.Sum(s => (s.LoanAmount / 100)),
-                                 Customers = string.Join($", {Environment.NewLine}", newGroup.Select(i => $"{i.CustomerId}-{i.Name}" ))
+                                 Customers = string.Join($", {Environment.NewLine}", newGroup.Select(i => $"{i.CustomerId}-{i.Name}"))
                              }).OrderByDescending(o => o.Count);
-
-            //try
-            //{
-
-
-            //    foreach (var c in cus.GroupBy(g => g.CollectionSpotId))
-            //    {
-
-            //        foreach (var item in c)
-            //        {
-            //            if(cus.Where(w => w.CustomerId == c.Key).FirstOrDefault() == null)
-            //            {
-
-            //            }
-            //            var Spot = cus.Where(w => w.CustomerId == c.Key).First().Name;
-            //            var Count = c.Count();
-            //            var Amount = c.Sum(s => (s.LoanAmount / 100));
-
-
-            //        }
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    throw;
-            //}
-
-
 
             dgReports.DataSource = activeCus.Where(w => w.Count > 1).ToList();
             var singleCount = activeCus.Where(w => w.Count == 1);
@@ -206,7 +198,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(2, "TO BE CLOSED SOON"),
                    new KeyValuePair<int, string>(3, "X-CUSTOMER"),
                    new KeyValuePair<int, string>(4, "CUSTOMER-COLLECTION SPOT"),
-                   new KeyValuePair<int, string>(5, "AMOUNT-GROUPS")
+                   new KeyValuePair<int, string>(5, "AMOUNT-GROUPS"),
+                   new KeyValuePair<int, string>(6, "INTEREST-GROUPS")
                };
 
             return myKeyValuePair;

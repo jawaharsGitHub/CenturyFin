@@ -82,7 +82,7 @@
             // rdbAll
             // 
             this.rdbAll.AutoSize = true;
-            this.rdbAll.Location = new System.Drawing.Point(299, 14);
+            this.rdbAll.Location = new System.Drawing.Point(309, 14);
             this.rdbAll.Name = "rdbAll";
             this.rdbAll.Size = new System.Drawing.Size(67, 17);
             this.rdbAll.TabIndex = 3;
