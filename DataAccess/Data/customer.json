@@ -3182,5 +3182,53 @@
     "CollectionSpotId": 82,
     "ReturnDay": 0,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 206,
+    "CustomerId": 5,
+    "Name": "Sikkanthar",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-19T22:12:09.2207689-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 5,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 207,
+    "CustomerId": 118,
+    "Name": "Selvam Travels Methalodai",
+    "PhoneNumber": "",
+    "LoanAmount": 40000,
+    "Interest": 4000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-19T22:12:34.6986724-04:00",
+    "ClosedDate": null,
+    "ReturnType": 1,
+    "CollectionSpotId": 118,
+    "ReturnDay": 0,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 208,
+    "CustomerId": 27,
+    "Name": "Moorthy PC",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-19T22:13:04.686579-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 27,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
