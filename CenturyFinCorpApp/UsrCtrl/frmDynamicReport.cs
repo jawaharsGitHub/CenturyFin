@@ -120,7 +120,27 @@ namespace CenturyFinCorpApp
             {
                 InterestGroups();
             }
+            else if (value == 7)
+            {
+                OverdueReports();
+            }
 
+        }
+
+        private void OverdueReports()
+        {
+            var overdueDays = (from c in Customer.GetAllCustomer()
+                               where c.IsActive && (DateTime.Today.Date - c.AmountGivenDate.Value.Date).TotalDays > 100
+                               select new
+                               {
+                                   c.Name,
+                                   c.CustomerSeqNumber,
+                                   (DateTime.Today.Date - c.AmountGivenDate.Value.Date).TotalDays,
+                                   Balance = Transaction.GetBalance(c)
+
+                               }).OrderByDescending(O => O.TotalDays).ToList();
+
+            dgReports.DataSource = overdueDays;
         }
 
         private void InterestGroups()
@@ -128,14 +148,14 @@ namespace CenturyFinCorpApp
             var cus = Customer.GetAllCustomer().Where(w => w.IsActive == false).ToList();
 
             var groupsByInterest = (from c in cus
-                                  group c by c.CustomerId into newGroup
-                                  select new
-                                  {
-                                      CustomerId = newGroup.Key,
-                                      Name = newGroup.First().Name,
-                                      TotalInterest = newGroup.Sum(s => s.Interest),
-                                      Count = newGroup.Count()
-                                  }).OrderByDescending(o => o.TotalInterest).ToList();
+                                    group c by c.CustomerId into newGroup
+                                    select new
+                                    {
+                                        CustomerId = newGroup.Key,
+                                        Name = newGroup.First().Name,
+                                        TotalInterest = newGroup.Sum(s => s.Interest),
+                                        Count = newGroup.Count()
+                                    }).OrderByDescending(o => o.TotalInterest).ToList();
 
             dgReports.DataSource = groupsByInterest;
 
@@ -199,7 +219,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(3, "X-CUSTOMER"),
                    new KeyValuePair<int, string>(4, "CUSTOMER-COLLECTION SPOT"),
                    new KeyValuePair<int, string>(5, "AMOUNT-GROUPS"),
-                   new KeyValuePair<int, string>(6, "INTEREST-GROUPS")
+                   new KeyValuePair<int, string>(6, "INTEREST-GROUPS"),
+                   new KeyValuePair<int, string>(7, "OVERDUE-CUSTOMER")
                };
 
             return myKeyValuePair;
