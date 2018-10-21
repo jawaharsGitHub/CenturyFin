@@ -44,7 +44,7 @@ namespace CenturyFinCorpApp
                           {
                               Date = Convert.ToDateTime(d.Date).ToString("dd-MM-yyyy dddd"),
                               CollectionAmount = d.CollectionAmount,
-                              //ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
+                              // ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
                           }).ToList();
 
             var max = result.OrderBy(o => o.CollectionAmount).Last();
