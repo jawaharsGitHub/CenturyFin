@@ -163,16 +163,20 @@ namespace CenturyFinCorpApp
 
         private void AmountGroups()
         {
-            var cus = Customer.GetAllCustomer().Where(w => w.IsActive).ToList();
+            var cus = Customer.GetAllCustomer().ToList();
 
-            var groupsByAmount = (from c in cus
-                                  group c by c.LoanAmount into newGroup
-                                  select new
-                                  {
-                                      Amount = newGroup.Key,
-                                      Count = newGroup.Count(),
-                                      Total = (newGroup.Key * newGroup.Count())
-                                  }).OrderByDescending(o => o.Amount).ToList();
+            var groupsByAmount = cus.GroupBy(c => c.LoanAmount)
+                                .Select(g => new
+                                {
+                                    Amount = g.Key,
+                                    ActiveCount = g.Where(c => c.IsActive == true).Count(),
+                                    ActiveTotal = g.Where(c => c.IsActive == true).Sum(s => s.LoanAmount),
+                                    ClosedCount = g.Where(c => c.IsActive == false).Count(),
+                                    ClosedTotal = g.Where(c => c.IsActive == false).Sum(s => s.LoanAmount),
+                                    AllCount = g.Count(),
+                                    AllTotal = g.Sum(s => s.LoanAmount),
+                                })
+                                .OrderByDescending(o => o.AllTotal).ToList();
 
             dgReports.DataSource = groupsByAmount;
 
