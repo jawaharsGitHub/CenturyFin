@@ -99,7 +99,7 @@ namespace DataAccess.PrimaryTypes
                 List<Transaction> list = ReadFileAsObjects<Transaction>(AppConfiguration.TransactionFile);
 
                 var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId && c.CustomerSequenceNo == updatedTransaction.CustomerSequenceNo && c.CustomerId == updatedTransaction.CustomerId).FirstOrDefault();
-                
+
                 u.Balance = ((u.Balance + u.AmountReceived) - updatedTransaction.AmountReceived); // Very important calculation when corrected collection amount more than 1 time for he same date.
                 u.AmountReceived = updatedTransaction.AmountReceived;
                 u.TxnUpdatedDate = DateTime.Today;
@@ -331,12 +331,13 @@ namespace DataAccess.PrimaryTypes
                             c.Name,
                             c.LoanAmount,
                             t.Balance,
+                            BalancePerc = (Convert.ToDecimal(t.Balance) / Convert.ToDecimal(c.LoanAmount)) * 100,
                             CreditScore = Customer.GetCreditScore(c.CustomerId),
                             NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(100) - DateTime.Today.Date).Days),
                             DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
                             c.AmountGivenDate,
                             c.CustomerSeqNumber,
-                        }).OrderBy(o => o.NeedToClose).ThenBy(t => t.Balance).Take(top).ToList();
+                        }).OrderBy(o => o.BalancePerc).ThenBy(t => t.Balance).Take(top).ToList();
 
             return data;
 
@@ -372,7 +373,7 @@ namespace DataAccess.PrimaryTypes
                             NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays,
                             LastTxnDate = t.TxnDate,
                             c.AmountGivenDate,
-                            c.CustomerSeqNumber                            
+                            c.CustomerSeqNumber
                         }).Where(w => w.NotGivenFor > 2).OrderByDescending(o => o.NotGivenFor).ToList();
 
             return data;
@@ -404,7 +405,8 @@ namespace DataAccess.PrimaryTypes
                                   t.CustomerId
                               }
                               orderby c.AmountGivenDate
-                              select new {
+                              select new
+                              {
                                   c.Name,
                                   c.AmountGivenDate,
                                   c.CustomerSeqNumber,
@@ -412,7 +414,8 @@ namespace DataAccess.PrimaryTypes
                                   t.Balance,
                                   c.LoanAmount,
                                   c.Interest,
-                                  t.TransactionId }).ToList();
+                                  t.TransactionId
+                              }).ToList();
 
 
                 return (result.Sum(s => s.Balance - s.Interest), result.Sum(s => s.Balance));
