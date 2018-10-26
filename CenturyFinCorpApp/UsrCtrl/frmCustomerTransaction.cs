@@ -352,5 +352,35 @@ namespace CenturyFinCorpApp
 
 
         }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+
+            if (dataGridView1.SelectedRows.Count == 1 && e.Button == MouseButtons.Right)
+            {
+                ContextMenuStrip strip = new ContextMenuStrip();
+
+                var selectedRow = dataGridView1.SelectedRows[0];
+                strip.Tag = (Transaction)selectedRow.DataBoundItem;
+
+                strip.Items.Add("Delete Txn").Name = "Txn";
+
+                strip.Show(dataGridView1, new System.Drawing.Point(e.X, e.Y));
+
+                strip.ItemClicked += Strip_ItemClicked;
+
+            }
+        }
+
+        private void Strip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            var txn = (Transaction)((ContextMenuStrip)sender).Tag;
+
+            if (e.ClickedItem.Name == "Txn")
+            {
+                Transaction.DeleteTransactionDetails(txn);
+            }
+
+        }
     }
 }

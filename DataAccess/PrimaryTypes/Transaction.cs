@@ -21,8 +21,8 @@ namespace DataAccess.PrimaryTypes
         public DateTime? TxnUpdatedDate { get; set; }
         public int CustomerSequenceNo { get; set; }
         public DateTime TxnDate { get; set; }
-        [JsonIgnore]
-        private Customer _customer;
+        //[JsonIgnore]
+        //private Customer _customer;
 
 
         public static void AddTransaction(Transaction newTxn)
@@ -52,29 +52,6 @@ namespace DataAccess.PrimaryTypes
             WriteObjectsToFile(newTxns, fullFilePath);
         }
 
-
-        //TODO: its not yet started using.
-        public static bool DeleteTransactionDetails(int customerId, int sequenceNo, bool isActive)
-        {
-
-            try
-            {
-                var filePath = isActive ? JsonFilePath : $"{ClosedTxnFilePath}/{customerId}/{customerId}_{sequenceNo}.json";
-                if (isActive)
-                {
-                    var list = ReadFileAsObjects<Transaction>(filePath);
-
-                    list.RemoveAll(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo);
-                    return true;
-                }
-
-                return false;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         public static void AddClosedTransaction(List<Transaction> closedTxn)
         {
@@ -255,6 +232,24 @@ namespace DataAccess.PrimaryTypes
 
                 var itemToDelete = list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).ToList();
                 list.RemoveAll((c) => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo);
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void DeleteTransactionDetails(Transaction txn)
+        {
+            try
+            {
+                var filePath = txn.IsClosed ? $"{ClosedTxnFilePath}/{txn.CustomerId}/{txn.CustomerId}_{txn.CustomerSequenceNo}.json" : JsonFilePath;
+                var list = ReadFileAsObjects<Transaction>(filePath);
+
+                var itemToDelete = list.FirstOrDefault(c => c.CustomerId == txn.CustomerId && c.CustomerSequenceNo == txn.CustomerSequenceNo && c.TransactionId == txn.TransactionId);
+                list.Remove(itemToDelete);
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
