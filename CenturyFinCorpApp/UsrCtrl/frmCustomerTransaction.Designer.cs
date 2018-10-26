@@ -52,8 +52,15 @@
             this.cmbCollectionSpot = new System.Windows.Forms.ComboBox();
             this.btnCorrect = new System.Windows.Forms.Button();
             this.btnInterest = new System.Windows.Forms.Button();
+            this.grpMerge = new System.Windows.Forms.GroupBox();
+            this.btnMerge = new System.Windows.Forms.Button();
+            this.txtMergeAmount = new System.Windows.Forms.TextBox();
+            this.txtInterest = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.grpMerge.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLoan
@@ -295,10 +302,68 @@
             this.btnInterest.Text = "[Interest]";
             this.btnInterest.UseVisualStyleBackColor = true;
             // 
+            // grpMerge
+            // 
+            this.grpMerge.Controls.Add(this.label3);
+            this.grpMerge.Controls.Add(this.label2);
+            this.grpMerge.Controls.Add(this.txtInterest);
+            this.grpMerge.Controls.Add(this.txtMergeAmount);
+            this.grpMerge.Controls.Add(this.btnMerge);
+            this.grpMerge.Location = new System.Drawing.Point(702, 147);
+            this.grpMerge.Name = "grpMerge";
+            this.grpMerge.Size = new System.Drawing.Size(200, 112);
+            this.grpMerge.TabIndex = 21;
+            this.grpMerge.TabStop = false;
+            this.grpMerge.Text = "Merge";
+            // 
+            // btnMerge
+            // 
+            this.btnMerge.Location = new System.Drawing.Point(34, 85);
+            this.btnMerge.Name = "btnMerge";
+            this.btnMerge.Size = new System.Drawing.Size(119, 21);
+            this.btnMerge.TabIndex = 0;
+            this.btnMerge.Text = "Merge New Amount";
+            this.btnMerge.UseVisualStyleBackColor = true;
+            this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
+            // 
+            // txtMergeAmount
+            // 
+            this.txtMergeAmount.Location = new System.Drawing.Point(85, 19);
+            this.txtMergeAmount.Name = "txtMergeAmount";
+            this.txtMergeAmount.Size = new System.Drawing.Size(100, 20);
+            this.txtMergeAmount.TabIndex = 6;
+            this.txtMergeAmount.Leave += new System.EventHandler(this.txtMergeAmount_Leave);
+            // 
+            // txtInterest
+            // 
+            this.txtInterest.Location = new System.Drawing.Point(85, 46);
+            this.txtInterest.Name = "txtInterest";
+            this.txtInterest.Size = new System.Drawing.Size(100, 20);
+            this.txtInterest.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Amount";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Interest";
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.grpMerge);
             this.Controls.Add(this.btnInterest);
             this.Controls.Add(this.btnCorrect);
             this.Controls.Add(this.cmbCollectionSpot);
@@ -323,6 +388,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.grpMerge.ResumeLayout(false);
+            this.grpMerge.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,5 +420,11 @@
         private System.Windows.Forms.ComboBox cmbCollectionSpot;
         private System.Windows.Forms.Button btnCorrect;
         private System.Windows.Forms.Button btnInterest;
+        private System.Windows.Forms.GroupBox grpMerge;
+        private System.Windows.Forms.TextBox txtMergeAmount;
+        private System.Windows.Forms.Button btnMerge;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtInterest;
     }
 }

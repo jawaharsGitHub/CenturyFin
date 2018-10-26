@@ -113,6 +113,30 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static void MergeTransactionLoanAmount(Transaction updatedTransaction)
+        {
+
+            try
+            {
+                var filePath = updatedTransaction.IsClosed ? $"{AppConfiguration.ClosedNotesFile}/{updatedTransaction.CustomerId}/{updatedTransaction.CustomerId}_{updatedTransaction.CustomerSequenceNo}.json" : AppConfiguration.TransactionFile;
+
+                List<Transaction> list = ReadFileAsObjects<Transaction>(filePath);
+
+                var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId).FirstOrDefault();
+
+                //u.AmountReceived = updatedTransaction.AmountReceived;
+                u.TxnDate = updatedTransaction.TxnDate;
+                u.Balance = updatedTransaction.Balance;
+
+                WriteObjectsToFile(list, filePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public static Transaction GetTransactionDetail(int txnId)
         {
             try

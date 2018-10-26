@@ -26,6 +26,10 @@ namespace DataAccess.PrimaryTypes
         public DateTime? AmountGivenDate { get; set; }
         public DateTime? ClosedDate { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
+
+        public bool IsMerged { get; set; }
+        public DateTime? MergedDate { get; set; }
+
         public int CollectionSpotId
         {
             get { return (_collSpot == 0) ? CustomerId : _collSpot; }
@@ -132,6 +136,26 @@ namespace DataAccess.PrimaryTypes
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
                 u.ClosedDate = updatedCustomer.ClosedDate;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void UpdateCustomerLoanAmount(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.LoanAmount = updatedCustomer.LoanAmount;
+                u.Interest = updatedCustomer.Interest;
+                u.IsMerged = true;
+                u.MergedDate = DateTime.Today.Date;
 
                 WriteObjectsToFile(list, JsonFilePath);
             }

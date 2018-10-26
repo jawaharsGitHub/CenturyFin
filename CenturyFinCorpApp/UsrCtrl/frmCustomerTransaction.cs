@@ -38,9 +38,10 @@ namespace CenturyFinCorpApp
             btnBalance.Text = $"BALANCE :  {_balance}";
             btnInterest.Text = $"INTEREST :  {customer.Interest}";
             var closedText = (_balance == 0) ? "(CLOSED)" : string.Empty;
+            var mergedText = (customer.IsMerged) ? $"(MERGED on {customer.MergedDate.Value.ToShortDateString()})" : string.Empty;
 
 
-            lblDetail.Text = $"{customer.Name} - CutomerId: {customer.CustomerId} SequenceNo: {customer.CustomerSeqNumber} {closedText}";
+            lblDetail.Text = $"{customer.Name} - CutomerId: {customer.CustomerId} SequenceNo: {customer.CustomerSeqNumber} {closedText} {mergedText}";
 
             txtCollectionAmount.Text = (customer.LoanAmount / 100).ToString();
 
@@ -333,6 +334,11 @@ namespace CenturyFinCorpApp
 
         private void btnCorrect_Click(object sender, EventArgs e)
         {
+            CorrectData();
+        }
+
+        private void CorrectData()
+        {
             txns.ForEach(t =>
             {
 
@@ -349,8 +355,7 @@ namespace CenturyFinCorpApp
                 }
 
             });
-
-
+            LoadTxn();
         }
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
@@ -381,6 +386,44 @@ namespace CenturyFinCorpApp
                 Transaction.DeleteTransactionDetails(txn);
             }
 
+        }
+
+        private void btnMerge_Click(object sender, EventArgs e)
+        {
+            // update loan and interest
+            customer.LoanAmount += Convert.ToInt32(txtMergeAmount.Text);
+            customer.Interest += Convert.ToInt32(txtInterest.Text);
+
+            Customer.UpdateCustomerLoanAmount(customer);
+
+            // get first txn
+            var firstTxn = txns.Where(w => w.AmountReceived == 0).OrderBy(o => o.TxnDate).First();
+
+
+            // update loan amount.
+            firstTxn.Balance += Convert.ToInt32(txtMergeAmount.Text); // TODO: it may affect daily given amount and amount in hand details. be carefull.
+
+            Transaction.MergeTransactionLoanAmount(firstTxn);
+            // call correct data.
+            CorrectData();
+
+            
+
+        }
+
+        private void RefreshData()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void txtMergeAmount_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMergeAmount.Text)) return;
+
+            var loanAmount = Convert.ToInt32(txtMergeAmount.Text);
+
+            var interest = (loanAmount / 100) * 10;
+            txtInterest.Text = interest.ToString();
         }
     }
 }
