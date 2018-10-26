@@ -3342,5 +3342,53 @@
     "CollectionSpotId": 63,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 216,
+    "CustomerId": 50,
+    "Name": "Munis Travels",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-26T12:17:01.4450796-04:00",
+    "ClosedDate": null,
+    "ReturnType": 2,
+    "CollectionSpotId": 50,
+    "ReturnDay": 0,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 217,
+    "CustomerId": 1,
+    "Name": "Manikandan T Stall Kadamba Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-26T12:17:36.9906561-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 1,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 218,
+    "CustomerId": 67,
+    "Name": "Selvam Contractor",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-26T12:17:52.9134651-04:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "CollectionSpotId": 67,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
