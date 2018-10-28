@@ -133,7 +133,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             finalData.Insert(0, new IncomeReport()
             {
-                MonthYear = "Feb 2018",
+                MonthYear = "February 2018",
                 ActualIncome = 0,
                 CloseCount = 0
             });

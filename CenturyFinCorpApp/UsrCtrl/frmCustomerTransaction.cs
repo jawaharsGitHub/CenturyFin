@@ -231,7 +231,7 @@ namespace CenturyFinCorpApp
                 lblNoOfDays.ForeColor = System.Drawing.Color.Honeydew;
 
 
-            var interestRate = (cus.LoanAmount / cus.Interest) == 12 ? 8.69 : 11.11;
+            var interestRate = cus.Interest == 0 ? 0 : ((cus.LoanAmount / cus.Interest) == 12 ? 8.69 : 11.11);
 
 
             var percGainPerMonth = Math.Round(((interestRate / daysTaken) * 30), 2); // 8.89% is % of 800 for 9200 for one month.
@@ -407,7 +407,7 @@ namespace CenturyFinCorpApp
             // call correct data.
             CorrectData();
 
-            
+
 
         }
 

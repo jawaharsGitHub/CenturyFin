@@ -53,11 +53,11 @@
             this.btnCorrect = new System.Windows.Forms.Button();
             this.btnInterest = new System.Windows.Forms.Button();
             this.grpMerge = new System.Windows.Forms.GroupBox();
-            this.btnMerge = new System.Windows.Forms.Button();
-            this.txtMergeAmount = new System.Windows.Forms.TextBox();
-            this.txtInterest = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtInterest = new System.Windows.Forms.TextBox();
+            this.txtMergeAmount = new System.Windows.Forms.TextBox();
+            this.btnMerge = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -249,7 +249,7 @@
             // 
             this.btnCreditScore.BackColor = System.Drawing.Color.Gold;
             this.btnCreditScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreditScore.Location = new System.Drawing.Point(536, 317);
+            this.btnCreditScore.Location = new System.Drawing.Point(536, 359);
             this.btnCreditScore.Name = "btnCreditScore";
             this.btnCreditScore.Size = new System.Drawing.Size(175, 91);
             this.btnCreditScore.TabIndex = 15;
@@ -260,7 +260,7 @@
             // 
             this.cmbReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnType.FormattingEnabled = true;
-            this.cmbReturnType.Location = new System.Drawing.Point(536, 192);
+            this.cmbReturnType.Location = new System.Drawing.Point(536, 234);
             this.cmbReturnType.Name = "cmbReturnType";
             this.cmbReturnType.Size = new System.Drawing.Size(121, 21);
             this.cmbReturnType.TabIndex = 16;
@@ -269,7 +269,7 @@
             // 
             this.cmbReturnDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnDay.FormattingEnabled = true;
-            this.cmbReturnDay.Location = new System.Drawing.Point(536, 238);
+            this.cmbReturnDay.Location = new System.Drawing.Point(536, 280);
             this.cmbReturnDay.Name = "cmbReturnDay";
             this.cmbReturnDay.Size = new System.Drawing.Size(121, 21);
             this.cmbReturnDay.TabIndex = 17;
@@ -278,14 +278,14 @@
             // 
             this.cmbCollectionSpot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCollectionSpot.FormattingEnabled = true;
-            this.cmbCollectionSpot.Location = new System.Drawing.Point(536, 276);
+            this.cmbCollectionSpot.Location = new System.Drawing.Point(536, 318);
             this.cmbCollectionSpot.Name = "cmbCollectionSpot";
             this.cmbCollectionSpot.Size = new System.Drawing.Size(250, 21);
             this.cmbCollectionSpot.TabIndex = 18;
             // 
             // btnCorrect
             // 
-            this.btnCorrect.Location = new System.Drawing.Point(536, 450);
+            this.btnCorrect.Location = new System.Drawing.Point(536, 467);
             this.btnCorrect.Name = "btnCorrect";
             this.btnCorrect.Size = new System.Drawing.Size(157, 23);
             this.btnCorrect.TabIndex = 19;
@@ -309,37 +309,21 @@
             this.grpMerge.Controls.Add(this.txtInterest);
             this.grpMerge.Controls.Add(this.txtMergeAmount);
             this.grpMerge.Controls.Add(this.btnMerge);
-            this.grpMerge.Location = new System.Drawing.Point(702, 147);
+            this.grpMerge.Location = new System.Drawing.Point(703, 189);
             this.grpMerge.Name = "grpMerge";
             this.grpMerge.Size = new System.Drawing.Size(200, 112);
             this.grpMerge.TabIndex = 21;
             this.grpMerge.TabStop = false;
             this.grpMerge.Text = "Merge";
             // 
-            // btnMerge
+            // label3
             // 
-            this.btnMerge.Location = new System.Drawing.Point(34, 85);
-            this.btnMerge.Name = "btnMerge";
-            this.btnMerge.Size = new System.Drawing.Size(119, 21);
-            this.btnMerge.TabIndex = 0;
-            this.btnMerge.Text = "Merge New Amount";
-            this.btnMerge.UseVisualStyleBackColor = true;
-            this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
-            // 
-            // txtMergeAmount
-            // 
-            this.txtMergeAmount.Location = new System.Drawing.Point(85, 19);
-            this.txtMergeAmount.Name = "txtMergeAmount";
-            this.txtMergeAmount.Size = new System.Drawing.Size(100, 20);
-            this.txtMergeAmount.TabIndex = 6;
-            this.txtMergeAmount.Leave += new System.EventHandler(this.txtMergeAmount_Leave);
-            // 
-            // txtInterest
-            // 
-            this.txtInterest.Location = new System.Drawing.Point(85, 46);
-            this.txtInterest.Name = "txtInterest";
-            this.txtInterest.Size = new System.Drawing.Size(100, 20);
-            this.txtInterest.TabIndex = 7;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 49);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Interest";
             // 
             // label2
             // 
@@ -350,14 +334,30 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Amount";
             // 
-            // label3
+            // txtInterest
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 49);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Interest";
+            this.txtInterest.Location = new System.Drawing.Point(85, 46);
+            this.txtInterest.Name = "txtInterest";
+            this.txtInterest.Size = new System.Drawing.Size(100, 20);
+            this.txtInterest.TabIndex = 7;
+            // 
+            // txtMergeAmount
+            // 
+            this.txtMergeAmount.Location = new System.Drawing.Point(85, 19);
+            this.txtMergeAmount.Name = "txtMergeAmount";
+            this.txtMergeAmount.Size = new System.Drawing.Size(100, 20);
+            this.txtMergeAmount.TabIndex = 6;
+            this.txtMergeAmount.Leave += new System.EventHandler(this.txtMergeAmount_Leave);
+            // 
+            // btnMerge
+            // 
+            this.btnMerge.Location = new System.Drawing.Point(34, 85);
+            this.btnMerge.Name = "btnMerge";
+            this.btnMerge.Size = new System.Drawing.Size(119, 21);
+            this.btnMerge.TabIndex = 0;
+            this.btnMerge.Text = "Merge New Amount";
+            this.btnMerge.UseVisualStyleBackColor = true;
+            this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
             // frmCustomerTransaction
             // 
