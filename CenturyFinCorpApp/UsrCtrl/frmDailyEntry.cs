@@ -107,7 +107,8 @@ namespace CenturyFinCorpApp
                           c.Interest,
                           c.LoanAmount,
                           c.CustomerId,
-                          c.AmountGivenDate
+                          c.AmountGivenDate,
+                          c.ReturnType
                       };
 
             var result = new List<CustomerDailyTxn>();
@@ -127,7 +128,8 @@ namespace CenturyFinCorpApp
                               Balance = t.Balance,
                               CustomerId = c.CustomerId,
                               CustomerSeqId = c.CustomerSeqNumber,
-                              Interest = c.Interest
+                              Interest = c.Interest,
+                              ReturnType = c.ReturnType
                           }).Distinct().ToList();
             }
 
@@ -137,7 +139,7 @@ namespace CenturyFinCorpApp
             //result = result.Where(w => w.AmountReceived != 0).ToList();
 
             ActualCollection = amountReceived;
-            ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date).Sum(s => s.LoanAmount) / 100);
+            ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && w.ReturnType != ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount) / 100);
 
             label1.Text = $"Total Collection is: {amountReceived.ToMoney()}";
             label2.Text = $"{result.Count(c => c.AmountReceived > 0)} (Rs.{amountReceived.ToMoney()}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection.ToMoney()}) {Environment.NewLine}" +
