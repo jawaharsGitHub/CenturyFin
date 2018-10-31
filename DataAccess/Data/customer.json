@@ -3868,5 +3868,23 @@
     "CollectionSpotId": 66,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 222,
+    "CustomerId": 123,
+    "Name": "Muthu Finance",
+    "PhoneNumber": "",
+    "LoanAmount": 150000,
+    "Interest": 21000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-10-30T21:43:40.3832818-04:00",
+    "ClosedDate": null,
+    "ReturnType": 5,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 123,
+    "ReturnDay": 0,
+    "ModifiedDate": null
   }
 ]
