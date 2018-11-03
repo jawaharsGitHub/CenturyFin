@@ -84,6 +84,8 @@ namespace CenturyFinCorpApp.UsrCtrl
             StringBuilder closedDetailForCurrentMonth = new StringBuilder();
             closedDetailForCurrentMonth.Append($"For {DateTime.Now.ToString("MMMM")}");
 
+            var moveOverClosed = 0;
+
             data.ForEach(f =>
             {
 
@@ -114,18 +116,30 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                 var closedData = f.Sum(s => s.Count);
 
-                existData.CloseCount += closedData;
 
-                if (DateTime.Today.Month == Convert.ToDateTime(f.Key.ClosedMonth).Month)
+                if (f.Key.IsExpectedIncome && (DateTime.Today.Month > Convert.ToDateTime(f.Key.ClosedMonth).Month && DateTime.Today.Year >= Convert.ToDateTime(f.Key.ClosedMonth).Year))
+                {
+                    moveOverClosed += closedData;
+                }
+                else
+                {
+                    existData.CloseCount += closedData;
+
+                }
+
+
+                if (DateTime.Today.Month == Convert.ToDateTime(f.Key.ClosedMonth).Month && DateTime.Today.Year == Convert.ToDateTime(f.Key.ClosedMonth).Year)
                 {
                     if (f.Key.IsExpectedIncome)
                     {
-                        closedDetailForCurrentMonth.Append($" Expected Close: {closedData}");
+                        closedDetailForCurrentMonth.Append($" Expected Close: {closedData.ToString()} +{ moveOverClosed.ToString()} = {closedData + moveOverClosed}");
                     }
                     else
                     {
                         closedDetailForCurrentMonth.Append($" Actual Close: {closedData}");
                     }
+
+                    existData.CloseCount += moveOverClosed;
                 }
 
 
