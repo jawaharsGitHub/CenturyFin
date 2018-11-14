@@ -4084,5 +4084,23 @@
     "CollectionSpotId": 125,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 234,
+    "CustomerId": 126,
+    "Name": "Rabik Nila super market",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-11-11T20:59:33",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 126,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
