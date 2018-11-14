@@ -4066,5 +4066,23 @@
     "CollectionSpotId": 81,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 233,
+    "CustomerId": 125,
+    "Name": "Senthil kumar vadakku theru idly kadai",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-11-10T20:42:15",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 125,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
