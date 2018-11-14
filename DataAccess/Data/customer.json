@@ -4102,5 +4102,41 @@
     "CollectionSpotId": 126,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 235,
+    "CustomerId": 127,
+    "Name": "Ahamed Aranmanai Muttai business",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-11-13T21:27:39.0016199-05:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 127,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 236,
+    "CustomerId": 128,
+    "Name": "Krishnan kaikari kadia market",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-11-13T21:28:07.8851848-05:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 128,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
