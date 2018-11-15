@@ -4156,5 +4156,23 @@
     "CollectionSpotId": 100,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 238,
+    "CustomerId": 28,
+    "Name": "Syed Raja Md Soopu&Michar Kadai",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-11-14T23:51:16.6865039-05:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 28,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
