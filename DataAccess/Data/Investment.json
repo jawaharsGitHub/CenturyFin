@@ -1958,5 +1958,21 @@
     "CustomerId": 28,
     "CustomerSequenceNo": 238,
     "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 100000,
+    "Interest": 10000,
+    "CustomerId": 84,
+    "CustomerSequenceNo": 239,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 50000,
+    "Interest": 5000,
+    "CustomerId": 129,
+    "CustomerSequenceNo": 240,
+    "CreatedDate": "00:00:00"
   }
 ]

@@ -71,13 +71,20 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         Count = newGroup.Count()
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
+            var cc = closedCustomers.Sum(s => s.Count);
+            var ccc = runningCustomers.Sum(s => s.Count);
+
+
+
             // Merge Both result
             closedCustomers.AddRange(runningCustomers);
 
-            // group by eclosed date and income type
+            // group by closed date and income type
             var data = (from x in closedCustomers
                         group x by new { ClosedMonth = Convert.ToDateTime(x.ClosedDate).ToString("Y"), IsExpectedIncome = x.IsExpectedIncome } into newGroup
                         select newGroup).ToList();
+
+           //  var d = data.Sum(s => s.)
 
             var finalData = new List<IncomeReport>();
 
@@ -86,10 +93,13 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var moveOverClosed = 0;
 
+            var ddd = 0;
             data.ForEach(f =>
             {
 
                 IncomeReport existData = null;
+
+                ///ddd += f.ToList().Sum(s => s.Count);
 
                 f.ToList().ForEach(d =>
                 {
@@ -99,16 +109,19 @@ namespace CenturyFinCorpApp.UsrCtrl
                     {
                         existData = new IncomeReport() { MonthYear = Convert.ToDateTime(d.ClosedDate).ToString("Y") };
                         finalData.Add(existData);
+                        //ddd += d.Count;
                     }
 
                     if (d.IsExpectedIncome)
                     {
                         existData.ExpectedIncome += d.TotalInterest;
+                        ddd += d.Count;
 
                     }
                     else
                     {
                         existData.ActualIncome += d.TotalInterest;
+                        ddd += d.Count;
                     }
 
 

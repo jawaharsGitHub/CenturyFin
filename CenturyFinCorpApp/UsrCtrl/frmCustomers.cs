@@ -237,7 +237,7 @@ namespace CenturyFinCorpApp
                     CustomerId = customerId,
                     CustomerSequenceNo = seqNo,
                     TransactionId = Transaction.GetNextTransactionId(),
-                    Balance = (Transaction.GetBalance(cus) - Convert.ToInt16(collectedAmount)), // TODO: Balance is not updaed correctly eg: 71-104 - 19th july txn.
+                    Balance = (Transaction.GetBalance(cus) - Convert.ToInt32(collectedAmount)), // TODO: Balance is not updaed correctly eg: 71-104 - 19th july txn.
                     TxnDate = dateTimePicker1.Value
                 };
 
