@@ -84,7 +84,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                         group x by new { ClosedMonth = Convert.ToDateTime(x.ClosedDate).ToString("Y"), IsExpectedIncome = x.IsExpectedIncome } into newGroup
                         select newGroup).ToList();
 
-           //  var d = data.Sum(s => s.)
+            //  var d = data.Sum(s => s.)
 
             var finalData = new List<IncomeReport>();
 
@@ -145,7 +145,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                 {
                     if (f.Key.IsExpectedIncome)
                     {
-                        closedDetailForCurrentMonth.Append($" Expected Close: {closedData.ToString()} +{ moveOverClosed.ToString()} = {closedData + moveOverClosed}");
+                        closedDetailForCurrentMonth.Append($" Expected Close: {closedData.ToString()} + {moveOverClosed.ToString()} = {closedData + moveOverClosed}");
                     }
                     else
                     {
@@ -268,7 +268,7 @@ namespace CenturyFinCorpApp.UsrCtrl
         {
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
             lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
-            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()}) out of ~15.7-Lacs as of Oct 22 2018.";
+            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()}) out of ~16.5-Lacs as of Nov 16 2018.";
         }
     }
 }

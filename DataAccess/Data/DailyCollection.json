@@ -5543,7 +5543,7 @@
     "OpenedAccounts": 1,
     "TomorrowNeed": 100000,
     "TomorrowDiff": -84080,
-    "Comments": "Kumar murugan idly kadai will return all money - on Nov 4th.\r\n1 new customer - nila super market\r\nentering 11th date data on 13th from florida.\r\nkumar poundu kadai asked 1 lac.",
+    "Comments": "Kumar murugan idly kadai will return all money - on Nov 4th.\r\n1 new customer - nila super market\r\nentering 11th date data on 13th from florida.\r\nkumar poundu kadai asked 1 lac.\r\nadded missing 500 of kalaiselvan tiupullani so actual collection is 29650.\r\nthe missing 500 will be added into nov 17.",
     "OtherExpenditire": 0,
     "OtherInvestment": 0
   },
@@ -5582,6 +5582,44 @@
     "TomorrowNeed": 0,
     "TomorrowDiff": -106230,
     "Comments": "Kumar murugan idly kadai will return all money - on Nov 4th.\r\nentering 11th date data on 13th from florida.\r\nkumar poundu kadai asked 1 lac.\r\nneed 500 from syed raja md to close his account.",
+    "OtherExpenditire": 0,
+    "OtherInvestment": 0
+  },
+  {
+    "Date": "16-11-2018",
+    "YesterdayAmountInHand": 43330,
+    "SentFromUSA": 0.0,
+    "InBank": 62899.94,
+    "BankTxnOut": 0.0,
+    "TakenFromBank": 0,
+    "CollectionAmount": 31600,
+    "GivenAmount": 0,
+    "Interest": 0,
+    "TodayInHand": 74930,
+    "ClosedAccounts": 0,
+    "OpenedAccounts": 0,
+    "TomorrowNeed": 0,
+    "TomorrowDiff": -137830,
+    "Comments": "Kumar murugan idly kadai will return all money - on Nov 4th.\r\ngot 500 from syed raja md to close his account.",
+    "OtherExpenditire": 0,
+    "OtherInvestment": 0
+  },
+  {
+    "Date": "17-11-2018",
+    "YesterdayAmountInHand": 74930,
+    "SentFromUSA": 0.0,
+    "InBank": 62899.94,
+    "BankTxnOut": 0.0,
+    "TakenFromBank": 0,
+    "CollectionAmount": 18300,
+    "GivenAmount": 40000,
+    "Interest": 4000,
+    "TodayInHand": 57730, // added missed 500 of kalaiselvan on 13th nov.
+    "ClosedAccounts": 0,
+    "OpenedAccounts": 2,
+    "TomorrowNeed": 70000,
+    "TomorrowDiff": -50130,
+    "Comments": "Kumar murugan idly kadai will return all money - on Nov 4th.\r\n\r\nmissing 500 of kalaisevan on nov 13th moved to today - nov 17th. so actual inhand is 57230 updated inhand is 57730.",
     "OtherExpenditire": 0,
     "OtherInvestment": 0
   }
