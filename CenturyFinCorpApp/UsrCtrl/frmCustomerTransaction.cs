@@ -246,6 +246,10 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
             dataGridView1.Columns["CustomerSequenceNo"].Visible = false;
 
+            dataGridView1.Columns["TxnDate"].DisplayIndex = 1;
+            dataGridView1.Columns["AmountReceived"].DisplayIndex = 2;
+            dataGridView1.Columns["Balance"].DisplayIndex = 3;
+
         }
 
         private void rdbAsc_CheckedChanged(object sender, EventArgs e)
