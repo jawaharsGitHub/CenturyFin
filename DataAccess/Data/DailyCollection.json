@@ -5614,12 +5614,31 @@
     "CollectionAmount": 18300,
     "GivenAmount": 40000,
     "Interest": 4000,
-    "TodayInHand": 57730, // added missed 500 of kalaiselvan on 13th nov.
+    "TodayInHand": 57730,
     "ClosedAccounts": 0,
     "OpenedAccounts": 2,
     "TomorrowNeed": 70000,
     "TomorrowDiff": -50130,
     "Comments": "Kumar murugan idly kadai will return all money - on Nov 4th.\r\n\r\nmissing 500 of kalaisevan on nov 13th moved to today - nov 17th. so actual inhand is 57230 updated inhand is 57730.",
+    "OtherExpenditire": 0,
+    "OtherInvestment": 0
+  },
+  {
+    "Date": "18-11-2018",
+    "YesterdayAmountInHand": 57730,
+    "SentFromUSA": 121499.0,
+    "InBank": 159448.94,
+    "BankTxnOut": 0.0,
+    "TakenFromBank": 25000,
+    "CollectionAmount": 65400,
+    "GivenAmount": 120000,
+    "Interest": 12000,
+    "TodayInHand": 40130,
+    "ClosedAccounts": 1,
+    "OpenedAccounts": 4,
+    "TomorrowNeed": 0,
+    "TomorrowDiff": -199529,
+    "Comments": "Kumar murugan idly kadai will return all money - on Nov 4th.\r\n\r\n500 need from pandi to close his account.\r\nwill be add 50Rs of 2 lacs 50Rs of thara into InBank details.",
     "OtherExpenditire": 0,
     "OtherInvestment": 0
   }
