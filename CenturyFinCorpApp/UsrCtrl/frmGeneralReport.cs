@@ -268,7 +268,7 @@ namespace CenturyFinCorpApp.UsrCtrl
         {
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
             lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
-            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()}) out of ~16.5-Lacs as of Nov 16 2018.";
+            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()}) out of ~16.75-Lacs as of Nov 16 2018.";
         }
     }
 }
