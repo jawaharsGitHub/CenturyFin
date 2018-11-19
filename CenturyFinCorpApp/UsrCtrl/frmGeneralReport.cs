@@ -4,6 +4,7 @@ using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -145,7 +146,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                 {
                     if (f.Key.IsExpectedIncome)
                     {
-                        closedDetailForCurrentMonth.Append($" Expected Close: {closedData.ToString()} + {moveOverClosed.ToString()} = {closedData + moveOverClosed}");
+                        closedDetailForCurrentMonth.Append($" Expected Close: {closedData.ToString()}(this month) + {moveOverClosed.ToString()}(carry fwd) = {closedData + moveOverClosed}");
                     }
                     else
                     {
@@ -269,6 +270,21 @@ namespace CenturyFinCorpApp.UsrCtrl
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
             lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
             lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()}) out of ~16.75-Lacs as of Nov 16 2018.";
+        }
+
+        private void dgvIncome_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.dgvIncome.Columns["MonthYear"] == null) return;
+            if (e.RowIndex >= 0 && e.ColumnIndex == this.dgvIncome.Columns["MonthYear"].Index)
+            {
+                if (e.Value != null && Convert.ToDateTime(e.Value).ToString("Y") == DateTime.Now.ToString("Y"))
+                {
+
+                    dgvIncome.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Orange;
+                    dgvIncome.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+
+                }
+            }
         }
     }
 }

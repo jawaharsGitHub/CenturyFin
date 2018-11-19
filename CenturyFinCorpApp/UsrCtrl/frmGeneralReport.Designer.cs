@@ -59,6 +59,7 @@
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.Size = new System.Drawing.Size(538, 405);
             this.dgvIncome.TabIndex = 0;
+            this.dgvIncome.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvIncome_CellFormatting);
             // 
             // lblTotal
             // 
