@@ -148,6 +148,8 @@ namespace CenturyFinCorpApp
 
             dataGridView1.DataSource = result;
             dataGridView1.Columns["AmountReceived"].ReadOnly = false;
+            dataGridView1.Columns["AmountReceived"].DisplayIndex = 1;
+            dataGridView1.Columns["Balance"].DisplayIndex = 2;
 
             lblCollSpot.Text = $"Went to {result.GroupBy(g => g.CSId).Count()} place to collect?";
 
