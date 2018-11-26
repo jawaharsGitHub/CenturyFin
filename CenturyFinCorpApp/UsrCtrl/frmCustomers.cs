@@ -221,9 +221,9 @@ namespace CenturyFinCorpApp
             var cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
 
 
-            var seqNo = cus.CustomerSeqNumber; // FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerSeqNumber");
-            var customerId = cus.CustomerId; // FormGeneral.GetGridCellValue(grid, rowIndex, "CustomerId");
-            var loanAmount = cus.LoanAmount; // FormGeneral.GetGridCellValue(grid, rowIndex, "LoanAmount");
+            var seqNo = cus.CustomerSeqNumber;
+            var customerId = cus.CustomerId;
+            var loanAmount = cus.LoanAmount;
 
 
 
@@ -250,7 +250,7 @@ namespace CenturyFinCorpApp
                 if (txn.Balance == 0)
                 {
                     MessageBox.Show("Good News, This txn will be closed!");
-                    LogHelper.WriteLog("Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
+                    LogHelper.WriteLog($"Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
                     Customer.CloseCustomerTxn(cus, false, txn.TxnDate); //  new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
                 }
 
@@ -291,27 +291,8 @@ namespace CenturyFinCorpApp
             }
 
 
-
-            //var amountGivenDate = cus.AmountGivenDate; // FormGeneral.GetGridCellValue(grid, rowIndex, "AmountGivenDate");
-            //var closedDate = cus.ClosedDate; //  FormGeneral.GetGridCellValue(grid, rowIndex, "ClosedDate");
-            //var interest = cus.Interest; // FormGeneral.GetGridCellValue(grid, rowIndex, "Interest");
-            //var name = cus.Name; // FormGeneral.GetGridCellValue(grid, rowIndex, "Name");
-
-            // Update Customer Created Date.
-
             Customer.CorrectCustomerData(cus);
 
-            //Customer.CorrectCustomerData(
-            //        new Customer()
-            //        {
-            //            CustomerId = customerId,
-            //            CustomerSeqNumber = Convert.ToInt32(seqNo),
-            //            AmountGivenDate = Convert.ToDateTime(amountGivenDate),
-            //            ClosedDate = Convert.ToDateTime(closedDate),
-            //            Interest = Convert.ToInt32(interest),
-            //            LoanAmount = Convert.ToInt32(loanAmount),
-            //            Name = name
-            //        });
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -423,7 +404,7 @@ namespace CenturyFinCorpApp
             {
                 searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.ReturnType).ToList();
             }
-            else if  (value == 9)
+            else if (value == 9)
             {
                 searchedCustomer = customers.Where(w => w.IsActive).OrderByDescending(o => o.CollectionSpotId).ToList();
             }
