@@ -4480,5 +4480,41 @@
     "CollectionSpotId": 133,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 256,
+    "CustomerId": 134,
+    "Name": "Kaleedas Bharathinagar",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-11-26T21:02:57",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 134,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 257,
+    "CustomerId": 135,
+    "Name": "Murugan Market Maligai Kadai",
+    "PhoneNumber": "",
+    "LoanAmount": 25000,
+    "Interest": 2500,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-11-26T21:03:18",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 135,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
