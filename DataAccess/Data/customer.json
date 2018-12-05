@@ -4696,5 +4696,23 @@
     "CollectionSpotId": 83,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 268,
+    "CustomerId": 92,
+    "Name": "Ravindran Bharathi Nagar Contractor",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-12-05T11:54:21.6051897-05:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 92,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
