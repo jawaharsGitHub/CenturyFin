@@ -61,6 +61,12 @@ namespace CenturyFinCorpApp
 
 
             txtSearch.Text = GlobalValue.SearchText;
+            if (GlobalValue.CollectionDate != null)
+            {
+                //GlobalValue.CollectionDate = DateTime.Today;
+                dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
+            }
+            //dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
 
         }
@@ -427,6 +433,11 @@ namespace CenturyFinCorpApp
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
         {
             lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()}";
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            GlobalValue.CollectionDate = dateTimePicker1.Value;
         }
     }
 }
