@@ -255,7 +255,7 @@ namespace CenturyFinCorpApp
                 }
                 if (txn.Balance == 0)
                 {
-                    MessageBox.Show("Good News, This txn will be closed!");
+                    MessageBox.Show($"Good News, txn closed for [{txn.CustomerSequenceNo}]-[{cus.Name}]");
                     LogHelper.WriteLog($"Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
                     Customer.CloseCustomerTxn(cus, false, txn.TxnDate); //  new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
                 }
