@@ -399,11 +399,22 @@ namespace DataAccess.PrimaryTypes
 
         public static double GetCreditScore(int _customerId)
         {
-            var creditScores = (from c in Customer.GetAllCustomer()
+            List<CreditReport> creditScores;
+            try
+            {
+
+
+                creditScores = (from c in Customer.GetAllCustomer()
                                 where c.CustomerId == _customerId
                                 select GetCreditScore(c)).ToList();
 
-            return creditScores.Average(a => a.CreditScore).RoundPoints();
+                return creditScores.Where(w => w != null).Average(a => a.CreditScore).RoundPoints();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
         }
 
