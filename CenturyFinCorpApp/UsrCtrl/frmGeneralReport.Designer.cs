@@ -258,7 +258,7 @@
             this.Controls.Add(this.lblExpected);
             this.Controls.Add(this.chkAddSalary);
             this.Name = "frmGeneralReport";
-            this.Size = new System.Drawing.Size(1320, 560);
+            this.Size = new System.Drawing.Size(1320, 603);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).EndInit();
             this.ResumeLayout(false);

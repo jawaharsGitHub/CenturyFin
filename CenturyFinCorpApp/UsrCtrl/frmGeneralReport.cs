@@ -72,10 +72,6 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         Count = newGroup.Count()
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
-            var cc = closedCustomers.Sum(s => s.Count);
-            var ccc = runningCustomers.Sum(s => s.Count);
-
-
 
             // Merge Both result
             closedCustomers.AddRange(runningCustomers);
@@ -85,22 +81,19 @@ namespace CenturyFinCorpApp.UsrCtrl
                         group x by new { ClosedMonth = Convert.ToDateTime(x.ClosedDate).ToString("Y"), IsExpectedIncome = x.IsExpectedIncome } into newGroup
                         select newGroup).ToList();
 
-            //  var d = data.Sum(s => s.)
-
             var finalData = new List<IncomeReport>();
 
             StringBuilder closedDetailForCurrentMonth = new StringBuilder();
             closedDetailForCurrentMonth.Append($"For {DateTime.Now.ToString("MMMM")}");
 
             var moveOverClosed = 0;
+            var moveOverInterest = 0;
 
             var ddd = 0;
             data.ForEach(f =>
             {
 
                 IncomeReport existData = null;
-
-                ///ddd += f.ToList().Sum(s => s.Count);
 
                 f.ToList().ForEach(d =>
                 {
@@ -110,7 +103,6 @@ namespace CenturyFinCorpApp.UsrCtrl
                     {
                         existData = new IncomeReport() { MonthYear = Convert.ToDateTime(d.ClosedDate).ToString("Y") };
                         finalData.Add(existData);
-                        //ddd += d.Count;
                     }
 
                     if (d.IsExpectedIncome)
@@ -134,23 +126,24 @@ namespace CenturyFinCorpApp.UsrCtrl
                 if (f.Key.IsExpectedIncome && (DateTime.Today.Month > Convert.ToDateTime(f.Key.ClosedMonth).Month && DateTime.Today.Year >= Convert.ToDateTime(f.Key.ClosedMonth).Year))
                 {
                     moveOverClosed += closedData;
+                    moveOverInterest += f.Sum(s => s.TotalInterest);
                 }
                 else
                 {
                     existData.CloseCount += closedData;
-
                 }
 
 
                 if (DateTime.Today.Month == Convert.ToDateTime(f.Key.ClosedMonth).Month && DateTime.Today.Year == Convert.ToDateTime(f.Key.ClosedMonth).Year)
                 {
+                    var totalInt = f.Sum(s => s.TotalInterest);
                     if (f.Key.IsExpectedIncome)
                     {
-                        closedDetailForCurrentMonth.Append($" Expected Close: {closedData.ToString()}(this month) + {moveOverClosed.ToString()}(carry fwd) = {closedData + moveOverClosed}");
+                        closedDetailForCurrentMonth.Append($" {Environment.NewLine}Expected Close: {closedData.ToString()} [{totalInt}] {Environment.NewLine} carry fwd close: {moveOverClosed.ToString()} [{moveOverInterest}] = {closedData + moveOverClosed}");
                     }
                     else
                     {
-                        closedDetailForCurrentMonth.Append($" Actual Close: {closedData}");
+                        closedDetailForCurrentMonth.Append($" Actual Close: {closedData} [{totalInt}]");
                     }
 
                     existData.CloseCount += moveOverClosed;
@@ -172,11 +165,10 @@ namespace CenturyFinCorpApp.UsrCtrl
                                            select pm);
 
 
-            // TODO: Need generic fix for this calculation!!!!
+            // Done: Need generic fix for this calculation!!!!
             var currentMonthExpectedIncome = (from d in finalData
                                               where
-                                              (Convert.ToDateTime(d.MonthYear).Year == DateTime.Now.Year && Convert.ToDateTime(d.MonthYear).Month < DateTime.Now.Month)
-                                              || (Convert.ToDateTime(d.MonthYear).Year < DateTime.Now.Year)
+                                              d.MonthYear == DateTime.Today.ToString("Y")
                                               select d).FirstOrDefault();
 
             if (currentMonthExpectedIncome != null) currentMonthExpectedIncome.ExpectedIncome += pastMonthExpectedIncome.Sum(s => s.ExpectedIncome);
@@ -208,7 +200,6 @@ namespace CenturyFinCorpApp.UsrCtrl
             dgvIncome.DataSource = finalData;
 
             // Years Expected and Actual Salary
-
             var actual = finalData.Sum(w => w.ActualIncome);
             var expected = finalData.Sum(w => w.ExpectedIncome);
             var salary = finalData.Sum(w => w.MonthlySalary);
@@ -252,10 +243,6 @@ namespace CenturyFinCorpApp.UsrCtrl
                 $"GA: {customers.Sum(s => s.GivenAmount).ToMoney()} {Environment.NewLine}" +
                 $"FI: {customers.Sum(s => s.FutureInterest).ToMoney()} {Environment.NewLine}" +
                 $"C: {customers.Sum(s => s.GivenCount)} {Environment.NewLine}";
-
-
-
-
 
         }
 
