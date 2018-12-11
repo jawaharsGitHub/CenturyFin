@@ -62,6 +62,8 @@
 //TODO: Deployment project.
 //Add/Update Phone Number and address of customer.
 //TODO: form for Config values.
+//TODO: sometimes closed date is not updating.
+// TODO: need to give popup for duplicate entry.
 
 
 
