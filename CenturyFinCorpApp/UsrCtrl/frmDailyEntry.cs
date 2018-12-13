@@ -142,6 +142,7 @@ namespace CenturyFinCorpApp
             ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && w.ReturnType != ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount) / 100);
 
             label1.Text = $"Total Collection is: {amountReceived.ToMoney()}";
+
             label2.Text = $"{result.Count(c => c.AmountReceived > 0)} (Rs.{amountReceived.ToMoney()}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection.ToMoney()}) {Environment.NewLine}" +
                 $"CLOSED:{result.Count(c => c.Balance == 0)} ({result.Where(w => w.Balance == 0).Sum(s => s.Interest).ToMoney()}) NEW:{result.Count(c => c.AmountReceived == 0)} ({result.Where(w => w.AmountReceived == 0).Sum(s => s.Interest).ToMoney()})";
 
