@@ -4894,5 +4894,23 @@
     "CollectionSpotId": 55,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 280,
+    "CustomerId": 105,
+    "Name": "Sekar Murugan Canteen",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-12-15T08:19:27",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 105,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
