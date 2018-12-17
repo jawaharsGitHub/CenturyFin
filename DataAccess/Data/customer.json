@@ -4912,5 +4912,23 @@
     "CollectionSpotId": 105,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 281,
+    "CustomerId": 71,
+    "Name": "Mani PattinamKathan Tea Shop",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-12-16T07:40:27",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 71,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
