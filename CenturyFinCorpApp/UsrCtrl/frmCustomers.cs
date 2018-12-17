@@ -277,7 +277,16 @@ namespace CenturyFinCorpApp
                     else
                     {
                         txn.TransactionId = existingTxn.First().TransactionId;
-                        Transaction.UpdateTransactionDetails(txn);
+
+                        if (txn.AmountReceived == 0 && DialogResult.Yes == MessageBox.Show($"Are you sure you want to delete an existing transactions for {cus.Name}?", "", MessageBoxButtons.YesNo))
+                        {
+                            Transaction.DeleteTransactionDetails(txn);
+                        }
+                        else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo))
+
+                        {
+                            Transaction.UpdateTransactionDetails(txn);
+                        }
                     }
                 }
 

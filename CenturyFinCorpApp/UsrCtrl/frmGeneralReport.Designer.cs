@@ -73,9 +73,11 @@
             // lblActual
             // 
             this.lblActual.AutoSize = true;
+            this.lblActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActual.ForeColor = System.Drawing.Color.OrangeRed;
             this.lblActual.Location = new System.Drawing.Point(167, 34);
             this.lblActual.Name = "lblActual";
-            this.lblActual.Size = new System.Drawing.Size(37, 13);
+            this.lblActual.Size = new System.Drawing.Size(43, 13);
             this.lblActual.TabIndex = 11;
             this.lblActual.Text = "Actual";
             // 
