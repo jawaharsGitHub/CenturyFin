@@ -4466,7 +4466,7 @@
   {
     "CustomerSeqNumber": 256,
     "CustomerId": 134,
-    "Name": "Kaleedas Bharathinagar",
+    "Name": "Kalidas Bharathinagar",
     "PhoneNumber": "",
     "LoanAmount": 5000,
     "Interest": 500,
@@ -4928,6 +4928,24 @@
     "IsMerged": false,
     "MergedDate": null,
     "CollectionSpotId": 71,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 282,
+    "CustomerId": 23,
+    "Name": "Dharmar Driver Anna",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-12-17T09:25:52",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 23,
     "ReturnDay": null,
     "ModifiedDate": null
   }
