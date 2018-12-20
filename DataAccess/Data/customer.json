@@ -4966,5 +4966,41 @@
     "CollectionSpotId": 37,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 284,
+    "CustomerId": 142,
+    "Name": "Maria Teacher By Thiruvikas",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 300,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2018-12-20T09:59:33.5207132+05:30",
+    "ClosedDate": null,
+    "ReturnType": 3,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 142,
+    "ReturnDay": 0,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 285,
+    "CustomerId": 13,
+    "Name": "THIRUVIKAS- Pandi MaligaCheckPost - 10 days",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 600,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2018-12-20T10:00:43.4268427+05:30",
+    "ClosedDate": null,
+    "ReturnType": 3,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 13,
+    "ReturnDay": 0,
+    "ModifiedDate": null
   }
 ]
