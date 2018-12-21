@@ -15,6 +15,9 @@ namespace CenturyFinCorpApp
             InitializeComponent();
             cmbExistingCustomer.Visible = false;
             LoadCustomerCollectionType();
+            if (GlobalValue.CollectionDate != null)
+                dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -29,7 +32,7 @@ namespace CenturyFinCorpApp
                 cus = (Customer)cmbExistingCustomer.SelectedItem;
                 cus.CustomerSeqNumber = nextSeqNo;
                 cus.IsExistingCustomer = true;
-                newCustomerId = cus.CustomerId;                
+                newCustomerId = cus.CustomerId;
                 cus.IsActive = false;   //Update Active flag of existing customer.
             }
             else
