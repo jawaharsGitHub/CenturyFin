@@ -1,4 +1,5 @@
-﻿using Common.ExtensionMethod;
+﻿using Common;
+using Common.ExtensionMethod;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Drawing;
@@ -12,13 +13,12 @@ namespace CenturyFinCorpApp
 
         private DailyCollectionDetail dailyTxn;
 
-        //private int givenAmount;
-        //private int interest;
         public frmInHand()
         {
             InitializeComponent();
-            GetDailyTxn(DateTime.Today.AddDays(-1), true);
-            GetDailyTxn(DateTime.Today, true);
+            
+            GetDailyTxn(GlobalValue.CollectionDate.Value.AddDays(-1), true);
+            GetDailyTxn(GlobalValue.CollectionDate.Value, true);
 
         }
 
@@ -28,6 +28,8 @@ namespace CenturyFinCorpApp
             if (dailyTxn == null)
             {
                 dailyTxn = DailyCollectionDetail.GetDailyTxn(date.AddDays(-1), isOnLoad);
+                dateTimePicker1.Value = date;
+                btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
                 lblDate1.Text = lblDate2.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
                 btnAdd.Text = "ADD";
                 return;
@@ -64,7 +66,7 @@ namespace CenturyFinCorpApp
 
             txtComments.Text = dailyTxn.Comments;
 
-            btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(DateTime.Today).Sum(s => s.AmountReceived));
+            btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
         }
 
         private void btnAddOrUpdate_Click(object sender, EventArgs e)
@@ -112,11 +114,82 @@ namespace CenturyFinCorpApp
 
             txtInterest.Text = (amt / 10).ToString();
 
-            //givenAmount = Convert.ToInt32((amt * 1000));
-            //interest = Convert.ToInt32((amt * 1000) / 10);
-            //label19.Text = givenAmount.ToString();
-            //label20.Text = interest.ToString();
+            label19.Text = DecimalToWords(amt);
+            label20.Text = DecimalToWords(amt / 10);
         }
+
+        public string DecimalToWords(decimal number)
+        {
+            if (number == 0)
+                return "zero";
+
+            if (number < 0)
+                return "minus " + DecimalToWords(Math.Abs(number));
+
+            string words = "";
+
+            int intPortion = (int)number;
+            decimal fraction = (number - intPortion) * 100;
+            int decPortion = (int)fraction;
+
+            words = NumberToWords(intPortion);
+            if (decPortion > 0)
+            {
+                words += " and ";
+                words += NumberToWords(decPortion);
+            }
+            return words;
+        }
+
+        public static string NumberToWords(int number)
+        {
+            if (number == 0)
+                return "zero";
+
+            if (number < 0)
+                return "minus " + NumberToWords(Math.Abs(number));
+
+            string words = "";
+
+            if ((number / 1000000) > 0)
+            {
+                words += NumberToWords(number / 1000000) + " million ";
+                number %= 1000000;
+            }
+
+            if ((number / 1000) > 0)
+            {
+                words += NumberToWords(number / 1000) + " thousand ";
+                number %= 1000;
+            }
+
+            if ((number / 100) > 0)
+            {
+                words += NumberToWords(number / 100) + " hundred ";
+                number %= 100;
+            }
+
+            if (number > 0)
+            {
+                if (words != "")
+                    words += "and ";
+
+                var unitsMap = new[] { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
+                var tensMap = new[] { "zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+
+                if (number < 20)
+                    words += unitsMap[number];
+                else
+                {
+                    words += tensMap[number / 10];
+                    if ((number % 10) > 0)
+                        words += "-" + unitsMap[number % 10];
+                }
+            }
+
+            return words;
+        }
+
 
         private void btnNextDay_Click(object sender, EventArgs e)
         {

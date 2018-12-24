@@ -15,7 +15,6 @@ namespace CenturyFinCorpApp
             InitializeComponent();
             cmbExistingCustomer.Visible = false;
             LoadCustomerCollectionType();
-            if (GlobalValue.CollectionDate != null)
                 dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
         }

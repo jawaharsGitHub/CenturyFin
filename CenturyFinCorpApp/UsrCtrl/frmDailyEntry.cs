@@ -26,7 +26,6 @@ namespace CenturyFinCorpApp
             else
                 button2.Visible = true;
 
-            if (GlobalValue.CollectionDate != null)
                 dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
             LoadDailyCollection(dateTimePicker1.Value, true);

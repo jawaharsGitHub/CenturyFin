@@ -61,12 +61,11 @@ namespace CenturyFinCorpApp
 
 
             txtSearch.Text = GlobalValue.SearchText;
-            if (GlobalValue.CollectionDate != null)
-            {
-                //GlobalValue.CollectionDate = DateTime.Today;
-                dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
-            }
-            //dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
+
+
+            GlobalValue.CollectionDate = DailyCollectionDetail.GeLatesttDailyTxnDate();
+
+            dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
 
         }

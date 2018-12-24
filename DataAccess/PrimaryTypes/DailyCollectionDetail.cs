@@ -102,5 +102,20 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static DateTime GeLatesttDailyTxnDate()
+        {
+            try
+            {
+                List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
+                var dailyTxn = list.Select(s => Convert.ToDateTime(s.Date)).Max();
+
+                return dailyTxn.AddDays(1);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
