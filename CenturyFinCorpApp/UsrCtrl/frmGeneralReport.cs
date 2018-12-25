@@ -255,8 +255,9 @@ namespace CenturyFinCorpApp.UsrCtrl
         private void ShowTotalAssetMoney()
         {
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
+            lblTotalAsset.Visible = label4.Visible = false;
             lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
-            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()}) out of ~16.75-Lacs as of Nov 16 2018.";
+            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()}  Actual Outstanding: {outstandingMoney.actual.ToMoney()}) out of ~16.75-Lacs as of Nov 16 2018.";
         }
 
         private void dgvIncome_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

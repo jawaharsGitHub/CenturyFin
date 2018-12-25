@@ -414,7 +414,7 @@ namespace DataAccess.PrimaryTypes
                 var outsideMoney = (from L in list
 
                                     group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                                    select newGroup.ToList().OrderBy(w => w.Balance).First()).ToList(); //.Sum(s => s.Balance);
+                                    select newGroup.ToList().OrderBy(w => w.TxnDate).Last()).ToList(); //.Sum(s => s.Balance);
 
                 // this is useful to calculate all external balances
                 var result = (from c in Customer.GetAllCustomer()
