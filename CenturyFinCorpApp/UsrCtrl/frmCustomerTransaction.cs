@@ -142,8 +142,8 @@ namespace CenturyFinCorpApp
             var cus = Customer.GetCustomerDetails(customer);
 
             // Cross verify txn.
-            var totalReceived = txns.Sum(s => s.AmountReceived);
-            var lastBalance = txns.Min(m => m.Balance);
+            var totalReceived = txns.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
+            var lastBalance = txns.Last().Balance;
             var expectedBalance = cus.LoanAmount - totalReceived;
             var isCorrect = (expectedBalance == lastBalance);
             btnCorrect.Visible = !isCorrect;
