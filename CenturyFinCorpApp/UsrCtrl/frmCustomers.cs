@@ -223,16 +223,15 @@ namespace CenturyFinCorpApp
             var grid = (sender as DataGridView);
             var rowIndex = grid.CurrentCell.RowIndex;
 
-            var cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
+            var collectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
+            if (collectedAmount == null) return;
+
+            var cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
 
             var seqNo = cus.CustomerSeqNumber;
             var customerId = cus.CustomerId;
             var loanAmount = cus.LoanAmount;
-
-
-
-            var collectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
             if (string.IsNullOrEmpty(collectedAmount) == false)
             {
@@ -301,11 +300,17 @@ namespace CenturyFinCorpApp
                             ClosedDate = txn.TxnDate,
                         });
                 }
+
+                if (MessageBox.Show($"{cus.Name} - {txn.AmountReceived}. Do you want to continue with next customer?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    txtSearch.SelectAll();
+                    txtSearch.Focus();
+                }
                 return;
             }
 
 
-            Customer.CorrectCustomerData(cus);
+            Customer.CorrectCustomerData(cus); // TODO: done know the reason for thie code here!!!
 
         }
 
