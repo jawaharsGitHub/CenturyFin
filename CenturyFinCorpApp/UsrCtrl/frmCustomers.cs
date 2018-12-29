@@ -245,6 +245,13 @@ namespace CenturyFinCorpApp
                     TxnDate = dateTimePicker1.Value
                 };
 
+                var existingTxn = Transaction.GetTransactionForDate(txn);
+
+                if (existingTxn != null && existingTxn.Count == 1 && existingTxn.First().AmountReceived == txn.AmountReceived)
+                {
+                    return;
+                }
+
                 if (txn.Balance < 0)
                 {
                     MessageBox.Show("Balance is less than 0. Please check your amount. Txn Aborted!");
@@ -258,19 +265,17 @@ namespace CenturyFinCorpApp
                     Customer.CloseCustomerTxn(cus, false, txn.TxnDate); //  new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
                 }
 
-                txn.IsClosed = (txn.Balance <= 0);
+                txn.IsClosed = (txn.Balance == 0);
 
-                // Add new Txn.
-                var existingTxn = Transaction.GetTransactionForDate(txn);
                 if (existingTxn == null || existingTxn.Count == 0)
                 {
-                    Transaction.AddDailyTransactions(txn);
+                    Transaction.AddDailyTransactions(txn); // Adding new txn if none exist for that date.
                 }
                 else
                 {
                     if (existingTxn.First().AmountReceived == 0) // Customer is giving money in the same day fo given date.
                     {
-                        Transaction.AddDailyTransactions(txn);
+                        Transaction.AddDailyTransactions(txn); // TODO: dont know why we are doing this.
                     }
                     else
                     {
