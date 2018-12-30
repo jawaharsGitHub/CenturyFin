@@ -186,7 +186,7 @@ namespace CenturyFinCorpApp
             else if (rdbClosed.Checked)
             {
                 searchedCustomer = customers.Where(w => w.IsActive == false).OrderBy(o => o.ClosedDate).ToList();
-                GlobalValue.NoteOption = rdbClosed.Tag.ToString();
+                GlobalValue.NoteOption = rdbClosed.Tag.ToString();           
             }
             else
             {
@@ -197,6 +197,7 @@ namespace CenturyFinCorpApp
             searchedCustomer = string.IsNullOrEmpty(txtSearch.Text) ? searchedCustomer : searchedCustomer.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
 
             dataGridView1.DataSource = searchedCustomer;
+            dataGridView1.ReadOnly = rdbClosed.Checked;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
