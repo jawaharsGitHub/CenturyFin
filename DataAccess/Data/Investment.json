@@ -2390,5 +2390,37 @@
     "CustomerId": 41,
     "CustomerSequenceNo": 292,
     "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 50000,
+    "Interest": 5000,
+    "CustomerId": 131,
+    "CustomerSequenceNo": 293,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 40000,
+    "Interest": 4000,
+    "CustomerId": 118,
+    "CustomerSequenceNo": 294,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 5000,
+    "Interest": 500,
+    "CustomerId": 144,
+    "CustomerSequenceNo": 295,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 20000,
+    "Interest": 2000,
+    "CustomerId": 145,
+    "CustomerSequenceNo": 296,
+    "CreatedDate": "00:00:00"
   }
 ]
