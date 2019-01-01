@@ -123,7 +123,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                 var closedData = f.Sum(s => s.Count);
 
 
-                if (f.Key.IsExpectedIncome && (DateTime.Today.Month > Convert.ToDateTime(f.Key.ClosedMonth).Month && DateTime.Today.Year >= Convert.ToDateTime(f.Key.ClosedMonth).Year))
+                if (f.Key.IsExpectedIncome && DateTime.Today.ToString("yyyyMM").ToInt32() > Convert.ToDateTime(f.Key.ClosedMonth).ToString("yyyyMM").ToInt32())
+                //(DateTime.Today.Month > Convert.ToDateTime(f.Key.ClosedMonth).Month && DateTime.Today.Year >= Convert.ToDateTime(f.Key.ClosedMonth).Year))
                 {
                     moveOverClosed += closedData;
                     moveOverInterest += f.Sum(s => s.TotalInterest);
@@ -161,7 +162,11 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             // Move past month expected to current month expected.
             var pastMonthExpectedIncome = (from pm in finalData
-                                           where (Convert.ToDateTime(pm.MonthYear).Month < DateTime.Now.Month && Convert.ToDateTime(pm.MonthYear).Year == DateTime.Now.Year)
+                                           where
+                                           //DateTime.Today.AddDays(-1).ToString("yyyyMM");
+                                           //(Convert.ToDateTime(pm.MonthYear).Month < DateTime.Now.Month && 
+                                           //Convert.ToDateTime(pm.MonthYear).Year < DateTime.Now.Year
+                                           Convert.ToDateTime(pm.MonthYear).ToString("yyyyMM").ToInt32() < DateTime.Today.ToString("yyyyMM").ToInt32()
                                            select pm);
 
 
