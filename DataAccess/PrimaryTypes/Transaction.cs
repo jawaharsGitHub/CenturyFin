@@ -297,10 +297,22 @@ namespace DataAccess.PrimaryTypes
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
             if (list == null || list.Count == 0) return customer.LoanAmount - 0;
 
-            var paidAmount = (list.Where(s => s.CustomerSequenceNo == customer.CustomerSeqNumber && s.CustomerId == customer.CustomerId).Sum(s => s.AmountReceived));
+            var customerTxns = list.Where(s => s.CustomerSequenceNo == customer.CustomerSeqNumber && s.CustomerId == customer.CustomerId);
+            var paidAmount = customerTxns.Sum(s => s.AmountReceived);
+
+            var txnLoanAmount = customerTxns.First(f => f.AmountReceived == 0).Balance;
+
+            // Scenario: 1. Balance in customer and txn differs
+            // Eg: cus1 got 40k and cus2 got 30k, now cus1 balance is 35k and cus2 balance is 20k, now cus1 wants to take responsibility of cus1 balance.
+            // so, now cus balance is 35K + 20K = 55k but still balance in txns is 40k but in customer it is 55k. cus2 will be deleted.
+            if (customer.LoanAmount != txnLoanAmount)
+            {
+                return txnLoanAmount - paidAmount;
+            }
             return (customer.LoanAmount - paidAmount);
 
         }
+
 
         public static List<Transaction> GetActiveTransactions()
         {

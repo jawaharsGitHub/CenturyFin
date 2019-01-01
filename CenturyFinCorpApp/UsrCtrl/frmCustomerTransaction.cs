@@ -105,11 +105,11 @@ namespace CenturyFinCorpApp
         {
             var txn = new Transaction()
             {
-                AmountReceived = Convert.ToInt16(txtCollectionAmount.Text),
+                AmountReceived = Convert.ToInt32(txtCollectionAmount.Text),
                 CustomerId = customer.CustomerId,
                 CustomerSequenceNo = customer.CustomerSeqNumber,
                 TransactionId = Transaction.GetNextTransactionId(),
-                Balance = (Transaction.GetBalance(customer) - Convert.ToInt16(txtCollectionAmount.Text)),
+                Balance = (Transaction.GetBalance(customer) - Convert.ToInt32(txtCollectionAmount.Text)),
                 TxnDate = dateTimePicker1.Value,
                 IsClosed = _isClosedTx
 
