@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.ExtensionMethod;
+using System;
 
 namespace DataAccess.PrimaryTypes
 {
@@ -11,7 +12,22 @@ namespace DataAccess.PrimaryTypes
         {
             get
             {
-                return (Convert.ToDateTime(MonthYear).Month >= 6 || Convert.ToDateTime(MonthYear).Year >= 2019) ? 12000 : 10000;
+                var month = Convert.ToDateTime(MonthYear).ToString("yyyyMM").ToInt32();
+
+                if (month <= 201805)
+                {
+                    return 10000;
+                }
+                else if (month > DateTime.Today.ToString("yyyyMM").ToInt32())
+                {
+                    return 0;
+                }
+                else //(month > 201805 && month <= DateTime.Today.ToString("yyyyMM").ToInt32())
+                {
+                    return 12000;
+                }
+
+                //return (Convert.ToDateTime(MonthYear).Month >= 6 || Convert.ToDateTime(MonthYear).Year >= 2019) ? 12000 : 10000;
             }
         }
         public int CloseCount { get; set; }
