@@ -123,7 +123,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                 var closedData = f.Sum(s => s.Count);
 
 
-                if (f.Key.IsExpectedIncome && DateTime.Today.ToString("yyyyMM").ToInt32() > Convert.ToDateTime(f.Key.ClosedMonth).ToString("yyyyMM").ToInt32())
+                if (f.Key.IsExpectedIncome && Convert.ToDateTime(f.Key.ClosedMonth).ToString("yyyyMM").ToInt32() < DateTime.Today.ToString("yyyyMM").ToInt32())
                 //(DateTime.Today.Month > Convert.ToDateTime(f.Key.ClosedMonth).Month && DateTime.Today.Year >= Convert.ToDateTime(f.Key.ClosedMonth).Year))
                 {
                     moveOverClosed += closedData;
