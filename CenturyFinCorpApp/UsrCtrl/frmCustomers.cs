@@ -186,7 +186,7 @@ namespace CenturyFinCorpApp
             else if (rdbClosed.Checked)
             {
                 searchedCustomer = customers.Where(w => w.IsActive == false).OrderBy(o => o.ClosedDate).ToList();
-                GlobalValue.NoteOption = rdbClosed.Tag.ToString();           
+                GlobalValue.NoteOption = rdbClosed.Tag.ToString();
             }
             else
             {
@@ -222,13 +222,54 @@ namespace CenturyFinCorpApp
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var grid = (sender as DataGridView);
+
+            if (grid.CurrentCell.ColumnIndex == 0) return;
             var rowIndex = grid.CurrentCell.RowIndex;
+
+            var cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
+
+            if (grid.CurrentCell.OwningColumn.Name == "ClosedDate" && FormGeneral.GetGridCellValue(grid, rowIndex, "ClosedDate") != null)
+            {
+                Customer.UpdateCustomerClosedDate(
+                       new Customer()
+                       {
+                           CustomerId = cus.CustomerId,
+                           CustomerSeqNumber = cus.CustomerSeqNumber,
+                           ClosedDate = Convert.ToDateTime(FormGeneral.GetGridCellValue(grid, rowIndex, "ClosedDate"))
+                       });
+                return;
+
+            }
+
+            if (grid.CurrentCell.OwningColumn.Name == "Interest")
+            {
+                Customer.UpdateCustomerInterest(
+                       new Customer()
+                       {
+                           CustomerId = cus.CustomerId,
+                           CustomerSeqNumber = cus.CustomerSeqNumber,
+                           Interest = FormGeneral.GetGridCellValue(grid, rowIndex, "Interest").ToInt32()
+                       });
+                return;
+
+            }
+
+            if (grid.CurrentCell.OwningColumn.Name == "LoanAmount")
+            {
+                Customer.UpdateCustomerLoanAmount(
+                       new Customer()
+                       {
+                           CustomerId = cus.CustomerId,
+                           CustomerSeqNumber = cus.CustomerSeqNumber,
+                           LoanAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "LoanAmount").ToInt32()
+                       });
+                return;
+
+            }
 
             var collectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
             if (collectedAmount == null) return;
-
-            var cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
 
             var seqNo = cus.CustomerSeqNumber;
             var customerId = cus.CustomerId;

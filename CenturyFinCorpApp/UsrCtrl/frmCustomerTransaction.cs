@@ -398,7 +398,7 @@ namespace CenturyFinCorpApp
             customer.LoanAmount += Convert.ToInt32(txtMergeAmount.Text);
             customer.Interest += Convert.ToInt32(txtInterest.Text);
 
-            Customer.UpdateCustomerLoanAmount(customer);
+            Customer.MergeCustomerLoanAmount(customer);
 
             // get first txn
             var firstTxn = txns.Where(w => w.AmountReceived == 0).OrderBy(o => o.TxnDate).First();
