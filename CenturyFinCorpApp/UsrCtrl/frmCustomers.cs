@@ -223,7 +223,7 @@ namespace CenturyFinCorpApp
         {
             var grid = (sender as DataGridView);
 
-            if (grid.CurrentCell.ColumnIndex == 0) return;
+            //if (grid.CurrentCell.ColumnIndex == 0) return;
             var rowIndex = grid.CurrentCell.RowIndex;
 
             var cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
