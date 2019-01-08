@@ -60,6 +60,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                            });
 
             var data = (from t in details
+                        where t != null && t.txn != null
                         select new
                         {
                             t.CustomerId,
