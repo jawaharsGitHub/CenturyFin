@@ -254,14 +254,14 @@ namespace CenturyFinCorpApp
 
             }
 
-            if (grid.CurrentCell.OwningColumn.Name == "LoanAmount")
+            if (grid.CurrentCell.OwningColumn.Name == "Name")
             {
-                Customer.UpdateCustomerLoanAmount(
+                Customer.UpdateCustomerName(
                        new Customer()
                        {
                            CustomerId = cus.CustomerId,
                            CustomerSeqNumber = cus.CustomerSeqNumber,
-                           LoanAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "LoanAmount").ToInt32()
+                           Name = FormGeneral.GetGridCellValue(grid, rowIndex, "Name")
                        });
                 return;
 
