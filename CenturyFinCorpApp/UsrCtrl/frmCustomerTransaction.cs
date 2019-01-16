@@ -55,6 +55,9 @@ namespace CenturyFinCorpApp
                 dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             }
             lblMessage.Text = string.Empty;
+
+            btnReOpen.Visible = (_balance == 0);
+
         }
 
         private void LoadCustomerCollectionType()
