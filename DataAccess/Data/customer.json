@@ -5488,5 +5488,23 @@
     "CollectionSpotId": 108,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 313,
+    "CustomerId": 13,
+    "Name": "THIRUVIKAS- Pandi MaligaCheckPost",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 600,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-01-17T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 3,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 13,
+    "ReturnDay": 0,
+    "ModifiedDate": null
   }
 ]
