@@ -12,16 +12,22 @@ namespace DataAccess.PrimaryTypes
         {
             get
             {
-                var month = Convert.ToDateTime(MonthYear).ToString("yyyyMM").ToInt32();
+                var yearMonth = Convert.ToDateTime(MonthYear).ToString("yyyyMM").ToInt32();
 
-                if (month <= 201805)
+                if (yearMonth <= 201805)
                 {
                     return 10000;
                 }
-                else if (month > DateTime.Today.ToString("yyyyMM").ToInt32())
+               
+                else if (yearMonth > DateTime.Today.ToString("yyyyMM").ToInt32())
                 {
                     return 0;
                 }
+                else if (yearMonth >= 201902) // 2019 salary increase. 2k increase)
+                {
+                    return 14000;
+                }
+
                 else //(month > 201805 && month <= DateTime.Today.ToString("yyyyMM").ToInt32())
                 {
                     return 12000;
