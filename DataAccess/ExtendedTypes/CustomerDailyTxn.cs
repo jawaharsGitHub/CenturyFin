@@ -5,6 +5,7 @@ namespace DataAccess.ExtendedTypes
     public class CustomerDailyTxn
     {
         public string CustomerName { get;  set; }
+        public int Loan { get; set; }
         // Collection Spot Id.
         public int? CSId { get; set; }
         public int TransactionId { get; set; }

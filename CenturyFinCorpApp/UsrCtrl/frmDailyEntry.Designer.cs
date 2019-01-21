@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
@@ -43,6 +44,7 @@
             this.dgAvgPerDay = new System.Windows.Forms.DataGridView();
             this.lblCollSpot = new System.Windows.Forms.Label();
             this.lblMax = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).BeginInit();
@@ -56,6 +58,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(578, 300);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
             // dateTimePicker1
@@ -240,5 +243,6 @@
         private System.Windows.Forms.DataGridView dgAvgPerDay;
         private System.Windows.Forms.Label lblCollSpot;
         private System.Windows.Forms.Label lblMax;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

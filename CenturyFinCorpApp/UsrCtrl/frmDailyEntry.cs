@@ -17,6 +17,8 @@ namespace CenturyFinCorpApp
         private int ActualCollection;
         private int ExpectedCollection;
 
+        private List<CustomerDailyTxn> result;
+
         public frmDailyEntry()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace CenturyFinCorpApp
             else
                 button2.Visible = true;
 
-                dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
+            dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
             LoadDailyCollection(dateTimePicker1.Value, true);
             LoadAllHsitoryDailyCollections();
@@ -113,7 +115,6 @@ namespace CenturyFinCorpApp
                           c.ReturnType
                       };
 
-            var result = new List<CustomerDailyTxn>();
 
             if (txn != null)
             {
@@ -125,6 +126,7 @@ namespace CenturyFinCorpApp
                               TransactionId = t.TransactionId,
                               TxnDate = t.TxnDate,
                               CustomerName = c.Name,
+                              Loan = c.LoanAmount,
                               CSId = c.CS,
                               AmountReceived = t.AmountReceived,
                               Balance = t.Balance,
@@ -136,9 +138,6 @@ namespace CenturyFinCorpApp
             }
 
             var amountReceived = result.Sum(s => s.AmountReceived);
-
-
-            //result = result.Where(w => w.AmountReceived != 0).ToList();
 
             ActualCollection = amountReceived;
             ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && w.ReturnType != ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount) / 100);
@@ -242,6 +241,19 @@ namespace CenturyFinCorpApp
         {
             dateTimePicker1.Value = dateTimePicker1.Value.AddDays(-1);
             LoadDailyCollection(dateTimePicker1.Value, true);
+        }
+
+
+        // Shows the sum of previous txns of the selected txns.
+        private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var neededRow = (CustomerDailyTxn)((sender as DataGridView).Rows[e.RowIndex]).DataBoundItem;
+
+            var sum = result.Where(w => w.TransactionId <= neededRow.TransactionId).Sum(s => s.AmountReceived);
+
+            dataGridView1.Rows[e.RowIndex].Cells["AmountReceived"].ToolTipText = sum.ToString();
         }
     }
 
