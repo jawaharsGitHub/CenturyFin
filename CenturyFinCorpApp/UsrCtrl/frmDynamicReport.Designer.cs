@@ -67,15 +67,7 @@
             this.comboBox1.TabIndex = 23;
             this.comboBox1.ValueMember = "Key";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // lblDetails
-            // 
-            this.lblDetails.AutoSize = true;
-            this.lblDetails.Location = new System.Drawing.Point(22, 108);
-            this.lblDetails.Name = "lblDetails";
-            this.lblDetails.Size = new System.Drawing.Size(113, 13);
-            this.lblDetails.TabIndex = 24;
-            this.lblDetails.Text = "[Collectio Spot Details]";
+
             // 
             // frmDynamicReport
             // 
