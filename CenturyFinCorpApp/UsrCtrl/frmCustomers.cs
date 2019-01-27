@@ -95,9 +95,14 @@ namespace CenturyFinCorpApp
 
         private void SetCustomers()
         {
-            customers = Customer.GetAllCustomer().OrderBy(o => o.AmountGivenDate).ToList();
+            customers = Customer.GetAllCustomer()
+                        .OrderBy(o => o.AmountGivenDate).ToList();
 
-            var allGivenAmount = customers.Sum(s => s.LoanAmount);
+            var monthlyCustomers = Customer.GetAllCustomer()
+                        .Where(w => w.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly)
+                        .OrderBy(o => o.AmountGivenDate).ToList();
+
+            var allGivenAmount = customers.Where(w => w.ReturnType != DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount);
 
             var activeTxn = customers.Count(c => c.IsActive == true);
             var closedTxn = customers.Count(c => c.IsActive == false);
@@ -115,6 +120,7 @@ namespace CenturyFinCorpApp
             label1.Text = $"{totalTxn} notes in {days} days {Environment.NewLine} " +
                 $"{DateHelper.DaysToMonth("Running Days", new DateTime(2018, 1, 25), DateTime.Today)} {Environment.NewLine} " +
                 $"{Math.Round(totalTxn / days, 2)} note(s) per day {Environment.NewLine} " +
+                $"{monthlyCustomers.Sum(s => s.Interest)} for Monthly.{Environment.NewLine} " +
                 $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month) {Environment.NewLine}" +
                 $"  need {365 - totalTxn} in {365 - days} days [Shortage: {days - totalTxn}] {Environment.NewLine} " +
                 $"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";
