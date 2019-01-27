@@ -17,7 +17,11 @@ namespace DataAccess.PrimaryTypes
 
                 var yearMonth = Convert.ToDateTime(MonthYear).ToString("yyyyMM").ToInt32();
 
-                if (yearMonth > DateTime.Today.ToString("yyyyMM").ToInt32())
+                if (yearMonth <= 201805)
+                {
+                    salary = 10000;
+                }
+                else if (yearMonth > DateTime.Today.ToString("yyyyMM").ToInt32())
                 {
                     salary = 0;
                 }
