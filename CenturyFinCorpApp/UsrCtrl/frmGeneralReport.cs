@@ -3,9 +3,11 @@ using Common.ExtensionMethod;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Management.Automation;
 using System.Text;
 using System.Windows.Forms;
 
@@ -279,6 +281,24 @@ namespace CenturyFinCorpApp.UsrCtrl
                     dgvIncome.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
 
                 }
+            }
+        }
+
+        private void btnCommit_Click(object sender, EventArgs e)
+        {
+            string directory = ""; // directory of the git repository
+
+            using (PowerShell powershell = PowerShell.Create())
+            {
+                // this changes from the user folder that PowerShell starts up with to your git repository
+                powershell.AddScript(String.Format(@"cd {0}", directory));
+
+                powershell.AddScript(@"git init");
+                powershell.AddScript(@"git add *");
+                powershell.AddScript(@"git commit -m 'git commit from PowerShell in C# - TESTING'");
+                powershell.AddScript(@"git push");
+
+                Collection<PSObject> results = powershell.Invoke();
             }
         }
     }

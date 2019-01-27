@@ -48,6 +48,7 @@
             this.lblBizAsset = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblCloseCount = new System.Windows.Forms.Label();
+            this.btnCommit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -235,10 +236,21 @@
             this.lblCloseCount.TabIndex = 34;
             this.lblCloseCount.Text = "lblCloseCount";
             // 
+            // btnCommit
+            // 
+            this.btnCommit.Location = new System.Drawing.Point(39, 47);
+            this.btnCommit.Name = "btnCommit";
+            this.btnCommit.Size = new System.Drawing.Size(105, 47);
+            this.btnCommit.TabIndex = 35;
+            this.btnCommit.Text = "COMMIT";
+            this.btnCommit.UseVisualStyleBackColor = true;
+            this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCommit);
             this.Controls.Add(this.lblCloseCount);
             this.Controls.Add(this.lblBizAsset);
             this.Controls.Add(this.label9);
@@ -290,5 +302,6 @@
         private System.Windows.Forms.Label lblBizAsset;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblCloseCount;
+        private System.Windows.Forms.Button btnCommit;
     }
 }
