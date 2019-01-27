@@ -12,28 +12,31 @@ namespace DataAccess.PrimaryTypes
         {
             get
             {
+                var salary = 0;
+                var month = Convert.ToDateTime(MonthYear).Month;
+
                 var yearMonth = Convert.ToDateTime(MonthYear).ToString("yyyyMM").ToInt32();
 
-                if (yearMonth <= 201805)
+                if (yearMonth > DateTime.Today.ToString("yyyyMM").ToInt32())
                 {
-                    return 10000;
-                }
-               
-                else if (yearMonth > DateTime.Today.ToString("yyyyMM").ToInt32())
-                {
-                    return 0;
+                    salary = 0;
                 }
                 else if (yearMonth >= 201902) // 2019 salary increase. 2k increase)
                 {
-                    return 14000;
+                    salary = 14000;
                 }
 
                 else //(month > 201805 && month <= DateTime.Today.ToString("yyyyMM").ToInt32())
                 {
-                    return 12000;
+                    salary = 12000;
                 }
 
-                //return (Convert.ToDateTime(MonthYear).Month >= 6 || Convert.ToDateTime(MonthYear).Year >= 2019) ? 12000 : 10000;
+                if (month == 1 || month == 10)
+                {
+                    salary += 10000;
+                }
+
+                return salary;
             }
         }
         public int CloseCount { get; set; }
