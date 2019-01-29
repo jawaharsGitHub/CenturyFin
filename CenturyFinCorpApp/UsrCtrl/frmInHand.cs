@@ -16,7 +16,7 @@ namespace CenturyFinCorpApp
         public frmInHand()
         {
             InitializeComponent();
-            
+
             GetDailyTxn(GlobalValue.CollectionDate.Value.AddDays(-1), true);
             GetDailyTxn(GlobalValue.CollectionDate.Value, true);
 
@@ -29,6 +29,30 @@ namespace CenturyFinCorpApp
             {
                 dailyTxn = DailyCollectionDetail.GetDailyTxn(date.AddDays(-1), isOnLoad);
                 dateTimePicker1.Value = date;
+
+                var collectionAmount = Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived);
+                if (collectionAmount > 0)
+                {
+                    txtCollectionAmount.Text = collectionAmount.ToString();
+                    var todayTxn = (from t in Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value)
+                                    join c in Customer.GetAllCustomer()
+                                    on t.CustomerSequenceNo equals c.CustomerSeqNumber
+                                    select new {
+                                        c.Interest,
+                                        c.LoanAmount,
+                                        t.AmountReceived,
+                                        t.Balance
+                                       
+                                    }).ToList();
+
+
+                    txtGivenAmount.Text = todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Balance).ToString();
+                    txtInterest.Text = todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Interest).ToString();
+                    txtClosed.Text = todayTxn.Where(w => w.Balance == 0).Count().ToString();
+                    txtOpened.Text = todayTxn.Where(w => w.AmountReceived == 0).Count().ToString();
+
+
+                }
                 btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
                 lblDate1.Text = lblDate2.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
                 btnAdd.Text = "ADD";
@@ -38,7 +62,7 @@ namespace CenturyFinCorpApp
             lblDate1.Text = lblDate2.Text = $"Data For {dailyTxn.Date}";
             btnAdd.Text = "UPDATE";
 
-            
+
             txtSentFromUSA.Text = dailyTxn.SentFromUSA.ToString();
 
             txtBankTxnOut.Text = dailyTxn.BankTxnOut.ToString();
@@ -98,7 +122,7 @@ namespace CenturyFinCorpApp
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
 
-            
+
 
         }
 
