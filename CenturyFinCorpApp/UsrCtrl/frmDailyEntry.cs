@@ -255,6 +255,23 @@ namespace CenturyFinCorpApp
 
             dataGridView1.Rows[e.RowIndex].Cells["AmountReceived"].ToolTipText = sum.ToString();
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSearch.Text) == false)
+            {
+                var searchResult = (from r in result
+                                    where r.CustomerName.ToLower().Contains(txtSearch.Text.ToLower())
+                                    select r).ToList();
+
+                dataGridView1.DataSource = searchResult;
+
+            }
+            else
+            {
+                dataGridView1.DataSource = result;
+            }
+        }
     }
 
 

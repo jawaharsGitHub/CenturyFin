@@ -45,6 +45,7 @@
             this.lblCollSpot = new System.Windows.Forms.Label();
             this.lblMax = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).BeginInit();
@@ -196,11 +197,20 @@
             this.lblMax.TabIndex = 20;
             this.lblMax.Text = "label4";
             // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(440, 51);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(145, 20);
+            this.txtSearch.TabIndex = 21;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblMax);
             this.Controls.Add(this.lblCollSpot);
             this.Controls.Add(this.dgAvgPerDay);
@@ -244,5 +254,6 @@
         private System.Windows.Forms.Label lblCollSpot;
         private System.Windows.Forms.Label lblMax;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }
