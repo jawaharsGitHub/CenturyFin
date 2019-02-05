@@ -213,7 +213,7 @@ namespace CenturyFinCorpApp
             GlobalValue.SearchText = txtSearch.Text;
         }
 
-        
+
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -287,20 +287,24 @@ namespace CenturyFinCorpApp
 
                 if (existingTxn != null && existingTxn.Count == 1 && existingTxn.First().AmountReceived == txn.AmountReceived)
                 {
+                    if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        Transaction.UpdateTransactionDetails(existingTxn.First());
+                    }
                     return;
                 }
 
                 if (txn.Balance < 0)
                 {
-                    MessageBox.Show("Balance is less than 0. Please check your amount. Txn Aborted!");
+                    MessageBox.Show("Balance is less than 0. Please check your amount. Txn Aborted!", "", MessageBoxButtons.OK, icon: MessageBoxIcon.Stop);
                     LogHelper.WriteLog($"Balance is less than 0. Please check your amount. Txn Aborted!", txn.CustomerId, txn.CustomerSequenceNo);
                     return;
                 }
                 if (txn.Balance == 0)
                 {
-                    MessageBox.Show($"Good News, txn closed for [{txn.CustomerSequenceNo}]-[{cus.Name}]");
+                    MessageBox.Show($"Good News, txn closed for [{txn.CustomerSequenceNo}]-[{cus.Name}]", "", MessageBoxButtons.OK, icon: MessageBoxIcon.Exclamation);
                     LogHelper.WriteLog($"Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
-                    Customer.CloseCustomerTxn(cus, false, txn.TxnDate); //  new Customer() { CustomerId = txn.CustomerId, CustomerSeqNumber = txn.CustomerSequenceNo, IsActive = false, ClosedDate = txn.TxnDate });
+                    Customer.CloseCustomerTxn(cus, false, txn.TxnDate);
                 }
 
                 txn.IsClosed = (txn.Balance == 0);
@@ -323,8 +327,7 @@ namespace CenturyFinCorpApp
                         {
                             Transaction.DeleteTransactionDetails(txn);
                         }
-                        else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo))
-
+                        else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                         {
                             Transaction.UpdateTransactionDetails(txn);
                         }
@@ -353,7 +356,7 @@ namespace CenturyFinCorpApp
             }
 
 
-            Customer.CorrectCustomerData(cus); // TODO: done know the reason for thie code here!!!
+            Customer.CorrectCustomerData(cus); // TODO: dont know the reason for this code here!!!
 
         }
 
