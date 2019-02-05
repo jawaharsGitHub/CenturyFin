@@ -29,10 +29,10 @@ namespace Common
         {
 
             var totalDays = (endDate - startDate).TotalDays;
-            //var totalYears = Math.Truncate(totalDays / 365);
+            var totalYears = Math.Truncate(totalDays / 365);
             var totalMonths = Math.Truncate((totalDays % 365) / 30);
             var remainingDays = Math.Truncate((totalDays % 365) % 30);
-            return $"{prefix} {totalMonths} month(s) and {remainingDays} day(s)";
+            return $"{prefix} {totalYears} year(s) {totalMonths} month(s) and {remainingDays} day(s)";
         }
     }
 }

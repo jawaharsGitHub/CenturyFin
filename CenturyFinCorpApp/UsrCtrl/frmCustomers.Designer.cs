@@ -34,7 +34,6 @@
             this.rdbAll = new System.Windows.Forms.RadioButton();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.btnAddCustomer = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbFilters = new System.Windows.Forms.ComboBox();
@@ -108,16 +107,6 @@
             this.dateTimePicker1.TabIndex = 5;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
-            // btnAddCustomer
-            // 
-            this.btnAddCustomer.Location = new System.Drawing.Point(1126, 10);
-            this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(102, 23);
-            this.btnAddCustomer.TabIndex = 7;
-            this.btnAddCustomer.Text = "Add Customer";
-            this.btnAddCustomer.UseVisualStyleBackColor = true;
-            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
-            // 
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(938, 11);
@@ -131,7 +120,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1067, 4);
+            this.label1.Location = new System.Drawing.Point(1049, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 10;
@@ -180,7 +169,6 @@
             this.Controls.Add(this.cmbFilters);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.rdbAll);
@@ -204,7 +192,6 @@
         private System.Windows.Forms.RadioButton rdbAll;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button btnAddCustomer;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbFilters;
