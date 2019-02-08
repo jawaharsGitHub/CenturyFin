@@ -47,7 +47,7 @@ namespace CenturyFinCorpApp
                               Date = Convert.ToDateTime(d.Date).ToString("dd-MM-yyyy dddd"),
                               CollectionAmount = d.CollectionAmount,
                               // ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
-                              Closed = cus.Where(w => w.ClosedDate == Convert.ToDateTime(d.Date)).Sum(s => s.Interest)
+                              //Closed = cus.Where(w => w.ClosedDate == Convert.ToDateTime(d.Date)).Sum(s => s.Interest)
                           }).ToList();
 
             var max = result.OrderBy(o => o.CollectionAmount).Last();
