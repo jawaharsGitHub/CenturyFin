@@ -38,6 +38,8 @@ namespace CenturyFinCorpApp
         {
             var data = BaseClass.ReadFileAsObjects<DailyCollectionDetail>(AppConfiguration.DailyTxnFile);
 
+            var cus = Customer.GetAllCustomer();
+
             var result = (from d in data
                           //join c in Customer.GetAllCustomer()
                           //on Convert.ToDateTime(d.Date) equals c.ClosedDate
@@ -47,8 +49,11 @@ namespace CenturyFinCorpApp
                               Date = Convert.ToDateTime(d.Date).ToString("dd-MM-yyyy dddd"),
                               CollectionAmount = d.CollectionAmount,
                               // ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
-                              //Closed = cus.Where(w => w.ClosedDate == Convert.ToDateTime(d.Date)).Sum(s => s.Interest)
+                              Closed = cus.Where(w => w.ClosedDate != null && w.ClosedDate.Value.Date == Convert.ToDateTime(d.Date).Date).Sum(s => s.Interest),
+                              New = cus.Where(w => w.AmountGivenDate.Value.Date == Convert.ToDateTime(d.Date).Date).Sum(s => s.Interest)
                           }).ToList();
+
+            //MessageBox.Show(result.Sum(s => s.Closed).ToString());
 
             var max = result.OrderBy(o => o.CollectionAmount).Last();
 

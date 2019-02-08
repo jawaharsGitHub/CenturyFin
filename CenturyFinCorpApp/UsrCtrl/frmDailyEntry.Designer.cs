@@ -116,7 +116,7 @@
             this.dgvAllDailyCollection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllDailyCollection.Location = new System.Drawing.Point(623, 245);
             this.dgvAllDailyCollection.Name = "dgvAllDailyCollection";
-            this.dgvAllDailyCollection.Size = new System.Drawing.Size(362, 361);
+            this.dgvAllDailyCollection.Size = new System.Drawing.Size(505, 361);
             this.dgvAllDailyCollection.TabIndex = 13;
             // 
             // label3
@@ -169,7 +169,7 @@
             // lblCollSpot
             // 
             this.lblCollSpot.AutoSize = true;
-            this.lblCollSpot.Location = new System.Drawing.Point(26, 548);
+            this.lblCollSpot.Location = new System.Drawing.Point(26, 571);
             this.lblCollSpot.Name = "lblCollSpot";
             this.lblCollSpot.Size = new System.Drawing.Size(111, 13);
             this.lblCollSpot.TabIndex = 19;
