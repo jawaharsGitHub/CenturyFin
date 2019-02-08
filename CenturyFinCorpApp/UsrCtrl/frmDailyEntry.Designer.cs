@@ -34,7 +34,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.chkNotGivenCustomer = new System.Windows.Forms.CheckBox();
             this.dgvAllDailyCollection = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,9 +53,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 183);
+            this.dataGridView1.Location = new System.Drawing.Point(18, 245);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(578, 300);
+            this.dataGridView1.Size = new System.Drawing.Size(578, 323);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
@@ -101,20 +100,10 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "label2";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(904, 11);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Show InHand";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // chkNotGivenCustomer
             // 
             this.chkNotGivenCustomer.AutoSize = true;
-            this.chkNotGivenCustomer.Location = new System.Drawing.Point(492, 160);
+            this.chkNotGivenCustomer.Location = new System.Drawing.Point(492, 207);
             this.chkNotGivenCustomer.Name = "chkNotGivenCustomer";
             this.chkNotGivenCustomer.Size = new System.Drawing.Size(104, 17);
             this.chkNotGivenCustomer.TabIndex = 12;
@@ -125,15 +114,15 @@
             // dgvAllDailyCollection
             // 
             this.dgvAllDailyCollection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAllDailyCollection.Location = new System.Drawing.Point(623, 180);
+            this.dgvAllDailyCollection.Location = new System.Drawing.Point(623, 245);
             this.dgvAllDailyCollection.Name = "dgvAllDailyCollection";
-            this.dgvAllDailyCollection.Size = new System.Drawing.Size(362, 338);
+            this.dgvAllDailyCollection.Size = new System.Drawing.Size(362, 361);
             this.dgvAllDailyCollection.TabIndex = 13;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(620, 151);
+            this.label3.Location = new System.Drawing.Point(626, 219);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 13);
             this.label3.TabIndex = 14;
@@ -172,15 +161,15 @@
             // dgAvgPerDay
             // 
             this.dgAvgPerDay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgAvgPerDay.Location = new System.Drawing.Point(1000, 180);
+            this.dgAvgPerDay.Location = new System.Drawing.Point(851, 3);
             this.dgAvgPerDay.Name = "dgAvgPerDay";
-            this.dgAvgPerDay.Size = new System.Drawing.Size(256, 201);
+            this.dgAvgPerDay.Size = new System.Drawing.Size(256, 204);
             this.dgAvgPerDay.TabIndex = 18;
             // 
             // lblCollSpot
             // 
             this.lblCollSpot.AutoSize = true;
-            this.lblCollSpot.Location = new System.Drawing.Point(18, 490);
+            this.lblCollSpot.Location = new System.Drawing.Point(26, 548);
             this.lblCollSpot.Name = "lblCollSpot";
             this.lblCollSpot.Size = new System.Drawing.Size(111, 13);
             this.lblCollSpot.TabIndex = 19;
@@ -191,7 +180,7 @@
             this.lblMax.AutoSize = true;
             this.lblMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMax.ForeColor = System.Drawing.Color.Coral;
-            this.lblMax.Location = new System.Drawing.Point(740, 139);
+            this.lblMax.Location = new System.Drawing.Point(746, 207);
             this.lblMax.Name = "lblMax";
             this.lblMax.Size = new System.Drawing.Size(85, 29);
             this.lblMax.TabIndex = 20;
@@ -220,14 +209,13 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvAllDailyCollection);
             this.Controls.Add(this.chkNotGivenCustomer);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmDailyEntry";
-            this.Size = new System.Drawing.Size(1281, 544);
+            this.Size = new System.Drawing.Size(1281, 615);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).EndInit();
@@ -243,7 +231,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox chkNotGivenCustomer;
         private System.Windows.Forms.DataGridView dgvAllDailyCollection;
         private System.Windows.Forms.Label label3;

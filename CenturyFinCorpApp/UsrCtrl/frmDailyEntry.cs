@@ -23,10 +23,6 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
 
-            if (Convert.ToBoolean(ConfigurationManager.AppSettings["usingMenu"]) == true)
-                button2.Visible = false;
-            else
-                button2.Visible = true;
 
             dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
@@ -43,12 +39,15 @@ namespace CenturyFinCorpApp
             var data = BaseClass.ReadFileAsObjects<DailyCollectionDetail>(AppConfiguration.DailyTxnFile);
 
             var result = (from d in data
+                          //join c in Customer.GetAllCustomer()
+                          //on Convert.ToDateTime(d.Date) equals c.ClosedDate
                           select
                           new ExtDailyTxn()
                           {
                               Date = Convert.ToDateTime(d.Date).ToString("dd-MM-yyyy dddd"),
                               CollectionAmount = d.CollectionAmount,
                               // ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
+                              Closed = cus.Where(w => w.ClosedDate == Convert.ToDateTime(d.Date)).Sum(s => s.Interest)
                           }).ToList();
 
             var max = result.OrderBy(o => o.CollectionAmount).Last();
