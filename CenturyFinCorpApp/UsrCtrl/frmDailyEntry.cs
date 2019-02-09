@@ -141,7 +141,7 @@ namespace CenturyFinCorpApp
                           }).Distinct().ToList();
             }
 
-            var amountReceived = result.Sum(s => s.AmountReceived);
+            var amountReceived = result.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
 
             ActualCollection = amountReceived;
             ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && w.ReturnType != ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount) / 100);
