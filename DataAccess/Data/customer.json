@@ -6244,5 +6244,23 @@
     "CollectionSpotId": 97,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 355,
+    "CustomerId": 158,
+    "Name": "Ganesh Travels Thayumanavar Koil",
+    "PhoneNumber": "",
+    "LoanAmount": 25000,
+    "Interest": 2500,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2019-02-13T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 2,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 158,
+    "ReturnDay": 0,
+    "ModifiedDate": null
   }
 ]
