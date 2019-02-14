@@ -41,9 +41,9 @@ namespace CenturyFinCorpApp.UsrCtrl
         private void ShowRemaingDays()
         {
 
-            var data = DateHelper.RemaingDaysToNextCycle;
+            var data = DateHelper.GetRemaingDaysToNextCycle();
 
-            label1.Text = $"Remaining Days to start next month ({data.MonthName}) cycle: {data.NoOfDays}";
+            label1.Text = $"Remaining Days to start next month ({data.NextMonthName}) cycle: {data.NoOfDays}";
             label2.Text = $"Remaining Days in this month: {DateHelper.RemaingDaysOfMonth}";
         }
 

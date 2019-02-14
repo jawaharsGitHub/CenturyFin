@@ -14,15 +14,12 @@ namespace Common
             }
         }
 
-        public static (int NoOfDays, string MonthName) RemaingDaysToNextCycle
+        public static (int NoOfDays, string NextMonthName) GetRemaingDaysToNextCycle()
         {
-            get
-            {
-                var after100day = DateTime.Today.AddDays(100);
-                var days = (new DateTime(after100day.Year, after100day.Month, DateTime.DaysInMonth(after100day.Year, after100day.Month)) - after100day).Days;
+            var after100day = DateTime.Today.AddDays(100);
+            var days = (new DateTime(after100day.Year, after100day.Month, DateTime.DaysInMonth(after100day.Year, after100day.Month)) - after100day).Days;
 
-                return (days, after100day.ToString("Y"));
-            }
+            return (days, after100day.AddMonths(1).ToString("Y"));
         }
 
         public static string DaysToMonth(string prefix, DateTime startDate, DateTime endDate)
