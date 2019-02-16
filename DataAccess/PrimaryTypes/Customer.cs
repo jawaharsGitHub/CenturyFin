@@ -26,6 +26,7 @@ namespace DataAccess.PrimaryTypes
         public DateTime? AmountGivenDate { get; set; }
         public DateTime? ClosedDate { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
+        public bool IsForceClosed { get; set; }
 
         public bool IsMerged { get; set; }
         public DateTime? MergedDate { get; set; }
@@ -152,6 +153,24 @@ namespace DataAccess.PrimaryTypes
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.Interest = updatedCustomer.Interest;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void ForceCloseCustomer(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.IsForceClosed = true;
                 u.Interest = updatedCustomer.Interest;
 
                 WriteObjectsToFile(list, JsonFilePath);

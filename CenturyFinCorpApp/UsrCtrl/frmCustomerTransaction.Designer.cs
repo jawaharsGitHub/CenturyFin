@@ -59,6 +59,7 @@
             this.txtMergeAmount = new System.Windows.Forms.TextBox();
             this.btnMerge = new System.Windows.Forms.Button();
             this.btnReOpen = new System.Windows.Forms.Button();
+            this.btnForceClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -369,10 +370,21 @@
             this.btnReOpen.Text = "RE-OPEN";
             this.btnReOpen.UseVisualStyleBackColor = true;
             // 
+            // btnForceClose
+            // 
+            this.btnForceClose.Location = new System.Drawing.Point(723, 467);
+            this.btnForceClose.Name = "btnForceClose";
+            this.btnForceClose.Size = new System.Drawing.Size(157, 23);
+            this.btnForceClose.TabIndex = 23;
+            this.btnForceClose.Text = "Force Close";
+            this.btnForceClose.UseVisualStyleBackColor = true;
+            this.btnForceClose.Click += new System.EventHandler(this.btnForceClose_Click);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnForceClose);
             this.Controls.Add(this.btnReOpen);
             this.Controls.Add(this.grpMerge);
             this.Controls.Add(this.btnInterest);
@@ -438,5 +450,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtInterest;
         private System.Windows.Forms.Button btnReOpen;
+        private System.Windows.Forms.Button btnForceClose;
     }
 }

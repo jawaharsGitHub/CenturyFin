@@ -138,6 +138,40 @@ namespace CenturyFinCorpApp
 
         }
 
+        private void AddForceCloseTransaction()
+        {
+
+            var txn = new Transaction()
+            {
+                AmountReceived = 0,
+                CustomerId = customer.CustomerId,
+                CustomerSequenceNo = customer.CustomerSeqNumber,
+                TransactionId = Transaction.GetNextTransactionId(),
+                Balance = 0,
+                TxnDate = dateTimePicker1.Value,
+                IsClosed = _isClosedTx
+
+            };
+
+            if (txn.Balance < 0)
+            {
+                MessageBox.Show("Please check that ur txn is overpaid. Txn Cancelled");
+                return;
+            }
+
+            Transaction.AddTransaction(txn);
+
+            btnBalance.Text = txn.Balance.ToString();
+            LoadTxn();
+            if (txn.Balance == 0)
+            {
+                MessageBox.Show("This Txn is completed Successfully!");
+                Customer.CloseCustomerTxn(customer, false, txn.TxnDate); //new Customer() { CustomerId = _customerId, CustomerSeqNumber = _sequeneNo, IsActive = false, ClosedDate = txn.TxnDate });
+            }
+
+            lblMessage.Text = $"Txn  Added Successfully for {customer.Name}";
+        }
+
         private void LoadTxn(bool isDesc = true, bool byBalance = false)
         {
 
@@ -431,6 +465,13 @@ namespace CenturyFinCorpApp
 
             var interest = (loanAmount / 100) * 10;
             txtInterest.Text = interest.ToString();
+        }
+
+        private void btnForceClose_Click(object sender, EventArgs e)
+        {
+            AddForceCloseTransaction();
+            customer.Interest = customer.Interest - _balance;
+            Customer.ForceCloseCustomer(customer);
         }
     }
 }
