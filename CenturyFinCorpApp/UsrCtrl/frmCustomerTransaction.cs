@@ -32,20 +32,26 @@ namespace CenturyFinCorpApp
 
             _balance = _isClosedTx ? 0 : Transaction.GetBalance(customer);
 
-
-
             btnLoan.Text = $"LOAN :  {customer.LoanAmount}";
             btnBalance.Text = $"BALANCE :  {_balance}";
             btnInterest.Text = $"INTEREST :  {customer.Interest}";
-            var closedText = (_balance == 0) ? "(CLOSED)" : string.Empty;
+
+            var closedText = string.Empty;
+            if (customer.IsForceClosed)
+            {
+                closedText = "(FORCE CLOSED)";
+            }
+            else if (_balance == 0)
+            {
+                closedText = "(CLOSED)";
+            }
+
             var mergedText = (customer.IsMerged) ? $"(MERGED on {customer.MergedDate.Value.ToShortDateString()})" : string.Empty;
 
 
             lblDetail.Text = $"{customer.Name} - CutomerId: {customer.CustomerId} SequenceNo: {customer.CustomerSeqNumber} {closedText} {mergedText}";
 
             txtCollectionAmount.Text = (customer.LoanAmount / 100).ToString();
-
-            //btnBalance.Visible = groupBox1.Visible = (_balance > 0);
 
             LoadTxn();
             LoadCustomerCollectionType();
