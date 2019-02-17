@@ -624,6 +624,16 @@
     "IsClosed": false,
     "TransactionId": 9916,
     "AmountReceived": 300,
+    "Balance": 160,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 93,
+    "TxnDate": "2019-01-07T00:00:00"
+  },
+  {
+    "CustomerId": 64,
+    "IsClosed": false,
+    "TransactionId": 11909,
+    "AmountReceived": 0,
     "Balance": 0,
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 93,
