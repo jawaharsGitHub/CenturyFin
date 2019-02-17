@@ -136,7 +136,8 @@ namespace CenturyFinCorpApp
                                    c.Name,
                                    c.CustomerSeqNumber,
                                    (DateTime.Today.Date - c.AmountGivenDate.Value.Date).TotalDays,
-                                   Balance = Transaction.GetBalance(c)
+                                   Balance = Transaction.GetBalance(c),
+                                   c.LoanAmount
 
                                }).OrderByDescending(O => O.TotalDays).ToList();
 
