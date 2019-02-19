@@ -30,8 +30,6 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblCanGive = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.btnCollection = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -74,14 +72,26 @@
             this.lblDate2 = new System.Windows.Forms.Label();
             this.btnPrevDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtWithMe = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtWithUncle = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtITook = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtUncleTook = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtUnclesHand = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.lblCanGive);
-            this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.btnCollection);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
@@ -124,24 +134,6 @@
             this.lblCanGive.Size = new System.Drawing.Size(54, 13);
             this.lblCanGive.TabIndex = 30;
             this.lblCanGive.Text = "[CanGive]";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(263, 298);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(41, 13);
-            this.label20.TabIndex = 29;
-            this.label20.Text = "label20";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(260, 264);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 13);
-            this.label19.TabIndex = 28;
-            this.label19.Text = "label19";
             // 
             // btnCollection
             // 
@@ -508,6 +500,116 @@
             this.btnNextDay.UseVisualStyleBackColor = true;
             this.btnNextDay.Click += new System.EventHandler(this.btnNextDay_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtUnclesHand);
+            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.txtUncleTook);
+            this.groupBox2.Controls.Add(this.label21);
+            this.groupBox2.Controls.Add(this.txtITook);
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.txtWithUncle);
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.txtWithMe);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Location = new System.Drawing.Point(315, 334);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(237, 189);
+            this.groupBox2.TabIndex = 31;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Splitted Amounts";
+            // 
+            // txtWithMe
+            // 
+            this.txtWithMe.Location = new System.Drawing.Point(99, 14);
+            this.txtWithMe.Name = "txtWithMe";
+            this.txtWithMe.Size = new System.Drawing.Size(100, 20);
+            this.txtWithMe.TabIndex = 32;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "With Me";
+            // 
+            // txtWithUncle
+            // 
+            this.txtWithUncle.Location = new System.Drawing.Point(99, 46);
+            this.txtWithUncle.Name = "txtWithUncle";
+            this.txtWithUncle.Size = new System.Drawing.Size(100, 20);
+            this.txtWithUncle.TabIndex = 34;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(20, 53);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(60, 13);
+            this.label19.TabIndex = 35;
+            this.label19.Text = "With Uncle";
+            // 
+            // txtITook
+            // 
+            this.txtITook.Location = new System.Drawing.Point(99, 73);
+            this.txtITook.Name = "txtITook";
+            this.txtITook.Size = new System.Drawing.Size(100, 20);
+            this.txtITook.TabIndex = 36;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(20, 80);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(38, 13);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "I Took";
+            // 
+            // txtUncleTook
+            // 
+            this.txtUncleTook.Location = new System.Drawing.Point(99, 102);
+            this.txtUncleTook.Name = "txtUncleTook";
+            this.txtUncleTook.Size = new System.Drawing.Size(100, 20);
+            this.txtUncleTook.TabIndex = 38;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(20, 109);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(63, 13);
+            this.label21.TabIndex = 39;
+            this.label21.Text = "Uncle Took";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(82, 155);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 40;
+            this.button1.Text = "Verify";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtUnclesHand
+            // 
+            this.txtUnclesHand.Location = new System.Drawing.Point(100, 128);
+            this.txtUnclesHand.Name = "txtUnclesHand";
+            this.txtUnclesHand.Size = new System.Drawing.Size(100, 20);
+            this.txtUnclesHand.TabIndex = 41;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(21, 135);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(71, 13);
+            this.label22.TabIndex = 42;
+            this.label22.Text = "Uncle\'s Hand";
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -533,6 +635,8 @@
             this.Size = new System.Drawing.Size(977, 528);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -580,11 +684,21 @@
         private System.Windows.Forms.Button btnCollection;
         private System.Windows.Forms.Button btnCanGive;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label lblDate2;
         private System.Windows.Forms.Button btnPrevDay;
         private System.Windows.Forms.Button btnNextDay;
         private System.Windows.Forms.Label lblCanGive;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtUncleTook;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtITook;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtWithUncle;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtWithMe;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtUnclesHand;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button button1;
     }
 }

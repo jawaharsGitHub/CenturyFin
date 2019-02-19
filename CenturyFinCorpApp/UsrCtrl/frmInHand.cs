@@ -134,12 +134,12 @@ namespace CenturyFinCorpApp
 
         private void txtGivenAmount_Leave(object sender, EventArgs e)
         {
-            var amt = Convert.ToDecimal(txtGivenAmount.Text);
+            //var amt = Convert.ToDecimal(txtGivenAmount.Text);
 
-            txtInterest.Text = (amt / 10).ToString();
+            //txtInterest.Text = (amt / 10).ToString();
 
-            label19.Text = DecimalToWords(amt);
-            label20.Text = DecimalToWords(amt / 10);
+            //label19.Text = DecimalToWords(amt);
+            //label20.Text = DecimalToWords(amt / 10);
         }
 
         public string DecimalToWords(decimal number)
@@ -226,6 +226,36 @@ namespace CenturyFinCorpApp
         {
             dateTimePicker1.Value = dateTimePicker1.Value.AddDays(-1);
             GetDailyTxn(dateTimePicker1.Value, false);
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var withMe = txtWithMe.Text.ToInt32();
+            var withUncle = txtWithUncle.Text.ToInt32();
+            var iTook = txtITook.Text.ToInt32();
+            var uncleTook = txtUncleTook.Text.ToInt32();
+            var unclesHand = txtUnclesHand.Text.ToInt32();
+
+            var detailedAmount = new DetailedAmount() {
+                Itook = iTook,
+                UnclesHand = unclesHand,
+                UncleTook = uncleTook,
+                WithMe = withMe,
+                WithUncle = withUncle
+            };
+
+            var todaysExpectedCollection = dailyTxn.TodayInHand - (withMe + withUncle + iTook + uncleTook);
+
+            if(todaysExpectedCollection < 0)
+            {
+                todaysExpectedCollection = (dailyTxn.CollectionAmount + withUncle) - (dailyTxn.GivenAmount - dailyTxn.Interest);
+            }
+            var result = MessageBox.Show($"Uncle Should have {todaysExpectedCollection.TokFormat()}?", "", MessageBoxButtons.YesNo);
+
+            detailedAmount.IsCorrect = (result == DialogResult.Yes);
+
+            DetailedAmount.AddDetailedAmount(detailedAmount);
 
         }
     }
