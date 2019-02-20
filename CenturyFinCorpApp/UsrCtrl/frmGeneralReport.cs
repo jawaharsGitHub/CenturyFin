@@ -44,7 +44,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             var data = DateHelper.GetRemaingDaysToNextCycle();
 
             label1.Text = $"Remaining Days to start next month ({data.NextMonthName}) cycle: {data.NoOfDays}";
-            label2.Text = $"Remaining Days in this month: {DateHelper.RemaingDaysOfMonth}";
+            label2.Text = $"Remaining {DateHelper.RemaingDaysOfMonth} Days to go in this month:";
         }
 
         private void CalculateIncome(bool considerSalary = false)
@@ -86,7 +86,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             var finalData = new List<IncomeReport>();
 
             StringBuilder closedDetailForCurrentMonth = new StringBuilder();
-            closedDetailForCurrentMonth.Append($"For {DateTime.Now.ToString("MMMM")}");
+            closedDetailForCurrentMonth.Append($"{Environment.NewLine}For {DateTime.Now.ToString("MMMM")}");
 
             var moveOverClosed = 0;
             var moveOverInterest = 0;
@@ -248,8 +248,13 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             dgvNotePerMonth.DataSource = customers;
 
-            label6.Text = $"LA: {customers.Sum(s => s.LoanAmount).ToMoney()} {Environment.NewLine}" +
-                $"GA: {customers.Sum(s => s.GivenAmount).ToMoney()} {Environment.NewLine}" +
+            var totalLoanAmount = customers.Sum(s => s.LoanAmount);
+            var totalGivenAmount = customers.Sum(s => s.GivenAmount);
+            var difference = totalLoanAmount - totalGivenAmount;
+
+
+            label6.Text = $"LA: {totalLoanAmount.ToMoney()} {Environment.NewLine}" +
+                $"GA: {totalGivenAmount.ToMoney()} (~{difference.ToMoney()}) {Environment.NewLine}" +
                 $"FI: {customers.Sum(s => s.FutureInterest).ToMoney()} {Environment.NewLine}" +
                 $"C: {customers.Sum(s => s.GivenCount)} {Environment.NewLine}";
 

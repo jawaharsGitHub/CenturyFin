@@ -10,7 +10,7 @@ namespace Common
             get
             {
                 var today = DateTime.Today;
-                return (today.Day - DateTime.DaysInMonth(today.Year, today.Month));
+                return (DateTime.DaysInMonth(today.Year, today.Month) - today.Day);
             }
         }
 

@@ -245,7 +245,7 @@ namespace CenturyFinCorpApp
                 WithUncle = withUncle
             };
 
-            var todaysExpectedCollection = dailyTxn.TodayInHand - (withMe + withUncle + iTook + uncleTook);
+            var todaysExpectedCollection = dailyTxn.TodayInHand - (withMe  + iTook + uncleTook); // +withUncle
 
             if(todaysExpectedCollection < 0)
             {

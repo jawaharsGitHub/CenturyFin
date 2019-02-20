@@ -153,7 +153,7 @@ namespace CenturyFinCorpApp
 
             var selectedCustomer = (selectedRows[0].DataBoundItem as Customer);
 
-            var mainForm = (frmIndexForm)(((DataGridView)sender).Parent.Parent.Parent); //new frmIndexForm(true);
+            var mainForm = (frmIndexForm)(((DataGridView)sender).Parent.Parent.Parent);
 
             mainForm.ShowForm<frmCustomerTransaction>(selectedCustomer);
 
