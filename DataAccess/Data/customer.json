@@ -6800,5 +6800,24 @@
     "CollectionSpotId": 8,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 366,
+    "CustomerId": 110,
+    "Name": "Banu Maligai Bharathi nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 100000,
+    "Interest": 10000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-02-20T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": true,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 110,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
