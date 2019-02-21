@@ -204,9 +204,9 @@ namespace CenturyFinCorpApp
             if (byBalance)
                 dataGridView1.DataSource = dataDource.OrderBy(o => o.Balance).ToList();
             else if (isDesc)
-                dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate.Date).ThenBy(t => t.Balance).ToList();
+                dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
             else
-                dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
+                dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate.Date).ThenBy(t => t.Balance).ToList();
 
 
 
@@ -478,6 +478,71 @@ namespace CenturyFinCorpApp
             AddForceCloseTransaction();
             customer.Interest = customer.Interest - _balance;
             Customer.ForceCloseCustomer(customer);
+        }
+
+        private void btnTopup_Click(object sender, EventArgs e)
+        {
+            // top up.
+            var txn = new Transaction()
+            {
+                AmountReceived = -Convert.ToInt32(txtTopupAmount.Text), // should be a negative number as this is a top up, NOT A TRANSACTION
+                CustomerId = customer.CustomerId,
+                CustomerSequenceNo = customer.CustomerSeqNumber,
+                TransactionId = Transaction.GetNextTransactionId(),
+                Balance = (Transaction.GetBalance(customer) + Convert.ToInt32(txtTopupAmount.Text)),  // should be (+) as this is a top up, NOT A TRANSACTION
+                TxnDate = dateTimePicker1.Value,
+                IsClosed = _isClosedTx
+
+            };
+
+            if (txn.Balance < 0)
+            {
+                MessageBox.Show("Please check that ur txn is overpaid. Txn Cancelled");
+                return;
+            }
+
+            
+
+            btnBalance.Text = txn.Balance.ToString();
+            
+            //if (txn.Balance == 0)
+            //{
+            //    MessageBox.Show("This Txn is completed Successfully!");
+            //    Customer.CloseCustomerTxn(customer, false, txn.TxnDate); //new Customer() { CustomerId = _customerId, CustomerSeqNumber = _sequeneNo, IsActive = false, ClosedDate = txn.TxnDate });
+            //}
+
+
+            // update interest
+            customer.Interest += txtTopupInterest.Text.ToInt32();
+            Customer.UpdateCustomerInterest(customer);
+
+            TopupCustomer topupcus = new TopupCustomer();
+
+            customer.CopyTo(topupcus);
+
+            topupcus.LoanAmount = txtTopupAmount.Text.ToInt32();
+            topupcus.Interest = txtTopupInterest.Text.ToInt32();
+            topupcus.AmountGivenDate = txn.TxnDate;
+
+
+            // Add top up customers.
+            TopupCustomer.AddTopupCustomer(topupcus);
+            Transaction.AddTransaction(txn);
+            LoadTxn();
+
+            lblMessage.Text = $"{topupcus.LoanAmount} Top up Successfull for {customer.Name}";
+
+
+        }
+
+        private void txtTopupAmount_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtTopupAmount.Text)) return;
+
+            var loanAmount = Convert.ToInt32(txtTopupAmount.Text);
+
+            var interest = (loanAmount / 100) * 10;
+            txtTopupInterest.Text = interest.ToString();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.ExtensionMethod;
+using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Drawing;
@@ -30,7 +31,7 @@ namespace CenturyFinCorpApp
                 dailyTxn = DailyCollectionDetail.GetDailyTxn(date.AddDays(-1), isOnLoad);
                 dateTimePicker1.Value = date;
 
-                var collectionAmount = Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived);
+                var collectionAmount = Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
                 if (collectionAmount > 0)
                 {
                     txtCollectionAmount.Text = collectionAmount.ToString();
@@ -45,9 +46,11 @@ namespace CenturyFinCorpApp
                                        
                                     }).ToList();
 
+                    // Topup details.
+                    var topupCustomers = TopupCustomer.GetAllTopupCustomer().Where(w => w.AmountGivenDate.Value.Date == date).ToList();
 
-                    txtGivenAmount.Text = todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Balance).ToString();
-                    txtInterest.Text = todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Interest).ToString();
+                    txtGivenAmount.Text = (todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Balance) + topupCustomers.Sum(s => s.LoanAmount)).ToString();
+                    txtInterest.Text = (todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Interest) + topupCustomers.Sum(s => s.Interest)) .ToString();
                     txtClosed.Text = todayTxn.Where(w => w.Balance == 0).Count().ToString();
                     txtOpened.Text = todayTxn.Where(w => w.AmountReceived == 0).Count().ToString();
 

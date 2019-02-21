@@ -54,6 +54,7 @@
     <Compile Include="BaseTypes\BaseClass.cs" />
     <Compile Include="DataCorrector.cs" />
     <Compile Include="DateHelper.cs" />
+    <Compile Include="ExtensionMethod\CloneExtension.cs" />
     <Compile Include="ExtensionMethod\DataExtension.cs" />
     <Compile Include="ExtensionMethod\TypeExtenstion.cs" />
     <Compile Include="General.cs" />

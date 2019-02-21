@@ -9,6 +9,8 @@ namespace Common
 
         public static string CustomerFile { get; } = GetFullPath("CustomerFile");
 
+        public static string TopupCustomerFile { get; } = GetFullPath("TopupCustomerFile");
+
         public static string TransactionFile { get; } = GetFullPath("TransactionFile");
 
         public static string InvestmentFile { get; } = GetFullPath("InvestmentFile");

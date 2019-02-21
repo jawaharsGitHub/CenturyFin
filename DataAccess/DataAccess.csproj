@@ -66,6 +66,7 @@
     <Compile Include="ExtendedTypes\CustomerDailyTxn.cs" />
     <Compile Include="ExtendedTypes\ExtDailyTxn.cs" />
     <Compile Include="ExtendedTypes\ReturnTypeEnum.cs" />
+    <Compile Include="ExtendedTypes\TopupCustomer.cs" />
     <Compile Include="PrimaryTypes\DailyCollectionDetail.cs" />
     <Compile Include="PrimaryTypes\CollectionPerDay.cs" />
     <Compile Include="PrimaryTypes\Expenditure.cs" />
@@ -536,6 +537,7 @@
     <None Include="Data\PersonalOutstanding.json" />
     <None Include="Data\OldPetrol.json" />
     <None Include="Data\Petrol.json" />
+    <None Include="Data\topupCustomer.json" />
     <None Include="Data\transaction.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>

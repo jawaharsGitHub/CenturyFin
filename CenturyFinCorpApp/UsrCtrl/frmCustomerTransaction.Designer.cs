@@ -60,9 +60,16 @@
             this.btnMerge = new System.Windows.Forms.Button();
             this.btnReOpen = new System.Windows.Forms.Button();
             this.btnForceClose = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTopupInterest = new System.Windows.Forms.TextBox();
+            this.txtTopupAmount = new System.Windows.Forms.TextBox();
+            this.btnTopup = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLoan
@@ -83,14 +90,14 @@
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Location = new System.Drawing.Point(356, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(430, 96);
+            this.groupBox1.Size = new System.Drawing.Size(325, 96);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add New Transaction";
             // 
             // btnNextDayTxn
             // 
-            this.btnNextDayTxn.Location = new System.Drawing.Point(314, 52);
+            this.btnNextDayTxn.Location = new System.Drawing.Point(241, 49);
             this.btnNextDayTxn.Name = "btnNextDayTxn";
             this.btnNextDayTxn.Size = new System.Drawing.Size(75, 23);
             this.btnNextDayTxn.TabIndex = 5;
@@ -100,7 +107,7 @@
             // 
             // btnAddTxn
             // 
-            this.btnAddTxn.Location = new System.Drawing.Point(146, 49);
+            this.btnAddTxn.Location = new System.Drawing.Point(92, 49);
             this.btnAddTxn.Name = "btnAddTxn";
             this.btnAddTxn.Size = new System.Drawing.Size(112, 26);
             this.btnAddTxn.TabIndex = 4;
@@ -111,7 +118,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(276, 9);
+            this.label1.Location = new System.Drawing.Point(216, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 2;
@@ -119,14 +126,14 @@
             // 
             // txtCollectionAmount
             // 
-            this.txtCollectionAmount.Location = new System.Drawing.Point(276, 24);
+            this.txtCollectionAmount.Location = new System.Drawing.Point(216, 24);
             this.txtCollectionAmount.Name = "txtCollectionAmount";
             this.txtCollectionAmount.Size = new System.Drawing.Size(100, 20);
             this.txtCollectionAmount.TabIndex = 1;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(38, 23);
+            this.dateTimePicker1.Location = new System.Drawing.Point(4, 23);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 0;
@@ -380,10 +387,68 @@
             this.btnForceClose.UseVisualStyleBackColor = true;
             this.btnForceClose.Click += new System.EventHandler(this.btnForceClose_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.txtTopupInterest);
+            this.groupBox2.Controls.Add(this.txtTopupAmount);
+            this.groupBox2.Controls.Add(this.btnTopup);
+            this.groupBox2.Location = new System.Drawing.Point(938, 189);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 112);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "TOP-UP";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(17, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Interest";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Amount";
+            // 
+            // txtTopupInterest
+            // 
+            this.txtTopupInterest.Location = new System.Drawing.Point(85, 46);
+            this.txtTopupInterest.Name = "txtTopupInterest";
+            this.txtTopupInterest.Size = new System.Drawing.Size(100, 20);
+            this.txtTopupInterest.TabIndex = 7;
+            // 
+            // txtTopupAmount
+            // 
+            this.txtTopupAmount.Location = new System.Drawing.Point(85, 19);
+            this.txtTopupAmount.Name = "txtTopupAmount";
+            this.txtTopupAmount.Size = new System.Drawing.Size(100, 20);
+            this.txtTopupAmount.TabIndex = 6;
+            this.txtTopupAmount.Leave += new System.EventHandler(this.txtTopupAmount_Leave);
+            // 
+            // btnTopup
+            // 
+            this.btnTopup.Location = new System.Drawing.Point(34, 85);
+            this.btnTopup.Name = "btnTopup";
+            this.btnTopup.Size = new System.Drawing.Size(119, 21);
+            this.btnTopup.TabIndex = 0;
+            this.btnTopup.Text = "TOP UP";
+            this.btnTopup.UseVisualStyleBackColor = true;
+            this.btnTopup.Click += new System.EventHandler(this.btnTopup_Click);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnForceClose);
             this.Controls.Add(this.btnReOpen);
             this.Controls.Add(this.grpMerge);
@@ -413,6 +478,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grpMerge.ResumeLayout(false);
             this.grpMerge.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,5 +518,11 @@
         private System.Windows.Forms.TextBox txtInterest;
         private System.Windows.Forms.Button btnReOpen;
         private System.Windows.Forms.Button btnForceClose;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtTopupInterest;
+        private System.Windows.Forms.TextBox txtTopupAmount;
+        private System.Windows.Forms.Button btnTopup;
     }
 }
