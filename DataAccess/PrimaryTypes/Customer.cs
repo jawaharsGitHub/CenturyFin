@@ -163,6 +163,24 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static void UpdateCustomerLoanAndInterest(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.LoanAmount = updatedCustomer.LoanAmount;
+                u.Interest = updatedCustomer.Interest;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static void ForceCloseCustomer(Customer updatedCustomer)
         {
             try

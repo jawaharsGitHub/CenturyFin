@@ -514,7 +514,8 @@ namespace CenturyFinCorpApp
 
             // update interest
             customer.Interest += txtTopupInterest.Text.ToInt32();
-            Customer.UpdateCustomerInterest(customer);
+            customer.LoanAmount += txtTopupAmount.Text.ToInt32();
+            Customer.UpdateCustomerLoanAndInterest(customer);
 
             TopupCustomer topupcus = new TopupCustomer();
 
