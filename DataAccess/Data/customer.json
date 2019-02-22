@@ -6838,5 +6838,24 @@
     "CollectionSpotId": 136,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 369,
+    "CustomerId": 140,
+    "Name": "jawarullah khan kaikari kadai",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-02-22T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 140,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
