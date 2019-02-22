@@ -27,6 +27,7 @@ namespace DataAccess.PrimaryTypes
         public string Comments { get; set; }
         public int OtherExpenditire { get; set; }
         public int OtherInvestment { get; set; }
+        public int ActualMoneyInBusiness { get; set; }
 
 
         public static void AddOrUpdateDaily(DailyCollectionDetail dailyCol)
@@ -80,12 +81,6 @@ namespace DataAccess.PrimaryTypes
 
 
         }
-        public static void UpdateDaily(DailyCollectionDetail dailyCol)
-        {
-
-
-
-        }
 
         public static DailyCollectionDetail GetDailyTxn(DateTime date, bool isOnLoad)
         {
@@ -110,6 +105,21 @@ namespace DataAccess.PrimaryTypes
                 var dailyTxn = list.Select(s => Convert.ToDateTime(s.Date)).Max();
 
                 return dailyTxn.AddDays(1);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static int GetActualInvestmentTxnDate()
+        {
+            try
+            {
+                List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
+                var actualInvestment = list.OrderBy(s => Convert.ToDateTime(s.Date)).Last().ActualMoneyInBusiness;
+
+                return actualInvestment;
             }
             catch (Exception ex)
             {

@@ -38,19 +38,20 @@ namespace CenturyFinCorpApp
                     var todayTxn = (from t in Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value)
                                     join c in Customer.GetAllCustomer()
                                     on t.CustomerSequenceNo equals c.CustomerSeqNumber
-                                    select new {
+                                    select new
+                                    {
                                         c.Interest,
                                         c.LoanAmount,
                                         t.AmountReceived,
                                         t.Balance
-                                       
+
                                     }).ToList();
 
                     // Topup details.
                     var topupCustomers = TopupCustomer.GetAllTopupCustomer().Where(w => w.AmountGivenDate.Value.Date == date).ToList();
 
                     txtGivenAmount.Text = (todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Balance) + topupCustomers.Sum(s => s.LoanAmount)).ToString();
-                    txtInterest.Text = (todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Interest) + topupCustomers.Sum(s => s.Interest)) .ToString();
+                    txtInterest.Text = (todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Interest) + topupCustomers.Sum(s => s.Interest)).ToString();
                     txtClosed.Text = todayTxn.Where(w => w.Balance == 0).Count().ToString();
                     txtOpened.Text = todayTxn.Where(w => w.AmountReceived == 0).Count().ToString();
 
@@ -82,6 +83,7 @@ namespace CenturyFinCorpApp
 
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.TokFormat();
             btnTodayInHand.Text = dailyTxn.TodayInHand.TokFormat();
+            btnInvestment.Text = DailyCollectionDetail.GetActualInvestmentTxnDate().ToMoney();
 
             lblCanGive.Text = $"Actually we can give - {(dailyTxn.TodayInHand / 4500) * 5000} {Environment.NewLine}with extra {(dailyTxn.TodayInHand % 4500)}";
             btnInBank.Text = dailyTxn.InBank.TokFormat();
@@ -121,6 +123,7 @@ namespace CenturyFinCorpApp
 
             dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - Convert.ToInt32((dailyTxn.TodayInHand + dailyTxn.InBank)));
             dailyTxn.Comments = txtComments.Text;
+            dailyTxn.ActualMoneyInBusiness = (dailyTxn.ActualMoneyInBusiness + dailyTxn.OtherInvestment) - dailyTxn.OtherExpenditire;
 
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
@@ -240,7 +243,8 @@ namespace CenturyFinCorpApp
             var uncleTook = txtUncleTook.Text.ToInt32();
             var unclesHand = txtUnclesHand.Text.ToInt32();
 
-            var detailedAmount = new DetailedAmount() {
+            var detailedAmount = new DetailedAmount()
+            {
                 Itook = iTook,
                 UnclesHand = unclesHand,
                 UncleTook = uncleTook,
@@ -248,9 +252,9 @@ namespace CenturyFinCorpApp
                 WithUncle = withUncle
             };
 
-            var todaysExpectedCollection = dailyTxn.TodayInHand - (withMe  + iTook + uncleTook); // +withUncle
+            var todaysExpectedCollection = dailyTxn.TodayInHand - (withMe + iTook + uncleTook); // +withUncle
 
-            if(todaysExpectedCollection < 0)
+            if (todaysExpectedCollection < 0)
             {
                 todaysExpectedCollection = (dailyTxn.CollectionAmount + withUncle) - (dailyTxn.GivenAmount - dailyTxn.Interest);
             }
