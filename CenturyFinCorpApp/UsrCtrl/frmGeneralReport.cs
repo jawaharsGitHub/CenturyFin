@@ -16,6 +16,7 @@ namespace CenturyFinCorpApp.UsrCtrl
     public partial class frmGeneralReport : UserControl
     {
         (int actual, int includesProfit) outstandingMoney;
+        List<IncomeReport> finalData = new List<IncomeReport>();
 
         public frmGeneralReport()
         {
@@ -83,7 +84,6 @@ namespace CenturyFinCorpApp.UsrCtrl
                         group x by new { ClosedMonth = Convert.ToDateTime(x.ClosedDate).ToString("Y"), IsExpectedIncome = x.IsExpectedIncome } into newGroup
                         select newGroup).ToList();
 
-            var finalData = new List<IncomeReport>();
 
             StringBuilder closedDetailForCurrentMonth = new StringBuilder();
             closedDetailForCurrentMonth.Append($"{Environment.NewLine}For {DateTime.Now.ToString("MMMM")}");
@@ -212,7 +212,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             var salary = finalData.Sum(w => w.MonthlySalary);
             var total = (actual + expected);
 
-            var numberOfMonths = DateTime.Today.Subtract(new DateTime(2018, 1, 25)).Days / (365.25 / 12).ToInt32(); 
+            var numberOfMonths = DateTime.Today.Subtract(new DateTime(2018, 1, 25)).Days / (365.25 / 12).ToInt32();
 
             lblActual.Text = $"Actual :  {actual.ToMoney()} (Per Month: { (actual / numberOfMonths).ToMoney()})";
             lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / numberOfMonths).ToMoney()})";
@@ -305,6 +305,19 @@ namespace CenturyFinCorpApp.UsrCtrl
 
                 Collection<PSObject> results = powershell.Invoke();
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text.Trim().ToLower() == "all")
+            {
+                dgvIncome.DataSource = finalData;
+            }
+            else
+            {
+                dgvIncome.DataSource = finalData.Where(w => Convert.ToDateTime(w.MonthYear).Year.ToString() == comboBox1.Text).ToList();
+            }
+
         }
     }
 }

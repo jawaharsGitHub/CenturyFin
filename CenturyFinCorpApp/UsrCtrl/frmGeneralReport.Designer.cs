@@ -49,6 +49,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblCloseCount = new System.Windows.Forms.Label();
             this.btnCommit = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -246,10 +247,25 @@
             this.btnCommit.UseVisualStyleBackColor = true;
             this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "ALL",
+            "2018",
+            "2019"});
+            this.comboBox1.Location = new System.Drawing.Point(473, 83);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(80, 21);
+            this.comboBox1.TabIndex = 36;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnCommit);
             this.Controls.Add(this.lblCloseCount);
             this.Controls.Add(this.lblBizAsset);
@@ -303,5 +319,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblCloseCount;
         private System.Windows.Forms.Button btnCommit;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
