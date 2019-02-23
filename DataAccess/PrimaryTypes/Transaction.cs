@@ -254,7 +254,7 @@ namespace DataAccess.PrimaryTypes
                 //TODO: Need to implement delete txn for closed txns also.
                 var list = ReadFileAsObjects<Transaction>(JsonFilePath);
 
-                var itemToDelete = list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).ToList();
+                //var itemToDelete = list.Where(c => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo).ToList();
                 list.RemoveAll((c) => c.CustomerId == customerId && c.CustomerSequenceNo == sequenceNo);
 
                 WriteObjectsToFile(list, JsonFilePath);

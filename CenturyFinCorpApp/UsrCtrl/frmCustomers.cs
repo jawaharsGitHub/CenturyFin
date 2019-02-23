@@ -263,36 +263,48 @@ namespace CenturyFinCorpApp
 
             }
 
-            var collectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
+            var strCollectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
-            if (collectedAmount == null) return;
+            if (strCollectedAmount == null) return;
 
             var seqNo = cus.CustomerSeqNumber;
             var customerId = cus.CustomerId;
             var loanAmount = cus.LoanAmount;
+            var valCollectedAmount = strCollectedAmount.ToInt32();
 
-            if (string.IsNullOrEmpty(collectedAmount) == false)
+            if (string.IsNullOrEmpty(strCollectedAmount) == false)
             {
+                var existingTxn = Transaction.GetTransactionForDate(new Transaction() { CustomerId = customerId, CustomerSequenceNo = seqNo, TxnDate = dateTimePicker1.Value });
+
+                if (existingTxn != null && existingTxn.Count == 1)
+                {
+
+                    if (existingTxn.First().AmountReceived == valCollectedAmount)
+                    {
+                        return;
+                    }
+
+                    if (valCollectedAmount == 0 && DialogResult.Yes == MessageBox.Show($"Are you sure you want to delete an existing transactions for {cus.Name}?", "", MessageBoxButtons.YesNo))
+                    {
+                        Transaction.DeleteTransactionDetails(existingTxn.First());
+                    }
+
+                    else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        Transaction.DeleteTransactionDetails(existingTxn.First());
+                    }
+                }
+
+
                 var txn = new Transaction()
                 {
-                    AmountReceived = Convert.ToInt32(collectedAmount),
+                    AmountReceived = Convert.ToInt32(strCollectedAmount),
                     CustomerId = customerId,
                     CustomerSequenceNo = seqNo,
                     TransactionId = Transaction.GetNextTransactionId(),
-                    Balance = (Transaction.GetBalance(cus) - Convert.ToInt32(collectedAmount)), // TODO: Balance is not updaed correctly eg: 71-104 - 19th july txn.
+                    Balance = (Transaction.GetBalance(cus) - valCollectedAmount),
                     TxnDate = dateTimePicker1.Value
                 };
-
-                var existingTxn = Transaction.GetTransactionForDate(txn);
-
-                if (existingTxn != null && existingTxn.Count == 1 && existingTxn.First().AmountReceived == txn.AmountReceived)
-                {
-                    if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                    {
-                        Transaction.UpdateTransactionDetails(existingTxn.First());
-                    }
-                    return;
-                }
 
                 if (txn.Balance < 0)
                 {
@@ -309,31 +321,9 @@ namespace CenturyFinCorpApp
 
                 txn.IsClosed = (txn.Balance == 0);
 
-                if (existingTxn == null || existingTxn.Count == 0)
-                {
-                    Transaction.AddDailyTransactions(txn); // Adding new txn if none exist for that date.
-                }
-                else
-                {
-                    if (existingTxn.First().AmountReceived == 0) // Customer is giving money in the same day fo given date.
-                    {
-                        Transaction.AddDailyTransactions(txn); // TODO: dont know why we are doing this.
-                    }
-                    else
-                    {
-                        txn.TransactionId = existingTxn.First().TransactionId;
 
-                        if (txn.AmountReceived == 0 && DialogResult.Yes == MessageBox.Show($"Are you sure you want to delete an existing transactions for {cus.Name}?", "", MessageBoxButtons.YesNo))
-                        {
-                            Transaction.DeleteTransactionDetails(txn);
-                        }
-                        else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                        {
-                            Transaction.UpdateTransactionDetails(txn);
-                        }
-                    }
-                }
-
+                Transaction.AddDailyTransactions(txn);
+                
                 // Update txn Closed Date
                 if (txn.IsClosed && txn.Balance == 0)
                 {
@@ -356,7 +346,7 @@ namespace CenturyFinCorpApp
             }
 
 
-            Customer.CorrectCustomerData(cus); // TODO: dont know the reason for this code here!!!
+            //Customer.CorrectCustomerData(cus); // TODO: dont know the reason for this code here!!!
 
         }
 
