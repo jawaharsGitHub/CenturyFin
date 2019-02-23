@@ -60,6 +60,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                                        ClosedDate = newGroup.Key,
                                        TotalInterest = newGroup.Sum(s => s.Interest),
                                        IsExpectedIncome = false,
+                                       //newGroup,
                                        Count = newGroup.Count()
                                    }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
@@ -72,6 +73,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         ClosedDate = (Convert.ToDateTime(newGroup.Key).AddDays(100)).ToShortDateString(), // TODO: it should be group by given data + 100 days not by key(July 2018)
                                         TotalInterest = newGroup.Sum(s => s.Interest),
                                         IsExpectedIncome = true,
+                                        //newGroup,
                                         Count = newGroup.Count()
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
@@ -142,10 +144,21 @@ namespace CenturyFinCorpApp.UsrCtrl
                     var totalInt = f.Sum(s => s.TotalInterest);
                     if (f.Key.IsExpectedIncome)
                     {
+                        //var 
                         closedDetailForCurrentMonth.Append($" {Environment.NewLine}Expected Close: {closedData.ToString()} [{totalInt}] {Environment.NewLine} carry fwd close: {moveOverClosed.ToString()} [{moveOverInterest}] = {closedData + moveOverClosed}");
                     }
                     else
                     {
+                        //var details = f.Select(s => s.newGroup).ToList();
+                        //var cus = new List<Customer>();
+
+                        //details.ForEach(fe =>
+                        //{
+                        //    cus.AddRange(fe.Select(s => s).ToList());
+                        //});
+
+
+
                         closedDetailForCurrentMonth.Append($" Actual Close: {closedData} [{totalInt}]");
                     }
 

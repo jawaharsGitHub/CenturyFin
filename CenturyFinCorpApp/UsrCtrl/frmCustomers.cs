@@ -140,6 +140,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["IsMerged"].Visible = false;
             dataGridView1.Columns["MergedDate"].Visible = false;
             dataGridView1.Columns["IdAndName"].Visible = false;
+            dataGridView1.Columns["IsForceClosed"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
             dataGridView1.Columns["ReturnType"].Visible = show;
@@ -487,6 +488,17 @@ namespace CenturyFinCorpApp
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             GlobalValue.CollectionDate = dateTimePicker1.Value;
+        }
+
+        private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var neededRow = (Customer)((sender as DataGridView).Rows[e.RowIndex]).DataBoundItem;
+
+            var balance = Transaction.GetBalance(neededRow);
+
+            dataGridView1.Rows[e.RowIndex].Cells["Name"].ToolTipText = balance.ToString();
         }
     }
 }

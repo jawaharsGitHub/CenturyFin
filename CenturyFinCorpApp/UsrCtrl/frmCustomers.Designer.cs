@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.rdbActive = new System.Windows.Forms.RadioButton();
             this.rdbClosed = new System.Windows.Forms.RadioButton();
@@ -39,6 +40,7 @@
             this.cmbFilters = new System.Windows.Forms.ComboBox();
             this.chkAllColumns = new System.Windows.Forms.CheckBox();
             this.lblRowCount = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +53,7 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
             // 
@@ -197,5 +200,6 @@
         private System.Windows.Forms.ComboBox cmbFilters;
         private System.Windows.Forms.CheckBox chkAllColumns;
         private System.Windows.Forms.Label lblRowCount;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
