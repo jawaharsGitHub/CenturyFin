@@ -16,7 +16,7 @@ namespace CenturyFinCorpApp.UsrCtrl
     public partial class frmGeneralReport : UserControl
     {
         (int actual, int includesProfit) outstandingMoney;
-        List<IncomeReport> finalData = new List<IncomeReport>();
+        List<IncomeReport> finalData;
 
         public frmGeneralReport()
         {
@@ -50,6 +50,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
         private void CalculateIncome(bool considerSalary = false)
         {
+            finalData = new List<IncomeReport>();
 
             // Closed Account
             var closedCustomers = (from c in Customer.GetAllCustomer()
