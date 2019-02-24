@@ -6857,5 +6857,24 @@
     "CollectionSpotId": 140,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 370,
+    "CustomerId": 159,
+    "Name": "Musha Maligai Raghavan",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2019-02-24T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 159,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
