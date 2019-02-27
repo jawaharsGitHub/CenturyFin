@@ -494,11 +494,11 @@ namespace CenturyFinCorpApp
         {
             if (e.RowIndex < 0) return;
 
-            var neededRow = (Customer)((sender as DataGridView).Rows[e.RowIndex]).DataBoundItem;
+            //var neededRow = (Customer)((sender as DataGridView).Rows[e.RowIndex]).DataBoundItem;
 
-            var balance = Transaction.GetBalance(neededRow);
+            //var balance = Transaction.GetBalance(neededRow);
 
-            dataGridView1.Rows[e.RowIndex].Cells["Name"].ToolTipText = balance.ToString();
+            //dataGridView1.Rows[e.RowIndex].Cells["Name"].ToolTipText = balance.ToString();
         }
     }
 }
