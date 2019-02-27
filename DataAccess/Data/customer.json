@@ -6952,5 +6952,24 @@
     "CollectionSpotId": 78,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 376,
+    "CustomerId": 13,
+    "Name": "THIRUVIKAS- 150k",
+    "PhoneNumber": "",
+    "LoanAmount": 150000,
+    "Interest": 5250,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-02-27T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 5,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 13,
+    "ReturnDay": 0,
+    "ModifiedDate": null
   }
 ]
