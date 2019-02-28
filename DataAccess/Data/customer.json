@@ -5094,7 +5094,7 @@
   {
     "CustomerSeqNumber": 276,
     "CustomerId": 141,
-    "Name": "Sasikumar - Metghalodai",
+    "Name": "Sasikumar - Methalodai",
     "PhoneNumber": "",
     "LoanAmount": 30000,
     "Interest": 1800,
@@ -5531,7 +5531,7 @@
   {
     "CustomerSeqNumber": 299,
     "CustomerId": 141,
-    "Name": "Sasikumar - Metghalodai",
+    "Name": "Sasikumar - Methalodai",
     "PhoneNumber": "",
     "LoanAmount": 20000,
     "Interest": 1200,
@@ -6139,7 +6139,7 @@
   {
     "CustomerSeqNumber": 331,
     "CustomerId": 141,
-    "Name": "Sasikumar - Metghalodai",
+    "Name": "Sasikumar - Methalodai",
     "PhoneNumber": "",
     "LoanAmount": 30000,
     "Interest": 3600,
@@ -6253,7 +6253,7 @@
   {
     "CustomerSeqNumber": 337,
     "CustomerId": 141,
-    "Name": "Sasikumar - Metghalodai",
+    "Name": "Sasikumar - Methalodai",
     "PhoneNumber": "",
     "LoanAmount": 200000,
     "Interest": 7000,
@@ -6969,6 +6969,25 @@
     "IsMerged": false,
     "MergedDate": null,
     "CollectionSpotId": 13,
+    "ReturnDay": 0,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 377,
+    "CustomerId": 153,
+    "Name": "UK",
+    "PhoneNumber": "",
+    "LoanAmount": 760500,
+    "Interest": 16500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-02-28T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 5,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 153,
     "ReturnDay": 0,
     "ModifiedDate": null
   }
