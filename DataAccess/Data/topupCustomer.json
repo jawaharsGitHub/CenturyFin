@@ -17,5 +17,24 @@
     "CollectionSpotId": 8,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 217,
+    "CustomerId": 1,
+    "Name": "Manikandan T Stall Kadamba Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 1000,
+    "Interest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-02-27T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 1,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
