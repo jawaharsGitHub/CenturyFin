@@ -27,6 +27,7 @@ namespace DataAccess.PrimaryTypes
         public string Comments { get; set; }
         public int OtherExpenditire { get; set; }
         public int OtherInvestment { get; set; }
+        public int OutUsedMoney { get; set; }
         public int ActualMoneyInBusiness { get; set; }
 
 

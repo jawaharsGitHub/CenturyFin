@@ -288,6 +288,9 @@ namespace CenturyFinCorpApp
                     if (valCollectedAmount == 0 && DialogResult.Yes == MessageBox.Show($"Are you sure you want to delete an existing transactions for {cus.Name}?", "", MessageBoxButtons.YesNo))
                     {
                         Transaction.DeleteTransactionDetails(existingTxn.First());
+                        cus.Interest -= existingTxn.First().AmountReceived;
+                        Customer.UpdateCustomerInterest(cus);
+                        return;
                     }
 
                     else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
@@ -299,13 +302,21 @@ namespace CenturyFinCorpApp
 
                 var txn = new Transaction()
                 {
-                    AmountReceived = Convert.ToInt32(strCollectedAmount),
+                    AmountReceived = valCollectedAmount,
                     CustomerId = customerId,
                     CustomerSequenceNo = seqNo,
                     TransactionId = Transaction.GetNextTransactionId(),
                     Balance = (Transaction.GetBalance(cus) - valCollectedAmount),
                     TxnDate = dateTimePicker1.Value
                 };
+
+
+                if (cus.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly && cus.LoanAmount != valCollectedAmount && txn.Balance > 0)
+                {
+                    txn.Balance = cus.LoanAmount;
+                    cus.Interest += valCollectedAmount;
+                    Customer.UpdateCustomerInterest(cus);
+                }
 
                 if (txn.Balance < 0)
                 {
@@ -324,7 +335,7 @@ namespace CenturyFinCorpApp
 
 
                 Transaction.AddDailyTransactions(txn);
-                
+
                 // Update txn Closed Date
                 if (txn.IsClosed && txn.Balance == 0)
                 {
@@ -428,46 +439,58 @@ namespace CenturyFinCorpApp
             var value = ((KeyValuePair<int, string>)cmbFilters.SelectedItem).Key;
             List<Customer> searchedCustomer;
 
+
+
             if (value == 1)
             {
-                searchedCustomer = customers.Where(w => w.IsActive).OrderByDescending(o => o.LoanAmount).ToList();
+                searchedCustomer = customers.OrderByDescending(o => o.LoanAmount).ToList();
             }
             else if (value == 2)
             {
-                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.CustomerSeqNumber).ToList();
+                searchedCustomer = customers.OrderBy(o => o.CustomerSeqNumber).ToList();
             }
             else if (value == 3)
             {
-                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.CustomerId).ToList();
+                searchedCustomer = customers.OrderBy(o => o.CustomerId).ToList();
             }
             else if (value == 4)
             {
-                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.Name).ToList();
+                searchedCustomer = customers.OrderBy(o => o.Name).ToList();
             }
             else if (value == 5)
             {
-                searchedCustomer = customers.Where(w => w.IsActive && w.ReturnDay == DateTime.Today.DayOfWeek).ToList();
+                searchedCustomer = customers.Where(w => w.ReturnDay == DateTime.Today.DayOfWeek).ToList();
             }
             else if (value == 6)
             {
-                searchedCustomer = customers.Where(w => w.IsActive && w.ReturnDay == DateTime.Today.AddDays(1).DayOfWeek).ToList();
+                searchedCustomer = customers.Where(w => w.ReturnDay == DateTime.Today.AddDays(1).DayOfWeek).ToList();
             }
             else if (value == 7)
             {
-                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.ReturnDay).ToList();
+                searchedCustomer = customers.OrderBy(o => o.ReturnDay).ToList();
             }
             else if (value == 8)
             {
-                searchedCustomer = customers.Where(w => w.IsActive).OrderBy(o => o.ReturnType).ToList();
+                searchedCustomer = customers.OrderBy(o => o.ReturnType).ToList();
             }
             else if (value == 9)
             {
-                searchedCustomer = customers.Where(w => w.IsActive).OrderByDescending(o => o.CollectionSpotId).ToList();
+                searchedCustomer = customers.OrderByDescending(o => o.CollectionSpotId).ToList();
             }
             else//  (value == 10)
             {
-                searchedCustomer = customers.Where(w => w.IsActive && w.ReturnDay == DateTime.Today.AddDays(-1).DayOfWeek).ToList();
+                searchedCustomer = customers.Where(w => w.ReturnDay == DateTime.Today.AddDays(-1).DayOfWeek).ToList();
             }
+
+            if (rdbActive.Checked)
+            {
+                searchedCustomer = searchedCustomer.Where(w => w.IsActive).ToList();
+            }
+            else if (rdbClosed.Checked)
+            {
+                searchedCustomer = searchedCustomer.Where(w => w.IsActive == false).ToList();
+            }
+
 
             dataGridView1.DataSource = searchedCustomer;
             AdjustColumnOrder();
@@ -494,11 +517,11 @@ namespace CenturyFinCorpApp
         {
             if (e.RowIndex < 0) return;
 
-            //var neededRow = (Customer)((sender as DataGridView).Rows[e.RowIndex]).DataBoundItem;
+            var neededRow = (Customer)((sender as DataGridView).Rows[e.RowIndex]).DataBoundItem;
 
-            //var balance = Transaction.GetBalance(neededRow);
+            var balance = Transaction.GetBalance(neededRow);
 
-            //dataGridView1.Rows[e.RowIndex].Cells["Name"].ToolTipText = balance.ToString();
+            dataGridView1.Rows[e.RowIndex].Cells["Name"].ToolTipText = balance.ToString();
         }
     }
 }

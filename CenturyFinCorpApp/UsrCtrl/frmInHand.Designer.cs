@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnInvestment = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtUnclesHand = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -84,13 +85,16 @@
             this.lblDate2 = new System.Windows.Forms.Label();
             this.btnPrevDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
-            this.btnInvestment = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtOutMoney = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.txtOutMoney);
             this.groupBox1.Controls.Add(this.btnInvestment);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.lblCanGive);
@@ -126,6 +130,18 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // btnInvestment
+            // 
+            this.btnInvestment.BackColor = System.Drawing.Color.Crimson;
+            this.btnInvestment.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvestment.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnInvestment.Location = new System.Drawing.Point(373, 181);
+            this.btnInvestment.Name = "btnInvestment";
+            this.btnInvestment.Size = new System.Drawing.Size(164, 78);
+            this.btnInvestment.TabIndex = 32;
+            this.btnInvestment.Text = "Investment Money";
+            this.btnInvestment.UseVisualStyleBackColor = false;
             // 
             // groupBox2
             // 
@@ -259,7 +275,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(40, 496);
+            this.label17.Location = new System.Drawing.Point(40, 461);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(103, 13);
             this.label17.TabIndex = 26;
@@ -268,7 +284,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(40, 455);
+            this.label16.Location = new System.Drawing.Point(40, 420);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(104, 13);
             this.label16.TabIndex = 25;
@@ -276,14 +292,14 @@
             // 
             // txtOtherInvestment
             // 
-            this.txtOtherInvestment.Location = new System.Drawing.Point(156, 493);
+            this.txtOtherInvestment.Location = new System.Drawing.Point(156, 458);
             this.txtOtherInvestment.Name = "txtOtherInvestment";
             this.txtOtherInvestment.Size = new System.Drawing.Size(100, 20);
             this.txtOtherInvestment.TabIndex = 12;
             // 
             // txtOtherExpenditure
             // 
-            this.txtOtherExpenditure.Location = new System.Drawing.Point(156, 455);
+            this.txtOtherExpenditure.Location = new System.Drawing.Point(156, 420);
             this.txtOtherExpenditure.Name = "txtOtherExpenditure";
             this.txtOtherExpenditure.Size = new System.Drawing.Size(100, 20);
             this.txtOtherExpenditure.TabIndex = 11;
@@ -301,21 +317,21 @@
             // 
             // txtCollectionAmount
             // 
-            this.txtCollectionAmount.Location = new System.Drawing.Point(156, 224);
+            this.txtCollectionAmount.Location = new System.Drawing.Point(156, 189);
             this.txtCollectionAmount.Name = "txtCollectionAmount";
             this.txtCollectionAmount.Size = new System.Drawing.Size(100, 20);
             this.txtCollectionAmount.TabIndex = 5;
             // 
             // txtInterest
             // 
-            this.txtInterest.Location = new System.Drawing.Point(153, 292);
+            this.txtInterest.Location = new System.Drawing.Point(153, 257);
             this.txtInterest.Name = "txtInterest";
             this.txtInterest.Size = new System.Drawing.Size(100, 20);
             this.txtInterest.TabIndex = 7;
             // 
             // txtGivenAmount
             // 
-            this.txtGivenAmount.Location = new System.Drawing.Point(153, 258);
+            this.txtGivenAmount.Location = new System.Drawing.Point(153, 223);
             this.txtGivenAmount.Name = "txtGivenAmount";
             this.txtGivenAmount.Size = new System.Drawing.Size(100, 20);
             this.txtGivenAmount.TabIndex = 6;
@@ -323,7 +339,7 @@
             // 
             // txtTmrNeeded
             // 
-            this.txtTmrNeeded.Location = new System.Drawing.Point(153, 416);
+            this.txtTmrNeeded.Location = new System.Drawing.Point(153, 381);
             this.txtTmrNeeded.Name = "txtTmrNeeded";
             this.txtTmrNeeded.Size = new System.Drawing.Size(100, 20);
             this.txtTmrNeeded.TabIndex = 10;
@@ -342,14 +358,14 @@
             // 
             // txtOpened
             // 
-            this.txtOpened.Location = new System.Drawing.Point(153, 380);
+            this.txtOpened.Location = new System.Drawing.Point(153, 345);
             this.txtOpened.Name = "txtOpened";
             this.txtOpened.Size = new System.Drawing.Size(100, 20);
             this.txtOpened.TabIndex = 9;
             // 
             // txtClosed
             // 
-            this.txtClosed.Location = new System.Drawing.Point(153, 349);
+            this.txtClosed.Location = new System.Drawing.Point(153, 314);
             this.txtClosed.Name = "txtClosed";
             this.txtClosed.Size = new System.Drawing.Size(100, 20);
             this.txtClosed.TabIndex = 8;
@@ -366,14 +382,14 @@
             // 
             // txtTakenFromBank
             // 
-            this.txtTakenFromBank.Location = new System.Drawing.Point(153, 193);
+            this.txtTakenFromBank.Location = new System.Drawing.Point(153, 158);
             this.txtTakenFromBank.Name = "txtTakenFromBank";
             this.txtTakenFromBank.Size = new System.Drawing.Size(100, 20);
             this.txtTakenFromBank.TabIndex = 4;
             // 
             // txtBankTxnOut
             // 
-            this.txtBankTxnOut.Location = new System.Drawing.Point(153, 153);
+            this.txtBankTxnOut.Location = new System.Drawing.Point(153, 118);
             this.txtBankTxnOut.Name = "txtBankTxnOut";
             this.txtBankTxnOut.Size = new System.Drawing.Size(100, 20);
             this.txtBankTxnOut.TabIndex = 3;
@@ -388,7 +404,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(35, 416);
+            this.label14.Location = new System.Drawing.Point(35, 381);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(89, 13);
             this.label14.TabIndex = 12;
@@ -397,7 +413,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(39, 380);
+            this.label13.Location = new System.Drawing.Point(39, 345);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(90, 13);
             this.label13.TabIndex = 11;
@@ -406,7 +422,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(36, 349);
+            this.label12.Location = new System.Drawing.Point(36, 314);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(84, 13);
             this.label12.TabIndex = 10;
@@ -415,7 +431,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(35, 295);
+            this.label9.Location = new System.Drawing.Point(35, 260);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 13);
             this.label9.TabIndex = 8;
@@ -424,7 +440,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(30, 261);
+            this.label8.Location = new System.Drawing.Point(30, 226);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(83, 13);
             this.label8.TabIndex = 7;
@@ -433,7 +449,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 227);
+            this.label7.Location = new System.Drawing.Point(28, 192);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(104, 13);
             this.label7.TabIndex = 6;
@@ -442,7 +458,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 193);
+            this.label6.Location = new System.Drawing.Point(28, 158);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(86, 13);
             this.label6.TabIndex = 5;
@@ -451,7 +467,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 160);
+            this.label5.Location = new System.Drawing.Point(27, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 4;
@@ -613,17 +629,21 @@
             this.btnNextDay.UseVisualStyleBackColor = true;
             this.btnNextDay.Click += new System.EventHandler(this.btnNextDay_Click);
             // 
-            // btnInvestment
+            // label23
             // 
-            this.btnInvestment.BackColor = System.Drawing.Color.Crimson;
-            this.btnInvestment.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInvestment.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnInvestment.Location = new System.Drawing.Point(373, 181);
-            this.btnInvestment.Name = "btnInvestment";
-            this.btnInvestment.Size = new System.Drawing.Size(164, 78);
-            this.btnInvestment.TabIndex = 32;
-            this.btnInvestment.Text = "Investment Money";
-            this.btnInvestment.UseVisualStyleBackColor = false;
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(41, 489);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(99, 13);
+            this.label23.TabIndex = 34;
+            this.label23.Text = "Out Used Money (-)";
+            // 
+            // txtOutMoney
+            // 
+            this.txtOutMoney.Location = new System.Drawing.Point(157, 489);
+            this.txtOutMoney.Name = "txtOutMoney";
+            this.txtOutMoney.Size = new System.Drawing.Size(100, 20);
+            this.txtOutMoney.TabIndex = 33;
             // 
             // frmInHand
             // 
@@ -716,5 +736,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnInvestment;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtOutMoney;
     }
 }

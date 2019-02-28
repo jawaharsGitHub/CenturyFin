@@ -55,6 +55,7 @@ namespace CenturyFinCorpApp
                     txtClosed.Text = todayTxn.Where(w => w.Balance == 0).Count().ToString();
                     txtOpened.Text = todayTxn.Where(w => w.AmountReceived == 0).Count().ToString();
 
+                    txtOtherExpenditure.Text =   txtOtherInvestment.Text = txtOutMoney.Text = "0";
 
                 }
                 btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
@@ -104,26 +105,27 @@ namespace CenturyFinCorpApp
 
             dailyTxn.Date = dateTimePicker1.Value.ToShortDateString();
             dailyTxn.YesterdayAmountInHand = dailyTxn.TodayInHand;
-            dailyTxn.SentFromUSA = Convert.ToDecimal(txtSentFromUSA.Text);
-            dailyTxn.BankTxnOut = Convert.ToDecimal(txtBankTxnOut.Text);
-            dailyTxn.TakenFromBank = Convert.ToInt32(txtTakenFromBank.Text);
+            dailyTxn.SentFromUSA = txtSentFromUSA.Text.ToDecimal();
+            dailyTxn.BankTxnOut = txtBankTxnOut.Text.ToDecimal();
+            dailyTxn.TakenFromBank = txtTakenFromBank.Text.ToInt32();
             dailyTxn.InBank = (dailyTxn.InBank + dailyTxn.SentFromUSA - dailyTxn.TakenFromBank - dailyTxn.BankTxnOut);
 
-            dailyTxn.CollectionAmount = Convert.ToInt32(txtCollectionAmount.Text);
-            dailyTxn.GivenAmount = Convert.ToInt32(txtGivenAmount.Text);
-            dailyTxn.Interest = Convert.ToInt32(txtInterest.Text);
-            dailyTxn.ClosedAccounts = Convert.ToInt32(txtClosed.Text);
-            dailyTxn.OpenedAccounts = Convert.ToInt32(txtOpened.Text);
-            dailyTxn.TomorrowNeed = Convert.ToInt32(txtTmrNeeded.Text);
+            dailyTxn.CollectionAmount = txtCollectionAmount.Text.ToInt32();
+            dailyTxn.GivenAmount = txtGivenAmount.Text.ToInt32();
+            dailyTxn.Interest = txtInterest.Text.ToInt32();
+            dailyTxn.ClosedAccounts = txtClosed.Text.ToInt32();
+            dailyTxn.OpenedAccounts = txtOpened.Text.ToInt32();
+            dailyTxn.TomorrowNeed = txtTmrNeeded.Text.ToInt32();
 
-            dailyTxn.OtherExpenditire = Convert.ToInt32(txtOtherExpenditure.Text);
-            dailyTxn.OtherInvestment = Convert.ToInt32(txtOtherInvestment.Text);
+            dailyTxn.OtherExpenditire = txtOtherExpenditure.Text.ToInt32();
+            dailyTxn.OtherInvestment = txtOtherInvestment.Text.ToInt32();
+            dailyTxn.OutUsedMoney = txtOutMoney.Text.ToInt32();
 
             dailyTxn.TodayInHand = (dailyTxn.YesterdayAmountInHand + dailyTxn.CollectionAmount + dailyTxn.TakenFromBank - dailyTxn.GivenAmount + dailyTxn.Interest + dailyTxn.OtherInvestment - dailyTxn.OtherExpenditire);
 
             dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - Convert.ToInt32((dailyTxn.TodayInHand + dailyTxn.InBank)));
             dailyTxn.Comments = txtComments.Text;
-            dailyTxn.ActualMoneyInBusiness = (dailyTxn.ActualMoneyInBusiness + dailyTxn.OtherInvestment) - dailyTxn.OtherExpenditire;
+            dailyTxn.ActualMoneyInBusiness = (dailyTxn.ActualMoneyInBusiness + dailyTxn.OtherInvestment) - dailyTxn.OutUsedMoney;
 
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);

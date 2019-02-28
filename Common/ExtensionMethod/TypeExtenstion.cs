@@ -33,6 +33,11 @@ namespace Common.ExtensionMethod
 
         }
 
+        public static decimal ToDecimal(this object value)
+        {
+            return Convert.ToDecimal(value);
+        }
+
         public static string TokFormat(this int? value)
         {
             if (value == null)

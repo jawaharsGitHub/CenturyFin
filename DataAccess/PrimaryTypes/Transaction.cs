@@ -294,6 +294,9 @@ namespace DataAccess.PrimaryTypes
 
         public static int GetBalance(Customer customer)
         {
+            if (customer.IsActive == false) return 0;
+            if (customer.ReturnType == ExtendedTypes.ReturnTypeEnum.Monthly) return customer.LoanAmount;
+
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
             if (list == null || list.Count == 0) return customer.LoanAmount - 0;
 
