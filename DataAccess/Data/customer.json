@@ -7009,5 +7009,24 @@
     "CollectionSpotId": 12,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 379,
+    "CustomerId": 45,
+    "Name": "Jothi Aranmanai",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-03-01T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 45,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
