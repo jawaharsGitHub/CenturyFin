@@ -33,6 +33,7 @@ namespace CenturyFinCorpApp
                 cus.IsExistingCustomer = true;
                 newCustomerId = cus.CustomerId;
                 cus.IsActive = false;   //Update Active flag of existing customer.
+                cus.IsForceClosed = false;
             }
             else
             {

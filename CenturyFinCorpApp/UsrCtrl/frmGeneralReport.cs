@@ -285,12 +285,15 @@ namespace CenturyFinCorpApp.UsrCtrl
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
             lblTotalAsset.Visible = label4.Visible = false;
             lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
-            var monthlyCustomersInv = Customer.GetAllCustomer().Where(w => w.IsActive && w.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount);
+            var monthlyCustomersBalance = (from c in Customer.GetAllCustomer().Where(w => w.IsActive && w.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly)
+                                           select Transaction.GetBalance(c)).Sum();
+
             var fullInvestment = DailyCollectionDetail.GetActualInvestmentTxnDate();
 
             lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} " +
                 $"(OS: {outstandingMoney.includesProfit.ToMoney()} + IH: {inHandAndBank.InHandAmount.ToMoney()})  {Environment.NewLine} " +
-                $"Actual Outstanding: {outstandingMoney.actual.ToMoney()} {Environment.NewLine} INVESTMENT: Daily:~{(fullInvestment - monthlyCustomersInv).ToMoney()} + Monthly:{monthlyCustomersInv.ToMoney()} = {fullInvestment.ToMoney()}";
+                $"Actual Outstanding: {outstandingMoney.actual.ToMoney()} {Environment.NewLine} " +
+                $"INVESTMENT: Daily:~{(fullInvestment - monthlyCustomersBalance).ToMoney()} + Monthly:{monthlyCustomersBalance.ToMoney()} = {fullInvestment.ToMoney()}";
         }
 
         private void dgvIncome_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

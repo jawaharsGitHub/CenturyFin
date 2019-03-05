@@ -295,12 +295,18 @@ namespace DataAccess.PrimaryTypes
         public static int GetBalance(Customer customer)
         {
             if (customer.IsActive == false) return 0;
-            if (customer.ReturnType == ExtendedTypes.ReturnTypeEnum.Monthly) return customer.LoanAmount;
+            
 
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
             if (list == null || list.Count == 0) return customer.LoanAmount - 0;
 
             var customerTxns = list.Where(s => s.CustomerSequenceNo == customer.CustomerSeqNumber && s.CustomerId == customer.CustomerId);
+
+            if (customer.ReturnType == ExtendedTypes.ReturnTypeEnum.Monthly)
+            {
+                return customerTxns.Min(m => m.Balance);
+            }
+
             var paidAmount = customerTxns.Sum(s => s.AmountReceived);
 
             var txnLoanAmount = customerTxns.First(f => f.AmountReceived == 0).Balance;

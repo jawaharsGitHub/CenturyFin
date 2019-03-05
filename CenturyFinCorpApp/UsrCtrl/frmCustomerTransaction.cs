@@ -32,9 +32,9 @@ namespace CenturyFinCorpApp
 
             _balance = _isClosedTx ? 0 : Transaction.GetBalance(customer);
 
-            btnLoan.Text = $"LOAN :  {customer.LoanAmount}";
-            btnBalance.Text = $"BALANCE :  {_balance}";
-            btnInterest.Text = $"INTEREST :  {customer.Interest}";
+            btnLoan.Text = $"LOAN :  {customer.LoanAmount.ToMoney()}";
+            btnBalance.Text = $"BALANCE :  {_balance.ToMoney()}";
+            btnInterest.Text = $"INTEREST :  {customer.Interest.ToMoney()}";
 
             var closedText = string.Empty;
             if (customer.IsForceClosed)
