@@ -95,7 +95,9 @@ namespace CenturyFinCorpApp
 
             var monthlyCustomers = Customer.GetAllCustomer()
                         .Where(w => w.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly)
-                        .OrderBy(o => o.AmountGivenDate).ToList();
+                        .Select(s => new { Balance = Transaction.GetBalance(s), s.IsActive, s.Interest, s.LoanAmount });
+            
+                        //.OrderBy(o => o.AmountGivenDate).ToList();
 
             var allGivenAmount = customers.Where(w => w.ReturnType != DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount);
 
@@ -115,7 +117,7 @@ namespace CenturyFinCorpApp
             label1.Text = $"{totalTxn} notes in {days} days {Environment.NewLine} " +
                 $"{DateHelper.DaysToMonth("Running Days", new DateTime(2018, 1, 25), DateTime.Today)} {Environment.NewLine} " +
                 $"{Math.Round(totalTxn / days, 2)} note(s) per day {Environment.NewLine} " +
-                $"{monthlyCustomers.Where(w => w.IsActive == false).Sum(s => s.Interest).ToMoney()}(C) [{monthlyCustomers.Where(w => w.IsActive == false).Sum(s => s.LoanAmount).ToMoney()}] + {monthlyCustomers.Where(w => w.IsActive == true).Sum(s => s.Interest).ToMoney()}(A) [{monthlyCustomers.Where(w => w.IsActive == true).Sum(s => s.LoanAmount).ToMoney()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoney()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}).{Environment.NewLine} " +
+                $"{monthlyCustomers.Where(w => w.IsActive == false).Sum(s => s.Interest).ToMoney()}(C) [{monthlyCustomers.Where(w => w.IsActive == false).Sum(s => s.LoanAmount).ToMoney()}] + {monthlyCustomers.Where(w => w.IsActive == true).Sum(s => s.Interest).ToMoney()}(A) [{monthlyCustomers.Where(w => w.IsActive == true).Sum(s => s.Balance).ToMoney()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoney()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}).{Environment.NewLine} " +
                 $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month) {Environment.NewLine}" +
                 $"  need {365 - totalTxn} in {365 - days} days [Shortage: {days - totalTxn}] {Environment.NewLine} " +
                 $"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";

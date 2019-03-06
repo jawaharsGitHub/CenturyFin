@@ -55,5 +55,24 @@
     "CollectionSpotId": 159,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 327,
+    "CustomerId": 50,
+    "Name": "Munis Travels",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-03-06T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 50,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]

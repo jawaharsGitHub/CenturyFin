@@ -30,6 +30,8 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             ShowOutstandingMoney();
             ShowTotalAssetMoney();
+
+            comboBox1.SelectedText = DateTime.Today.Year.ToString();
         }
 
         private void GetCustomerCount()
