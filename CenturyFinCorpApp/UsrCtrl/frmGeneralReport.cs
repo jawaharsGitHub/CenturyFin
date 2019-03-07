@@ -233,7 +233,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             lblActual.Text = $"Actual :  {actual.ToMoney()} (Per Month: { (actual / numberOfMonths).ToMoney()})";
             lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / numberOfMonths).ToMoney()})";
             lblTotal.Text = $"TOTAL : {total.ToMoney()} (Per Month: { (total / numberOfMonths).ToMoney()})";
-            lblCloseCount.Text = $"Close Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
+            lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
 
             lblSalary.Text = $"Salary : {salary}";
             lblSalary.Visible = considerSalary;

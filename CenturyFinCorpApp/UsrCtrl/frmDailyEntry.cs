@@ -155,11 +155,12 @@ namespace CenturyFinCorpApp
 
             if (topupCustomers.Count > 0)
             {
-                newText = $"NEW:{result.Count(c => c.AmountReceived == 0)}  ({result.Where(w => w.AmountReceived == 0).Sum(s => s.Interest).ToMoney()}) + {topupCustomers.Count()}Topup ({topupCustomers.Sum(s => s.Interest)}) = {(topupCustomers.Sum(s => s.Interest) + result.Where(w => w.AmountReceived == 0).Sum(s => s.Interest)).ToMoney()}";
+                newText = $"NEW:{result.Count(c => c.AmountReceived == 0 && c.Balance > 0)}  ({result.Where(w => w.AmountReceived == 0 && w.Balance > 0).Sum(s => s.Interest).ToMoney()}) +" +
+                    $" {topupCustomers.Count()}Topup ({topupCustomers.Sum(s => s.Interest)}) = {(topupCustomers.Sum(s => s.Interest) + result.Where(w => w.AmountReceived == 0).Sum(s => s.Interest)).ToMoney()}";
             }
             else
             {
-                newText = $"NEW:{result.Count(c => c.AmountReceived == 0)} ({result.Where(w => w.AmountReceived == 0).Sum(s => s.Interest).ToMoney()})";
+                newText = $"NEW:{result.Count(c => c.AmountReceived == 0 && c.Balance > 0)} ({result.Where(w => w.AmountReceived == 0 && w.Balance > 0).Sum(s => s.Interest).ToMoney()})";
             }
 
             label2.Text = $"{result.Count(c => c.AmountReceived > 0)} (Rs.{amountReceived.ToMoney()}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection.ToMoney()}) {Environment.NewLine}" +
