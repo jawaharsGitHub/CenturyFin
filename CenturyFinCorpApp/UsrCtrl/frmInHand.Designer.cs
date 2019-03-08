@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtOutMoney = new System.Windows.Forms.TextBox();
             this.btnInvestment = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtUnclesHand = new System.Windows.Forms.TextBox();
@@ -85,8 +87,6 @@
             this.lblDate2 = new System.Windows.Forms.Label();
             this.btnPrevDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtOutMoney = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -130,6 +130,22 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(41, 489);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(99, 13);
+            this.label23.TabIndex = 34;
+            this.label23.Text = "Out Used Money (-)";
+            // 
+            // txtOutMoney
+            // 
+            this.txtOutMoney.Location = new System.Drawing.Point(157, 489);
+            this.txtOutMoney.Name = "txtOutMoney";
+            this.txtOutMoney.Size = new System.Drawing.Size(100, 20);
+            this.txtOutMoney.TabIndex = 33;
             // 
             // btnInvestment
             // 
@@ -558,7 +574,7 @@
             this.txtComments.Location = new System.Drawing.Point(671, 417);
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
-            this.txtComments.Size = new System.Drawing.Size(192, 89);
+            this.txtComments.Size = new System.Drawing.Size(290, 191);
             this.txtComments.TabIndex = 12;
             // 
             // label11
@@ -629,22 +645,6 @@
             this.btnNextDay.UseVisualStyleBackColor = true;
             this.btnNextDay.Click += new System.EventHandler(this.btnNextDay_Click);
             // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(41, 489);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(99, 13);
-            this.label23.TabIndex = 34;
-            this.label23.Text = "Out Used Money (-)";
-            // 
-            // txtOutMoney
-            // 
-            this.txtOutMoney.Location = new System.Drawing.Point(157, 489);
-            this.txtOutMoney.Name = "txtOutMoney";
-            this.txtOutMoney.Size = new System.Drawing.Size(100, 20);
-            this.txtOutMoney.TabIndex = 33;
-            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -667,7 +667,7 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label1);
             this.Name = "frmInHand";
-            this.Size = new System.Drawing.Size(977, 528);
+            this.Size = new System.Drawing.Size(977, 611);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
