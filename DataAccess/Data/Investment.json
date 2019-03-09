@@ -3222,5 +3222,21 @@
     "CustomerId": 163,
     "CustomerSequenceNo": 393,
     "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 30000,
+    "Interest": 3000,
+    "CustomerId": 95,
+    "CustomerSequenceNo": 394,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 35000,
+    "Interest": 2100,
+    "CustomerId": 108,
+    "CustomerSequenceNo": 395,
+    "CreatedDate": "00:00:00"
   }
 ]
