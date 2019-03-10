@@ -219,8 +219,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                 });
 
             }
-            // Bindng the real/actual source finalData (will be updated using by ref by various data)
-            dgvIncome.DataSource = finalData;
+            
 
             // Years Expected and Actual Salary
             var actual = finalData.Sum(w => w.ActualIncome);
@@ -237,6 +236,15 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             lblSalary.Text = $"Salary : {salary}";
             lblSalary.Visible = considerSalary;
+
+            // Bindng the real/actual source finalData (will be updated using by ref by various data)
+            dgvIncome.DataSource = (from s in finalData
+                                   select new {
+                                       s.MonthYear,
+                                       ExpectedIncome = s.ExpectedIncome.ToMoney(),
+                                       ActualIncome = s.ActualIncome.ToMoney(),
+                                       MonthlySalary = s.MonthlySalary.ToMoney()
+                                   }).ToList(); 
 
 
         }
@@ -256,22 +264,22 @@ namespace CenturyFinCorpApp.UsrCtrl
                              {
                                  Month = newGroup.Key,
                                  GivenCount = newGroup.Count(),
-                                 LoanAmount = newGroup.Sum(s => s.LoanAmount),
-                                 GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)),
-                                 FutureInterest = newGroup.Sum(s => s.Interest),
+                                 LoanAmount = newGroup.Sum(s => s.LoanAmount).ToMoney(),
+                                 GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)).ToMoney(),
+                                 FutureInterest = newGroup.Sum(s => s.Interest).ToMoney(),
                              }).ToList();
 
 
             dgvNotePerMonth.DataSource = customers;
 
-            var totalLoanAmount = customers.Sum(s => s.LoanAmount);
-            var totalGivenAmount = customers.Sum(s => s.GivenAmount);
+            var totalLoanAmount = customers.Sum(s => s.LoanAmount.ToIntMoney());
+            var totalGivenAmount = customers.Sum(s => s.GivenAmount.ToIntMoney());
             var difference = totalLoanAmount - totalGivenAmount;
 
 
             label6.Text = $"LA: {totalLoanAmount.ToMoney()} {Environment.NewLine}" +
                 $"GA: {totalGivenAmount.ToMoney()} (~{difference.ToMoney()}) {Environment.NewLine}" +
-                $"FI: {customers.Sum(s => s.FutureInterest).ToMoney()} {Environment.NewLine}" +
+                $"FI: {customers.Sum(s => s.FutureInterest.ToIntMoney()).ToMoney()} {Environment.NewLine}" +
                 $"C: {customers.Sum(s => s.GivenCount)} {Environment.NewLine}";
 
         }

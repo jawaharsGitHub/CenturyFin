@@ -32,6 +32,13 @@ namespace Common.ExtensionMethod
 
         }
 
+        public static int ToIntMoney(this string number)
+        {
+
+            return number.Replace(",", "").ToInt32();
+
+        }
+
         public static string ToMoney(this decimal number)
         {
             var no = Convert.ToInt32(number);
