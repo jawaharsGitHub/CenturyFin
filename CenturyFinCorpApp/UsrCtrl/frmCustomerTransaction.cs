@@ -501,10 +501,10 @@ namespace CenturyFinCorpApp
                 return;
             }
 
-            
+
 
             btnBalance.Text = txn.Balance.ToString();
-            
+
             //if (txn.Balance == 0)
             //{
             //    MessageBox.Show("This Txn is completed Successfully!");
@@ -544,6 +544,32 @@ namespace CenturyFinCorpApp
 
             var interest = (loanAmount / 100) * 10;
             txtTopupInterest.Text = interest.ToString();
+        }
+
+        private void btnConvertToMonthly_Click(object sender, EventArgs e)
+        {
+            var newAmount = customer.LoanAmount;
+
+            if (string.IsNullOrEmpty(txtNewAmount.Text) == false)
+            {
+                newAmount = txtNewAmount.Text.ToInt32();
+            }
+
+
+            var newInterest = txtNewInterest.Text.ToInt32();
+
+            if (customer.LoanAmount != newAmount)
+            {
+                customer.LoanAmount = newAmount;
+                Customer.UpdateCustomerLoanAmount(customer);
+            }
+
+
+            if (customer.Interest != newInterest)
+            {
+                customer.Interest = newInterest;
+                Customer.UpdateCustomerInterest(customer);
+            }
         }
     }
 }

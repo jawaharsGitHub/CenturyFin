@@ -59,7 +59,7 @@
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIncome.Location = new System.Drawing.Point(15, 107);
             this.dgvIncome.Name = "dgvIncome";
-            this.dgvIncome.Size = new System.Drawing.Size(538, 405);
+            this.dgvIncome.Size = new System.Drawing.Size(550, 405);
             this.dgvIncome.TabIndex = 0;
             this.dgvIncome.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvIncome_CellFormatting);
             // 

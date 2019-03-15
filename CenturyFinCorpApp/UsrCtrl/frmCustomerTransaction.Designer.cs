@@ -66,10 +66,17 @@
             this.txtTopupInterest = new System.Windows.Forms.TextBox();
             this.txtTopupAmount = new System.Windows.Forms.TextBox();
             this.btnTopup = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtNewInterest = new System.Windows.Forms.TextBox();
+            this.txtNewAmount = new System.Windows.Forms.TextBox();
+            this.btnConvertToMonthly = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLoan
@@ -318,7 +325,7 @@
             this.grpMerge.Controls.Add(this.txtInterest);
             this.grpMerge.Controls.Add(this.txtMergeAmount);
             this.grpMerge.Controls.Add(this.btnMerge);
-            this.grpMerge.Location = new System.Drawing.Point(703, 189);
+            this.grpMerge.Location = new System.Drawing.Point(989, 18);
             this.grpMerge.Name = "grpMerge";
             this.grpMerge.Size = new System.Drawing.Size(200, 112);
             this.grpMerge.TabIndex = 21;
@@ -394,7 +401,7 @@
             this.groupBox2.Controls.Add(this.txtTopupInterest);
             this.groupBox2.Controls.Add(this.txtTopupAmount);
             this.groupBox2.Controls.Add(this.btnTopup);
-            this.groupBox2.Location = new System.Drawing.Point(938, 189);
+            this.groupBox2.Location = new System.Drawing.Point(989, 147);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 112);
             this.groupBox2.TabIndex = 22;
@@ -444,10 +451,67 @@
             this.btnTopup.UseVisualStyleBackColor = true;
             this.btnTopup.Click += new System.EventHandler(this.btnTopup_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.txtNewInterest);
+            this.groupBox3.Controls.Add(this.txtNewAmount);
+            this.groupBox3.Controls.Add(this.btnConvertToMonthly);
+            this.groupBox3.Location = new System.Drawing.Point(989, 280);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 112);
+            this.groupBox3.TabIndex = 23;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Daily to Monthly";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(17, 49);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "New Interest";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "New Amount";
+            // 
+            // txtNewInterest
+            // 
+            this.txtNewInterest.Location = new System.Drawing.Point(85, 46);
+            this.txtNewInterest.Name = "txtNewInterest";
+            this.txtNewInterest.Size = new System.Drawing.Size(100, 20);
+            this.txtNewInterest.TabIndex = 7;
+            // 
+            // txtNewAmount
+            // 
+            this.txtNewAmount.Location = new System.Drawing.Point(85, 19);
+            this.txtNewAmount.Name = "txtNewAmount";
+            this.txtNewAmount.Size = new System.Drawing.Size(100, 20);
+            this.txtNewAmount.TabIndex = 6;
+            // 
+            // btnConvertToMonthly
+            // 
+            this.btnConvertToMonthly.Location = new System.Drawing.Point(34, 85);
+            this.btnConvertToMonthly.Name = "btnConvertToMonthly";
+            this.btnConvertToMonthly.Size = new System.Drawing.Size(119, 21);
+            this.btnConvertToMonthly.TabIndex = 0;
+            this.btnConvertToMonthly.Text = "Convert";
+            this.btnConvertToMonthly.UseVisualStyleBackColor = true;
+            this.btnConvertToMonthly.Click += new System.EventHandler(this.btnConvertToMonthly_Click);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnForceClose);
             this.Controls.Add(this.btnReOpen);
@@ -480,6 +544,8 @@
             this.grpMerge.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -524,5 +590,11 @@
         private System.Windows.Forms.TextBox txtTopupInterest;
         private System.Windows.Forms.TextBox txtTopupAmount;
         private System.Windows.Forms.Button btnTopup;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtNewInterest;
+        private System.Windows.Forms.TextBox txtNewAmount;
+        private System.Windows.Forms.Button btnConvertToMonthly;
     }
 }

@@ -571,16 +571,17 @@
             // 
             // txtComments
             // 
-            this.txtComments.Location = new System.Drawing.Point(671, 417);
+            this.txtComments.Location = new System.Drawing.Point(647, 414);
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
-            this.txtComments.Size = new System.Drawing.Size(290, 191);
+            this.txtComments.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtComments.Size = new System.Drawing.Size(314, 153);
             this.txtComments.TabIndex = 12;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(671, 398);
+            this.label11.Location = new System.Drawing.Point(653, 398);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 13);
             this.label11.TabIndex = 19;
@@ -667,7 +668,7 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label1);
             this.Name = "frmInHand";
-            this.Size = new System.Drawing.Size(977, 611);
+            this.Size = new System.Drawing.Size(977, 569);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

@@ -17,6 +17,7 @@ namespace CenturyFinCorpApp.UsrCtrl
     {
         (int actual, int includesProfit) outstandingMoney;
         List<IncomeReport> finalData;
+        List<IncomeReport> filteredfinalData;
 
         public frmGeneralReport()
         {
@@ -31,7 +32,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             ShowOutstandingMoney();
             ShowTotalAssetMoney();
 
-            comboBox1.SelectedText = DateTime.Today.Year.ToString();
+            comboBox1.Text = DateTime.Today.Year.ToString();
         }
 
         private void GetCustomerCount()
@@ -219,7 +220,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                 });
 
             }
-            
+
 
             // Years Expected and Actual Salary
             var actual = finalData.Sum(w => w.ActualIncome);
@@ -237,14 +238,27 @@ namespace CenturyFinCorpApp.UsrCtrl
             lblSalary.Text = $"Salary : {salary}";
             lblSalary.Visible = considerSalary;
 
+            // may be in future we need it.
+
+            if (comboBox1.Text.ToLower() != "all" && comboBox1.Text != "")
+            {
+                filteredfinalData = finalData.Where(w => Convert.ToDateTime(w.MonthYear).Year.ToString() == comboBox1.Text).ToList();
+            }
+            else
+            {
+                filteredfinalData = finalData;
+            }
+
             // Bindng the real/actual source finalData (will be updated using by ref by various data)
-            dgvIncome.DataSource = (from s in finalData
-                                   select new {
-                                       s.MonthYear,
-                                       ExpectedIncome = s.ExpectedIncome.ToMoney(),
-                                       ActualIncome = s.ActualIncome.ToMoney(),
-                                       MonthlySalary = s.MonthlySalary.ToMoney()
-                                   }).ToList(); 
+            dgvIncome.DataSource = (from s in filteredfinalData
+                                    select new
+                                    {
+                                        s.MonthYear,
+                                        ExpectedIncome = s.ExpectedIncome.ToMoney(),
+                                        ActualIncome = s.ActualIncome.ToMoney(),
+                                        MonthlySalary = s.MonthlySalary.ToMoney(),
+                                        s.CloseCount
+                                    }).ToList();
 
 
         }
@@ -343,12 +357,23 @@ namespace CenturyFinCorpApp.UsrCtrl
         {
             if (comboBox1.Text.Trim().ToLower() == "all")
             {
-                dgvIncome.DataSource = finalData;
+                filteredfinalData = finalData;
             }
             else
             {
-                dgvIncome.DataSource = finalData.Where(w => Convert.ToDateTime(w.MonthYear).Year.ToString() == comboBox1.Text).ToList();
+                filteredfinalData = finalData.Where(w => Convert.ToDateTime(w.MonthYear).Year.ToString() == comboBox1.Text).ToList();
             }
+
+            // Bindng the real/actual source finalData (will be updated using by ref by various data)
+            dgvIncome.DataSource = (from s in filteredfinalData
+                                    select new
+                                    {
+                                        s.MonthYear,
+                                        ExpectedIncome = s.ExpectedIncome.ToMoney(),
+                                        ActualIncome = s.ActualIncome.ToMoney(),
+                                        MonthlySalary = s.MonthlySalary.ToMoney(),
+                                        s.CloseCount
+                                    }).ToList();
 
         }
     }
