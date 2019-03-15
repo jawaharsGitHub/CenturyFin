@@ -76,6 +76,7 @@
     <None Include="PL file\RUNNING NOTES.ods" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Kadalai Mittai\version 1.txt" />
     <Content Include="PL file\BT- Credits.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

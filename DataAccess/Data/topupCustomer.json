@@ -74,5 +74,24 @@
     "CollectionSpotId": 50,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 400,
+    "CustomerId": 165,
+    "Name": "Malaisamy Thatha",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2019-03-15T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 165,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
