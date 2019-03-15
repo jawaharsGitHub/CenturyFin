@@ -41,6 +41,7 @@
             this.chkAllColumns = new System.Windows.Forms.CheckBox();
             this.lblRowCount = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.cmbReturnTypes = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,7 +147,7 @@
             this.chkAllColumns.AutoSize = true;
             this.chkAllColumns.Checked = true;
             this.chkAllColumns.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAllColumns.Location = new System.Drawing.Point(254, 77);
+            this.chkAllColumns.Location = new System.Drawing.Point(445, 77);
             this.chkAllColumns.Name = "chkAllColumns";
             this.chkAllColumns.Size = new System.Drawing.Size(110, 17);
             this.chkAllColumns.TabIndex = 12;
@@ -163,10 +164,23 @@
             this.lblRowCount.TabIndex = 13;
             this.lblRowCount.Text = "lblRowCount";
             // 
+            // cmbReturnTypes
+            // 
+            this.cmbReturnTypes.DisplayMember = "value";
+            this.cmbReturnTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReturnTypes.FormattingEnabled = true;
+            this.cmbReturnTypes.Location = new System.Drawing.Point(239, 77);
+            this.cmbReturnTypes.Name = "cmbReturnTypes";
+            this.cmbReturnTypes.Size = new System.Drawing.Size(176, 21);
+            this.cmbReturnTypes.TabIndex = 14;
+            this.cmbReturnTypes.ValueMember = "key";
+            this.cmbReturnTypes.SelectedIndexChanged += new System.EventHandler(this.cmbReturnTypes_SelectedIndexChanged);
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbReturnTypes);
             this.Controls.Add(this.lblRowCount);
             this.Controls.Add(this.chkAllColumns);
             this.Controls.Add(this.cmbFilters);
@@ -201,5 +215,6 @@
         private System.Windows.Forms.CheckBox chkAllColumns;
         private System.Windows.Forms.Label lblRowCount;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ComboBox cmbReturnTypes;
     }
 }

@@ -1,9 +1,9 @@
 ﻿using Common;
 using Common.ExtensionMethod;
+using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,6 +19,7 @@ namespace CenturyFinCorpApp
             InitializeComponent();
 
             cmbFilters.DataSource = GetOptions();
+            SetReturnTypes();
 
             // Get the table from the data set
             SetCustomers();
@@ -87,6 +88,14 @@ namespace CenturyFinCorpApp
 
         }
 
+        public void SetReturnTypes()
+        {
+            cmbReturnTypes.DataSource = Enum.GetValues(typeof(ReturnTypeEnum));
+
+
+
+        }
+
 
         private void SetCustomers()
         {
@@ -96,8 +105,8 @@ namespace CenturyFinCorpApp
             var monthlyCustomers = Customer.GetAllCustomer()
                         .Where(w => w.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly)
                         .Select(s => new { Balance = Transaction.GetBalance(s), s.IsActive, s.Interest, s.LoanAmount });
-            
-                        //.OrderBy(o => o.AmountGivenDate).ToList();
+
+            //.OrderBy(o => o.AmountGivenDate).ToList();
 
             var allGivenAmount = customers.Where(w => w.ReturnType != DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount);
 
@@ -524,6 +533,11 @@ namespace CenturyFinCorpApp
             var balance = Transaction.GetBalance(neededRow);
 
             dataGridView1.Rows[e.RowIndex].Cells["Name"].ToolTipText = balance.ToString();
+        }
+
+        private void cmbReturnTypes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = customers.Where(w => w.IsActive && w.ReturnType == (ReturnTypeEnum)cmbReturnTypes.SelectedValue).ToList();
         }
     }
 }
