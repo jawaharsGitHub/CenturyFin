@@ -17,6 +17,11 @@ namespace CenturyFinCorpApp
             LoadCustomerCollectionType();
                 dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
+            cmbExistingCustomer.DropDownStyle = ComboBoxStyle.DropDown;
+            cmbExistingCustomer.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cmbExistingCustomer.AutoCompleteMode = AutoCompleteMode.Suggest;
+            //cmbExistingCustomer.SelectedIndex = 0;
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -97,9 +102,10 @@ namespace CenturyFinCorpApp
 
             if ((sender as CheckBox).Checked)
             {
+
                 // load existing customer
-                cmbExistingCustomer.DataSource = Customer.GetAllCustomer().DistinctBy(d => d.CustomerId).OrderBy(o => o.Name).ToList();
-                cmbExistingCustomer.DisplayMember = "Name";
+                cmbExistingCustomer.DataSource = Customer.GetAllCustomer(); // Customer.GetAllCustomer().(d => d.CustomerId).OrderBy(o => o.Name).ToList().Where(w => w.Name.StartsWith("Rab")).ToList();
+                cmbExistingCustomer.DisplayMember = "NameAndId";
                 cmbExistingCustomer.ValueMember = "CustomerId";
                 txtName.Enabled = txtPhone.Enabled = false;
 

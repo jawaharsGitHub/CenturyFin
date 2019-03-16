@@ -46,6 +46,9 @@ namespace DataAccess.PrimaryTypes
         [JsonIgnore]
         public string IdAndName => $"{CustomerId}-{Name}";
 
+        [JsonIgnore]
+        public string NameAndId => $"{Name}-{CustomerId}-{IsActive}";
+
 
         public static void AddCustomer(Customer newCustomer)
         {
