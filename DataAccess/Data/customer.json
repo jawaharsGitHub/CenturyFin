@@ -6386,7 +6386,7 @@
   {
     "CustomerSeqNumber": 344,
     "CustomerId": 126,
-    "Name": "Nila super market OLD",
+    "Name": "Nila super market",
     "PhoneNumber": "",
     "LoanAmount": 50000,
     "Interest": 5000,
@@ -7425,6 +7425,25 @@
     "IsMerged": false,
     "MergedDate": null,
     "CollectionSpotId": 165,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 401,
+    "CustomerId": 126,
+    "Name": "Nila super market - 2",
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-03-16T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 126,
     "ReturnDay": null,
     "ModifiedDate": null
   }
