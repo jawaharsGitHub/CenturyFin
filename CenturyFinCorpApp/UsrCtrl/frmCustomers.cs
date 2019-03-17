@@ -100,7 +100,7 @@ namespace CenturyFinCorpApp
         private void SetCustomers()
         {
             customers = Customer.GetAllCustomer()
-                        .OrderBy(o => o.AmountGivenDate).ToList();
+                        .OrderByDescending(o => o.AmountGivenDate).ToList();
 
             var monthlyCustomers = Customer.GetAllCustomer()
                         .Where(w => w.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly)
