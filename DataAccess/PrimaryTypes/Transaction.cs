@@ -318,7 +318,9 @@ namespace DataAccess.PrimaryTypes
             {
                 return txnLoanAmount - paidAmount;
             }
-            return (customer.LoanAmount - paidAmount);
+
+            return customerTxns.Min(m => m.Balance); // Both seems to be same result.
+            //return (customer.LoanAmount - paidAmount);
 
         }
 
