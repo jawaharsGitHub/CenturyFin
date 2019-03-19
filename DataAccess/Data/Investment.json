@@ -3342,5 +3342,29 @@
     "CustomerId": 97,
     "CustomerSequenceNo": 406,
     "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 10000,
+    "Interest": 600,
+    "CustomerId": 13,
+    "CustomerSequenceNo": 407,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 20000,
+    "Interest": 2000,
+    "CustomerId": 83,
+    "CustomerSequenceNo": 408,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 10000,
+    "Interest": 1000,
+    "CustomerId": 32,
+    "CustomerSequenceNo": 409,
+    "CreatedDate": "00:00:00"
   }
 ]
