@@ -152,6 +152,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["MergedDate"].Visible = false;
             dataGridView1.Columns["IdAndName"].Visible = false;
             dataGridView1.Columns["IsForceClosed"].Visible = false;
+            dataGridView1.Columns["NameAndId"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
             dataGridView1.Columns["ReturnType"].Visible = show;
@@ -198,7 +199,7 @@ namespace CenturyFinCorpApp
             }
             else if (rdbClosed.Checked)
             {
-                searchedCustomer = customers.Where(w => w.IsActive == false).OrderBy(o => o.ClosedDate).ToList();
+                searchedCustomer = customers.Where(w => w.IsActive == false).OrderByDescending(o => o.ClosedDate).ToList();
                 GlobalValue.NoteOption = rdbClosed.Tag.ToString();
             }
             else
