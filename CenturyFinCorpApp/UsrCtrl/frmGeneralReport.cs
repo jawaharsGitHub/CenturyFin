@@ -235,7 +235,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             lblTotal.Text = $"TOTAL : {total.ToMoney()} (Per Month: { (total / numberOfMonths).ToMoney()})";
             lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
 
-            lblSalary.Text = $"Salary : {salary}";
+            lblSalary.Text = $"Salary : {salary.ToMoney()}";
             lblSalary.Visible = considerSalary;
 
             // may be in future we need it.
