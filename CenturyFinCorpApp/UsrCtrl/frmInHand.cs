@@ -84,7 +84,7 @@ namespace CenturyFinCorpApp
 
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.TokFormat();
             btnTodayInHand.Text = dailyTxn.TodayInHand.TokFormat();
-            btnInvestment.Text = DailyCollectionDetail.GetActualInvestmentTxnDate().ToMoney();
+            btnInvestment.Text = DailyCollectionDetail.GetActualInvestmentTxnDate(dateTimePicker1.Value).ToMoney();
 
             lblCanGive.Text = $"Actually we can give - {(dailyTxn.TodayInHand / 4500) * 5000} {Environment.NewLine}with extra {(dailyTxn.TodayInHand % 4500)}";
             btnInBank.Text = dailyTxn.InBank.TokFormat();

@@ -113,12 +113,22 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static int GetActualInvestmentTxnDate()
+        public static int GetActualInvestmentTxnDate(DateTime? date = null)
         {
             try
             {
                 List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
-                var actualInvestment = list.OrderBy(s => Convert.ToDateTime(s.Date)).Last().ActualMoneyInBusiness;
+                //var actualInvestment = list.OrderBy(s => Convert.ToDateTime(s.Date)).Last().ActualMoneyInBusiness;
+
+                var actualInvestment = 0;
+                if (date == null)
+                {
+                    actualInvestment = list.OrderBy(s => Convert.ToDateTime(s.Date)).Last().ActualMoneyInBusiness;
+                }
+                else
+                {
+                    actualInvestment = list.Where(w => Convert.ToDateTime(w.Date).Date == date.Value.Date).First().ActualMoneyInBusiness;
+                }
 
                 return actualInvestment;
             }
