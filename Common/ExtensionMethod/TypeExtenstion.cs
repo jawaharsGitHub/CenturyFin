@@ -41,7 +41,8 @@ namespace Common.ExtensionMethod
         public static string TokFormat(this int? value)
         {
             if (value == null)
-                throw new Exception("value should not ne null");
+                return "0";
+                //throw new Exception("value should not ne null");
 
             int number = Convert.ToInt32(value);
 
