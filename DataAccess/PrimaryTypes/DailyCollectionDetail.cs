@@ -121,7 +121,9 @@ namespace DataAccess.PrimaryTypes
                 //var actualInvestment = list.OrderBy(s => Convert.ToDateTime(s.Date)).Last().ActualMoneyInBusiness;
 
                 var actualInvestment = 0;
-                if (date == null)
+                var data = list.Where(w => Convert.ToDateTime(w.Date).Date == date.Value.Date).FirstOrDefault();
+
+                if (date == null || data == null)
                 {
                     actualInvestment = list.OrderBy(s => Convert.ToDateTime(s.Date)).Last().ActualMoneyInBusiness;
                 }
