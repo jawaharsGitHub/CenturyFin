@@ -118,10 +118,19 @@ namespace DataAccess.PrimaryTypes
             try
             {
                 List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
-                //var actualInvestment = list.OrderBy(s => Convert.ToDateTime(s.Date)).Last().ActualMoneyInBusiness;
 
                 var actualInvestment = 0;
-                var data = list.Where(w => Convert.ToDateTime(w.Date).Date == date.Value.Date).FirstOrDefault();
+
+
+                var data = new DailyCollectionDetail();
+                if (date == null)
+                {
+                    data = null;
+                }
+                else
+                {
+                    data = list.Where(w => Convert.ToDateTime(w.Date).Date == date.Value.Date).FirstOrDefault();
+                }
 
                 if (date == null || data == null)
                 {
@@ -129,6 +138,7 @@ namespace DataAccess.PrimaryTypes
                 }
                 else
                 {
+
                     actualInvestment = list.Where(w => Convert.ToDateTime(w.Date).Date == date.Value.Date).First().ActualMoneyInBusiness;
                 }
 
