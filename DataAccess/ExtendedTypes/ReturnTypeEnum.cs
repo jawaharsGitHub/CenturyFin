@@ -7,6 +7,7 @@
         Weekly,
         BiWeekly,
         BiMonthly,
-        Monthly
+        Monthly,
+        GoldMonthly
     }
 }

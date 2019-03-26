@@ -93,5 +93,24 @@
     "CollectionSpotId": 165,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 412,
+    "CustomerId": 20,
+    "Name": "KalaiSelvan Tirupullani",
+    "PhoneNumber": "",
+    "LoanAmount": 43000,
+    "Interest": 750,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-03-26T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 20,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
