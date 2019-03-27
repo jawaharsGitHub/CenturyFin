@@ -2,9 +2,6 @@
 using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.ExtendedTypes
 {
@@ -12,14 +9,14 @@ namespace DataAccess.ExtendedTypes
     {
         private static readonly string JsonFilePath = AppConfiguration.TopupCustomerFile;
 
-        public static void AddTopupCustomer(Customer newCustomer)
+        public static void AddTopupCustomer(Customer topupCustomer)
         {
-            newCustomer.ModifiedDate = null;
-            newCustomer.IsActive = true;
-            newCustomer.ClosedDate = null;
+            topupCustomer.ModifiedDate = null;
+            topupCustomer.IsActive = true;
+            topupCustomer.ClosedDate = null;
             
 
-            InsertSingleObjectToListJson(JsonFilePath, newCustomer);
+            InsertSingleObjectToListJson(JsonFilePath, topupCustomer);
 
 
         }

@@ -505,25 +505,18 @@ namespace CenturyFinCorpApp
 
             btnBalance.Text = txn.Balance.ToString();
 
-            //if (txn.Balance == 0)
-            //{
-            //    MessageBox.Show("This Txn is completed Successfully!");
-            //    Customer.CloseCustomerTxn(customer, false, txn.TxnDate); //new Customer() { CustomerId = _customerId, CustomerSeqNumber = _sequeneNo, IsActive = false, ClosedDate = txn.TxnDate });
-            //}
-
-
             // update interest
             customer.Interest += txtTopupInterest.Text.ToInt32();
             customer.LoanAmount += txtTopupAmount.Text.ToInt32();
             Customer.UpdateCustomerLoanAndInterest(customer);
 
             TopupCustomer topupcus = new TopupCustomer();
-
             customer.CopyTo(topupcus);
 
             topupcus.LoanAmount = txtTopupAmount.Text.ToInt32();
             topupcus.Interest = txtTopupInterest.Text.ToInt32();
             topupcus.AmountGivenDate = DateTime.Today.Date;
+            topupcus.ReturnType = customer.ReturnType;
 
 
             // Add top up customers.
@@ -532,7 +525,6 @@ namespace CenturyFinCorpApp
             LoadTxn();
 
             lblMessage.Text = $"{topupcus.LoanAmount} Top up Successfull for {customer.Name}";
-
 
         }
 

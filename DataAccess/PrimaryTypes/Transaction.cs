@@ -295,7 +295,7 @@ namespace DataAccess.PrimaryTypes
         public static int GetBalance(Customer customer)
         {
             if (customer.IsActive == false) return 0;
-            
+
 
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
             if (list == null || list.Count == 0) return customer.LoanAmount - 0;
@@ -319,8 +319,8 @@ namespace DataAccess.PrimaryTypes
                 return txnLoanAmount - paidAmount;
             }
 
-            return customerTxns.Min(m => m.Balance); // Both seems to be same result.
-            //return (customer.LoanAmount - paidAmount);
+            // return customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
+            return (customer.LoanAmount - paidAmount);
 
         }
 
