@@ -103,12 +103,12 @@ namespace CenturyFinCorpApp
                         .OrderByDescending(o => o.AmountGivenDate).ToList();
 
             var monthlyCustomers = Customer.GetAllCustomer()
-                        .Where(w => w.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly)
+                        .Where(w => w.ReturnType == ReturnTypeEnum.Monthly)
                         .Select(s => new { Balance = Transaction.GetBalance(s), s.IsActive, s.Interest, s.LoanAmount });
 
             //.OrderBy(o => o.AmountGivenDate).ToList();
 
-            var allGivenAmount = customers.Where(w => w.ReturnType != DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount);
+            var allGivenAmount = customers.Where(w => w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).Sum(s => s.LoanAmount);
 
             var activeTxn = customers.Count(c => c.IsActive == true);
             var closedTxn = customers.Count(c => c.IsActive == false);
@@ -323,7 +323,7 @@ namespace CenturyFinCorpApp
                 };
 
 
-                if (cus.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly && cus.LoanAmount != valCollectedAmount && txn.Balance > 0)
+                if (cus.ReturnType == ReturnTypeEnum.Monthly && cus.LoanAmount != valCollectedAmount && txn.Balance > 0)
                 {
                     txn.Balance = cus.LoanAmount;
                     cus.Interest += valCollectedAmount;

@@ -144,7 +144,7 @@ namespace CenturyFinCorpApp
             var amountReceived = result.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
 
             ActualCollection = amountReceived;
-            ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && w.ReturnType != ReturnTypeEnum.Monthly).Sum(s => s.LoanAmount) / 100);
+            ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && (w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly)).Sum(s => s.LoanAmount) / 100);
 
             label1.Text = $"Total Collection is: {amountReceived.ToMoney()}";
 
