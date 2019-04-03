@@ -91,6 +91,7 @@ namespace CenturyFinCorpApp
             btnTmrWanted.Text = (dailyTxn.TomorrowDiff > 0) ? dailyTxn.TomorrowDiff.ToString() : $"0 --- (Have Extra {Math.Abs(Convert.ToInt32(dailyTxn.TomorrowDiff))} )";
             btnTmrWanted.BackColor = (dailyTxn.TomorrowDiff > 0) ? Color.Red : Color.Green;
             btnCanGive.Text = (dailyTxn.TodayInHand + dailyTxn.InBank).TokFormat();
+            txtOutMoney.Text = dailyTxn.OutUsedMoney.ToString();
 
 
 

@@ -319,8 +319,8 @@ namespace DataAccess.PrimaryTypes
                 return txnLoanAmount - paidAmount;
             }
 
-            // return customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
-            return (customer.LoanAmount - paidAmount);
+            return customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
+         // return (customer.LoanAmount - paidAmount);
 
         }
 
