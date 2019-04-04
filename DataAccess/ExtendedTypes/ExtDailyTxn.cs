@@ -7,5 +7,6 @@
         //public int? ExpectedCollectionAmount { get; set; }
         public int? Closed { get; set; }
         public int? New { get; set; }
+        public int? GivenAmount { get; set; }
     }
 }

@@ -48,6 +48,7 @@ namespace CenturyFinCorpApp
                           {
                               Date = Convert.ToDateTime(d.Date).ToString("dd-MM-yyyy dddd"),
                               CollectionAmount = d.CollectionAmount,
+                              GivenAmount = d.GivenAmount,
                               // ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
                               Closed = cus.Where(w => w.ClosedDate != null && w.ClosedDate.Value.Date == Convert.ToDateTime(d.Date).Date).Sum(s => s.Interest),
                               New = cus.Where(w => w.AmountGivenDate.Value.Date == Convert.ToDateTime(d.Date).Date).Sum(s => s.Interest)
@@ -68,9 +69,10 @@ namespace CenturyFinCorpApp
                                  select new
                                  {
                                      Day = newGroup.Key,
-                                     Avg = newGroup.Average(a => a.CollectionAmount).RoundMoneyOnly()
+                                     CxnAvg = newGroup.Average(a => a.CollectionAmount).RoundMoneyOnly(),
+                                     GivenAvg = newGroup.Average(a => a.GivenAmount).RoundMoneyOnly()
 
-                                 }).OrderByDescending(o => o.Avg).ToList();
+                                 }).OrderByDescending(o => o.CxnAvg).ToList();
 
 
             dgAvgPerDay.DataSource = averagePerDay;

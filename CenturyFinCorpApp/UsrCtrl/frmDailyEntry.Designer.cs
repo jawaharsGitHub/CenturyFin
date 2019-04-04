@@ -116,7 +116,7 @@
             this.dgvAllDailyCollection.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllDailyCollection.Location = new System.Drawing.Point(623, 245);
             this.dgvAllDailyCollection.Name = "dgvAllDailyCollection";
-            this.dgvAllDailyCollection.Size = new System.Drawing.Size(505, 361);
+            this.dgvAllDailyCollection.Size = new System.Drawing.Size(569, 361);
             this.dgvAllDailyCollection.TabIndex = 13;
             // 
             // label3
@@ -163,7 +163,7 @@
             this.dgAvgPerDay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgAvgPerDay.Location = new System.Drawing.Point(851, 3);
             this.dgAvgPerDay.Name = "dgAvgPerDay";
-            this.dgAvgPerDay.Size = new System.Drawing.Size(256, 204);
+            this.dgAvgPerDay.Size = new System.Drawing.Size(341, 204);
             this.dgAvgPerDay.TabIndex = 18;
             // 
             // lblCollSpot
