@@ -45,6 +45,7 @@
             this.lblMax = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.cmdFilter = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).BeginInit();
@@ -188,17 +189,30 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(440, 51);
+            this.txtSearch.Location = new System.Drawing.Point(18, 216);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(145, 20);
             this.txtSearch.TabIndex = 21;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // cmdFilter
+            // 
+            this.cmdFilter.DisplayMember = "Value";
+            this.cmdFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmdFilter.FormattingEnabled = true;
+            this.cmdFilter.Location = new System.Drawing.Point(190, 218);
+            this.cmdFilter.Name = "cmdFilter";
+            this.cmdFilter.Size = new System.Drawing.Size(121, 21);
+            this.cmdFilter.TabIndex = 22;
+            this.cmdFilter.ValueMember = "Key";
+            this.cmdFilter.SelectedIndexChanged += new System.EventHandler(this.cmdFilter_SelectedIndexChanged);
             // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.cmdFilter);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblMax);
             this.Controls.Add(this.lblCollSpot);
@@ -242,5 +256,6 @@
         private System.Windows.Forms.Label lblMax;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.ComboBox cmdFilter;
     }
 }

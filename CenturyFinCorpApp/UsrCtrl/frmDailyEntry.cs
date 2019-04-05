@@ -32,6 +32,23 @@ namespace CenturyFinCorpApp
             //lblOutStanding.Text = Transaction.GetAllOutstandingAmount().ToMoney();
             AdjustColumnOrder();
 
+            cmdFilter.DataSource = GetOptions();
+
+        }
+
+        public static List<KeyValuePair<int, string>> GetOptions()
+        {
+            var myKeyValuePair = new List<KeyValuePair<int, string>>()
+               {
+                    new KeyValuePair<int, string>(3, "ALL"),
+                   new KeyValuePair<int, string>(1, "Given Customer"),
+                   new KeyValuePair<int, string>(2, "Closed Customer")
+
+
+               };
+
+            return myKeyValuePair;
+
         }
 
         private void LoadAllHsitoryDailyCollections()
@@ -293,6 +310,31 @@ namespace CenturyFinCorpApp
             {
                 dataGridView1.DataSource = result;
             }
+        }
+
+        private void cmdFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int value = cmdFilter.SelectedValue.ToInt32();
+
+            var filteredData = result;
+
+            if (value == 1)
+            {
+                dataGridView1.DataSource = filteredData.Where(w => w.AmountReceived == 0).ToList();
+
+            }
+            else if (value == 2)
+            {
+                dataGridView1.DataSource = filteredData.Where(w => w.Balance == 0).ToList();
+
+            }
+            else //if (value == 3)
+            {
+                dataGridView1.DataSource = result;
+
+            }
+
+
         }
     }
 
