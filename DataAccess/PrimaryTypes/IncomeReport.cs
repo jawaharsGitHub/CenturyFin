@@ -17,6 +17,7 @@ namespace DataAccess.PrimaryTypes
 
                 var yearMonth = Convert.ToDateTime(MonthYear).ToString("yyyyMM").ToInt32();
 
+
                 if (yearMonth <= 201805)
                 {
                     salary = 10000;
@@ -36,6 +37,11 @@ namespace DataAccess.PrimaryTypes
                 }
 
                 if (month == 1 || month == 10)
+                {
+                    salary += 10000;
+                }
+
+                if (yearMonth == 201904)
                 {
                     salary += 10000;
                 }
