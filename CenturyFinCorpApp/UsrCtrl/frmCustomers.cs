@@ -125,7 +125,7 @@ namespace CenturyFinCorpApp
             var closedMonthlyCustomers = monthlyCustomers.Where(s => s.IsActive == false).ToList();
 
             // int aa = activeMonthlyCustomers.Sum(s => s.Balance);
-             int bb = activeMonthlyCustomers.Sum(s => s.Interest);
+            //int bb = activeMonthlyCustomers.Sum(s => s.Interest);
 
 
             label1.Text = $"{totalTxn} notes in {days} days {Environment.NewLine} " +
