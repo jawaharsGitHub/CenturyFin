@@ -131,6 +131,7 @@ namespace CenturyFinCorpApp
             label1.Text = $"{totalTxn} notes in {days} days {Environment.NewLine} " +
                 $"{DateHelper.DaysToMonth("Running Days", new DateTime(2018, 1, 25), DateTime.Today)} {Environment.NewLine} " +
                 $"{Math.Round(totalTxn / days, 2)} note(s) per day {Environment.NewLine} " +
+                $"{Math.Round(closedTxn / days, 2)} closed note(s) per day {Environment.NewLine} " +
                 $"{closedMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(C) [{closedMonthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}] + {activeMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(A) [{activeMonthlyCustomers.Sum(s => s.Balance).ToMoney()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoney()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}).{Environment.NewLine} " +
                 $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month) {Environment.NewLine}" +
                 $"  need {365 - totalTxn} in {365 - days} days [Shortage: {days - totalTxn}] {Environment.NewLine} " +

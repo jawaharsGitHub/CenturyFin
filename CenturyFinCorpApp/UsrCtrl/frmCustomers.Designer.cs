@@ -158,7 +158,7 @@
             // lblRowCount
             // 
             this.lblRowCount.AutoSize = true;
-            this.lblRowCount.Location = new System.Drawing.Point(855, 95);
+            this.lblRowCount.Location = new System.Drawing.Point(621, 98);
             this.lblRowCount.Name = "lblRowCount";
             this.lblRowCount.Size = new System.Drawing.Size(67, 13);
             this.lblRowCount.TabIndex = 13;
