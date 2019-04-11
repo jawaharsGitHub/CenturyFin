@@ -8073,5 +8073,24 @@
     "CollectionSpotId": 124,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 435,
+    "CustomerId": 173,
+    "Name": "Rithish",
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2019-03-31T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 173,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
