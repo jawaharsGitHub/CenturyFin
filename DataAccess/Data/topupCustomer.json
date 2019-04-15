@@ -169,5 +169,24 @@
     "CollectionSpotId": 125,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 437,
+    "CustomerId": 132,
+    "Name": "baseer Rahman Ajantha Bakery",
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-04-15T00:00:00+05:30",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 132,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
