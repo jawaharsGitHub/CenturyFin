@@ -8168,5 +8168,24 @@
     "CollectionSpotId": 174,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 440,
+    "CustomerId": 87,
+    "Name": "Kathiravan Fancy Store KTR Complex",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-04-20T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 87,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
