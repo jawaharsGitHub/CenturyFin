@@ -5018,7 +5018,7 @@
   {
     "CustomerSeqNumber": 272,
     "CustomerId": 7,
-    "Name": "SivaPrakasam TN Store",
+    "Name": "SivaPrakasam TN Store - old",
     "PhoneNumber": "",
     "LoanAmount": 30000,
     "Interest": 3000,
@@ -8261,6 +8261,25 @@
     "IsMerged": false,
     "MergedDate": null,
     "CollectionSpotId": 133,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 445,
+    "CustomerId": 7,
+    "Name": "SivaPrakasam TN Store - New",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-04-23T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 7,
     "ReturnDay": null,
     "ModifiedDate": null
   }
