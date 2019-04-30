@@ -226,5 +226,24 @@
     "CollectionSpotId": 83,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 450,
+    "CustomerId": 99,
+    "Name": "Anwar Mobile Shop BharathiNagara",
+    "PhoneNumber": "",
+    "LoanAmount": 12000,
+    "Interest": 1500,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-04-27T00:00:00+05:30",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 99,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
