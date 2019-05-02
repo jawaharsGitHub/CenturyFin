@@ -26,9 +26,13 @@ namespace DataAccess.PrimaryTypes
                 {
                     salary = 0;
                 }
-                else if (yearMonth >= 201902) // 2019 salary increase. 2k increase)
+                else if (yearMonth >= 201902 && yearMonth <= 201904) // 2019 salary increase. 2k increase)
                 {
                     salary = 14000;
+                }
+                else if (yearMonth >= 201905) // 2019 salary increase. 1k increase)
+                {
+                    salary = 15000;
                 }
 
                 else //(month > 201805 && month <= DateTime.Today.ToString("yyyyMM").ToInt32())
