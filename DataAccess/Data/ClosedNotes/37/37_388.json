@@ -1,0 +1,92 @@
+[
+  {
+    "CustomerId": 37,
+    "IsClosed": false,
+    "TransactionId": 12762,
+    "AmountReceived": 0,
+    "Balance": 100000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 388,
+    "TxnDate": "2019-03-07T00:00:00"
+  },
+  {
+    "CustomerId": 37,
+    "IsClosed": false,
+    "TransactionId": 12965,
+    "AmountReceived": 2000,
+    "Balance": 98000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 388,
+    "TxnDate": "2019-03-12T00:00:00"
+  },
+  {
+    "CustomerId": 37,
+    "IsClosed": false,
+    "TransactionId": 13293,
+    "AmountReceived": 5000,
+    "Balance": 93000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 388,
+    "TxnDate": "2019-03-18T00:00:00"
+  },
+  {
+    "CustomerId": 37,
+    "IsClosed": false,
+    "TransactionId": 13514,
+    "AmountReceived": 5000,
+    "Balance": 88000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 388,
+    "TxnDate": "2019-03-24T00:00:00"
+  },
+  {
+    "CustomerId": 37,
+    "IsClosed": false,
+    "TransactionId": 13911,
+    "AmountReceived": 5000,
+    "Balance": 83000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 388,
+    "TxnDate": "2019-04-02T00:00:00"
+  },
+  {
+    "CustomerId": 37,
+    "IsClosed": false,
+    "TransactionId": 14234,
+    "AmountReceived": 5000,
+    "Balance": 78000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 388,
+    "TxnDate": "2019-04-09T00:00:00"
+  },
+  {
+    "CustomerId": 37,
+    "IsClosed": false,
+    "TransactionId": 14760,
+    "AmountReceived": 5000,
+    "Balance": 73000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 388,
+    "TxnDate": "2019-04-20T00:00:00"
+  },
+  {
+    "CustomerId": 37,
+    "IsClosed": false,
+    "TransactionId": 14833,
+    "AmountReceived": 5000,
+    "Balance": 68000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 388,
+    "TxnDate": "2019-04-23T00:00:00"
+  },
+  {
+    "CustomerId": 37,
+    "IsClosed": true,
+    "TransactionId": 15210,
+    "AmountReceived": 68000,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 388,
+    "TxnDate": "2019-05-01T00:00:00"
+  }
+]
