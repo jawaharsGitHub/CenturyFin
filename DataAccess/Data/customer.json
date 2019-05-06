@@ -7279,7 +7279,7 @@
   {
     "CustomerSeqNumber": 393,
     "CustomerId": 163,
-    "Name": "Sasi Brother - Arusi Kadai",
+    "Name": "Sasi Brother kesavan - Arusi Kadai",
     "PhoneNumber": "",
     "LoanAmount": 50000,
     "Interest": 4000,
@@ -8546,6 +8546,25 @@
     "IsMerged": false,
     "MergedDate": null,
     "CollectionSpotId": 156,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 460,
+    "CustomerId": 163,
+    "Name": "Sasi Brother kesavan - Arusi Kadai",
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-05-06T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 163,
     "ReturnDay": null,
     "ModifiedDate": null
   }
