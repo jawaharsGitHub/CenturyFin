@@ -8567,5 +8567,24 @@
     "CollectionSpotId": 163,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 461,
+    "CustomerId": 69,
+    "Name": "Kaleeswari Maligai Kadamba Nagar",
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-05-06T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 69,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
