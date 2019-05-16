@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.ExtensionMethod;
+using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
@@ -41,6 +42,20 @@ namespace CenturyFinCorpApp
         private void NotGivenForFewDays()
         {
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
+
+            var veryRiskData = txn.Where(w => w.NotGivenFor >= 15 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly);
+
+            var veryRiskCount = veryRiskData.Count();
+            var veryRiskAmount = veryRiskData.Sum(s => s.Balance);
+
+            var riskData = txn.Where(w => w.NotGivenFor <= 14 && w.NotGivenFor > 7 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly);
+
+            var riskCount = riskData.Count();
+            var riskAmount = riskData.Sum(s => s.Balance);
+
+            lblSeverity.Text = $"Very Risk - {veryRiskCount}({veryRiskAmount.TokFormat()}) {Environment.NewLine}" +
+                $"Risk - {riskCount}({riskAmount.TokFormat()})";
+
 
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
@@ -252,6 +267,7 @@ namespace CenturyFinCorpApp
                         }
                     }
                 }
+
             }
 
             else if (value == 2)

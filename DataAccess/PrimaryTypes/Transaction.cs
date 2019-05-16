@@ -1,4 +1,5 @@
 ﻿using Common;
+using DataAccess.ExtendedTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -320,7 +321,7 @@ namespace DataAccess.PrimaryTypes
             }
 
             return customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
-         // return (customer.LoanAmount - paidAmount);
+                                                     // return (customer.LoanAmount - paidAmount);
 
         }
 
@@ -365,7 +366,7 @@ namespace DataAccess.PrimaryTypes
 
             var data = (from c in customers
                         join t in result on
-                        new { CustomerSeqNumber = c.CustomerSeqNumber, c.CustomerId } equals new { CustomerSeqNumber = t.CustomerSequenceNo, t.CustomerId }
+                        new { c.CustomerSeqNumber, c.CustomerId } equals new { CustomerSeqNumber = t.CustomerSequenceNo, t.CustomerId }
 
                         select new
                         {
@@ -386,7 +387,7 @@ namespace DataAccess.PrimaryTypes
 
         }
 
-        public static dynamic GetTransactionsNotGivenForFewDays()
+        public static List<DynamicReportNotGivenDays> GetTransactionsNotGivenForFewDays()
         {
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
 
@@ -406,20 +407,22 @@ namespace DataAccess.PrimaryTypes
 
             var data = (from c in customers
                         join t in result on c.CustomerSeqNumber equals t.CustomerSequenceNo
-                        select new
+                        select new DynamicReportNotGivenDays()
                         {
-                            c.Name,
-                            c.LoanAmount,
-                            t.Balance,
+                            Name = c.Name,
+                            LoanAmount = c.LoanAmount,
+                            Balance = t.Balance,
                             CreditScore = Customer.GetCreditScore(c.CustomerId),
                             NotGivenFor = (DateTime.Now.Date - t.TxnDate.Date).TotalDays,
                             LastTxnDate = t.TxnDate,
-                            c.AmountGivenDate,
-                            c.CustomerSeqNumber
+                            AmountGivenDate = c.AmountGivenDate,
+                            CustomerSeqNumber = c.CustomerSeqNumber,
+                            ReturnType = c.ReturnType
                         }).Where(w => w.NotGivenFor > 2).OrderByDescending(o => o.NotGivenFor).ToList();
 
             return data;
         }
+
 
         public static (int actual, int includesProfit) GetAllOutstandingAmount()
         {

@@ -32,6 +32,7 @@
             this.dgReports = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lblDetails = new System.Windows.Forms.Label();
+            this.lblSeverity = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,10 +76,20 @@
             this.lblDetails.Size = new System.Drawing.Size(100, 23);
             this.lblDetails.TabIndex = 0;
             // 
+            // lblSeverity
+            // 
+            this.lblSeverity.AutoSize = true;
+            this.lblSeverity.Location = new System.Drawing.Point(735, 122);
+            this.lblSeverity.Name = "lblSeverity";
+            this.lblSeverity.Size = new System.Drawing.Size(51, 13);
+            this.lblSeverity.TabIndex = 24;
+            this.lblSeverity.Text = "[Severity]";
+            // 
             // frmDynamicReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblSeverity);
             this.Controls.Add(this.lblDetails);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dgReports);
@@ -87,6 +98,7 @@
             this.Size = new System.Drawing.Size(1266, 583);
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -95,5 +107,6 @@
         private System.Windows.Forms.DataGridView dgReports;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lblDetails;
+        private System.Windows.Forms.Label lblSeverity;
     }
 }
