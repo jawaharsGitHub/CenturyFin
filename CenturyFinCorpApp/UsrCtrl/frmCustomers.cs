@@ -104,7 +104,7 @@ namespace CenturyFinCorpApp
 
             var monthlyCustomers = Customer.GetAllCustomer()
                         .Where(w => w.ReturnType == ReturnTypeEnum.Monthly || w.ReturnType == ReturnTypeEnum.GoldMonthly)
-                        .Select(s => new { Balance = Transaction.GetBalance(s), s.IsActive, s.Interest, s.LoanAmount });
+                        .Select(s => new { Balance = Transaction.GetBalance(s), s.IsActive, s.Interest, s.LoanAmount, s.MonthlyInterest });
 
             var allGivenAmount = customers.Where(w => w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).Sum(s => s.LoanAmount);
 
@@ -127,15 +127,36 @@ namespace CenturyFinCorpApp
             // int aa = activeMonthlyCustomers.Sum(s => s.Balance);
             //int bb = activeMonthlyCustomers.Sum(s => s.Interest);
 
+            var myData = new
+            {
+                NewLine = Environment.NewLine,
+                TotalNotes = $"{totalTxn} notes in {days} days",
+                DaysToMonth = $"{DateHelper.DaysToMonth("Running Days", new DateTime(2018, 1, 25), DateTime.Today)}",
+                NotesPerDay = $"{Math.Round(totalTxn / days, 2)} note(s) per day",
+                ClosedNotesPerDay = $"{Math.Round(closedTxn / days, 2)} closed note(s) per day",
+                Data1 = $"{closedMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(C) [{closedMonthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}] + {activeMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(A) [{activeMonthlyCustomers.Sum(s => s.Balance).ToMoney()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoney()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}).",
+                Data2 = $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month)",
+                Data3 = activeMonthlyCustomers.Sum(s => s.MonthlyInterest)
+            };
 
-            label1.Text = $"{totalTxn} notes in {days} days {Environment.NewLine} " +
-                $"{DateHelper.DaysToMonth("Running Days", new DateTime(2018, 1, 25), DateTime.Today)} {Environment.NewLine} " +
-                $"{Math.Round(totalTxn / days, 2)} note(s) per day {Environment.NewLine} " +
-                $"{Math.Round(closedTxn / days, 2)} closed note(s) per day {Environment.NewLine} " +
-                $"{closedMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(C) [{closedMonthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}] + {activeMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(A) [{activeMonthlyCustomers.Sum(s => s.Balance).ToMoney()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoney()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}).{Environment.NewLine} " +
-                $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month) {Environment.NewLine}" +
-                $"  need {365 - totalTxn} in {365 - days} days [Shortage: {days - totalTxn}] {Environment.NewLine} " +
-                $"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";
+            label1.Text = $"{myData.TotalNotes} {Environment.NewLine} " +
+              $"{myData.DaysToMonth} {Environment.NewLine} " +
+              $"{myData.NotesPerDay} {Environment.NewLine} " +
+              $"{myData.ClosedNotesPerDay} {Environment.NewLine} " +
+              $"{myData.Data1}{Environment.NewLine} " +
+              $"{myData.Data2} Monthly - {myData.Data3.TokFormat()}  {Environment.NewLine}" +
+              $"  need {365 - totalTxn} in {365 - days} days [Shortage: {days - totalTxn}] {Environment.NewLine} " +
+              $"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";
+
+
+            //label1.Text = $"{totalTxn} notes in {days} days {Environment.NewLine} " +
+            //    $"{DateHelper.DaysToMonth("Running Days", new DateTime(2018, 1, 25), DateTime.Today)} {Environment.NewLine} " +
+            //    $"{Math.Round(totalTxn / days, 2)} note(s) per day {Environment.NewLine} " +
+            //    $"{Math.Round(closedTxn / days, 2)} closed note(s) per day {Environment.NewLine} " +
+            //    $"{closedMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(C) [{closedMonthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}] + {activeMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(A) [{activeMonthlyCustomers.Sum(s => s.Balance).ToMoney()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoney()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}).{Environment.NewLine} " +
+            //    $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month) {Environment.NewLine}" +
+            //    $"  need {365 - totalTxn} in {365 - days} days [Shortage: {days - totalTxn}] {Environment.NewLine} " +
+            //    $"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";
         }
 
         private void AdjustColumnOrder()
