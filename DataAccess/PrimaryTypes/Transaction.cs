@@ -346,7 +346,7 @@ namespace DataAccess.PrimaryTypes
 
         }
 
-        public static dynamic GetTransactionsToBeClosedSoon(int top)
+        public static List<DynamicReportClosedSoon> GetTransactionsToBeClosedSoon(int top)
         {
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
 
@@ -368,24 +368,28 @@ namespace DataAccess.PrimaryTypes
                         join t in result on
                         new { c.CustomerSeqNumber, c.CustomerId } equals new { CustomerSeqNumber = t.CustomerSequenceNo, t.CustomerId }
 
-                        select new
+                        select new DynamicReportClosedSoon()
                         {
                             RunningDays = (DateTime.Now - c.AmountGivenDate).Value.Days,
-                            c.Name,
-                            c.LoanAmount,
-                            t.Balance,
+                            Name = c.Name,
+                            LoanAmount = c.LoanAmount,
+                            Balance = t.Balance,
                             BalancePerc = (Convert.ToDecimal(t.Balance) / Convert.ToDecimal(c.LoanAmount)) * 100,
                             CreditScore = Customer.GetCreditScore(c.CustomerId),
                             NeedToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? 0 : ((c.AmountGivenDate.Value.AddDays(100) - DateTime.Today.Date).Days),
                             DaysToClose = ((DateTime.Now - c.AmountGivenDate.Value).TotalDays) > 100 ? (100 - (DateTime.Now - c.AmountGivenDate.Value.Date).Days) : (t.Balance / (c.LoanAmount / 100)),
-                            c.AmountGivenDate,
-                            c.CustomerSeqNumber,
+                            AmountGivenDate = c.AmountGivenDate,
+                            CustomerSeqNumber = c.CustomerSeqNumber,
+                            Interest = c.Interest
                         }).OrderBy(o => o.BalancePerc).ThenBy(t => t.Balance).Take(top).ToList();
 
             return data;
 
 
         }
+
+
+
 
         public static List<DynamicReportNotGivenDays> GetTransactionsNotGivenForFewDays()
         {

@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="ExtendedTypes\CreditReport.cs" />
     <Compile Include="ExtendedTypes\CustomerDailyTxn.cs" />
+    <Compile Include="ExtendedTypes\DynamicReportClosedSoon.cs" />
     <Compile Include="ExtendedTypes\DynamicReportNotGivenDays.cs" />
     <Compile Include="ExtendedTypes\ExtDailyTxn.cs" />
     <Compile Include="ExtendedTypes\ReturnTypeEnum.cs" />

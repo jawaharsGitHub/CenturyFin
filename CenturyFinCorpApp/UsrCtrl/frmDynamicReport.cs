@@ -35,6 +35,10 @@ namespace CenturyFinCorpApp
         {
             var txn = Transaction.GetTransactionsToBeClosedSoon(100);
 
+            var closedData = txn.Where(w => w.DaysToClose <= DateHelper.RemaingDaysOfMonth);
+
+            lblSeverity.Text = $"Expected Income for this Month - {closedData.Count()} ({closedData.Sum(s => s.Interest).TokFormat()})";
+
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
