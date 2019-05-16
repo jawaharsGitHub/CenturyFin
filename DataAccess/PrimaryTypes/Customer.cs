@@ -18,6 +18,7 @@ namespace DataAccess.PrimaryTypes
         public int CustomerSeqNumber { get; set; }
         public int CustomerId { get; set; }
         public string Name { get; set; }
+        public string TamilName { get; set; }
         public string PhoneNumber { get; set; }
         public int LoanAmount { get; set; }
         public int Interest { get; set; }
