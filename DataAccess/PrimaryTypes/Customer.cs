@@ -22,6 +22,7 @@ namespace DataAccess.PrimaryTypes
         public string PhoneNumber { get; set; }
         public int LoanAmount { get; set; }
         public int Interest { get; set; }
+        public int MonthlyInterest { get; set; }
         public bool IsExistingCustomer { get; set; }
         public bool IsActive { get; set; }
         public DateTime? AmountGivenDate { get; set; }
