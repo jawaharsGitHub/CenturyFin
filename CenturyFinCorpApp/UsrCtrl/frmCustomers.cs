@@ -269,6 +269,19 @@ namespace CenturyFinCorpApp
 
             }
 
+            if (grid.CurrentCell.OwningColumn.Name == "MonthlyInterest")
+            {
+                Customer.UpdateCustomerMonthlyInterest(
+                       new Customer()
+                       {
+                           CustomerId = cus.CustomerId,
+                           CustomerSeqNumber = cus.CustomerSeqNumber,
+                           MonthlyInterest = FormGeneral.GetGridCellValue(grid, rowIndex, "MonthlyInterest").ToInt32()
+                       });
+                return;
+
+            }
+
             if (grid.CurrentCell.OwningColumn.Name == "Name")
             {
                 Customer.UpdateCustomerName(
