@@ -5,6 +5,7 @@ using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -47,18 +48,36 @@ namespace CenturyFinCorpApp
         {
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
-            var veryRiskData = txn.Where(w => w.NotGivenFor >= 15 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly);
+            var veryRiskData = txn.Where(w => w.NotGivenFor >= 15 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).OrderByDescending(o => o.Balance);
 
             var veryRiskCount = veryRiskData.Count();
             var veryRiskAmount = veryRiskData.Sum(s => s.Balance);
 
-            var riskData = txn.Where(w => w.NotGivenFor <= 14 && w.NotGivenFor > 7 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly);
+            var riskData = txn.Where(w => w.NotGivenFor <= 14 && w.NotGivenFor > 7 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).OrderByDescending(o => o.Balance);
 
             var riskCount = riskData.Count();
             var riskAmount = riskData.Sum(s => s.Balance);
 
             lblSeverity.Text = $"Very Risk - {veryRiskCount}({veryRiskAmount.TokFormat()}) {Environment.NewLine}" +
                 $"Risk - {riskCount}({riskAmount.TokFormat()})";
+
+            using (TextWriter tw = new StreamWriter("VeryRisk.txt"))
+            {
+                tw.WriteLine($"@ VERY RISK!!!!!!!!!");
+                foreach (var s in veryRiskData)
+                    tw.WriteLine($"{s.Name} - {s.Balance}");
+
+                tw.WriteLine($"------------------------------------------------");
+
+                tw.WriteLine($"@ RISK!!!");
+                foreach (var s in riskData)
+                    tw.WriteLine($"{s.Name} - {s.Balance}");
+
+                tw.WriteLine($"------------------------------------------------");
+            }
+
+
+            Process.Start("VeryRisk.txt");
 
 
             dgReports.DataSource = txn;
