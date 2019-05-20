@@ -74,6 +74,25 @@ namespace CenturyFinCorpApp
                     tw.WriteLine($"{s.Name} - {s.Balance}");
 
                 tw.WriteLine($"------------------------------------------------");
+
+
+                var allCustomerData = (from cus in Customer.GetAllCustomer()
+                                       group cus by cus.CustomerId into newGroup
+                                       select newGroup).ToList();
+
+                foreach (var allCUs in allCustomerData)
+                {
+                    tw.WriteLine($"{allCUs.Key} ({allCUs.Count()} - CLOSED: {allCUs.Where(w => w.IsActive == false).Sum(s => s.Interest)}) ACTIVE: {allCUs.Where(w => w.IsActive).Sum(s => s.Interest)}");
+                    tw.WriteLine($"-------------------------------");
+
+                    foreach (var s in allCUs)
+                        tw.WriteLine($"{s.Name}-Amount: {s.LoanAmount} - Interest: {s.Interest} - IsActive: {s.IsActive}");
+                }
+
+                tw.WriteLine($"------------------------------------------------");
+
+
+
             }
 
 
