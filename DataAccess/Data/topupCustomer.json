@@ -313,5 +313,26 @@
     "CollectionSpotId": 1,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 430,
+    "CustomerId": 133,
+    "Name": "Kamatchi Balaji Agency",
+    "TamilName": null,
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-05-26T00:00:00+05:30",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 133,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
