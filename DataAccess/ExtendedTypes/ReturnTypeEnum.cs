@@ -8,6 +8,7 @@
         BiWeekly,
         BiMonthly,
         Monthly,
-        GoldMonthly
+        GoldMonthly,
+        MonthlyDaily
     }
 }

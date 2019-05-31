@@ -154,7 +154,7 @@
             this.btnInvestment.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnInvestment.Location = new System.Drawing.Point(373, 181);
             this.btnInvestment.Name = "btnInvestment";
-            this.btnInvestment.Size = new System.Drawing.Size(164, 78);
+            this.btnInvestment.Size = new System.Drawing.Size(205, 78);
             this.btnInvestment.TabIndex = 32;
             this.btnInvestment.Text = "Investment Money";
             this.btnInvestment.UseVisualStyleBackColor = false;
@@ -367,7 +367,7 @@
             this.btnTodayInHand.ForeColor = System.Drawing.SystemColors.Desktop;
             this.btnTodayInHand.Location = new System.Drawing.Point(373, 109);
             this.btnTodayInHand.Name = "btnTodayInHand";
-            this.btnTodayInHand.Size = new System.Drawing.Size(164, 78);
+            this.btnTodayInHand.Size = new System.Drawing.Size(205, 78);
             this.btnTodayInHand.TabIndex = 15;
             this.btnTodayInHand.Text = "[In Hand]";
             this.btnTodayInHand.UseVisualStyleBackColor = false;
