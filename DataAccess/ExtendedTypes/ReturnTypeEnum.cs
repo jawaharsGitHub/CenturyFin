@@ -9,6 +9,6 @@
         BiMonthly,
         Monthly,
         GoldMonthly,
-        MonthlyDaily
+        TenMonths
     }
 }
