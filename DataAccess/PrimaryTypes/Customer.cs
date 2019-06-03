@@ -19,6 +19,7 @@ namespace DataAccess.PrimaryTypes
         public int CustomerId { get; set; }
         public string Name { get; set; }
         public string TamilName { get; set; }
+        public int? AdjustedAmount { get; set; }
         public string PhoneNumber { get; set; }
         public int LoanAmount { get; set; }
         public int Interest { get; set; }
@@ -32,6 +33,7 @@ namespace DataAccess.PrimaryTypes
 
         public bool IsMerged { get; set; }
         public DateTime? MergedDate { get; set; }
+       
 
         public int CollectionSpotId
         {
@@ -246,6 +248,23 @@ namespace DataAccess.PrimaryTypes
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
                 u.Name = updatedCustomer.Name;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void UpdateCustomerAdjustment(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.AdjustedAmount = updatedCustomer.AdjustedAmount;
 
                 WriteObjectsToFile(list, JsonFilePath);
             }

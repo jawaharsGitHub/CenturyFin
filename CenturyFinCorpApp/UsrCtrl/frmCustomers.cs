@@ -316,6 +316,20 @@ namespace CenturyFinCorpApp
 
             }
 
+            if (grid.CurrentCell.OwningColumn.Name == "AdjustedAmount")
+            {
+                var strAdjustmentAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "AdjustedAmount");
+                Customer.UpdateCustomerAdjustment(
+                       new Customer()
+                       {
+                           CustomerId = cus.CustomerId,
+                           CustomerSeqNumber = cus.CustomerSeqNumber,
+                           AdjustedAmount = strAdjustmentAmount.ToInt32()
+                       });
+                return;
+
+            }
+
             var strCollectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
             if (strCollectedAmount == null) return;
