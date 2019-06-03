@@ -34,6 +34,12 @@ namespace CenturyFinCorpApp
 
             cmdFilter.DataSource = GetOptions();
 
+            cmbAmountFilter.SelectedIndexChanged += CmbAmountFilter_SelectedIndexChanged;
+        }
+
+        private void CmbAmountFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = result.Where(w => w.AmountReceived == cmbAmountFilter.SelectedValue.ToInt32()).ToList();
         }
 
         public static List<KeyValuePair<int, string>> GetOptions()
@@ -158,6 +164,9 @@ namespace CenturyFinCorpApp
                               Interest = c.Interest,
                               ReturnType = c.ReturnType
                           }).Distinct().ToList();
+
+
+                cmbAmountFilter.DataSource = result.DistinctBy(d => d.AmountReceived).Select(s => s.AmountReceived).ToList();
             }
 
             var amountReceived = result.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);

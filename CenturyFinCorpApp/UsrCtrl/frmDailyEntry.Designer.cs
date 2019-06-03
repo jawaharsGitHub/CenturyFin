@@ -46,6 +46,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cmdFilter = new System.Windows.Forms.ComboBox();
+            this.cmbAmountFilter = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).BeginInit();
@@ -207,11 +208,23 @@
             this.cmdFilter.ValueMember = "Key";
             this.cmdFilter.SelectedIndexChanged += new System.EventHandler(this.cmdFilter_SelectedIndexChanged);
             // 
+            // cmbAmountFilter
+            // 
+            this.cmbAmountFilter.DisplayMember = "Value";
+            this.cmbAmountFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAmountFilter.FormattingEnabled = true;
+            this.cmbAmountFilter.Location = new System.Drawing.Point(341, 216);
+            this.cmbAmountFilter.Name = "cmbAmountFilter";
+            this.cmbAmountFilter.Size = new System.Drawing.Size(102, 21);
+            this.cmbAmountFilter.TabIndex = 23;
+            this.cmbAmountFilter.ValueMember = "Key";
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.cmbAmountFilter);
             this.Controls.Add(this.cmdFilter);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblMax);
@@ -257,5 +270,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ComboBox cmdFilter;
+        private System.Windows.Forms.ComboBox cmbAmountFilter;
     }
 }

@@ -515,7 +515,7 @@ namespace CenturyFinCorpApp
 
             topupcus.LoanAmount = txtTopupAmount.Text.ToInt32();
             topupcus.Interest = txtTopupInterest.Text.ToInt32();
-            topupcus.AmountGivenDate = DateTime.Today.Date;
+            topupcus.AmountGivenDate = dateTimePicker1.Value; //DateTime.Today.Date;
             topupcus.ReturnType = customer.ReturnType;
 
 
