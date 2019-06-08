@@ -10734,5 +10734,27 @@
     "CollectionSpotId": 104,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 498,
+    "CustomerId": 185,
+    "Name": "Chandran Thiruppullani",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 35000,
+    "Interest": 1400,
+    "MonthlyInterest": 1400,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2019-06-06T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 5,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 185,
+    "ReturnDay": 0,
+    "ModifiedDate": null
   }
 ]
