@@ -91,9 +91,6 @@ namespace CenturyFinCorpApp
         public void SetReturnTypes()
         {
             cmbReturnTypes.DataSource = Enum.GetValues(typeof(ReturnTypeEnum));
-
-
-
         }
 
 
@@ -571,7 +568,9 @@ namespace CenturyFinCorpApp
 
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
         {
-            lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()}";
+            var data = dataGridView1.DataSource as List<Customer>;
+
+            lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()} (I: {data.Sum(s => s.Interest)} MI: {data.Sum(s => s.MonthlyInterest)} )";
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
