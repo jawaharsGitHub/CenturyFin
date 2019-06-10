@@ -80,7 +80,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(6, "Return By Tomorrow"),
                    new KeyValuePair<int, string>(7, "By Return Day"),
                    new KeyValuePair<int, string>(8, "By Return Type"),
-                   new KeyValuePair<int, string>(9, "By CollectionSpot")
+                   new KeyValuePair<int, string>(9, "By CollectionSpot"),
+                   new KeyValuePair<int, string>(10, "By AdjustedAmount")
 
                };
 
@@ -540,7 +541,11 @@ namespace CenturyFinCorpApp
             {
                 searchedCustomer = customers.OrderByDescending(o => o.CollectionSpotId).ToList();
             }
-            else//  (value == 10)
+            else if (value == 10)
+            {
+                searchedCustomer = customers.OrderByDescending(o => o.AdjustedAmount).ToList();
+            }
+            else//  (value == 11)
             {
                 searchedCustomer = customers.Where(w => w.ReturnDay == DateTime.Today.AddDays(-1).DayOfWeek).ToList();
             }
@@ -570,7 +575,7 @@ namespace CenturyFinCorpApp
         {
             var data = dataGridView1.DataSource as List<Customer>;
 
-            lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()} (I: {data.Sum(s => s.Interest)} MI: {data.Sum(s => s.MonthlyInterest)} )";
+            lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()} (I: {data.Sum(s => s.Interest)} MI: {data.Sum(s => s.MonthlyInterest)} ADJ: {data.Sum(s => s.AdjustedAmount)} )";
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
