@@ -94,18 +94,19 @@
             this.btnNextDay = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnInHand = new System.Windows.Forms.Button();
+            this.btnMama = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnMama);
             this.groupBox1.Controls.Add(this.btnInHand);
             this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.txtOutMoney);
             this.groupBox1.Controls.Add(this.btnInvestment);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.lblCanGive);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.txtOtherInvestment);
@@ -158,7 +159,7 @@
             this.btnInvestment.BackColor = System.Drawing.Color.Crimson;
             this.btnInvestment.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInvestment.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnInvestment.Location = new System.Drawing.Point(315, 165);
+            this.btnInvestment.Location = new System.Drawing.Point(315, 213);
             this.btnInvestment.Name = "btnInvestment";
             this.btnInvestment.Size = new System.Drawing.Size(254, 78);
             this.btnInvestment.TabIndex = 32;
@@ -339,7 +340,7 @@
             // 
             this.lblCanGive.AutoSize = true;
             this.lblCanGive.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblCanGive.Location = new System.Drawing.Point(370, 272);
+            this.lblCanGive.Location = new System.Drawing.Point(675, 242);
             this.lblCanGive.Name = "lblCanGive";
             this.lblCanGive.Size = new System.Drawing.Size(54, 13);
             this.lblCanGive.TabIndex = 30;
@@ -382,7 +383,7 @@
             this.lblDate1.AutoSize = true;
             this.lblDate1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate1.ForeColor = System.Drawing.Color.Red;
-            this.lblDate1.Location = new System.Drawing.Point(81, 16);
+            this.lblDate1.Location = new System.Drawing.Point(25, 23);
             this.lblDate1.Name = "lblDate1";
             this.lblDate1.Size = new System.Drawing.Size(64, 24);
             this.lblDate1.TabIndex = 24;
@@ -422,7 +423,7 @@
             this.btnInCompany.BackColor = System.Drawing.Color.Yellow;
             this.btnInCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInCompany.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnInCompany.Location = new System.Drawing.Point(315, 23);
+            this.btnInCompany.Location = new System.Drawing.Point(315, 21);
             this.btnInCompany.Name = "btnInCompany";
             this.btnInCompany.Size = new System.Drawing.Size(254, 62);
             this.btnInCompany.TabIndex = 15;
@@ -715,15 +716,27 @@
             // 
             // btnInHand
             // 
-            this.btnInHand.BackColor = System.Drawing.Color.Gold;
+            this.btnInHand.BackColor = System.Drawing.Color.Orange;
             this.btnInHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInHand.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnInHand.Location = new System.Drawing.Point(315, 93);
+            this.btnInHand.Location = new System.Drawing.Point(315, 85);
             this.btnInHand.Name = "btnInHand";
             this.btnInHand.Size = new System.Drawing.Size(254, 62);
             this.btnInHand.TabIndex = 35;
             this.btnInHand.Text = "[In Hand]";
             this.btnInHand.UseVisualStyleBackColor = false;
+            // 
+            // btnMama
+            // 
+            this.btnMama.BackColor = System.Drawing.Color.Cyan;
+            this.btnMama.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMama.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnMama.Location = new System.Drawing.Point(314, 150);
+            this.btnMama.Name = "btnMama";
+            this.btnMama.Size = new System.Drawing.Size(254, 62);
+            this.btnMama.TabIndex = 36;
+            this.btnMama.Text = "[In Mama]";
+            this.btnMama.UseVisualStyleBackColor = false;
             // 
             // frmInHand
             // 
@@ -735,6 +748,7 @@
             this.Controls.Add(this.lblDate2);
             this.Controls.Add(this.btnCanGive);
             this.Controls.Add(this.btnEnable);
+            this.Controls.Add(this.lblCanGive);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.label11);
@@ -827,5 +841,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnInHand;
+        private System.Windows.Forms.Button btnMama;
     }
 }

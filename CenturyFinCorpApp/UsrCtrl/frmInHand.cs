@@ -94,9 +94,10 @@ namespace CenturyFinCorpApp
             txtOtherInvestment.Text = Convert.ToString(dailyTxn.OtherInvestment);
 
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.TokFormat();
-            btnInCompany.Text = dailyTxn.TodayInHand.TokFormat();
-            btnInHand.Text = dailyTxn.ActualInHand.TokFormat();
-            btnInvestment.Text = DailyCollectionDetail.GetActualInvestmentTxnDate(dateTimePicker1.Value).ToMoney();
+            btnInCompany.Text = "C:" +dailyTxn.TodayInHand.TokFormat();
+            btnInHand.Text = "IH:" + dailyTxn.ActualInHand.TokFormat();
+            btnMama.Text = "M:" +dailyTxn.MamaAccount.TokFormat();
+            btnInvestment.Text = "INV:"  + DailyCollectionDetail.GetActualInvestmentTxnDate(dateTimePicker1.Value).ToMoney();
 
             lblCanGive.Text = $"Actually we can give - {(dailyTxn.TodayInHand / 4500) * 5000} {Environment.NewLine}with extra {(dailyTxn.TodayInHand % 4500)}";
             btnInBank.Text = dailyTxn.InBank.TokFormat();
