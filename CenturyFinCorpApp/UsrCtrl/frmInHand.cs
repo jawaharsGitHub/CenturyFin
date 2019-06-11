@@ -95,19 +95,23 @@ namespace CenturyFinCorpApp
 
 
             // Collection SUmmary
-            var totalInput = txtCollectionAmount.Text.ToInt32() + txtInterest.Text.ToInt32() + txtOtherInvestment.Text.ToInt32();
-            var totalOut = txtGivenAmount.Text.ToInt32() + txtOtherInvestment.Text.ToInt32();
-
-            txtInputMoney.Text = totalInput.ToString();
-            txtOutusedMoney.Text = totalOut.ToString();
-            txtInvsOutDiff.Text = (totalInput - totalOut).ToString();
-            txtExpectedInHand.Text = ((dailyTxn.YesterdayAmountInHand.ToInt32() + totalInput) - totalOut).ToString();
-
-
+            UpdateVerifyDetails();
 
             txtComments.Text = dailyTxn.Comments;
 
             btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
+        }
+
+        private void UpdateVerifyDetails()
+        {
+            txtInputMoney.Text = dailyTxn.InputMoney.ToString();
+            txtOutusedMoney.Text = dailyTxn.OutGoingMoney.ToString();
+            txtInvsOutDiff.Text = dailyTxn.Difference.ToString();
+            txtExpectedInHand.Text = dailyTxn.ExpectedInHand.ToString();
+            txtActualInhand.Text = dailyTxn.ActualInHand.ToString();
+            txtMamaExpenditure.Text = dailyTxn.MamaExpenditure.ToString();
+            txtMamaInputMoney.Text = dailyTxn.MamaInputMoney.ToString();
+            txtMamaAccount.Text = dailyTxn.MamaAccount.ToString();
         }
 
         private void btnAddOrUpdate_Click(object sender, EventArgs e)
@@ -137,6 +141,20 @@ namespace CenturyFinCorpApp
             dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - Convert.ToInt32((dailyTxn.TodayInHand + dailyTxn.InBank)));
             dailyTxn.Comments = txtComments.Text;
             dailyTxn.ActualMoneyInBusiness = (dailyTxn.ActualMoneyInBusiness + dailyTxn.OtherInvestment) - dailyTxn.OutUsedMoney;
+
+
+            var totalInput = dailyTxn.ActualInHand + txtCollectionAmount.Text.ToInt32() + txtInterest.Text.ToInt32() + txtOtherInvestment.Text.ToInt32();
+            var totalOut = txtGivenAmount.Text.ToInt32() + txtOtherExpenditure.Text.ToInt32();
+
+
+
+            dailyTxn.InputMoney = totalInput;
+            dailyTxn.OutGoingMoney = totalOut;
+            dailyTxn.Difference = totalInput - totalOut;
+            dailyTxn.ExpectedInHand = (dailyTxn.YesterdayAmountInHand.ToInt32() + totalInput) - totalOut;
+
+
+            UpdateVerifyDetails();
 
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
@@ -254,7 +272,7 @@ namespace CenturyFinCorpApp
             var outUsedMoney = txtOutusedMoney.Text.ToInt32();
             var inVsOutDiff = txtInvsOutDiff.Text.ToInt32();
             var expectedInHand = txtExpectedInHand.Text.ToInt32();
-            var actualInhand = txtActualInhand.Text.ToInt32();
+            var actualInhand = inputMoney - outUsedMoney; //txtActualInhand.Text.ToInt32();
 
             dailyTxn.InputMoney = inputMoney;
             dailyTxn.OutUsedMoney = outUsedMoney;
@@ -263,7 +281,13 @@ namespace CenturyFinCorpApp
             dailyTxn.ActualInHand = actualInhand;
 
             DailyCollectionDetail.UpdateVerifyDetails(dailyTxn);
+            UpdateVerifyDetails();
 
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DailyCollectionDetail.DeleteDailyCxnDetails(dateTimePicker1.Value);
         }
     }
 }

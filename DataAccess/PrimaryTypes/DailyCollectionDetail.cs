@@ -109,7 +109,7 @@ namespace DataAccess.PrimaryTypes
                 {
                     data.InputMoney = dailyCol.InputMoney;
                     data.OutGoingMoney = dailyCol.OutGoingMoney;
-                    data.Difference = dailyCol.Difference   ;
+                    data.Difference = dailyCol.Difference;
                     data.ExpectedInHand = dailyCol.ExpectedInHand;
                     data.ActualInHand = dailyCol.ActualInHand;
 
@@ -119,11 +119,24 @@ namespace DataAccess.PrimaryTypes
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
+        }
 
 
+        public static void DeleteDailyCxnDetails(DateTime cxndate)
+        {
+            try
+            {
+                List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
 
+                var itemToDelete = list.Where(c => Convert.ToDateTime(c.Date).Date == cxndate.Date).FirstOrDefault();
+                list.Remove(itemToDelete);
 
-
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static DailyCollectionDetail GetDailyTxn(DateTime date, bool isOnLoad)

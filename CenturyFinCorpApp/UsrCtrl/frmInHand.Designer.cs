@@ -93,6 +93,7 @@
             this.btnNextDay = new System.Windows.Forms.Button();
             this.txtMamaAccount = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -712,10 +713,21 @@
             this.label26.TabIndex = 48;
             this.label26.Text = "Mama Account";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(869, 123);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 52);
+            this.btnDelete.TabIndex = 32;
+            this.btnDelete.Text = "DEL";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnNextDay);
             this.Controls.Add(this.btnPrevDay);
             this.Controls.Add(this.lblDate2);
@@ -811,5 +823,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox txtMamaAccount;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
