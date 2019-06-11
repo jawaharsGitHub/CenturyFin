@@ -30,6 +30,18 @@ namespace DataAccess.PrimaryTypes
         public int OutUsedMoney { get; set; }
         public int ActualMoneyInBusiness { get; set; }
 
+        // Daily Calculation details.
+        public int? InputMoney { get; set; }
+        public int? OutGoingMoney { get; set; }
+        public int? Difference { get; set; }
+        public int? ExpectedInHand { get; set; }
+        public int? ActualInHand { get; set; }
+        public int? MamaExpenditure { get; set; }
+        public int? MamaInputMoney { get; set; }
+        public int? MamaAccount { get; set; }
+
+
+
 
         public static void AddOrUpdateDaily(DailyCollectionDetail dailyCol)
         {
@@ -79,6 +91,37 @@ namespace DataAccess.PrimaryTypes
                 }
 
             }
+
+
+        }
+
+
+        public static void UpdateVerifyDetails(DailyCollectionDetail dailyCol)
+        {
+
+
+            var list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
+            if (list != null && list.Count > 0)
+            {
+                var data = list.Where(w => w.Date == dailyCol.Date).ToList().FirstOrDefault();
+
+                if (data != null) // Update
+                {
+                    data.InputMoney = dailyCol.InputMoney;
+                    data.OutGoingMoney = dailyCol.OutGoingMoney;
+                    data.Difference = dailyCol.Difference   ;
+                    data.ExpectedInHand = dailyCol.ExpectedInHand;
+                    data.ActualInHand = dailyCol.ActualInHand;
+
+                    //data = dailyCol;
+
+                }
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+
+
+
 
 
         }

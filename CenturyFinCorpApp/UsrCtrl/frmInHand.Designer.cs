@@ -33,16 +33,20 @@
             this.txtOutMoney = new System.Windows.Forms.TextBox();
             this.btnInvestment = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtUnclesHand = new System.Windows.Forms.TextBox();
+            this.txtMamaInputMoney = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtMamaExpenditure = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtActualInhand = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.txtUncleTook = new System.Windows.Forms.TextBox();
+            this.txtExpectedInHand = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.txtITook = new System.Windows.Forms.TextBox();
+            this.txtInvsOutDiff = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.txtWithUncle = new System.Windows.Forms.TextBox();
+            this.txtOutusedMoney = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.txtWithMe = new System.Windows.Forms.TextBox();
+            this.txtInputMoney = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCanGive = new System.Windows.Forms.Label();
             this.btnCollection = new System.Windows.Forms.Button();
@@ -87,6 +91,8 @@
             this.lblDate2 = new System.Windows.Forms.Label();
             this.btnPrevDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
+            this.txtMamaAccount = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -126,7 +132,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(35, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(584, 523);
+            this.groupBox1.Size = new System.Drawing.Size(584, 557);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -161,43 +167,82 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtUnclesHand);
+            this.groupBox2.Controls.Add(this.txtMamaAccount);
+            this.groupBox2.Controls.Add(this.label26);
+            this.groupBox2.Controls.Add(this.txtMamaInputMoney);
+            this.groupBox2.Controls.Add(this.label24);
+            this.groupBox2.Controls.Add(this.txtMamaExpenditure);
+            this.groupBox2.Controls.Add(this.label25);
+            this.groupBox2.Controls.Add(this.txtActualInhand);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.txtUncleTook);
+            this.groupBox2.Controls.Add(this.txtExpectedInHand);
             this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.txtITook);
+            this.groupBox2.Controls.Add(this.txtInvsOutDiff);
             this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.txtWithUncle);
+            this.groupBox2.Controls.Add(this.txtOutusedMoney);
             this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.txtWithMe);
+            this.groupBox2.Controls.Add(this.txtInputMoney);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(315, 334);
+            this.groupBox2.Location = new System.Drawing.Point(315, 294);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(237, 189);
+            this.groupBox2.Size = new System.Drawing.Size(237, 267);
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Splitted Amounts";
             // 
-            // txtUnclesHand
+            // txtMamaInputMoney
             // 
-            this.txtUnclesHand.Location = new System.Drawing.Point(100, 128);
-            this.txtUnclesHand.Name = "txtUnclesHand";
-            this.txtUnclesHand.Size = new System.Drawing.Size(100, 20);
-            this.txtUnclesHand.TabIndex = 41;
+            this.txtMamaInputMoney.Location = new System.Drawing.Point(130, 181);
+            this.txtMamaInputMoney.Name = "txtMamaInputMoney";
+            this.txtMamaInputMoney.Size = new System.Drawing.Size(100, 20);
+            this.txtMamaInputMoney.TabIndex = 45;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(22, 188);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(98, 13);
+            this.label24.TabIndex = 46;
+            this.label24.Text = "Mama Input Money";
+            // 
+            // txtMamaExpenditure
+            // 
+            this.txtMamaExpenditure.Location = new System.Drawing.Point(129, 155);
+            this.txtMamaExpenditure.Name = "txtMamaExpenditure";
+            this.txtMamaExpenditure.ReadOnly = true;
+            this.txtMamaExpenditure.Size = new System.Drawing.Size(100, 20);
+            this.txtMamaExpenditure.TabIndex = 43;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(21, 162);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(95, 13);
+            this.label25.TabIndex = 44;
+            this.label25.Text = "Mama Expenditure";
+            // 
+            // txtActualInhand
+            // 
+            this.txtActualInhand.Location = new System.Drawing.Point(129, 128);
+            this.txtActualInhand.Name = "txtActualInhand";
+            this.txtActualInhand.Size = new System.Drawing.Size(100, 20);
+            this.txtActualInhand.TabIndex = 41;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(21, 135);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(71, 13);
+            this.label22.Size = new System.Drawing.Size(75, 13);
             this.label22.TabIndex = 42;
-            this.label22.Text = "Uncle\'s Hand";
+            this.label22.Text = "Actual InHand";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(82, 155);
+            this.button1.Location = new System.Drawing.Point(82, 238);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 40;
@@ -205,75 +250,79 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txtUncleTook
+            // txtExpectedInHand
             // 
-            this.txtUncleTook.Location = new System.Drawing.Point(99, 102);
-            this.txtUncleTook.Name = "txtUncleTook";
-            this.txtUncleTook.Size = new System.Drawing.Size(100, 20);
-            this.txtUncleTook.TabIndex = 38;
+            this.txtExpectedInHand.Location = new System.Drawing.Point(128, 102);
+            this.txtExpectedInHand.Name = "txtExpectedInHand";
+            this.txtExpectedInHand.ReadOnly = true;
+            this.txtExpectedInHand.Size = new System.Drawing.Size(100, 20);
+            this.txtExpectedInHand.TabIndex = 38;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(20, 109);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(63, 13);
+            this.label21.Size = new System.Drawing.Size(87, 13);
             this.label21.TabIndex = 39;
-            this.label21.Text = "Uncle Took";
+            this.label21.Text = "ExpectedInHand";
             // 
-            // txtITook
+            // txtInvsOutDiff
             // 
-            this.txtITook.Location = new System.Drawing.Point(99, 73);
-            this.txtITook.Name = "txtITook";
-            this.txtITook.Size = new System.Drawing.Size(100, 20);
-            this.txtITook.TabIndex = 36;
+            this.txtInvsOutDiff.Location = new System.Drawing.Point(128, 73);
+            this.txtInvsOutDiff.Name = "txtInvsOutDiff";
+            this.txtInvsOutDiff.ReadOnly = true;
+            this.txtInvsOutDiff.Size = new System.Drawing.Size(100, 20);
+            this.txtInvsOutDiff.TabIndex = 36;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(20, 80);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(38, 13);
+            this.label20.Size = new System.Drawing.Size(64, 13);
             this.label20.TabIndex = 37;
-            this.label20.Text = "I Took";
+            this.label20.Text = "DIff-InvsOut";
             // 
-            // txtWithUncle
+            // txtOutusedMoney
             // 
-            this.txtWithUncle.Location = new System.Drawing.Point(99, 46);
-            this.txtWithUncle.Name = "txtWithUncle";
-            this.txtWithUncle.Size = new System.Drawing.Size(100, 20);
-            this.txtWithUncle.TabIndex = 34;
+            this.txtOutusedMoney.Location = new System.Drawing.Point(128, 46);
+            this.txtOutusedMoney.Name = "txtOutusedMoney";
+            this.txtOutusedMoney.ReadOnly = true;
+            this.txtOutusedMoney.Size = new System.Drawing.Size(100, 20);
+            this.txtOutusedMoney.TabIndex = 34;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(20, 53);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(60, 13);
+            this.label19.Size = new System.Drawing.Size(81, 13);
             this.label19.TabIndex = 35;
-            this.label19.Text = "With Uncle";
+            this.label19.Text = "OutUsedMoney";
             // 
-            // txtWithMe
+            // txtInputMoney
             // 
-            this.txtWithMe.Location = new System.Drawing.Point(99, 14);
-            this.txtWithMe.Name = "txtWithMe";
-            this.txtWithMe.Size = new System.Drawing.Size(100, 20);
-            this.txtWithMe.TabIndex = 32;
+            this.txtInputMoney.Location = new System.Drawing.Point(128, 14);
+            this.txtInputMoney.Name = "txtInputMoney";
+            this.txtInputMoney.ReadOnly = true;
+            this.txtInputMoney.Size = new System.Drawing.Size(100, 20);
+            this.txtInputMoney.TabIndex = 32;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(20, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 33;
-            this.label2.Text = "With Me";
+            this.label2.Text = "InputMoney";
             // 
             // lblCanGive
             // 
             this.lblCanGive.AutoSize = true;
             this.lblCanGive.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblCanGive.Location = new System.Drawing.Point(370, 295);
+            this.lblCanGive.Location = new System.Drawing.Point(370, 272);
             this.lblCanGive.Name = "lblCanGive";
             this.lblCanGive.Size = new System.Drawing.Size(54, 13);
             this.lblCanGive.TabIndex = 30;
@@ -646,6 +695,23 @@
             this.btnNextDay.UseVisualStyleBackColor = true;
             this.btnNextDay.Click += new System.EventHandler(this.btnNextDay_Click);
             // 
+            // txtMamaAccount
+            // 
+            this.txtMamaAccount.Location = new System.Drawing.Point(129, 208);
+            this.txtMamaAccount.Name = "txtMamaAccount";
+            this.txtMamaAccount.ReadOnly = true;
+            this.txtMamaAccount.Size = new System.Drawing.Size(100, 20);
+            this.txtMamaAccount.TabIndex = 47;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(21, 215);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(79, 13);
+            this.label26.TabIndex = 48;
+            this.label26.Text = "Mama Account";
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -668,7 +734,7 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label1);
             this.Name = "frmInHand";
-            this.Size = new System.Drawing.Size(977, 569);
+            this.Size = new System.Drawing.Size(977, 586);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -725,19 +791,25 @@
         private System.Windows.Forms.Button btnNextDay;
         private System.Windows.Forms.Label lblCanGive;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtUncleTook;
+        private System.Windows.Forms.TextBox txtExpectedInHand;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txtITook;
+        private System.Windows.Forms.TextBox txtInvsOutDiff;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtWithUncle;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox txtWithMe;
+        private System.Windows.Forms.TextBox txtOutusedMoney;
+        private System.Windows.Forms.TextBox txtInputMoney;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtUnclesHand;
+        private System.Windows.Forms.TextBox txtActualInhand;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnInvestment;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtOutMoney;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtMamaInputMoney;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtMamaExpenditure;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox txtMamaAccount;
+        private System.Windows.Forms.Label label26;
     }
 }

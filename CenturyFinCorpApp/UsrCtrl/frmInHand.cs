@@ -55,7 +55,7 @@ namespace CenturyFinCorpApp
                     txtClosed.Text = todayTxn.Where(w => w.Balance == 0).Count().ToString();
                     txtOpened.Text = todayTxn.Where(w => w.AmountReceived == 0).Count().ToString();
 
-                    txtOtherExpenditure.Text =   txtOtherInvestment.Text = txtOutMoney.Text = "0";
+                    txtOtherExpenditure.Text = txtOtherInvestment.Text = txtOutMoney.Text = "0";
 
                 }
                 btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
@@ -92,6 +92,16 @@ namespace CenturyFinCorpApp
             btnTmrWanted.BackColor = (dailyTxn.TomorrowDiff > 0) ? Color.Red : Color.Green;
             btnCanGive.Text = (dailyTxn.TodayInHand + dailyTxn.InBank).TokFormat();
             txtOutMoney.Text = dailyTxn.OutUsedMoney.ToString();
+
+
+            // Collection SUmmary
+            var totalInput = txtCollectionAmount.Text.ToInt32() + txtInterest.Text.ToInt32() + txtOtherInvestment.Text.ToInt32();
+            var totalOut = txtGivenAmount.Text.ToInt32() + txtOtherInvestment.Text.ToInt32();
+
+            txtInputMoney.Text = totalInput.ToString();
+            txtOutusedMoney.Text = totalOut.ToString();
+            txtInvsOutDiff.Text = (totalInput - totalOut).ToString();
+            txtExpectedInHand.Text = ((dailyTxn.YesterdayAmountInHand.ToInt32() + totalInput) - totalOut).ToString();
 
 
 
@@ -240,32 +250,19 @@ namespace CenturyFinCorpApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var withMe = txtWithMe.Text.ToInt32();
-            var withUncle = txtWithUncle.Text.ToInt32();
-            var iTook = txtITook.Text.ToInt32();
-            var uncleTook = txtUncleTook.Text.ToInt32();
-            var unclesHand = txtUnclesHand.Text.ToInt32();
+            var inputMoney = txtInputMoney.Text.ToInt32();
+            var outUsedMoney = txtOutusedMoney.Text.ToInt32();
+            var inVsOutDiff = txtInvsOutDiff.Text.ToInt32();
+            var expectedInHand = txtExpectedInHand.Text.ToInt32();
+            var actualInhand = txtActualInhand.Text.ToInt32();
 
-            var detailedAmount = new DetailedAmount()
-            {
-                Itook = iTook,
-                UnclesHand = unclesHand,
-                UncleTook = uncleTook,
-                WithMe = withMe,
-                WithUncle = withUncle
-            };
+            dailyTxn.InputMoney = inputMoney;
+            dailyTxn.OutUsedMoney = outUsedMoney;
+            dailyTxn.Difference = inVsOutDiff;
+            dailyTxn.ExpectedInHand = expectedInHand;
+            dailyTxn.ActualInHand = actualInhand;
 
-            var todaysExpectedCollection = dailyTxn.TodayInHand - (withMe + iTook + uncleTook); // +withUncle
-
-            if (todaysExpectedCollection < 0)
-            {
-                todaysExpectedCollection = (dailyTxn.CollectionAmount + withUncle) - (dailyTxn.GivenAmount - dailyTxn.Interest);
-            }
-            var result = MessageBox.Show($"Uncle Should have {todaysExpectedCollection.TokFormat()}?", "", MessageBoxButtons.YesNo);
-
-            detailedAmount.IsCorrect = (result == DialogResult.Yes);
-
-            DetailedAmount.AddDetailedAmount(detailedAmount);
+            DailyCollectionDetail.UpdateVerifyDetails(dailyTxn);
 
         }
     }
