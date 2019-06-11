@@ -3,7 +3,9 @@ using Common.ExtensionMethod;
 using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -147,7 +149,7 @@ namespace CenturyFinCorpApp
             var totalOut = txtGivenAmount.Text.ToInt32() + txtOtherExpenditure.Text.ToInt32();
 
 
-
+            
             dailyTxn.InputMoney = totalInput;
             dailyTxn.OutGoingMoney = totalOut;
             dailyTxn.Difference = totalInput - totalOut;
@@ -283,11 +285,28 @@ namespace CenturyFinCorpApp
             DailyCollectionDetail.UpdateVerifyDetails(dailyTxn);
             UpdateVerifyDetails();
 
+            using (TextWriter tw = new StreamWriter($"../../../DataAccess/Data/CollectionSummary/CollectionSummary-{dateTimePicker1.Value.ToShortDateString()}.txt"))
+            {
+                tw.WriteLine($"@Collection Summary for {dateTimePicker1.Value.ToShortDateString()}");
+                tw.WriteLine($"------------------------------------------------");
+
+                tw.WriteLine($"Total input Money = ActualInhand inhand yesterday[{dailyTxn.ActualInHand}] + collection [{txtCollectionAmount.Text}] + interest[{txtInterest.Text}] + other investment [{txtOtherInvestment.Text}] = [{inputMoney}]");
+                tw.WriteLine(Environment.NewLine);
+                tw.WriteLine($"Total out used money = given amount [{txtGivenAmount.Text}] + other expenditure [{txtOtherExpenditure.Text}] = [{outUsedMoney}]");
+                tw.WriteLine(Environment.NewLine);
+                tw.WriteLine($"Expected Inhand: {expectedInHand} Actual Inhand : {actualInhand} MamaAccount: {dailyTxn.MamaAccount} ");
+                //File.Create($"../../../DataAccess/Data/CollectionSummary/CollectionSummary-{dateTimePicker1.Value.ToShortDateString()}.txt");
+                Process.Start("CollectionSummary.txt");
+            }
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DailyCollectionDetail.DeleteDailyCxnDetails(dateTimePicker1.Value);
+            MessageBox.Show($"Deleted collection details for {dateTimePicker1.Value.ToShortDateString()}");
+            GetDailyTxn(dateTimePicker1.Value, false);
+
         }
     }
 }

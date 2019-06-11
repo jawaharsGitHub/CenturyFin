@@ -112,9 +112,6 @@ namespace DataAccess.PrimaryTypes
                     data.Difference = dailyCol.Difference;
                     data.ExpectedInHand = dailyCol.ExpectedInHand;
                     data.ActualInHand = dailyCol.ActualInHand;
-
-                    //data = dailyCol;
-
                 }
 
                 WriteObjectsToFile(list, JsonFilePath);
