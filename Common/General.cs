@@ -26,11 +26,12 @@ namespace Common
             }
         }
 
-        public static string GetDataFolder(string oldValue, string newValue)
+        public static string GetDataFolder(string debugFolder, string rootFolder)
         {
             string exeFile = (new Uri(Assembly.GetEntryAssembly().CodeBase)).AbsolutePath;
             string exeDir = Path.GetDirectoryName(exeFile);
-            string dataFolder = exeDir.Replace("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\");
+            //string dataFolder = exeDir.Replace("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\");
+            string dataFolder = exeDir.Replace(debugFolder, rootFolder);
 
             return dataFolder;
         }

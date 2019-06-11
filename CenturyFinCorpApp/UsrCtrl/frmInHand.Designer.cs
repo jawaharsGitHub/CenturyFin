@@ -33,6 +33,8 @@
             this.txtOutMoney = new System.Windows.Forms.TextBox();
             this.btnInvestment = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtMamaAccount = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.txtMamaInputMoney = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txtMamaExpenditure = new System.Windows.Forms.TextBox();
@@ -49,7 +51,6 @@
             this.txtInputMoney = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCanGive = new System.Windows.Forms.Label();
-            this.btnCollection = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.txtOtherInvestment = new System.Windows.Forms.TextBox();
@@ -59,10 +60,9 @@
             this.txtInterest = new System.Windows.Forms.TextBox();
             this.txtGivenAmount = new System.Windows.Forms.TextBox();
             this.txtTmrNeeded = new System.Windows.Forms.TextBox();
-            this.btnTodayInHand = new System.Windows.Forms.Button();
+            this.btnInCompany = new System.Windows.Forms.Button();
             this.txtOpened = new System.Windows.Forms.TextBox();
             this.txtClosed = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.txtTakenFromBank = new System.Windows.Forms.TextBox();
             this.txtBankTxnOut = new System.Windows.Forms.TextBox();
             this.txtSentFromUSA = new System.Windows.Forms.TextBox();
@@ -75,6 +75,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnEnable = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -91,21 +92,20 @@
             this.lblDate2 = new System.Windows.Forms.Label();
             this.btnPrevDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
-            this.txtMamaAccount = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnInHand = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnInHand);
             this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.txtOutMoney);
             this.groupBox1.Controls.Add(this.btnInvestment);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.lblCanGive);
-            this.groupBox1.Controls.Add(this.btnCollection);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.txtOtherInvestment);
@@ -115,10 +115,9 @@
             this.groupBox1.Controls.Add(this.txtInterest);
             this.groupBox1.Controls.Add(this.txtGivenAmount);
             this.groupBox1.Controls.Add(this.txtTmrNeeded);
-            this.groupBox1.Controls.Add(this.btnTodayInHand);
+            this.groupBox1.Controls.Add(this.btnInCompany);
             this.groupBox1.Controls.Add(this.txtOpened);
             this.groupBox1.Controls.Add(this.txtClosed);
-            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.txtTakenFromBank);
             this.groupBox1.Controls.Add(this.txtBankTxnOut);
             this.groupBox1.Controls.Add(this.txtSentFromUSA);
@@ -159,9 +158,9 @@
             this.btnInvestment.BackColor = System.Drawing.Color.Crimson;
             this.btnInvestment.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInvestment.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnInvestment.Location = new System.Drawing.Point(373, 181);
+            this.btnInvestment.Location = new System.Drawing.Point(315, 165);
             this.btnInvestment.Name = "btnInvestment";
-            this.btnInvestment.Size = new System.Drawing.Size(205, 78);
+            this.btnInvestment.Size = new System.Drawing.Size(254, 78);
             this.btnInvestment.TabIndex = 32;
             this.btnInvestment.Text = "Investment Money";
             this.btnInvestment.UseVisualStyleBackColor = false;
@@ -191,6 +190,23 @@
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Splitted Amounts";
+            // 
+            // txtMamaAccount
+            // 
+            this.txtMamaAccount.Location = new System.Drawing.Point(129, 208);
+            this.txtMamaAccount.Name = "txtMamaAccount";
+            this.txtMamaAccount.ReadOnly = true;
+            this.txtMamaAccount.Size = new System.Drawing.Size(100, 20);
+            this.txtMamaAccount.TabIndex = 47;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(21, 215);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(79, 13);
+            this.label26.TabIndex = 48;
+            this.label26.Text = "Mama Account";
             // 
             // txtMamaInputMoney
             // 
@@ -329,15 +345,6 @@
             this.lblCanGive.TabIndex = 30;
             this.lblCanGive.Text = "[CanGive]";
             // 
-            // btnCollection
-            // 
-            this.btnCollection.Location = new System.Drawing.Point(289, 40);
-            this.btnCollection.Name = "btnCollection";
-            this.btnCollection.Size = new System.Drawing.Size(75, 56);
-            this.btnCollection.TabIndex = 27;
-            this.btnCollection.Text = "[Today Collection]";
-            this.btnCollection.UseVisualStyleBackColor = true;
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -410,17 +417,17 @@
             this.txtTmrNeeded.Size = new System.Drawing.Size(100, 20);
             this.txtTmrNeeded.TabIndex = 10;
             // 
-            // btnTodayInHand
+            // btnInCompany
             // 
-            this.btnTodayInHand.BackColor = System.Drawing.Color.Yellow;
-            this.btnTodayInHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTodayInHand.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnTodayInHand.Location = new System.Drawing.Point(373, 109);
-            this.btnTodayInHand.Name = "btnTodayInHand";
-            this.btnTodayInHand.Size = new System.Drawing.Size(205, 78);
-            this.btnTodayInHand.TabIndex = 15;
-            this.btnTodayInHand.Text = "[In Hand]";
-            this.btnTodayInHand.UseVisualStyleBackColor = false;
+            this.btnInCompany.BackColor = System.Drawing.Color.Yellow;
+            this.btnInCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInCompany.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnInCompany.Location = new System.Drawing.Point(315, 23);
+            this.btnInCompany.Name = "btnInCompany";
+            this.btnInCompany.Size = new System.Drawing.Size(254, 62);
+            this.btnInCompany.TabIndex = 15;
+            this.btnInCompany.Text = "[In Cmpny]";
+            this.btnInCompany.UseVisualStyleBackColor = false;
             // 
             // txtOpened
             // 
@@ -435,16 +442,6 @@
             this.txtClosed.Name = "txtClosed";
             this.txtClosed.Size = new System.Drawing.Size(100, 20);
             this.txtClosed.TabIndex = 8;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label10.Location = new System.Drawing.Point(412, 90);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(72, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "TodayInHand";
             // 
             // txtTakenFromBank
             // 
@@ -548,6 +545,16 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "SendFromUSA";
             // 
+            // btnEnable
+            // 
+            this.btnEnable.Location = new System.Drawing.Point(816, 68);
+            this.btnEnable.Name = "btnEnable";
+            this.btnEnable.Size = new System.Drawing.Size(75, 52);
+            this.btnEnable.TabIndex = 27;
+            this.btnEnable.Text = "Enable";
+            this.btnEnable.UseVisualStyleBackColor = true;
+            this.btnEnable.Click += new System.EventHandler(this.btnEnable_Click);
+            // 
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(654, 68);
@@ -639,7 +646,7 @@
             // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(764, 68);
+            this.btnShow.Location = new System.Drawing.Point(735, 68);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(75, 52);
             this.btnShow.TabIndex = 20;
@@ -696,32 +703,27 @@
             this.btnNextDay.UseVisualStyleBackColor = true;
             this.btnNextDay.Click += new System.EventHandler(this.btnNextDay_Click);
             // 
-            // txtMamaAccount
-            // 
-            this.txtMamaAccount.Location = new System.Drawing.Point(129, 208);
-            this.txtMamaAccount.Name = "txtMamaAccount";
-            this.txtMamaAccount.ReadOnly = true;
-            this.txtMamaAccount.Size = new System.Drawing.Size(100, 20);
-            this.txtMamaAccount.TabIndex = 47;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(21, 215);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(79, 13);
-            this.label26.TabIndex = 48;
-            this.label26.Text = "Mama Account";
-            // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(869, 123);
+            this.btnDelete.Location = new System.Drawing.Point(899, 68);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 52);
             this.btnDelete.TabIndex = 32;
             this.btnDelete.Text = "DEL";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnInHand
+            // 
+            this.btnInHand.BackColor = System.Drawing.Color.Gold;
+            this.btnInHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInHand.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnInHand.Location = new System.Drawing.Point(315, 93);
+            this.btnInHand.Name = "btnInHand";
+            this.btnInHand.Size = new System.Drawing.Size(254, 62);
+            this.btnInHand.TabIndex = 35;
+            this.btnInHand.Text = "[In Hand]";
+            this.btnInHand.UseVisualStyleBackColor = false;
             // 
             // frmInHand
             // 
@@ -732,6 +734,7 @@
             this.Controls.Add(this.btnPrevDay);
             this.Controls.Add(this.lblDate2);
             this.Controls.Add(this.btnCanGive);
+            this.Controls.Add(this.btnEnable);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.label11);
@@ -768,7 +771,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
@@ -781,7 +783,7 @@
         private System.Windows.Forms.TextBox txtInterest;
         private System.Windows.Forms.TextBox txtGivenAmount;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Button btnTodayInHand;
+        private System.Windows.Forms.Button btnInCompany;
         private System.Windows.Forms.Button btnInBank;
         private System.Windows.Forms.Button btnTmrWanted;
         private System.Windows.Forms.Button btnYesterdayInHand;
@@ -795,7 +797,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtOtherInvestment;
         private System.Windows.Forms.TextBox txtOtherExpenditure;
-        private System.Windows.Forms.Button btnCollection;
+        private System.Windows.Forms.Button btnEnable;
         private System.Windows.Forms.Button btnCanGive;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lblDate2;
@@ -824,5 +826,6 @@
         private System.Windows.Forms.TextBox txtMamaAccount;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnInHand;
     }
 }

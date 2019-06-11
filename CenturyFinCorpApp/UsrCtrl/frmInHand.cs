@@ -25,10 +25,19 @@ namespace CenturyFinCorpApp
 
         }
 
+        private void EnableEdit()
+        {
+            groupBox1.Enabled = txtComments.Enabled = true;
+        }
+
         private void GetDailyTxn(DateTime date, bool isOnLoad)
         {
             dailyTxn = DailyCollectionDetail.GetDailyTxn(date, isOnLoad);
-            if (dailyTxn == null)
+
+            var haveNoDailytnx = (dailyTxn == null);
+            groupBox1.Enabled = txtComments.Enabled = !haveNoDailytnx;
+
+            if (haveNoDailytnx)
             {
                 dailyTxn = DailyCollectionDetail.GetDailyTxn(date.AddDays(-1), isOnLoad);
                 dateTimePicker1.Value = date;
@@ -60,7 +69,7 @@ namespace CenturyFinCorpApp
                     txtOtherExpenditure.Text = txtOtherInvestment.Text = txtOutMoney.Text = "0";
 
                 }
-                btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
+                //btnEnable.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
                 lblDate1.Text = lblDate2.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
                 btnAdd.Text = "ADD";
                 return;
@@ -85,7 +94,8 @@ namespace CenturyFinCorpApp
             txtOtherInvestment.Text = Convert.ToString(dailyTxn.OtherInvestment);
 
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.TokFormat();
-            btnTodayInHand.Text = dailyTxn.TodayInHand.TokFormat();
+            btnInCompany.Text = dailyTxn.TodayInHand.TokFormat();
+            btnInHand.Text = dailyTxn.ActualInHand.TokFormat();
             btnInvestment.Text = DailyCollectionDetail.GetActualInvestmentTxnDate(dateTimePicker1.Value).ToMoney();
 
             lblCanGive.Text = $"Actually we can give - {(dailyTxn.TodayInHand / 4500) * 5000} {Environment.NewLine}with extra {(dailyTxn.TodayInHand % 4500)}";
@@ -101,7 +111,7 @@ namespace CenturyFinCorpApp
 
             txtComments.Text = dailyTxn.Comments;
 
-            btnCollection.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
+            //btnEnable.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
         }
 
         private void UpdateVerifyDetails()
@@ -149,7 +159,7 @@ namespace CenturyFinCorpApp
             var totalOut = txtGivenAmount.Text.ToInt32() + txtOtherExpenditure.Text.ToInt32();
 
 
-            
+
             dailyTxn.InputMoney = totalInput;
             dailyTxn.OutGoingMoney = totalOut;
             dailyTxn.Difference = totalInput - totalOut;
@@ -160,6 +170,8 @@ namespace CenturyFinCorpApp
 
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
+
+            GetDailyTxn(dateTimePicker1.Value, false);
 
 
 
@@ -268,6 +280,7 @@ namespace CenturyFinCorpApp
 
         }
 
+        // verify button click
         private void button1_Click(object sender, EventArgs e)
         {
             var inputMoney = txtInputMoney.Text.ToInt32();
@@ -275,17 +288,24 @@ namespace CenturyFinCorpApp
             var inVsOutDiff = txtInvsOutDiff.Text.ToInt32();
             var expectedInHand = txtExpectedInHand.Text.ToInt32();
             var actualInhand = inputMoney - outUsedMoney; //txtActualInhand.Text.ToInt32();
+            var mamaAccount = (txtMamaAccount.Text.ToInt32() - txtMamaInputMoney.Text.ToInt32()) + txtMamaExpenditure.Text.ToInt32();
+
 
             dailyTxn.InputMoney = inputMoney;
             dailyTxn.OutUsedMoney = outUsedMoney;
             dailyTxn.Difference = inVsOutDiff;
             dailyTxn.ExpectedInHand = expectedInHand;
             dailyTxn.ActualInHand = actualInhand;
+            dailyTxn.MamaAccount = mamaAccount;
+            dailyTxn.MamaExpenditure = txtMamaExpenditure.Text.ToInt32();
+            dailyTxn.MamaInputMoney = txtMamaInputMoney.Text.ToInt32();
 
             DailyCollectionDetail.UpdateVerifyDetails(dailyTxn);
             UpdateVerifyDetails();
 
-            using (TextWriter tw = new StreamWriter($"../../../DataAccess/Data/CollectionSummary/CollectionSummary-{dateTimePicker1.Value.ToShortDateString()}.txt"))
+            var fileName = General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\CollectionSummary\\") + $"CxnSum_{dateTimePicker1.Value.ToShortDateString()}.txt";
+
+            using (TextWriter tw = new StreamWriter(fileName))
             {
                 tw.WriteLine($"@Collection Summary for {dateTimePicker1.Value.ToShortDateString()}");
                 tw.WriteLine($"------------------------------------------------");
@@ -295,10 +315,18 @@ namespace CenturyFinCorpApp
                 tw.WriteLine($"Total out used money = given amount [{txtGivenAmount.Text}] + other expenditure [{txtOtherExpenditure.Text}] = [{outUsedMoney}]");
                 tw.WriteLine(Environment.NewLine);
                 tw.WriteLine($"Expected Inhand: {expectedInHand} Actual Inhand : {actualInhand} MamaAccount: {dailyTxn.MamaAccount} ");
-                //File.Create($"../../../DataAccess/Data/CollectionSummary/CollectionSummary-{dateTimePicker1.Value.ToShortDateString()}.txt");
-                Process.Start("CollectionSummary.txt");
             }
 
+            string s = txtComments.Text;
+            int start = s.IndexOf("$");
+            int end = s.LastIndexOf("$");
+            string toBeReplaced = s.Substring(start + 1, end - start - 1);
+            //s = s.Replace(result, "your replacement value");
+
+            txtComments.Text = s.Replace(toBeReplaced, $"{Environment.NewLine}{actualInhand} [In Hand]{Environment.NewLine}{mamaAccount}[In Mama]{Environment.NewLine}{expectedInHand}[In Company]{Environment.NewLine}");
+            btnAddOrUpdate_Click(null, null);
+
+            Process.Start(fileName);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -307,6 +335,11 @@ namespace CenturyFinCorpApp
             MessageBox.Show($"Deleted collection details for {dateTimePicker1.Value.ToShortDateString()}");
             GetDailyTxn(dateTimePicker1.Value, false);
 
+        }
+
+        private void btnEnable_Click(object sender, EventArgs e)
+        {
+            EnableEdit();
         }
     }
 }

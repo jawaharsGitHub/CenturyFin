@@ -112,6 +112,9 @@ namespace DataAccess.PrimaryTypes
                     data.Difference = dailyCol.Difference;
                     data.ExpectedInHand = dailyCol.ExpectedInHand;
                     data.ActualInHand = dailyCol.ActualInHand;
+                    data.MamaAccount = dailyCol.MamaAccount;
+                    data.MamaExpenditure = dailyCol.MamaExpenditure;
+                    data.MamaInputMoney = dailyCol.MamaInputMoney;
                 }
 
                 WriteObjectsToFile(list, JsonFilePath);
