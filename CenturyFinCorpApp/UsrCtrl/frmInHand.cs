@@ -295,7 +295,7 @@ namespace CenturyFinCorpApp
             dailyTxn.InputMoney = inputMoney;
             dailyTxn.OutUsedMoney = outUsedMoney;
             dailyTxn.Difference = inVsOutDiff;
-            dailyTxn.ExpectedInHand = expectedInHand;
+            dailyTxn.ExpectedInHand = actualInhand + mamaAccount;
             dailyTxn.ActualInHand = actualInhand;
             dailyTxn.MamaAccount = mamaAccount;
             dailyTxn.MamaExpenditure = txtMamaExpenditure.Text.ToInt32();
@@ -324,7 +324,7 @@ namespace CenturyFinCorpApp
             string toBeReplaced = s.Substring(start + 1, end - start - 1);
             //s = s.Replace(result, "your replacement value");
 
-            txtComments.Text = s.Replace(toBeReplaced, $"{Environment.NewLine}{actualInhand} [In Hand]{Environment.NewLine}{mamaAccount}[In Mama]{Environment.NewLine}{expectedInHand}[In Company]{Environment.NewLine}");
+            txtComments.Text = s.Replace(toBeReplaced, $"{Environment.NewLine}{expectedInHand}[In Company]{Environment.NewLine}{actualInhand} [In Hand]{Environment.NewLine}{mamaAccount}[In Mama]{Environment.NewLine}");
             btnAddOrUpdate_Click(null, null);
 
             Process.Start(fileName);

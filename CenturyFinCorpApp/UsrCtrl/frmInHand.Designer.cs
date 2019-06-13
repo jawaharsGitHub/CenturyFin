@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnMama = new System.Windows.Forms.Button();
+            this.btnInHand = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.txtOutMoney = new System.Windows.Forms.TextBox();
             this.btnInvestment = new System.Windows.Forms.Button();
@@ -50,7 +52,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txtInputMoney = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblCanGive = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.txtOtherInvestment = new System.Windows.Forms.TextBox();
@@ -75,6 +76,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblCanGive = new System.Windows.Forms.Label();
             this.btnEnable = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -93,8 +95,6 @@
             this.btnPrevDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnInHand = new System.Windows.Forms.Button();
-            this.btnMama = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -137,6 +137,30 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // btnMama
+            // 
+            this.btnMama.BackColor = System.Drawing.Color.Cyan;
+            this.btnMama.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMama.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnMama.Location = new System.Drawing.Point(314, 150);
+            this.btnMama.Name = "btnMama";
+            this.btnMama.Size = new System.Drawing.Size(254, 62);
+            this.btnMama.TabIndex = 36;
+            this.btnMama.Text = "[In Mama]";
+            this.btnMama.UseVisualStyleBackColor = false;
+            // 
+            // btnInHand
+            // 
+            this.btnInHand.BackColor = System.Drawing.Color.Orange;
+            this.btnInHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInHand.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnInHand.Location = new System.Drawing.Point(315, 85);
+            this.btnInHand.Name = "btnInHand";
+            this.btnInHand.Size = new System.Drawing.Size(254, 62);
+            this.btnInHand.TabIndex = 35;
+            this.btnInHand.Text = "[In Hand]";
+            this.btnInHand.UseVisualStyleBackColor = false;
             // 
             // label23
             // 
@@ -194,7 +218,7 @@
             // 
             // txtMamaAccount
             // 
-            this.txtMamaAccount.Location = new System.Drawing.Point(129, 208);
+            this.txtMamaAccount.Location = new System.Drawing.Point(129, 154);
             this.txtMamaAccount.Name = "txtMamaAccount";
             this.txtMamaAccount.ReadOnly = true;
             this.txtMamaAccount.Size = new System.Drawing.Size(100, 20);
@@ -203,15 +227,15 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(21, 215);
+            this.label26.Location = new System.Drawing.Point(21, 161);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(79, 13);
+            this.label26.Size = new System.Drawing.Size(97, 13);
             this.label26.TabIndex = 48;
-            this.label26.Text = "Mama Account";
+            this.label26.Text = "Mama Account (M)";
             // 
             // txtMamaInputMoney
             // 
-            this.txtMamaInputMoney.Location = new System.Drawing.Point(130, 181);
+            this.txtMamaInputMoney.Location = new System.Drawing.Point(130, 205);
             this.txtMamaInputMoney.Name = "txtMamaInputMoney";
             this.txtMamaInputMoney.Size = new System.Drawing.Size(100, 20);
             this.txtMamaInputMoney.TabIndex = 45;
@@ -219,7 +243,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(22, 188);
+            this.label24.Location = new System.Drawing.Point(22, 212);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(98, 13);
             this.label24.TabIndex = 46;
@@ -227,7 +251,7 @@
             // 
             // txtMamaExpenditure
             // 
-            this.txtMamaExpenditure.Location = new System.Drawing.Point(129, 155);
+            this.txtMamaExpenditure.Location = new System.Drawing.Point(129, 179);
             this.txtMamaExpenditure.Name = "txtMamaExpenditure";
             this.txtMamaExpenditure.ReadOnly = true;
             this.txtMamaExpenditure.Size = new System.Drawing.Size(100, 20);
@@ -236,7 +260,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(21, 162);
+            this.label25.Location = new System.Drawing.Point(21, 186);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(95, 13);
             this.label25.TabIndex = 44;
@@ -254,9 +278,9 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(21, 135);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(75, 13);
+            this.label22.Size = new System.Drawing.Size(95, 13);
             this.label22.TabIndex = 42;
-            this.label22.Text = "Actual InHand";
+            this.label22.Text = "Actual InHand (IH)";
             // 
             // button1
             // 
@@ -279,11 +303,11 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(20, 109);
+            this.label21.Location = new System.Drawing.Point(22, 109);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(87, 13);
+            this.label21.Size = new System.Drawing.Size(103, 13);
             this.label21.TabIndex = 39;
-            this.label21.Text = "ExpectedInHand";
+            this.label21.Text = "ExpectedInHand (C)";
             // 
             // txtInvsOutDiff
             // 
@@ -335,16 +359,6 @@
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 33;
             this.label2.Text = "InputMoney";
-            // 
-            // lblCanGive
-            // 
-            this.lblCanGive.AutoSize = true;
-            this.lblCanGive.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.lblCanGive.Location = new System.Drawing.Point(675, 242);
-            this.lblCanGive.Name = "lblCanGive";
-            this.lblCanGive.Size = new System.Drawing.Size(54, 13);
-            this.lblCanGive.TabIndex = 30;
-            this.lblCanGive.Text = "[CanGive]";
             // 
             // label17
             // 
@@ -546,6 +560,16 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "SendFromUSA";
             // 
+            // lblCanGive
+            // 
+            this.lblCanGive.AutoSize = true;
+            this.lblCanGive.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.lblCanGive.Location = new System.Drawing.Point(675, 242);
+            this.lblCanGive.Name = "lblCanGive";
+            this.lblCanGive.Size = new System.Drawing.Size(54, 13);
+            this.lblCanGive.TabIndex = 30;
+            this.lblCanGive.Text = "[CanGive]";
+            // 
             // btnEnable
             // 
             this.btnEnable.Location = new System.Drawing.Point(816, 68);
@@ -713,30 +737,6 @@
             this.btnDelete.Text = "DEL";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnInHand
-            // 
-            this.btnInHand.BackColor = System.Drawing.Color.Orange;
-            this.btnInHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInHand.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnInHand.Location = new System.Drawing.Point(315, 85);
-            this.btnInHand.Name = "btnInHand";
-            this.btnInHand.Size = new System.Drawing.Size(254, 62);
-            this.btnInHand.TabIndex = 35;
-            this.btnInHand.Text = "[In Hand]";
-            this.btnInHand.UseVisualStyleBackColor = false;
-            // 
-            // btnMama
-            // 
-            this.btnMama.BackColor = System.Drawing.Color.Cyan;
-            this.btnMama.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMama.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnMama.Location = new System.Drawing.Point(314, 150);
-            this.btnMama.Name = "btnMama";
-            this.btnMama.Size = new System.Drawing.Size(254, 62);
-            this.btnMama.TabIndex = 36;
-            this.btnMama.Text = "[In Mama]";
-            this.btnMama.UseVisualStyleBackColor = false;
             // 
             // frmInHand
             // 
