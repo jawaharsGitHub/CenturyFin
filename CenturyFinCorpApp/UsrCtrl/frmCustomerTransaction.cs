@@ -1,4 +1,5 @@
-﻿using Common.ExtensionMethod;
+﻿using Common;
+using Common.ExtensionMethod;
 using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
@@ -282,7 +283,7 @@ namespace CenturyFinCorpApp
 
             lblPercentageGain.Text = $"{percGainPerMonth.ToString()}% Per Month({(percGainPerMonth / 100) * (cus.LoanAmount - cus.Interest)} Rs/Month)";
 
-            dateTimePicker1.Value = lastDate.AddDays(1);
+            dateTimePicker1.Value = GlobalValue.CollectionDate.Value; //lastDate.AddDays(1);
 
             dataGridView1.Columns["CustomerId"].Visible = false;
             dataGridView1.Columns["IsClosed"].Visible = false;
