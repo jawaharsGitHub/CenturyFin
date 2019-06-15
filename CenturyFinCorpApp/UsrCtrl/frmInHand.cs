@@ -287,7 +287,7 @@ namespace CenturyFinCorpApp
             var inputMoney = txtInputMoney.Text.ToInt32();
             var outUsedMoney = txtOutusedMoney.Text.ToInt32();
             var inVsOutDiff = txtInvsOutDiff.Text.ToInt32();
-            var expectedInHand = txtExpectedInHand.Text.ToInt32();
+            var expectedInHand = txtActualInhand.Text.ToInt32() + txtMamaAccount.Text.ToInt32();  // txtExpectedInHand.Text.ToInt32();
             var actualInhand = inputMoney - outUsedMoney; //txtActualInhand.Text.ToInt32();
             var mamaAccount = (txtMamaAccount.Text.ToInt32() - txtMamaInputMoney.Text.ToInt32()) + txtMamaExpenditure.Text.ToInt32();
 
@@ -311,11 +311,11 @@ namespace CenturyFinCorpApp
                 tw.WriteLine($"@Collection Summary for {dateTimePicker1.Value.ToShortDateString()}");
                 tw.WriteLine($"------------------------------------------------");
 
-                tw.WriteLine($"Total input Money = ActualInhand inhand yesterday[{dailyTxn.ActualInHand}] + collection [{txtCollectionAmount.Text}] + interest[{txtInterest.Text}] + other investment [{txtOtherInvestment.Text}] = [{inputMoney}]");
+                tw.WriteLine($"Total input Money = ActualInhand inhand yesterday[{dailyTxn.ActualInHand.TokFormat()}] + collection [{txtCollectionAmount.Text}] + interest[{txtInterest.Text}] + other investment [{txtOtherInvestment.Text}] = [{inputMoney.TokFormat()}]");
                 tw.WriteLine(Environment.NewLine);
-                tw.WriteLine($"Total out used money = given amount [{txtGivenAmount.Text}] + other expenditure [{txtOtherExpenditure.Text}] = [{outUsedMoney}]");
+                tw.WriteLine($"Total out used money = given amount [{txtGivenAmount.Text}] + other expenditure [{txtOtherExpenditure.Text}] = [{outUsedMoney.TokFormat()}]");
                 tw.WriteLine(Environment.NewLine);
-                tw.WriteLine($"Expected Inhand: {expectedInHand} Actual Inhand : {actualInhand} MamaAccount: {dailyTxn.MamaAccount} ");
+                tw.WriteLine($"Expected Inhand: {expectedInHand.TokFormat()} Actual Inhand : {actualInhand.TokFormat()} MamaAccount: {dailyTxn.MamaAccount.TokFormat()} ");
             }
 
             string s = txtComments.Text;
@@ -324,7 +324,7 @@ namespace CenturyFinCorpApp
             string toBeReplaced = s.Substring(start + 1, end - start - 1);
             //s = s.Replace(result, "your replacement value");
 
-            txtComments.Text = s.Replace(toBeReplaced, $"{Environment.NewLine}{expectedInHand}[In Company]{Environment.NewLine}{actualInhand} [In Hand]{Environment.NewLine}{mamaAccount}[In Mama]{Environment.NewLine}");
+            txtComments.Text = s.Replace(toBeReplaced, $"{Environment.NewLine}{expectedInHand.TokFormat()} [In Company]{Environment.NewLine}{actualInhand.TokFormat()} [In Hand]{Environment.NewLine}{mamaAccount.TokFormat()} [In Mama]{Environment.NewLine}");
             btnAddOrUpdate_Click(null, null);
 
             Process.Start(fileName);
