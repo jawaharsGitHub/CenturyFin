@@ -63,13 +63,15 @@ namespace CenturyFinCorpApp
 
             using (TextWriter tw = new StreamWriter("VeryRisk.txt"))
             {
-                tw.WriteLine($"@ VERY RISK!!!!!!!!!");
+                tw.WriteLine($"{veryRiskAmount.TokFormat()} @ VERY RISK!!!!!!!!! ");
+                tw.WriteLine($"--------------------------------------- ");
                 foreach (var s in veryRiskData)
                     tw.WriteLine($"{s.Name} - {s.Balance}");
 
                 tw.WriteLine($"------------------------------------------------");
 
-                tw.WriteLine($"@ RISK!!!");
+                tw.WriteLine($"{riskAmount.TokFormat()} @ RISK!!!");
+                tw.WriteLine($"--------------------------------------- ");
                 foreach (var s in riskData)
                     tw.WriteLine($"{s.Name} - {s.Balance}");
 
