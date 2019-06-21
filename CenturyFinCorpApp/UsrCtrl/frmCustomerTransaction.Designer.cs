@@ -53,10 +53,6 @@
             this.btnCorrect = new System.Windows.Forms.Button();
             this.btnInterest = new System.Windows.Forms.Button();
             this.grpMerge = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtInterest = new System.Windows.Forms.TextBox();
-            this.txtMergeAmount = new System.Windows.Forms.TextBox();
             this.btnMerge = new System.Windows.Forms.Button();
             this.btnReOpen = new System.Windows.Forms.Button();
             this.btnForceClose = new System.Windows.Forms.Button();
@@ -72,6 +68,7 @@
             this.txtNewInterest = new System.Windows.Forms.TextBox();
             this.txtNewAmount = new System.Windows.Forms.TextBox();
             this.btnConvertToMonthly = new System.Windows.Forms.Button();
+            this.cmbExistingCustomer = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -320,58 +317,22 @@
             // 
             // grpMerge
             // 
-            this.grpMerge.Controls.Add(this.label3);
-            this.grpMerge.Controls.Add(this.label2);
-            this.grpMerge.Controls.Add(this.txtInterest);
-            this.grpMerge.Controls.Add(this.txtMergeAmount);
+            this.grpMerge.Controls.Add(this.cmbExistingCustomer);
             this.grpMerge.Controls.Add(this.btnMerge);
-            this.grpMerge.Location = new System.Drawing.Point(989, 18);
+            this.grpMerge.Location = new System.Drawing.Point(866, 7);
             this.grpMerge.Name = "grpMerge";
-            this.grpMerge.Size = new System.Drawing.Size(200, 112);
+            this.grpMerge.Size = new System.Drawing.Size(330, 85);
             this.grpMerge.TabIndex = 21;
             this.grpMerge.TabStop = false;
             this.grpMerge.Text = "Merge";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 49);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Interest";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Amount";
-            // 
-            // txtInterest
-            // 
-            this.txtInterest.Location = new System.Drawing.Point(85, 46);
-            this.txtInterest.Name = "txtInterest";
-            this.txtInterest.Size = new System.Drawing.Size(100, 20);
-            this.txtInterest.TabIndex = 7;
-            // 
-            // txtMergeAmount
-            // 
-            this.txtMergeAmount.Location = new System.Drawing.Point(85, 19);
-            this.txtMergeAmount.Name = "txtMergeAmount";
-            this.txtMergeAmount.Size = new System.Drawing.Size(100, 20);
-            this.txtMergeAmount.TabIndex = 6;
-            this.txtMergeAmount.Leave += new System.EventHandler(this.txtMergeAmount_Leave);
-            // 
             // btnMerge
             // 
-            this.btnMerge.Location = new System.Drawing.Point(34, 85);
+            this.btnMerge.Location = new System.Drawing.Point(19, 25);
             this.btnMerge.Name = "btnMerge";
-            this.btnMerge.Size = new System.Drawing.Size(119, 21);
+            this.btnMerge.Size = new System.Drawing.Size(174, 21);
             this.btnMerge.TabIndex = 0;
-            this.btnMerge.Text = "Merge New Amount";
+            this.btnMerge.Text = "Merge To below account";
             this.btnMerge.UseVisualStyleBackColor = true;
             this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
@@ -507,6 +468,16 @@
             this.btnConvertToMonthly.UseVisualStyleBackColor = true;
             this.btnConvertToMonthly.Click += new System.EventHandler(this.btnConvertToMonthly_Click);
             // 
+            // cmbExistingCustomer
+            // 
+            this.cmbExistingCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbExistingCustomer.FormattingEnabled = true;
+            this.cmbExistingCustomer.Location = new System.Drawing.Point(19, 52);
+            this.cmbExistingCustomer.Name = "cmbExistingCustomer";
+            this.cmbExistingCustomer.Size = new System.Drawing.Size(294, 24);
+            this.cmbExistingCustomer.TabIndex = 24;
+            this.cmbExistingCustomer.TextChanged += new System.EventHandler(this.cmbExistingCustomer_TextChanged);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -541,7 +512,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grpMerge.ResumeLayout(false);
-            this.grpMerge.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -577,11 +547,7 @@
         private System.Windows.Forms.Button btnCorrect;
         private System.Windows.Forms.Button btnInterest;
         private System.Windows.Forms.GroupBox grpMerge;
-        private System.Windows.Forms.TextBox txtMergeAmount;
         private System.Windows.Forms.Button btnMerge;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtInterest;
         private System.Windows.Forms.Button btnReOpen;
         private System.Windows.Forms.Button btnForceClose;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -596,5 +562,6 @@
         private System.Windows.Forms.TextBox txtNewInterest;
         private System.Windows.Forms.TextBox txtNewAmount;
         private System.Windows.Forms.Button btnConvertToMonthly;
+        private System.Windows.Forms.ComboBox cmbExistingCustomer;
     }
 }

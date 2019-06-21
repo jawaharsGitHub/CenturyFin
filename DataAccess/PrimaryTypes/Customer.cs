@@ -16,6 +16,7 @@ namespace DataAccess.PrimaryTypes
         private int _collSpot;
 
         public int CustomerSeqNumber { get; set; }
+        public int? MergeFromCusSeqNumber { get; set; }
         public int CustomerId { get; set; }
         public string Name { get; set; }
         public string TamilName { get; set; }
@@ -52,6 +53,9 @@ namespace DataAccess.PrimaryTypes
 
         [JsonIgnore]
         public string NameAndId => $"{Name}-{CustomerId}-{IsActive}";
+
+        [JsonIgnore]
+        public string NameAndSeqId => $"{Name}-{CustomerSeqNumber}-{IsActive}";
 
 
         public static void AddCustomer(Customer newCustomer)
@@ -231,6 +235,25 @@ namespace DataAccess.PrimaryTypes
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
                 u.LoanAmount = updatedCustomer.LoanAmount;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void AppendCustomerLoanAmountAndBalance(Customer ToCustomer, Customer fromCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerId == ToCustomer.CustomerId && c.CustomerSeqNumber == ToCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.LoanAmount += fromCustomer.LoanAmount;
+                u.Interest += fromCustomer.Interest;
+                
 
                 WriteObjectsToFile(list, JsonFilePath);
             }

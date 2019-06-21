@@ -22,11 +22,23 @@ namespace CenturyFinCorpApp
         public frmCustomerTransaction()
         {
             InitializeComponent();
+            LoadExistingCustomers();
+        }
+
+        private void LoadExistingCustomers()
+        {
+            cmbExistingCustomer.DataSource = Customer.GetAllCustomer(); // Customer.GetAllCustomer().(d => d.CustomerId).OrderBy(o => o.Name).ToList().Where(w => w.Name.StartsWith("Rab")).ToList();
+            cmbExistingCustomer.DisplayMember = "NameAndSeqId";
+            cmbExistingCustomer.ValueMember = "CustomerId";
+            cmbExistingCustomer.DropDownStyle = ComboBoxStyle.DropDown;
+            cmbExistingCustomer.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cmbExistingCustomer.AutoCompleteMode = AutoCompleteMode.Suggest;
         }
 
         public frmCustomerTransaction(Customer _customer, Form parentForm)
         {
             InitializeComponent();
+            LoadExistingCustomers();
 
             customer = _customer;
             _isClosedTx = (customer.IsActive == false);
@@ -438,22 +450,41 @@ namespace CenturyFinCorpApp
 
         private void btnMerge_Click(object sender, EventArgs e)
         {
-            // update loan and interest
-            customer.LoanAmount += Convert.ToInt32(txtMergeAmount.Text);
-            customer.Interest += Convert.ToInt32(txtInterest.Text);
 
-            Customer.MergeCustomerLoanAmount(customer);
+            if (DialogResult.Yes == MessageBox.Show($"merge  {this.customer.Name}  to {(cmbExistingCustomer.SelectedItem as Customer).Name}", "confirmation", MessageBoxButtons.YesNo))
+            {
+                // current customer balance = interest = 0
+                // closed this customer. with force closed.
 
-            // get first txn
-            var firstTxn = txns.Where(w => w.AmountReceived == 0).OrderBy(o => o.TxnDate).First();
+                var toMergeCustomer = (cmbExistingCustomer.SelectedItem as Customer);
+                // Merge the balance and interest
+                Customer.AppendCustomerLoanAmountAndBalance(toMergeCustomer, customer);
+
+                // Delete all customer and txn details.
+                Customer.DeleteCustomerDetails(customer.CustomerId, customer.CustomerSeqNumber);
+                Transaction.DeleteTransactionDetails(customer.CustomerId, customer.CustomerSeqNumber);
 
 
-            // update loan amount.
-            firstTxn.Balance += Convert.ToInt32(txtMergeAmount.Text); // TODO: it may affect daily given amount and amount in hand details. be carefull.
 
-            Transaction.MergeTransactionLoanAmount(firstTxn);
-            // call correct data.
-            CorrectData();
+            }
+
+
+            //// update loan and interest
+            //customer.LoanAmount += Convert.ToInt32(txtMergeAmount.Text);
+            //customer.Interest += Convert.ToInt32(txtInterest.Text);
+
+            //Customer.MergeCustomerLoanAmount(customer);
+
+            //// get first txn
+            //var firstTxn = txns.Where(w => w.AmountReceived == 0).OrderBy(o => o.TxnDate).First();
+
+
+            //// update loan amount.
+            //firstTxn.Balance += Convert.ToInt32(txtMergeAmount.Text); // TODO: it may affect daily given amount and amount in hand details. be carefull.
+
+            //Transaction.MergeTransactionLoanAmount(firstTxn);
+            //// call correct data.
+            //CorrectData();
 
 
 
@@ -464,15 +495,7 @@ namespace CenturyFinCorpApp
             throw new NotImplementedException();
         }
 
-        private void txtMergeAmount_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtMergeAmount.Text)) return;
 
-            var loanAmount = Convert.ToInt32(txtMergeAmount.Text);
-
-            var interest = (loanAmount / 100) * 10;
-            txtInterest.Text = interest.ToString();
-        }
 
         private void btnForceClose_Click(object sender, EventArgs e)
         {
@@ -563,6 +586,13 @@ namespace CenturyFinCorpApp
                 customer.Interest = newInterest;
                 Customer.UpdateCustomerInterest(customer);
             }
+        }
+
+        private void cmbExistingCustomer_TextChanged(object sender, EventArgs e)
+        {
+            cmbExistingCustomer.DroppedDown = false;
+
+            
         }
     }
 }

@@ -1,6 +1,7 @@
 [
   {
     "CustomerSeqNumber": 278,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 8,
     "Name": "Raja Lakshmi Kalangarai",
     "TamilName": null,
@@ -23,6 +24,7 @@
   },
   {
     "CustomerSeqNumber": 217,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 1,
     "Name": "Manikandan T Stall Kadamba Nagar",
     "TamilName": null,
@@ -45,6 +47,7 @@
   },
   {
     "CustomerSeqNumber": 370,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 159,
     "Name": "Musha Maligai Raghavan",
     "TamilName": null,
@@ -67,6 +70,7 @@
   },
   {
     "CustomerSeqNumber": 327,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 50,
     "Name": "Munis Travels",
     "TamilName": null,
@@ -89,6 +93,7 @@
   },
   {
     "CustomerSeqNumber": 400,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 165,
     "Name": "Malaisamy Thatha",
     "TamilName": null,
@@ -111,6 +116,7 @@
   },
   {
     "CustomerSeqNumber": 412,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 20,
     "Name": "KalaiSelvan Tirupullani",
     "TamilName": null,
@@ -133,6 +139,7 @@
   },
   {
     "CustomerSeqNumber": 417,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 168,
     "Name": "Photo Studio - Kalai Fd",
     "TamilName": null,
@@ -155,6 +162,7 @@
   },
   {
     "CustomerSeqNumber": 407,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 13,
     "Name": "THIRUVIKAS- 10K 10 days",
     "TamilName": null,
@@ -177,6 +185,7 @@
   },
   {
     "CustomerSeqNumber": 323,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 125,
     "Name": "Senthil kumar idly kadai",
     "TamilName": null,
@@ -199,6 +208,7 @@
   },
   {
     "CustomerSeqNumber": 437,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 132,
     "Name": "baseer Rahman Ajantha Bakery",
     "TamilName": null,
@@ -221,6 +231,7 @@
   },
   {
     "CustomerSeqNumber": 400,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 165,
     "Name": "Malaisamy Thatha",
     "TamilName": null,
@@ -243,6 +254,7 @@
   },
   {
     "CustomerSeqNumber": 408,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 83,
     "Name": "Gopal Bharathinagar Checku Ennai",
     "TamilName": null,
@@ -265,6 +277,7 @@
   },
   {
     "CustomerSeqNumber": 450,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 99,
     "Name": "Anwar Mobile Shop BharathiNagara",
     "TamilName": null,
@@ -287,6 +300,7 @@
   },
   {
     "CustomerSeqNumber": 450,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 99,
     "Name": "Anwar Mobile Shop BharathiNagara",
     "TamilName": null,
@@ -309,6 +323,7 @@
   },
   {
     "CustomerSeqNumber": 217,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 1,
     "Name": "Manikandan Kadamba Nagar",
     "TamilName": null,
@@ -331,6 +346,7 @@
   },
   {
     "CustomerSeqNumber": 430,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 133,
     "Name": "Kamatchi Balaji Agency",
     "TamilName": null,
@@ -353,6 +369,7 @@
   },
   {
     "CustomerSeqNumber": 478,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 162,
     "Name": "Raja Md 10 roopa fancy Store",
     "TamilName": null,
@@ -375,6 +392,7 @@
   },
   {
     "CustomerSeqNumber": 466,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 8,
     "Name": "Raja Lakshmi Kalangarai",
     "TamilName": null,
@@ -397,6 +415,7 @@
   },
   {
     "CustomerSeqNumber": 374,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 63,
     "Name": "Maruthu Ironing Shop",
     "TamilName": null,
@@ -419,6 +438,7 @@
   },
   {
     "CustomerSeqNumber": 488,
+    "MergeFromCusSeqNumber": null,
     "CustomerId": 154,
     "Name": "Nazeer TN Store",
     "TamilName": null,
@@ -436,6 +456,29 @@
     "IsMerged": false,
     "MergedDate": null,
     "CollectionSpotId": 154,
+    "ReturnDay": null,
+    "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 482,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 3,
+    "Name": "Raghavan Ilamanur",
+    "TamilName": null,
+    "AdjustedAmount": 400,
+    "PhoneNumber": "",
+    "LoanAmount": 8100,
+    "Interest": 1000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-06-20T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 3,
     "ReturnDay": null,
     "ModifiedDate": null
   }
