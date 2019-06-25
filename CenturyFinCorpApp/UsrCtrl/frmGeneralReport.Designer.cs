@@ -48,7 +48,6 @@
             this.lblBizAsset = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblCloseCount = new System.Windows.Forms.Label();
-            this.btnCommit = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
@@ -66,7 +65,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(167, 58);
+            this.lblTotal.Location = new System.Drawing.Point(170, 82);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(42, 13);
             this.lblTotal.TabIndex = 12;
@@ -77,7 +76,7 @@
             this.lblActual.AutoSize = true;
             this.lblActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActual.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblActual.Location = new System.Drawing.Point(167, 34);
+            this.lblActual.Location = new System.Drawing.Point(167, 32);
             this.lblActual.Name = "lblActual";
             this.lblActual.Size = new System.Drawing.Size(43, 13);
             this.lblActual.TabIndex = 11;
@@ -86,7 +85,7 @@
             // lblExpected
             // 
             this.lblExpected.AutoSize = true;
-            this.lblExpected.Location = new System.Drawing.Point(167, 7);
+            this.lblExpected.Location = new System.Drawing.Point(167, 3);
             this.lblExpected.Name = "lblExpected";
             this.lblExpected.Size = new System.Drawing.Size(52, 13);
             this.lblExpected.TabIndex = 10;
@@ -150,7 +149,7 @@
             // lblSalary
             // 
             this.lblSalary.AutoSize = true;
-            this.lblSalary.Location = new System.Drawing.Point(167, 81);
+            this.lblSalary.Location = new System.Drawing.Point(170, 62);
             this.lblSalary.Name = "lblSalary";
             this.lblSalary.Size = new System.Drawing.Size(49, 13);
             this.lblSalary.TabIndex = 25;
@@ -206,9 +205,8 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(579, 67);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(108, 13);
+            this.label7.Size = new System.Drawing.Size(0, 13);
             this.label7.TabIndex = 31;
-            this.label7.Text = "";
             // 
             // lblBizAsset
             // 
@@ -237,16 +235,6 @@
             this.lblCloseCount.TabIndex = 34;
             this.lblCloseCount.Text = "lblCloseCount";
             // 
-            // btnCommit
-            // 
-            this.btnCommit.Location = new System.Drawing.Point(39, 47);
-            this.btnCommit.Name = "btnCommit";
-            this.btnCommit.Size = new System.Drawing.Size(105, 47);
-            this.btnCommit.TabIndex = 35;
-            this.btnCommit.Text = "COMMIT";
-            this.btnCommit.UseVisualStyleBackColor = true;
-            this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
-            // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -255,7 +243,7 @@
             "ALL",
             "2018",
             "2019"});
-            this.comboBox1.Location = new System.Drawing.Point(473, 83);
+            this.comboBox1.Location = new System.Drawing.Point(18, 80);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(80, 21);
             this.comboBox1.TabIndex = 36;
@@ -266,7 +254,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.btnCommit);
             this.Controls.Add(this.lblCloseCount);
             this.Controls.Add(this.lblBizAsset);
             this.Controls.Add(this.label9);
@@ -318,7 +305,6 @@
         private System.Windows.Forms.Label lblBizAsset;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblCloseCount;
-        private System.Windows.Forms.Button btnCommit;
         private System.Windows.Forms.ComboBox comboBox1;
     }
 }

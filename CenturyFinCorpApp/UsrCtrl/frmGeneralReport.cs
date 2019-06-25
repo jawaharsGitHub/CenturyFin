@@ -1,5 +1,6 @@
 ﻿using Common;
 using Common.ExtensionMethod;
+using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
@@ -217,9 +218,19 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var numberOfMonths = DateTime.Today.Subtract(new DateTime(2018, 1, 25)).Days / (365.25 / 12).ToInt32();
 
-            lblActual.Text = $"Actual :  {actual.ToMoney()} (Per Month: { (actual / numberOfMonths).ToMoney()})";
-            lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / numberOfMonths).ToMoney()})";
-            lblTotal.Text = $"TOTAL : {total.ToMoney()} (Per Month: { (total / numberOfMonths).ToMoney()})";
+            // Monthly INT incomes.
+
+            var monthlyTxns = Customer.GetAllCustomer().Where(w => w.ReturnType == ReturnTypeEnum.Monthly || w.ReturnType == ReturnTypeEnum.GoldMonthly).ToList();
+
+            var expectedMonthly = monthlyTxns.Where(w => w.IsActive == true).Sum(s => s.Interest);
+            var actualMonthly = monthlyTxns.Where(w => w.IsActive == false).Sum(s => s.Interest);
+            var totalMonthly = (actualMonthly + expectedMonthly);
+
+            lblActual.Text = $"Actual : {actual.ToMoney()} (Per Month: { (actual / numberOfMonths).ToMoney()}){Environment.NewLine}" +
+                $"Actual(M) : {actualMonthly.ToMoney()} (Per Month: { (actualMonthly / numberOfMonths).ToMoney()})";
+            lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / numberOfMonths).ToMoney()}){Environment.NewLine}" +
+               $"Ëxpected(M) : {expectedMonthly.ToMoney()} (Per Month: { (expectedMonthly / numberOfMonths).ToMoney()})";
+            lblTotal.Text = $"TOTAL : {total.ToMoney()} + {totalMonthly.ToMoney()} = {(total + totalMonthly).ToMoney()} (Per Month: { ((total + totalMonthly) / numberOfMonths).ToMoney()})";
             lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
 
             lblSalary.Text = $"Salary : {salary.ToMoney()}";
