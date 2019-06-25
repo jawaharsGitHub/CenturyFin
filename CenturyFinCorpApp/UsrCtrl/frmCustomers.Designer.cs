@@ -61,7 +61,7 @@
             // rdbActive
             // 
             this.rdbActive.AutoSize = true;
-            this.rdbActive.Location = new System.Drawing.Point(13, 14);
+            this.rdbActive.Location = new System.Drawing.Point(8, 14);
             this.rdbActive.Name = "rdbActive";
             this.rdbActive.Size = new System.Drawing.Size(116, 17);
             this.rdbActive.TabIndex = 1;
@@ -73,7 +73,7 @@
             // rdbClosed
             // 
             this.rdbClosed.AutoSize = true;
-            this.rdbClosed.Location = new System.Drawing.Point(195, 13);
+            this.rdbClosed.Location = new System.Drawing.Point(146, 13);
             this.rdbClosed.Name = "rdbClosed";
             this.rdbClosed.Size = new System.Drawing.Size(88, 17);
             this.rdbClosed.TabIndex = 2;
@@ -85,7 +85,7 @@
             // rdbAll
             // 
             this.rdbAll.AutoSize = true;
-            this.rdbAll.Location = new System.Drawing.Point(328, 14);
+            this.rdbAll.Location = new System.Drawing.Point(282, 14);
             this.rdbAll.Name = "rdbAll";
             this.rdbAll.Size = new System.Drawing.Size(67, 17);
             this.rdbAll.TabIndex = 3;
@@ -96,9 +96,13 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(445, 13);
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.ForeColor = System.Drawing.Color.White;
+            this.txtSearch.Location = new System.Drawing.Point(457, 13);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(190, 20);
+            this.txtSearch.Size = new System.Drawing.Size(190, 26);
             this.txtSearch.TabIndex = 4;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);

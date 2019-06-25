@@ -153,16 +153,6 @@ namespace CenturyFinCorpApp.UsrCtrl
                     }
                     else
                     {
-                        //var details = f.Select(s => s.newGroup).ToList();
-                        //var cus = new List<Customer>();
-
-                        //details.ForEach(fe =>
-                        //{
-                        //    cus.AddRange(fe.Select(s => s).ToList());
-                        //});
-
-
-
                         closedDetailForCurrentMonth.Append($" Actual Close: {closedData} [{totalInt}]");
                     }
 
@@ -182,9 +172,6 @@ namespace CenturyFinCorpApp.UsrCtrl
             // Move past month expected to current month expected.
             var pastMonthExpectedIncome = (from pm in finalData
                                            where
-                                           //DateTime.Today.AddDays(-1).ToString("yyyyMM");
-                                           //(Convert.ToDateTime(pm.MonthYear).Month < DateTime.Now.Month && 
-                                           //Convert.ToDateTime(pm.MonthYear).Year < DateTime.Now.Year
                                            Convert.ToDateTime(pm.MonthYear).ToString("yyyyMM").ToInt32() < DateTime.Today.ToString("yyyyMM").ToInt32()
                                            select pm);
 

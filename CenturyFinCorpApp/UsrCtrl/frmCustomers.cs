@@ -107,13 +107,14 @@ namespace CenturyFinCorpApp
             var allGivenAmount = customers.Where(w => w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).Sum(s => s.LoanAmount);
 
             var NoInterestactiveTxn = customers.Count(c => c.IsActive == true && c.Interest == 0);
-            var activeTxn = customers.Count(c => c.IsActive == true && c.Interest > 0);
+            var monthlyINtTxn = customers.Count(c => c.IsActive == true && (c.ReturnType == ReturnTypeEnum.Monthly || c.ReturnType == ReturnTypeEnum.GoldMonthly));
+            var activeTxn = customers.Count(c => c.IsActive == true && c.Interest > 0 && c.ReturnType != ReturnTypeEnum.Monthly && c.ReturnType != ReturnTypeEnum.GoldMonthly);
             var closedTxn = customers.Count(c => c.IsActive == false);
-            var totalTxn = activeTxn + closedTxn;
+            var totalTxn = activeTxn + closedTxn + monthlyINtTxn;
 
             this.Text = $"WELCOME TO Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
 
-            rdbActive.Text = $"RUNNING NOTES ({activeTxn} + {NoInterestactiveTxn})";
+            rdbActive.Text = $"RUNNING NOTES ({activeTxn + NoInterestactiveTxn + monthlyINtTxn}) {Environment.NewLine}({activeTxn}R + {NoInterestactiveTxn}NI + {monthlyINtTxn}MI)";
             rdbClosed.Text = $"CLOSED NOTES ({closedTxn})";
             rdbAll.Text = $"ALL NOTES ({totalTxn})";
 
@@ -122,9 +123,6 @@ namespace CenturyFinCorpApp
 
             var activeMonthlyCustomers = monthlyCustomers.Where(s => s.IsActive).ToList();
             var closedMonthlyCustomers = monthlyCustomers.Where(s => s.IsActive == false).ToList();
-
-            // int aa = activeMonthlyCustomers.Sum(s => s.Balance);
-            //int bb = activeMonthlyCustomers.Sum(s => s.Interest);
 
             var myData = new
             {
@@ -160,10 +158,12 @@ namespace CenturyFinCorpApp
 
         private void AdjustColumnOrder()
         {
-            dataGridView1.Columns["CollectionAmt"].DisplayIndex = 3;
+            dataGridView1.Columns["CollectionAmt"].DisplayIndex = 4;
             dataGridView1.Columns["ReturnDay"].DisplayIndex = 4;
             dataGridView1.Columns["ReturnType"].DisplayIndex = 5;
             dataGridView1.Columns["CollectionSpotId"].DisplayIndex = 6;
+            dataGridView1.Columns["AmountGivenDate"].DisplayIndex = 8;
+            dataGridView1.Columns["ClosedDate"].DisplayIndex = 9;
 
             dataGridView1.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["ClosedDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
@@ -178,7 +178,11 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["MergedDate"].Visible = false;
             dataGridView1.Columns["IdAndName"].Visible = false;
             dataGridView1.Columns["IsForceClosed"].Visible = false;
+            dataGridView1.Columns["NameAndSeqId"].Visible = false;
             dataGridView1.Columns["NameAndId"].Visible = false;
+            dataGridView1.Columns["ModifiedDate"].Visible = false;
+            dataGridView1.Columns["MergeFromCusSeqNumber"].Visible = false;
+            dataGridView1.Columns["TamilName"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
             dataGridView1.Columns["ReturnType"].Visible = show;
