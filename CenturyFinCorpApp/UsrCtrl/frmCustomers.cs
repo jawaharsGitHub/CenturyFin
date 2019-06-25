@@ -106,13 +106,14 @@ namespace CenturyFinCorpApp
 
             var allGivenAmount = customers.Where(w => w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).Sum(s => s.LoanAmount);
 
-            var activeTxn = customers.Count(c => c.IsActive == true);
+            var NoInterestactiveTxn = customers.Count(c => c.IsActive == true && c.Interest == 0);
+            var activeTxn = customers.Count(c => c.IsActive == true && c.Interest > 0);
             var closedTxn = customers.Count(c => c.IsActive == false);
             var totalTxn = activeTxn + closedTxn;
 
             this.Text = $"WELCOME TO Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
 
-            rdbActive.Text = $"RUNNING NOTES ({activeTxn})";
+            rdbActive.Text = $"RUNNING NOTES ({activeTxn} + {NoInterestactiveTxn})";
             rdbClosed.Text = $"CLOSED NOTES ({closedTxn})";
             rdbAll.Text = $"ALL NOTES ({totalTxn})";
 

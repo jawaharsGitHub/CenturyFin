@@ -61,7 +61,7 @@
             // rdbActive
             // 
             this.rdbActive.AutoSize = true;
-            this.rdbActive.Location = new System.Drawing.Point(24, 14);
+            this.rdbActive.Location = new System.Drawing.Point(13, 14);
             this.rdbActive.Name = "rdbActive";
             this.rdbActive.Size = new System.Drawing.Size(116, 17);
             this.rdbActive.TabIndex = 1;
@@ -73,7 +73,7 @@
             // rdbClosed
             // 
             this.rdbClosed.AutoSize = true;
-            this.rdbClosed.Location = new System.Drawing.Point(168, 13);
+            this.rdbClosed.Location = new System.Drawing.Point(195, 13);
             this.rdbClosed.Name = "rdbClosed";
             this.rdbClosed.Size = new System.Drawing.Size(88, 17);
             this.rdbClosed.TabIndex = 2;
@@ -85,7 +85,7 @@
             // rdbAll
             // 
             this.rdbAll.AutoSize = true;
-            this.rdbAll.Location = new System.Drawing.Point(309, 14);
+            this.rdbAll.Location = new System.Drawing.Point(328, 14);
             this.rdbAll.Name = "rdbAll";
             this.rdbAll.Size = new System.Drawing.Size(67, 17);
             this.rdbAll.TabIndex = 3;
