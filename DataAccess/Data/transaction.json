@@ -38940,26 +38940,6 @@
     "TxnDate": "2019-06-25T00:00:00"
   },
   {
-    "CustomerId": 37,
-    "IsClosed": false,
-    "TransactionId": 17709,
-    "AmountReceived": 0,
-    "Balance": 40500,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 520,
-    "TxnDate": "2019-06-24T00:00:00"
-  },
-  {
-    "CustomerId": 37,
-    "IsClosed": true,
-    "TransactionId": 17710,
-    "AmountReceived": 40500,
-    "Balance": 0,
-    "TxnUpdatedDate": null,
-    "CustomerSequenceNo": 520,
-    "TxnDate": "2019-06-25T00:00:00"
-  },
-  {
     "CustomerId": 181,
     "IsClosed": false,
     "TransactionId": 17711,
