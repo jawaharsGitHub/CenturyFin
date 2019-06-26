@@ -481,5 +481,28 @@
     "CollectionSpotId": 3,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 522,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 175,
+    "Name": "Help - Manivannan TV Mechanic",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 3500,
+    "Interest": 200,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-06-26T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 175,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]

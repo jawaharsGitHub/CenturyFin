@@ -48,20 +48,51 @@ namespace CenturyFinCorpApp
         {
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
-            var veryRiskData = txn.Where(w => w.NotGivenFor >= 15 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).OrderByDescending(o => o.Balance);
+            var veryRiskData = (from w in txn
+                                where w.NotGivenFor >= 15 &&
+                                         w.ReturnType != ReturnTypeEnum.Monthly &&
+                                         w.ReturnType != ReturnTypeEnum.GoldMonthly &&
+                                         w.Interest != 0
+                                orderby w.Balance descending
+                                select w).ToList();
+            //txn.Where(w => w.NotGivenFor >= 15 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly && w.in).OrderByDescending(o => o.Balance);
 
             var veryRiskCount = veryRiskData.Count();
             var veryRiskAmount = veryRiskData.Sum(s => s.Balance);
 
-            var riskData = txn.Where(w => w.NotGivenFor <= 14 && w.NotGivenFor > 7 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).OrderByDescending(o => o.Balance);
+            var riskData = (from w in txn
+                            where w.NotGivenFor <= 14 &&
+                                     w.NotGivenFor > 7 &&
+                                     w.ReturnType != ReturnTypeEnum.Monthly &&
+                                     w.ReturnType != ReturnTypeEnum.GoldMonthly &&
+                                     w.Interest != 0
+                            orderby w.Balance descending
+                            select w).ToList();
+
+
+            // txn.Where(w => w.NotGivenFor <= 14
+            //&& w.NotGivenFor > 7 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).OrderByDescending(o => o.Balance);
 
             var riskCount = riskData.Count();
             var riskAmount = riskData.Sum(s => s.Balance);
 
+
+            var noInterestData = (from w in txn
+                                  where w.Interest == 0
+                                  orderby w.Balance descending
+                                  select w).ToList();
+
+
+            var noIntCount = noInterestData.Count();
+            var noIntAmount = noInterestData.Sum(s => s.Balance);
+
             lblSeverity.Text = $"Very Risk - {veryRiskCount}({veryRiskAmount.TokFormat()}) {Environment.NewLine}" +
                 $"Risk - {riskCount}({riskAmount.TokFormat()})";
 
-            using (TextWriter tw = new StreamWriter("VeryRisk.txt"))
+
+            var fileName = "RiskAnalysis.txt";
+
+            using (TextWriter tw = new StreamWriter(fileName))
             {
                 tw.WriteLine($"{veryRiskAmount.TokFormat()} @ VERY RISK!!!!!!!!! ");
                 tw.WriteLine($"--------------------------------------- ");
@@ -73,6 +104,13 @@ namespace CenturyFinCorpApp
                 tw.WriteLine($"{riskAmount.TokFormat()} @ RISK!!!");
                 tw.WriteLine($"--------------------------------------- ");
                 foreach (var s in riskData)
+                    tw.WriteLine($"{s.Name} - {s.Balance}");
+
+                tw.WriteLine($"------------------------------------------------");
+
+                tw.WriteLine($"{noIntAmount.TokFormat()} @ Friends!!!");
+                tw.WriteLine($"--------------------------------------- ");
+                foreach (var s in noInterestData)
                     tw.WriteLine($"{s.Name} - {s.Balance}");
 
                 tw.WriteLine($"------------------------------------------------");
@@ -98,7 +136,7 @@ namespace CenturyFinCorpApp
             }
 
 
-            Process.Start("VeryRisk.txt");
+            Process.Start(fileName);
 
 
             dgReports.DataSource = txn;

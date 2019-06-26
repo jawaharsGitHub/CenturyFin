@@ -13,6 +13,7 @@ namespace DataAccess.ExtendedTypes
         public DateTime? AmountGivenDate { get; set; }
         public int CustomerSeqNumber { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
+        public int? Interest { get; set; }
 
     }
 }

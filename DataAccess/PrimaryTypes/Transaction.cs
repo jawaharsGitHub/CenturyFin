@@ -421,7 +421,8 @@ namespace DataAccess.PrimaryTypes
                             LastTxnDate = t.TxnDate,
                             AmountGivenDate = c.AmountGivenDate,
                             CustomerSeqNumber = c.CustomerSeqNumber,
-                            ReturnType = c.ReturnType
+                            ReturnType = c.ReturnType,
+                            Interest = c.Interest
                         }).Where(w => w.NotGivenFor > 2).OrderByDescending(o => o.NotGivenFor).ToList();
 
             return data;
