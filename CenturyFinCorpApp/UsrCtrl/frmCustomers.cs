@@ -162,6 +162,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["ReturnDay"].DisplayIndex = 4;
             dataGridView1.Columns["ReturnType"].DisplayIndex = 5;
             dataGridView1.Columns["CollectionSpotId"].DisplayIndex = 6;
+            dataGridView1.Columns["AdjustedAmount"].DisplayIndex = 3;
             dataGridView1.Columns["AmountGivenDate"].DisplayIndex = 8;
             dataGridView1.Columns["ClosedDate"].DisplayIndex = 9;
 
@@ -247,9 +248,9 @@ namespace CenturyFinCorpApp
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (rdbActive.Checked)
-                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == true).ToList();
+                dataGridView1.DataSource = customers.Where(w => w.Interest > 0 && w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == true).ToList();
             if (rdbClosed.Checked)
-                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList();
+                dataGridView1.DataSource = customers.Where(w => w.Interest > 0 && w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList();
             if (rdbAll.Checked)
                 dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
 
