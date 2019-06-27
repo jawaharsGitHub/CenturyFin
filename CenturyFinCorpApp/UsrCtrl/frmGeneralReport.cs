@@ -214,7 +214,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             var actual = finalData.Sum(w => w.ActualIncome);
             var expected = finalData.Sum(w => w.ExpectedIncome);
             var salary = finalData.Sum(w => w.MonthlySalary);
-            var total = (actual + expected);
+
 
             var numberOfMonths = DateTime.Today.Subtract(new DateTime(2018, 1, 25)).Days / (365.25 / 12).ToInt32();
 
@@ -224,13 +224,15 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var expectedMonthly = monthlyTxns.Where(w => w.IsActive == true).Sum(s => s.Interest);
             var actualMonthly = monthlyTxns.Where(w => w.IsActive == false).Sum(s => s.Interest);
+
+            var total = (actual + expected);
             var totalMonthly = (actualMonthly + expectedMonthly);
 
             lblActual.Text = $"Actual : {actual.ToMoney()} (Per Month: { (actual / numberOfMonths).ToMoney()}){Environment.NewLine}" +
-                $"Actual(M) : {actualMonthly.ToMoney()} (Per Month: { (actualMonthly / numberOfMonths).ToMoney()})";
-            lblExpected.Text = $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / numberOfMonths).ToMoney()}){Environment.NewLine}" +
-               $"Ëxpected(M) : {expectedMonthly.ToMoney()} (Per Month: { (expectedMonthly / numberOfMonths).ToMoney()})";
-            lblTotal.Text = $"TOTAL : {total.ToMoney()} + {totalMonthly.ToMoney()} = {(total + totalMonthly).ToMoney()} (Per Month: { ((total + totalMonthly) / numberOfMonths).ToMoney()})";
+                $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / numberOfMonths).ToMoney()})";
+            lblExpected.Text = $"Actual(M) : {actualMonthly.ToMoney()} (Per Month: { (actualMonthly / numberOfMonths).ToMoney()}){Environment.NewLine}" +
+               $"Expected(M) : {expectedMonthly.ToMoney()} (Per Month: { (expectedMonthly / numberOfMonths).ToMoney()})";
+            lblTotal.Text = $"TOTAL : {totalMonthly.ToMoney()}(M) + {total.ToMoney()} = {(total + totalMonthly).ToMoney()} (Per Month: { ((total + totalMonthly) / numberOfMonths).ToMoney()})";
             lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
 
             lblSalary.Text = $"Salary : {salary.ToMoney()}";
@@ -373,6 +375,19 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         s.CloseCount
                                     }).ToList();
 
+        }
+
+        private void dgvNotePerMonth_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var neededRow = (dynamic)(sender as DataGridView).DataSource;
+
+
+            var sum = ((IEnumerable<dynamic>)neededRow).Sum(p => Convert.ToInt32(p.FutureInterest.Replace(",", "")));
+            //var sum = result.Where(w => w.TransactionId <= neededRow.).Sum(s => s.AmountReceived);
+
+            dgvNotePerMonth.Rows[e.RowIndex].Cells["FutureInterest"].ToolTipText = sum.ToString();
         }
     }
 }

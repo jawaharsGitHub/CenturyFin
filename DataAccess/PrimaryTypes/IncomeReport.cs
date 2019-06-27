@@ -40,7 +40,7 @@ namespace DataAccess.PrimaryTypes
                     salary = 12000;
                 }
 
-                if (month == 1 || month == 10)
+                if (DateTime.Today.ToString("yyyyMM").ToInt32() >= yearMonth && (month == 1 || month == 10))
                 {
                     salary += 10000;
                 }

@@ -109,6 +109,7 @@
             this.dgvNotePerMonth.Name = "dgvNotePerMonth";
             this.dgvNotePerMonth.Size = new System.Drawing.Size(569, 405);
             this.dgvNotePerMonth.TabIndex = 13;
+            this.dgvNotePerMonth.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNotePerMonth_CellMouseEnter);
             // 
             // label3
             // 

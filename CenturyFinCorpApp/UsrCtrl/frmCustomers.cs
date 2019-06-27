@@ -602,7 +602,16 @@ namespace CenturyFinCorpApp
 
         private void cmbReturnTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = customers.Where(w => w.IsActive && w.ReturnType == (ReturnTypeEnum)cmbReturnTypes.SelectedValue).ToList();
+            var data = customers.Where(w => w.IsActive && w.ReturnType == (ReturnTypeEnum)cmbReturnTypes.SelectedValue).ToList();
+
+            if((ReturnTypeEnum)cmbReturnTypes.SelectedItem == ReturnTypeEnum.Monthly)
+            {
+                dataGridView1.DataSource = data.OrderBy(o => o.AmountGivenDate.Value.Day).ToList();
+            }
+            else
+            {
+                dataGridView1.DataSource = data;
+            }
         }
     }
 }
