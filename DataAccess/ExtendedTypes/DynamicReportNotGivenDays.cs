@@ -14,6 +14,7 @@ namespace DataAccess.ExtendedTypes
         public int CustomerSeqNumber { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
         public int? Interest { get; set; }
+        public bool NeedInvestigation { get; set; }
 
     }
 }
