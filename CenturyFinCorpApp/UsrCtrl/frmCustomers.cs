@@ -451,16 +451,25 @@ namespace CenturyFinCorpApp
                 int rowIndex = dataGridView1.HitTest(e.X, e.Y).RowIndex;
 
                 var seqNo = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "CustomerSeqNumber");
-                var customerId = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "CustomerId");
-                var isActive = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "IsActive");
+                //var customerId = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "CustomerId");
+                //var isActive = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "IsActive");
 
-                strip.Tag = new Customer() { CustomerSeqNumber = Convert.ToInt32(seqNo), CustomerId = Convert.ToInt32(customerId), IsActive = Convert.ToBoolean(isActive) };
+                var selectedCustomer = Customer.GetCustomerDetails(seqNo.ToInt32());
 
+                strip.Tag = new Customer()
+                {
+                    CustomerSeqNumber = Convert.ToInt32(seqNo),
+                    CustomerId = selectedCustomer.CustomerId,
+                    IsActive = selectedCustomer.IsActive
+                };
+
+                var investigationText = selectedCustomer.NeedInvestigation ? "No need of investigation" : "Need Investigation";
                 if (rowIndex >= 0)
                 {
                     strip.Items.Add("Delete Customer and Txn").Name = "All";
                     strip.Items.Add("Delete Customer only").Name = "Cus";
                     strip.Items.Add("Delete Txn only").Name = "Txn";
+                    strip.Items.Add(investigationText).Name = "InvStatus";
                 }
 
                 strip.Show(dataGridView1, new System.Drawing.Point(e.X, e.Y));
@@ -487,6 +496,10 @@ namespace CenturyFinCorpApp
             else if (e.ClickedItem.Name == "Txn")
             {
                 Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
+            }
+            else if (e.ClickedItem.Name == "InvStatus")
+            {
+                Customer.UpdateCustomerInvestigation(cus.CustomerSeqNumber);
             }
         }
 
@@ -604,7 +617,7 @@ namespace CenturyFinCorpApp
         {
             var data = customers.Where(w => w.IsActive && w.ReturnType == (ReturnTypeEnum)cmbReturnTypes.SelectedValue).ToList();
 
-            if((ReturnTypeEnum)cmbReturnTypes.SelectedItem == ReturnTypeEnum.Monthly)
+            if ((ReturnTypeEnum)cmbReturnTypes.SelectedItem == ReturnTypeEnum.Monthly)
             {
                 dataGridView1.DataSource = data.OrderBy(o => o.AmountGivenDate.Value.Day).ToList();
             }

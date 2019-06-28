@@ -31,10 +31,11 @@ namespace DataAccess.PrimaryTypes
         public DateTime? ClosedDate { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
         public bool IsForceClosed { get; set; }
+        public bool NeedInvestigation { get; set; }
 
         public bool IsMerged { get; set; }
         public DateTime? MergedDate { get; set; }
-       
+
 
         public int CollectionSpotId
         {
@@ -253,7 +254,7 @@ namespace DataAccess.PrimaryTypes
                 var u = list.Where(c => c.CustomerId == ToCustomer.CustomerId && c.CustomerSeqNumber == ToCustomer.CustomerSeqNumber).FirstOrDefault();
                 u.LoanAmount += fromCustomer.LoanAmount;
                 u.Interest += fromCustomer.Interest;
-                
+
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
@@ -288,6 +289,23 @@ namespace DataAccess.PrimaryTypes
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
                 u.AdjustedAmount = updatedCustomer.AdjustedAmount;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void UpdateCustomerInvestigation(int cusSeqNo)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerSeqNumber == cusSeqNo).FirstOrDefault();
+                u.NeedInvestigation = !u.NeedInvestigation;
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
@@ -342,6 +360,19 @@ namespace DataAccess.PrimaryTypes
             {
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
                 return list.Where(c => c.CustomerId == customer.CustomerId && c.CustomerSeqNumber == customer.CustomerSeqNumber).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static Customer GetCustomerDetails(int customerSeqNo)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+                return list.Where(c => c.CustomerSeqNumber == customerSeqNo).FirstOrDefault();
             }
             catch (Exception ex)
             {
