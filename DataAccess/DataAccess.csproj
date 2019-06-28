@@ -72,6 +72,7 @@
     <Compile Include="PrimaryTypes\DailyCollectionDetail.cs" />
     <Compile Include="PrimaryTypes\CollectionPerDay.cs" />
     <Compile Include="PrimaryTypes\Expenditure.cs" />
+    <Compile Include="PrimaryTypes\IncomeHistory.cs" />
     <Compile Include="PrimaryTypes\IncomeReport.cs" />
     <Compile Include="PrimaryTypes\InHandAndBank.cs" />
     <Compile Include="PrimaryTypes\DetailedAmount.cs" />
@@ -534,6 +535,7 @@
     <None Include="Data\DailyCollection.json" />
     <None Include="Data\DetailedAmount.json" />
     <None Include="Data\Expenditure.json" />
+    <None Include="Data\IncomeHistory.json" />
     <None Include="Data\InHandAndBank.json" />
     <None Include="Data\Investment.json" />
     <None Include="Data\PersonalOutstanding.json" />
