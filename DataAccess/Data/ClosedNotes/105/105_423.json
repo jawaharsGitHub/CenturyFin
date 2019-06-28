@@ -1,0 +1,122 @@
+[
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 13949,
+    "AmountReceived": 0,
+    "Balance": 50000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-04-02T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 14278,
+    "AmountReceived": 5000,
+    "Balance": 45000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-04-10T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 14786,
+    "AmountReceived": 5000,
+    "Balance": 40000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-04-22T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 15251,
+    "AmountReceived": 4500,
+    "Balance": 35500,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-05-02T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 15299,
+    "AmountReceived": 500,
+    "Balance": 35000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-05-03T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 15636,
+    "AmountReceived": 5000,
+    "Balance": 30000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-05-10T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 15962,
+    "AmountReceived": 5000,
+    "Balance": 25000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-05-17T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 16280,
+    "AmountReceived": 5000,
+    "Balance": 20000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-05-24T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 16754,
+    "AmountReceived": 5000,
+    "Balance": 15000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-06-04T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 17094,
+    "AmountReceived": 5000,
+    "Balance": 10000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-06-12T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": false,
+    "TransactionId": 17417,
+    "AmountReceived": 5000,
+    "Balance": 5000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-06-19T00:00:00"
+  },
+  {
+    "CustomerId": 105,
+    "IsClosed": true,
+    "TransactionId": 17798,
+    "AmountReceived": 5000,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 423,
+    "TxnDate": "2019-06-27T00:00:00"
+  }
+]
