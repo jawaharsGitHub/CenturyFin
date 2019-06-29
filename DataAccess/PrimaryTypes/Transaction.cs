@@ -423,7 +423,8 @@ namespace DataAccess.PrimaryTypes
                             CustomerSeqNumber = c.CustomerSeqNumber,
                             ReturnType = c.ReturnType,
                             Interest = c.Interest,
-                            NeedInvestigation = c.NeedInvestigation
+                            NeedInvestigation = c.NeedInvestigation,
+                            MonthlyInterest = c.MonthlyInterest
                         }).Where(w => w.NotGivenFor > 2).OrderByDescending(o => o.NotGivenFor).ToList();
 
             return data;

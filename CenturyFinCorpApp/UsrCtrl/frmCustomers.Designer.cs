@@ -42,6 +42,7 @@
             this.lblRowCount = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cmbReturnTypes = new System.Windows.Forms.ComboBox();
+            this.chkFriends = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -180,10 +181,21 @@
             this.cmbReturnTypes.ValueMember = "key";
             this.cmbReturnTypes.SelectedIndexChanged += new System.EventHandler(this.cmbReturnTypes_SelectedIndexChanged);
             // 
+            // chkFriends
+            // 
+            this.chkFriends.AutoSize = true;
+            this.chkFriends.Location = new System.Drawing.Point(578, 77);
+            this.chkFriends.Name = "chkFriends";
+            this.chkFriends.Size = new System.Drawing.Size(83, 17);
+            this.chkFriends.TabIndex = 15;
+            this.chkFriends.Text = "Friends Also";
+            this.chkFriends.UseVisualStyleBackColor = true;
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkFriends);
             this.Controls.Add(this.cmbReturnTypes);
             this.Controls.Add(this.lblRowCount);
             this.Controls.Add(this.chkAllColumns);
@@ -220,5 +232,6 @@
         private System.Windows.Forms.Label lblRowCount;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ComboBox cmbReturnTypes;
+        private System.Windows.Forms.CheckBox chkFriends;
     }
 }

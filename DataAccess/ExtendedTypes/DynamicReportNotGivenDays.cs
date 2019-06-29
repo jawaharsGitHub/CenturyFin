@@ -15,6 +15,7 @@ namespace DataAccess.ExtendedTypes
         public ReturnTypeEnum ReturnType { get; set; }
         public int? Interest { get; set; }
         public bool NeedInvestigation { get; set; }
+        public int MonthlyInterest { get; set; }
 
     }
 }

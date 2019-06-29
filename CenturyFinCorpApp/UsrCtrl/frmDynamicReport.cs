@@ -48,6 +48,7 @@ namespace CenturyFinCorpApp
         {
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
+            // NEED INVESTIGATION
             var needInvestigationData = (from w in txn
                                          where w.NotGivenFor >= 15 &&
                                          w.ReturnType != ReturnTypeEnum.Monthly &&
@@ -56,12 +57,10 @@ namespace CenturyFinCorpApp
                                          w.NeedInvestigation == true
                                          orderby w.Balance descending
                                          select w).ToList();
-            //txn.Where(w => w.NotGivenFor >= 15 && w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly && w.in).OrderByDescending(o => o.Balance);
-
             var needInvestigationCount = needInvestigationData.Count();
             var needInvestigationAmount = needInvestigationData.Sum(s => s.Balance);
 
-
+            // VERY RISK
             var veryRiskData = (from w in txn
                                 where w.NotGivenFor >= 15 &&
                                          w.ReturnType != ReturnTypeEnum.Monthly &&
@@ -70,10 +69,10 @@ namespace CenturyFinCorpApp
                                          w.NeedInvestigation == false
                                 orderby w.Balance descending
                                 select w).ToList();
-
             var veryRiskCount = veryRiskData.Count();
             var veryRiskAmount = veryRiskData.Sum(s => s.Balance);
 
+            // RISK
             var riskData = (from w in txn
                             where w.NotGivenFor <= 14 &&
                                      w.NotGivenFor > 7 &&
@@ -89,7 +88,7 @@ namespace CenturyFinCorpApp
             var riskCount = riskData.Count();
             var riskAmount = riskData.Sum(s => s.Balance);
 
-
+            // NO INTEREST - FRIEND'S 
             var noInterestData = (from w in txn
                                   where w.Interest == 0
                                   orderby w.Balance descending
@@ -99,7 +98,18 @@ namespace CenturyFinCorpApp
             var noIntCount = noInterestData.Count();
             var noIntAmount = noInterestData.Sum(s => s.Balance);
 
-            lblSeverity.Text = $"Need Investigation - {needInvestigationCount}({needInvestigationAmount.TokFormat()}) {Environment.NewLine}" + 
+
+            // MONTHLY
+            var monthlytData = (from w in txn
+                                where w.ReturnType == ReturnTypeEnum.Monthly || w.ReturnType == ReturnTypeEnum.GoldMonthly
+                                orderby w.AmountGivenDate.Value.Day
+                                select w).ToList();
+
+
+            var monthlyCount = monthlytData.Count();
+            var monthlyAmount = monthlytData.Sum(s => s.Balance);
+
+            lblSeverity.Text = $"Need Investigation - {needInvestigationCount}({needInvestigationAmount.TokFormat()}) {Environment.NewLine}" +
                 $"Very Risk - {veryRiskCount}({veryRiskAmount.TokFormat()}) {Environment.NewLine}" +
                 $"Risk - {riskCount}({riskAmount.TokFormat()})";
 
@@ -134,6 +144,14 @@ namespace CenturyFinCorpApp
                 tw.WriteLine($"--------------------------------------- ");
                 foreach (var s in noInterestData)
                     tw.WriteLine($"{s.Name} - {s.Balance} ({s.NotGivenFor} days)");
+
+                tw.WriteLine($"------------------------------------------------");
+
+
+                tw.WriteLine($"{monthlyAmount.TokFormat()} @ Monthly!!!");
+                tw.WriteLine($"--------------------------------------- ");
+                foreach (var s in monthlytData)
+                    tw.WriteLine($"{s.Name} - Loan: {s.LoanAmount} Int: {s.MonthlyInterest} Due: {s.AmountGivenDate.Value.Date.ToShortDateString()}");
 
                 tw.WriteLine($"------------------------------------------------");
 

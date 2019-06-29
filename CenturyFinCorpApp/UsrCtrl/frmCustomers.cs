@@ -247,12 +247,23 @@ namespace CenturyFinCorpApp
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
+
+            List<Customer> filteredData = null;
+
             if (rdbActive.Checked)
-                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == true).ToList(); // w => w.Interest > 0 &&
-            if (rdbClosed.Checked)
-                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList(); //  w.Interest > 0 &&
-            if (rdbAll.Checked)
-                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                filteredData = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == true).ToList(); // w => w.Interest > 0 &&
+            else if (rdbClosed.Checked)
+                filteredData = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList(); //  w.Interest > 0 &&
+            else //(rdbAll.Checked)
+                filteredData = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+
+
+            if (chkFriends.Checked)
+                dataGridView1.DataSource = filteredData;
+            else
+                dataGridView1.DataSource = filteredData.Where(w => w.Interest > 0).ToList();
+
+
 
             GlobalValue.SearchText = txtSearch.Text;
         }
@@ -626,5 +637,6 @@ namespace CenturyFinCorpApp
                 dataGridView1.DataSource = data;
             }
         }
+
     }
 }
