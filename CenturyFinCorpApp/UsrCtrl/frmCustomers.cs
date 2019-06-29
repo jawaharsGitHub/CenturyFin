@@ -248,9 +248,9 @@ namespace CenturyFinCorpApp
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (rdbActive.Checked)
-                dataGridView1.DataSource = customers.Where(w => w.Interest > 0 && w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == true).ToList();
+                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == true).ToList(); // w => w.Interest > 0 &&
             if (rdbClosed.Checked)
-                dataGridView1.DataSource = customers.Where(w => w.Interest > 0 && w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList();
+                dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList(); //  w.Interest > 0 &&
             if (rdbAll.Checked)
                 dataGridView1.DataSource = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
 
