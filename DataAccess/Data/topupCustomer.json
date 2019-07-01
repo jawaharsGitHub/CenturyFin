@@ -550,5 +550,29 @@
     "CollectionSpotId": 99,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 462,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 149,
+    "Name": "Linga Sriram Agency",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-06-30T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 149,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
