@@ -424,7 +424,8 @@ namespace DataAccess.PrimaryTypes
                             ReturnType = c.ReturnType,
                             Interest = c.Interest,
                             NeedInvestigation = c.NeedInvestigation,
-                            MonthlyInterest = c.MonthlyInterest
+                            MonthlyInterest = c.MonthlyInterest,
+                            CustomerId = c.CustomerId
                         }).Where(w => w.NotGivenFor > 2).OrderByDescending(o => o.NotGivenFor).ToList();
 
             return data;

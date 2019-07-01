@@ -55,6 +55,7 @@ namespace CenturyFinCorpApp
                                          w.ReturnType != ReturnTypeEnum.GoldMonthly &&
                                          w.Interest != 0 &&
                                          w.NeedInvestigation == true
+                                         orderby w.CustomerId
                                          orderby w.Balance descending
                                          select w).ToList();
             var needInvestigationCount = needInvestigationData.Count();
@@ -122,7 +123,7 @@ namespace CenturyFinCorpApp
                 tw.WriteLine($"{needInvestigationAmount.TokFormat()} @ NEED INVESTIGATION!!!!!!!!! ");
                 tw.WriteLine($"--------------------------------------- ");
                 foreach (var s in needInvestigationData)
-                    tw.WriteLine($"{s.Name} - {s.Balance} ({s.NotGivenFor} days)");
+                    tw.WriteLine($"{s.CustomerId} {s.Name} - {s.Balance} ({s.NotGivenFor} days)");
 
                 tw.WriteLine($"------------------------------------------------");
 
