@@ -133,7 +133,8 @@ namespace CenturyFinCorpApp
                 ClosedNotesPerDay = $"{Math.Round(closedTxn / days, 2)} closed note(s) per day",
                 Data1 = $"{closedMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(C) [{closedMonthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}] + {activeMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(A) [{activeMonthlyCustomers.Sum(s => s.Balance).ToMoney()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoney()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}).",
                 Data2 = $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month)",
-                Data3 = activeMonthlyCustomers.Sum(s => s.MonthlyInterest)
+                Data3 = activeMonthlyCustomers.Sum(s => s.MonthlyInterest),
+                Data4 =  monthlyCustomers.Sum(s => s.Interest)
             };
 
             label1.Text = $"{myData.TotalNotes} {Environment.NewLine} " +
