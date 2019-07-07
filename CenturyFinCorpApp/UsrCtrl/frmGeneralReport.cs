@@ -220,7 +220,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             // Monthly INT incomes.
 
-            var monthlyTxns = Customer.GetAllCustomer().Where(w => w.ReturnType == ReturnTypeEnum.Monthly || w.ReturnType == ReturnTypeEnum.GoldMonthly).ToList();
+            var monthlyTxns = Customer.GetAllCustomer().Where(w => w.IsMonthly()).ToList();
 
             var expectedMonthly = monthlyTxns.Where(w => w.IsActive == true).Sum(s => s.Interest);
             var actualMonthly = monthlyTxns.Where(w => w.IsActive == false).Sum(s => s.Interest);
@@ -309,7 +309,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             var inHandAndBank = InHandAndBank.GetAllhandMoney();
             lblTotalAsset.Visible = label4.Visible = false;
             lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
-            var monthlyCustomersBalance = (from c in Customer.GetAllCustomer().Where(w => w.IsActive && w.ReturnType == DataAccess.ExtendedTypes.ReturnTypeEnum.Monthly)
+            var monthlyCustomersBalance = (from c in Customer.GetAllCustomer().Where(w => w.IsActive && w.IsMonthly())
                                            select Transaction.GetBalance(c)).Sum();
 
             var fullInvestment = DailyCollectionDetail.GetActualInvestmentTxnDate();

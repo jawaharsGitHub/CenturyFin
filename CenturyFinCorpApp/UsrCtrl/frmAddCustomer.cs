@@ -64,7 +64,7 @@ namespace CenturyFinCorpApp
             cus.ReturnDay = (DayOfWeek)cmbReturnDay.SelectedItem;
             cus.CollectionSpotId = cmbCollectionSpot.SelectedValue.ToInt32();
 
-            if(cus.ReturnType == ReturnTypeEnum.GoldMonthly || cus.ReturnType == ReturnTypeEnum.Monthly)
+            if(cus.IsMonthly())
             {
                 cus.MonthlyInterest = cus.Interest;
             }

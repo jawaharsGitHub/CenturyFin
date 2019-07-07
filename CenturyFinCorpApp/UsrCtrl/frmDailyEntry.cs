@@ -129,20 +129,9 @@ namespace CenturyFinCorpApp
             }
 
 
-            var cus = from c in Customer.GetAllCustomer()
+            var cus = (from c in Customer.GetAllCustomer()
                       where c.AmountGivenDate.Value.Date <= chooseDate.Date && (c.ClosedDate == null || c.ClosedDate.Value.Date >= chooseDate.Date)
-                      select new
-                      {
-                          c.CustomerSeqNumber,
-                          c.Name,
-                          CS = c.CollectionSpotId,
-                          c.IsActive,
-                          c.Interest,
-                          c.LoanAmount,
-                          c.CustomerId,
-                          c.AmountGivenDate,
-                          c.ReturnType
-                      };
+                      select c).ToList();
 
 
             if (txn != null)
@@ -156,7 +145,7 @@ namespace CenturyFinCorpApp
                               TxnDate = t.TxnDate,
                               CustomerName = c.Name,
                               Loan = c.LoanAmount,
-                              CSId = c.CS,
+                              CSId = c.CustomerSeqNumber,
                               AmountReceived = t.AmountReceived,
                               Balance = t.Balance,
                               CustomerId = c.CustomerId,
@@ -172,7 +161,7 @@ namespace CenturyFinCorpApp
             var amountReceived = result.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
 
             ActualCollection = amountReceived;
-            ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && (w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly)).Sum(s => s.LoanAmount) / 100);
+            ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && w.IsNotMonthly()).Sum(s => s.LoanAmount) / 100);
 
             label1.Text = $"Total Collection is: {amountReceived.ToMoney()}";
 

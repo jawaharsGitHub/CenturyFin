@@ -51,12 +51,12 @@ namespace CenturyFinCorpApp
             // NEED INVESTIGATION
             var needInvestigationData = (from w in txn
                                          where w.NotGivenFor >= 15 &&
-                                         w.ReturnType != ReturnTypeEnum.Monthly &&
-                                         w.ReturnType != ReturnTypeEnum.GoldMonthly &&
+                                         w.IsNotMonthly() &&
                                          w.Interest != 0 &&
                                          w.NeedInvestigation == true
-                                         orderby w.CustomerId
                                          orderby w.Balance descending
+                                         orderby w.CustomerId
+                                         
                                          select w).ToList();
             var needInvestigationCount = needInvestigationData.Count();
             var needInvestigationAmount = needInvestigationData.Sum(s => s.Balance);
@@ -64,8 +64,7 @@ namespace CenturyFinCorpApp
             // VERY RISK
             var veryRiskData = (from w in txn
                                 where w.NotGivenFor >= 15 &&
-                                         w.ReturnType != ReturnTypeEnum.Monthly &&
-                                         w.ReturnType != ReturnTypeEnum.GoldMonthly &&
+                                         w.IsNotMonthly() &&
                                          w.Interest != 0 &&
                                          w.NeedInvestigation == false
                                 orderby w.Balance descending
@@ -77,8 +76,7 @@ namespace CenturyFinCorpApp
             var riskData = (from w in txn
                             where w.NotGivenFor <= 14 &&
                                      w.NotGivenFor > 7 &&
-                                     w.ReturnType != ReturnTypeEnum.Monthly &&
-                                     w.ReturnType != ReturnTypeEnum.GoldMonthly &&
+                                     w.IsNotMonthly() &&
                                      w.Interest != 0 &&
                                      w.NeedInvestigation == false
 
@@ -102,7 +100,7 @@ namespace CenturyFinCorpApp
 
             // MONTHLY
             var monthlytData = (from w in txn
-                                where w.ReturnType == ReturnTypeEnum.Monthly || w.ReturnType == ReturnTypeEnum.GoldMonthly
+                                where w.IsMonthly()
                                 orderby w.AmountGivenDate.Value.Day
                                 select w).ToList();
 

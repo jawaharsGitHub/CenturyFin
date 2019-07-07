@@ -101,14 +101,14 @@ namespace CenturyFinCorpApp
                         .OrderByDescending(o => o.AmountGivenDate).ToList();
 
             var monthlyCustomers = Customer.GetAllCustomer()
-                        .Where(w => w.ReturnType == ReturnTypeEnum.Monthly || w.ReturnType == ReturnTypeEnum.GoldMonthly)
+                        .Where(w => w.IsMonthly())
                         .Select(s => new { Balance = Transaction.GetBalance(s), s.IsActive, s.Interest, s.LoanAmount, s.MonthlyInterest });
 
-            var allGivenAmount = customers.Where(w => w.ReturnType != ReturnTypeEnum.Monthly && w.ReturnType != ReturnTypeEnum.GoldMonthly).Sum(s => s.LoanAmount);
+            var allGivenAmount = customers.Where(w => w.IsNotMonthly()).Sum(s => s.LoanAmount);
 
             var NoInterestactiveTxn = customers.Count(c => c.IsActive == true && c.Interest == 0);
-            var monthlyINtTxn = customers.Count(c => c.IsActive == true && (c.ReturnType == ReturnTypeEnum.Monthly || c.ReturnType == ReturnTypeEnum.GoldMonthly));
-            var activeTxn = customers.Count(c => c.IsActive == true && c.Interest > 0 && c.ReturnType != ReturnTypeEnum.Monthly && c.ReturnType != ReturnTypeEnum.GoldMonthly);
+            var monthlyINtTxn = customers.Count(c => c.IsActive == true && c.IsMonthly());
+            var activeTxn = customers.Count(c => c.IsActive == true && c.Interest > 0 && c.IsNotMonthly());
             var closedTxn = customers.Count(c => c.IsActive == false);
             var totalTxn = activeTxn + closedTxn + monthlyINtTxn;
 
@@ -393,7 +393,7 @@ namespace CenturyFinCorpApp
                 };
 
 
-                if (cus.ReturnType == ReturnTypeEnum.Monthly && cus.LoanAmount != valCollectedAmount && txn.Balance > 0)
+                if (cus.IsMonthly() && cus.LoanAmount != valCollectedAmount && txn.Balance > 0)
                 {
                     txn.Balance = cus.LoanAmount;
                     cus.Interest += valCollectedAmount;

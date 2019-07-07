@@ -303,7 +303,7 @@ namespace DataAccess.PrimaryTypes
 
             var customerTxns = list.Where(s => s.CustomerSequenceNo == customer.CustomerSeqNumber && s.CustomerId == customer.CustomerId);
 
-            if (customer.ReturnType == ExtendedTypes.ReturnTypeEnum.Monthly)
+            if (customer.ReturnType == ReturnTypeEnum.Monthly)
             {
                 return customerTxns.Min(m => m.Balance);
             }
