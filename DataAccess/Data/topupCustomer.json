@@ -598,5 +598,29 @@
     "CollectionSpotId": 71,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 525,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 105,
+    "Name": "Sekar Murugan Canteen",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-07-10T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 105,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
