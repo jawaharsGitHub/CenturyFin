@@ -61,6 +61,8 @@ namespace CenturyFinCorpApp
             var needInvestigationCount = needInvestigationData.Count();
             var needInvestigationAmount = needInvestigationData.Sum(s => s.Balance);
 
+            var needInvestigationAmountWithoutInterest = needInvestigationData.Sum(s => s.Balance) - needInvestigationData.Sum(s => s.Interest);
+
             // VERY RISK
             var veryRiskData = (from w in txn
                                 where w.NotGivenFor >= 15 &&
@@ -71,6 +73,7 @@ namespace CenturyFinCorpApp
                                 select w).ToList();
             var veryRiskCount = veryRiskData.Count();
             var veryRiskAmount = veryRiskData.Sum(s => s.Balance);
+            var veryRiskAmountWithoutInterest = veryRiskData.Sum(s => s.Balance) - veryRiskData.Sum(s => s.Interest);
 
             // RISK
             var riskData = (from w in txn
@@ -86,6 +89,7 @@ namespace CenturyFinCorpApp
 
             var riskCount = riskData.Count();
             var riskAmount = riskData.Sum(s => s.Balance);
+            var riskAmountWithoutInterest = riskData.Sum(s => s.Balance) - riskData.Sum(s => s.Interest);
 
             // NO INTEREST - FRIEND'S 
             var noInterestData = (from w in txn
@@ -108,7 +112,7 @@ namespace CenturyFinCorpApp
             var monthlyCount = monthlytData.Count();
             var monthlyAmount = monthlytData.Sum(s => s.Balance);
 
-            lblSeverity.Text = $"Need Investigation - {needInvestigationCount}({needInvestigationAmount.TokFormat()}) {Environment.NewLine}" +
+            lblSeverity.Text = $"Need Investigation - {needInvestigationCount}({needInvestigationAmount.TokFormat()} Vs {needInvestigationAmountWithoutInterest.TokFormat()}) {Environment.NewLine}" +
                 $"Very Risk - {veryRiskCount}({veryRiskAmount.TokFormat()}) {Environment.NewLine}" +
                 $"Risk - {riskCount}({riskAmount.TokFormat()})";
 
@@ -118,24 +122,24 @@ namespace CenturyFinCorpApp
             using (TextWriter tw = new StreamWriter(fileName))
             {
 
-                tw.WriteLine($"{needInvestigationAmount.TokFormat()} @ NEED INVESTIGATION!!!!!!!!! ");
+                tw.WriteLine($"{needInvestigationAmount.TokFormat()} Vs {needInvestigationAmountWithoutInterest.TokFormat()} @ NEED INVESTIGATION!!!!!!!!! ");
                 tw.WriteLine($"--------------------------------------- ");
                 foreach (var s in needInvestigationData)
-                    tw.WriteLine($"{s.CustomerId} {s.Name} - {s.Balance} ({s.NotGivenFor} days)");
+                    tw.WriteLine($"{s.CustomerId} {s.Name} - {s.Balance} Vs {s.Balance - s.Interest}({s.NotGivenFor} days)");
 
                 tw.WriteLine($"------------------------------------------------");
 
-                tw.WriteLine($"{veryRiskAmount.TokFormat()} @ VERY RISK!!!!!!!!! ");
+                tw.WriteLine($"{veryRiskAmount.TokFormat()} Vs {veryRiskAmountWithoutInterest.TokFormat()}@ VERY RISK!!!!!!!!! ");
                 tw.WriteLine($"--------------------------------------- ");
                 foreach (var s in veryRiskData)
-                    tw.WriteLine($"{s.Name} - {s.Balance} ({s.NotGivenFor} days)");
+                    tw.WriteLine($"{s.Name} - {s.Balance} Vs {s.Balance - s.Interest} ({s.NotGivenFor} days)");
 
                 tw.WriteLine($"------------------------------------------------");
 
-                tw.WriteLine($"{riskAmount.TokFormat()} @ RISK!!!");
+                tw.WriteLine($"{riskAmount.TokFormat()} Vs {riskAmountWithoutInterest.TokFormat()}@ RISK!!!");
                 tw.WriteLine($"--------------------------------------- ");
                 foreach (var s in riskData)
-                    tw.WriteLine($"{s.Name} - {s.Balance} ({s.NotGivenFor} days)");
+                    tw.WriteLine($"{s.Name} - {s.Balance} Vs {s.Balance - s.Interest}({s.NotGivenFor} days)");
 
                 tw.WriteLine($"------------------------------------------------");
 
