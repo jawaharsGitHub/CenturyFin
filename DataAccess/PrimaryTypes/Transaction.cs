@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.ExtensionMethod;
 using DataAccess.ExtendedTypes;
 using Newtonsoft.Json;
 using System;
@@ -323,6 +324,62 @@ namespace DataAccess.PrimaryTypes
             return customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
                                                      // return (customer.LoanAmount - paidAmount);
 
+        }
+
+        private string GetDailyCollection(DateTime chooseDate, bool versionZero = false)
+        {
+            var txn = new List<Transaction>();
+
+            if (versionZero)
+            {
+                txn = Transaction.GetDailyCollectionDetails_V0(chooseDate);
+            }
+            else
+            {
+                txn = Transaction.GetDailyCollectionDetails(chooseDate);
+            }
+
+
+            var cus = (from c in Customer.GetAllCustomer()
+                       where c.AmountGivenDate.Value.Date <= chooseDate.Date && (c.ClosedDate == null || c.ClosedDate.Value.Date >= chooseDate.Date)
+                       select c).ToList();
+
+
+            if (txn != null)
+            {
+                var result = (from t in txn
+                          join c in cus
+                          on t.CustomerSequenceNo equals c.CustomerSeqNumber
+                          select new CustomerDailyTxn
+                          {
+                              TransactionId = t.TransactionId,
+                              TxnDate = t.TxnDate,
+                              CustomerName = c.Name,
+                              Loan = c.LoanAmount,
+                              CSId = c.CustomerSeqNumber,
+                              AmountReceived = t.AmountReceived,
+                              Balance = t.Balance,
+                              CustomerId = c.CustomerId,
+                              CustomerSeqId = c.CustomerSeqNumber,
+                              Interest = c.Interest,
+                              ReturnType = c.ReturnType
+                          }).Distinct().ToList();
+
+
+                var data = result.DistinctBy(d => d.AmountReceived).Select(s => s.AmountReceived).ToList();
+
+                var amountReceived = result.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
+
+                //ActualCollection = amountReceived;
+                //ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && w.IsNotMonthly()).Sum(s => s.LoanAmount) / 100);
+
+                return $"Total Collection is: {amountReceived.ToMoney()}";
+
+            }
+
+
+           
+            return $"Total Collection is: 0"; 
         }
 
 
