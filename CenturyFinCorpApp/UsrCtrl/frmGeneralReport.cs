@@ -240,6 +240,11 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             // may be in future we need it.
 
+            // Monthly Income.
+            // var monthlyData = Customer.GetAllCustomer()
+
+
+
             if (comboBox1.Text.ToLower() != "all" && comboBox1.Text != "")
             {
                 filteredfinalData = finalData.Where(w => Convert.ToDateTime(w.MonthYear).Year.ToString() == comboBox1.Text).ToList();
@@ -248,6 +253,8 @@ namespace CenturyFinCorpApp.UsrCtrl
             {
                 filteredfinalData = finalData;
             }
+
+
 
             // Bindng the real/actual source finalData (will be updated using by ref by various data)
             dgvIncome.DataSource = (from s in filteredfinalData
