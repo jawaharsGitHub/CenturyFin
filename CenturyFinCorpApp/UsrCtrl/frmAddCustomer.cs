@@ -36,6 +36,7 @@ namespace CenturyFinCorpApp
                 cus = (Customer)cmbExistingCustomer.SelectedItem;
                 cus.CustomerSeqNumber = nextSeqNo;
                 cus.IsExistingCustomer = true;
+                cus.AdjustedAmount = null;
                 newCustomerId = cus.CustomerId;
                 cus.IsActive = false;   //Update Active flag of existing customer.
                 cus.IsForceClosed = false;

@@ -288,7 +288,8 @@ namespace DataAccess.PrimaryTypes
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
 
                 var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
-                u.AdjustedAmount = updatedCustomer.AdjustedAmount;
+
+                u.AdjustedAmount = updatedCustomer.AdjustedAmount == 0 ? null : updatedCustomer.AdjustedAmount;
 
                 WriteObjectsToFile(list, JsonFilePath);
             }

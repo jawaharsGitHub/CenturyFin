@@ -154,7 +154,7 @@ namespace CenturyFinCorpApp
                 tw.WriteLine($"{monthlyAmount.TokFormat()} @ Monthly!!!");
                 tw.WriteLine($"--------------------------------------- ");
                 foreach (var s in monthlytData)
-                    tw.WriteLine($"{s.Name} - Loan: {s.LoanAmount} Int: {s.MonthlyInterest} Due: {s.AmountGivenDate.Value.Day} Last Paid On: {s.LastTxnDate.Date.ToString("dd MMMM yyyy")}");
+                    tw.WriteLine($"Loan: {s.LoanAmount} Int: {s.MonthlyInterest} Due: {s.AmountGivenDate.Value.Day} Last Paid On: {s.LastTxnDate.Date.ToString("dd MMMM yyyy")} - {s.Name}");
 
                 tw.WriteLine($"------------------------------------------------");
 
