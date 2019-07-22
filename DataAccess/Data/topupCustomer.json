@@ -622,5 +622,29 @@
     "CollectionSpotId": 105,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 488,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 154,
+    "Name": "Nazeer TN Store",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-07-18T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 154,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
