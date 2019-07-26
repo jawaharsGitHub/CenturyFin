@@ -28,8 +28,9 @@ namespace CenturyFinCorpApp
 
             //Create New DataGridViewTextBoxColumn
             DataGridViewTextBoxColumn textboxColumn = new DataGridViewTextBoxColumn();
-            textboxColumn.HeaderText = "Collection Amount";
+            textboxColumn.HeaderText = "Cxn Amount";
             textboxColumn.Name = "CollectionAmt";
+            textboxColumn.Width = 50;
 
             dataGridView1.DataSource = customers;
 
@@ -170,6 +171,15 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["ClosedDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dataGridView1.Columns["Name"].Width = 250;
+            dataGridView1.Columns["AdjustedAmount"].Width = 50;
+            dataGridView1.Columns["LoanAmount"].Width = 50;
+            dataGridView1.Columns["Interest"].Width = 50;
+            dataGridView1.Columns["MonthlyInterest"].Width = 50;
+            dataGridView1.Columns["AmountGivenDate"].Width = 80;
+            dataGridView1.Columns["ClosedDate"].Width = 80;
+            dataGridView1.Columns["IsActive"].Width = 50;
+
+            //dataGridView1.Columns["ClosedDate"].HeaderText. = 9;
         }
 
         private void SetColumnVisibility(bool show = false)
@@ -410,6 +420,13 @@ namespace CenturyFinCorpApp
                 {
                     MessageBox.Show($"Good News, txn closed for [{txn.CustomerSequenceNo}]-[{cus.Name}]", "", MessageBoxButtons.OK, icon: MessageBoxIcon.Exclamation);
                     LogHelper.WriteLog($"Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
+
+                    // Add new txn for extra amount.
+                    //if(cus.AdjustedAmount != null && cus.AdjustedAmount > 0)
+                    //{
+
+                    //}
+
                     Customer.CloseCustomerTxn(cus, false, txn.TxnDate);
                 }
 
