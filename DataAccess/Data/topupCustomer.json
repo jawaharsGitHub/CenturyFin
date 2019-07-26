@@ -790,5 +790,29 @@
     "CollectionSpotId": 153,
     "ReturnDay": 0,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 545,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 191,
+    "Name": "rajesh kanna - mama",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 40000,
+    "Interest": 4000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2019-07-25T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 191,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
