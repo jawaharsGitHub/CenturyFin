@@ -62,7 +62,7 @@ namespace CenturyFinCorpApp
                     var topupCustomers = TopupCustomer.GetAllTopupCustomer().Where(w => w.ReturnType != ReturnTypeEnum.BiWeekly && w.AmountGivenDate.Value.Date == date).ToList();
 
                     txtGivenAmount.Text = (todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Balance) + topupCustomers.Sum(s => s.LoanAmount)).ToString();
-                    txtInterest.Text = (todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Interest) + topupCustomers.Sum(s => s.Interest)).ToString();
+                    txtInterest.Text = (todayTxn.Where(w => w.AmountReceived == 0 &&  w.Balance > 0).Sum(s => s.Interest) + topupCustomers.Sum(s => s.Interest)).ToString();
                     txtClosed.Text = todayTxn.Where(w => w.Balance == 0).Count().ToString();
                     txtOpened.Text = todayTxn.Where(w => w.AmountReceived == 0).Count().ToString();
 
