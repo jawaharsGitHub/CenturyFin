@@ -32,6 +32,7 @@ namespace DataAccess.PrimaryTypes
         public ReturnTypeEnum ReturnType { get; set; }
         public bool IsForceClosed { get; set; }
         public bool NeedInvestigation { get; set; }
+        public bool GivenEligibility { get; set; } = true;
 
         public bool IsMerged { get; set; }
         public DateTime? MergedDate { get; set; }
@@ -307,6 +308,23 @@ namespace DataAccess.PrimaryTypes
 
                 var u = list.Where(c => c.CustomerSeqNumber == cusSeqNo).FirstOrDefault();
                 u.NeedInvestigation = !u.NeedInvestigation;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void UpdateCustomerEligibility(int cusId)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                list.Where(c => c.CustomerId == cusId).ToList().ForEach(u => { u.GivenEligibility = !u.GivenEligibility }); ;
+                //u.GivenEligibility = !u.GivenEligibility;
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
