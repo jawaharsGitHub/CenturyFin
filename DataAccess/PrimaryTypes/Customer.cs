@@ -323,8 +323,7 @@ namespace DataAccess.PrimaryTypes
             {
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
 
-                list.Where(c => c.CustomerId == cusId).ToList().ForEach(u => { u.GivenEligibility = !u.GivenEligibility }); ;
-                //u.GivenEligibility = !u.GivenEligibility;
+                list.Where(c => c.CustomerId == cusId).ToList().ForEach(u => { u.GivenEligibility = !u.GivenEligibility; }); 
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
