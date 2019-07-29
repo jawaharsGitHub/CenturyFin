@@ -15,7 +15,7 @@ namespace CenturyFinCorpApp
             InitializeComponent();
             cmbExistingCustomer.Visible = false;
             LoadCustomerCollectionType();
-                dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
+            dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
             cmbExistingCustomer.DropDownStyle = ComboBoxStyle.DropDown;
             cmbExistingCustomer.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -65,7 +65,7 @@ namespace CenturyFinCorpApp
             cus.ReturnDay = (DayOfWeek)cmbReturnDay.SelectedItem;
             cus.CollectionSpotId = cmbCollectionSpot.SelectedValue.ToInt32();
 
-            if(cus.IsMonthly())
+            if (cus.IsMonthly())
             {
                 cus.MonthlyInterest = cus.Interest;
             }
@@ -151,6 +151,17 @@ namespace CenturyFinCorpApp
             cmbReturnType.SelectedItem = ReturnTypeEnum.Daily;
             cmbReturnDay.SelectedItem = DayOfWeek.Sunday;
             cmbCollectionSpot.SelectedValue = 0;
+        }
+
+        private void cmbExistingCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedCustomer = cmbExistingCustomer.SelectedItem as Customer;
+
+            if (selectedCustomer.GivenEligibility == false)
+            {
+                MessageBox.Show($"{selectedCustomer.Name} is not eligible for loan. Sorry!!!");
+                this.Enabled = false;
+            }
         }
     }
 }

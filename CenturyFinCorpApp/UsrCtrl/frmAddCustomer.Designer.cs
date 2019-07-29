@@ -142,6 +142,7 @@
             this.cmbExistingCustomer.Name = "cmbExistingCustomer";
             this.cmbExistingCustomer.Size = new System.Drawing.Size(361, 24);
             this.cmbExistingCustomer.TabIndex = 1;
+            this.cmbExistingCustomer.SelectedIndexChanged += new System.EventHandler(this.cmbExistingCustomer_SelectedIndexChanged);
             this.cmbExistingCustomer.TextChanged += new System.EventHandler(this.cmbExistingCustomer_TextChanged);
             // 
             // label1
