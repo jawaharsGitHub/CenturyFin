@@ -31,12 +31,12 @@
   },
   {
     "CustomerId": 180,
-    "IsClosed": false,
+    "IsClosed": true,
     "TransactionId": 19301,
     "AmountReceived": 64000,
     "Balance": 0,
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 484,
-    "TxnDate": "2019-07-29T00:00:00"
+    "TxnDate": "2019-07-28T00:00:00"
   }
 ]
