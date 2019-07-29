@@ -79,14 +79,14 @@ namespace DataAccess.PrimaryTypes
                     InsertSingleObjectToListJson(JsonFilePath, dailyCol);
 
                     // Update In Hand and In Bank amount.
-                    var inhand = new InHandAndBank()
-                    {
-                        Date = dailyCol.Date,
-                        InBank = dailyCol.InBank.Value,
-                        InHandAmount = dailyCol.TodayInHand.Value
-                    };
+                    //var inhand = new InHandAndBank()
+                    //{
+                    //    Date = dailyCol.Date,
+                    //    InBank = dailyCol.InBank.Value,
+                    //    InHandAmount = dailyCol.TodayInHand.Value
+                    //};
 
-                    InHandAndBank.AddInHand(inhand, dailyCol.TakenFromBank);
+                    //InHandAndBank.AddInHand(inhand, dailyCol.TakenFromBank);
 
                 }
 
@@ -169,13 +169,13 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static int GetActualInvestmentTxnDate(DateTime? date = null)
+        public static DailyCollectionDetail GetActualInvestmentTxnDate(DateTime? date = null)
         {
             try
             {
                 List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
 
-                var actualInvestment = 0;
+                DailyCollectionDetail actualInvestment;
 
 
                 var data = new DailyCollectionDetail();
@@ -190,12 +190,12 @@ namespace DataAccess.PrimaryTypes
 
                 if (date == null || data == null)
                 {
-                    actualInvestment = list.OrderBy(s => Convert.ToDateTime(s.Date)).Last().ActualMoneyInBusiness;
+                    actualInvestment = list.OrderBy(s => Convert.ToDateTime(s.Date)).Last();
                 }
                 else
                 {
 
-                    actualInvestment = list.Where(w => Convert.ToDateTime(w.Date).Date == date.Value.Date).First().ActualMoneyInBusiness;
+                    actualInvestment = list.Where(w => Convert.ToDateTime(w.Date).Date == date.Value.Date).First();
                 }
 
                 return actualInvestment;

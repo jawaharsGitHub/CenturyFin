@@ -313,18 +313,20 @@ namespace CenturyFinCorpApp.UsrCtrl
 
         private void ShowTotalAssetMoney()
         {
-            var inHandAndBank = InHandAndBank.GetAllhandMoney();
+            //var inHandAndBank = InHandAndBank.GetAllhandMoney();
+            //var inHandMoney = DailyCollectionDetail.GetActualInvestmentTxnDate();
+
+            var latestDailyCxn = DailyCollectionDetail.GetActualInvestmentTxnDate();
+
             lblTotalAsset.Visible = label4.Visible = false;
-            lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount + inHandAndBank.InBank).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {inHandAndBank.InHandAmount.ToMoney()} IB: {inHandAndBank.InBank.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
+            lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {latestDailyCxn.ExpectedInHand.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
             var monthlyCustomersBalance = (from c in Customer.GetAllCustomer().Where(w => w.IsActive && w.IsMonthly())
                                            select Transaction.GetBalance(c)).Sum();
 
-            var fullInvestment = DailyCollectionDetail.GetActualInvestmentTxnDate();
-
-            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + inHandAndBank.InHandAmount).ToMoney()} " +
-                $"(OS: {outstandingMoney.includesProfit.ToMoney()} + IH: {inHandAndBank.InHandAmount.ToMoney()})  {Environment.NewLine} " +
+            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} " +
+                $"(OS: {outstandingMoney.includesProfit.ToMoney()} + IH: {latestDailyCxn.ExpectedInHand.ToMoney()})  {Environment.NewLine} " +
                 $"Actual Outstanding: {outstandingMoney.actual.ToMoney()} {Environment.NewLine} " +
-                $"INVESTMENT: Daily:~{(fullInvestment - monthlyCustomersBalance).ToMoney()} + Monthly:{monthlyCustomersBalance.ToMoney()} = {fullInvestment.ToMoney()}";
+                $"INVESTMENT: Daily:~{(latestDailyCxn.ActualMoneyInBusiness - monthlyCustomersBalance).ToMoney()} + Monthly:{monthlyCustomersBalance.ToMoney()} = {latestDailyCxn.ActualMoneyInBusiness.ToMoney()}";
         }
 
         private void dgvIncome_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

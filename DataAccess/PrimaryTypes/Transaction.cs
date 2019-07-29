@@ -306,7 +306,7 @@ namespace DataAccess.PrimaryTypes
 
             if (customer.ReturnType == ReturnTypeEnum.Monthly)
             {
-                return customerTxns.Min(m => m.Balance);
+                return customerTxns.OrderByDescending(m => m.TxnDate).First().Balance;
             }
 
             var paidAmount = customerTxns.Sum(s => s.AmountReceived);
@@ -321,8 +321,8 @@ namespace DataAccess.PrimaryTypes
                 return txnLoanAmount - paidAmount;
             }
 
-            return customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
-                                                     // return (customer.LoanAmount - paidAmount);
+            return customerTxns.OrderByDescending(m => m.TxnDate).First().Balance;   //customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
+                                                                                     // return (customer.LoanAmount - paidAmount);
 
         }
 
@@ -505,7 +505,7 @@ namespace DataAccess.PrimaryTypes
                 var outsideMoney = (from L in list
 
                                     group L by new { L.CustomerId, L.CustomerSequenceNo } into newGroup
-                                    select newGroup.ToList().OrderBy(w => w.TxnDate).Last()).ToList(); //.Sum(s => s.Balance);
+                                    select newGroup.ToList().OrderByDescending(w => w.TxnDate).First()).ToList(); //.Sum(s => s.Balance);
 
                 // this is useful to calculate all external balances
                 var result = (from c in Customer.GetAllCustomer()
