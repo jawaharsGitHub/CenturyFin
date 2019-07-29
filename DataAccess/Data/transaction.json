@@ -38578,5 +38578,25 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 484,
     "TxnDate": "2019-07-28T00:00:00"
+  },
+  {
+    "CustomerId": 175,
+    "IsClosed": false,
+    "TransactionId": 19302,
+    "AmountReceived": -200,
+    "Balance": 8400,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 522,
+    "TxnDate": "2019-07-28T00:00:00"
+  },
+  {
+    "CustomerId": 196,
+    "IsClosed": false,
+    "TransactionId": 19303,
+    "AmountReceived": 0,
+    "Balance": 10000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 572,
+    "TxnDate": "2019-07-28T00:00:00"
   }
 ]

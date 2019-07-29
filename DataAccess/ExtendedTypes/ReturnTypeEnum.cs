@@ -9,6 +9,7 @@
         BiMonthly,
         Monthly,
         GoldMonthly,
-        TenMonths
+        TenMonths,
+        NI
     }
 }
