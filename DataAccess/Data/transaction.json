@@ -37294,7 +37294,7 @@
     "IsClosed": false,
     "TransactionId": 19171,
     "AmountReceived": 36000,
-    "Balance": 66000,
+    "Balance": 64000,
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 484,
     "TxnDate": "2019-07-25T00:00:00"
@@ -38571,10 +38571,10 @@
   },
   {
     "CustomerId": 180,
-    "IsClosed": false,
+    "IsClosed": true,
     "TransactionId": 19301,
     "AmountReceived": 64000,
-    "Balance": 100000,
+    "Balance": 0,
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 484,
     "TxnDate": "2019-07-28T00:00:00"
