@@ -591,8 +591,17 @@ namespace CenturyFinCorpApp
         private void cmbExistingCustomer_TextChanged(object sender, EventArgs e)
         {
             cmbExistingCustomer.DroppedDown = false;
+        }
 
-            
+        private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var neededRow = (Transaction)((sender as DataGridView).Rows[e.RowIndex]).DataBoundItem;
+
+            var sum = txns.Where(w => w.TransactionId <= neededRow.TransactionId).Sum(s => s.AmountReceived);
+
+            dataGridView1.Rows[e.RowIndex].Cells["AmountReceived"].ToolTipText = sum.ToString();
         }
     }
 }

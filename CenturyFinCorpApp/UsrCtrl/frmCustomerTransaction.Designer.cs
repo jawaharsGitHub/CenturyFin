@@ -53,6 +53,7 @@
             this.btnCorrect = new System.Windows.Forms.Button();
             this.btnInterest = new System.Windows.Forms.Button();
             this.grpMerge = new System.Windows.Forms.GroupBox();
+            this.cmbExistingCustomer = new System.Windows.Forms.ComboBox();
             this.btnMerge = new System.Windows.Forms.Button();
             this.btnReOpen = new System.Windows.Forms.Button();
             this.btnForceClose = new System.Windows.Forms.Button();
@@ -68,7 +69,6 @@
             this.txtNewInterest = new System.Windows.Forms.TextBox();
             this.txtNewAmount = new System.Windows.Forms.TextBox();
             this.btnConvertToMonthly = new System.Windows.Forms.Button();
-            this.cmbExistingCustomer = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -170,6 +170,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(467, 307);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
             // lblStartDate
@@ -326,6 +327,16 @@
             this.grpMerge.TabStop = false;
             this.grpMerge.Text = "Merge";
             // 
+            // cmbExistingCustomer
+            // 
+            this.cmbExistingCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbExistingCustomer.FormattingEnabled = true;
+            this.cmbExistingCustomer.Location = new System.Drawing.Point(19, 52);
+            this.cmbExistingCustomer.Name = "cmbExistingCustomer";
+            this.cmbExistingCustomer.Size = new System.Drawing.Size(294, 24);
+            this.cmbExistingCustomer.TabIndex = 24;
+            this.cmbExistingCustomer.TextChanged += new System.EventHandler(this.cmbExistingCustomer_TextChanged);
+            // 
             // btnMerge
             // 
             this.btnMerge.Location = new System.Drawing.Point(19, 25);
@@ -467,16 +478,6 @@
             this.btnConvertToMonthly.Text = "Convert";
             this.btnConvertToMonthly.UseVisualStyleBackColor = true;
             this.btnConvertToMonthly.Click += new System.EventHandler(this.btnConvertToMonthly_Click);
-            // 
-            // cmbExistingCustomer
-            // 
-            this.cmbExistingCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbExistingCustomer.FormattingEnabled = true;
-            this.cmbExistingCustomer.Location = new System.Drawing.Point(19, 52);
-            this.cmbExistingCustomer.Name = "cmbExistingCustomer";
-            this.cmbExistingCustomer.Size = new System.Drawing.Size(294, 24);
-            this.cmbExistingCustomer.TabIndex = 24;
-            this.cmbExistingCustomer.TextChanged += new System.EventHandler(this.cmbExistingCustomer_TextChanged);
             // 
             // frmCustomerTransaction
             // 

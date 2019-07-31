@@ -80,9 +80,10 @@ namespace CenturyFinCorpApp
             //MessageBox.Show(result.Sum(s => s.Closed).ToString());
 
             var max = result.OrderBy(o => o.CollectionAmount).Last();
+            var maxClosed = result.OrderBy(o => o.Closed).Last();
 
 
-            lblMax.Text = $"Max Cxn - {max.CollectionAmount.ToMoney()} on {max.Date}";
+            lblMax.Text = $"Max Cxn - {max.CollectionAmount.ToMoney()}({maxClosed.Closed.ToMoney()}) on {max.Date}";
 
             dgvAllDailyCollection.DataSource = result;
 

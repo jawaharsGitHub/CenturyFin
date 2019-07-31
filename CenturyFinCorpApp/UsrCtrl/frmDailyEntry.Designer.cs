@@ -180,11 +180,11 @@
             // lblMax
             // 
             this.lblMax.AutoSize = true;
-            this.lblMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMax.ForeColor = System.Drawing.Color.Coral;
             this.lblMax.Location = new System.Drawing.Point(746, 207);
             this.lblMax.Name = "lblMax";
-            this.lblMax.Size = new System.Drawing.Size(85, 29);
+            this.lblMax.Size = new System.Drawing.Size(66, 24);
             this.lblMax.TabIndex = 20;
             this.lblMax.Text = "label4";
             // 
