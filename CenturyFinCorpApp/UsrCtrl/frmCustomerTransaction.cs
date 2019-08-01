@@ -45,9 +45,9 @@ namespace CenturyFinCorpApp
 
             _balance = _isClosedTx ? 0 : Transaction.GetBalance(customer);
 
-            btnLoan.Text = $"LOAN :  {customer.LoanAmount.ToMoney()}";
-            btnBalance.Text = $"BALANCE :  {_balance.ToMoney()}";
-            btnInterest.Text = $"INTEREST :  {customer.Interest.ToMoney()}";
+            btnLoan.Text = $"LOAN :  {customer.LoanAmount.ToMoneyFormat()}";
+            btnBalance.Text = $"BALANCE :  {_balance.ToMoneyFormat()}";
+            btnInterest.Text = $"INTEREST :  {customer.Interest.ToMoneyFormat()}";
 
             var closedText = string.Empty;
             if (customer.IsForceClosed)
@@ -599,7 +599,7 @@ namespace CenturyFinCorpApp
 
             var neededRow = (Transaction)((sender as DataGridView).Rows[e.RowIndex]).DataBoundItem;
 
-            var sum = txns.Where(w => w.TransactionId <= neededRow.TransactionId).Sum(s => s.AmountReceived);
+            var sum = txns.Where(w => w.AmountReceived > 0 && w.TransactionId <= neededRow.TransactionId).Sum(s => s.AmountReceived);
 
             dataGridView1.Rows[e.RowIndex].Cells["AmountReceived"].ToolTipText = sum.ToString();
         }

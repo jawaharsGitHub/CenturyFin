@@ -19,7 +19,7 @@ namespace Common.ExtensionMethod
             }
         }
 
-        public static string ToMoney(this int number)
+        public static string ToMoneyFormat(this int number)
         {
             NumberFormatInfo nfo = new NumberFormatInfo();
             nfo.CurrencyGroupSeparator = ",";
@@ -29,7 +29,6 @@ namespace Common.ExtensionMethod
             nfo.CurrencySymbol = ""; // "Rs.";
 
             return number.ToString("c0", nfo); // prints 1,50,00,000
-
         }
 
         public static int ToIntMoney(this string number)
@@ -42,13 +41,13 @@ namespace Common.ExtensionMethod
         public static string ToMoney(this decimal number)
         {
             var no = Convert.ToInt32(number);
-            return ToMoney(no);
+            return ToMoneyFormat(no);
         }
 
         public static string ToMoney(this int? number)
         {
             var no = Convert.ToInt32(number);
-            return ToMoney(no);
+            return ToMoneyFormat(no);
         }
 
         public static double RoundMoney(this double number)

@@ -132,7 +132,7 @@ namespace CenturyFinCorpApp
                 DaysToMonth = $"{DateHelper.DaysToMonth("Running Days", new DateTime(2018, 1, 25), DateTime.Today)}",
                 NotesPerDay = $"{Math.Round(totalTxn / days, 2)} note(s) per day",
                 ClosedNotesPerDay = $"{Math.Round(closedTxn / days, 2)} closed note(s) per day",
-                Data1 = $"{closedMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(C) [{closedMonthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}] + {activeMonthlyCustomers.Sum(s => s.Interest).ToMoney()}(A) [{activeMonthlyCustomers.Sum(s => s.Balance).ToMoney()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoney()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoney()}).",
+                Data1 = $"{closedMonthlyCustomers.Sum(s => s.Interest).ToMoneyFormat()}(C) [{closedMonthlyCustomers.Sum(s => s.LoanAmount).ToMoneyFormat()}] + {activeMonthlyCustomers.Sum(s => s.Interest).ToMoneyFormat()}(A) [{activeMonthlyCustomers.Sum(s => s.Balance).ToMoneyFormat()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoneyFormat()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoneyFormat()}).",
                 Data2 = $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month)",
                 Data3 = activeMonthlyCustomers.Sum(s => s.MonthlyInterest),
                 Data4 =  monthlyCustomers.Sum(s => s.Interest)
@@ -644,7 +644,7 @@ namespace CenturyFinCorpApp
         {
             var data = dataGridView1.DataSource as List<Customer>;
 
-            lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()} (I: {data.Sum(s => s.Interest)} MI: {data.Sum(s => s.MonthlyInterest)} ADJ: {data.Sum(s => s.AdjustedAmount)} )";
+            lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()} (I: {data.Sum(s => s.Interest).ToMoneyFormat()} MI: {data.Sum(s => s.MonthlyInterest).TokFormat()} ADJ: {data.Sum(s => s.AdjustedAmount).ToMoney()} )";
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

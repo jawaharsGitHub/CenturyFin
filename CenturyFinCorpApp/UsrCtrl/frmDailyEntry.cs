@@ -164,7 +164,7 @@ namespace CenturyFinCorpApp
             ActualCollection = amountReceived;
             ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && w.IsNotMonthly()).Sum(s => s.LoanAmount) / 100);
 
-            label1.Text = $"Total Collection is: {amountReceived.ToMoney()}";
+            label1.Text = $"Total Collection is: {amountReceived.ToMoneyFormat()}";
 
             // Topup details.
             var topupCustomers = TopupCustomer.GetAllTopupCustomer().Where(w => w.AmountGivenDate.Value.Date == dateTimePicker1.Value.Date).ToList();
@@ -173,16 +173,16 @@ namespace CenturyFinCorpApp
 
             if (topupCustomers.Count > 0)
             {
-                newText = $"NEW:{result.Count(c => c.AmountReceived == 0 && c.Balance > 0)}  ({result.Where(w => w.AmountReceived == 0 && w.Balance > 0).Sum(s => s.Interest).ToMoney()}) +" +
-                    $" {topupCustomers.Count()}Topup ({topupCustomers.Sum(s => s.Interest)}) = {(topupCustomers.Sum(s => s.Interest) + result.Where(w => w.AmountReceived == 0 && w.Balance > 0).Sum(s => s.Interest)).ToMoney()}";
+                newText = $"NEW:{result.Count(c => c.AmountReceived == 0 && c.Balance > 0)}  ({result.Where(w => w.AmountReceived == 0 && w.Balance > 0).Sum(s => s.Interest).ToMoneyFormat()}) +" +
+                    $" {topupCustomers.Count()}Topup ({topupCustomers.Sum(s => s.Interest)}) = {(topupCustomers.Sum(s => s.Interest) + result.Where(w => w.AmountReceived == 0 && w.Balance > 0).Sum(s => s.Interest)).ToMoneyFormat()}";
             }
             else
             {
-                newText = $"NEW:{result.Count(c => c.AmountReceived == 0 && c.Balance > 0)} ({result.Where(w => w.AmountReceived == 0 && w.Balance > 0).Sum(s => s.Interest).ToMoney()})";
+                newText = $"NEW:{result.Count(c => c.AmountReceived == 0 && c.Balance > 0)} ({result.Where(w => w.AmountReceived == 0 && w.Balance > 0).Sum(s => s.Interest).ToMoneyFormat()})";
             }
 
-            label2.Text = $"{result.Count(c => c.AmountReceived > 0)} (Rs.{amountReceived.ToMoney()}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection.ToMoney()}) {Environment.NewLine}" +
-                $"CLOSED:{result.Count(c => c.Balance == 0)} ({result.Where(w => w.Balance == 0).Sum(s => s.Interest).ToMoney()}) " +
+            label2.Text = $"{result.Count(c => c.AmountReceived > 0)} (Rs.{amountReceived.ToMoneyFormat()}) customers paid out of {cus.Count()} (Rs.{ExpectedCollection.ToMoneyFormat()}) {Environment.NewLine}" +
+                $"CLOSED:{result.Count(c => c.Balance == 0)} ({result.Where(w => w.Balance == 0).Sum(s => s.Interest).ToMoneyFormat()}) " +
                 newText;
 
 

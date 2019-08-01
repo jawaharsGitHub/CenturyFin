@@ -373,7 +373,7 @@ namespace DataAccess.PrimaryTypes
                 //ActualCollection = amountReceived;
                 //ExpectedCollection = (cus.Where(w => w.AmountGivenDate.Value.Date != chooseDate.Date && w.IsNotMonthly()).Sum(s => s.LoanAmount) / 100);
 
-                return $"Total Collection is: {amountReceived.ToMoney()}";
+                return $"Total Collection is: {amountReceived.ToMoneyFormat()}";
 
             }
 

@@ -228,14 +228,14 @@ namespace CenturyFinCorpApp.UsrCtrl
             var total = (actual + expected);
             var totalMonthly = (actualMonthly + expectedMonthly);
 
-            lblActual.Text = $"Actual : {actual.ToMoney()} (Per Month: { (actual / numberOfMonths).ToMoney()}){Environment.NewLine}" +
-                $"Ëxpected : {expected.ToMoney()} (Per Month: { (expected / numberOfMonths).ToMoney()})";
-            lblExpected.Text = $"Actual(M) : {actualMonthly.ToMoney()} (Per Month: { (actualMonthly / numberOfMonths).ToMoney()}){Environment.NewLine}" +
-               $"Expected(M) : {expectedMonthly.ToMoney()} (Per Month: { (expectedMonthly / numberOfMonths).ToMoney()})";
-            lblTotal.Text = $"TOTAL : {totalMonthly.ToMoney()}(M) + {total.ToMoney()} = {(total + totalMonthly).ToMoney()} (Per Month: { ((total + totalMonthly) / numberOfMonths).ToMoney()})";
+            lblActual.Text = $"Actual : {actual.ToMoneyFormat()} (Per Month: { (actual / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
+                $"Ëxpected : {expected.ToMoneyFormat()} (Per Month: { (expected / numberOfMonths).ToMoneyFormat()})";
+            lblExpected.Text = $"Actual(M) : {actualMonthly.ToMoneyFormat()} (Per Month: { (actualMonthly / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
+               $"Expected(M) : {expectedMonthly.ToMoneyFormat()} (Per Month: { (expectedMonthly / numberOfMonths).ToMoneyFormat()})";
+            lblTotal.Text = $"TOTAL : {totalMonthly.ToMoneyFormat()}(M) + {total.ToMoneyFormat()} = {(total + totalMonthly).ToMoneyFormat()} (Per Month: { ((total + totalMonthly) / numberOfMonths).ToMoneyFormat()})";
             lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
 
-            lblSalary.Text = $"Salary : {salary.ToMoney()}";
+            lblSalary.Text = $"Salary : {salary.ToMoneyFormat()}";
             lblSalary.Visible = considerSalary;
 
             // may be in future we need it.
@@ -261,9 +261,9 @@ namespace CenturyFinCorpApp.UsrCtrl
                                     select new
                                     {
                                         s.MonthYear,
-                                        ExpectedIncome = s.ExpectedIncome.ToMoney(),
-                                        ActualIncome = s.ActualIncome.ToMoney(),
-                                        MonthlySalary = s.MonthlySalary.ToMoney(),
+                                        ExpectedIncome = s.ExpectedIncome.ToMoneyFormat(),
+                                        ActualIncome = s.ActualIncome.ToMoneyFormat(),
+                                        MonthlySalary = s.MonthlySalary.ToMoneyFormat(),
                                         s.CloseCount
                                     }).ToList();
 
@@ -285,9 +285,9 @@ namespace CenturyFinCorpApp.UsrCtrl
                              {
                                  Month = newGroup.Key,
                                  GivenCount = newGroup.Count(),
-                                 LoanAmount = newGroup.Sum(s => s.LoanAmount).ToMoney(),
-                                 GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)).ToMoney(),
-                                 FutureInterest = newGroup.Sum(s => s.Interest).ToMoney(),
+                                 LoanAmount = newGroup.Sum(s => s.LoanAmount).ToMoneyFormat(),
+                                 GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)).ToMoneyFormat(),
+                                 FutureInterest = newGroup.Sum(s => s.Interest).ToMoneyFormat(),
                              }).ToList();
 
 
@@ -298,9 +298,9 @@ namespace CenturyFinCorpApp.UsrCtrl
             var difference = totalLoanAmount - totalGivenAmount;
 
 
-            label6.Text = $"LA: {totalLoanAmount.ToMoney()} {Environment.NewLine}" +
-                $"GA: {totalGivenAmount.ToMoney()} (~{difference.ToMoney()}) {Environment.NewLine}" +
-                $"FI: {customers.Sum(s => s.FutureInterest.ToIntMoney()).ToMoney()} {Environment.NewLine}" +
+            label6.Text = $"LA: {totalLoanAmount.ToMoneyFormat()} {Environment.NewLine}" +
+                $"GA: {totalGivenAmount.ToMoneyFormat()} (~{difference.ToMoneyFormat()}) {Environment.NewLine}" +
+                $"FI: {customers.Sum(s => s.FutureInterest.ToIntMoney()).ToMoneyFormat()} {Environment.NewLine}" +
                 $"C: {customers.Sum(s => s.GivenCount)} {Environment.NewLine}";
 
         }
@@ -308,7 +308,7 @@ namespace CenturyFinCorpApp.UsrCtrl
         private void ShowOutstandingMoney()
         {
             outstandingMoney = Transaction.GetAllOutstandingAmount();
-            lblOutStanding.Text = outstandingMoney.includesProfit.ToMoney();
+            lblOutStanding.Text = outstandingMoney.includesProfit.ToMoneyFormat();
         }
 
         private void ShowTotalAssetMoney()
@@ -319,14 +319,14 @@ namespace CenturyFinCorpApp.UsrCtrl
             var latestDailyCxn = DailyCollectionDetail.GetActualInvestmentTxnDate();
 
             lblTotalAsset.Visible = label4.Visible = false;
-            lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoney()} IH: {latestDailyCxn.ExpectedInHand.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoney()})";
+            lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoneyFormat()} IH: {latestDailyCxn.ExpectedInHand.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()})";
             var monthlyCustomersBalance = (from c in Customer.GetAllCustomer().Where(w => w.IsActive && w.IsMonthly())
                                            select Transaction.GetBalance(c)).Sum();
 
             lblBizAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} " +
-                $"(OS: {outstandingMoney.includesProfit.ToMoney()} + IH: {latestDailyCxn.ExpectedInHand.ToMoney()})  {Environment.NewLine} " +
-                $"Actual Outstanding: {outstandingMoney.actual.ToMoney()} {Environment.NewLine} " +
-                $"INVESTMENT: Daily:~{(latestDailyCxn.ActualMoneyInBusiness - monthlyCustomersBalance).ToMoney()} + Monthly:{monthlyCustomersBalance.ToMoney()} = {latestDailyCxn.ActualMoneyInBusiness.ToMoney()}";
+                $"(OS: {outstandingMoney.includesProfit.ToMoneyFormat()} + IH: {latestDailyCxn.ExpectedInHand.ToMoney()})  {Environment.NewLine} " +
+                $"Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()} {Environment.NewLine} " +
+                $"INVESTMENT: Daily:~{(latestDailyCxn.ActualMoneyInBusiness - monthlyCustomersBalance).ToMoneyFormat()} + Monthly:{monthlyCustomersBalance.ToMoneyFormat()} = {latestDailyCxn.ActualMoneyInBusiness.ToMoneyFormat()}";
         }
 
         private void dgvIncome_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -378,9 +378,9 @@ namespace CenturyFinCorpApp.UsrCtrl
                                     select new
                                     {
                                         s.MonthYear,
-                                        ExpectedIncome = s.ExpectedIncome.ToMoney(),
-                                        ActualIncome = s.ActualIncome.ToMoney(),
-                                        MonthlySalary = s.MonthlySalary.ToMoney(),
+                                        ExpectedIncome = s.ExpectedIncome.ToMoneyFormat(),
+                                        ActualIncome = s.ActualIncome.ToMoneyFormat(),
+                                        MonthlySalary = s.MonthlySalary.ToMoneyFormat(),
                                         s.CloseCount
                                     }).ToList();
 
