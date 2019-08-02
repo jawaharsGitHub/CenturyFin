@@ -82,7 +82,9 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(7, "By Return Day"),
                    new KeyValuePair<int, string>(8, "By Return Type"),
                    new KeyValuePair<int, string>(9, "By CollectionSpot"),
-                   new KeyValuePair<int, string>(10, "By AdjustedAmount")
+                   new KeyValuePair<int, string>(10, "By AdjustedAmount"),
+                   new KeyValuePair<int, string>(11, "Not Eligible Members"),
+                   new KeyValuePair<int, string>(12, "Need Investigation Members")
 
                };
 
@@ -135,7 +137,7 @@ namespace CenturyFinCorpApp
                 Data1 = $"{closedMonthlyCustomers.Sum(s => s.Interest).ToMoneyFormat()}(C) [{closedMonthlyCustomers.Sum(s => s.LoanAmount).ToMoneyFormat()}] + {activeMonthlyCustomers.Sum(s => s.Interest).ToMoneyFormat()}(A) [{activeMonthlyCustomers.Sum(s => s.Balance).ToMoneyFormat()}] = {monthlyCustomers.Sum(s => s.Interest).ToMoneyFormat()} out of ({monthlyCustomers.Sum(s => s.LoanAmount).ToMoneyFormat()}).",
                 Data2 = $"{Math.Round(allGivenAmount / days).TokFormat()} Rs. per day ({((Math.Round(allGivenAmount / days) / 10) * 30).TokFormat()} per month)",
                 Data3 = activeMonthlyCustomers.Sum(s => s.MonthlyInterest),
-                Data4 =  monthlyCustomers.Sum(s => s.Interest)
+                Data4 = monthlyCustomers.Sum(s => s.Interest)
             };
 
             label1.Text = $"{myData.TotalNotes} {Environment.NewLine} " +
@@ -613,6 +615,14 @@ namespace CenturyFinCorpApp
             else if (value == 10)
             {
                 searchedCustomer = customers.OrderByDescending(o => o.AdjustedAmount).ToList();
+            }
+            else if (value == 11)
+            {
+                searchedCustomer = customers.Where(w => w.GivenEligibility == false).ToList();
+            }
+            else if (value == 12)
+            {
+                searchedCustomer = customers.Where(w => w.NeedInvestigation == true).ToList();
             }
             else//  (value == 11)
             {
