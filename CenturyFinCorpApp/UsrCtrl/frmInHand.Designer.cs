@@ -39,7 +39,6 @@
             this.label26 = new System.Windows.Forms.Label();
             this.txtMamaInputMoney = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.txtMamaExpenditure = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.txtActualInhand = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -95,6 +94,7 @@
             this.btnPrevDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.txtMamaExpenditure = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -192,11 +192,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtMamaExpenditure);
             this.groupBox2.Controls.Add(this.txtMamaAccount);
             this.groupBox2.Controls.Add(this.label26);
             this.groupBox2.Controls.Add(this.txtMamaInputMoney);
             this.groupBox2.Controls.Add(this.label24);
-            this.groupBox2.Controls.Add(this.txtMamaExpenditure);
             this.groupBox2.Controls.Add(this.label25);
             this.groupBox2.Controls.Add(this.txtActualInhand);
             this.groupBox2.Controls.Add(this.label22);
@@ -248,14 +248,6 @@
             this.label24.Size = new System.Drawing.Size(98, 13);
             this.label24.TabIndex = 46;
             this.label24.Text = "Mama Input Money";
-            // 
-            // txtMamaExpenditure
-            // 
-            this.txtMamaExpenditure.Location = new System.Drawing.Point(129, 179);
-            this.txtMamaExpenditure.Name = "txtMamaExpenditure";
-            this.txtMamaExpenditure.ReadOnly = true;
-            this.txtMamaExpenditure.Size = new System.Drawing.Size(100, 20);
-            this.txtMamaExpenditure.TabIndex = 43;
             // 
             // label25
             // 
@@ -738,6 +730,13 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // txtMamaExpenditure
+            // 
+            this.txtMamaExpenditure.Location = new System.Drawing.Point(130, 181);
+            this.txtMamaExpenditure.Name = "txtMamaExpenditure";
+            this.txtMamaExpenditure.Size = new System.Drawing.Size(100, 20);
+            this.txtMamaExpenditure.TabIndex = 49;
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -835,12 +834,12 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtMamaInputMoney;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox txtMamaExpenditure;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox txtMamaAccount;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnInHand;
         private System.Windows.Forms.Button btnMama;
+        private System.Windows.Forms.TextBox txtMamaExpenditure;
     }
 }
