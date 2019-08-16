@@ -873,5 +873,30 @@
     "CollectionSpotId": 132,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 581,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 63,
+    "Name": "Megala - Maruthu Ironing Shop",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-08-12T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 63,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
