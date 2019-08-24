@@ -39,7 +39,6 @@
             this.btnCustomerCount = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSalary = new System.Windows.Forms.Label();
-            this.lblTotalAsset = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblOutStanding = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblCloseCount = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblTotalAsset = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -156,15 +156,6 @@
             this.lblSalary.TabIndex = 25;
             this.lblSalary.Text = "SALARY";
             // 
-            // lblTotalAsset
-            // 
-            this.lblTotalAsset.AutoSize = true;
-            this.lblTotalAsset.Location = new System.Drawing.Point(708, 45);
-            this.lblTotalAsset.Name = "lblTotalAsset";
-            this.lblTotalAsset.Size = new System.Drawing.Size(63, 13);
-            this.lblTotalAsset.TabIndex = 29;
-            this.lblTotalAsset.Text = "[TotalAsset]";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -250,6 +241,16 @@
             this.comboBox1.TabIndex = 36;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // lblTotalAsset
+            // 
+            this.lblTotalAsset.AutoSize = true;
+            this.lblTotalAsset.ForeColor = System.Drawing.Color.Red;
+            this.lblTotalAsset.Location = new System.Drawing.Point(708, 45);
+            this.lblTotalAsset.Name = "lblTotalAsset";
+            this.lblTotalAsset.Size = new System.Drawing.Size(63, 13);
+            this.lblTotalAsset.TabIndex = 29;
+            this.lblTotalAsset.Text = "[TotalAsset]";
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,7 +298,6 @@
         private System.Windows.Forms.Button btnCustomerCount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblSalary;
-        private System.Windows.Forms.Label lblTotalAsset;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblOutStanding;
         private System.Windows.Forms.Label label5;
@@ -307,5 +307,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblCloseCount;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lblTotalAsset;
     }
 }

@@ -319,12 +319,12 @@ namespace CenturyFinCorpApp.UsrCtrl
             var latestDailyCxn = DailyCollectionDetail.GetActualInvestmentTxnDate();
 
             lblTotalAsset.Visible = label4.Visible = false;
-            lblTotalAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoneyFormat()} IH: {latestDailyCxn.ExpectedInHand.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()})";
+            lblTotalAsset.Text = $"test {(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoneyFormat()} IH: {latestDailyCxn.ActualInHand.ToMoney()} MAMA: {latestDailyCxn.MamaAccount.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()})";
             var monthlyCustomersBalance = (from c in Customer.GetAllCustomer().Where(w => w.IsActive && w.IsMonthly())
                                            select Transaction.GetBalance(c)).Sum();
 
             lblBizAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} " +
-                $"(OS: {outstandingMoney.includesProfit.ToMoneyFormat()} + IH: {latestDailyCxn.ExpectedInHand.ToMoney()})  {Environment.NewLine} " +
+                $"(OS: {outstandingMoney.includesProfit.ToMoneyFormat()} + IH: {latestDailyCxn.ActualInHand.ToMoney()} MAMA: {latestDailyCxn.MamaAccount.ToMoney()})  {Environment.NewLine} " +
                 $"Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()} {Environment.NewLine} " +
                 $"INVESTMENT: Daily:~{(latestDailyCxn.ActualMoneyInBusiness - monthlyCustomersBalance).ToMoneyFormat()} + Monthly:{monthlyCustomersBalance.ToMoneyFormat()} = {latestDailyCxn.ActualMoneyInBusiness.ToMoneyFormat()}";
         }
@@ -397,6 +397,11 @@ namespace CenturyFinCorpApp.UsrCtrl
             //var sum = result.Where(w => w.TransactionId <= neededRow.).Sum(s => s.AmountReceived);
 
             dgvNotePerMonth.Rows[e.RowIndex].Cells["FutureInterest"].ToolTipText = sum.ToString();
+
+            var month = (((IEnumerable<dynamic>)neededRow).ToArray()[e.RowIndex]).Month;
+
+            var givenCustomers = Transaction.GetGivenTxnForMonth(month);
+
         }
     }
 }

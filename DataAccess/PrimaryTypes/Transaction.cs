@@ -544,6 +544,23 @@ namespace DataAccess.PrimaryTypes
             return list.Where(w => w.Balance == 0).Count();
         }
 
+        public static dynamic GetGivenTxnForMonth(string txnMonthAndYear)
+        {
+            //var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+
+            //var result = from t in txn
+            //             join c in cus
+            //             on t.CustomerSequenceNo equals c.CustomerSeqNumber
+            //             select new
+            //             {
+                            
+            //             };
+
+            //return list.Where(w => w.TxnDate.ToString("Y") == txnMonthAndYear).ToList();
+
+            return null;
+        }
+
         public static List<Transaction> GetDailyCollectionDetails(DateTime inputDate)
         {
 
