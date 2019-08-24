@@ -324,7 +324,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                                            select Transaction.GetBalance(c)).Sum();
 
             lblBizAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} " +
-                $"(OS: {outstandingMoney.includesProfit.ToMoneyFormat()} + IH: {latestDailyCxn.ActualInHand.ToMoney()} MAMA: {latestDailyCxn.MamaAccount.ToMoney()})  {Environment.NewLine} " +
+                $"(OS: {outstandingMoney.includesProfit.ToMoneyFormat()} + IH: {latestDailyCxn.ActualInHand.ToMoney()} + MAMA: {latestDailyCxn.MamaAccount.ToMoney()})  {Environment.NewLine} " +
                 $"Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()} {Environment.NewLine} " +
                 $"INVESTMENT: Daily:~{(latestDailyCxn.ActualMoneyInBusiness - monthlyCustomersBalance).ToMoneyFormat()} + Monthly:{monthlyCustomersBalance.ToMoneyFormat()} = {latestDailyCxn.ActualMoneyInBusiness.ToMoneyFormat()}";
         }
