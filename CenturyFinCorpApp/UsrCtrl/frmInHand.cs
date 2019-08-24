@@ -28,6 +28,7 @@ namespace CenturyFinCorpApp
         private void EnableEdit()
         {
             groupBox1.Enabled = txtComments.Enabled = true;
+            txtMamaExpenditure.Text = "0";
         }
 
         private void GetDailyTxn(DateTime date, bool isOnLoad)

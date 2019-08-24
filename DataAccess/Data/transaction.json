@@ -43818,5 +43818,15 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 485,
     "TxnDate": "2019-08-23T00:00:00"
+  },
+  {
+    "CustomerId": 153,
+    "IsClosed": false,
+    "TransactionId": 20574,
+    "AmountReceived": -2000,
+    "Balance": 215500,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 377,
+    "TxnDate": "2019-08-23T00:00:00"
   }
 ]
