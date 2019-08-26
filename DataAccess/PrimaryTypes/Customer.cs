@@ -440,6 +440,20 @@ namespace DataAccess.PrimaryTypes
                 throw ex;
             }
         }
+
+        public static List<Customer> GetAllActiveCustomer()
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath).Where(w => w.IsActive).ToList();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static List<Customer> GetAllUniqueCustomers()
         {
             try

@@ -25,6 +25,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                {
                    new KeyValuePair<int, string>(1, "Check MinBalance And AmountReceived"),
                    new KeyValuePair<int, string>(2, "Check EachAndEvery Txn"),
+                    new KeyValuePair<int, string>(3, "Not Given"),
                };
 
             return myKeyValuePair;
@@ -37,12 +38,37 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             if (value == 1)
             {
-                MinBalanceAndReceivedAmount();
+                //MinBalanceAndReceivedAmount();
             }
             else if (value == 2)
             {
-                CheckEachTxn();
+                //CheckEachTxn();
             }
+            else if (value == 3)
+            {
+                CheckNotGivenCustomers();
+            }
+
+
+        }
+
+        private void CheckNotGivenCustomers()
+        {
+            var details = Transaction.GetActiveCustomersLastTransactionDetails();
+
+            var combinedData = (from txns in details
+                                join cus in Customer.GetAllActiveCustomer()
+                                on txns.CustomerSequenceNo equals cus.CustomerSeqNumber
+                                select new
+                                {
+                                    cus.CustomerId,
+                                    cus.CustomerSeqNumber,
+                                    cus.Name,
+
+                                });
+
+
+
 
 
         }

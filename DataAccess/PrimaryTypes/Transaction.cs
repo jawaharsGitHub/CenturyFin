@@ -174,6 +174,27 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static List<Transaction> GetActiveCustomersLastTransactionDetails()
+        {
+            try
+            {
+
+                var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+                if (list == null) return null;
+
+                var txns = (from L in list
+                            group L by new { L.CustomerSequenceNo, L.CustomerId } into newGroup
+                            select newGroup.OrderByDescending(o => o.TxnDate).First()).ToList();
+
+                return txns;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static List<Transaction> GetTransactionForDate(Transaction txn)
         {
             try
@@ -348,22 +369,22 @@ namespace DataAccess.PrimaryTypes
             if (txn != null)
             {
                 var result = (from t in txn
-                          join c in cus
-                          on t.CustomerSequenceNo equals c.CustomerSeqNumber
-                          select new CustomerDailyTxn
-                          {
-                              TransactionId = t.TransactionId,
-                              TxnDate = t.TxnDate,
-                              CustomerName = c.Name,
-                              Loan = c.LoanAmount,
-                              CSId = c.CustomerSeqNumber,
-                              AmountReceived = t.AmountReceived,
-                              Balance = t.Balance,
-                              CustomerId = c.CustomerId,
-                              CustomerSeqId = c.CustomerSeqNumber,
-                              Interest = c.Interest,
-                              ReturnType = c.ReturnType
-                          }).Distinct().ToList();
+                              join c in cus
+                              on t.CustomerSequenceNo equals c.CustomerSeqNumber
+                              select new CustomerDailyTxn
+                              {
+                                  TransactionId = t.TransactionId,
+                                  TxnDate = t.TxnDate,
+                                  CustomerName = c.Name,
+                                  Loan = c.LoanAmount,
+                                  CSId = c.CustomerSeqNumber,
+                                  AmountReceived = t.AmountReceived,
+                                  Balance = t.Balance,
+                                  CustomerId = c.CustomerId,
+                                  CustomerSeqId = c.CustomerSeqNumber,
+                                  Interest = c.Interest,
+                                  ReturnType = c.ReturnType
+                              }).Distinct().ToList();
 
 
                 var data = result.DistinctBy(d => d.AmountReceived).Select(s => s.AmountReceived).ToList();
@@ -378,8 +399,8 @@ namespace DataAccess.PrimaryTypes
             }
 
 
-           
-            return $"Total Collection is: 0"; 
+
+            return $"Total Collection is: 0";
         }
 
 
@@ -553,7 +574,7 @@ namespace DataAccess.PrimaryTypes
             //             on t.CustomerSequenceNo equals c.CustomerSeqNumber
             //             select new
             //             {
-                            
+
             //             };
 
             //return list.Where(w => w.TxnDate.ToString("Y") == txnMonthAndYear).ToList();
