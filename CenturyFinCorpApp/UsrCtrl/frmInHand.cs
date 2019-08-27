@@ -27,7 +27,7 @@ namespace CenturyFinCorpApp
 
         private void EnableEdit()
         {
-            groupBox1.Enabled = txtComments.Enabled = true;
+            groupBox1.Enabled = txtComments.Enabled = btnAdd.Enabled = btnShow.Enabled = btnDelete.Enabled = true;
             txtMamaExpenditure.Text = "0";
         }
 
@@ -36,7 +36,7 @@ namespace CenturyFinCorpApp
             dailyTxn = DailyCollectionDetail.GetDailyTxn(date, isOnLoad);
 
             var haveNoDailytnx = (dailyTxn == null);
-            groupBox1.Enabled = txtComments.Enabled = !haveNoDailytnx;
+            groupBox1.Enabled = txtComments.Enabled = btnAdd.Enabled = btnShow.Enabled = btnDelete.Enabled = !haveNoDailytnx;
 
             if (haveNoDailytnx)
             {
