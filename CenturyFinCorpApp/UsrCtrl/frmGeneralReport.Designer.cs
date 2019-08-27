@@ -56,7 +56,7 @@
             // dgvIncome
             // 
             this.dgvIncome.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIncome.Location = new System.Drawing.Point(15, 107);
+            this.dgvIncome.Location = new System.Drawing.Point(15, 110);
             this.dgvIncome.Name = "dgvIncome";
             this.dgvIncome.Size = new System.Drawing.Size(550, 405);
             this.dgvIncome.TabIndex = 0;
@@ -65,7 +65,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(170, 82);
+            this.lblTotal.Location = new System.Drawing.Point(167, 59);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(42, 13);
             this.lblTotal.TabIndex = 12;
@@ -76,7 +76,7 @@
             this.lblActual.AutoSize = true;
             this.lblActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActual.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblActual.Location = new System.Drawing.Point(167, 32);
+            this.lblActual.Location = new System.Drawing.Point(167, 27);
             this.lblActual.Name = "lblActual";
             this.lblActual.Size = new System.Drawing.Size(43, 13);
             this.lblActual.TabIndex = 11;
@@ -85,7 +85,7 @@
             // lblExpected
             // 
             this.lblExpected.AutoSize = true;
-            this.lblExpected.Location = new System.Drawing.Point(167, 3);
+            this.lblExpected.Location = new System.Drawing.Point(167, -2);
             this.lblExpected.Name = "lblExpected";
             this.lblExpected.Size = new System.Drawing.Size(52, 13);
             this.lblExpected.TabIndex = 10;
@@ -105,7 +105,7 @@
             // dgvNotePerMonth
             // 
             this.dgvNotePerMonth.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNotePerMonth.Location = new System.Drawing.Point(592, 107);
+            this.dgvNotePerMonth.Location = new System.Drawing.Point(592, 110);
             this.dgvNotePerMonth.Name = "dgvNotePerMonth";
             this.dgvNotePerMonth.Size = new System.Drawing.Size(569, 405);
             this.dgvNotePerMonth.TabIndex = 13;
@@ -150,7 +150,7 @@
             // lblSalary
             // 
             this.lblSalary.AutoSize = true;
-            this.lblSalary.Location = new System.Drawing.Point(170, 62);
+            this.lblSalary.Location = new System.Drawing.Point(49, 32);
             this.lblSalary.Name = "lblSalary";
             this.lblSalary.Size = new System.Drawing.Size(49, 13);
             this.lblSalary.TabIndex = 25;

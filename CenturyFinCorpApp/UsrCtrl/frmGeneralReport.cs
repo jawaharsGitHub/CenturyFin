@@ -228,11 +228,20 @@ namespace CenturyFinCorpApp.UsrCtrl
             var total = (actual + expected);
             var totalMonthly = (actualMonthly + expectedMonthly);
 
-            lblActual.Text = $"Actual : {actual.ToMoneyFormat()} (Per Month: { (actual / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
-                $"Ëxpected : {expected.ToMoneyFormat()} (Per Month: { (expected / numberOfMonths).ToMoneyFormat()})";
-            lblExpected.Text = $"Actual(M) : {actualMonthly.ToMoneyFormat()} (Per Month: { (actualMonthly / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
-               $"Expected(M) : {expectedMonthly.ToMoneyFormat()} (Per Month: { (expectedMonthly / numberOfMonths).ToMoneyFormat()})";
-            lblTotal.Text = $"TOTAL : {totalMonthly.ToMoneyFormat()}(M) + {total.ToMoneyFormat()} = {(total + totalMonthly).ToMoneyFormat()} (Per Month: { ((total + totalMonthly) / numberOfMonths).ToMoneyFormat()})";
+            
+
+            // Monthly
+            lblExpected.Text = $"1. Actual(M) : {actualMonthly.ToMoneyFormat()} (Per Month: { (actualMonthly / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
+               $"2. Expected(M) : {expectedMonthly.ToMoneyFormat()} (Per Month: { (expectedMonthly / numberOfMonths).ToMoneyFormat()})";
+
+            // Daily
+            lblActual.Text = $"3. Actual(D) : {actual.ToMoneyFormat()} (Per Month: { (actual / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
+                $"4. Expected(D) : {expected.ToMoneyFormat()} (Per Month: { (expected / numberOfMonths).ToMoneyFormat()})";
+
+
+            lblTotal.Text = $"5. TOTAL(Actual) : {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {(actualMonthly + actual).ToMoneyFormat()} (Per Month: { ((actualMonthly + actual) / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
+                $"6. TOTAL(Expected) : {expectedMonthly.ToMoneyFormat()}(M) + {expected.ToMoneyFormat()}(D) = {(expectedMonthly + expected).ToMoneyFormat()} (Per Month: { ((expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}{Environment.NewLine}" +
+            $"7. ALL TOTAL: {(actualMonthly + actual).ToMoneyFormat()} + {(expectedMonthly + expected).ToMoneyFormat()} = {(actualMonthly + actual + expectedMonthly + expected).ToMoneyFormat()} (Per Month: { ((actualMonthly + actual + expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()})";
             lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
 
             lblSalary.Text = $"Salary : {salary.ToMoneyFormat()}";
