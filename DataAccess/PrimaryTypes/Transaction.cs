@@ -75,7 +75,10 @@ namespace DataAccess.PrimaryTypes
         {
             try
             {
-                List<Transaction> list = ReadFileAsObjects<Transaction>(AppConfiguration.TransactionFile);
+
+                var jsonFilePath = updatedTransaction.IsClosed ? $"{ClosedTxnFilePath}/{updatedTransaction.CustomerId}/{updatedTransaction.CustomerId}_{updatedTransaction.CustomerSequenceNo}.json" : JsonFilePath;
+
+                List<Transaction> list = ReadFileAsObjects<Transaction>(jsonFilePath);
 
                 var u = list.Where(c => c.TransactionId == updatedTransaction.TransactionId && c.CustomerSequenceNo == updatedTransaction.CustomerSequenceNo && c.CustomerId == updatedTransaction.CustomerId).FirstOrDefault();
 
