@@ -41788,5 +41788,85 @@
     "TxnUpdatedDate": "2019-08-31T00:00:00+05:30",
     "CustomerSequenceNo": 277,
     "TxnDate": "2019-08-31T00:00:00"
+  },
+  {
+    "CustomerId": 173,
+    "IsClosed": false,
+    "TransactionId": 21043,
+    "AmountReceived": 0,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 435,
+    "TxnDate": "2019-09-03T00:00:00"
+  },
+  {
+    "CustomerId": 175,
+    "IsClosed": false,
+    "TransactionId": 21044,
+    "AmountReceived": -500,
+    "Balance": 12500,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 522,
+    "TxnDate": "2019-08-30T00:00:00"
+  },
+  {
+    "CustomerId": 175,
+    "IsClosed": false,
+    "TransactionId": 21045,
+    "AmountReceived": -650,
+    "Balance": 13150,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 522,
+    "TxnDate": "2019-09-01T00:00:00"
+  },
+  {
+    "CustomerId": 175,
+    "IsClosed": false,
+    "TransactionId": 21046,
+    "AmountReceived": 500,
+    "Balance": 13150,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 522,
+    "TxnDate": "2019-09-02T00:00:00"
+  },
+  {
+    "CustomerId": 175,
+    "IsClosed": false,
+    "TransactionId": 21047,
+    "AmountReceived": -6500,
+    "Balance": 20650,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 522,
+    "TxnDate": "2019-09-02T00:00:00"
+  },
+  {
+    "CustomerId": 153,
+    "IsClosed": false,
+    "TransactionId": 21048,
+    "AmountReceived": 0,
+    "Balance": 476850,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 612,
+    "TxnDate": "2019-09-02T00:00:00"
+  },
+  {
+    "CustomerId": 153,
+    "IsClosed": false,
+    "TransactionId": 21049,
+    "AmountReceived": 0,
+    "Balance": 290190,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 613,
+    "TxnDate": "2019-09-02T00:00:00"
+  },
+  {
+    "CustomerId": 201,
+    "IsClosed": false,
+    "TransactionId": 21050,
+    "AmountReceived": 1000,
+    "Balance": 1000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 600,
+    "TxnDate": "2019-09-01T00:00:00"
   }
 ]
