@@ -1048,5 +1048,30 @@
     "CollectionSpotId": 8,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 579,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 197,
+    "Name": "Pasubathi Eswaran",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2019-09-05T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 197,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
