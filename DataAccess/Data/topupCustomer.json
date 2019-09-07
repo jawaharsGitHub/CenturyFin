@@ -1023,5 +1023,30 @@
     "CollectionSpotId": 93,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 466,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 8,
+    "Name": "Raja Lakshmi Kalangarai",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-09-03T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 8,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
