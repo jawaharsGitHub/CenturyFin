@@ -35,6 +35,7 @@
             this.txtOutMoney = new System.Windows.Forms.TextBox();
             this.btnInvestment = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtMamaExpenditure = new System.Windows.Forms.TextBox();
             this.txtMamaAccount = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.txtMamaInputMoney = new System.Windows.Forms.TextBox();
@@ -94,7 +95,6 @@
             this.btnPrevDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.txtMamaExpenditure = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -209,12 +209,19 @@
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.txtInputMoney);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(315, 294);
+            this.groupBox2.Location = new System.Drawing.Point(315, 299);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(237, 267);
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Splitted Amounts";
+            // 
+            // txtMamaExpenditure
+            // 
+            this.txtMamaExpenditure.Location = new System.Drawing.Point(130, 181);
+            this.txtMamaExpenditure.Name = "txtMamaExpenditure";
+            this.txtMamaExpenditure.Size = new System.Drawing.Size(100, 20);
+            this.txtMamaExpenditure.TabIndex = 49;
             // 
             // txtMamaAccount
             // 
@@ -729,13 +736,6 @@
             this.btnDelete.Text = "DEL";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // txtMamaExpenditure
-            // 
-            this.txtMamaExpenditure.Location = new System.Drawing.Point(130, 181);
-            this.txtMamaExpenditure.Name = "txtMamaExpenditure";
-            this.txtMamaExpenditure.Size = new System.Drawing.Size(100, 20);
-            this.txtMamaExpenditure.TabIndex = 49;
             // 
             // frmInHand
             // 

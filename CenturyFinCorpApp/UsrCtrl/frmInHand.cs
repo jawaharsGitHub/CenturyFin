@@ -16,6 +16,8 @@ namespace CenturyFinCorpApp
 
         private DailyCollectionDetail dailyTxn;
 
+        bool haveData = false;
+
         public frmInHand()
         {
             InitializeComponent();
@@ -28,6 +30,15 @@ namespace CenturyFinCorpApp
         private void EnableEdit()
         {
             groupBox1.Enabled = txtComments.Enabled = btnAdd.Enabled = btnShow.Enabled = btnDelete.Enabled = true;
+
+            if (btnEnable.Text == "Enable")
+                btnEnable.Text = "Disable";
+            else
+            {
+                GetDailyTxn(dateTimePicker1.Value, false);
+                btnEnable.Text = "Enable";
+            }
+
             //txtMamaExpenditure.Text = "0";
         }
 
@@ -36,11 +47,23 @@ namespace CenturyFinCorpApp
             dailyTxn = DailyCollectionDetail.GetDailyTxn(date, isOnLoad);
 
             var haveNoDailytnx = (dailyTxn == null);
-            groupBox1.Enabled = txtComments.Enabled = btnAdd.Enabled = btnShow.Enabled = btnDelete.Enabled = !haveNoDailytnx;
+            haveData = txtComments.Enabled = btnAdd.Enabled = btnShow.Enabled = btnDelete.Enabled = !haveNoDailytnx;
 
-            if(groupBox1.Enabled == false)
+            btnEnable.Enabled = !haveData;
+
+            groupBox1.Enabled = haveData;
+
+            if (haveData == false)
             {
-                txtOtherExpenditure.Text = txtOtherInvestment.Text = txtOutMoney.Text = txtMamaExpenditure.Text = "0";
+                txtOtherExpenditure.Text = "0";
+                txtOtherInvestment.Text = "0";
+                txtOutMoney.Text = "0";
+                txtMamaExpenditure.Text = "0";
+
+                txtInputMoney.Text = "0";
+                txtOutusedMoney.Text = "0";
+                txtInvsOutDiff.Text = "0";
+
             }
 
             if (haveNoDailytnx)
@@ -68,7 +91,7 @@ namespace CenturyFinCorpApp
                     var topupCustomers = TopupCustomer.GetAllTopupCustomer().Where(w => w.ReturnType != ReturnTypeEnum.BiWeekly && w.AmountGivenDate.Value.Date == date).ToList();
 
                     txtGivenAmount.Text = (todayTxn.Where(w => w.AmountReceived == 0).Sum(s => s.Balance) + topupCustomers.Sum(s => s.LoanAmount)).ToString();
-                    txtInterest.Text = (todayTxn.Where(w => w.AmountReceived == 0 &&  w.Balance > 0).Sum(s => s.Interest) + topupCustomers.Sum(s => s.Interest)).ToString();
+                    txtInterest.Text = (todayTxn.Where(w => w.AmountReceived == 0 && w.Balance > 0).Sum(s => s.Interest) + topupCustomers.Sum(s => s.Interest)).ToString();
                     txtClosed.Text = todayTxn.Where(w => w.Balance == 0).Count().ToString();
                     txtOpened.Text = todayTxn.Where(w => w.AmountReceived == 0).Count().ToString();
 
@@ -102,8 +125,8 @@ namespace CenturyFinCorpApp
             btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.TokFormat();
             btnInCompany.Text = $"C: {(dailyTxn.MamaAccount + dailyTxn.ActualInHand).TokFormat()}";
             btnInHand.Text = "IH:" + dailyTxn.ActualInHand.TokFormat();
-            btnMama.Text = "M:" +dailyTxn.MamaAccount.TokFormat();
-            btnInvestment.Text = "INV:"  + DailyCollectionDetail.GetActualInvestmentTxnDate(dateTimePicker1.Value).ActualMoneyInBusiness.ToMoneyFormat();
+            btnMama.Text = "M:" + dailyTxn.MamaAccount.TokFormat();
+            btnInvestment.Text = "INV:" + DailyCollectionDetail.GetActualInvestmentTxnDate(dateTimePicker1.Value).ActualMoneyInBusiness.ToMoneyFormat();
 
             lblCanGive.Text = $"Actually we can give - {(dailyTxn.TodayInHand / 4500) * 5000} {Environment.NewLine}with extra {(dailyTxn.TodayInHand % 4500)}";
             btnInBank.Text = dailyTxn.InBank.TokFormat();
@@ -128,8 +151,8 @@ namespace CenturyFinCorpApp
             txtInvsOutDiff.Text = dailyTxn.Difference.ToString();
             txtExpectedInHand.Text = dailyTxn.ExpectedInHand.ToString();
             txtActualInhand.Text = dailyTxn.ActualInHand.ToString();
-            txtMamaExpenditure.Text = dailyTxn.MamaExpenditure.ToString();
-            txtMamaInputMoney.Text = dailyTxn.MamaInputMoney.ToString();
+            //txtMamaExpenditure.Text = dailyTxn.MamaExpenditure.ToString();
+            //txtMamaInputMoney.Text = dailyTxn.MamaInputMoney.ToString();
             txtMamaAccount.Text = dailyTxn.MamaAccount.ToString();
         }
 
@@ -155,7 +178,7 @@ namespace CenturyFinCorpApp
             dailyTxn.OtherInvestment = txtOtherInvestment.Text.ToInt32();
             dailyTxn.OutUsedMoney = txtOutMoney.Text.ToInt32();
 
-            dailyTxn.TodayInHand =   (dailyTxn.YesterdayAmountInHand + dailyTxn.CollectionAmount + dailyTxn.TakenFromBank - dailyTxn.GivenAmount + dailyTxn.Interest + dailyTxn.OtherInvestment - dailyTxn.OtherExpenditire);
+            dailyTxn.TodayInHand = (dailyTxn.YesterdayAmountInHand + dailyTxn.CollectionAmount + dailyTxn.TakenFromBank - dailyTxn.GivenAmount + dailyTxn.Interest + dailyTxn.OtherInvestment - dailyTxn.OtherExpenditire);
 
             dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - Convert.ToInt32((dailyTxn.TodayInHand + dailyTxn.InBank)));
             dailyTxn.Comments = txtComments.Text;
@@ -302,7 +325,7 @@ namespace CenturyFinCorpApp
             dailyTxn.OutUsedMoney = outUsedMoney;
             dailyTxn.Difference = inVsOutDiff;
             dailyTxn.ExpectedInHand = actualInhand + mamaAccount;
-            dailyTxn.ActualInHand = actualInhand - mamaAccount;
+            dailyTxn.ActualInHand = actualInhand - txtMamaExpenditure.Text.ToInt32();
             dailyTxn.MamaAccount = mamaAccount;
             dailyTxn.MamaExpenditure = txtMamaExpenditure.Text.ToInt32();
             dailyTxn.MamaInputMoney = txtMamaInputMoney.Text.ToInt32();
@@ -347,6 +370,7 @@ namespace CenturyFinCorpApp
         private void btnEnable_Click(object sender, EventArgs e)
         {
             EnableEdit();
+
         }
     }
 }
