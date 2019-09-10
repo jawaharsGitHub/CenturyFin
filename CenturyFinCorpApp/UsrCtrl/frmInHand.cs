@@ -28,7 +28,7 @@ namespace CenturyFinCorpApp
         private void EnableEdit()
         {
             groupBox1.Enabled = txtComments.Enabled = btnAdd.Enabled = btnShow.Enabled = btnDelete.Enabled = true;
-            txtMamaExpenditure.Text = "0";
+            //txtMamaExpenditure.Text = "0";
         }
 
         private void GetDailyTxn(DateTime date, bool isOnLoad)
@@ -37,6 +37,11 @@ namespace CenturyFinCorpApp
 
             var haveNoDailytnx = (dailyTxn == null);
             groupBox1.Enabled = txtComments.Enabled = btnAdd.Enabled = btnShow.Enabled = btnDelete.Enabled = !haveNoDailytnx;
+
+            if(groupBox1.Enabled == false)
+            {
+                txtOtherExpenditure.Text = txtOtherInvestment.Text = txtOutMoney.Text = txtMamaExpenditure.Text = "0";
+            }
 
             if (haveNoDailytnx)
             {
@@ -297,7 +302,7 @@ namespace CenturyFinCorpApp
             dailyTxn.OutUsedMoney = outUsedMoney;
             dailyTxn.Difference = inVsOutDiff;
             dailyTxn.ExpectedInHand = actualInhand + mamaAccount;
-            dailyTxn.ActualInHand = actualInhand;
+            dailyTxn.ActualInHand = actualInhand - mamaAccount;
             dailyTxn.MamaAccount = mamaAccount;
             dailyTxn.MamaExpenditure = txtMamaExpenditure.Text.ToInt32();
             dailyTxn.MamaInputMoney = txtMamaInputMoney.Text.ToInt32();

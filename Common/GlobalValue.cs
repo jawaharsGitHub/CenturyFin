@@ -11,5 +11,11 @@ namespace Common
 
         public static DateTime? CollectionDate { get; set; }
 
+        public static int SortingByValue { get; set; }
+
+        public static int ReturnTypeValue { get; set; }
+
+        public static bool FriendAlsoValue { get; set; }
+
     }
 }

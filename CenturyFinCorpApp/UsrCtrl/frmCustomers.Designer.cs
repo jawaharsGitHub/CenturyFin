@@ -190,6 +190,7 @@
             this.chkFriends.TabIndex = 15;
             this.chkFriends.Text = "Friends Also";
             this.chkFriends.UseVisualStyleBackColor = true;
+            this.chkFriends.CheckedChanged += new System.EventHandler(this.chkFriends_CheckedChanged);
             // 
             // frmCustomers
             // 

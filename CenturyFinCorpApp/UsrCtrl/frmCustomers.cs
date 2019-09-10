@@ -58,6 +58,9 @@ namespace CenturyFinCorpApp
 
 
             txtSearch.Text = GlobalValue.SearchText;
+            cmbFilters.SelectedIndex = GlobalValue.SortingByValue;
+            cmbReturnTypes.SelectedIndex = GlobalValue.ReturnTypeValue;
+            chkFriends.Checked = GlobalValue.FriendAlsoValue;
 
 
             GlobalValue.CollectionDate = DailyCollectionDetail.GeLatesttDailyTxnDate();
@@ -642,6 +645,7 @@ namespace CenturyFinCorpApp
             dataGridView1.DataSource = searchedCustomer;
             AdjustColumnOrder();
 
+            GlobalValue.SortingByValue = cmbFilters.SelectedIndex;
         }
 
         private void chkAllColumns_CheckedChanged(object sender, EventArgs e)
@@ -685,7 +689,14 @@ namespace CenturyFinCorpApp
             {
                 dataGridView1.DataSource = data;
             }
+
+            GlobalValue.ReturnTypeValue = cmbReturnTypes.SelectedIndex;
+
         }
 
+        private void chkFriends_CheckedChanged(object sender, EventArgs e)
+        {
+            GlobalValue.FriendAlsoValue = chkFriends.Checked;
+        }
     }
 }
