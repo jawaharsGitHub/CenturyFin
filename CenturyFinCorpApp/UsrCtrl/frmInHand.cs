@@ -38,8 +38,6 @@ namespace CenturyFinCorpApp
                 GetDailyTxn(dateTimePicker1.Value, false);
                 btnEnable.Text = "Enable";
             }
-
-            //txtMamaExpenditure.Text = "0";
         }
 
         private void GetDailyTxn(DateTime date, bool isOnLoad)
@@ -63,6 +61,9 @@ namespace CenturyFinCorpApp
                 txtInputMoney.Text = "0";
                 txtOutusedMoney.Text = "0";
                 txtInvsOutDiff.Text = "0";
+
+                if (txtComments.Text.Length > txtComments.Text.LastIndexOf("$") + 1)
+                    txtComments.Text = txtComments.Text.Remove(txtComments.Text.LastIndexOf("$") + 1);
 
             }
 
@@ -333,7 +334,7 @@ namespace CenturyFinCorpApp
             DailyCollectionDetail.UpdateVerifyDetails(dailyTxn);
             UpdateVerifyDetails();
 
-            var fileName = General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\CollectionSummary\\") + $"CxnSum_{dateTimePicker1.Value.ToShortDateString()}.txt";
+            var fileName = GetCxnFileName();
 
             using (TextWriter tw = new StreamWriter(fileName))
             {
@@ -359,10 +360,22 @@ namespace CenturyFinCorpApp
             Process.Start(fileName);
         }
 
+        private string GetCxnFileName()
+        {
+            return General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "DataAccess\\Data\\CollectionSummary\\") + $"CxnSum_{dateTimePicker1.Value.ToShortDateString()}.txt";
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DailyCollectionDetail.DeleteDailyCxnDetails(dateTimePicker1.Value);
-            MessageBox.Show($"Deleted collection details for {dateTimePicker1.Value.ToShortDateString()}");
+            // Delete cxn data file.
+            var fileName = GetCxnFileName();
+
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+                MessageBox.Show($"Deleted collection details for {dateTimePicker1.Value.ToShortDateString()}");
             GetDailyTxn(dateTimePicker1.Value, false);
 
         }
