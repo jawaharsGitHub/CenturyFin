@@ -138,7 +138,7 @@ namespace CenturyFinCorpApp
 
 
             // Collection SUmmary
-            UpdateVerifyDetails();
+            UpdateVerifyDetailsOnLoad();
 
             txtComments.Text = dailyTxn.Comments;
 
@@ -151,9 +151,25 @@ namespace CenturyFinCorpApp
             txtOutusedMoney.Text = dailyTxn.OutGoingMoney.ToString();
             txtInvsOutDiff.Text = dailyTxn.Difference.ToString();
             txtExpectedInHand.Text = dailyTxn.ExpectedInHand.ToString();
-            txtActualInhand.Text = dailyTxn.ActualInHand.ToString();
+
+            // will change later in 2nd phase.
+            //txtActualInhand.Text = dailyTxn.ActualInHand.ToString();
             //txtMamaExpenditure.Text = dailyTxn.MamaExpenditure.ToString();
             //txtMamaInputMoney.Text = dailyTxn.MamaInputMoney.ToString();
+            //txtMamaAccount.Text = dailyTxn.MamaAccount.ToString();
+        }
+
+        private void UpdateVerifyDetailsOnLoad()
+        {
+            txtInputMoney.Text = dailyTxn.InputMoney.ToString();
+            txtOutusedMoney.Text = dailyTxn.OutGoingMoney.ToString();
+            txtInvsOutDiff.Text = dailyTxn.Difference.ToString();
+            txtExpectedInHand.Text = dailyTxn.ExpectedInHand.ToString();
+
+            // will change later in 2nd phase.
+            txtActualInhand.Text = dailyTxn.ActualInHand.ToString();
+            txtMamaExpenditure.Text = dailyTxn.MamaExpenditure.ToString();
+            txtMamaInputMoney.Text = dailyTxn.MamaInputMoney.ToString();
             txtMamaAccount.Text = dailyTxn.MamaAccount.ToString();
         }
 
@@ -202,7 +218,7 @@ namespace CenturyFinCorpApp
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
 
-            GetDailyTxn(dateTimePicker1.Value, false);
+            //GetDailyTxn(dateTimePicker1.Value, false);
 
 
 

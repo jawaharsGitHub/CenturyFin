@@ -1073,5 +1073,30 @@
     "CollectionSpotId": 197,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 546,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 192,
+    "Name": "kanna kiliyoor",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2019-09-09T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 192,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
