@@ -310,6 +310,7 @@
             // 
             // txtInvsOutDiff
             // 
+            this.txtInvsOutDiff.BackColor = System.Drawing.Color.LightCoral;
             this.txtInvsOutDiff.Location = new System.Drawing.Point(128, 73);
             this.txtInvsOutDiff.Name = "txtInvsOutDiff";
             this.txtInvsOutDiff.ReadOnly = true;
@@ -327,6 +328,7 @@
             // 
             // txtOutusedMoney
             // 
+            this.txtOutusedMoney.BackColor = System.Drawing.Color.LightCoral;
             this.txtOutusedMoney.Location = new System.Drawing.Point(128, 46);
             this.txtOutusedMoney.Name = "txtOutusedMoney";
             this.txtOutusedMoney.ReadOnly = true;
@@ -344,6 +346,7 @@
             // 
             // txtInputMoney
             // 
+            this.txtInputMoney.BackColor = System.Drawing.Color.LightCoral;
             this.txtInputMoney.Location = new System.Drawing.Point(128, 14);
             this.txtInputMoney.Name = "txtInputMoney";
             this.txtInputMoney.ReadOnly = true;
