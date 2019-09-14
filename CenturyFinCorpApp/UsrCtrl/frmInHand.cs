@@ -375,11 +375,15 @@ namespace CenturyFinCorpApp
 
             Process.Start(fileName);
 
-
+            SendBalances();
         }
 
         private void SendBalances()
         {
+
+            var allBalances = string.Join(Environment.NewLine, Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}-{s.CustomerSeqNumber}-{Transaction.GetBalance(s)}").ToList());
+
+            AppCommunication.SendEmail(allBalances, dateTimePicker1.Value);
 
         }
 
@@ -398,7 +402,7 @@ namespace CenturyFinCorpApp
             {
                 File.Delete(fileName);
             }
-                MessageBox.Show($"Deleted collection details for {dateTimePicker1.Value.ToShortDateString()}");
+            MessageBox.Show($"Deleted collection details for {dateTimePicker1.Value.ToShortDateString()}");
             GetDailyTxn(dateTimePicker1.Value, false);
 
         }
