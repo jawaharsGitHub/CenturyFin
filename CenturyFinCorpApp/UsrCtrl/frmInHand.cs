@@ -374,6 +374,13 @@ namespace CenturyFinCorpApp
             btnAddOrUpdate_Click(null, null);
 
             Process.Start(fileName);
+
+
+        }
+
+        private void SendBalances()
+        {
+
         }
 
         private string GetCxnFileName()
