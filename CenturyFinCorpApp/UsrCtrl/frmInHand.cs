@@ -373,17 +373,26 @@ namespace CenturyFinCorpApp
             txtComments.Text = s.Replace(toBeReplaced, $"{Environment.NewLine}{dailyTxn.ExpectedInHand.TokFormat()} [In Company]{Environment.NewLine}{dailyTxn.ActualInHand.TokFormat()} [In Hand]{Environment.NewLine}{mamaAccount.TokFormat()} [In Mama]{Environment.NewLine}");
             btnAddOrUpdate_Click(null, null);
 
-            Process.Start(fileName);
-
             SendBalances();
+            Process.Start(fileName);
         }
 
         private void SendBalances()
         {
+            try
+            {
+                var allBalances = string.Join(Environment.NewLine,
+                    Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalance(s)}").ToList());
 
-            var allBalances = string.Join(Environment.NewLine, Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}-{s.CustomerSeqNumber}-{Transaction.GetBalance(s)}").ToList());
+                AppCommunication.SendEmail(allBalances, dateTimePicker1.Value);
 
-            AppCommunication.SendEmail(allBalances, dateTimePicker1.Value);
+                MessageBox.Show("Balance Report have been send to your email");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
         }
 
