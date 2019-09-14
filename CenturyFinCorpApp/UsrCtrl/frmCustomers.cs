@@ -514,6 +514,7 @@ namespace CenturyFinCorpApp
 
                 var investigationText = selectedCustomer.NeedInvestigation ? "Make - No need of investigation" : "Make - Need Investigation";
                 var EligibilityText = selectedCustomer.GivenEligibility ? "Make Not Eligible" : "Make Eligible";
+                var noteWithUsText = selectedCustomer.NoteWithUs ? "Give Note To Customer" : "Take Note with us";
                 if (rowIndex >= 0)
                 {
                     strip.Items.Add("Delete Customer and Txn").Name = "All";
@@ -521,6 +522,7 @@ namespace CenturyFinCorpApp
                     strip.Items.Add("Delete Txn only").Name = "Txn";
                     strip.Items.Add(investigationText).Name = "InvStatus";
                     strip.Items.Add(EligibilityText).Name = "ElgStatus";
+                    strip.Items.Add(noteWithUsText).Name = "NoteStatus";
                 }
 
                 strip.Show(dataGridView1, new System.Drawing.Point(e.X, e.Y));
@@ -555,6 +557,10 @@ namespace CenturyFinCorpApp
             else if (e.ClickedItem.Name == "ElgStatus")
             {
                 Customer.UpdateCustomerEligibility(cus.CustomerId);
+            }
+            else if (e.ClickedItem.Name == "NoteStatus")
+            {
+                Customer.UpdateCustomerNoteLocation(cus.CustomerSeqNumber);
             }
         }
 
