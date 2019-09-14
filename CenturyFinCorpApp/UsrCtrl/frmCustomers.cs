@@ -87,7 +87,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(9, "By CollectionSpot"),
                    new KeyValuePair<int, string>(10, "By AdjustedAmount"),
                    new KeyValuePair<int, string>(11, "Not Eligible Members"),
-                   new KeyValuePair<int, string>(12, "Need Investigation Members")
+                   new KeyValuePair<int, string>(12, "Need Investigation Members"),
+                   new KeyValuePair<int, string>(13, "Only Note With us")
 
                };
 
@@ -633,7 +634,11 @@ namespace CenturyFinCorpApp
             {
                 searchedCustomer = customers.Where(w => w.NeedInvestigation == true).ToList();
             }
-            else//  (value == 11)
+            else if (value == 13)
+            {
+                searchedCustomer = customers.Where(w => w.NoteWithUs == true).OrderBy(o => o.Name).ToList();
+            }
+            else
             {
                 searchedCustomer = customers.Where(w => w.ReturnDay == DateTime.Today.AddDays(-1).DayOfWeek).ToList();
             }
