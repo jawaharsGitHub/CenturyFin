@@ -43,6 +43,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cmbReturnTypes = new System.Windows.Forms.ComboBox();
             this.chkFriends = new System.Windows.Forms.CheckBox();
+            this.btnLatestCollection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,7 +119,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(735, 39);
+            this.btnRefresh.Location = new System.Drawing.Point(677, 39);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 9;
@@ -192,10 +193,21 @@
             this.chkFriends.UseVisualStyleBackColor = true;
             this.chkFriends.CheckedChanged += new System.EventHandler(this.chkFriends_CheckedChanged);
             // 
+            // btnLatestCollection
+            // 
+            this.btnLatestCollection.Location = new System.Drawing.Point(781, 39);
+            this.btnLatestCollection.Name = "btnLatestCollection";
+            this.btnLatestCollection.Size = new System.Drawing.Size(96, 23);
+            this.btnLatestCollection.TabIndex = 16;
+            this.btnLatestCollection.Text = "Latest Cxn?";
+            this.btnLatestCollection.UseVisualStyleBackColor = true;
+            this.btnLatestCollection.Click += new System.EventHandler(this.btnLatestCollection_Click);
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnLatestCollection);
             this.Controls.Add(this.chkFriends);
             this.Controls.Add(this.cmbReturnTypes);
             this.Controls.Add(this.lblRowCount);
@@ -234,5 +246,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ComboBox cmbReturnTypes;
         private System.Windows.Forms.CheckBox chkFriends;
+        private System.Windows.Forms.Button btnLatestCollection;
     }
 }

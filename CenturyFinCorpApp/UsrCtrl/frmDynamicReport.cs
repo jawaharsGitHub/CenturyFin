@@ -49,6 +49,15 @@ namespace CenturyFinCorpApp
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
             // NEED INVESTIGATION
+            //CustomerStatusReport(txn);
+
+            dgReports.DataSource = txn;
+            dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            dgReports.Columns["LastTxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+        }
+
+        private void CustomerStatusReport(List<DynamicReportNotGivenDays> txn)
+        {
             var needInvestigationData = (from w in txn
                                          where w.NotGivenFor >= 15 &&
                                          w.IsNotMonthly() &&
@@ -56,7 +65,7 @@ namespace CenturyFinCorpApp
                                          w.NeedInvestigation == true
                                          orderby w.Balance descending
                                          orderby w.CustomerId
-                                         
+
                                          select w).ToList();
             var needInvestigationCount = needInvestigationData.Count();
             var needInvestigationAmount = needInvestigationData.Sum(s => s.Balance);
@@ -180,11 +189,6 @@ namespace CenturyFinCorpApp
 
 
             Process.Start(fileName);
-
-
-            dgReports.DataSource = txn;
-            dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-            dgReports.Columns["LastTxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
         private void XCustomer()

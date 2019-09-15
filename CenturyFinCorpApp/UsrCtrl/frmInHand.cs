@@ -72,7 +72,7 @@ namespace CenturyFinCorpApp
                 dailyTxn = DailyCollectionDetail.GetDailyTxn(date.AddDays(-1), isOnLoad);
                 dateTimePicker1.Value = date;
 
-                var collectionAmount = Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
+                var collectionAmount = Transaction.GetDailyCollectionAmount(dateTimePicker1.Value);
                 if (collectionAmount > 0)
                 {
                     txtCollectionAmount.Text = collectionAmount.ToString();

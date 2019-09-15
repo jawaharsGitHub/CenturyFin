@@ -709,5 +709,11 @@ namespace CenturyFinCorpApp
         {
             GlobalValue.FriendAlsoValue = chkFriends.Checked;
         }
+
+        private void btnLatestCollection_Click(object sender, EventArgs e)
+        {
+            var collectionAmount = Transaction.GetDailyCollectionAmount(dateTimePicker1.Value);
+            btnLatestCollection.Text = collectionAmount.ToMoneyFormat();
+        }
     }
 }
