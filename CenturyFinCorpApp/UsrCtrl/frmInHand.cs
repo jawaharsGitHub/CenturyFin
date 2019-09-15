@@ -368,7 +368,6 @@ namespace CenturyFinCorpApp
             int start = s.IndexOf("$");
             int end = s.LastIndexOf("$");
             string toBeReplaced = s.Substring(start + 1, end - start - 1);
-            //s = s.Replace(result, "your replacement value");
 
             txtComments.Text = s.Replace(toBeReplaced, $"{Environment.NewLine}{dailyTxn.ExpectedInHand.TokFormat()} [In Company]{Environment.NewLine}{dailyTxn.ActualInHand.TokFormat()} [In Hand]{Environment.NewLine}{mamaAccount.TokFormat()} [In Mama]{Environment.NewLine}");
             btnAddOrUpdate_Click(null, null);

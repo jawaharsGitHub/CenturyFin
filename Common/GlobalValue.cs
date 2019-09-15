@@ -9,7 +9,7 @@ namespace Common
 
         public static string SearchText { get; set; }
 
-        public static DateTime? CollectionDate { get; set; }
+        public static DateTime? CollectionDate { get; set; } = DateTime.Today;
 
         public static int SortingByValue { get; set; }
 
