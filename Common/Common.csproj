@@ -62,6 +62,7 @@
     <Compile Include="DateHelper.cs" />
     <Compile Include="ExtensionMethod\CloneExtension.cs" />
     <Compile Include="ExtensionMethod\DataExtension.cs" />
+    <Compile Include="ExtensionMethod\DateTimeExtensions.cs" />
     <Compile Include="ExtensionMethod\TypeExtenstion.cs" />
     <Compile Include="General.cs" />
     <Compile Include="GlobalValue.cs" />

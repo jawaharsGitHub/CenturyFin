@@ -18,6 +18,7 @@ namespace CenturyFinCorpApp
         private int ExpectedCollection;
 
         private List<CustomerDailyTxn> result;
+        private List<ExtDailyTxn> CxnHistory;
 
         public frmDailyEntry()
         {
@@ -33,6 +34,7 @@ namespace CenturyFinCorpApp
             AdjustColumnOrder();
 
             cmdFilter.DataSource = GetOptions();
+            cmbFilter.DataSource = GetDataFilters();
 
             cmbAmountFilter.SelectedIndexChanged += CmbAmountFilter_SelectedIndexChanged;
         }
@@ -57,13 +59,15 @@ namespace CenturyFinCorpApp
 
         }
 
+
+
         private void LoadAllHsitoryDailyCollections()
         {
             var data = BaseClass.ReadFileAsObjects<DailyCollectionDetail>(AppConfiguration.DailyTxnFile);
 
             var cus = Customer.GetAllCustomer();
 
-            var result = (from d in data
+            CxnHistory = (from d in data
                               //join c in Customer.GetAllCustomer()
                               //on Convert.ToDateTime(d.Date) equals c.ClosedDate
                           select
@@ -79,8 +83,8 @@ namespace CenturyFinCorpApp
 
             //MessageBox.Show(result.Sum(s => s.Closed).ToString());
 
-            var max = result.OrderBy(o => o.CollectionAmount).Last();
-            var maxClosed = result.OrderBy(o => o.Closed).Last();
+            var max = CxnHistory.OrderBy(o => o.CollectionAmount).Last();
+            var maxClosed = CxnHistory.OrderBy(o => o.Closed).Last();
 
 
             lblMax.Text = $"Max Cxn - {max.CollectionAmount.ToMoney()}({maxClosed.Closed.ToMoney()}) on {max.Date}";
@@ -88,7 +92,7 @@ namespace CenturyFinCorpApp
             dgvAllDailyCollection.DataSource = result;
 
             // Customer Collectin Average By Day.
-            var averagePerDay = (from r in result
+            var averagePerDay = (from r in CxnHistory
                                  group r by Convert.ToDateTime(r.Date).DayOfWeek into newGroup
                                  select new
                                  {
@@ -131,8 +135,8 @@ namespace CenturyFinCorpApp
 
 
             var cus = (from c in Customer.GetAllCustomer()
-                      where c.AmountGivenDate.Value.Date <= chooseDate.Date && (c.ClosedDate == null || c.ClosedDate.Value.Date >= chooseDate.Date)
-                      select c).ToList();
+                       where c.AmountGivenDate.Value.Date <= chooseDate.Date && (c.ClosedDate == null || c.ClosedDate.Value.Date >= chooseDate.Date)
+                       select c).ToList();
 
 
             if (txn != null)
@@ -319,7 +323,7 @@ namespace CenturyFinCorpApp
 
             if (value == 1)
             {
-                dataGridView1.DataSource = filteredData.Where(w => w.AmountReceived == 0).ToList();
+                dataGridView1.DataSource = filteredData.Where(w => w.AmountReceived == 0 && w.Balance > 0).ToList();
 
             }
             else if (value == 2)
@@ -333,6 +337,87 @@ namespace CenturyFinCorpApp
 
             }
 
+
+        }
+
+        public static List<KeyValuePair<int, string>> GetDataFilters()
+        {
+            var myKeyValuePair = new List<KeyValuePair<int, string>>()
+               {
+                   new KeyValuePair<int, string>(1, "Daily"),
+                   new KeyValuePair<int, string>(2, "Weekly"),
+                   new KeyValuePair<int, string>(3, "Monthly"),
+                   new KeyValuePair<int, string>(4, "Yearly")
+               };
+
+            return myKeyValuePair;
+
+        }
+
+        private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            int value = cmbFilter.SelectedValue.ToInt32();
+
+            var filteredData = CxnHistory;
+
+            if (value == 1)
+            {
+                dgvAllDailyCollection.DataSource = filteredData;
+
+            }
+            else if (value == 2)
+            {
+                var data = (from r in filteredData
+                            group r by Convert.ToDateTime(r.Date).StartOfWeek(DayOfWeek.Monday) into newGroup
+                            select new
+                            {
+                                Date = $"{newGroup.First().Date} to {newGroup.Last().Date}",
+                                Closed = newGroup.Sum(s => s.Closed),
+                                CollectionAmount = newGroup.Sum(s => s.CollectionAmount).ToMoney(),
+                                GivenAmount = newGroup.Sum(s => s.GivenAmount).ToMoney(),
+                                New = newGroup.Sum(s => s.New)
+
+                            }).ToList();
+
+                dgvAllDailyCollection.DataSource = data.ToList();
+
+            }
+            else if (value == 3)
+            {
+                var data = (from r in filteredData
+                            group r by new { month = Convert.ToDateTime(r.Date).Month, year = Convert.ToDateTime(r.Date).Year } into newGroup
+                            select new
+                            {
+                                Date = $"{newGroup.Key.month}/{newGroup.Key.year}",
+                                Closed = newGroup.Sum(s => s.Closed),
+                                CollectionAmount = newGroup.Sum(s => s.CollectionAmount).ToMoney(),
+                                GivenAmount = newGroup.Sum(s => s.GivenAmount).ToMoney(),
+                                New = newGroup.Sum(s => s.New)
+
+                            }).ToList();
+
+                dgvAllDailyCollection.DataSource = data.ToList();
+
+            }
+
+            else //if (value == 3)
+            {
+                var data = (from r in filteredData
+                            group r by Convert.ToDateTime(r.Date).Year into newGroup
+                            select new
+                            {
+                                Date = newGroup.Key,
+                                Closed = newGroup.Sum(s => s.Closed),
+                                CollectionAmount = newGroup.Sum(s => s.CollectionAmount).ToMoney(),
+                                GivenAmount = newGroup.Sum(s => s.GivenAmount).ToMoney(),
+                                New = newGroup.Sum(s => s.New)
+
+                            }).ToList();
+
+                dgvAllDailyCollection.DataSource = data.ToList();
+
+            }
 
         }
     }

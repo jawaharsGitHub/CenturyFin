@@ -47,6 +47,7 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cmdFilter = new System.Windows.Forms.ComboBox();
             this.cmbAmountFilter = new System.Windows.Forms.ComboBox();
+            this.cmbFilter = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).BeginInit();
@@ -219,11 +220,24 @@
             this.cmbAmountFilter.TabIndex = 23;
             this.cmbAmountFilter.ValueMember = "Key";
             // 
+            // cmbFilter
+            // 
+            this.cmbFilter.DisplayMember = "Value";
+            this.cmbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFilter.FormattingEnabled = true;
+            this.cmbFilter.Location = new System.Drawing.Point(629, 186);
+            this.cmbFilter.Name = "cmbFilter";
+            this.cmbFilter.Size = new System.Drawing.Size(102, 21);
+            this.cmbFilter.TabIndex = 24;
+            this.cmbFilter.ValueMember = "Key";
+            this.cmbFilter.SelectedIndexChanged += new System.EventHandler(this.cmbFilter_SelectedIndexChanged);
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.cmbFilter);
             this.Controls.Add(this.cmbAmountFilter);
             this.Controls.Add(this.cmdFilter);
             this.Controls.Add(this.txtSearch);
@@ -271,5 +285,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ComboBox cmdFilter;
         private System.Windows.Forms.ComboBox cmbAmountFilter;
+        private System.Windows.Forms.ComboBox cmbFilter;
     }
 }

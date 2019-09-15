@@ -67,8 +67,8 @@ namespace CenturyFinCorpApp
             panel1.Width = 1300;
             panel1.Height = this.Height;
 
-            //ShowForm<frmCustomers>(); // initial form to be loaded
-            ShowForm<frmInHand>(); // initial form to be loaded
+            ShowForm<frmCustomers>(); // initial form to be loaded
+            //ShowForm<frmInHand>(); // initial form to be loaded
         }
 
         private void CreateMenu()

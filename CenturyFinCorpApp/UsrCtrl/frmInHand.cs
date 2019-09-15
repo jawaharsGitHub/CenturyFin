@@ -100,12 +100,12 @@ namespace CenturyFinCorpApp
 
                 }
                 //btnEnable.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
-                lblDate1.Text = lblDate2.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
+                lblDate1.Text = lblDate2.Text = groupBox1.Text = $"{dateTimePicker1.Value.ToShortDateString()} NOT FOUND";
                 btnAdd.Text = "ADD";
                 return;
             }
 
-            lblDate1.Text = lblDate2.Text = $"Data For {dailyTxn.Date}";
+            lblDate1.Text = lblDate2.Text = groupBox1.Text = $"Data For {dailyTxn.Date}";
             btnAdd.Text = "UPDATE";
 
 
