@@ -63,7 +63,7 @@ namespace CenturyFinCorpApp
             chkFriends.Checked = GlobalValue.FriendAlsoValue;
 
 
-            GlobalValue.CollectionDate = DailyCollectionDetail.GeLatesttDailyTxnDate();
+            GlobalValue.CollectionDate = DailyCollectionDetail.GetLatesttDailyTxnDate();
 
             dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 

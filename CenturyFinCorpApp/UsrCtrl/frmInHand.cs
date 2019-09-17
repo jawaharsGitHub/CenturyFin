@@ -381,7 +381,7 @@ namespace CenturyFinCorpApp
             try
             {
 
-                return;
+                // return;
                 var haveInternetConnection = General.CheckForInternetConnection();
 
                 if (haveInternetConnection)
@@ -389,9 +389,9 @@ namespace CenturyFinCorpApp
                     var allBalances = string.Join(Environment.NewLine,
                         Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalance(s)}").ToList());
 
-                    var latestBalanceDate = DailyCollectionDetail.GeLatesttDailyTxnDate();
+                    var currentBalanceDate = DailyCollectionDetail.GetCurrentDailyTxnDate();
 
-                    AppCommunication.SendEmail(allBalances, latestBalanceDate);
+                    AppCommunication.SendEmail(allBalances, currentBalanceDate);
 
                     MessageBox.Show("Balance Report have been send to your email");
                 }

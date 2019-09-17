@@ -154,7 +154,23 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static DateTime GeLatesttDailyTxnDate()
+
+        public static DateTime GetCurrentDailyTxnDate()
+        {
+            try
+            {
+                List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
+                var dailyTxn = list.Select(s => Convert.ToDateTime(s.Date)).Max();
+
+                return dailyTxn;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DateTime GetLatesttDailyTxnDate()
         {
             try
             {
