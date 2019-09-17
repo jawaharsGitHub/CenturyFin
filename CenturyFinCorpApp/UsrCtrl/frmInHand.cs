@@ -380,6 +380,8 @@ namespace CenturyFinCorpApp
         {
             try
             {
+
+                return;
                 var haveInternetConnection = General.CheckForInternetConnection();
 
                 if (haveInternetConnection)
