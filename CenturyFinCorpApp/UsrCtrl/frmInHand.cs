@@ -380,12 +380,23 @@ namespace CenturyFinCorpApp
         {
             try
             {
-                var allBalances = string.Join(Environment.NewLine,
-                    Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalance(s)}").ToList());
+                var haveInternetConnection = General.CheckForInternetConnection();
 
-                AppCommunication.SendEmail(allBalances, dateTimePicker1.Value);
+                if (haveInternetConnection)
+                {
+                    var allBalances = string.Join(Environment.NewLine,
+                        Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalance(s)}").ToList());
 
-                MessageBox.Show("Balance Report have been send to your email");
+                    var latestBalanceDate = DailyCollectionDetail.GeLatesttDailyTxnDate();
+
+                    AppCommunication.SendEmail(allBalances, latestBalanceDate);
+
+                    MessageBox.Show("Balance Report have been send to your email");
+                }
+                else
+                {
+                    MessageBox.Show("No Internet Available, Please connect and send balances again!");
+                }
             }
             catch (Exception)
             {
@@ -419,6 +430,11 @@ namespace CenturyFinCorpApp
         {
             EnableEdit();
 
+        }
+
+        private void btnSendBalances_Click(object sender, EventArgs e)
+        {
+            SendBalances();
         }
     }
 }

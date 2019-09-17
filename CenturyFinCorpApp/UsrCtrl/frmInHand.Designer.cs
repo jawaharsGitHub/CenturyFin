@@ -95,12 +95,14 @@
             this.btnPrevDay = new System.Windows.Forms.Button();
             this.btnNextDay = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSendBalances = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSendBalances);
             this.groupBox1.Controls.Add(this.btnMama);
             this.groupBox1.Controls.Add(this.btnInHand);
             this.groupBox1.Controls.Add(this.label23);
@@ -740,6 +742,16 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnSendBalances
+            // 
+            this.btnSendBalances.Location = new System.Drawing.Point(157, 38);
+            this.btnSendBalances.Name = "btnSendBalances";
+            this.btnSendBalances.Size = new System.Drawing.Size(117, 29);
+            this.btnSendBalances.TabIndex = 50;
+            this.btnSendBalances.Text = "Send Balances";
+            this.btnSendBalances.UseVisualStyleBackColor = true;
+            this.btnSendBalances.Click += new System.EventHandler(this.btnSendBalances_Click);
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -844,5 +856,6 @@
         private System.Windows.Forms.Button btnInHand;
         private System.Windows.Forms.Button btnMama;
         private System.Windows.Forms.TextBox txtMamaExpenditure;
+        private System.Windows.Forms.Button btnSendBalances;
     }
 }
