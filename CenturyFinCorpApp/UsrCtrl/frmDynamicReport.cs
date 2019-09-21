@@ -48,12 +48,42 @@ namespace CenturyFinCorpApp
         {
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
+            GetReturnTypeGroupedData();
             // NEED INVESTIGATION
             CustomerStatusReport(txn);
 
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dgReports.Columns["LastTxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+        }
+
+        private void GetReturnTypeGroupedData()
+        {
+            var data = (from cus in Customer.GetAllActiveCustomer()
+                        group cus by cus.ReturnType into newGroup
+                        select newGroup).ToList();
+
+
+            var fileName = "GroupedByReturnType.txt";
+
+            using (TextWriter tw = new StreamWriter(fileName))
+            {
+
+                data.ForEach(d =>
+                {
+                    tw.WriteLine(d.Key);
+                    tw.WriteLine($"------------------------------------------------");
+
+                    d.ToList().ForEach(f =>
+                    {
+                        tw.WriteLine(f.Name);
+                    });
+
+                });
+
+            }
+
+            Process.Start(fileName);
         }
 
         private void CustomerStatusReport(List<DynamicReportNotGivenDays> txn)
