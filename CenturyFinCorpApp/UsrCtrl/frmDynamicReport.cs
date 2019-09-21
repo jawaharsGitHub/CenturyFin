@@ -49,7 +49,7 @@ namespace CenturyFinCorpApp
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
             // NEED INVESTIGATION
-            //CustomerStatusReport(txn);
+            CustomerStatusReport(txn);
 
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
