@@ -55,7 +55,7 @@ namespace DataAccess.PrimaryTypes
         public string IdAndName => $"{CustomerId}-{Name}";
 
         [JsonIgnore]
-        public string NameAndId => $"{Name}-{CustomerId}-{IsActive}";
+        public string NameAndId => $"{Name}-{CustomerId}-{CustomerSeqNumber}-{IsActive}";
 
         [JsonIgnore]
         public string NameAndSeqId => $"{Name}-{CustomerSeqNumber}-{IsActive}";

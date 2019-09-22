@@ -48,13 +48,43 @@ namespace CenturyFinCorpApp
         {
             var txn = Transaction.GetTransactionsNotGivenForFewDays();
 
-            GetReturnTypeGroupedData();
+            //GetReturnTypeGroupedData();
             // NEED INVESTIGATION
-            CustomerStatusReport(txn);
+            //CustomerStatusReport(txn);
+
+            ProfitReport();
 
             dgReports.DataSource = txn;
             dgReports.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
             dgReports.Columns["LastTxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+        }
+
+        private void ProfitReport()
+        {
+            var fileName = "ProfitReport.txt";
+
+            var data = (from c in Customer.GetAllCustomer()
+                        group c by c.CustomerId into newGroup
+                        select new
+                        {
+                            newGroup.First().Name,
+                            Income = newGroup.Sum(s => s.Interest),
+                            Balance = newGroup.Sum(s => Transaction.GetBalance(s)),
+                            Profit = newGroup.Sum(s => s.Interest) - newGroup.Sum(s => Transaction.GetBalance(s))
+                        }).OrderByDescending(o => o.Profit).ToList();
+
+            using (TextWriter tw = new StreamWriter(fileName))
+            {
+                data.ForEach(f =>
+                        {
+                            tw.WriteLine($"{f.Name} - Income: {f.Income} Balance: {f.Balance} Profit: {f.Profit}");
+                        });
+            }
+
+
+            Process.Start(fileName);
+
+
         }
 
         private void GetReturnTypeGroupedData()
