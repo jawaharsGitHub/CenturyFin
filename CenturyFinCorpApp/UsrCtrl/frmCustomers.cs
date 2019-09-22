@@ -387,7 +387,7 @@ namespace CenturyFinCorpApp
                            CustomerId = cus.CustomerId,
                            CustomerSeqNumber = cus.CustomerSeqNumber,
                            ReturnType = returnType.ToEnum<ReturnTypeEnum>()
-            });
+                       });
                 return;
 
             }
@@ -539,6 +539,7 @@ namespace CenturyFinCorpApp
                     strip.Items.Add(investigationText).Name = "InvStatus";
                     strip.Items.Add(EligibilityText).Name = "ElgStatus";
                     strip.Items.Add(noteWithUsText).Name = "NoteStatus";
+                    strip.Items.Add("Show Only This Customer").Name = "OnlyThisCus";
                 }
 
                 strip.Show(dataGridView1, new System.Drawing.Point(e.X, e.Y));
@@ -578,6 +579,19 @@ namespace CenturyFinCorpApp
             {
                 Customer.UpdateCustomerNoteLocation(cus.CustomerSeqNumber);
             }
+            else if (e.ClickedItem.Name == "OnlyThisCus")
+            {
+                var data = Customer.GetAllCustomer().Where(w => w.CustomerId == cus.CustomerId).ToList();
+
+                var totalInputMoney = data.Sum(s => s.Interest);
+                var totalOutputMoney = data.Sum(s => Transaction.GetBalance(s));
+
+                var message = $"Income: {totalInputMoney} {Environment.NewLine}Balance: {totalOutputMoney} {Environment.NewLine} Profit: {totalInputMoney - totalOutputMoney} {Environment.NewLine}";
+                dataGridView1.DataSource = data;
+
+                MessageBox.Show(message);
+            }
+
         }
 
         private void frmCustomers_Load(object sender, EventArgs e)
