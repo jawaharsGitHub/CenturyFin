@@ -2,6 +2,7 @@
 {
     public enum ReturnTypeEnum
     {
+        None,
         Daily,
         Alternate,
         Weekly,

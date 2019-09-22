@@ -26,6 +26,12 @@ namespace CenturyFinCorpApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
+            if(cmbReturnType.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please Select Return Type");
+                return;
+            }
             var nextIds = Customer.GetNextIds();
             var newCustomerId = nextIds.NewCustomerId;
             var nextSeqNo = nextIds.NewCustomerSeqId;
@@ -149,7 +155,7 @@ namespace CenturyFinCorpApp
             cmbCollectionSpot.DisplayMember = "Name";
 
 
-            cmbReturnType.SelectedItem = ReturnTypeEnum.Daily;
+            cmbReturnType.SelectedItem = ReturnTypeEnum.None;
             cmbReturnDay.SelectedItem = DayOfWeek.Sunday;
             cmbCollectionSpot.SelectedValue = 0;
         }
