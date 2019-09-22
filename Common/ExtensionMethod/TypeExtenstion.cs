@@ -85,5 +85,10 @@ namespace Common.ExtensionMethod
             return list[indexOf == list.Count - 1 ? 0 : indexOf + 1];
         }
 
+        public static T ToEnum<T>(this string value)
+        {
+            return (T)Enum.Parse(typeof(T), value, true);
+        }
+
     }
 }

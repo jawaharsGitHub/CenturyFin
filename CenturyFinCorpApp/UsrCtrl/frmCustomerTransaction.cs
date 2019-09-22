@@ -93,9 +93,9 @@ namespace CenturyFinCorpApp
             cmbReturnDay.SelectedItem = customer.ReturnDay;
             cmbCollectionSpot.SelectedValue = customer.CollectionSpotId;
 
-            this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
-            this.cmbReturnDay.SelectedIndexChanged += new System.EventHandler(this.cmbReturnDay_SelectedIndexChanged);
-            this.cmbCollectionSpot.SelectedIndexChanged += new System.EventHandler(this.cmbCollectionSpot_SelectedIndexChanged);
+            //this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
+            //this.cmbReturnDay.SelectedIndexChanged += new System.EventHandler(this.cmbReturnDay_SelectedIndexChanged);
+            //this.cmbCollectionSpot.SelectedIndexChanged += new System.EventHandler(this.cmbCollectionSpot_SelectedIndexChanged);
         }
 
         public Transaction AddTxn(Customer cus, DateTime txnDate)
@@ -371,26 +371,26 @@ namespace CenturyFinCorpApp
             }
         }
 
-        private void cmbReturnType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //TODO: need to resue this code
-            customer.ReturnType = (ReturnTypeEnum)Enum.Parse(typeof(ReturnTypeEnum), cmbReturnType.SelectedValue.ToString());
-            Customer.UpdateCustomerReturnType(customer);
-        }
+        //private void cmbReturnType_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    //TODO: need to resue this code
+        //    customer.ReturnType = (ReturnTypeEnum)Enum.Parse(typeof(ReturnTypeEnum), cmbReturnType.SelectedValue.ToString());
+        //    Customer.UpdateCustomerReturnType(customer);
+        //}
 
-        private void cmbReturnDay_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //TODO: need to resue this code
-            customer.ReturnDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), cmbReturnDay.SelectedValue.ToString());
-            Customer.UpdateCustomerReturnType(customer);
-        }
+        //private void cmbReturnDay_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    //TODO: need to resue this code
+        //    customer.ReturnDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), cmbReturnDay.SelectedValue.ToString());
+        //    Customer.UpdateCustomerReturnType(customer);
+        //}
 
-        private void cmbCollectionSpot_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //TODO: need to resue this code
-            customer.CollectionSpotId = cmbCollectionSpot.SelectedValue.ToInt32();
-            Customer.UpdateCustomerReturnType(customer);
-        }
+        //private void cmbCollectionSpot_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    //TODO: need to resue this code
+        //    customer.CollectionSpotId = cmbCollectionSpot.SelectedValue.ToInt32();
+        //    Customer.UpdateCustomerReturnType(customer);
+        //}
 
         private void btnCorrect_Click(object sender, EventArgs e)
         {

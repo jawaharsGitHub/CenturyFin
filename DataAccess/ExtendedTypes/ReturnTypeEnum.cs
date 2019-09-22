@@ -2,7 +2,7 @@
 {
     public enum ReturnTypeEnum
     {
-        None,
+        
         Daily,
         Alternate,
         Weekly,
@@ -11,6 +11,7 @@
         Monthly,
         GoldMonthly,
         TenMonths,
-        NI
+        NI,
+        None
     }
 }

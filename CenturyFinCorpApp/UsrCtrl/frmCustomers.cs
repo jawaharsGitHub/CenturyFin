@@ -205,7 +205,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["TamilName"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
-            dataGridView1.Columns["ReturnType"].Visible = show;
+            //dataGridView1.Columns["ReturnType"].Visible = show;
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -373,6 +373,21 @@ namespace CenturyFinCorpApp
                            CustomerSeqNumber = cus.CustomerSeqNumber,
                            AdjustedAmount = strAdjustmentAmount.ToInt32()
                        });
+                return;
+
+            }
+
+            if (grid.CurrentCell.OwningColumn.Name == "ReturnType")
+            {
+                var returnType = FormGeneral.GetGridCellValue(grid, rowIndex, "ReturnType");
+
+                Customer.UpdateCustomerReturnType(
+                       new Customer()
+                       {
+                           CustomerId = cus.CustomerId,
+                           CustomerSeqNumber = cus.CustomerSeqNumber,
+                           ReturnType = returnType.ToEnum<ReturnTypeEnum>()
+            });
                 return;
 
             }

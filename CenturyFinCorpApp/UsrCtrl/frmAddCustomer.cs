@@ -27,7 +27,7 @@ namespace CenturyFinCorpApp
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
-            if(cmbReturnType.SelectedIndex == 0)
+            if(ReturnTypeEnum.None == (ReturnTypeEnum)cmbReturnType.SelectedItem)
             {
                 MessageBox.Show("Please Select Return Type");
                 return;
