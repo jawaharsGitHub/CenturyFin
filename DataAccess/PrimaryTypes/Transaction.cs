@@ -340,12 +340,12 @@ namespace DataAccess.PrimaryTypes
             // Scenario: 1. Balance in customer and txn differs
             // Eg: cus1 got 40k and cus2 got 30k, now cus1 balance is 35k and cus2 balance is 20k, now cus1 wants to take responsibility of cus1 balance.
             // so, now cus balance is 35K + 20K = 55k but still balance in txns is 40k but in customer it is 55k. cus2 will be deleted.
-            if (customer.LoanAmount != txnLoanAmount)
-            {
-                return txnLoanAmount - paidAmount;
-            }
+            //if (customer.LoanAmount != txnLoanAmount)
+            //{
+            //    return txnLoanAmount - paidAmount;
+            //}
 
-            return customerTxns.OrderByDescending(m => m.TxnDate).First().Balance;   //customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
+            return customerTxns.OrderByDescending(m => m.TxnDate).ThenByDescending(t => t.TransactionId).First().Balance;   //customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
                                                                                      // return (customer.LoanAmount - paidAmount);
 
         }
