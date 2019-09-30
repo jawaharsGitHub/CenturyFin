@@ -16664,5 +16664,31 @@
     "CollectionSpotId": 143,
     "ReturnDay": 0,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 658,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 181,
+    "Name": "Bhavani Store",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-09-26T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 181,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
