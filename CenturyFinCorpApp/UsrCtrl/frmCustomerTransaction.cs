@@ -204,6 +204,9 @@ namespace CenturyFinCorpApp
             var isCorrect = (expectedBalance == lastBalance);
             btnCorrect.Visible = !isCorrect;
 
+            btnInterestOnly.Text = "int:"+ (totalReceived - customer.LoanAmount + lastBalance + customer.Interest).ToString();
+
+
             if (isCorrect == false)
             {
                 MessageBox.Show($"Loan: {cus.LoanAmount} Total Received: {totalReceived} Actual Balance: {lastBalance} Expected Balance: {expectedBalance}");

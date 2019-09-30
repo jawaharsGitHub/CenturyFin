@@ -43,6 +43,7 @@ namespace CenturyFinCorpApp
                 cus.CustomerSeqNumber = nextSeqNo;
                 cus.IsExistingCustomer = true;
                 cus.AdjustedAmount = null;
+                cus.InitialInterest = 0;
                 newCustomerId = cus.CustomerId;
                 cus.IsActive = false;   //Update Active flag of existing customer.
                 cus.IsForceClosed = false;
@@ -67,6 +68,7 @@ namespace CenturyFinCorpApp
 
             cus.LoanAmount = Convert.ToInt32(txtLoan.Text);
             cus.Interest = Convert.ToInt32(txtInterest.Text);
+            cus.InitialInterest = Convert.ToInt32(txtInterest.Text);
             cus.AmountGivenDate = dateTimePicker1.Value;
             cus.ReturnType = (ReturnTypeEnum)cmbReturnType.SelectedItem;
             cus.ReturnDay = (DayOfWeek)cmbReturnDay.SelectedItem;

@@ -24,6 +24,7 @@ namespace DataAccess.PrimaryTypes
         public string PhoneNumber { get; set; }
         public int LoanAmount { get; set; }
         public int Interest { get; set; }
+        public int InitialInterest { get; set; }
         public int MonthlyInterest { get; set; }
         public bool IsExistingCustomer { get; set; }
         public bool IsActive { get; set; }
@@ -396,6 +397,24 @@ namespace DataAccess.PrimaryTypes
 
                 var u = list.Where(c => c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
                 u.ReturnType = updatedCustomer.ReturnType;
+
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void UpdateInitialInterest(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.InitialInterest = updatedCustomer.InitialInterest;
 
 
                 WriteObjectsToFile(list, JsonFilePath);

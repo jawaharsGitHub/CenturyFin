@@ -69,6 +69,7 @@
             this.txtNewInterest = new System.Windows.Forms.TextBox();
             this.txtNewAmount = new System.Windows.Forms.TextBox();
             this.btnConvertToMonthly = new System.Windows.Forms.Button();
+            this.btnInterestOnly = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -479,10 +480,20 @@
             this.btnConvertToMonthly.UseVisualStyleBackColor = true;
             this.btnConvertToMonthly.Click += new System.EventHandler(this.btnConvertToMonthly_Click);
             // 
+            // btnInterestOnly
+            // 
+            this.btnInterestOnly.Location = new System.Drawing.Point(746, 174);
+            this.btnInterestOnly.Name = "btnInterestOnly";
+            this.btnInterestOnly.Size = new System.Drawing.Size(75, 57);
+            this.btnInterestOnly.TabIndex = 24;
+            this.btnInterestOnly.Text = "[INTEREST]";
+            this.btnInterestOnly.UseVisualStyleBackColor = true;
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnInterestOnly);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnForceClose);
@@ -564,5 +575,6 @@
         private System.Windows.Forms.TextBox txtNewAmount;
         private System.Windows.Forms.Button btnConvertToMonthly;
         private System.Windows.Forms.ComboBox cmbExistingCustomer;
+        private System.Windows.Forms.Button btnInterestOnly;
     }
 }

@@ -392,6 +392,21 @@ namespace CenturyFinCorpApp
 
             }
 
+            if (grid.CurrentCell.OwningColumn.Name == "InitialInterest")
+            {
+                var initialInt = FormGeneral.GetGridCellValue(grid, rowIndex, "InitialInterest");
+
+                Customer.UpdateInitialInterest(
+                       new Customer()
+                       {
+                           CustomerId = cus.CustomerId,
+                           CustomerSeqNumber = cus.CustomerSeqNumber,
+                           InitialInterest = initialInt.ToInt32()
+                       });
+                return;
+
+            }
+
             var strCollectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
             if (strCollectedAmount == null) return;
