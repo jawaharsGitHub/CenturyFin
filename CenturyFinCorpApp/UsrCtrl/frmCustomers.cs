@@ -88,7 +88,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(10, "By AdjustedAmount"),
                    new KeyValuePair<int, string>(11, "Not Eligible Members"),
                    new KeyValuePair<int, string>(12, "Need Investigation Members"),
-                   new KeyValuePair<int, string>(13, "Only Note With us")
+                   new KeyValuePair<int, string>(13, "Only Note With us"),
+                   new KeyValuePair<int, string>(14, "Only Personal")
 
                };
 
@@ -556,6 +557,7 @@ namespace CenturyFinCorpApp
                 var investigationText = selectedCustomer.NeedInvestigation ? "Make - No need of investigation" : "Make - Need Investigation";
                 var EligibilityText = selectedCustomer.GivenEligibility ? "Make Not Eligible" : "Make Eligible";
                 var noteWithUsText = selectedCustomer.NoteWithUs ? "Give Note To Customer" : "Take Note with us";
+                var personalText = selectedCustomer.IsPersonal ? "Make This Public" : "Make This Personal";
                 if (rowIndex >= 0)
                 {
                     strip.Items.Add("Delete Customer and Txn").Name = "All";
@@ -565,6 +567,7 @@ namespace CenturyFinCorpApp
                     strip.Items.Add(EligibilityText).Name = "ElgStatus";
                     strip.Items.Add(noteWithUsText).Name = "NoteStatus";
                     strip.Items.Add("Show Only This Customer").Name = "OnlyThisCus";
+                    strip.Items.Add(personalText).Name = "Personal";
                 }
 
                 strip.Show(dataGridView1, new System.Drawing.Point(e.X, e.Y));
@@ -603,6 +606,10 @@ namespace CenturyFinCorpApp
             else if (e.ClickedItem.Name == "NoteStatus")
             {
                 Customer.UpdateCustomerNoteLocation(cus.CustomerSeqNumber);
+            }
+            else if (e.ClickedItem.Name == "Personal")
+            {
+                Customer.UpdateCustomerPersonalFlag(cus.CustomerSeqNumber);
             }
             else if (e.ClickedItem.Name == "OnlyThisCus")
             {
@@ -691,6 +698,10 @@ namespace CenturyFinCorpApp
             else if (value == 13)
             {
                 searchedCustomer = customers.Where(w => w.NoteWithUs == true).OrderBy(o => o.Name).ToList();
+            }
+            else if (value == 14)
+            {
+                searchedCustomer = customers.Where(w => w.IsPersonal == true).OrderByDescending(o => o.LoanAmount).ToList();
             }
             else
             {

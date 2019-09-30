@@ -35,6 +35,7 @@ namespace DataAccess.PrimaryTypes
         public bool NeedInvestigation { get; set; }
         public bool GivenEligibility { get; set; } = true;
         public bool NoteWithUs { get; set; }
+        public bool IsPersonal { get; set; }
 
         public bool IsMerged { get; set; }
         public DateTime? MergedDate { get; set; }
@@ -360,6 +361,23 @@ namespace DataAccess.PrimaryTypes
 
                 var d = list.Where(c => c.CustomerSeqNumber == cusSeqNo).First();
                 d.NoteWithUs = !d.NoteWithUs;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void UpdateCustomerPersonalFlag(int cusSeqNo)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var d = list.Where(c => c.CustomerSeqNumber == cusSeqNo).First();
+                d.IsPersonal = !d.IsPersonal;
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
