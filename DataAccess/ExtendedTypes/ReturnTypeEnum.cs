@@ -12,6 +12,7 @@
         GoldMonthly,
         TenMonths,
         NI,
-        None
+        None,
+        Loss
     }
 }

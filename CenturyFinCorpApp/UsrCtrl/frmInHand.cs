@@ -517,7 +517,9 @@ tr:nth-child(even) {
                             Balance = Transaction.GetBalance(c),
                             LastDate = Transaction.GetLastTransactionDate(c),
                             TxnDate = (dept?.TxnDate),
-                            TxnId = (dept?.TransactionId)
+                            TxnId = (dept?.TransactionId),
+                            CxnAmount = c.InitialInterest
+
                         })
                         .OrderByDescending(t => t.TxnDate).ThenBy(t => t.TxnId).ToList();
 

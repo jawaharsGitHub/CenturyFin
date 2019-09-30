@@ -11,6 +11,7 @@ namespace DataAccess.ExtendedTypes
     {
         public string Name { get; set; }
         public int LoanAmount { get; set; }
+        public int CxnAmount { get; set; }
         public int Balance { get; set; }
         public string LastDate { get; set; }
         public DateTime? TxnDate { get; set; }
