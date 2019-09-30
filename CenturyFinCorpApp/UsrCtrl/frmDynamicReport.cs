@@ -350,15 +350,17 @@ namespace CenturyFinCorpApp
 
         private void InterestGroups()
         {
-            var cus = Customer.GetAllCustomer().Where(w => w.IsActive == false).ToList();
+            //var cus = Customer.GetAllCustomer().Where(w => w.IsActive == false).ToList();
+            var cus = Customer.GetAllCustomer().ToList();
 
             var groupsByInterest = (from c in cus
                                     group c by c.CustomerId into newGroup
-                                    select new
+                                    select new InterestGroup
                                     {
                                         CustomerId = newGroup.Key,
                                         Name = newGroup.First().Name,
                                         TotalInterest = newGroup.Sum(s => s.Interest),
+                                        TotalBalance = Customer.GetAllActiveCustomer().Where(w => w.CustomerId == newGroup.Key).Sum(s => Transaction.GetBalance(s)),
                                         Count = newGroup.Count()
                                     }).OrderByDescending(o => o.TotalInterest).ToList();
 
