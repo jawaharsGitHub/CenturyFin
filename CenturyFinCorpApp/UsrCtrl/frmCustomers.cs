@@ -203,6 +203,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["ModifiedDate"].Visible = false;
             dataGridView1.Columns["MergeFromCusSeqNumber"].Visible = false;
             dataGridView1.Columns["TamilName"].Visible = false;
+            dataGridView1.Columns["InitialInterest"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
             //dataGridView1.Columns["ReturnType"].Visible = show;
@@ -514,6 +515,15 @@ namespace CenturyFinCorpApp
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            // Set to deafulted values.
+
+            txtSearch.Text = string.Empty;
+            cmbFilters.SelectedIndex = 0;
+            cmbReturnTypes.SelectedIndex = 0;
+            chkFriends.Checked = false;
+
+
+
             SetCustomers();
             txtSearch.Focus();
             txtSearch.Text = string.Empty;
@@ -668,7 +678,7 @@ namespace CenturyFinCorpApp
             }
             else if (value == 10)
             {
-                searchedCustomer = customers.OrderByDescending(o => o.AdjustedAmount).ToList();
+                searchedCustomer = customers.Where(w => w.AdjustedAmount != null).OrderBy(o => o.AdjustedAmount).ToList();
             }
             else if (value == 11)
             {
