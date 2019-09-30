@@ -318,6 +318,21 @@ namespace DataAccess.PrimaryTypes
 
         }
 
+
+        public static string GetLastTransactionDate(Customer customer)
+        {
+
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+
+            var latestDate = (from txn in list
+                                where txn.CustomerSequenceNo == customer.CustomerSeqNumber && txn.AmountReceived >= 0
+                                orderby txn.TransactionId descending
+                                select txn).First().TxnDate.ToShortDateString();
+
+            return latestDate;
+
+        }
+
         public static int GetBalance(Customer customer)
         {
             if (customer.IsActive == false) return 0;

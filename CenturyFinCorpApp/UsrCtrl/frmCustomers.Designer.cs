@@ -44,6 +44,7 @@
             this.cmbReturnTypes = new System.Windows.Forms.ComboBox();
             this.chkFriends = new System.Windows.Forms.CheckBox();
             this.btnLatestCollection = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -203,10 +204,20 @@
             this.btnLatestCollection.UseVisualStyleBackColor = true;
             this.btnLatestCollection.Click += new System.EventHandler(this.btnLatestCollection_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1124, 176);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(128, 217);
+            this.textBox1.TabIndex = 17;
+            this.textBox1.Text = "Daily = 0\r\nAlternate = 1\r\n";
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnLatestCollection);
             this.Controls.Add(this.chkFriends);
             this.Controls.Add(this.cmbReturnTypes);
@@ -222,7 +233,7 @@
             this.Controls.Add(this.rdbActive);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmCustomers";
-            this.Size = new System.Drawing.Size(1370, 641);
+            this.Size = new System.Drawing.Size(1268, 641);
             this.Load += new System.EventHandler(this.frmCustomers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -247,5 +258,6 @@
         private System.Windows.Forms.ComboBox cmbReturnTypes;
         private System.Windows.Forms.CheckBox chkFriends;
         private System.Windows.Forms.Button btnLatestCollection;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

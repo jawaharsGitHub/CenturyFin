@@ -3,10 +3,12 @@ using Common.ExtensionMethod;
 using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CenturyFinCorpApp
@@ -15,6 +17,7 @@ namespace CenturyFinCorpApp
     {
 
         private DailyCollectionDetail dailyTxn;
+        private static DateTime currentBalanceDate;
 
         bool haveData = false;
 
@@ -24,6 +27,7 @@ namespace CenturyFinCorpApp
 
             GetDailyTxn(GlobalValue.CollectionDate.Value.AddDays(-1), true);
             GetDailyTxn(GlobalValue.CollectionDate.Value, true);
+            currentBalanceDate = DailyCollectionDetail.GetCurrentDailyTxnDate();
 
         }
 
@@ -389,7 +393,7 @@ namespace CenturyFinCorpApp
                     var allBalances = string.Join(Environment.NewLine,
                         Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalance(s)}").ToList());
 
-                    var currentBalanceDate = DailyCollectionDetail.GetCurrentDailyTxnDate();
+                    //var currentBalanceDate = DailyCollectionDetail.GetCurrentDailyTxnDate();
 
                     AppCommunication.SendEmail(allBalances, currentBalanceDate);
 
@@ -437,6 +441,101 @@ namespace CenturyFinCorpApp
         private void btnSendBalances_Click(object sender, EventArgs e)
         {
             SendBalances();
+        }
+
+        private void btnCheckReport_Click(object sender, EventArgs e)
+        {
+
+            string htmlString = @"<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>[title]</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Collected?</th>
+    <th>Loan</th>
+    <th>Balance</th>
+    <th>Last Txn Date</th>
+  </tr>
+  [data]
+</table>
+
+</body>
+</html>
+";
+
+
+            var cus = Customer.GetAllActiveCustomer();
+            var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
+
+            var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().ToList();
+
+            values.ForEach(f =>
+            {
+
+                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f);
+
+            });
+
+        }
+
+
+        private void FormHTML(List<Customer> cus, List<Transaction> txns, String SourceHtmlString, ReturnTypeEnum returnType)
+        {
+            var data = (from c in cus
+                        join t in txns
+                        on c.CustomerSeqNumber equals t.CustomerSequenceNo into newData
+                        from dept in newData.DefaultIfEmpty()
+                        where c.ReturnType == returnType
+                        && c.IsPersonal == false
+                        select new CollectionStatus
+                        {
+                            Name = c.Name,
+                            LoanAmount = c.LoanAmount,
+                            Balance = Transaction.GetBalance(c),
+                            LastDate = Transaction.GetLastTransactionDate(c),
+                            TxnDate = (dept?.TxnDate),
+                            TxnId = (dept?.TransactionId)
+                        })
+                        .OrderByDescending(t => t.TxnDate).ThenBy(t => t.TxnId).ToList();
+
+            if (data.Count == 0) return;
+
+            StringBuilder rowData = new StringBuilder();
+
+            data.ForEach(f =>
+            {
+                rowData.Append($@"<tr><td>{f.Name}</td><td>{f.IsToday}</td><td>{f.LoanAmount}</td><td>{f.Balance}</td><td>{f.LastDate}</td></tr>");
+            });
+
+
+            var fn = $"{data.Count()} {returnType.ToString()} For {currentBalanceDate.ToShortDateString()}";
+
+            var dailyCheckHTML = SourceHtmlString.Replace("[data]", rowData.ToString()).Replace("[title]", fn);
+
+            General.CreateHTML($"{fn}.htm", dailyCheckHTML);
         }
     }
 }

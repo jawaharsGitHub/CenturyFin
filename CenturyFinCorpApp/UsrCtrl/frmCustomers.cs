@@ -18,6 +18,19 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
 
+
+            textBox1.Text = @"Daily = 0,
+       Alternate = 1,
+       Weekly = 2,
+       BiWeekly = 3,
+       BiMonthly = 4,
+       Monthly = 5,
+       GoldMonthly = 6,
+       TenMonths = 7,
+       NI = 8,
+       None = 9
+       Loss = 10";
+
             cmbFilters.DataSource = GetOptions();
             SetReturnTypes();
 
@@ -205,6 +218,10 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["MergeFromCusSeqNumber"].Visible = false;
             dataGridView1.Columns["TamilName"].Visible = false;
             dataGridView1.Columns["InitialInterest"].Visible = false;
+            dataGridView1.Columns["GivenEligibility"].Visible = false;
+            dataGridView1.Columns["NoteWithUs"].Visible = false;
+           dataGridView1.Columns["IsPersonal"].Visible = false;
+            dataGridView1.Columns["NeedInvestigation"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
             //dataGridView1.Columns["ReturnType"].Visible = show;

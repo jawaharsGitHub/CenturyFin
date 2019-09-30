@@ -1,8 +1,10 @@
 ﻿
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Reflection;
+using System.Text;
 
 namespace Common
 {
@@ -49,6 +51,19 @@ namespace Common
             {
                 return false;
             }
+        }
+
+        public static void CreateHTML(string fileName, string htmlString)
+        {
+            using (FileStream fs = new FileStream(fileName, FileMode.Create))
+            {
+                using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
+                {
+                    w.WriteLine(htmlString);
+                }
+            }
+
+            Process.Start(fileName);
         }
 
     }

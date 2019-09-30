@@ -96,6 +96,7 @@
             this.btnNextDay = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSendBalances = new System.Windows.Forms.Button();
+            this.btnCheckReport = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -745,7 +746,7 @@
             // 
             this.btnSendBalances.BackColor = System.Drawing.Color.DarkOrange;
             this.btnSendBalances.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendBalances.Location = new System.Drawing.Point(774, 254);
+            this.btnSendBalances.Location = new System.Drawing.Point(1005, 164);
             this.btnSendBalances.Name = "btnSendBalances";
             this.btnSendBalances.Size = new System.Drawing.Size(170, 29);
             this.btnSendBalances.TabIndex = 50;
@@ -753,10 +754,23 @@
             this.btnSendBalances.UseVisualStyleBackColor = false;
             this.btnSendBalances.Click += new System.EventHandler(this.btnSendBalances_Click);
             // 
+            // btnCheckReport
+            // 
+            this.btnCheckReport.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCheckReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckReport.Location = new System.Drawing.Point(1005, 229);
+            this.btnCheckReport.Name = "btnCheckReport";
+            this.btnCheckReport.Size = new System.Drawing.Size(170, 29);
+            this.btnCheckReport.TabIndex = 51;
+            this.btnCheckReport.Text = "Cxn Check Report";
+            this.btnCheckReport.UseVisualStyleBackColor = false;
+            this.btnCheckReport.Click += new System.EventHandler(this.btnCheckReport_Click);
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCheckReport);
             this.Controls.Add(this.btnSendBalances);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnNextDay);
@@ -779,7 +793,7 @@
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label1);
             this.Name = "frmInHand";
-            this.Size = new System.Drawing.Size(977, 586);
+            this.Size = new System.Drawing.Size(1256, 586);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -859,5 +873,6 @@
         private System.Windows.Forms.Button btnMama;
         private System.Windows.Forms.TextBox txtMamaExpenditure;
         private System.Windows.Forms.Button btnSendBalances;
+        private System.Windows.Forms.Button btnCheckReport;
     }
 }
