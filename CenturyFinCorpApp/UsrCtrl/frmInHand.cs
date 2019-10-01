@@ -361,7 +361,7 @@ namespace CenturyFinCorpApp
                 tw.WriteLine($"@Collection Summary for {dateTimePicker1.Value.ToShortDateString()}");
                 tw.WriteLine($"------------------------------------------------");
 
-                tw.WriteLine($"Total input Money = ActualInhand inhand yesterday[{dailyTxn.ActualInHand.TokFormat()}] + collection [{txtCollectionAmount.Text}] + interest[{txtInterest.Text}] + other investment [{txtOtherInvestment.Text}] = [{inputMoney.TokFormat()}]");
+                tw.WriteLine($"Total input Money = ActualInhand inhand yesterday[{dailyTxn.YesterdayAmountInHand.TokFormat()}] + collection [{txtCollectionAmount.Text}] + interest[{txtInterest.Text}] + other investment [{txtOtherInvestment.Text}] = [{inputMoney.TokFormat()}]");
                 tw.WriteLine(Environment.NewLine);
                 tw.WriteLine($"Total out used money = given amount [{txtGivenAmount.Text}] + other expenditure [{txtOtherExpenditure.Text}] = [{outUsedMoney.TokFormat()}]");
                 tw.WriteLine(Environment.NewLine);

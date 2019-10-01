@@ -97,12 +97,16 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSendBalances = new System.Windows.Forms.Button();
             this.btnCheckReport = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label27);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.btnMama);
             this.groupBox1.Controls.Add(this.btnInHand);
             this.groupBox1.Controls.Add(this.label23);
@@ -766,6 +770,24 @@
             this.btnCheckReport.UseVisualStyleBackColor = false;
             this.btnCheckReport.Click += new System.EventHandler(this.btnCheckReport_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(241, 441);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 13);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "eg: Salary";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(210, 512);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(99, 13);
+            this.label27.TabIndex = 38;
+            this.label27.Text = "eg: HomeExpenses";
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -874,5 +896,7 @@
         private System.Windows.Forms.TextBox txtMamaExpenditure;
         private System.Windows.Forms.Button btnSendBalances;
         private System.Windows.Forms.Button btnCheckReport;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label10;
     }
 }
