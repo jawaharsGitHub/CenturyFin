@@ -13,6 +13,7 @@
         TenMonths,
         NI,
         None,
-        Loss
+        Loss,
+        Random
     }
 }

@@ -17,6 +17,7 @@ namespace DataAccess.PrimaryTypes
 
                 var yearMonth = Convert.ToDateTime(MonthYear).ToString("yyyyMM").ToInt32();
 
+                var year = Convert.ToDateTime(MonthYear).ToString("yyyy").ToInt32();
 
                 if (yearMonth <= 201805)
                 {
@@ -40,12 +41,20 @@ namespace DataAccess.PrimaryTypes
                     salary = 12000;
                 }
 
-                if (DateTime.Today.ToString("yyyyMM").ToInt32() >= yearMonth && (month == 1 || month == 10))
+                // EXTRA CONDITIONS.
+                if (year <= 2018 && (month == 1 || month == 10))
                 {
                     salary += 10000;
                 }
-
-                if (yearMonth == 201904)
+                else if (year == 2019 && month == 1)
+                {
+                    salary += 10000;
+                }
+                else if (year >= 2019 && month == 10)
+                {
+                    salary += 5000;
+                }
+                else if (yearMonth == 201904)
                 {
                     salary += 10000;
                 }

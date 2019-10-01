@@ -750,7 +750,7 @@
             // 
             this.btnSendBalances.BackColor = System.Drawing.Color.DarkOrange;
             this.btnSendBalances.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendBalances.Location = new System.Drawing.Point(1005, 164);
+            this.btnSendBalances.Location = new System.Drawing.Point(1005, 154);
             this.btnSendBalances.Name = "btnSendBalances";
             this.btnSendBalances.Size = new System.Drawing.Size(170, 29);
             this.btnSendBalances.TabIndex = 50;
@@ -760,11 +760,11 @@
             // 
             // btnCheckReport
             // 
-            this.btnCheckReport.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnCheckReport.BackColor = System.Drawing.Color.YellowGreen;
             this.btnCheckReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCheckReport.Location = new System.Drawing.Point(1005, 229);
             this.btnCheckReport.Name = "btnCheckReport";
-            this.btnCheckReport.Size = new System.Drawing.Size(170, 29);
+            this.btnCheckReport.Size = new System.Drawing.Size(170, 74);
             this.btnCheckReport.TabIndex = 51;
             this.btnCheckReport.Text = "Cxn Check Report";
             this.btnCheckReport.UseVisualStyleBackColor = false;
