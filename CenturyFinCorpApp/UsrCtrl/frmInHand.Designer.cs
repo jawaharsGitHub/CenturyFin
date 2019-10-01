@@ -167,11 +167,11 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(41, 489);
+            this.label23.Location = new System.Drawing.Point(28, 489);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(99, 13);
+            this.label23.Size = new System.Drawing.Size(126, 13);
             this.label23.TabIndex = 34;
-            this.label23.Text = "Out Used Money (-)";
+            this.label23.Text = "Out Used Money (-INVM)";
             // 
             // txtOutMoney
             // 
@@ -378,9 +378,9 @@
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(40, 420);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(104, 13);
+            this.label16.Size = new System.Drawing.Size(115, 13);
             this.label16.TabIndex = 25;
-            this.label16.Text = "Other Expenditure (-)";
+            this.label16.Text = "Other Expenditure (-IH)";
             // 
             // txtOtherInvestment
             // 
