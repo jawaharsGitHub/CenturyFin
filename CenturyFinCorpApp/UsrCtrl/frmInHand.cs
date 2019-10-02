@@ -453,7 +453,7 @@ namespace CenturyFinCorpApp
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 90%;
 }
 
 td, th {
@@ -477,7 +477,7 @@ tr:nth-child(even) {
     <th>Collected?</th>
     <th>Loan</th>
     <th>Balance</th>
-    <th>Last Txn Date</th>
+    <th width='400px'>Last Txn Date</th>
   </tr>
   [data]
 </table>
@@ -515,7 +515,7 @@ tr:nth-child(even) {
                             Name = c.Name,
                             LoanAmount = c.LoanAmount,
                             Balance = Transaction.GetBalance(c),
-                            LastDate = Transaction.GetLastTransactionDate(c),
+                            LastDate = returnType == ReturnTypeEnum.Weekly ? Transaction.GetTransactionSummaryForWeek(c) : Transaction.GetLastTransactionDate(c),
                             TxnDate = (dept?.TxnDate),
                             TxnId = (dept?.TransactionId),
                             CxnAmount = c.InitialInterest

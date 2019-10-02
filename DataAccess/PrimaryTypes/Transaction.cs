@@ -333,6 +333,22 @@ namespace DataAccess.PrimaryTypes
 
         }
 
+        public static string GetTransactionSummaryForWeek(Customer customer)
+        {
+
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+
+            var latestDate = (from txn in list
+                              where txn.CustomerSequenceNo == customer.CustomerSeqNumber
+                              orderby txn.TransactionId
+                              select $"{txn.TxnDate.Day}({txn.TxnDate.DayOfWeek.ToString().Substring(0,2)})").ToList();
+
+            var result = String.Join("-", latestDate);
+
+            return result;
+
+        }
+
         public static int GetBalance(Customer customer)
         {
             if (customer.IsActive == false) return 0;
