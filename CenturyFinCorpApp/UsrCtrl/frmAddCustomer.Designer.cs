@@ -52,13 +52,15 @@
             this.cmbReturnType = new System.Windows.Forms.ComboBox();
             this.cmbReturnDay = new System.Windows.Forms.ComboBox();
             this.cmbCollectionSpot = new System.Windows.Forms.ComboBox();
+            this.txtTamilName = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(32, 96);
+            this.lblName.Location = new System.Drawing.Point(32, 67);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(78, 29);
             this.lblName.TabIndex = 0;
@@ -67,7 +69,7 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(233, 93);
+            this.txtName.Location = new System.Drawing.Point(233, 64);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(357, 35);
             this.txtName.TabIndex = 2;
@@ -289,10 +291,30 @@
             this.cmbCollectionSpot.Size = new System.Drawing.Size(225, 21);
             this.cmbCollectionSpot.TabIndex = 26;
             // 
+            // txtTamilName
+            // 
+            this.txtTamilName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTamilName.Location = new System.Drawing.Point(233, 105);
+            this.txtTamilName.Name = "txtTamilName";
+            this.txtTamilName.Size = new System.Drawing.Size(357, 35);
+            this.txtTamilName.TabIndex = 27;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(32, 111);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(140, 29);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "தமிழ் பெயர்";
+            // 
             // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtTamilName);
             this.Controls.Add(this.cmbCollectionSpot);
             this.Controls.Add(this.cmbReturnDay);
             this.Controls.Add(this.cmbReturnType);
@@ -350,5 +372,7 @@
         private System.Windows.Forms.ComboBox cmbReturnType;
         private System.Windows.Forms.ComboBox cmbReturnDay;
         private System.Windows.Forms.ComboBox cmbCollectionSpot;
+        private System.Windows.Forms.TextBox txtTamilName;
+        private System.Windows.Forms.Label label8;
     }
 }

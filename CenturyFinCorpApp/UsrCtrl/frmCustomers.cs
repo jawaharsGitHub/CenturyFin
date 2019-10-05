@@ -207,7 +207,7 @@ namespace CenturyFinCorpApp
         private void SetColumnVisibility(bool show = false)
         {
             dataGridView1.Columns["ModifiedDate"].Visible = false;
-            dataGridView1.Columns["PhoneNumber"].Visible = false;
+            dataGridView1.Columns["PhoneNumber"].Visible = show;
             dataGridView1.Columns["IsMerged"].Visible = false;
             dataGridView1.Columns["MergedDate"].Visible = false;
             dataGridView1.Columns["IdAndName"].Visible = false;
@@ -216,7 +216,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["NameAndId"].Visible = false;
             dataGridView1.Columns["ModifiedDate"].Visible = false;
             dataGridView1.Columns["MergeFromCusSeqNumber"].Visible = false;
-            dataGridView1.Columns["TamilName"].Visible = false;
+            dataGridView1.Columns["TamilName"].Visible = show;
             dataGridView1.Columns["InitialInterest"].Visible = false;
             dataGridView1.Columns["GivenEligibility"].Visible = false;
             dataGridView1.Columns["NoteWithUs"].Visible = false;
@@ -425,6 +425,35 @@ namespace CenturyFinCorpApp
                 return;
 
             }
+            if (grid.CurrentCell.OwningColumn.Name == "TamilName")
+            {
+                var tamilName = FormGeneral.GetGridCellValue(grid, rowIndex, "TamilName");
+
+                Customer.UpdateTamilName(
+                       new Customer()
+                       {
+                           CustomerId = cus.CustomerId,
+                           CustomerSeqNumber = cus.CustomerSeqNumber,
+                           TamilName = tamilName
+                       });
+                return;
+
+            }
+
+            if (grid.CurrentCell.OwningColumn.Name == "PhoneNumber")
+            {
+                var phoneNo = FormGeneral.GetGridCellValue(grid, rowIndex, "PhoneNumber");
+
+                Customer.UpdatePhoneNo(
+                       new Customer()
+                       {
+                           CustomerId = cus.CustomerId,
+                           CustomerSeqNumber = cus.CustomerSeqNumber,
+                           PhoneNumber = phoneNo
+                       });
+                return;
+
+            }   
 
             var strCollectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 

@@ -73,6 +73,7 @@ namespace CenturyFinCorpApp
                 }
                 cus.CustomerId = newCustomerId;
                 cus.Name = txtName.Text;
+                cus.TamilName = txtTamilName.Text;
                 cus.PhoneNumber = txtPhone.Text;
                 cus.CustomerSeqNumber = nextSeqNo;
             }
