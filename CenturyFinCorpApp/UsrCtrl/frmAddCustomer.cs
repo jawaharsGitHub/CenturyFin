@@ -27,11 +27,22 @@ namespace CenturyFinCorpApp
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
-            if(ReturnTypeEnum.None == (ReturnTypeEnum)cmbReturnType.SelectedItem)
+            if (ReturnTypeEnum.None == (ReturnTypeEnum)cmbReturnType.SelectedItem)
             {
                 MessageBox.Show("Please Select Return Type");
                 return;
             }
+
+            if (ReturnTypeEnum.Weekly == (ReturnTypeEnum)cmbReturnType.SelectedItem)
+            {
+                if (cmbReturnDay.SelectedIndex == 0)
+                {
+                    MessageBox.Show("Please Select Return Day for weekly type!");
+                    return;
+                }
+            }
+
+
             var nextIds = Customer.GetNextIds();
             var newCustomerId = nextIds.NewCustomerId;
             var nextSeqNo = nextIds.NewCustomerSeqId;
@@ -150,7 +161,11 @@ namespace CenturyFinCorpApp
         private void LoadCustomerCollectionType()
         {
             cmbReturnType.DataSource = Enum.GetValues(typeof(ReturnTypeEnum));
-            cmbReturnDay.DataSource = Enum.GetValues(typeof(DayOfWeek));
+            var allDays = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
+
+            allDays.ForEach(f => { cmbReturnDay.Items.Add(f); });
+
+            cmbReturnDay.Items.Insert(0, "--Select--");
 
             cmbCollectionSpot.DataSource = Customer.GetAllUniqueCustomers();
             cmbCollectionSpot.ValueMember = "CustomerId";
@@ -171,6 +186,12 @@ namespace CenturyFinCorpApp
                 MessageBox.Show($"{selectedCustomer.Name} is not eligible for loan. Sorry!!!");
                 this.Enabled = false;
             }
+        }
+
+        private void cmbReturnType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((ReturnTypeEnum)cmbReturnType.SelectedItem == ReturnTypeEnum.Weekly)
+                cmbReturnDay.SelectedIndex = 0;
         }
     }
 }

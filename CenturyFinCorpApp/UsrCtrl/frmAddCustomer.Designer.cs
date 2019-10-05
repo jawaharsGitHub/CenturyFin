@@ -76,7 +76,7 @@
             // 
             this.lblCustomerNo.AutoSize = true;
             this.lblCustomerNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomerNo.Location = new System.Drawing.Point(783, 130);
+            this.lblCustomerNo.Location = new System.Drawing.Point(677, 17);
             this.lblCustomerNo.Name = "lblCustomerNo";
             this.lblCustomerNo.Size = new System.Drawing.Size(161, 29);
             this.lblCustomerNo.TabIndex = 2;
@@ -104,7 +104,7 @@
             // 
             this.txtCustomerNo.AutoSize = true;
             this.txtCustomerNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomerNo.Location = new System.Drawing.Point(963, 129);
+            this.txtCustomerNo.Location = new System.Drawing.Point(857, 16);
             this.txtCustomerNo.Name = "txtCustomerNo";
             this.txtCustomerNo.Size = new System.Drawing.Size(169, 29);
             this.txtCustomerNo.TabIndex = 6;
@@ -169,7 +169,7 @@
             this.lblMessage.AutoSize = true;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(782, 252);
+            this.lblMessage.Location = new System.Drawing.Point(684, 136);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(86, 31);
             this.lblMessage.TabIndex = 15;
@@ -214,7 +214,7 @@
             // 
             this.lblNoteCount.AutoSize = true;
             this.lblNoteCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoteCount.Location = new System.Drawing.Point(971, 171);
+            this.lblNoteCount.Location = new System.Drawing.Point(865, 58);
             this.lblNoteCount.Name = "lblNoteCount";
             this.lblNoteCount.Size = new System.Drawing.Size(117, 29);
             this.lblNoteCount.TabIndex = 20;
@@ -225,7 +225,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(791, 172);
+            this.label5.Location = new System.Drawing.Point(685, 59);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(172, 29);
             this.label5.TabIndex = 19;
@@ -269,6 +269,7 @@
             this.cmbReturnType.Name = "cmbReturnType";
             this.cmbReturnType.Size = new System.Drawing.Size(121, 21);
             this.cmbReturnType.TabIndex = 24;
+            this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
             // 
             // cmbReturnDay
             // 
