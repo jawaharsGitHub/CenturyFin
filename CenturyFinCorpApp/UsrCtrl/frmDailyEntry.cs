@@ -116,6 +116,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["CustomerId"].Visible = false;
             dataGridView1.Columns["CustomerSeqId"].Visible = false;
             dataGridView1.Columns["Interest"].Visible = false;
+            dataGridView1.Columns["CustomerName"].Visible = false;
             dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
         }
 
@@ -149,6 +150,7 @@ namespace CenturyFinCorpApp
                               TransactionId = t.TransactionId,
                               TxnDate = t.TxnDate,
                               CustomerName = c.Name,
+                              Name = string.IsNullOrEmpty(c.TamilName) ? c.Name : c.TamilName,
                               Loan = c.LoanAmount,
                               CSId = c.CustomerSeqNumber,
                               AmountReceived = t.AmountReceived,
@@ -192,6 +194,7 @@ namespace CenturyFinCorpApp
 
             dataGridView1.DataSource = result;
             dataGridView1.Columns["AmountReceived"].ReadOnly = false;
+            dataGridView1.Columns["Name"].DisplayIndex = 0;
             dataGridView1.Columns["AmountReceived"].DisplayIndex = 1;
             dataGridView1.Columns["Balance"].DisplayIndex = 2;
 
