@@ -512,7 +512,7 @@ tr:nth-child(even) {
                         && c.IsPersonal == false
                         select new CollectionStatus
                         {
-                            Name = c.Name,
+                            Name = string.IsNullOrEmpty(c.TamilName) ? c.Name : c.TamilName,
                             LoanAmount = c.LoanAmount,
                             Balance = Transaction.GetBalance(c),
                             LastDate = returnType == ReturnTypeEnum.Weekly ? Transaction.GetTransactionSummaryForWeek(c) : Transaction.GetLastTransactionDate(c),
