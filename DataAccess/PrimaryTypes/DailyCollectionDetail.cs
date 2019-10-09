@@ -155,7 +155,11 @@ namespace DataAccess.PrimaryTypes
         }
 
 
-        public static DateTime GetCurrentDailyTxnDate()
+        /// <summary>
+        /// Specifies the last collection date ie., last date mama gave the info.
+        /// </summary>
+        /// <returns></returns>
+        public static DateTime GetLastCollectionDateDate()
         {
             try
             {
@@ -170,7 +174,11 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static DateTime GetLatesttDailyTxnDate()
+        /// <summary>
+        /// Specifies the next collection date ie.,next to last.
+        /// </summary>
+        /// <returns></returns>
+        public static DateTime GetNexttCollectionDate()
         {
             try
             {

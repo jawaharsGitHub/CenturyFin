@@ -27,7 +27,7 @@ namespace CenturyFinCorpApp
 
             GetDailyTxn(GlobalValue.CollectionDate.Value.AddDays(-1), true);
             GetDailyTxn(GlobalValue.CollectionDate.Value, true);
-            currentBalanceDate = DailyCollectionDetail.GetCurrentDailyTxnDate();
+            currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
 
         }
 
@@ -391,7 +391,7 @@ namespace CenturyFinCorpApp
                 if (haveInternetConnection)
                 {
                     var allBalances = string.Join(Environment.NewLine,
-                        Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalance(s)}").ToList());
+                        Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalance(s)}({s.LoanAmount})").ToList());
 
                     //var currentBalanceDate = DailyCollectionDetail.GetCurrentDailyTxnDate();
 

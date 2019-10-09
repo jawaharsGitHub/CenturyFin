@@ -20,7 +20,7 @@ namespace DataAccess.ExtendedTypes
         {
             get
             {
-                return DailyCollectionDetail.GetCurrentDailyTxnDate().ToShortDateString() == LastDate ? "Y" : "N";
+                return DailyCollectionDetail.GetLastCollectionDateDate().ToShortDateString() == LastDate ? "Y" : "N";
             }
         }
     }

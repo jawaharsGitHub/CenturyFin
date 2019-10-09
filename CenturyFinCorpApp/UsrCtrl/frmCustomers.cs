@@ -76,7 +76,7 @@ namespace CenturyFinCorpApp
             chkFriends.Checked = GlobalValue.FriendAlsoValue;
 
 
-            GlobalValue.CollectionDate = DailyCollectionDetail.GetLatesttDailyTxnDate();
+            GlobalValue.CollectionDate = DailyCollectionDetail.GetNexttCollectionDate();
 
             dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
@@ -102,7 +102,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(11, "Not Eligible Members"),
                    new KeyValuePair<int, string>(12, "Need Investigation Members"),
                    new KeyValuePair<int, string>(13, "Only Note With us"),
-                   new KeyValuePair<int, string>(14, "Only Personal")
+                   new KeyValuePair<int, string>(14, "Only Personal"),
+                   new KeyValuePair<int, string>(15, "No Tamil Name")
 
                };
 
@@ -749,6 +750,10 @@ namespace CenturyFinCorpApp
             {
                 searchedCustomer = customers.Where(w => w.IsPersonal == true).OrderByDescending(o => o.LoanAmount).ToList();
             }
+            else if (value == 15)
+            {
+                searchedCustomer = customers.Where(w => string.IsNullOrEmpty(w.TamilName) == true && w.IsPersonal == false).OrderByDescending(o => o.LoanAmount).ToList();
+            }
             else
             {
                 searchedCustomer = customers.Where(w => w.ReturnDay == DateTime.Today.AddDays(-1).DayOfWeek).ToList();
@@ -819,6 +824,8 @@ namespace CenturyFinCorpApp
         private void chkFriends_CheckedChanged(object sender, EventArgs e)
         {
             GlobalValue.FriendAlsoValue = chkFriends.Checked;
+            txtSearch_TextChanged(null, null);
+
         }
 
         private void btnLatestCollection_Click(object sender, EventArgs e)

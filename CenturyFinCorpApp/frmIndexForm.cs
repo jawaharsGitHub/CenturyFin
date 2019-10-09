@@ -32,7 +32,10 @@ namespace CenturyFinCorpApp
             var closedTxn = customers.Count(c => c.IsActive == false);
             var totalTxn = activeTxn + closedTxn;
 
-            this.Text = $"WELCOME - CENTURY FIN CORP. Running Notes({activeTxn}) Closed Notes({closedTxn}) Total Notes({totalTxn})";
+            var latestCxnDate = DailyCollectionDetail.GetLastCollectionDateDate();
+
+
+            this.Text = $"WELCOME - JEYAM FINANACE Ltd. Running ({activeTxn}) Closed ({closedTxn}) Total ({totalTxn}) - Last Cxn on {latestCxnDate.ToString("dd MMMM yyyy")}";
 
 
             //this.TopMost = true;
