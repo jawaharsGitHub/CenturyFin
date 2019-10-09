@@ -19,6 +19,7 @@ namespace CenturyFinCorpApp.UsrCtrl
         (int actual, int includesProfit) outstandingMoney;
         List<IncomeReport> finalData;
         List<IncomeReport> filteredfinalData;
+        int varActualClose;
 
         public frmGeneralReport()
         {
@@ -149,12 +150,13 @@ namespace CenturyFinCorpApp.UsrCtrl
                     var totalInt = f.Sum(s => s.TotalInterest);
                     if (f.Key.IsExpectedIncome)
                     {
-                        //var 
-                        closedDetailForCurrentMonth.Append($" {Environment.NewLine}Expected Close: {closedData.ToString()} [{totalInt}] {Environment.NewLine} carry fwd close: {moveOverClosed.ToString()} [{moveOverInterest}] = {closedData + moveOverClosed}");
+                        closedDetailForCurrentMonth.Append($" {Environment.NewLine}Expected Close(EC): {closedData.ToString()} [{totalInt}] {Environment.NewLine}Carry Fwd Close(CFC): {moveOverClosed.ToString()} [{moveOverInterest}] = {varActualClose + closedData + moveOverClosed}");
                     }
                     else
                     {
-                        closedDetailForCurrentMonth.Append($" Actual Close: {closedData} [{totalInt}]");
+                        closedDetailForCurrentMonth.Append($" Actual Close(AC): \t\t\t\t {closedData} [{totalInt}]");
+
+                        varActualClose = closedData;
                     }
 
                     existData.CloseCount += moveOverClosed;
@@ -242,16 +244,10 @@ namespace CenturyFinCorpApp.UsrCtrl
             lblTotal.Text = $"5. TOTAL(Actual) : {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {(actualMonthly + actual).ToMoneyFormat()} (Per Month: { ((actualMonthly + actual) / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
                 $"6. TOTAL(Expected) : {expectedMonthly.ToMoneyFormat()}(M) + {expected.ToMoneyFormat()}(D) = {(expectedMonthly + expected).ToMoneyFormat()} (Per Month: { ((expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}{Environment.NewLine}" +
             $"7. ALL TOTAL: {(actualMonthly + actual).ToMoneyFormat()} + {(expectedMonthly + expected).ToMoneyFormat()} = {(actualMonthly + actual + expectedMonthly + expected).ToMoneyFormat()} (Per Month: { ((actualMonthly + actual + expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()})";
-            lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)}  {closedDetailForCurrentMonth}";
+            lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)} {Environment.NewLine}  {closedDetailForCurrentMonth}";
 
             lblSalary.Text = $"Salary : {salary.ToMoneyFormat()}";
             lblSalary.Visible = considerSalary;
-
-            // may be in future we need it.
-
-            // Monthly Income.
-            // var monthlyData = Customer.GetAllCustomer()
-
 
 
             if (comboBox1.Text.ToLower() != "all" && comboBox1.Text != "")
