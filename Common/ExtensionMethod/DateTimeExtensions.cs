@@ -13,5 +13,16 @@ namespace Common.ExtensionMethod
             }
             return dt.AddDays(-1 * diff).Date;  
         }
+
+        public static string WithDateSuffix(this DateTime dt)
+        {
+            var dateFormat = $"{dt.ToString("dd MMMM yyyy")}";
+
+            var dayPart = Convert.ToInt16(dateFormat.Split(' ')[0]);
+
+            var newDayFormat = $"{dayPart}{General.GetDaySuffix(dayPart)}";
+
+            return dateFormat.Replace(dateFormat.Split(' ')[0], newDayFormat); ;
+        }
     }
 }

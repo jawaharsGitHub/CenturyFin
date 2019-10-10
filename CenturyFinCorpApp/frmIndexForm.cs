@@ -1,5 +1,6 @@
 ﻿using CenturyFinCorpApp.UsrCtrl;
 using Common;
+using Common.ExtensionMethod;
 using DataAccess;
 using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
@@ -19,7 +20,7 @@ namespace CenturyFinCorpApp
         bool usingMenu = false;
         bool isAdded = false; // for child forms
         public static MenuStrip menuStrip;
-
+        
         public frmIndexForm()
         {
 
@@ -35,7 +36,7 @@ namespace CenturyFinCorpApp
             var latestCxnDate = DailyCollectionDetail.GetLastCollectionDateDate();
 
 
-            this.Text = $"WELCOME - JEYAM FINANACE Ltd. Running ({activeTxn}) Closed ({closedTxn}) Total ({totalTxn}) - Last Cxn on {latestCxnDate.ToString("dd MMMM yyyy")}";
+            this.Text = $"WELCOME - JEYAM FINANACE Ltd. Running ({activeTxn}) Closed ({closedTxn}) Total ({totalTxn}) - Last Cxn on {latestCxnDate.WithDateSuffix()}";
 
 
             //this.TopMost = true;
