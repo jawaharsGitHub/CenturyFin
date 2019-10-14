@@ -5606,5 +5606,29 @@
     "CustomerId": 231,
     "CustomerSequenceNo": 682,
     "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 15000,
+    "Interest": 1500,
+    "CustomerId": 149,
+    "CustomerSequenceNo": 683,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 10000,
+    "Interest": 1000,
+    "CustomerId": 232,
+    "CustomerSequenceNo": 684,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 60000,
+    "Interest": 12000,
+    "CustomerId": 233,
+    "CustomerSequenceNo": 685,
+    "CreatedDate": "00:00:00"
   }
 ]
