@@ -36,7 +36,7 @@ namespace CenturyFinCorpApp
             var latestCxnDate = DailyCollectionDetail.GetLastCollectionDateDate();
 
 
-            this.Text = $"WELCOME - JEYAM FINANACE Ltd. ({DateTime.Today.ToString()}) Running ({activeTxn}) Closed ({closedTxn}) Total ({totalTxn}) - Last Cxn on {latestCxnDate.WithDateSuffix()}";
+            this.Text = $"WELCOME - JEYAM FINANACE Ltd. ({DateTime.Today.ToString("dddd, dd MMMM yyyy")}) Running ({activeTxn}) Closed ({closedTxn}) Total ({totalTxn}) - Last Cxn on {latestCxnDate.WithDateSuffix()}";
 
 
             //this.TopMost = true;
