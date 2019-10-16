@@ -450,18 +450,6 @@ namespace CenturyFinCorpApp
 <html>
 <head>
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 90%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
 tr:nth-child(even) {
   background-color: #dddddd;
 }
@@ -477,7 +465,7 @@ tr:nth-child(even) {
     <th>Collected?</th>
     <th>Loan</th>
     <th>Balance</th>
-    <th width='400px'>Last Txn Date</th>
+    <th>Last Txn Date</th>
   </tr>
   [data]
 </table>
@@ -499,17 +487,18 @@ tr:nth-child(even) {
 
             });
 
+
         }
 
 
-        private void FormHTML(List<Customer> cus, List<Transaction> txns, String SourceHtmlString, ReturnTypeEnum returnType)
+        private void FormHTML(List<Customer> cus, List<Transaction> txns, String SourceHtmlString, ReturnTypeEnum returnType, bool isPersonal = false)
         {
             var data = (from c in cus
                         join t in txns
                         on c.CustomerSeqNumber equals t.CustomerSequenceNo into newData
                         from dept in newData.DefaultIfEmpty()
                         where c.ReturnType == returnType
-                        && c.IsPersonal == false
+                        && c.IsPersonal == isPersonal
                         select new CollectionStatus
                         {
                             Name = string.IsNullOrEmpty(c.TamilName) ? c.Name : c.TamilName,
@@ -533,11 +522,57 @@ tr:nth-child(even) {
             });
 
 
-            var fn = $"{data.Count()} {returnType.ToString()} For {currentBalanceDate.ToShortDateString()}";
+            var fn = $"{data.Count()} {returnType.ToString()} For {currentBalanceDate.ToShortDateString()} {data.Sum(D => D.Balance)} - {data.Sum(D => D.Balance)/100}";
 
             var dailyCheckHTML = SourceHtmlString.Replace("[data]", rowData.ToString()).Replace("[title]", fn);
 
             General.CreateHTML($"{fn}.htm", dailyCheckHTML);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            string htmlString = @"<!DOCTYPE html>
+<html>
+<head>
+<style>
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>[title]</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Collected?</th>
+    <th>Loan</th>
+    <th>Balance</th>
+    <th>Last Txn Date</th>
+  </tr>
+  [data]
+</table>
+
+</body>
+</html>
+";
+
+
+            var cus = Customer.GetAllActiveCustomer();
+            var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
+
+            var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().ToList();
+
+            values.ForEach(f =>
+            {
+
+                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f, isPersonal: true);
+
+            });
+
         }
     }
 }

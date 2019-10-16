@@ -221,7 +221,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["InitialInterest"].Visible = false;
             dataGridView1.Columns["GivenEligibility"].Visible = false;
             dataGridView1.Columns["NoteWithUs"].Visible = false;
-           dataGridView1.Columns["IsPersonal"].Visible = false;
+            dataGridView1.Columns["IsPersonal"].Visible = false;
             dataGridView1.Columns["NeedInvestigation"].Visible = false;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
@@ -454,7 +454,7 @@ namespace CenturyFinCorpApp
                        });
                 return;
 
-            }   
+            }
 
             var strCollectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
@@ -660,7 +660,7 @@ namespace CenturyFinCorpApp
             }
             else if (e.ClickedItem.Name == "OnlyThisCus")
             {
-                var data = Customer.GetAllCustomer().Where(w => w.CustomerId == cus.CustomerId).ToList();
+                var data = Customer.GetAllCustomer().Where(w => w.CustomerId == cus.CustomerId).OrderByDescending(o => o.IsActive).ToList();
 
                 var totalInputMoney = data.Sum(s => s.Interest);
                 var totalOutputMoney = data.Sum(s => Transaction.GetBalance(s));

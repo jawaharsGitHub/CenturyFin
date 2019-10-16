@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnMama = new System.Windows.Forms.Button();
             this.btnInHand = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
@@ -97,8 +99,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSendBalances = new System.Windows.Forms.Button();
             this.btnCheckReport = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -143,6 +144,24 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(210, 512);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(99, 13);
+            this.label27.TabIndex = 38;
+            this.label27.Text = "eg: HomeExpenses";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(241, 441);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 13);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "eg: Salary";
             // 
             // btnMama
             // 
@@ -770,28 +789,23 @@
             this.btnCheckReport.UseVisualStyleBackColor = false;
             this.btnCheckReport.Click += new System.EventHandler(this.btnCheckReport_Click);
             // 
-            // label10
+            // button2
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(241, 441);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 13);
-            this.label10.TabIndex = 37;
-            this.label10.Text = "eg: Salary";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(210, 512);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(99, 13);
-            this.label27.TabIndex = 38;
-            this.label27.Text = "eg: HomeExpenses";
+            this.button2.BackColor = System.Drawing.Color.YellowGreen;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(1018, 403);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(170, 30);
+            this.button2.TabIndex = 52;
+            this.button2.Text = "Private - Cxn Check Report";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnCheckReport);
             this.Controls.Add(this.btnSendBalances);
             this.Controls.Add(this.btnDelete);
@@ -898,5 +912,6 @@
         private System.Windows.Forms.Button btnCheckReport;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button2;
     }
 }

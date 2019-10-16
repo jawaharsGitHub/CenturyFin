@@ -70,6 +70,7 @@
             this.txtNewAmount = new System.Windows.Forms.TextBox();
             this.btnConvertToMonthly = new System.Windows.Forms.Button();
             this.btnInterestOnly = new System.Windows.Forms.Button();
+            this.btnClosingBalance = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -489,10 +490,20 @@
             this.btnInterestOnly.Text = "[INTEREST]";
             this.btnInterestOnly.UseVisualStyleBackColor = true;
             // 
+            // btnClosingBalance
+            // 
+            this.btnClosingBalance.Location = new System.Drawing.Point(866, 166);
+            this.btnClosingBalance.Name = "btnClosingBalance";
+            this.btnClosingBalance.Size = new System.Drawing.Size(117, 153);
+            this.btnClosingBalance.TabIndex = 25;
+            this.btnClosingBalance.Text = "[Closing Balance]";
+            this.btnClosingBalance.UseVisualStyleBackColor = true;
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnClosingBalance);
             this.Controls.Add(this.btnInterestOnly);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -576,5 +587,6 @@
         private System.Windows.Forms.Button btnConvertToMonthly;
         private System.Windows.Forms.ComboBox cmbExistingCustomer;
         private System.Windows.Forms.Button btnInterestOnly;
+        private System.Windows.Forms.Button btnClosingBalance;
     }
 }

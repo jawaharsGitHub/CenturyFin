@@ -77,6 +77,10 @@ namespace CenturyFinCorpApp
 
             btnReOpen.Visible = (_balance == 0);
 
+            var perDayInterest = 0.1;  // 100/10
+
+
+
         }
 
         private void LoadCustomerCollectionType()
@@ -93,9 +97,6 @@ namespace CenturyFinCorpApp
             cmbReturnDay.SelectedItem = customer.ReturnDay;
             cmbCollectionSpot.SelectedValue = customer.CollectionSpotId;
 
-            //this.cmbReturnType.SelectedIndexChanged += new System.EventHandler(this.cmbReturnType_SelectedIndexChanged);
-            //this.cmbReturnDay.SelectedIndexChanged += new System.EventHandler(this.cmbReturnDay_SelectedIndexChanged);
-            //this.cmbCollectionSpot.SelectedIndexChanged += new System.EventHandler(this.cmbCollectionSpot_SelectedIndexChanged);
         }
 
         public Transaction AddTxn(Customer cus, DateTime txnDate)
@@ -204,7 +205,7 @@ namespace CenturyFinCorpApp
             var isCorrect = (expectedBalance == lastBalance);
             btnCorrect.Visible = !isCorrect;
 
-            btnInterestOnly.Text = "int:"+ (totalReceived - customer.LoanAmount + lastBalance + customer.Interest + customer.InitialInterest).ToString();
+            btnInterestOnly.Text = "int:" + (totalReceived - customer.LoanAmount + lastBalance + customer.Interest + customer.InitialInterest).ToString();
 
 
             if (isCorrect == false)
@@ -280,6 +281,13 @@ namespace CenturyFinCorpApp
 
             lblNoOfDays.Text = $"Days taken to Return {daysTaken} (Expected {expected} ACTUAL {actual}) - MISSING DAYS: {missing.Count}";
 
+            
+
+            CalculateNewBalanceAsOfToday(cus, daysTaken);
+
+           
+
+
             if (expected == -1)
                 lblNoOfDays.ForeColor = System.Drawing.Color.IndianRed;
             else if (actual < expected)
@@ -309,6 +317,20 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["AmountReceived"].DisplayIndex = 2;
             dataGridView1.Columns["Balance"].DisplayIndex = 3;
 
+        }
+
+        private void CalculateNewBalanceAsOfToday(Customer cus, int daysTaken)
+        {
+            // Balance as per today.
+            var perDayInt = 0.1; // 10/100;
+
+            var newIntPerc = daysTaken * perDayInt;
+            var newIntNo = newIntPerc * (cus.LoanAmount / 100);
+            var intSaved = cus.Interest - newIntNo;
+
+            var newBalance = _balance - intSaved;
+
+            btnClosingBalance.Text = $"old balance: {_balance} \n new balance: {newBalance} \n Savings: {intSaved} \n old Int: {cus.LoanAmount / cus.Interest}% \n new Int: {newIntPerc}";
         }
 
         private void rdbAsc_CheckedChanged(object sender, EventArgs e)
