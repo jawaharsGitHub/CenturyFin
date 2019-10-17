@@ -14,6 +14,7 @@
         NI,
         None,
         Loss,
-        Random
+        Random,
+        Others
     }
 }
