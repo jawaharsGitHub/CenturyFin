@@ -450,6 +450,15 @@ namespace CenturyFinCorpApp
 <html>
 <head>
 <style>
+td
+{
+word-wrap: break-word;
+}
+table
+{
+table - layout: fixed; 
+width: 100%;
+}
 tr:nth-child(even) {
   background-color: #dddddd;
 }
@@ -536,6 +545,15 @@ tr:nth-child(even) {
 <html>
 <head>
 <style>
+td
+{
+word-wrap: break-word;
+}
+table
+{
+table - layout: fixed; 
+width: 100%;
+}
 tr:nth-child(even) {
   background-color: #dddddd;
 }
@@ -545,8 +563,8 @@ tr:nth-child(even) {
 
 <h2>[title]</h2>
 
-<table>
-  <tr>
+<table border='1'>
+    < tr>
     <th>Name</th>
     <th>Collected?</th>
     <th>Loan</th>
