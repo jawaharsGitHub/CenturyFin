@@ -29,7 +29,8 @@ namespace CenturyFinCorpApp
        TenMonths = 7,
        NI = 8,
        None = 9
-       Loss = 10";
+       Loss = 10
+       Random = 11";
 
             cmbFilters.DataSource = GetOptions();
             SetReturnTypes();

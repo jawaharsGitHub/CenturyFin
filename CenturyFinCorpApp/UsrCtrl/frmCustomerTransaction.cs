@@ -219,11 +219,11 @@ namespace CenturyFinCorpApp
 
 
             if (byBalance)
-                dataGridView1.DataSource = dataDource.OrderBy(o => o.Balance).ToList();
+                dataGridView1.DataSource = dataDource.OrderBy(t => t.TransactionId).ToList();
             else if (isDesc)
-                dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
+                dataGridView1.DataSource = dataDource.OrderByDescending(o => o.TxnDate.Date).ThenByDescending(t => t.TransactionId).ToList();
             else
-                dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate.Date).ThenBy(t => t.Balance).ToList();
+                dataGridView1.DataSource = dataDource.OrderBy(o => o.TxnDate.Date).ThenBy(t => t.TransactionId).ToList();
 
 
 
