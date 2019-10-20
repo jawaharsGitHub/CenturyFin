@@ -103,7 +103,6 @@ namespace CenturyFinCorpApp
                     txtOtherExpenditure.Text = txtOtherInvestment.Text = txtOutMoney.Text = "0";
 
                 }
-                //btnEnable.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
                 lblDate1.Text = lblDate2.Text = groupBox1.Text = $"{dateTimePicker1.Value.ToShortDateString()} NO DATA";
                 btnAdd.Text = "ADD";
                 return;
@@ -146,7 +145,6 @@ namespace CenturyFinCorpApp
 
             txtComments.Text = dailyTxn.Comments;
 
-            //btnEnable.Text = Convert.ToString(Transaction.GetDailyCollectionDetails_V0(dateTimePicker1.Value).Sum(s => s.AmountReceived));
         }
 
         private void UpdateVerifyDetails()
@@ -221,10 +219,6 @@ namespace CenturyFinCorpApp
 
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
-
-            //GetDailyTxn(dateTimePicker1.Value, false);
-
-
 
         }
 
@@ -376,6 +370,7 @@ namespace CenturyFinCorpApp
             txtComments.Text = s.Replace(toBeReplaced, $"{Environment.NewLine}{dailyTxn.ExpectedInHand.TokFormat()} [In Company]{Environment.NewLine}{dailyTxn.ActualInHand.TokFormat()} [In Hand]{Environment.NewLine}{mamaAccount.TokFormat()} [In Mama]{Environment.NewLine}");
             btnAddOrUpdate_Click(null, null);
 
+            GetDailyTxn(dateTimePicker1.Value, false);
             SendBalances();
             Process.Start(fileName);
         }
