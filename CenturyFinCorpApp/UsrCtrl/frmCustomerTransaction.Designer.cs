@@ -200,24 +200,24 @@
             // rdbAsc
             // 
             this.rdbAsc.AutoSize = true;
+            this.rdbAsc.Checked = true;
             this.rdbAsc.Location = new System.Drawing.Point(18, 143);
             this.rdbAsc.Name = "rdbAsc";
-            this.rdbAsc.Size = new System.Drawing.Size(61, 17);
+            this.rdbAsc.Size = new System.Drawing.Size(93, 17);
             this.rdbAsc.TabIndex = 9;
-            this.rdbAsc.Text = "By ASC";
+            this.rdbAsc.TabStop = true;
+            this.rdbAsc.Text = "By Date (ASC)";
             this.rdbAsc.UseVisualStyleBackColor = true;
             this.rdbAsc.CheckedChanged += new System.EventHandler(this.rdbAsc_CheckedChanged);
             // 
             // rdbDesc
             // 
             this.rdbDesc.AutoSize = true;
-            this.rdbDesc.Checked = true;
             this.rdbDesc.Location = new System.Drawing.Point(120, 143);
             this.rdbDesc.Name = "rdbDesc";
-            this.rdbDesc.Size = new System.Drawing.Size(69, 17);
+            this.rdbDesc.Size = new System.Drawing.Size(101, 17);
             this.rdbDesc.TabIndex = 10;
-            this.rdbDesc.TabStop = true;
-            this.rdbDesc.Text = "By DESC";
+            this.rdbDesc.Text = "By Date (DESC)";
             this.rdbDesc.UseVisualStyleBackColor = true;
             this.rdbDesc.CheckedChanged += new System.EventHandler(this.rdbDesc_CheckedChanged);
             // 
@@ -252,7 +252,7 @@
             // chkByBalance
             // 
             this.chkByBalance.AutoSize = true;
-            this.chkByBalance.Location = new System.Drawing.Point(201, 143);
+            this.chkByBalance.Location = new System.Drawing.Point(227, 143);
             this.chkByBalance.Name = "chkByBalance";
             this.chkByBalance.Size = new System.Drawing.Size(109, 17);
             this.chkByBalance.TabIndex = 14;

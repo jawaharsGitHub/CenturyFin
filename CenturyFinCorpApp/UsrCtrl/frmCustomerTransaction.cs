@@ -192,7 +192,7 @@ namespace CenturyFinCorpApp
             lblMessage.Text = $"Txn  Added Successfully for {customer.Name}";
         }
 
-        private void LoadTxn(bool isDesc = true, bool byBalance = false)
+        private void LoadTxn(bool isDesc = false, bool byBalance = false)
         {
 
             txns = Transaction.GetTransactionDetails(customer);
