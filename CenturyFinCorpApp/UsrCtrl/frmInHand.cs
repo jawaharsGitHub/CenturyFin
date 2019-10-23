@@ -388,7 +388,14 @@ namespace CenturyFinCorpApp
                     var allBalances = string.Join(Environment.NewLine,
                         Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalance(s)}({s.LoanAmount})").ToList());
 
-                    //var currentBalanceDate = DailyCollectionDetail.GetCurrentDailyTxnDate();
+                    // Need to send alphabet wise later, now we did grouping only.
+
+                    var groupedByLetter = Customer.GetAllActiveCustomer().Where(w => Char.IsLetter(w.Name.Substring(0,1)[0])).Select(s => s).GroupBy(x => x.Name.Substring(0, 1).ToUpper(), (alphabet, subList) => new { Alphabet = alphabet, SubList = subList.OrderBy(x => x.Name).ToList() })
+                .OrderBy(x => x.Alphabet);
+
+                    var OnlyNumberAsFirstLetter = Customer.GetAllActiveCustomer().Where(w => !Char.IsLetter(w.Name.Substring(0, 1)[0])).Select(s => s).ToList();
+
+                    // Need to send alphabet wise later, now we did grouping only.
 
                     AppCommunication.SendEmail(allBalances, currentBalanceDate);
 
