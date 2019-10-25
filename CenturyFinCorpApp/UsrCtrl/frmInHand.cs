@@ -527,7 +527,7 @@ tr:nth-child(even) {
 
             StringBuilder rowData = new StringBuilder();
 
-            data.ForEach(f =>
+            data.Where(w => w.IsToday == "N").ToList().ForEach(f =>
             {
                 rowData.Append($@"<tr><td>{f.Name}</td><td>{f.IsToday}</td><td>{f.LoanAmount}</td><td>{f.Balance}</td><td>{f.LastDate}</td></tr>");
             });
