@@ -100,6 +100,7 @@
             this.btnSendBalances = new System.Windows.Forms.Button();
             this.btnCheckReport = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnNotGiven = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -781,7 +782,7 @@
             // 
             this.btnCheckReport.BackColor = System.Drawing.Color.YellowGreen;
             this.btnCheckReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckReport.Location = new System.Drawing.Point(1005, 229);
+            this.btnCheckReport.Location = new System.Drawing.Point(1005, 189);
             this.btnCheckReport.Name = "btnCheckReport";
             this.btnCheckReport.Size = new System.Drawing.Size(170, 74);
             this.btnCheckReport.TabIndex = 51;
@@ -801,10 +802,23 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // btnNotGiven
+            // 
+            this.btnNotGiven.BackColor = System.Drawing.Color.Red;
+            this.btnNotGiven.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNotGiven.Location = new System.Drawing.Point(1005, 265);
+            this.btnNotGiven.Name = "btnNotGiven";
+            this.btnNotGiven.Size = new System.Drawing.Size(170, 74);
+            this.btnNotGiven.TabIndex = 53;
+            this.btnNotGiven.Text = "NOT GIVEN TODAY";
+            this.btnNotGiven.UseVisualStyleBackColor = false;
+            this.btnNotGiven.Click += new System.EventHandler(this.btnNotGiven_Click);
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnNotGiven);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnCheckReport);
             this.Controls.Add(this.btnSendBalances);
@@ -913,5 +927,6 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnNotGiven;
     }
 }

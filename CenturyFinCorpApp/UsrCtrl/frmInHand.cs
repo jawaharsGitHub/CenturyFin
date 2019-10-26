@@ -390,7 +390,7 @@ namespace CenturyFinCorpApp
 
                     // Need to send alphabet wise later, now we did grouping only.
 
-                    var groupedByLetter = Customer.GetAllActiveCustomer().Where(w => Char.IsLetter(w.Name.Substring(0,1)[0])).Select(s => s).GroupBy(x => x.Name.Substring(0, 1).ToUpper(), (alphabet, subList) => new { Alphabet = alphabet, SubList = subList.OrderBy(x => x.Name).ToList() })
+                    var groupedByLetter = Customer.GetAllActiveCustomer().Where(w => Char.IsLetter(w.Name.Substring(0, 1)[0])).Select(s => s).GroupBy(x => x.Name.Substring(0, 1).ToUpper(), (alphabet, subList) => new { Alphabet = alphabet, SubList = subList.OrderBy(x => x.Name).ToList() })
                 .OrderBy(x => x.Alphabet);
 
                     var OnlyNumberAsFirstLetter = Customer.GetAllActiveCustomer().Where(w => !Char.IsLetter(w.Name.Substring(0, 1)[0])).Select(s => s).ToList();
@@ -447,7 +447,11 @@ namespace CenturyFinCorpApp
 
         private void btnCheckReport_Click(object sender, EventArgs e)
         {
+            ReportFun();
+        }
 
+        private void ReportFun(bool isOnlyNotGiven = false)
+        {
             string htmlString = @"<!DOCTYPE html>
 <html>
 <head>
@@ -485,24 +489,26 @@ tr:nth-child(even) {
 </html>
 ";
 
-
             var cus = Customer.GetAllActiveCustomer();
             var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
+
+            if (isOnlyNotGiven)
+            {
+                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: ReturnTypeEnum.Daily, isOnlyNotGiven: isOnlyNotGiven);
+                return;
+            }
 
             var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().ToList();
 
             values.ForEach(f =>
             {
-
-                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f);
-
+                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f, isOnlyNotGiven: isOnlyNotGiven);
             });
-
 
         }
 
 
-        private void FormHTML(List<Customer> cus, List<Transaction> txns, String SourceHtmlString, ReturnTypeEnum returnType, bool isPersonal = false)
+        private void FormHTML(List<Customer> cus, List<Transaction> txns, String SourceHtmlString, ReturnTypeEnum returnType, bool isOnlyNotGiven, bool isPersonal = false)
         {
             var data = (from c in cus
                         join t in txns
@@ -527,13 +533,19 @@ tr:nth-child(even) {
 
             StringBuilder rowData = new StringBuilder();
 
-            data.Where(w => w.IsToday == "N").ToList().ForEach(f =>
+            if (isOnlyNotGiven)
+            {
+                data = data.Where(w => w.IsToday == "N").ToList();
+
+            }
+
+            data.ForEach(f =>
             {
                 rowData.Append($@"<tr><td>{f.Name}</td><td>{f.IsToday}</td><td>{f.LoanAmount}</td><td>{f.Balance}</td><td>{f.LastDate}</td></tr>");
             });
 
 
-            var fn = $"{data.Count()} {returnType.ToString()} For {currentBalanceDate.ToShortDateString()} {data.Sum(D => D.Balance)} - {data.Sum(D => D.Balance)/100}";
+            var fn = $"{data.Count()} {returnType.ToString()} For {currentBalanceDate.ToShortDateString()} {data.Sum(D => D.Balance)} - {data.Sum(D => D.Balance) / 100}";
 
             var dailyCheckHTML = SourceHtmlString.Replace("[data]", rowData.ToString()).Replace("[title]", fn);
 
@@ -566,7 +578,7 @@ tr:nth-child(even) {
 <h2>[title]</h2>
 
 <table border='1'>
-    < tr>
+    <tr>
     <th>Name</th>
     <th>Collected?</th>
     <th>Loan</th>
@@ -589,10 +601,16 @@ tr:nth-child(even) {
             values.ForEach(f =>
             {
 
-                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f, isPersonal: true);
+                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f, isOnlyNotGiven: false, isPersonal: true);
 
             });
 
+        }
+
+        private void btnNotGiven_Click(object sender, EventArgs e)
+        {
+
+            ReportFun(true);
         }
     }
 }
