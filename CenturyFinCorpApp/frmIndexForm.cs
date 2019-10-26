@@ -20,7 +20,7 @@ namespace CenturyFinCorpApp
         bool usingMenu = false;
         bool isAdded = false; // for child forms
         public static MenuStrip menuStrip;
-        
+
         public frmIndexForm()
         {
 
@@ -36,7 +36,23 @@ namespace CenturyFinCorpApp
             var latestCxnDate = DailyCollectionDetail.GetLastCollectionDateDate();
 
 
-            this.Text = $"WELCOME - JEYAM FINANACE Ltd. ({DateTime.Today.ToString("dddd, dd MMMM yyyy")}) Running ({activeTxn}) Closed ({closedTxn}) Total ({totalTxn}) - Last Cxn on {latestCxnDate.WithDateSuffix()}";
+            var diffDays = (DateTime.Today - latestCxnDate).Days;
+
+            var diffStr = diffDays.ToString();
+            if (diffDays == 1)
+            {
+                diffStr = "(Yesterday)";
+            }
+            else if (diffDays == 2)
+            {
+                diffStr = "(Two Days Ago)";
+            }
+            else //(diffDays >= 3)
+            {
+                diffStr = $"({diffDays} days ago)";
+            }
+
+            this.Text = $"WELCOME - JEYAM FINANACE Ltd. ({DateTime.Today.ToString("dddd, dd MMMM yyyy")}) Running ({activeTxn}) Closed ({closedTxn}) Total ({totalTxn}) - Last Cxn on {latestCxnDate.WithDateSuffix()} {diffStr}";
 
 
             //this.TopMost = true;
