@@ -321,6 +321,8 @@ namespace CenturyFinCorpApp
 
         private void CalculateNewBalanceAsOfToday(Customer cus, int daysTaken)
         {
+
+            if (cus.ReturnType == ReturnTypeEnum.NI) return;
             // Balance as per today.
             var perDayInt = 0.1; // 10/100;
 
