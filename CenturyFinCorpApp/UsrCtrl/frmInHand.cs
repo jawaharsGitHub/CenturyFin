@@ -372,6 +372,7 @@ namespace CenturyFinCorpApp
 
             GetDailyTxn(dateTimePicker1.Value, false);
             SendBalances();
+            ReportRun(true);
             Process.Start(fileName);
         }
 
@@ -447,10 +448,10 @@ namespace CenturyFinCorpApp
 
         private void btnCheckReport_Click(object sender, EventArgs e)
         {
-            ReportFun();
+            ReportRun();
         }
 
-        private void ReportFun(bool isOnlyNotGiven = false)
+        private void ReportRun(bool isOnlyNotGiven = false)
         {
             string htmlString = @"<!DOCTYPE html>
 <html>
@@ -610,7 +611,7 @@ tr:nth-child(even) {
         private void btnNotGiven_Click(object sender, EventArgs e)
         {
 
-            ReportFun(true);
+            ReportRun(true);
         }
     }
 }
