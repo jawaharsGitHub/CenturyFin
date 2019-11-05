@@ -191,8 +191,22 @@ namespace CenturyFinCorpApp
 
         private void cmbReturnType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ReturnTypeOrDayChanged();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            ReturnTypeOrDayChanged();
+        }
+
+
+        private void ReturnTypeOrDayChanged()
+        {
             if ((ReturnTypeEnum)cmbReturnType.SelectedItem == ReturnTypeEnum.Weekly)
-                cmbReturnDay.SelectedIndex = 0;
+            {
+                cmbReturnDay.SelectedIndex = cmbReturnDay.SelectedIndex == 7 ? 1 : (int)dateTimePicker1.Value.DayOfWeek + 2;
+            }
+
         }
     }
 }
