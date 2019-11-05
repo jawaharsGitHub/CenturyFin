@@ -160,6 +160,8 @@ namespace CenturyFinCorpApp
 
         private void AddForceCloseTransaction()
         {
+            var forceClosedDate = txns.Where(w => w.AmountReceived > 0).Max(m => m.TxnDate);
+
 
             var txn = new Transaction()
             {
@@ -168,7 +170,7 @@ namespace CenturyFinCorpApp
                 CustomerSequenceNo = customer.CustomerSeqNumber,
                 TransactionId = Transaction.GetNextTransactionId(),
                 Balance = 0,
-                TxnDate = dateTimePicker1.Value,
+                TxnDate = forceClosedDate, //dateTimePicker1.Value,
                 IsClosed = _isClosedTx
 
             };
@@ -281,11 +283,11 @@ namespace CenturyFinCorpApp
 
             lblNoOfDays.Text = $"Days taken to Return {daysTaken} (Expected {expected} ACTUAL {actual}) - MISSING DAYS: {missing.Count}";
 
-            
+
 
             CalculateNewBalanceAsOfToday(cus, daysTaken);
 
-           
+
 
 
             if (expected == -1)
@@ -526,9 +528,12 @@ namespace CenturyFinCorpApp
 
         private void btnForceClose_Click(object sender, EventArgs e)
         {
-            AddForceCloseTransaction();
-            customer.Interest = customer.Interest - _balance;
-            Customer.ForceCloseCustomer(customer);
+            if (MessageBox.Show("Do you want to close it Forcefully?", "FORCE CLOSE?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                AddForceCloseTransaction();
+                customer.Interest = customer.Interest - _balance;
+                Customer.ForceCloseCustomer(customer);
+            }
         }
 
         private void btnTopup_Click(object sender, EventArgs e)
