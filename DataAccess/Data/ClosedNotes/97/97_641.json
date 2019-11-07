@@ -1,0 +1,22 @@
+[
+  {
+    "CustomerId": 97,
+    "IsClosed": false,
+    "TransactionId": 21946,
+    "AmountReceived": 0,
+    "Balance": 100000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 641,
+    "TxnDate": "2019-09-19T00:00:00"
+  },
+  {
+    "CustomerId": 97,
+    "IsClosed": true,
+    "TransactionId": 24480,
+    "AmountReceived": 100000,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 641,
+    "TxnDate": "2019-11-06T00:00:00"
+  }
+]
