@@ -1314,5 +1314,33 @@
     "CollectionSpotId": 50,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 669,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 82,
+    "Name": "Murugan Master Pattinamkathan",
+    "TamilName": "முருகன் மாஸ்டர் பட்டிணம்காத்தான்",
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 30000,
+    "Interest": 3000,
+    "InitialInterest": 3000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-11-07T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 82,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
