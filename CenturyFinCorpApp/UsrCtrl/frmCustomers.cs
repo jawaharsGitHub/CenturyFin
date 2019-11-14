@@ -105,7 +105,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(12, "Need Investigation Members"),
                    new KeyValuePair<int, string>(13, "Only Note With us"),
                    new KeyValuePair<int, string>(14, "Only Personal"),
-                   new KeyValuePair<int, string>(15, "No Tamil Name")
+                   new KeyValuePair<int, string>(15, "No Tamil Name"),
+                   new KeyValuePair<int, string>(16, "Only Adj & To Be Closed.")
 
                };
 
@@ -752,6 +753,11 @@ namespace CenturyFinCorpApp
             else if (value == 15)
             {
                 searchedCustomer = customers.Where(w => string.IsNullOrEmpty(w.TamilName) == true && w.IsPersonal == false).OrderByDescending(o => o.LoanAmount).ToList();
+            }
+            else if (value == 16)
+            {
+                searchedCustomer = customers.Where(w => w.AdjustedAmount != null).OrderBy(o => o.AdjustedAmount).ToList();
+                searchedCustomer = searchedCustomer.Where(w => Math.Abs(w.AdjustedAmount.ToInt32()) == Transaction.GetBalance(w)).OrderByDescending(o => o.LoanAmount).ToList();
             }
             else
             {
