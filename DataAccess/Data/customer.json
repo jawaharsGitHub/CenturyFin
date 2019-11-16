@@ -19794,5 +19794,33 @@
     "CollectionSpotId": 126,
     "ReturnDay": 0,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 728,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 240,
+    "Name": "Balu TATA AC",
+    "TamilName": "",
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "InitialInterest": 2000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2019-11-15T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 240,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
