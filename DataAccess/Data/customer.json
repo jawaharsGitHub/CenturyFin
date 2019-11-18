@@ -19850,5 +19850,33 @@
     "CollectionSpotId": 97,
     "ReturnDay": 6,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 730,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 108,
+    "Name": "Senthil Kumar Sarojini Maligai Market Sriram Agency Appa",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "InitialInterest": 5000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-11-17T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 2,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 108,
+    "ReturnDay": 1,
+    "ModifiedDate": null
   }
 ]
