@@ -150,11 +150,11 @@ namespace CenturyFinCorpApp.UsrCtrl
                     var totalInt = f.Sum(s => s.TotalInterest);
                     if (f.Key.IsExpectedIncome)
                     {
-                        closedDetailForCurrentMonth.Append($" {Environment.NewLine}Expected Close(EC): {closedData.ToString()} [{totalInt}] {Environment.NewLine}Carry Fwd Close(CFC): {moveOverClosed.ToString()} [{moveOverInterest}] = {varActualClose + closedData + moveOverClosed}");
+                        closedDetailForCurrentMonth.Append($" {Environment.NewLine}Expected Close(EC): {closedData.ToString()} [{totalInt.TokFormat()}] {Environment.NewLine}Carry Fwd Close(CFC): {moveOverClosed.ToString()} [{moveOverInterest.TokFormat()}] = {(varActualClose + closedData + moveOverClosed).TokFormat()}");
                     }
                     else
                     {
-                        closedDetailForCurrentMonth.Append($" Actual Close(AC): \t\t\t\t {closedData} [{totalInt}]");
+                        closedDetailForCurrentMonth.Append($" Actual Close(AC): \t\t\t\t {closedData} [{totalInt.TokFormat()}]");
 
                         varActualClose = closedData;
                     }
