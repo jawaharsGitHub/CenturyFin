@@ -1342,5 +1342,33 @@
     "CollectionSpotId": 82,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 691,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 115,
+    "Name": "Nirmala Devi - Collectorate",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 10000,
+    "Interest": 1000,
+    "InitialInterest": 2000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-11-19T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": true,
+    "MergedDate": "2018-10-25T09:30:00+05:30",
+    "CollectionSpotId": 115,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
