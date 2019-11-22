@@ -325,9 +325,9 @@ namespace DataAccess.PrimaryTypes
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
 
             var latestDate = (from txn in list
-                                where txn.CustomerSequenceNo == customer.CustomerSeqNumber && txn.AmountReceived >= 0
-                                orderby txn.TransactionId descending
-                                select txn).First().TxnDate.ToShortDateString();
+                              where txn.CustomerSequenceNo == customer.CustomerSeqNumber && txn.AmountReceived >= 0
+                              orderby txn.TransactionId descending
+                              select txn).First().TxnDate.ToShortDateString();
 
             return latestDate;
 
@@ -341,7 +341,7 @@ namespace DataAccess.PrimaryTypes
             var latestDate = (from txn in list
                               where txn.CustomerSequenceNo == customer.CustomerSeqNumber
                               orderby txn.TransactionId
-                              select $"{txn.TxnDate.Day}({txn.TxnDate.DayOfWeek.ToString().Substring(0,2)})").ToList();
+                              select $"{txn.TxnDate.Day}({txn.TxnDate.DayOfWeek.ToString().Substring(0, 2)})").ToList();
 
             var result = String.Join("-", latestDate);
 
@@ -377,8 +377,33 @@ namespace DataAccess.PrimaryTypes
             //}
 
             return customerTxns.OrderByDescending(m => m.TxnDate).ThenByDescending(t => t.TransactionId).First().Balance;   //customerTxns.Min(m => m.Balance); // Both seems to be same result. - for womething it shows worng eg: some tool tip balance.
-                                                                                     // return (customer.LoanAmount - paidAmount);
+                                                                                                                            // return (customer.LoanAmount - paidAmount);
 
+        }
+
+        public static string GetBalanceAndLastDate(Customer customer)
+        {
+            //if (customer.IsActive == false) return (0, null);
+
+            Transaction result;
+
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+            //if (list == null || list.Count == 0) return $"{customer.LoanAmount - 0} on {customer.AmountGivenDate);
+
+            var customerTxns = list.Where(s => s.CustomerSequenceNo == customer.CustomerSeqNumber && s.CustomerId == customer.CustomerId);
+
+            if (customer.ReturnType == ReturnTypeEnum.Monthly)
+            {
+                result = customerTxns.OrderByDescending(m => m.TxnDate).First();
+            }
+            else
+            {
+                var paidAmount = customerTxns.Sum(s => s.AmountReceived);
+                //var txnLoanAmount = customerTxns.First(f => f.AmountReceived == 0).Balance;
+                result = customerTxns.OrderByDescending(m => m.TxnDate).ThenByDescending(t => t.TransactionId).First();
+            }                                                                                                            // return (customer.LoanAmount - paidAmount);
+
+            return $"{result.Balance} on  {result.TxnDate.ToShortDateString()}[{(DateTime.Today - result.TxnDate).Days}]";
         }
 
         public static List<Transaction> GetActiveTransactions()

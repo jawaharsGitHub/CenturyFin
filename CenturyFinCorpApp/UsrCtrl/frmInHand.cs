@@ -381,31 +381,51 @@ namespace CenturyFinCorpApp
             try
             {
 
+
                 // return;
                 var haveInternetConnection = General.CheckForInternetConnection();
 
                 if (haveInternetConnection)
                 {
-                    var allBalances = string.Join(Environment.NewLine,
-                        Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalance(s)}({s.LoanAmount})").ToList());
+                    btnSendBalances.Text = "Sending...";
+                    ProgressBar pBar = new ProgressBar();
+                    pBar.Location = new System.Drawing.Point(20, 20);
+                    pBar.Name = "progressBar1";
+                    pBar.Width = 100;
+                    pBar.Height = 30;
 
+                    Controls.Add(pBar);
+                    //pBar.Dock = DockStyle.Top;
+                    pBar.Minimum = 20;
+                    pBar.Maximum = 100;
+
+                    pBar.Value = 25;
+
+                    var allBalances = string.Join(Environment.NewLine,
+                        Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalanceAndLastDate(s)}({s.LoanAmount})").ToList());
+
+                    pBar.Value = 80;
                     // Need to send alphabet wise later, now we did grouping only.
 
                     var groupedByLetter = Customer.GetAllActiveCustomer().Where(w => Char.IsLetter(w.Name.Substring(0, 1)[0])).Select(s => s).GroupBy(x => x.Name.Substring(0, 1).ToUpper(), (alphabet, subList) => new { Alphabet = alphabet, SubList = subList.OrderBy(x => x.Name).ToList() })
                 .OrderBy(x => x.Alphabet);
-
+                    //pBar.Value = 75;
                     var OnlyNumberAsFirstLetter = Customer.GetAllActiveCustomer().Where(w => !Char.IsLetter(w.Name.Substring(0, 1)[0])).Select(s => s).ToList();
-
+                    pBar.Value = 90;
                     // Need to send alphabet wise later, now we did grouping only.
 
                     AppCommunication.SendEmail(allBalances, currentBalanceDate);
-
+                    pBar.Value = 100;
+                    btnSendBalances.Text = "Done.";
+                    //Controls.Remove(pBar);
                     MessageBox.Show("Balance Report have been send to your email");
                 }
                 else
                 {
                     MessageBox.Show("No Internet Available, Please connect and send balances again!");
                 }
+
+
             }
             catch (Exception)
             {
