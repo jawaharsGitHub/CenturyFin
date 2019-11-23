@@ -65,6 +65,7 @@
     <Compile Include="ExtensionMethod\DateTimeExtensions.cs" />
     <Compile Include="ExtensionMethod\TypeExtenstion.cs" />
     <Compile Include="General.cs" />
+    <Compile Include="GithubClient.cs" />
     <Compile Include="GlobalValue.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="AppCommunication.cs" />
