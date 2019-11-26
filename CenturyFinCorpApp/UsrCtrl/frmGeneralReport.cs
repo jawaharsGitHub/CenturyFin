@@ -270,7 +270,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         ActualIncome = s.ActualIncome.ToMoneyFormat(),
                                         MonthlySalary = s.MonthlySalary.ToMoneyFormat(),
                                         s.CloseCount
-                                    }).ToList();
+                                    }).Reverse().ToList();
 
 
         }
@@ -293,7 +293,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                                  LoanAmount = newGroup.Sum(s => s.LoanAmount).ToMoneyFormat(),
                                  GivenAmount = newGroup.Sum(s => (s.LoanAmount - s.Interest)).ToMoneyFormat(),
                                  FutureInterest = newGroup.Sum(s => s.Interest).ToMoneyFormat(),
-                             }).ToList();
+                             }).Reverse().ToList();
 
 
             dgvNotePerMonth.DataSource = customers;
@@ -387,7 +387,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         ActualIncome = s.ActualIncome.ToMoneyFormat(),
                                         MonthlySalary = s.MonthlySalary.ToMoneyFormat(),
                                         s.CloseCount
-                                    }).ToList();
+                                    }).Reverse().ToList();
 
         }
 
