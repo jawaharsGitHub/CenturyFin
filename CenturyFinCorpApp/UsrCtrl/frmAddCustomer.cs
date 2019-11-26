@@ -204,7 +204,7 @@ namespace CenturyFinCorpApp
         {
             if ((ReturnTypeEnum)cmbReturnType.SelectedItem == ReturnTypeEnum.Weekly)
             {
-                //cmbReturnDay.SelectedIndex = cmbReturnDay.SelectedIndex == 7 ? 1 : (int)dateTimePicker1.Value.DayOfWeek + 2;
+                cmbReturnDay.SelectedItem =  dateTimePicker1.Value.DayOfWeek;
             }
 
         }
