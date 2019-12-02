@@ -52,7 +52,7 @@ namespace CenturyFinCorpApp
                 diffStr = $"({diffDays} days ago)";
             }
 
-            this.Text = $"WELCOME - JEYAM FINANACE Ltd. ({DateTime.Today.ToString("dddd, dd MMMM yyyy")}) Running ({activeTxn}) Closed ({closedTxn}) Total ({totalTxn}) - Last Cxn on {latestCxnDate.WithDateSuffix()} {diffStr}";
+            this.Text = $"JEYAM FINANACE Ltd. ({DateTime.Today.ToString("dddd, dd MMMM yyyy")}) Running ({activeTxn}) Closed ({closedTxn}) Total ({totalTxn}) - Last Cxn on {latestCxnDate.WithDateSuffix()} {diffStr}";
 
 
             //var task = Github.getRepo("LeanKit-Labs", "cowpoke", "debff13eb3a22104833ddadfa2cacec22feecfa8");
