@@ -72,6 +72,10 @@ namespace CenturyFinCorpApp
             if (dataGridView1.Columns.Count > 0)
             {
                 dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+                dataGridView1.Columns["TxnDate"].HeaderText = "தேதி";
+                dataGridView1.Columns["AmountReceived"].HeaderText = "வரவு ரூபாய்";
+                dataGridView1.Columns["Balance"].HeaderText = "பாக்கி ரூபாய்";
+                dataGridView1.Columns["TransactionId"].Visible = false;
             }
             lblMessage.Text = string.Empty;
 
