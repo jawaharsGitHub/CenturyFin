@@ -6310,5 +6310,21 @@
     "CustomerId": 111,
     "CustomerSequenceNo": 769,
     "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 20000,
+    "Interest": 1000,
+    "CustomerId": 223,
+    "CustomerSequenceNo": 770,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 150000,
+    "Interest": 15000,
+    "CustomerId": 105,
+    "CustomerSequenceNo": 771,
+    "CreatedDate": "00:00:00"
   }
 ]
