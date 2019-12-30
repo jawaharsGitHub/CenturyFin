@@ -21390,5 +21390,33 @@
     "CollectionSpotId": 161,
     "ReturnDay": 1,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 788,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 97,
+    "Name": "NandhaKumar Sriram Agency",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 40000,
+    "Interest": 2400,
+    "InitialInterest": 2400,
+    "MonthlyInterest": 2400,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2019-12-28T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 5,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 97,
+    "ReturnDay": 0,
+    "ModifiedDate": null
   }
 ]
