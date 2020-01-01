@@ -5,6 +5,8 @@ using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -638,6 +640,43 @@ namespace CenturyFinCorpApp
             var sum = txns.Where(w => w.AmountReceived > 0 && w.TransactionId <= neededRow.TransactionId).Sum(s => s.AmountReceived);
 
             dataGridView1.Rows[e.RowIndex].Cells["AmountReceived"].ToolTipText = sum.ToString();
+        }
+
+        private void btnCapturePic_Click(object sender, EventArgs e)
+        {
+            CaptureMyScreen();
+        }
+
+        private void CaptureMyScreen()
+
+        {
+            try
+            {
+                //Creating a new Bitmap object
+                Bitmap captureBitmap = new Bitmap(500, 430, PixelFormat.Format32bppArgb);
+
+                //capture our Current Screen
+                Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
+
+                //Creating a New Graphics Object
+                Graphics captureGraphics = Graphics.FromImage(captureBitmap);
+                //Copying Image from The Screen
+                captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, -230, captureRectangle.Size);
+
+                //Saving the Image File (I am here Saving it in My E drive).
+                captureBitmap.Save($@"D:\{customer.CustomerSeqNumber}_{customer.Name}.jpg", ImageFormat.Jpeg);
+                //Displaying the Successfull Result
+                MessageBox.Show("Screen Captured");
+            }
+
+            catch (Exception ex)
+
+            {
+
+                MessageBox.Show(ex.Message);
+
+            }
+
         }
     }
 }

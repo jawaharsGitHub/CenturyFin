@@ -71,6 +71,7 @@
             this.btnConvertToMonthly = new System.Windows.Forms.Button();
             this.btnInterestOnly = new System.Windows.Forms.Button();
             this.btnClosingBalance = new System.Windows.Forms.Button();
+            this.btnCapturePic = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -499,10 +500,21 @@
             this.btnClosingBalance.Text = "[Closing Balance]";
             this.btnClosingBalance.UseVisualStyleBackColor = true;
             // 
+            // btnCapturePic
+            // 
+            this.btnCapturePic.Location = new System.Drawing.Point(536, 196);
+            this.btnCapturePic.Name = "btnCapturePic";
+            this.btnCapturePic.Size = new System.Drawing.Size(121, 23);
+            this.btnCapturePic.TabIndex = 26;
+            this.btnCapturePic.Text = "Capture Picture";
+            this.btnCapturePic.UseVisualStyleBackColor = true;
+            this.btnCapturePic.Click += new System.EventHandler(this.btnCapturePic_Click);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCapturePic);
             this.Controls.Add(this.btnClosingBalance);
             this.Controls.Add(this.btnInterestOnly);
             this.Controls.Add(this.groupBox3);
@@ -588,5 +600,6 @@
         private System.Windows.Forms.ComboBox cmbExistingCustomer;
         private System.Windows.Forms.Button btnInterestOnly;
         private System.Windows.Forms.Button btnClosingBalance;
+        private System.Windows.Forms.Button btnCapturePic;
     }
 }
