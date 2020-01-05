@@ -6566,5 +6566,37 @@
     "CustomerId": 258,
     "CustomerSequenceNo": 800,
     "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 50000,
+    "Interest": 5000,
+    "CustomerId": 259,
+    "CustomerSequenceNo": 801,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 30000,
+    "Interest": 3000,
+    "CustomerId": 128,
+    "CustomerSequenceNo": 802,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 50000,
+    "Interest": 5000,
+    "CustomerId": 163,
+    "CustomerSequenceNo": 803,
+    "CreatedDate": "00:00:00"
+  },
+  {
+    "InvestType": 0,
+    "Amount": 10000,
+    "Interest": 1000,
+    "CustomerId": 260,
+    "CustomerSequenceNo": 804,
+    "CreatedDate": "00:00:00"
   }
 ]
