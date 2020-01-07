@@ -1,0 +1,72 @@
+[
+  {
+    "CustomerId": 111,
+    "IsClosed": false,
+    "TransactionId": 22149,
+    "AmountReceived": 0,
+    "Balance": 20000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 653,
+    "TxnDate": "2019-09-23T00:00:00"
+  },
+  {
+    "CustomerId": 111,
+    "IsClosed": false,
+    "TransactionId": 22789,
+    "AmountReceived": 1000,
+    "Balance": 19000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 653,
+    "TxnDate": "2019-10-05T00:00:00"
+  },
+  {
+    "CustomerId": 111,
+    "IsClosed": false,
+    "TransactionId": 23427,
+    "AmountReceived": 2000,
+    "Balance": 17000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 653,
+    "TxnDate": "2019-10-17T00:00:00"
+  },
+  {
+    "CustomerId": 111,
+    "IsClosed": false,
+    "TransactionId": 23831,
+    "AmountReceived": 1000,
+    "Balance": 16000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 653,
+    "TxnDate": "2019-10-24T00:00:00"
+  },
+  {
+    "CustomerId": 111,
+    "IsClosed": false,
+    "TransactionId": 24466,
+    "AmountReceived": 1000,
+    "Balance": 15000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 653,
+    "TxnDate": "2019-11-06T00:00:00"
+  },
+  {
+    "CustomerId": 111,
+    "IsClosed": false,
+    "TransactionId": 25816,
+    "AmountReceived": 1000,
+    "Balance": 14000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 653,
+    "TxnDate": "2019-12-02T00:00:00"
+  },
+  {
+    "CustomerId": 111,
+    "IsClosed": true,
+    "TransactionId": 26532,
+    "AmountReceived": 14000,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 653,
+    "TxnDate": "2019-12-15T00:00:00"
+  }
+]
