@@ -164,7 +164,7 @@ namespace CenturyFinCorpApp
             };
 
             var extra = (days - totalTxn) >= 0 ? "Shortage" : "Extra";
-            
+
             label1.Text = $"{myData.TotalNotes} {Environment.NewLine} " +
               $"{myData.DaysToMonth} {Environment.NewLine} " +
               $"{myData.NotesPerDay} {Environment.NewLine} " +
@@ -174,7 +174,7 @@ namespace CenturyFinCorpApp
               $"  need {365 - totalTxn} in {365 - days} days [{extra}: {Math.Abs(days - totalTxn)}] {Environment.NewLine} " +
               $"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";
 
-            
+
 
         }
 
@@ -308,10 +308,10 @@ namespace CenturyFinCorpApp
             GlobalValue.SearchText = txtSearch.Text;
         }
 
-
-
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            int existingTxnId = 0; // to  keep existing txn id.
+
             var grid = (sender as DataGridView);
 
             //if (grid.CurrentCell.ColumnIndex == 0) return;
@@ -488,17 +488,19 @@ namespace CenturyFinCorpApp
 
                     else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                     {
+                        existingTxnId = existingTxn.First().TransactionId;
                         Transaction.DeleteTransactionDetails(existingTxn.First());
                     }
                 }
 
+               
 
                 var txn = new Transaction()
                 {
                     AmountReceived = valCollectedAmount,
                     CustomerId = customerId,
                     CustomerSequenceNo = seqNo,
-                    TransactionId = Transaction.GetNextTransactionId(),
+                    TransactionId = existingTxnId > 0 ? existingTxnId : Transaction.GetNextTransactionId(),
                     Balance = (Transaction.GetBalance(cus) - valCollectedAmount),
                     TxnDate = dateTimePicker1.Value
                 };
@@ -521,13 +523,6 @@ namespace CenturyFinCorpApp
                 {
                     MessageBox.Show($"Good News, txn closed for [{txn.CustomerSequenceNo}]-[{cus.Name}]", "", MessageBoxButtons.OK, icon: MessageBoxIcon.Exclamation);
                     LogHelper.WriteLog($"Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
-
-                    // Add new txn for extra amount.
-                    //if(cus.AdjustedAmount != null && cus.AdjustedAmount > 0)
-                    //{
-
-                    //}
-
                     Customer.CloseCustomerTxn(cus, false, txn.TxnDate);
                 }
 
@@ -556,9 +551,6 @@ namespace CenturyFinCorpApp
                 }
                 return;
             }
-
-
-            //Customer.CorrectCustomerData(cus); // TODO: dont know the reason for this code here!!!
 
         }
 
