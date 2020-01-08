@@ -468,32 +468,46 @@ namespace CenturyFinCorpApp
 
             if (string.IsNullOrEmpty(strCollectedAmount) == false)
             {
-                var existingTxn = Transaction.GetTransactionForDate(new Transaction() { CustomerId = customerId, CustomerSequenceNo = seqNo, TxnDate = dateTimePicker1.Value });
+                var existingTxns = Transaction.GetTransactionForDate(new Transaction() { CustomerId = customerId, CustomerSequenceNo = seqNo, TxnDate = dateTimePicker1.Value });
 
-                if (existingTxn != null && existingTxn.Count == 1)
+                Transaction LastexistingTxn = null;
+
+                if (existingTxns != null && existingTxns.Count > 0) LastexistingTxn = existingTxns.OrderBy(o => o.TransactionId).Last();
+
+                if (LastexistingTxn != null)
                 {
 
-                    if (existingTxn.First().AmountReceived == valCollectedAmount)
+                    if (LastexistingTxn.AmountReceived == valCollectedAmount)
                     {
                         return;
                     }
 
                     if (valCollectedAmount == 0 && DialogResult.Yes == MessageBox.Show($"Are you sure you want to delete an existing transactions for {cus.Name}?", "", MessageBoxButtons.YesNo))
                     {
-                        Transaction.DeleteTransactionDetails(existingTxn.First());
-                        cus.Interest -= existingTxn.First().AmountReceived;
+                        Transaction.DeleteTransactionDetails(LastexistingTxn);
+                        cus.Interest -= LastexistingTxn.AmountReceived;
                         Customer.UpdateCustomerInterest(cus);
                         return;
                     }
-
-                    else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    else if (LastexistingTxn.AmountReceived != valCollectedAmount)
                     {
-                        existingTxnId = existingTxn.First().TransactionId;
-                        Transaction.DeleteTransactionDetails(existingTxn.First());
+                        if (MessageBox.Show("You want to replace existing txns?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            existingTxnId = LastexistingTxn.TransactionId;
+                            Transaction.DeleteTransactionDetails(LastexistingTxn);
+                        }
+                        //existingTxnId = existingTxn.First().TransactionId;
+                        //Transaction.DeleteTransactionDetails(existingTxn.First());
                     }
+
+                    //else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    //{
+                    //    existingTxnId = existingTxn.First().TransactionId;
+                    //    Transaction.DeleteTransactionDetails(existingTxn.First());
+                    //}
                 }
 
-               
+
 
                 var txn = new Transaction()
                 {
