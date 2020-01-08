@@ -98,6 +98,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Data\ClosedNotes\100\100_160.json" />
     <None Include="Data\ClosedNotes\100\100_162.json" />
     <None Include="Data\ClosedNotes\101\101_163.json" />
