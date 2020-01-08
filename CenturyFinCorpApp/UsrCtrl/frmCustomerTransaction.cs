@@ -644,7 +644,23 @@ namespace CenturyFinCorpApp
 
         private void btnCapturePic_Click(object sender, EventArgs e)
         {
-            CaptureMyScreen();
+            //CaptureMyScreen();
+
+            // WhatsAppMessage.SendMsg();
+
+            //Resize DataGridView to full height.
+            int height = dataGridView1.Height;
+            dataGridView1.Height = (dataGridView1.RowCount * dataGridView1.RowTemplate.Height) + 100;
+
+            //Create a Bitmap and draw the DataGridView on it.
+            Bitmap bitmap = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
+            dataGridView1.DrawToBitmap(bitmap, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
+
+            //Resize DataGridView back to original height.
+            dataGridView1.Height = height;
+
+            //Save the Bitmap to folder.
+            bitmap.Save($@"D:\{customer.Name}.jpg");
         }
 
         private void CaptureMyScreen()
