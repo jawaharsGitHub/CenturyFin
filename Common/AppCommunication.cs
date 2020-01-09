@@ -17,7 +17,7 @@ namespace Common
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress(myEmail);
                 message.To.Add(new MailAddress(myEmail));
-                message.Subject = $"Jeyam Finance - Balance Report On {collectionDate.ToShortDateString()}";
+                message.Subject = $"Jeyam Finance - Balance Report For {collectionDate.ToShortDateString()}";
                 message.IsBodyHtml = false; //to make message body as html  
                 message.Body = mailBody;
                 smtp.Port = 587;

@@ -27,7 +27,7 @@ namespace CenturyFinCorpApp
 
             GetDailyTxn(GlobalValue.CollectionDate.Value.AddDays(-1), true);
             GetDailyTxn(GlobalValue.CollectionDate.Value, true);
-            currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
+            
 
         }
 
@@ -219,6 +219,8 @@ namespace CenturyFinCorpApp
 
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
+
+            currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
 
         }
 
