@@ -19,6 +19,7 @@ namespace CenturyFinCorpApp
         [JsonIgnore]
         private Customer customer;
         private List<Transaction> txns;
+        int daysTaken = 0;
 
 
         public frmCustomerTransaction()
@@ -237,7 +238,7 @@ namespace CenturyFinCorpApp
 
             var startDate = dataDource.Select(s => s.TxnDate).Min();
             var lastDate = dataDource.Select(s => s.TxnDate).Max();
-            var daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
+            daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
 
 
             // Calculate Credit Score 
@@ -693,6 +694,32 @@ namespace CenturyFinCorpApp
 
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txns = Transaction.GetTransactionDetails(customer);
+            var cus = Customer.GetCustomerDetails(customer);
+
+            // Cross verify txn.
+            var totalReceived = txns.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
+            var lastBalance = txns.Last().Balance;
+            var expectedBalance = cus.LoanAmount - totalReceived;
+            var inhandGivenMoney = customer.LoanAmount - customer.InitialInterest;
+            // var isCorrect = (expectedBalance == lastBalance);
+            // btnCorrect.Visible = !isCorrect;
+
+            var localInt = string.IsNullOrEmpty(txtNewInt.Text) ? customer.InitialInterest : txtNewInt.Text.ToInt32();
+
+            if (localInt <= 0)
+            {
+                MessageBox.Show("Please provide Iniial Interest");
+                txtNewInt.Focus();
+            }
+
+            var askedAMount = (inhandGivenMoney + (localInt / 30) * daysTaken) - totalReceived;
+
+            btnNewInt.Text = $"Asked Amt: {askedAMount}";
         }
     }
 }

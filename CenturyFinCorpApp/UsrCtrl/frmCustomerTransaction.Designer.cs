@@ -72,6 +72,8 @@
             this.btnInterestOnly = new System.Windows.Forms.Button();
             this.btnClosingBalance = new System.Windows.Forms.Button();
             this.btnCapturePic = new System.Windows.Forms.Button();
+            this.btnNewInt = new System.Windows.Forms.Button();
+            this.txtNewInt = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -510,10 +512,29 @@
             this.btnCapturePic.UseVisualStyleBackColor = true;
             this.btnCapturePic.Click += new System.EventHandler(this.btnCapturePic_Click);
             // 
+            // btnNewInt
+            // 
+            this.btnNewInt.Location = new System.Drawing.Point(746, 265);
+            this.btnNewInt.Name = "btnNewInt";
+            this.btnNewInt.Size = new System.Drawing.Size(75, 36);
+            this.btnNewInt.TabIndex = 27;
+            this.btnNewInt.Text = "btnNewInt";
+            this.btnNewInt.UseVisualStyleBackColor = true;
+            this.btnNewInt.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtNewInt
+            // 
+            this.txtNewInt.Location = new System.Drawing.Point(746, 239);
+            this.txtNewInt.Name = "txtNewInt";
+            this.txtNewInt.Size = new System.Drawing.Size(100, 20);
+            this.txtNewInt.TabIndex = 28;
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtNewInt);
+            this.Controls.Add(this.btnNewInt);
             this.Controls.Add(this.btnCapturePic);
             this.Controls.Add(this.btnClosingBalance);
             this.Controls.Add(this.btnInterestOnly);
@@ -601,5 +622,7 @@
         private System.Windows.Forms.Button btnInterestOnly;
         private System.Windows.Forms.Button btnClosingBalance;
         private System.Windows.Forms.Button btnCapturePic;
+        private System.Windows.Forms.Button btnNewInt;
+        private System.Windows.Forms.TextBox txtNewInt;
     }
 }
