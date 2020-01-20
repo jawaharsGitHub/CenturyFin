@@ -1454,5 +1454,33 @@
     "CollectionSpotId": 254,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 801,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 259,
+    "Name": "Baskaran Arusi Kadai",
+    "TamilName": "",
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 50000,
+    "Interest": 5000,
+    "InitialInterest": 5000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2020-01-14T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 259,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
