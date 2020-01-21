@@ -661,7 +661,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Height = height;
 
             //Save the Bitmap to folder.
-            bitmap.Save($@"D:\{customer.Name}.jpg");
+            bitmap.Save($@"E:\{customer.Name}.jpg");
         }
 
         private void CaptureMyScreen()
