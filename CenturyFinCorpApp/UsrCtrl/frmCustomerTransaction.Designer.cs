@@ -74,6 +74,7 @@
             this.btnCapturePic = new System.Windows.Forms.Button();
             this.btnNewInt = new System.Windows.Forms.Button();
             this.txtNewInt = new System.Windows.Forms.TextBox();
+            this.btnCusName = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -170,7 +171,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 183);
+            this.dataGridView1.Location = new System.Drawing.Point(18, 202);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(467, 414);
             this.dataGridView1.TabIndex = 6;
@@ -529,10 +530,22 @@
             this.txtNewInt.Size = new System.Drawing.Size(100, 20);
             this.txtNewInt.TabIndex = 28;
             // 
+            // btnCusName
+            // 
+            this.btnCusName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCusName.ForeColor = System.Drawing.Color.Maroon;
+            this.btnCusName.Location = new System.Drawing.Point(18, 165);
+            this.btnCusName.Name = "btnCusName";
+            this.btnCusName.Size = new System.Drawing.Size(467, 36);
+            this.btnCusName.TabIndex = 29;
+            this.btnCusName.Text = "button1";
+            this.btnCusName.UseVisualStyleBackColor = true;
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCusName);
             this.Controls.Add(this.txtNewInt);
             this.Controls.Add(this.btnNewInt);
             this.Controls.Add(this.btnCapturePic);
@@ -624,5 +637,6 @@
         private System.Windows.Forms.Button btnCapturePic;
         private System.Windows.Forms.Button btnNewInt;
         private System.Windows.Forms.TextBox txtNewInt;
+        private System.Windows.Forms.Button btnCusName;
     }
 }

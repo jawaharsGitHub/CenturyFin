@@ -66,7 +66,7 @@ namespace CenturyFinCorpApp
 
 
             lblDetail.Text = $"{customer.Name} - CutomerId: {customer.CustomerId} SequenceNo: {customer.CustomerSeqNumber} {closedText} {mergedText}";
-
+            btnCusName.Text = customer.Name;
             txtCollectionAmount.Text = (customer.LoanAmount / 100).ToString();
 
             LoadTxn();
