@@ -376,6 +376,7 @@ namespace CenturyFinCorpApp
                             select new
                             {
                                 Date = $"{newGroup.First().Date} to {newGroup.Last().Date}",
+                                CxnCount = newGroup.Count(),
                                 Closed = newGroup.Sum(s => s.Closed),
                                 CollectionAmount = newGroup.Sum(s => s.CollectionAmount).ToMoney(),
                                 GivenAmount = newGroup.Sum(s => s.GivenAmount).ToMoney(),
@@ -393,6 +394,7 @@ namespace CenturyFinCorpApp
                             select new
                             {
                                 Date = $"{newGroup.Key.month}/{newGroup.Key.year}",
+                                CxnCount = newGroup.Count(),
                                 Closed = newGroup.Sum(s => s.Closed),
                                 CollectionAmount = newGroup.Sum(s => s.CollectionAmount).ToMoney(),
                                 GivenAmount = newGroup.Sum(s => s.GivenAmount).ToMoney(),
@@ -411,6 +413,7 @@ namespace CenturyFinCorpApp
                             select new
                             {
                                 Date = newGroup.Key,
+                                CxnCount = newGroup.Count(),
                                 Closed = newGroup.Sum(s => s.Closed),
                                 CollectionAmount = newGroup.Sum(s => s.CollectionAmount).ToMoney(),
                                 GivenAmount = newGroup.Sum(s => s.GivenAmount).ToMoney(),
