@@ -646,22 +646,43 @@ namespace CenturyFinCorpApp
         private void btnCapturePic_Click(object sender, EventArgs e)
         {
             //CaptureMyScreen();
+            //return;
 
             // WhatsAppMessage.SendMsg();
 
-            //Resize DataGridView to full height.
+            /* 1.Transaction Image*/
             int height = dataGridView1.Height;
             dataGridView1.Height = (dataGridView1.RowCount * dataGridView1.RowTemplate.Height) + 100;
-
-            //Create a Bitmap and draw the DataGridView on it.
-            Bitmap bitmap = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
-            dataGridView1.DrawToBitmap(bitmap, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
-
+            Bitmap bitmapTxn = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
+            dataGridView1.DrawToBitmap(bitmapTxn, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
             //Resize DataGridView back to original height.
             dataGridView1.Height = height;
 
+            //var ImgTxn = $@"E:\{customer.Name}_txn.jpg";
             //Save the Bitmap to folder.
-            bitmap.Save($@"E:\{customer.Name}.jpg");
+            //bitmapTxn.Save(ImgTxn);
+
+            /* 2.Name Image*/
+            Bitmap bitmapName = new Bitmap(this.btnCusName.Width, this.btnCusName.Height);
+            btnCusName.DrawToBitmap(bitmapName, new Rectangle(0, 0, this.btnCusName.Width, this.btnCusName.Height));
+
+            //var ImgName = $@"E:\{customer.Name}_Name.jpg";
+            //Save the Bitmap to folder.
+            //bitmapName.Save(ImgName);
+
+
+            /* 3.Merge 2 images*/
+            Bitmap firstTxn = bitmapTxn;
+            Bitmap secondName = bitmapName;
+            
+            Bitmap result = new Bitmap(Math.Max(firstTxn.Width, secondName.Width), firstTxn.Height + secondName.Height + 30);
+            Graphics g = Graphics.FromImage(result);
+            g.DrawImageUnscaled(firstTxn, 0, 30);
+            g.DrawImageUnscaled(secondName, 0, 0);
+            var txnFileName = $@"E:\{customer.Name}.jpg";
+            result.Save(txnFileName);
+
+            AppCommunication.SendCustomerTxnEmail(customer.Name, DateTime.Today, txnFileName);
         }
 
         private void CaptureMyScreen()
@@ -681,7 +702,7 @@ namespace CenturyFinCorpApp
                 captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, -230, captureRectangle.Size);
 
                 //Saving the Image File (I am here Saving it in My E drive).
-                captureBitmap.Save($@"D:\{customer.CustomerSeqNumber}_{customer.Name}.jpg", ImageFormat.Jpeg);
+                captureBitmap.Save($@"E:\{customer.CustomerSeqNumber}_{customer.Name}.jpg", ImageFormat.Jpeg);
                 //Displaying the Successfull Result
                 MessageBox.Show("Screen Captured");
             }
