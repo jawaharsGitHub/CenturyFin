@@ -42,7 +42,7 @@ namespace Common.ExtensionMethod
         {
             if (value == null)
                 return "0";
-                //throw new Exception("value should not ne null");
+            //throw new Exception("value should not ne null");
 
             int number = Convert.ToInt32(value);
 
@@ -89,6 +89,17 @@ namespace Common.ExtensionMethod
         {
             return (T)Enum.Parse(typeof(T), value, true);
         }
+
+        public static int PercentageOf(this int value, int toPercentage)
+        {
+            return (toPercentage / 100) * value;
+        }
+
+        public static string PercentageOfStr(this string value, decimal toPercentage)
+        {
+            return Math.Round((toPercentage / 100) * value.ToInt32()).ToString();
+        }
+
 
     }
 }

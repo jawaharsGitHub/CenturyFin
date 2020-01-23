@@ -116,9 +116,9 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(466, 213);
+            this.btnAdd.Location = new System.Drawing.Point(757, 223);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(167, 81);
+            this.btnAdd.Size = new System.Drawing.Size(202, 137);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Add Customer";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -238,7 +238,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(27, 360);
+            this.label4.Location = new System.Drawing.Point(404, 202);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(145, 29);
             this.label4.TabIndex = 21;
@@ -248,7 +248,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(27, 409);
+            this.label6.Location = new System.Drawing.Point(404, 251);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 29);
             this.label6.TabIndex = 22;
@@ -258,7 +258,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(27, 461);
+            this.label7.Location = new System.Drawing.Point(27, 367);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(177, 29);
             this.label7.TabIndex = 23;
@@ -268,7 +268,7 @@
             // 
             this.cmbReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnType.FormattingEnabled = true;
-            this.cmbReturnType.Location = new System.Drawing.Point(233, 367);
+            this.cmbReturnType.Location = new System.Drawing.Point(555, 211);
             this.cmbReturnType.Name = "cmbReturnType";
             this.cmbReturnType.Size = new System.Drawing.Size(121, 21);
             this.cmbReturnType.TabIndex = 24;
@@ -278,7 +278,7 @@
             // 
             this.cmbReturnDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnDay.FormattingEnabled = true;
-            this.cmbReturnDay.Location = new System.Drawing.Point(233, 417);
+            this.cmbReturnDay.Location = new System.Drawing.Point(555, 258);
             this.cmbReturnDay.Name = "cmbReturnDay";
             this.cmbReturnDay.Size = new System.Drawing.Size(121, 21);
             this.cmbReturnDay.TabIndex = 25;
@@ -287,7 +287,7 @@
             // 
             this.cmbCollectionSpot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCollectionSpot.FormattingEnabled = true;
-            this.cmbCollectionSpot.Location = new System.Drawing.Point(233, 470);
+            this.cmbCollectionSpot.Location = new System.Drawing.Point(233, 376);
             this.cmbCollectionSpot.Name = "cmbCollectionSpot";
             this.cmbCollectionSpot.Size = new System.Drawing.Size(225, 21);
             this.cmbCollectionSpot.TabIndex = 26;

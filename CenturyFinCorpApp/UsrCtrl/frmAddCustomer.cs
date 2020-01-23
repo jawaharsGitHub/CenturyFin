@@ -91,6 +91,11 @@ namespace CenturyFinCorpApp
                 cus.MonthlyInterest = cus.Interest;
             }
 
+            if (cus.ReturnType == ReturnTypeEnum.TenMonths)
+            {
+                cus.MonthlyInterest = cus.LoanAmount / 10; ;
+            }
+
             Customer.AddCustomer(cus);
             txtCustomerNo.Text = newCustomerId.ToString();
 
@@ -204,7 +209,12 @@ namespace CenturyFinCorpApp
         {
             if ((ReturnTypeEnum)cmbReturnType.SelectedItem == ReturnTypeEnum.Weekly)
             {
-                cmbReturnDay.SelectedItem =  dateTimePicker1.Value.DayOfWeek;
+                cmbReturnDay.SelectedItem = dateTimePicker1.Value.DayOfWeek;
+            }
+
+            if ((ReturnTypeEnum)cmbReturnType.SelectedItem == ReturnTypeEnum.TenMonths)
+            {
+                txtInterest.Text = txtLoan.Text.PercentageOfStr(20);
             }
 
         }
