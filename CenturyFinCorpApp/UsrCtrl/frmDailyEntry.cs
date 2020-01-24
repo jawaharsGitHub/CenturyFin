@@ -68,8 +68,6 @@ namespace CenturyFinCorpApp
             var cus = Customer.GetAllCustomer();
 
             CxnHistory = (from d in data
-                              //join c in Customer.GetAllCustomer()
-                              //on Convert.ToDateTime(d.Date) equals c.ClosedDate
                           select
                           new ExtDailyTxn()
                           {
