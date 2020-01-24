@@ -350,19 +350,19 @@ namespace CenturyFinCorpApp
             DailyCollectionDetail.UpdateVerifyDetails(dailyTxn);
             UpdateVerifyDetails();
 
-            var fileName = GetCxnFileName();
+            //var fileName = GetCxnFileName();
 
-            using (TextWriter tw = new StreamWriter(fileName))
-            {
-                tw.WriteLine($"@Collection Summary for {dateTimePicker1.Value.ToShortDateString()}");
-                tw.WriteLine($"------------------------------------------------");
+            //using (TextWriter tw = new StreamWriter(fileName))
+            //{
+            //    tw.WriteLine($"@Collection Summary for {dateTimePicker1.Value.ToShortDateString()}");
+            //    tw.WriteLine($"------------------------------------------------");
 
-                tw.WriteLine($"Total input Money = ActualInhand inhand yesterday[{dailyTxn.YesterdayAmountInHand.TokFormat()}] + collection [{txtCollectionAmount.Text}] + interest[{txtInterest.Text}] + other investment [{txtOtherInvestment.Text}] = [{inputMoney.TokFormat()}]");
-                tw.WriteLine(Environment.NewLine);
-                tw.WriteLine($"Total out used money = given amount [{txtGivenAmount.Text}] + other expenditure [{txtOtherExpenditure.Text}] = [{outUsedMoney.TokFormat()}]");
-                tw.WriteLine(Environment.NewLine);
-                tw.WriteLine($"Expected Inhand: {dailyTxn.ExpectedInHand.TokFormat()} Actual Inhand : {dailyTxn.ActualInHand.TokFormat()} MamaAccount: {dailyTxn.MamaAccount.TokFormat()} ");
-            }
+            //    tw.WriteLine($"Total input Money = ActualInhand inhand yesterday[{dailyTxn.YesterdayAmountInHand.TokFormat()}] + collection [{txtCollectionAmount.Text}] + interest[{txtInterest.Text}] + other investment [{txtOtherInvestment.Text}] = [{inputMoney.TokFormat()}]");
+            //    tw.WriteLine(Environment.NewLine);
+            //    tw.WriteLine($"Total out used money = given amount [{txtGivenAmount.Text}] + other expenditure [{txtOtherExpenditure.Text}] = [{outUsedMoney.TokFormat()}]");
+            //    tw.WriteLine(Environment.NewLine);
+            //    tw.WriteLine($"Expected Inhand: {dailyTxn.ExpectedInHand.TokFormat()} Actual Inhand : {dailyTxn.ActualInHand.TokFormat()} MamaAccount: {dailyTxn.MamaAccount.TokFormat()} ");
+            //}
 
             string s = txtComments.Text;
             int start = s.IndexOf("$");
@@ -375,7 +375,7 @@ namespace CenturyFinCorpApp
             GetDailyTxn(dateTimePicker1.Value, false);
             SendBalances();
             ReportRun(true);
-            Process.Start(fileName);
+            //Process.Start(fileName);
         }
 
         private void SendBalances()
