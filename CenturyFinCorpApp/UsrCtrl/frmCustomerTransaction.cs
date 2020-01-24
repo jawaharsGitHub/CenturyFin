@@ -683,6 +683,7 @@ namespace CenturyFinCorpApp
             result.Save(txnFileName);
 
             AppCommunication.SendCustomerTxnEmail(customer.Name, DateTime.Today, txnFileName);
+            MessageBox.Show("Mail Send!");
         }
 
         private void CaptureMyScreen()
