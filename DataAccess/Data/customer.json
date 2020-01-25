@@ -22846,5 +22846,33 @@
     "CollectionSpotId": 269,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 841,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 224,
+    "Name": "Prabakaran syed ammal school",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 1000,
+    "InitialInterest": 1000,
+    "MonthlyInterest": 1000,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2020-01-24T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 5,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 224,
+    "ReturnDay": 0,
+    "ModifiedDate": null
   }
 ]
