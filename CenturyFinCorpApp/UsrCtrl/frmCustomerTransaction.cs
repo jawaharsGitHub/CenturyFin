@@ -340,8 +340,9 @@ namespace CenturyFinCorpApp
             var intSaved = cus.Interest - newIntNo;
 
             var newBalance = _balance - intSaved;
+            var oldInt = cus.Interest == 0 ? 0 : (cus.LoanAmount / cus.Interest);
 
-            btnClosingBalance.Text = $"old balance: {_balance} \n new balance: {newBalance} \n Savings: {intSaved} \n old Int: {cus.LoanAmount / cus.Interest}% \n new Int: {newIntPerc}";
+            btnClosingBalance.Text = $"old balance: {_balance} \n new balance: {newBalance} \n Savings: {intSaved} \n old Int: {oldInt}% \n new Int: {newIntPerc}";
         }
 
         private void rdbAsc_CheckedChanged(object sender, EventArgs e)
