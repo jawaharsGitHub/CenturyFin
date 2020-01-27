@@ -13,7 +13,6 @@ namespace CenturyFinCorpApp
     public partial class frmCustomers : UserControl
     {
         private List<Customer> customers;
-
         public frmCustomers()
         {
             InitializeComponent();
@@ -84,8 +83,6 @@ namespace CenturyFinCorpApp
 
 
         }
-
-
         public static List<KeyValuePair<int, string>> GetOptions()
         {
             var myKeyValuePair = new List<KeyValuePair<int, string>>()
@@ -114,13 +111,10 @@ namespace CenturyFinCorpApp
             return myKeyValuePair;
 
         }
-
         public void SetReturnTypes()
         {
             cmbReturnTypes.DataSource = Enum.GetValues(typeof(ReturnTypeEnum));
         }
-
-
         private void SetCustomers()
         {
             customers = Customer.GetAllCustomer()
@@ -177,7 +171,6 @@ namespace CenturyFinCorpApp
 
 
         }
-
         private void AdjustColumnOrder()
         {
             dataGridView1.Columns["MonthlyInterest"].HeaderText = "Monthly Payment";
@@ -205,7 +198,6 @@ namespace CenturyFinCorpApp
 
             //dataGridView1.Columns["ClosedDate"].HeaderText. = 9;
         }
-
         private void SetColumnVisibility(bool show = false)
         {
             dataGridView1.Columns["ModifiedDate"].Visible = false;
@@ -228,7 +220,6 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["ReturnDay"].Visible = show;
             //dataGridView1.Columns["ReturnType"].Visible = show;
         }
-
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             var selectedRows = (sender as DataGridView).SelectedRows;
@@ -242,23 +233,19 @@ namespace CenturyFinCorpApp
             mainForm.ShowForm<frmCustomerTransaction>(selectedCustomer);
 
         }
-
         private void rdbAll_CheckedChanged(object sender, EventArgs e)
         {
             NoteOptionChanged(sender);
         }
-
         private void rdbClosed_CheckedChanged(object sender, EventArgs e)
         {
             NoteOptionChanged(sender);
 
         }
-
         private void rdbActive_CheckedChanged(object sender, EventArgs e)
         {
             NoteOptionChanged(sender);
         }
-
         private void NoteOptionChanged(object sender)
         {
             List<Customer> searchedCustomer;
@@ -284,7 +271,6 @@ namespace CenturyFinCorpApp
             dataGridView1.DataSource = searchedCustomer;
             dataGridView1.ReadOnly = rdbClosed.Checked;
         }
-
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
 
@@ -307,152 +293,107 @@ namespace CenturyFinCorpApp
 
             GlobalValue.SearchText = txtSearch.Text;
         }
-
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             int existingTxnId = 0; // to  keep existing txn id.
 
             var grid = (sender as DataGridView);
-
-            //if (grid.CurrentCell.ColumnIndex == 0) return;
             var rowIndex = grid.CurrentCell.RowIndex;
+
+            var owningColumnName = grid.CurrentCell.OwningColumn.Name;
+            var cellValue = FormGeneral.GetGridCellValue(grid, rowIndex, owningColumnName);
+
+            if (cellValue == null) return;
 
             var cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
 
-            if (grid.CurrentCell.OwningColumn.Name == "ClosedDate" && FormGeneral.GetGridCellValue(grid, rowIndex, "ClosedDate") != null)
+            var updatedCustomer = new Customer()
             {
-                Customer.UpdateCustomerClosedDate(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           ClosedDate = Convert.ToDateTime(FormGeneral.GetGridCellValue(grid, rowIndex, "ClosedDate"))
-                       });
+                CustomerId = cus.CustomerId,
+                CustomerSeqNumber = cus.CustomerSeqNumber
+            };
+
+            if (owningColumnName == "ClosedDate" && cellValue != null)
+            {
+                updatedCustomer.ClosedDate = Convert.ToDateTime(cellValue);
+                Customer.UpdateCustomerClosedDate(updatedCustomer);
+                return;
+            }
+
+            else if (owningColumnName == "Interest")
+            {
+                updatedCustomer.Interest = cellValue.ToInt32();
+                Customer.UpdateCustomerInterest(updatedCustomer);
                 return;
 
             }
 
-            if (grid.CurrentCell.OwningColumn.Name == "Interest")
+            else if (owningColumnName == "LoanAmount")
             {
-                Customer.UpdateCustomerInterest(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           Interest = FormGeneral.GetGridCellValue(grid, rowIndex, "Interest").ToInt32()
-                       });
+                updatedCustomer.LoanAmount = cellValue.ToInt32();
+                Customer.UpdateCustomerLoan(updatedCustomer);
                 return;
 
             }
 
-            if (grid.CurrentCell.OwningColumn.Name == "LoanAmount")
+            else if (owningColumnName == "MonthlyInterest")
             {
-                Customer.UpdateCustomerLoan(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           LoanAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "LoanAmount").ToInt32()
-                       });
+                updatedCustomer.MonthlyInterest = cellValue.ToInt32();
+                Customer.UpdateCustomerMonthlyInterest(updatedCustomer);
                 return;
 
             }
 
-            if (grid.CurrentCell.OwningColumn.Name == "MonthlyInterest")
+            else if (owningColumnName == "Name")
             {
-                Customer.UpdateCustomerMonthlyInterest(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           MonthlyInterest = FormGeneral.GetGridCellValue(grid, rowIndex, "MonthlyInterest").ToInt32()
-                       });
+                updatedCustomer.Name = cellValue;
+                Customer.UpdateCustomerName(updatedCustomer);
                 return;
 
             }
 
-            if (grid.CurrentCell.OwningColumn.Name == "Name")
+            else if (owningColumnName == "AdjustedAmount")
             {
-                Customer.UpdateCustomerName(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           Name = FormGeneral.GetGridCellValue(grid, rowIndex, "Name")
-                       });
+                updatedCustomer.AdjustedAmount = cellValue.ToInt32();
+                Customer.UpdateCustomerAdjustment(updatedCustomer);
                 return;
 
             }
 
-            if (grid.CurrentCell.OwningColumn.Name == "AdjustedAmount")
+            else if (owningColumnName == "ReturnType")
             {
-                var strAdjustmentAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "AdjustedAmount");
-                Customer.UpdateCustomerAdjustment(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           AdjustedAmount = strAdjustmentAmount.ToInt32()
-                       });
+                updatedCustomer.ReturnType = cellValue.ToEnum<ReturnTypeEnum>();
+                Customer.UpdateCustomerReturnType(updatedCustomer);
                 return;
 
             }
 
-            if (grid.CurrentCell.OwningColumn.Name == "ReturnType")
+            else if (owningColumnName == "InitialInterest")
             {
-                var returnType = FormGeneral.GetGridCellValue(grid, rowIndex, "ReturnType");
+                updatedCustomer.InitialInterest = cellValue.ToInt32();
+                Customer.UpdateInitialInterest(updatedCustomer);
+                return;
 
-                Customer.UpdateCustomerReturnType(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           ReturnType = returnType.ToEnum<ReturnTypeEnum>()
-                       });
+            }
+            else if (owningColumnName == "TamilName")
+            {
+                updatedCustomer.TamilName = cellValue;
+                Customer.UpdateTamilName(updatedCustomer);
                 return;
 
             }
 
-            if (grid.CurrentCell.OwningColumn.Name == "InitialInterest")
+            else if (owningColumnName == "PhoneNumber")
             {
-                var initialInt = FormGeneral.GetGridCellValue(grid, rowIndex, "InitialInterest");
-
-                Customer.UpdateInitialInterest(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           InitialInterest = initialInt.ToInt32()
-                       });
+                updatedCustomer.PhoneNumber = cellValue;
+                Customer.UpdatePhoneNo(updatedCustomer);
                 return;
 
             }
-            if (grid.CurrentCell.OwningColumn.Name == "TamilName")
+            else if (owningColumnName == "AmountGivenDate")
             {
-                var tamilName = FormGeneral.GetGridCellValue(grid, rowIndex, "TamilName");
-
-                Customer.UpdateTamilName(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           TamilName = tamilName
-                       });
-                return;
-
-            }
-
-            if (grid.CurrentCell.OwningColumn.Name == "PhoneNumber")
-            {
-                var phoneNo = FormGeneral.GetGridCellValue(grid, rowIndex, "PhoneNumber");
-
-                Customer.UpdatePhoneNo(
-                       new Customer()
-                       {
-                           CustomerId = cus.CustomerId,
-                           CustomerSeqNumber = cus.CustomerSeqNumber,
-                           PhoneNumber = phoneNo
-                       });
+                updatedCustomer.AmountGivenDate = Convert.ToDateTime(cellValue);
+                Customer.UpdateAmountGivenDate(updatedCustomer);
                 return;
 
             }
@@ -567,7 +508,6 @@ namespace CenturyFinCorpApp
             }
 
         }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             // Set to deafulted values.
@@ -584,7 +524,6 @@ namespace CenturyFinCorpApp
             txtSearch.Text = string.Empty;
             rdbActive.Checked = true;
         }
-
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
 
@@ -631,7 +570,6 @@ namespace CenturyFinCorpApp
             }
 
         }
-
         private void Strip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             var cus = (Customer)((ContextMenuStrip)sender).Tag;
@@ -679,19 +617,16 @@ namespace CenturyFinCorpApp
             }
 
         }
-
         private void frmCustomers_Load(object sender, EventArgs e)
         {
             txtSearch.Focus();
         }
-
         private void txtSearch_Leave(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0) return;
             dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["CollectionAmt"];
             dataGridView1.BeginEdit(true);
         }
-
         private void cmbFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -792,25 +727,21 @@ namespace CenturyFinCorpApp
 
             GlobalValue.SortingByValue = cmbFilters.SelectedIndex;
         }
-
         private void chkAllColumns_CheckedChanged(object sender, EventArgs e)
         {
             SetColumnVisibility(chkAllColumns.Checked);
 
         }
-
         private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
         {
             var data = dataGridView1.DataSource as List<Customer>;
 
             lblRowCount.Text = $"Row Count: {dataGridView1.Rows.Count.ToString()} (I: {data.Sum(s => s.Interest).ToMoneyFormat()} MI: {data.Sum(s => s.MonthlyInterest).TokFormat()} ADJ: {data.Sum(s => s.AdjustedAmount).ToMoney()} )";
         }
-
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             GlobalValue.CollectionDate = dateTimePicker1.Value;
         }
-
         private void dataGridView1_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -821,7 +752,6 @@ namespace CenturyFinCorpApp
 
             dataGridView1.Rows[e.RowIndex].Cells["Name"].ToolTipText = balance.ToString();
         }
-
         private void cmbReturnTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var data = customers.Where(w => w.IsActive && w.ReturnType == (ReturnTypeEnum)cmbReturnTypes.SelectedValue).ToList();
@@ -838,14 +768,12 @@ namespace CenturyFinCorpApp
             GlobalValue.ReturnTypeValue = cmbReturnTypes.SelectedIndex;
 
         }
-
         private void chkFriends_CheckedChanged(object sender, EventArgs e)
         {
             GlobalValue.FriendAlsoValue = chkFriends.Checked;
             txtSearch_TextChanged(null, null);
 
         }
-
         private void btnLatestCollection_Click(object sender, EventArgs e)
         {
             var collectionAmount = Transaction.GetDailyCollectionAmount(dateTimePicker1.Value);
