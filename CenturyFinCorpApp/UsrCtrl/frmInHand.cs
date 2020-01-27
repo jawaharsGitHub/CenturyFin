@@ -635,5 +635,17 @@ tr:nth-child(even) {
 
             ReportRun(true);
         }
+
+        private void btnCheckin_Click(object sender, EventArgs e)
+        {
+            // Connect to TFS
+            //TfsTeamProjectCollection _tfs = new TfsTeamProjectCollection(new Uri(tfsUrl));
+            //VersionControlServer _sourceControl = (VersionControlServer)_tfs.GetService(typeof(VersionControlServer));
+            //// Create workspace
+            //Workspace _workSpace = _sourceControl.CreateWorkspace("test");
+
+            //var pending = _workSpace.GetPendingChanges();
+            //_workSpace.CheckIn(pending, comment);
+        }
     }
 }

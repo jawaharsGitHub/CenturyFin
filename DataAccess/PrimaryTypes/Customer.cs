@@ -479,6 +479,24 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static void UpdateAmountGivenDate(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.AmountGivenDate = updatedCustomer.AmountGivenDate;
+
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static Customer GetCustomerDetails(Customer customer)
         {
             try

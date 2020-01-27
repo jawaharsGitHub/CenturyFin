@@ -101,6 +101,7 @@
             this.btnCheckReport = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnNotGiven = new System.Windows.Forms.Button();
+            this.btnCheckin = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -814,10 +815,21 @@
             this.btnNotGiven.UseVisualStyleBackColor = false;
             this.btnNotGiven.Click += new System.EventHandler(this.btnNotGiven_Click);
             // 
+            // btnCheckin
+            // 
+            this.btnCheckin.Location = new System.Drawing.Point(1018, 462);
+            this.btnCheckin.Name = "btnCheckin";
+            this.btnCheckin.Size = new System.Drawing.Size(186, 23);
+            this.btnCheckin.TabIndex = 50;
+            this.btnCheckin.Text = "Check-In";
+            this.btnCheckin.UseVisualStyleBackColor = true;
+            this.btnCheckin.Click += new System.EventHandler(this.btnCheckin_Click);
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCheckin);
             this.Controls.Add(this.btnNotGiven);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnCheckReport);
@@ -928,5 +940,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnNotGiven;
+        private System.Windows.Forms.Button btnCheckin;
     }
 }

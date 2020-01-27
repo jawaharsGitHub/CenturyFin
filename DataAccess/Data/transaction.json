@@ -43278,5 +43278,45 @@
     "TxnUpdatedDate": null,
     "CustomerSequenceNo": 841,
     "TxnDate": "2020-01-24T00:00:00"
+  },
+  {
+    "CustomerId": 123,
+    "IsClosed": false,
+    "TransactionId": 28947,
+    "AmountReceived": 40000,
+    "Balance": 150000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 222,
+    "TxnDate": "2020-01-27T00:00:00"
+  },
+  {
+    "CustomerId": 123,
+    "IsClosed": false,
+    "TransactionId": 28948,
+    "AmountReceived": 150000,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 222,
+    "TxnDate": "2020-01-27T00:00:00"
+  },
+  {
+    "CustomerId": 179,
+    "IsClosed": false,
+    "TransactionId": 28949,
+    "AmountReceived": 2000,
+    "Balance": 18000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 479,
+    "TxnDate": "2020-04-14T00:00:00"
+  },
+  {
+    "CustomerId": 270,
+    "IsClosed": false,
+    "TransactionId": 28950,
+    "AmountReceived": 0,
+    "Balance": 7000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 842,
+    "TxnDate": "2020-01-24T00:00:00"
   }
 ]
