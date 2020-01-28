@@ -1510,5 +1510,33 @@
     "CollectionSpotId": 58,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 752,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 12,
+    "Name": "Muniasamy PorattaMaster",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "InitialInterest": 3000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2020-01-26T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 12,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
