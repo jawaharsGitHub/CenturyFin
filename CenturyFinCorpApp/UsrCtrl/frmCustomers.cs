@@ -276,12 +276,16 @@ namespace CenturyFinCorpApp
 
             List<Customer> filteredData = null;
 
+            var data = customers
+                .OrderBy(o => o.ReturnType.ToInt32())
+                .Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()));
+
             if (rdbActive.Checked)
-                filteredData = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == true).ToList(); // w => w.Interest > 0 &&
+                filteredData = data.Where(w => w.IsActive == true).ToList();
             else if (rdbClosed.Checked)
-                filteredData = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower()) && w.IsActive == false).ToList(); //  w.Interest > 0 &&
-            else //(rdbAll.Checked)
-                filteredData = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                filteredData = data.Where(w => w.IsActive == false).ToList();
+            //else //(rdbAll.Checked)
+            //filteredData = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
 
 
             if (chkFriends.Checked)

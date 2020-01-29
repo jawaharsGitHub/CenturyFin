@@ -150,20 +150,20 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(210, 512);
+            this.label27.Location = new System.Drawing.Point(25, 503);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(99, 13);
+            this.label27.Size = new System.Drawing.Size(129, 13);
             this.label27.TabIndex = 38;
-            this.label27.Text = "eg: HomeExpenses";
+            this.label27.Text = "(eg: HomeExpenses Only)";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(241, 441);
+            this.label10.Location = new System.Drawing.Point(35, 432);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 13);
+            this.label10.Size = new System.Drawing.Size(121, 13);
             this.label10.TabIndex = 37;
-            this.label10.Text = "eg: Salary";
+            this.label10.Text = "(eg: Salary + Home Exp)";
             // 
             // btnMama
             // 
