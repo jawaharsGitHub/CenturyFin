@@ -287,13 +287,10 @@ namespace CenturyFinCorpApp
             //else //(rdbAll.Checked)
             //filteredData = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
 
-
             if (chkFriends.Checked)
                 dataGridView1.DataSource = filteredData;
             else
                 dataGridView1.DataSource = filteredData.Where(w => w.Interest > 0).ToList();
-
-
 
             GlobalValue.SearchText = txtSearch.Text;
         }
