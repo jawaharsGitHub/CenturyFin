@@ -23,8 +23,9 @@ namespace DataAccess.PrimaryTypes
         public DateTime? TxnUpdatedDate { get; set; }
         public int CustomerSequenceNo { get; set; }
         public DateTime TxnDate { get; set; }
-        //[JsonIgnore]
-        //private Customer _customer;
+
+        public int SerialNo { get; set; }
+        public int Diff { get; set; }
 
 
         public static void AddTransaction(Transaction newTxn)

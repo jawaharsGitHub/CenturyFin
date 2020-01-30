@@ -74,19 +74,15 @@ namespace CenturyFinCorpApp
 
             if (dataGridView1.Columns.Count > 0)
             {
-                dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-                dataGridView1.Columns["TxnDate"].HeaderText = "தேதி";
-                dataGridView1.Columns["AmountReceived"].HeaderText = "வரவு ரூபாய்";
-                dataGridView1.Columns["Balance"].HeaderText = "பாக்கி ரூபாய்";
+                //dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+                //dataGridView1.Columns["TxnDate"].HeaderText = "தேதி";
+                //dataGridView1.Columns["AmountReceived"].HeaderText = "வரவு ரூபாய்";
+                //dataGridView1.Columns["Balance"].HeaderText = "பாக்கி ரூபாய்";
                 //dataGridView1.Columns["TransactionId"].Visible = false;
             }
             lblMessage.Text = string.Empty;
 
             btnReOpen.Visible = (_balance == 0);
-
-            var perDayInterest = 0.1;  // 100/10
-
-
 
         }
 
@@ -224,9 +220,16 @@ namespace CenturyFinCorpApp
 
             if (txns == null || txns.Count == 0) return;
 
+            int sNo = 1;
+
+
+            txns.ToList().ForEach(f => f.SerialNo = sNo++);
+
+            for (int i = 2; i < txns.Count; i++)
+            {
+                txns[i].Diff = (txns[i].TxnDate - txns[i - 1].TxnDate).Days - 1;
+            }
             var dataDource = txns;
-
-
             if (byBalance)
                 dataGridView1.DataSource = dataDource.OrderBy(t => t.TransactionId).ToList();
             else if (isDesc)
@@ -317,14 +320,29 @@ namespace CenturyFinCorpApp
 
             dateTimePicker1.Value = GlobalValue.CollectionDate.Value; //lastDate.AddDays(1);
 
+            FormatGridData();
+
+        }
+
+        private void FormatGridData()
+        {
             dataGridView1.Columns["CustomerId"].Visible = false;
             dataGridView1.Columns["IsClosed"].Visible = false;
             dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
             dataGridView1.Columns["CustomerSequenceNo"].Visible = false;
+            dataGridView1.Columns["TransactionId"].Visible = false;
 
-            dataGridView1.Columns["TxnDate"].DisplayIndex = 1;
-            dataGridView1.Columns["AmountReceived"].DisplayIndex = 2;
-            dataGridView1.Columns["Balance"].DisplayIndex = 3;
+            dataGridView1.Columns["SerialNo"].DisplayIndex = 1;
+            dataGridView1.Columns["TxnDate"].DisplayIndex = 2;
+            dataGridView1.Columns["AmountReceived"].DisplayIndex = 3;
+            dataGridView1.Columns["Balance"].DisplayIndex = 4;
+
+            dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            dataGridView1.Columns["TxnDate"].HeaderText = "தேதி";
+            dataGridView1.Columns["AmountReceived"].HeaderText = "வரவு ரூபாய்";
+            dataGridView1.Columns["Balance"].HeaderText = "பாக்கி ரூபாய்";
+            dataGridView1.Columns["SerialNo"].HeaderText = "வரிசை எண்";
+
 
         }
 
@@ -675,7 +693,7 @@ namespace CenturyFinCorpApp
             /* 3.Merge 2 images*/
             Bitmap firstTxn = bitmapTxn;
             Bitmap secondName = bitmapName;
-            
+
             Bitmap result = new Bitmap(Math.Max(firstTxn.Width, secondName.Width), firstTxn.Height + secondName.Height + 30);
             Graphics g = Graphics.FromImage(result);
             g.DrawImageUnscaled(firstTxn, 0, 30);
