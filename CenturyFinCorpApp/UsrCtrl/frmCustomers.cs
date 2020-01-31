@@ -294,8 +294,81 @@ namespace CenturyFinCorpApp
 
             GlobalValue.SearchText = txtSearch.Text;
         }
+
+        #region "Very sensitive - Grid cell edit functionalities..."
+
+
+        bool IsEnterKey = false;
+        bool editJustDone = false;
+        int cellCurrentValue;
+
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count == 0) return;
+            dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["CollectionAmt"];
+            cellCurrentValue = Transaction.GetLastTransactionAmount(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].DataBoundItem as Customer);
+            dataGridView1.CurrentCell.Value = cellCurrentValue;
+            dataGridView1.BeginEdit(true);
+        }
+
+
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, Keys keyData)
+        {
+            IsEnterKey = (keyData == Keys.Enter);
+            return false;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            GridEdit();
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            GridEdit();
+        }
+
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            GridEdit();
+        }
+
+        private void GridEdit()
+        {
+            if (dataGridView1.CurrentCell.OwningColumn.Name == "CollectionAmt")
+            {
+                cellCurrentValue = Transaction.GetLastTransactionAmount(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].DataBoundItem as Customer);
+                dataGridView1.CurrentCell.Value = cellCurrentValue;
+                dataGridView1.BeginEdit(true);
+            }
+        }
+
+        private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.CurrentCell.OwningColumn.Name == "CollectionAmt")
+            {
+                if (editJustDone)
+                {
+                    editJustDone = false;
+                    return;
+                }
+
+                if (IsEnterKey)
+                    return;
+
+
+                dataGridView1.CurrentCell.Value = null;
+            }
+        }
+
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+
+            if (IsEnterKey == false) return;
+            IsEnterKey = false;
+            editJustDone = true;
+
+
             int existingTxnId = 0; // to  keep existing txn id.
 
             var grid = (sender as DataGridView);
@@ -314,6 +387,8 @@ namespace CenturyFinCorpApp
                 CustomerSeqNumber = cus.CustomerSeqNumber
             };
 
+            #region "Edit mode"
+
             if (owningColumnName == "ClosedDate" && cellValue != null)
             {
                 updatedCustomer.ClosedDate = Convert.ToDateTime(cellValue);
@@ -326,7 +401,6 @@ namespace CenturyFinCorpApp
                 updatedCustomer.Interest = cellValue.ToInt32();
                 Customer.UpdateCustomerInterest(updatedCustomer);
                 return;
-
             }
 
             else if (owningColumnName == "LoanAmount")
@@ -334,7 +408,6 @@ namespace CenturyFinCorpApp
                 updatedCustomer.LoanAmount = cellValue.ToInt32();
                 Customer.UpdateCustomerLoan(updatedCustomer);
                 return;
-
             }
 
             else if (owningColumnName == "MonthlyInterest")
@@ -342,7 +415,6 @@ namespace CenturyFinCorpApp
                 updatedCustomer.MonthlyInterest = cellValue.ToInt32();
                 Customer.UpdateCustomerMonthlyInterest(updatedCustomer);
                 return;
-
             }
 
             else if (owningColumnName == "Name")
@@ -350,7 +422,6 @@ namespace CenturyFinCorpApp
                 updatedCustomer.Name = cellValue;
                 Customer.UpdateCustomerName(updatedCustomer);
                 return;
-
             }
 
             else if (owningColumnName == "AdjustedAmount")
@@ -358,7 +429,6 @@ namespace CenturyFinCorpApp
                 updatedCustomer.AdjustedAmount = cellValue.ToInt32();
                 Customer.UpdateCustomerAdjustment(updatedCustomer);
                 return;
-
             }
 
             else if (owningColumnName == "ReturnType")
@@ -366,7 +436,6 @@ namespace CenturyFinCorpApp
                 updatedCustomer.ReturnType = cellValue.ToEnum<ReturnTypeEnum>();
                 Customer.UpdateCustomerReturnType(updatedCustomer);
                 return;
-
             }
 
             else if (owningColumnName == "InitialInterest")
@@ -374,14 +443,12 @@ namespace CenturyFinCorpApp
                 updatedCustomer.InitialInterest = cellValue.ToInt32();
                 Customer.UpdateInitialInterest(updatedCustomer);
                 return;
-
             }
             else if (owningColumnName == "TamilName")
             {
                 updatedCustomer.TamilName = cellValue;
                 Customer.UpdateTamilName(updatedCustomer);
                 return;
-
             }
 
             else if (owningColumnName == "PhoneNumber")
@@ -389,15 +456,17 @@ namespace CenturyFinCorpApp
                 updatedCustomer.PhoneNumber = cellValue;
                 Customer.UpdatePhoneNo(updatedCustomer);
                 return;
-
             }
             else if (owningColumnName == "AmountGivenDate")
             {
                 updatedCustomer.AmountGivenDate = Convert.ToDateTime(cellValue);
                 Customer.UpdateAmountGivenDate(updatedCustomer);
                 return;
-
             }
+
+            #endregion
+
+
 
             var strCollectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
 
@@ -509,6 +578,9 @@ namespace CenturyFinCorpApp
             }
 
         }
+
+        #endregion "Very sensitive - Grid cell edit functionalities..."
+
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             // Set to deafulted values.
@@ -622,12 +694,8 @@ namespace CenturyFinCorpApp
         {
             txtSearch.Focus();
         }
-        private void txtSearch_Leave(object sender, EventArgs e)
-        {
-            if (dataGridView1.Rows.Count == 0) return;
-            dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["CollectionAmt"];
-            dataGridView1.BeginEdit(true);
-        }
+
+
         private void cmbFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -779,6 +847,11 @@ namespace CenturyFinCorpApp
         {
             var collectionAmount = Transaction.GetDailyCollectionAmount(dateTimePicker1.Value);
             btnLatestCollection.Text = collectionAmount.ToMoneyFormat();
+        }
+
+        private void dataGridView1_CellValuePushed(object sender, DataGridViewCellValueEventArgs e)
+        {
+
         }
     }
 }

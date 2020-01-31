@@ -334,6 +334,25 @@ namespace DataAccess.PrimaryTypes
 
         }
 
+        public static int GetLastTransactionAmount(Customer customer)
+        {
+
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+
+            //var txnss = (from txn in list
+            //             where txn.CustomerSequenceNo == customer.CustomerSeqNumber && txn.AmountReceived >= 0
+            //             orderby txn.TransactionId descending
+            //             select txn).ToList();
+
+            var latestDate = (from txn in list
+                              where txn.CustomerSequenceNo == customer.CustomerSeqNumber && txn.AmountReceived >= 0
+                              orderby txn.TransactionId descending
+                              select txn.AmountReceived).FirstOrDefault();
+
+            return latestDate;
+
+        }
+
         public static string GetTransactionSummaryForWeek(Customer customer)
         {
 
