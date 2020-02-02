@@ -284,8 +284,8 @@ namespace CenturyFinCorpApp
                 filteredData = data.Where(w => w.IsActive == true).ToList();
             else if (rdbClosed.Checked)
                 filteredData = data.Where(w => w.IsActive == false).ToList();
-            //else //(rdbAll.Checked)
-            //filteredData = customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+            else //(rdbAll.Checked)
+                filteredData = data.ToList(); //customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
 
             if (chkFriends.Checked)
                 dataGridView1.DataSource = filteredData;

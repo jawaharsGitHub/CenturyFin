@@ -7,7 +7,7 @@ namespace Common
     public class AppCommunication
     {
 
-        public static void SendEmail(string mailBody, DateTime collectionDate)
+        public static void SendEmail(string mailBody, DateTime collectionDate, int activeCusCount)
         {
             try
             {
@@ -17,7 +17,7 @@ namespace Common
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress(myEmail);
                 message.To.Add(new MailAddress(myEmail));
-                message.Subject = $"Jeyam Finance - Balance Report For {collectionDate.ToShortDateString()}";
+                message.Subject = $"[{activeCusCount}]{collectionDate.ToShortDateString()} - Jeyam Finance Balance Report";
                 message.IsBodyHtml = false; //to make message body as html  
                 message.Body = mailBody;
                 smtp.Port = 587;

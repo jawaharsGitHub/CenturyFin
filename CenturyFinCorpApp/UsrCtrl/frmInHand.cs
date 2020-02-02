@@ -220,7 +220,7 @@ namespace CenturyFinCorpApp
 
             DailyCollectionDetail.AddOrUpdateDaily(dailyTxn);
 
-            currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
+            //currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
 
         }
 
@@ -389,6 +389,7 @@ namespace CenturyFinCorpApp
 
                 if (haveInternetConnection)
                 {
+                    currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
                     btnSendBalances.Text = "Sending...";
                     ProgressBar pBar = new ProgressBar();
                     pBar.Location = new System.Drawing.Point(20, 20);
@@ -403,8 +404,10 @@ namespace CenturyFinCorpApp
 
                     pBar.Value = 25;
 
+                    var activeCus = Customer.GetAllActiveCustomer();
+
                     var allBalances = string.Join(Environment.NewLine,
-                        Customer.GetAllActiveCustomer().OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalanceAndLastDate(s)}({s.LoanAmount})").ToList());
+                        activeCus.OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalanceAndLastDate(s)}({s.LoanAmount})").ToList());
 
                     pBar.Value = 80;
                     // Need to send alphabet wise later, now we did grouping only.
@@ -416,7 +419,7 @@ namespace CenturyFinCorpApp
                     pBar.Value = 90;
                     // Need to send alphabet wise later, now we did grouping only.
 
-                    AppCommunication.SendEmail(allBalances, currentBalanceDate);
+                    AppCommunication.SendEmail(allBalances, currentBalanceDate, activeCus.Count());
                     pBar.Value = 100;
                     btnSendBalances.Text = "Done.";
                     //Controls.Remove(pBar);
