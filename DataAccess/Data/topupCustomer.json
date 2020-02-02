@@ -1538,5 +1538,33 @@
     "CollectionSpotId": 12,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 852,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 37,
+    "Name": "Jayakumar Kaikari kadai",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 110000,
+    "Interest": 18000,
+    "InitialInterest": 4000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2020-01-31T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 2,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 37,
+    "ReturnDay": 4,
+    "ModifiedDate": null
   }
 ]
