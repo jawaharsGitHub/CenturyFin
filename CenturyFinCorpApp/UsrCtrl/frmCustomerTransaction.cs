@@ -331,6 +331,8 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
             dataGridView1.Columns["CustomerSequenceNo"].Visible = false;
             dataGridView1.Columns["TransactionId"].Visible = false;
+            dataGridView1.Columns["Diff"].Visible = false;
+
 
             dataGridView1.Columns["SerialNo"].DisplayIndex = 1;
             dataGridView1.Columns["TxnDate"].DisplayIndex = 2;
