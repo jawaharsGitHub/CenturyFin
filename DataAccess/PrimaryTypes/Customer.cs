@@ -11,7 +11,12 @@ namespace DataAccess.PrimaryTypes
     public class Customer : BaseClass
     {
 
-        private static string JsonFilePath = AppConfiguration.CustomerFile;
+        private static string JsonFilePath;
+
+        static Customer()
+        {
+            JsonFilePath = AppConfiguration.CustomerFile;
+        }
         private DayOfWeek? _returnDay;
         private int _collSpot;
 
