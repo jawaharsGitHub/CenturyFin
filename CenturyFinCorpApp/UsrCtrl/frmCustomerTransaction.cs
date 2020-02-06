@@ -72,14 +72,7 @@ namespace CenturyFinCorpApp
             LoadTxn();
             LoadCustomerCollectionType();
 
-            if (dataGridView1.Columns.Count > 0)
-            {
-                //dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-                //dataGridView1.Columns["TxnDate"].HeaderText = "தேதி";
-                //dataGridView1.Columns["AmountReceived"].HeaderText = "வரவு ரூபாய்";
-                //dataGridView1.Columns["Balance"].HeaderText = "பாக்கி ரூபாய்";
-                //dataGridView1.Columns["TransactionId"].Visible = false;
-            }
+            
             lblMessage.Text = string.Empty;
 
             btnReOpen.Visible = (_balance == 0);
@@ -225,7 +218,7 @@ namespace CenturyFinCorpApp
 
             txns.ToList().ForEach(f => f.SerialNo = sNo++);
 
-            for (int i = 2; i < txns.Count; i++)
+            for (int i = 1; i < txns.Count; i++)
             {
                 txns[i].Diff = (txns[i].TxnDate - txns[i - 1].TxnDate).Days - 1;
             }
@@ -326,6 +319,8 @@ namespace CenturyFinCorpApp
 
         private void FormatGridData()
         {
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
             dataGridView1.Columns["CustomerId"].Visible = false;
             dataGridView1.Columns["IsClosed"].Visible = false;
             dataGridView1.Columns["TxnUpdatedDate"].Visible = false;
@@ -666,10 +661,13 @@ namespace CenturyFinCorpApp
 
         private void btnCapturePic_Click(object sender, EventArgs e)
         {
-            //CaptureMyScreen();
-            //return;
-
             // WhatsAppMessage.SendMsg();
+
+            if(General.CheckForInternetConnection() == false)
+            {
+                MessageBox.Show("No Internet Available, Please connect and try again!");
+                return;
+            }
 
             /* 1.Transaction Image*/
             int height = dataGridView1.Height;
@@ -679,18 +677,9 @@ namespace CenturyFinCorpApp
             //Resize DataGridView back to original height.
             dataGridView1.Height = height;
 
-            //var ImgTxn = $@"E:\{customer.Name}_txn.jpg";
-            //Save the Bitmap to folder.
-            //bitmapTxn.Save(ImgTxn);
-
             /* 2.Name Image*/
             Bitmap bitmapName = new Bitmap(this.btnCusName.Width, this.btnCusName.Height);
             btnCusName.DrawToBitmap(bitmapName, new Rectangle(0, 0, this.btnCusName.Width, this.btnCusName.Height));
-
-            //var ImgName = $@"E:\{customer.Name}_Name.jpg";
-            //Save the Bitmap to folder.
-            //bitmapName.Save(ImgName);
-
 
             /* 3.Merge 2 images*/
             Bitmap firstTxn = bitmapTxn;
@@ -707,37 +696,6 @@ namespace CenturyFinCorpApp
             MessageBox.Show("Mail Send!");
         }
 
-        private void CaptureMyScreen()
-
-        {
-            try
-            {
-                //Creating a new Bitmap object
-                Bitmap captureBitmap = new Bitmap(500, 430, PixelFormat.Format32bppArgb);
-
-                //capture our Current Screen
-                Rectangle captureRectangle = Screen.AllScreens[0].Bounds;
-
-                //Creating a New Graphics Object
-                Graphics captureGraphics = Graphics.FromImage(captureBitmap);
-                //Copying Image from The Screen
-                captureGraphics.CopyFromScreen(captureRectangle.Left, captureRectangle.Top, 0, -230, captureRectangle.Size);
-
-                //Saving the Image File (I am here Saving it in My E drive).
-                captureBitmap.Save($@"E:\{customer.CustomerSeqNumber}_{customer.Name}.jpg", ImageFormat.Jpeg);
-                //Displaying the Successfull Result
-                MessageBox.Show("Screen Captured");
-            }
-
-            catch (Exception ex)
-
-            {
-
-                MessageBox.Show(ex.Message);
-
-            }
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -763,6 +721,15 @@ namespace CenturyFinCorpApp
             var askedAMount = (inhandGivenMoney + (localInt / 30) * daysTaken) - totalReceived;
 
             btnNewInt.Text = $"Asked Amt: {askedAMount}";
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Columns["Diff"].Visible = checkBox1.Checked;
+
+
+
+
         }
     }
 }

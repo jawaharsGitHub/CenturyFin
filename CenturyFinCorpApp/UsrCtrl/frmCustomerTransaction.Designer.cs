@@ -75,6 +75,7 @@
             this.btnNewInt = new System.Windows.Forms.Button();
             this.txtNewInt = new System.Windows.Forms.TextBox();
             this.btnCusName = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -205,23 +206,23 @@
             // 
             this.rdbAsc.AutoSize = true;
             this.rdbAsc.Checked = true;
-            this.rdbAsc.Location = new System.Drawing.Point(18, 143);
+            this.rdbAsc.Location = new System.Drawing.Point(10, 143);
             this.rdbAsc.Name = "rdbAsc";
-            this.rdbAsc.Size = new System.Drawing.Size(93, 17);
+            this.rdbAsc.Size = new System.Drawing.Size(79, 17);
             this.rdbAsc.TabIndex = 9;
             this.rdbAsc.TabStop = true;
-            this.rdbAsc.Text = "By Date (ASC)";
+            this.rdbAsc.Text = "By Date (A)";
             this.rdbAsc.UseVisualStyleBackColor = true;
             this.rdbAsc.CheckedChanged += new System.EventHandler(this.rdbAsc_CheckedChanged);
             // 
             // rdbDesc
             // 
             this.rdbDesc.AutoSize = true;
-            this.rdbDesc.Location = new System.Drawing.Point(120, 143);
+            this.rdbDesc.Location = new System.Drawing.Point(89, 143);
             this.rdbDesc.Name = "rdbDesc";
-            this.rdbDesc.Size = new System.Drawing.Size(101, 17);
+            this.rdbDesc.Size = new System.Drawing.Size(80, 17);
             this.rdbDesc.TabIndex = 10;
-            this.rdbDesc.Text = "By Date (DESC)";
+            this.rdbDesc.Text = "By Date (D)";
             this.rdbDesc.UseVisualStyleBackColor = true;
             this.rdbDesc.CheckedChanged += new System.EventHandler(this.rdbDesc_CheckedChanged);
             // 
@@ -256,7 +257,7 @@
             // chkByBalance
             // 
             this.chkByBalance.AutoSize = true;
-            this.chkByBalance.Location = new System.Drawing.Point(227, 143);
+            this.chkByBalance.Location = new System.Drawing.Point(172, 143);
             this.chkByBalance.Name = "chkByBalance";
             this.chkByBalance.Size = new System.Drawing.Size(109, 17);
             this.chkByBalance.TabIndex = 14;
@@ -509,7 +510,7 @@
             this.btnCapturePic.Name = "btnCapturePic";
             this.btnCapturePic.Size = new System.Drawing.Size(121, 23);
             this.btnCapturePic.TabIndex = 26;
-            this.btnCapturePic.Text = "Capture Picture";
+            this.btnCapturePic.Text = "Send Txn Picture";
             this.btnCapturePic.UseVisualStyleBackColor = true;
             this.btnCapturePic.Click += new System.EventHandler(this.btnCapturePic_Click);
             // 
@@ -541,10 +542,23 @@
             this.btnCusName.Text = "button1";
             this.btnCusName.UseVisualStyleBackColor = true;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(278, 142);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(49, 17);
+            this.checkBox1.TabIndex = 30;
+            this.checkBox1.Text = "DIFF";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnCusName);
             this.Controls.Add(this.txtNewInt);
             this.Controls.Add(this.btnNewInt);
@@ -638,5 +652,6 @@
         private System.Windows.Forms.Button btnNewInt;
         private System.Windows.Forms.TextBox txtNewInt;
         private System.Windows.Forms.Button btnCusName;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
