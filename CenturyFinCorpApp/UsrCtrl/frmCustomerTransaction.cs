@@ -222,6 +222,7 @@ namespace CenturyFinCorpApp
             {
                 txns[i].Diff = (txns[i].TxnDate - txns[i - 1].TxnDate).Days - 1;
             }
+
             var dataDource = txns;
             if (byBalance)
                 dataGridView1.DataSource = dataDource.OrderBy(t => t.TransactionId).ToList();
