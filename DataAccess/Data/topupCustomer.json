@@ -1566,5 +1566,33 @@
     "CollectionSpotId": 37,
     "ReturnDay": 4,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 793,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 254,
+    "Name": "Saththi Pala Kadai",
+    "TamilName": "",
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 5000,
+    "Interest": 500,
+    "InitialInterest": 1000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": false,
+    "IsActive": true,
+    "AmountGivenDate": "2020-02-06T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 0,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 254,
+    "ReturnDay": null,
+    "ModifiedDate": null
   }
 ]
