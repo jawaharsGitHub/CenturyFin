@@ -54886,5 +54886,17 @@
     "TxnDate": "2020-02-06T00:00:00",
     "SerialNo": 0,
     "Diff": 0
+  },
+  {
+    "CustomerId": 154,
+    "IsClosed": false,
+    "TransactionId": 29877,
+    "AmountReceived": 4000,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 725,
+    "TxnDate": "2020-02-02T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
   }
 ]

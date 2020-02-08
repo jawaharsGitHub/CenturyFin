@@ -77,18 +77,18 @@ namespace CenturyFinCorpApp
                               // ExpectedCollectionAmount = LoadDailyCollection(Convert.ToDateTime(d.Date), true) // TODO: will use when we want it.
                               Closed = cus.Where(w => w.ClosedDate != null && w.ClosedDate.Value.Date == Convert.ToDateTime(d.Date).Date).Sum(s => s.Interest),
                               New = cus.Where(w => w.AmountGivenDate.Value.Date == Convert.ToDateTime(d.Date).Date).Sum(s => s.Interest)
-                          }).ToList();
-
-            //MessageBox.Show(result.Sum(s => s.Closed).ToString());
+                          }).OrderByDescending(o => Convert.ToDateTime(o.Date)).ToList();
 
             var max = CxnHistory.OrderBy(o => o.CollectionAmount).Last();
             var maxClosed = CxnHistory.OrderBy(o => o.Closed).Last();
 
 
-            lblMax.Text = $"Max Cxn - {max.CollectionAmount.ToMoney()}({maxClosed.Closed.ToMoney()}) on {max.Date}";
+            lblMax.Text = $"Max Cxn - {max.CollectionAmount}({maxClosed.Closed}) on {max.Date}";
 
-            dgvAllDailyCollection.DataSource = result;
+            
 
+            //dgvAllDailyCollection.DataSource = result;
+            
             // Customer Collectin Average By Day.
             var averagePerDay = (from r in CxnHistory
                                  group r by Convert.ToDateTime(r.Date).DayOfWeek into newGroup
@@ -422,6 +422,8 @@ namespace CenturyFinCorpApp
                 dgvAllDailyCollection.DataSource = data.ToList();
 
             }
+
+            dgvAllDailyCollection.Columns["New"].DefaultCellStyle.Format = "N0";
 
         }
     }
