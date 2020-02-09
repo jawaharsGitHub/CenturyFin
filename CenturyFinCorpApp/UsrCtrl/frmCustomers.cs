@@ -5,6 +5,7 @@ using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -356,9 +357,12 @@ namespace CenturyFinCorpApp
                 }
 
                 if (IsEnterKey)
+                {
+                    dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
                     return;
+                }
 
-
+                dataGridView1.CurrentCell.Style.BackColor = Color.White;
                 dataGridView1.CurrentCell.Value = null;
             }
         }
@@ -367,6 +371,7 @@ namespace CenturyFinCorpApp
         {
 
             if (IsEnterKey == false) return;
+
             IsEnterKey = false;
             editJustDone = true;
 
