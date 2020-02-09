@@ -72,6 +72,14 @@ namespace DataAccess.PrimaryTypes
             WriteObjectsToFile(closedTxn, backupFileName);
         }
 
+        public static List<Transaction> GetAllTransactions()
+        {
+            var json = File.ReadAllText(AppConfiguration.TransactionFile);
+            List<Transaction> list = JsonConvert.DeserializeObject<List<Transaction>>(json);
+            return list;
+
+        }
+
         public static void UpdateTransactionDetails(Transaction updatedTransaction)
         {
             try

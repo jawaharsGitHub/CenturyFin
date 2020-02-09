@@ -28,25 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnClosedTxn = new System.Windows.Forms.Button();
             this.dgReports = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lblDetails = new System.Windows.Forms.Label();
             this.lblSeverity = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnClosedTxn
-            // 
-            this.btnClosedTxn.BackColor = System.Drawing.Color.Aqua;
-            this.btnClosedTxn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClosedTxn.Location = new System.Drawing.Point(193, 13);
-            this.btnClosedTxn.Name = "btnClosedTxn";
-            this.btnClosedTxn.Size = new System.Drawing.Size(229, 84);
-            this.btnClosedTxn.TabIndex = 5;
-            this.btnClosedTxn.Text = "Run Closed Txn";
-            this.btnClosedTxn.UseVisualStyleBackColor = false;
-            this.btnClosedTxn.Click += new System.EventHandler(this.btnClosedTxn_Click);
             // 
             // dgReports
             // 
@@ -93,7 +80,6 @@
             this.Controls.Add(this.lblDetails);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dgReports);
-            this.Controls.Add(this.btnClosedTxn);
             this.Name = "frmDynamicReport";
             this.Size = new System.Drawing.Size(1266, 583);
             ((System.ComponentModel.ISupportInitialize)(this.dgReports)).EndInit();
@@ -103,7 +89,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnClosedTxn;
         private System.Windows.Forms.DataGridView dgReports;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lblDetails;

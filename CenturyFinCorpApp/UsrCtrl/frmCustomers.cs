@@ -81,6 +81,8 @@ namespace CenturyFinCorpApp
 
             dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
+            RefreshClosed();
+
 
         }
         public static List<KeyValuePair<int, string>> GetOptions()
@@ -849,9 +851,31 @@ namespace CenturyFinCorpApp
             btnLatestCollection.Text = collectionAmount.ToMoneyFormat();
         }
 
-        private void dataGridView1_CellValuePushed(object sender, DataGridViewCellValueEventArgs e)
+        private void btnClosedTxn_Click(object sender, EventArgs e)
         {
+            var list = Transaction.GetAllTransactions();
 
+            if (list == null || list.Count == 0) return;
+
+            var closedIds = list.Where(w => w.Balance == 0).ToList();
+
+            foreach (var item in closedIds)
+            {
+                var closedTxn = new List<Transaction>();
+                closedTxn.AddRange(list.Where(w => w.CustomerId == item.CustomerId && w.CustomerSequenceNo == item.CustomerSequenceNo));
+                // Back up closed txn
+                Transaction.AddClosedTransaction(closedTxn);
+
+                // Delete Transactions data
+                Transaction.DeleteTransactionDetails(item.CustomerId, item.CustomerSequenceNo);
+            }
+
+            RefreshClosed();
+        }
+
+        private void RefreshClosed()
+        {
+            btnClosedTxn.Text = $"Run Closed Txn ({Transaction.GetClosedTxn()})";
         }
     }
 }
