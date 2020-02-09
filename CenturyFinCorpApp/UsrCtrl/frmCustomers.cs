@@ -875,7 +875,7 @@ namespace CenturyFinCorpApp
 
         private void RefreshClosed()
         {
-            btnClosedTxn.Text = $"Run Closed Txn ({Transaction.GetClosedTxn()})";
+            btnClosedTxn.Text = $"Move Closed Txn({Transaction.GetClosedTxn()})";
         }
     }
 }
