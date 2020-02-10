@@ -12,23 +12,76 @@ namespace Common
 
     public class GitHubClient
     {
-        public void Commit()
-        {
-            using (var repo = new Repository(@"F:\CenturyFin"))
-            {
-                var branches = repo.Branches;
-                foreach (var b in branches)
-                {
-                    //Console.WriteLine(b.FriendlyName);
-                }
+        private Repository repo = new Repository(@"F:\CenturyFin");
 
-                // Create the committer's signature and commit
-                Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
-                Signature committer = author;
 
-                repo.Commit("Test Commit", author, committer);
-            }
-        }
+        //public static void Commit()
+        //{
+        //    using (var repo = new Repository(@"F:\CenturyFin"))
+        //    {
+        //        var branches = repo.Branches;
+        //        foreach (var b in branches)
+        //        {
+        //            //Console.WriteLine(b.FriendlyName);
+        //        }
+
+        //        // Create the committer's signature and commit
+        //        Signature author = new Signature("Jawahar", "@jawahars", DateTime.Now);
+        //        Signature committer = author;
+
+        //        //var data = repo.
+
+                
+
+        //        repo.Commit("Test Commit", author, committer);
+        //    }
+        //}
+
+        //public void StageChanges()
+        //{
+        //    try
+        //    {
+        //        RepositoryStatus status = repo.Index.RetrieveStatus();
+        //        List<string> filePaths = status.Modified.Select(mods => mods.FilePath).ToList();
+        //        repo.Index.Stage(filePaths);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Exception:RepoActions:StageChanges " + ex.Message);
+        //    }
+        //}
+
+        //public void CommitChanges()
+        //{
+        //    try
+        //    {
+
+        //        repo.Commit("updating files..", new Signature(username, email, DateTimeOffset.Now),
+        //            new Signature(username, email, DateTimeOffset.Now));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("Exception:RepoActions:CommitChanges " + e.Message);
+        //    }
+        //}
+
+        //public void PushChanges()
+        //{
+        //    try
+        //    {
+        //        var remote = repo.Network.Remotes["origin"];
+        //        var options = new PushOptions();
+        //        var credentials = new UsernamePasswordCredentials { Username = username, Password = password };
+        //        options. = credentials;
+        //        var pushRefSpec = @"refs/heads/master";
+        //        repo.Network.Push(remote, pushRefSpec, options, new Signature(username, email, DateTimeOffset.Now),
+        //            "pushed changes");
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("Exception:RepoActions:PushChanges " + e.Message);
+        //    }
+        //}
 
     }
 

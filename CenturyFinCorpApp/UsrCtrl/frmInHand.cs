@@ -389,6 +389,9 @@ namespace CenturyFinCorpApp
                     return;
                 }
 
+                //CommitChanges();
+                //return;
+
                 currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
                 btnSendBalances.Text = "Sending...";
                 ProgressBar pBar = new ProgressBar();
@@ -423,6 +426,30 @@ namespace CenturyFinCorpApp
                 pBar.Value = 100;
                 btnSendBalances.Text = "Done.";
                 //Controls.Remove(pBar);
+                MessageBox.Show("Balance Report have been send to your email");
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        private void CommitChanges()
+        {
+            try
+            {
+
+                if (General.CheckForInternetConnection() == false)
+                {
+                    MessageBox.Show("No Internet Available, Please connect and try again!");
+                    return;
+                }
+
+                //GitHubClient.Commit();
+
                 MessageBox.Show("Balance Report have been send to your email");
 
             }
