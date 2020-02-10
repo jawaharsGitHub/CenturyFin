@@ -243,7 +243,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             lblTotal.Text = $"5. TOTAL(Actual) : {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {(actualMonthly + actual).ToMoneyFormat()} (Per Month: { ((actualMonthly + actual) / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
                 $"6. TOTAL(Expected) : {expectedMonthly.ToMoneyFormat()}(M) + {expected.ToMoneyFormat()}(D) = {(expectedMonthly + expected).ToMoneyFormat()} (Per Month: { ((expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}{Environment.NewLine}" +
-            $"7. ALL TOTAL: {(actualMonthly + actual).ToMoneyFormat()} + {(expectedMonthly + expected).ToMoneyFormat()} = {(actualMonthly + actual + expectedMonthly + expected).ToMoneyFormat()} (Per Month: { ((actualMonthly + actual + expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()})";
+            $"7. ALL TOTAL: {(actualMonthly + actual).ToMoneyFormat()}(A) + {(expectedMonthly + expected).ToMoneyFormat()}(E) = {(actualMonthly + actual + expectedMonthly + expected).ToMoneyFormat()} (Per Month: { ((actualMonthly + actual + expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()})";
             lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)} {Environment.NewLine}  {closedDetailForCurrentMonth}";
 
             lblSalary.Text = $"Salary : {salary.ToMoneyFormat()}";
