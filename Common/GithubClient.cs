@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using LibGit2Sharp;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,28 @@ using System.Threading.Tasks;
 
 namespace Common
 {
+
+    public class GitHubClient
+    {
+        public void Commit()
+        {
+            using (var repo = new Repository(@"F:\CenturyFin"))
+            {
+                var branches = repo.Branches;
+                foreach (var b in branches)
+                {
+                    //Console.WriteLine(b.FriendlyName);
+                }
+
+                // Create the committer's signature and commit
+                Signature author = new Signature("James", "@jugglingnutcase", DateTime.Now);
+                Signature committer = author;
+
+                repo.Commit("Test Commit", author, committer);
+            }
+        }
+
+    }
 
     //JSON parsing methods
     struct LinkFields
