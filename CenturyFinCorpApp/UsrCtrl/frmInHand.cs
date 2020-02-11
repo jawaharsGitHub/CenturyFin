@@ -555,15 +555,18 @@ namespace CenturyFinCorpApp
         {
             var htmlString = FileContentReader.SendBalanceHtml;
 
-            var data = (from ac in customersData
-                        orderby ac.Name
-                        select new
+
+            var data = customersData.OrderBy(o => o.Name).Select((ac, i) =>
+                        new
                         {
+                            Sno = i + 1,
                             ac.CustomerSeqNumber,
                             ac.Name,
                             Ba = Transaction.GetBalanceAndLastDate(ac),
                             ac.LoanAmount
                         }).ToList();
+
+
 
             if (data.Count == 0) return "NO DATA";
 
@@ -572,7 +575,7 @@ namespace CenturyFinCorpApp
 
             data.ForEach(f =>
             {
-                rowData.Append($@"<tr><td>{f.Name}</td><td>{f.CustomerSeqNumber}</td><td>{f.LoanAmount}</td><td>{f.Ba}</td></tr>");
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba}</td></tr>");
             });
 
 

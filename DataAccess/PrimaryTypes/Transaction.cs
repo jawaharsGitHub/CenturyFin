@@ -431,7 +431,7 @@ namespace DataAccess.PrimaryTypes
                 result = customerTxns.OrderByDescending(m => m.TxnDate).ThenByDescending(t => t.TransactionId).First();
             }                                                                                                            // return (customer.LoanAmount - paidAmount);
 
-            return $"{result.Balance} on  {result.TxnDate.ToShortDateString()}[{(DateTime.Today - result.TxnDate).Days}]";
+            return $"{result.Balance} on  {result.TxnDate.ToString("dd/MM/yy")}[{(DateTime.Today - result.TxnDate).Days}]";
         }
 
         public static List<Transaction> GetActiveTransactions()
