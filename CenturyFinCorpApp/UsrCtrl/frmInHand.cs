@@ -4,6 +4,7 @@ using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -389,14 +390,23 @@ namespace CenturyFinCorpApp
                     return;
                 }
 
-                currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
+                BackgroundWorker bw = new BackgroundWorker();
+                //this.Controls.Add(bw);
+                bw.DoWork += (s, e) =>
+                {
 
-                var activeCus = Customer.GetAllActiveCustomer();
-                var allBalances = FormHTMLForSendBalance(activeCus);
+                    currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
 
-                AppCommunication.SendEmail(allBalances, currentBalanceDate, activeCus.Count());
-                btnSendBalances.Text = "Done.";
-                MessageBox.Show("Balance Report have been send to your email");
+                    var activeCus = Customer.GetAllActiveCustomer();
+                    var allBalances = FormHTMLForSendBalance(activeCus);
+
+                    AppCommunication.SendEmail(allBalances, currentBalanceDate, activeCus.Count());
+                    //btnSendBalances.Text = "Done.";
+                    MessageBox.Show("Balance Report have been send to your email");
+                };
+                bw.RunWorkerAsync();
+
+
 
             }
             catch (Exception ex)
@@ -405,6 +415,11 @@ namespace CenturyFinCorpApp
                 throw;
             }
 
+        }
+
+        private void Bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void CommitChanges()
