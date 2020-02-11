@@ -9,46 +9,14 @@ namespace Common
 {
     public static class FileContentReader
     {
-        //public static string SendBalanceHtml { get; } = File.ReadAllText("/HTMLTemplate/SendBalance.htm");
+        public static string SendBalanceHtml { get; } = GetHtmlFileContent("SendBalance.htm");
 
-        public static string SendBalanceHtml
+        public static string ReportRunHtml { get; } = GetHtmlFileContent("ReportRun.htm");
+
+        private static string GetHtmlFileContent(string fileName)
         {
-            get
-            {
-
-                try
-                {
-
-                    var dataFolder = General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "Common\\HTMLTemplate\\");
-                    return File.ReadAllText($"{dataFolder}SendBalance.htm");
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-            }
-        }
-
-        public static string ReportRunHtml
-        {
-            get
-            {
-
-                try
-                {
-
-                    var dataFolder = General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "Common\\HTMLTemplate\\");
-                    return File.ReadAllText($"{dataFolder}ReportRun.htm");
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-            }
+            var dataFolder = General.GetDataFolder("CenturyFinCorpApp\\bin\\Debug", "Common\\HTMLTemplate\\");
+            return File.ReadAllText($"{dataFolder}{fileName}");
         }
 
     }
