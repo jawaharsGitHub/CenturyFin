@@ -129,6 +129,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Kadalai Mittai\Kadalai Mittai.ods" />
+    <None Include="key.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

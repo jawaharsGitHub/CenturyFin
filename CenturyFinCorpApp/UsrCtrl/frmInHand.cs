@@ -389,8 +389,6 @@ namespace CenturyFinCorpApp
                     return;
                 }
 
-                //CommitChanges();
-                //return;
 
                 currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
                 btnSendBalances.Text = "Sending...";
@@ -450,7 +448,7 @@ namespace CenturyFinCorpApp
 
                 //GitHubClient.Commit();
 
-                MessageBox.Show("Balance Report have been send to your email");
+                //MessageBox.Show("Balance Report have been send to your email");
 
             }
             catch (Exception)
@@ -605,41 +603,41 @@ tr:nth-child(even) {
         {
 
             string htmlString = @"<!DOCTYPE html>
-<html>
-<head>
-<style>
-td
-{
-word-wrap: break-word;
-}
-table
-{
-table - layout: fixed; 
-width: 100%;
-}
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-</head>
-<body>
+                                <html>
+                                <head>
+                                <style>
+                                td
+                                {
+                                word-wrap: break-word;
+                                }
+                                table
+                                {
+                                table - layout: fixed; 
+                                width: 100%;
+                                }
+                                tr:nth-child(even) {
+                                  background-color: #dddddd;
+                                }
+                                </style>
+                                </head>
+                                <body>
 
-<h2>[title]</h2>
+                                <h2>[title]</h2>
 
-<table border='1'>
-    <tr>
-    <th>Name</th>
-    <th>Collected?</th>
-    <th>Loan</th>
-    <th>Balance</th>
-    <th>Last Txn Date</th>
-  </tr>
-  [data]
-</table>
+                                <table border='1'>
+                                    <tr>
+                                    <th>Name</th>
+                                    <th>Collected?</th>
+                                    <th>Loan</th>
+                                    <th>Balance</th>
+                                    <th>Last Txn Date</th>
+                                  </tr>
+                                  [data]
+                                </table>
 
-</body>
-</html>
-";
+                                </body>
+                                </html>
+                                ";
 
 
             var cus = Customer.GetAllActiveCustomer();
@@ -664,14 +662,7 @@ tr:nth-child(even) {
 
         private void btnCheckin_Click(object sender, EventArgs e)
         {
-            // Connect to TFS
-            //TfsTeamProjectCollection _tfs = new TfsTeamProjectCollection(new Uri(tfsUrl));
-            //VersionControlServer _sourceControl = (VersionControlServer)_tfs.GetService(typeof(VersionControlServer));
-            //// Create workspace
-            //Workspace _workSpace = _sourceControl.CreateWorkspace("test");
-
-            //var pending = _workSpace.GetPendingChanges();
-            //_workSpace.CheckIn(pending, comment);
+            GitHubClient.Commit();
         }
     }
 }

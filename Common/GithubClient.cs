@@ -1,4 +1,5 @@
 ﻿using LibGit2Sharp;
+using LibGit2Sharp.Handlers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,76 +13,91 @@ namespace Common
 
     public class GitHubClient
     {
-        private Repository repo = new Repository(@"F:\CenturyFin");
+        private static Repository repo = new Repository(@"F:\CenturyFin");
 
 
-        //public static void Commit()
-        //{
-        //    using (var repo = new Repository(@"F:\CenturyFin"))
-        //    {
-        //        var branches = repo.Branches;
-        //        foreach (var b in branches)
-        //        {
-        //            //Console.WriteLine(b.FriendlyName);
-        //        }
+        public static void Commit()
+        {
+            //using (var repo = new Repository(@"F:\CenturyFin"))
+            //{
+            //    var branches = repo.Branches;
+            //    foreach (var b in branches)
+            //    {
+            //        //Console.WriteLine(b.FriendlyName);
+            //    }
 
-        //        // Create the committer's signature and commit
-        //        Signature author = new Signature("Jawahar", "@jawahars", DateTime.Now);
-        //        Signature committer = author;
+            //    // Create the committer's signature and commit
+            //    Signature author = new Signature("Jawahar", "@jawahars", DateTime.Now);
+            //    Signature committer = author;
 
-        //        //var data = repo.
+            //    //var data = repo.
 
+
+
+            //    repo.Commit("Test Commit", author, committer);
+            //}
+
+            //CommitChanges();
+            PushChanges();
+        }
+
+        public void StageChanges()
+        {
+            try
+            {
+                RepositoryStatus status = repo.RetrieveStatus();
+                List<string> filePaths = status.Modified.Select(mods => mods.FilePath).ToList();
+                //repo.(filePaths);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception:RepoActions:StageChanges " + ex.Message);
+            }
+        }
+
+        static string username = "jawa";
+        static string email = "@jawa";
+
+        public static void CommitChanges()
+        {
+            try
+            {
                 
 
-        //        repo.Commit("Test Commit", author, committer);
-        //    }
-        //}
+                repo.Commit("updating files..", new Signature(username, email, DateTimeOffset.Now),
+                    new Signature(username, email, DateTimeOffset.Now));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception:RepoActions:CommitChanges " + e.Message);
+            }
+        }
 
-        //public void StageChanges()
-        //{
-        //    try
-        //    {
-        //        RepositoryStatus status = repo.Index.RetrieveStatus();
-        //        List<string> filePaths = status.Modified.Select(mods => mods.FilePath).ToList();
-        //        repo.Index.Stage(filePaths);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Exception:RepoActions:StageChanges " + ex.Message);
-        //    }
-        //}
+        public static void PushChanges()
+        {
+            try
+            {
+                var remote = repo.Network.Remotes["origin"];
+                var options = new PushOptions();
+                var credentials = new UsernamePasswordCredentials { Username = "jawahars@live.in", Password = "*******" };
 
-        //public void CommitChanges()
-        //{
-        //    try
-        //    {
+                options.CredentialsProvider = new CredentialsHandler((url, usernameFromUrl, types) =>
+                    new DefaultCredentials());
+                
+                //options.CredentialsProvider = credentials;
 
-        //        repo.Commit("updating files..", new Signature(username, email, DateTimeOffset.Now),
-        //            new Signature(username, email, DateTimeOffset.Now));
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Exception:RepoActions:CommitChanges " + e.Message);
-        //    }
-        //}
+                var pushRefSpec = @"refs/heads/develop";
 
-        //public void PushChanges()
-        //{
-        //    try
-        //    {
-        //        var remote = repo.Network.Remotes["origin"];
-        //        var options = new PushOptions();
-        //        var credentials = new UsernamePasswordCredentials { Username = username, Password = password };
-        //        options. = credentials;
-        //        var pushRefSpec = @"refs/heads/master";
-        //        repo.Network.Push(remote, pushRefSpec, options, new Signature(username, email, DateTimeOffset.Now),
-        //            "pushed changes");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Exception:RepoActions:PushChanges " + e.Message);
-        //    }
-        //}
+                repo.Commit("updating files..", new Signature(username, email, DateTimeOffset.Now),
+                    new Signature(username, email, DateTimeOffset.Now));
+
+                repo.Network.Push(remote, pushRefSpec, options); // , new Signature(username, email, DateTimeOffset.Now),"pushed changes"
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception:RepoActions:PushChanges " + e.Message);
+            }
+        }
 
     }
 
