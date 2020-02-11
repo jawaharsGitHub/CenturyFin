@@ -353,12 +353,17 @@ namespace CenturyFinCorpApp
                 if (editJustDone)
                 {
                     editJustDone = false;
+                    dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
+                    dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+                    this.dataGridView1.ClearSelection();
                     return;
                 }
 
                 if (IsEnterKey)
                 {
                     dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
+                    dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+                    this.dataGridView1.ClearSelection();
                     return;
                 }
 
