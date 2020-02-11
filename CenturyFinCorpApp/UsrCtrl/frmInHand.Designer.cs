@@ -99,7 +99,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSendBalances = new System.Windows.Forms.Button();
             this.btnCheckReport = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCheckPrivateReport = new System.Windows.Forms.Button();
             this.btnNotGiven = new System.Windows.Forms.Button();
             this.btnCheckin = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -791,17 +791,17 @@
             this.btnCheckReport.UseVisualStyleBackColor = false;
             this.btnCheckReport.Click += new System.EventHandler(this.btnCheckReport_Click);
             // 
-            // button2
+            // btnCheckPrivateReport
             // 
-            this.button2.BackColor = System.Drawing.Color.YellowGreen;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(1018, 403);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(170, 30);
-            this.button2.TabIndex = 52;
-            this.button2.Text = "Private - Cxn Check Report";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnCheckPrivateReport.BackColor = System.Drawing.Color.YellowGreen;
+            this.btnCheckPrivateReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheckPrivateReport.Location = new System.Drawing.Point(1018, 403);
+            this.btnCheckPrivateReport.Name = "btnCheckPrivateReport";
+            this.btnCheckPrivateReport.Size = new System.Drawing.Size(170, 30);
+            this.btnCheckPrivateReport.TabIndex = 52;
+            this.btnCheckPrivateReport.Text = "Private - Cxn Check Report";
+            this.btnCheckPrivateReport.UseVisualStyleBackColor = false;
+            this.btnCheckPrivateReport.Click += new System.EventHandler(this.btnCheckPrivateReport_Click);
             // 
             // btnNotGiven
             // 
@@ -831,7 +831,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnCheckin);
             this.Controls.Add(this.btnNotGiven);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnCheckPrivateReport);
             this.Controls.Add(this.btnCheckReport);
             this.Controls.Add(this.btnSendBalances);
             this.Controls.Add(this.btnDelete);
@@ -938,7 +938,7 @@
         private System.Windows.Forms.Button btnCheckReport;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCheckPrivateReport;
         private System.Windows.Forms.Button btnNotGiven;
         private System.Windows.Forms.Button btnCheckin;
     }

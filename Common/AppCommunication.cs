@@ -18,7 +18,7 @@ namespace Common
                 message.From = new MailAddress(myEmail);
                 message.To.Add(new MailAddress(myEmail));
                 message.Subject = $"[{activeCusCount}]{collectionDate.ToShortDateString()} - Jeyam Finance Balance Report";
-                message.IsBodyHtml = false; //to make message body as html  
+                message.IsBodyHtml = true; //to make message body as html  
                 message.Body = mailBody;
                 smtp.Port = 587;
                 smtp.Host = "smtp.gmail.com"; //for gmail host  

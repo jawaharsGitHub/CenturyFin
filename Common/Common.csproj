@@ -110,6 +110,7 @@
     <Compile Include="AppConfiguration.cs" />
     <Compile Include="BaseTypes\BaseClass.cs" />
     <Compile Include="DataCorrector.cs" />
+    <Compile Include="FileContentReader.cs" />
     <Compile Include="WhatsAppMessage.cs" />
     <Compile Include="DateHelper.cs" />
     <Compile Include="ExtensionMethod\CloneExtension.cs" />
@@ -140,6 +141,8 @@
     <None Include="PL file\RUNNING NOTES.ods" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HTMLTemplate\ReportRun.htm" />
+    <Content Include="HTMLTemplate\SendBalance.htm" />
     <Content Include="Kadalai Mittai\version 1.txt" />
     <Content Include="PL file\BT- Credits.txt" />
   </ItemGroup>

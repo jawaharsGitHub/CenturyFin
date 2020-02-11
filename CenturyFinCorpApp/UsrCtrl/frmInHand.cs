@@ -389,45 +389,17 @@ namespace CenturyFinCorpApp
                     return;
                 }
 
-
                 currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
-                btnSendBalances.Text = "Sending...";
-                ProgressBar pBar = new ProgressBar();
-                pBar.Location = new System.Drawing.Point(20, 20);
-                pBar.Name = "progressBar1";
-                pBar.Width = 100;
-                pBar.Height = 30;
-
-                Controls.Add(pBar);
-                //pBar.Dock = DockStyle.Top;
-                pBar.Minimum = 20;
-                pBar.Maximum = 100;
-
-                pBar.Value = 25;
 
                 var activeCus = Customer.GetAllActiveCustomer();
-
-                var allBalances = string.Join(Environment.NewLine,
-                    activeCus.OrderBy(o => o.Name).Select(s => $"{s.Name}({s.CustomerSeqNumber}) -->  {Transaction.GetBalanceAndLastDate(s)}({s.LoanAmount})").ToList());
-
-                pBar.Value = 80;
-                // Need to send alphabet wise later, now we did grouping only.
-
-                var groupedByLetter = Customer.GetAllActiveCustomer().Where(w => Char.IsLetter(w.Name.Substring(0, 1)[0])).Select(s => s).GroupBy(x => x.Name.Substring(0, 1).ToUpper(), (alphabet, subList) => new { Alphabet = alphabet, SubList = subList.OrderBy(x => x.Name).ToList() })
-            .OrderBy(x => x.Alphabet);
-                //pBar.Value = 75;
-                var OnlyNumberAsFirstLetter = Customer.GetAllActiveCustomer().Where(w => !Char.IsLetter(w.Name.Substring(0, 1)[0])).Select(s => s).ToList();
-                pBar.Value = 90;
-                // Need to send alphabet wise later, now we did grouping only.
+                var allBalances = FormHTMLForSendBalance(activeCus);
 
                 AppCommunication.SendEmail(allBalances, currentBalanceDate, activeCus.Count());
-                pBar.Value = 100;
                 btnSendBalances.Text = "Done.";
-                //Controls.Remove(pBar);
                 MessageBox.Show("Balance Report have been send to your email");
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -497,42 +469,7 @@ namespace CenturyFinCorpApp
 
         private void ReportRun(bool isOnlyNotGiven = false)
         {
-            string htmlString = @"<!DOCTYPE html>
-<html>
-<head>
-<style>
-td
-{
-word-wrap: break-word;
-}
-table
-{
-table - layout: fixed; 
-width: 100%;
-}
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-</head>
-<body>
-
-<h2>[title]</h2>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Collected?</th>
-    <th>Loan</th>
-    <th>Balance</th>
-    <th>Last Txn Date</th>
-  </tr>
-  [data]
-</table>
-
-</body>
-</html>
-";
+            string htmlString = FileContentReader.ReportRunHtml;
 
             var cus = Customer.GetAllActiveCustomer();
             var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
@@ -599,46 +536,42 @@ tr:nth-child(even) {
             General.CreateHTML($"{fn}.htm", dailyCheckHTML);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private string FormHTMLForSendBalance(List<Customer> customersData)
+        {
+            var htmlString = FileContentReader.SendBalanceHtml;
+
+            var data = (from ac in customersData
+                        orderby ac.Name
+                        select new
+                        {
+                            ac.CustomerSeqNumber,
+                            ac.Name,
+                            Ba = Transaction.GetBalanceAndLastDate(ac),
+                            ac.LoanAmount
+                        }).ToList();
+
+            if (data.Count == 0) return "NO DATA";
+
+            StringBuilder rowData = new StringBuilder();
+
+
+            data.ForEach(f =>
+            {
+                rowData.Append($@"<tr><td>{f.Name}</td><td>{f.CustomerSeqNumber}</td><td>{f.LoanAmount}</td><td>{f.Ba}</td></tr>");
+            });
+
+
+            //var fn = $"{data.Count()} {returnType.ToString()} For {currentBalanceDate.ToShortDateString()} {data.Sum(D => D.Balance)} - {data.Sum(D => D.Balance) / 100}";
+
+            var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Balance Report");
+
+            return dailyCheckHTML;
+        }
+
+        private void btnCheckPrivateReport_Click(object sender, EventArgs e)
         {
 
-            string htmlString = @"<!DOCTYPE html>
-                                <html>
-                                <head>
-                                <style>
-                                td
-                                {
-                                word-wrap: break-word;
-                                }
-                                table
-                                {
-                                table - layout: fixed; 
-                                width: 100%;
-                                }
-                                tr:nth-child(even) {
-                                  background-color: #dddddd;
-                                }
-                                </style>
-                                </head>
-                                <body>
-
-                                <h2>[title]</h2>
-
-                                <table border='1'>
-                                    <tr>
-                                    <th>Name</th>
-                                    <th>Collected?</th>
-                                    <th>Loan</th>
-                                    <th>Balance</th>
-                                    <th>Last Txn Date</th>
-                                  </tr>
-                                  [data]
-                                </table>
-
-                                </body>
-                                </html>
-                                ";
-
+            string htmlString = FileContentReader.ReportRunHtml;
 
             var cus = Customer.GetAllActiveCustomer();
             var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
