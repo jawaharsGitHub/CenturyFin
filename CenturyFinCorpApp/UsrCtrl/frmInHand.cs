@@ -531,14 +531,14 @@ namespace CenturyFinCorpApp
             var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().Reverse().ToList();
 
             var htmlString = FormHTMLForCrossCheck(customersData);
+            AppCommunication.SendBalanceEmail(htmlString, currentBalanceDate, customersData.Count);
 
 
-            values.ForEach(f =>
-            {
-                //var emailCOn = SourceHtmlString: htmlString, returnType: f, data, isPersonal: isPersonal;
-
-                AppCommunication.SendBalanceEmail(htmlString, currentBalanceDate, customersData.Count);
-            });
+            //values.ForEach(f =>
+            //{
+            // var htmlString = FormHTMLForCrossCheck(customersData);
+            // AppCommunication.SendBalanceEmail(htmlString, currentBalanceDate, customersData.Count);
+            //});
 
         }
 
@@ -586,7 +586,7 @@ namespace CenturyFinCorpApp
 
         private string FormHTMLForCrossCheck(List<Customer> customersData)
         {
-            var data = customersData.OrderBy(o => o.Name).Select((ac, i) =>
+            var data = customersData.OrderBy(o => o.Name).Select(ac =>
                         new
                         {
                             ac.CustomerSeqNumber,
@@ -616,9 +616,6 @@ namespace CenturyFinCorpApp
 
                     }))
                     .ToList();
-
-
-
 
             dailyData.ForEach(f =>
             {
