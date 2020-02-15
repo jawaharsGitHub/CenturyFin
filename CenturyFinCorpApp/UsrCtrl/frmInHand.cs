@@ -375,7 +375,7 @@ namespace CenturyFinCorpApp
 
             GetDailyTxn(dateTimePicker1.Value, false);
             SendBalances();
-            ReportRun(true);
+            ReportRun();
             //Process.Start(fileName);
         }
 
@@ -394,14 +394,13 @@ namespace CenturyFinCorpApp
                 //this.Controls.Add(bw);
                 bw.DoWork += (s, e) =>
                 {
-
+                    
                     currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
-
+                    ReportRun();
                     var activeCus = Customer.GetAllActiveCustomer();
                     var allBalances = FormHTMLForSendBalance(activeCus);
 
-                    AppCommunication.SendEmail(allBalances, currentBalanceDate, activeCus.Count());
-                    //btnSendBalances.Text = "Done.";
+                    AppCommunication.SendBalanceEmail(allBalances, currentBalanceDate, activeCus.Count());
                     MessageBox.Show("Balance Report have been send to your email");
                 };
                 bw.RunWorkerAsync();
@@ -482,73 +481,95 @@ namespace CenturyFinCorpApp
             ReportRun();
         }
 
-        private void ReportRun(bool isOnlyNotGiven = false)
+        private void ReportRun()
         {
+            //currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
+
+            StringBuilder resultHtml = new StringBuilder();
+
             string htmlString = FileContentReader.ReportRunHtml;
 
             var cus = Customer.GetAllActiveCustomer();
             var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
 
-            if (isOnlyNotGiven)
-            {
-                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: ReturnTypeEnum.Daily, isOnlyNotGiven: isOnlyNotGiven);
-                return;
-            }
-
-            var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().ToList();
-
-            values.ForEach(f =>
-            {
-                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f, isOnlyNotGiven: isOnlyNotGiven);
-            });
-
-        }
-
-
-        private void FormHTML(List<Customer> cus, List<Transaction> txns, String SourceHtmlString, ReturnTypeEnum returnType, bool isOnlyNotGiven, bool isPersonal = false)
-        {
             var data = (from c in cus
                         join t in txns
                         on c.CustomerSeqNumber equals t.CustomerSequenceNo into newData
                         from dept in newData.DefaultIfEmpty()
-                        where c.ReturnType == returnType
-                        && c.IsPersonal == isPersonal
+                            //where c.ReturnType == returnType
+                            //&& c.IsPersonal == isPersonal
                         select new CollectionStatus
                         {
                             Name = string.IsNullOrEmpty(c.TamilName) ? c.Name : c.TamilName,
                             LoanAmount = c.LoanAmount,
                             Balance = Transaction.GetBalance(c),
-                            LastDate = returnType == ReturnTypeEnum.Weekly ? Transaction.GetTransactionSummaryForWeek(c) : Transaction.GetLastTransactionDate(c),
                             TxnDate = (dept?.TxnDate),
                             TxnId = (dept?.TransactionId),
-                            CxnAmount = c.InitialInterest
+                            CxnAmount = c.InitialInterest,
+                            ReturnType = c.ReturnType,
+                            IsPersonal = c.IsPersonal,
+                            LastDate = (c.ReturnType == ReturnTypeEnum.Weekly) ? Transaction.GetTransactionSummaryForWeek(c) : Transaction.GetLastTransactionDate(c),
 
                         })
                         .OrderByDescending(t => t.LastDate)
-                        //.ThenBy(t => t.TxnId)
                         .ToList();
 
-            if (data.Count == 0) return;
+
+
+            AppCommunication.SendReportEmail(FormHTML(SourceHtmlString: htmlString, returnType: ReturnTypeEnum.Daily, data, isOnlyNotGiven: true));
+
+            var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().Reverse().ToList();
+
+            values.ForEach(f =>
+            {
+                AppCommunication.SendReportEmail(FormHTML(SourceHtmlString: htmlString, returnType: f, data));
+            });
+
+            //return resultHtml;
+
+        }
+
+
+        private EmailStructure FormHTML(string SourceHtmlString, ReturnTypeEnum returnType, List<CollectionStatus> data, bool isOnlyNotGiven = false, bool isPersonal = false)
+        {
+
+            List<CollectionStatus> localData = null;
+
+            if (data.Count == 0) return null;
 
             StringBuilder rowData = new StringBuilder();
 
             if (isOnlyNotGiven)
             {
-                data = data.Where(w => w.IsToday == "N").ToList();
-
+                localData = data.Where(w => w.IsToday == "N").ToList();
+            }
+            else
+            {
+                localData = data.Where(w => w.ReturnType == returnType && w.IsPersonal == isPersonal).ToList();
             }
 
-            data.ForEach(f =>
+            if (localData.Count() == 0) return null;
+
+            localData.ForEach(f =>
             {
                 rowData.Append($@"<tr><td>{f.Name}</td><td>{f.IsToday}</td><td>{f.LoanAmount}</td><td>{f.Balance}</td><td>{f.LastDate}</td></tr>");
             });
 
 
-            var fn = $"{data.Count()} {returnType.ToString()} For {currentBalanceDate.ToShortDateString()} {data.Sum(D => D.Balance)} - {data.Sum(D => D.Balance) / 100}";
+            var fn = $"{localData.Count()} {returnType.ToString()} For {currentBalanceDate.ToShortDateString()} {localData.Sum(D => D.Balance)} - {localData.Sum(D => D.Balance) / 100}";
 
             var dailyCheckHTML = SourceHtmlString.Replace("[data]", rowData.ToString()).Replace("[title]", fn);
 
-            General.CreateHTML($"{fn}.htm", dailyCheckHTML);
+            //return dailyCheckHTML;
+
+            return new EmailStructure()
+            {
+                CollectionDate = currentBalanceDate,
+                HtmlContent = dailyCheckHTML,
+                Subject = isOnlyNotGiven ? "NOT GIVEN" : returnType.ToString()
+            };
+
+            //General.CreateHTML($"{fn}.htm", dailyCheckHTML);
         }
 
         private string FormHTMLForSendBalance(List<Customer> customersData)
@@ -589,26 +610,26 @@ namespace CenturyFinCorpApp
         private void btnCheckPrivateReport_Click(object sender, EventArgs e)
         {
 
-            string htmlString = FileContentReader.ReportRunHtml;
+            //string htmlString = FileContentReader.ReportRunHtml;
 
-            var cus = Customer.GetAllActiveCustomer();
-            var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
+            //var cus = Customer.GetAllActiveCustomer();
+            //var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
 
-            var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().ToList();
+            //var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().ToList();
 
-            values.ForEach(f =>
-            {
+            //values.ForEach(f =>
+            //{
 
-                FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f, isOnlyNotGiven: false, isPersonal: true);
+            //    FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f, isOnlyNotGiven: false, isPersonal: true);
 
-            });
+            //});
 
         }
 
         private void btnNotGiven_Click(object sender, EventArgs e)
         {
 
-            ReportRun(true);
+            ReportRun();
         }
 
         private void btnCheckin_Click(object sender, EventArgs e)

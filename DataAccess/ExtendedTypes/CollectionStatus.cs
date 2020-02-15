@@ -16,6 +16,10 @@ namespace DataAccess.ExtendedTypes
         public string LastDate { get; set; }
         public DateTime? TxnDate { get; set; }
         public int? TxnId { get; set; }
+
+        public ReturnTypeEnum ReturnType { get; set; }
+
+        public bool IsPersonal { get; set; }
         public string IsToday
         {
             get

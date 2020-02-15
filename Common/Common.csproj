@@ -110,6 +110,7 @@
     <Compile Include="AppConfiguration.cs" />
     <Compile Include="BaseTypes\BaseClass.cs" />
     <Compile Include="DataCorrector.cs" />
+    <Compile Include="EmailStructure.cs" />
     <Compile Include="FileContentReader.cs" />
     <Compile Include="WhatsAppMessage.cs" />
     <Compile Include="DateHelper.cs" />
