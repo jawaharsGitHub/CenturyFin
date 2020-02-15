@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtendedTypes\BalanceCheckData.cs" />
     <Compile Include="ExtendedTypes\CollectionStatus.cs" />
     <Compile Include="ExtendedTypes\CreditReport.cs" />
     <Compile Include="ExtendedTypes\CustomerDailyTxn.cs" />

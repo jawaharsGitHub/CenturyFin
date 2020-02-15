@@ -409,7 +409,7 @@ namespace DataAccess.PrimaryTypes
 
         }
 
-        public static string GetBalanceAndLastDate(Customer customer)
+        public static BalanceCheckData GetBalanceAndLastDate(Customer customer)
         {
             //if (customer.IsActive == false) return (0, null);
 
@@ -431,7 +431,15 @@ namespace DataAccess.PrimaryTypes
                 result = customerTxns.OrderByDescending(m => m.TxnDate).ThenByDescending(t => t.TransactionId).First();
             }                                                                                                            // return (customer.LoanAmount - paidAmount);
 
-            return $"{result.Balance} on  {result.TxnDate.ToString("dd/MM/yy")}[{(DateTime.Today - result.TxnDate).Days}]";
+
+            return new BalanceCheckData()
+            {
+                Balance = result.Balance,
+                LastTxnDate = result.TxnDate,
+                Diff = (DateTime.Today - result.TxnDate).Days
+            };
+
+            //return $"{result.Balance} on  {result.TxnDate.ToString("dd/MM/yy")}[{(DateTime.Today - result.TxnDate).Days}]";
         }
 
         public static List<Transaction> GetActiveTransactions()

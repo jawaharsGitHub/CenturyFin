@@ -159,7 +159,7 @@ namespace DataAccess.PrimaryTypes
         /// Specifies the last collection date ie., last date mama gave the info.
         /// </summary>
         /// <returns></returns>
-        public static DateTime GetLastCollectionDateDate()
+        public static DateTime GetLastCollectionDate()
         {
             try
             {

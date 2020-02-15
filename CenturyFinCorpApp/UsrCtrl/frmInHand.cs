@@ -395,8 +395,9 @@ namespace CenturyFinCorpApp
                 bw.DoWork += (s, e) =>
                 {
 
-                    currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
-                    ReportRun();
+                    currentBalanceDate = DailyCollectionDetail.GetLastCollectionDate();
+                    //ReportRun();
+                    SendEmailForCrossCheck();
                     var activeCus = Customer.GetAllActiveCustomer();
                     var allBalances = FormHTMLForSendBalance(activeCus);
 
@@ -523,6 +524,24 @@ namespace CenturyFinCorpApp
 
         }
 
+        private void SendEmailForCrossCheck()
+        {
+            var customersData = Customer.GetAllActiveCustomer();
+
+            var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().Reverse().ToList();
+
+            var htmlString = FormHTMLForCrossCheck(customersData);
+
+
+            values.ForEach(f =>
+            {
+                //var emailCOn = SourceHtmlString: htmlString, returnType: f, data, isPersonal: isPersonal;
+
+                AppCommunication.SendBalanceEmail(htmlString, currentBalanceDate, customersData.Count);
+            });
+
+        }
+
         private EmailStructure FormHTML(string SourceHtmlString, ReturnTypeEnum returnType, List<CollectionStatus> data, bool isOnlyNotGiven = false, bool isPersonal = false)
         {
 
@@ -563,6 +582,53 @@ namespace CenturyFinCorpApp
             };
 
             //General.CreateHTML($"{fn}.htm", dailyCheckHTML);
+        }
+
+        private string FormHTMLForCrossCheck(List<Customer> customersData)
+        {
+            var data = customersData.OrderBy(o => o.Name).Select((ac, i) =>
+                        new
+                        {
+                            ac.CustomerSeqNumber,
+                            ac.Name,
+                            Ba = Transaction.GetBalanceAndLastDate(ac),
+                            ac.LoanAmount,
+                            ac.ReturnType
+                        }).ToList();
+
+            if (data.Count == 0) return "NO DATA";
+
+            currentBalanceDate = DailyCollectionDetail.GetLastCollectionDate();
+            var htmlString = FileContentReader.SendBalanceHtml;
+            StringBuilder rowData = new StringBuilder();
+
+            // Daily
+            var dailyData = (data.Where(w => w.ReturnType == ReturnTypeEnum.Daily && w.Ba.Diff > 1)
+                    .OrderByDescending(o => o.Ba.Diff).Select((ac, i) =>
+                    new
+                    {
+                        Sno = i + 1,
+                        ac.CustomerSeqNumber,
+                        ac.Name,
+                        ac.Ba,
+                        ac.LoanAmount,
+                        ac.ReturnType
+
+                    }))
+                    .ToList();
+
+
+
+
+            dailyData.ForEach(f =>
+            {
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForColumn}</td></tr>");
+            });
+
+            var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Daily Check");
+
+            return dailyCheckHTML;
+
         }
 
         private string FormHTMLForSendBalance(List<Customer> customersData)

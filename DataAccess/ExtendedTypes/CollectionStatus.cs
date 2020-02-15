@@ -24,7 +24,7 @@ namespace DataAccess.ExtendedTypes
         {
             get
             {
-                return DailyCollectionDetail.GetLastCollectionDateDate().ToShortDateString() == LastDate ? "Y" : "N";
+                return DailyCollectionDetail.GetLastCollectionDate().ToShortDateString() == LastDate ? "Y" : "N";
             }
         }
     }

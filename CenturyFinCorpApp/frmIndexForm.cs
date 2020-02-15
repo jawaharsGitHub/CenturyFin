@@ -33,7 +33,7 @@ namespace CenturyFinCorpApp
             var closedTxn = customers.Count(c => c.IsActive == false);
             var totalTxn = activeTxn + closedTxn;
 
-            var latestCxnDate = DailyCollectionDetail.GetLastCollectionDateDate();
+            var latestCxnDate = DailyCollectionDetail.GetLastCollectionDate();
 
 
             var diffDays = (DateTime.Today - latestCxnDate).Days;
