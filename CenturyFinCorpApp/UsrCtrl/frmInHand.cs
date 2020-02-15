@@ -375,7 +375,7 @@ namespace CenturyFinCorpApp
 
             GetDailyTxn(dateTimePicker1.Value, false);
             SendBalances();
-            ReportRun();
+            //ReportRun();
             //Process.Start(fileName);
         }
 
@@ -394,7 +394,7 @@ namespace CenturyFinCorpApp
                 //this.Controls.Add(bw);
                 bw.DoWork += (s, e) =>
                 {
-                    
+
                     currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
                     ReportRun();
                     var activeCus = Customer.GetAllActiveCustomer();
@@ -481,10 +481,8 @@ namespace CenturyFinCorpApp
             ReportRun();
         }
 
-        private void ReportRun()
+        private void ReportRun(bool isPersonal = false)
         {
-            //currentBalanceDate = DailyCollectionDetail.GetLastCollectionDateDate();
-
             StringBuilder resultHtml = new StringBuilder();
 
             string htmlString = FileContentReader.ReportRunHtml;
@@ -514,21 +512,16 @@ namespace CenturyFinCorpApp
                         .OrderByDescending(t => t.LastDate)
                         .ToList();
 
-
-
-            AppCommunication.SendReportEmail(FormHTML(SourceHtmlString: htmlString, returnType: ReturnTypeEnum.Daily, data, isOnlyNotGiven: true));
+            AppCommunication.SendReportEmail(FormHTML(SourceHtmlString: htmlString, returnType: ReturnTypeEnum.Daily, data, isOnlyNotGiven: true, isPersonal: isPersonal));
 
             var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().Reverse().ToList();
 
             values.ForEach(f =>
             {
-                AppCommunication.SendReportEmail(FormHTML(SourceHtmlString: htmlString, returnType: f, data));
+                AppCommunication.SendReportEmail(FormHTML(SourceHtmlString: htmlString, returnType: f, data, isPersonal: isPersonal));
             });
 
-            //return resultHtml;
-
         }
-
 
         private EmailStructure FormHTML(string SourceHtmlString, ReturnTypeEnum returnType, List<CollectionStatus> data, bool isOnlyNotGiven = false, bool isPersonal = false)
         {
@@ -609,26 +602,11 @@ namespace CenturyFinCorpApp
 
         private void btnCheckPrivateReport_Click(object sender, EventArgs e)
         {
-
-            //string htmlString = FileContentReader.ReportRunHtml;
-
-            //var cus = Customer.GetAllActiveCustomer();
-            //var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
-
-            //var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().ToList();
-
-            //values.ForEach(f =>
-            //{
-
-            //    FormHTML(cus, txns, SourceHtmlString: htmlString, returnType: f, isOnlyNotGiven: false, isPersonal: true);
-
-            //});
-
+            ReportRun(true);
         }
 
         private void btnNotGiven_Click(object sender, EventArgs e)
         {
-
             ReportRun();
         }
 
