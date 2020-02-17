@@ -374,7 +374,11 @@ namespace CenturyFinCorpApp
             btnAddOrUpdate_Click(null, null);
 
             GetDailyTxn(dateTimePicker1.Value, false);
-            SendBalances();
+
+            if (DialogResult.Yes == MessageBox.Show("You want email?", "Email?", MessageBoxButtons.YesNoCancel))
+            {
+                SendBalances();
+            }
             //ReportRun();
             //Process.Start(fileName);
         }
@@ -398,10 +402,10 @@ namespace CenturyFinCorpApp
                     currentBalanceDate = DailyCollectionDetail.GetLastCollectionDate();
                     //ReportRun();
                     SendEmailForCrossCheck();
-                    var activeCus = Customer.GetAllActiveCustomer();
-                    var allBalances = FormHTMLForSendBalance(activeCus);
+                    //var activeCus = Customer.GetAllActiveCustomer();
+                    FormHTMLForSendBalance();
 
-                    AppCommunication.SendBalanceEmail(allBalances, currentBalanceDate, activeCus.Count());
+                    AppCommunication.SendBalanceEmail(allBalances, currentBalanceDate, activeCus.Count(), "Jeyam Finance Balance Report");
                     MessageBox.Show("Balance Report have been send to your email");
                 };
                 bw.RunWorkerAsync();
@@ -530,8 +534,8 @@ namespace CenturyFinCorpApp
 
             var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().Reverse().ToList();
 
-            var htmlString = FormHTMLForCrossCheck(customersData);
-            AppCommunication.SendBalanceEmail(htmlString, currentBalanceDate, customersData.Count);
+            FormHTMLForCrossCheck(customersData);
+            //AppCommunication.SendBalanceEmail(htmlString, currentBalanceDate, customersData.Count);
 
 
             //values.ForEach(f =>
@@ -584,7 +588,7 @@ namespace CenturyFinCorpApp
             //General.CreateHTML($"{fn}.htm", dailyCheckHTML);
         }
 
-        private string FormHTMLForCrossCheck(List<Customer> customersData)
+        private void FormHTMLForCrossCheck(List<Customer> customersData)
         {
             var data = customersData.OrderBy(o => o.Name).Select(ac =>
                         new
@@ -596,7 +600,7 @@ namespace CenturyFinCorpApp
                             ac.ReturnType
                         }).ToList();
 
-            if (data.Count == 0) return "NO DATA";
+            if (data.Count == 0) return;
 
             currentBalanceDate = DailyCollectionDetail.GetLastCollectionDate();
             var htmlString = FileContentReader.SendBalanceHtml;
@@ -624,16 +628,20 @@ namespace CenturyFinCorpApp
 
             var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Daily Check");
 
-            return dailyCheckHTML;
+            AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, dailyData.Count, "Daily Check");
+
+            //return dailyCheckHTML;
 
         }
 
-        private string FormHTMLForSendBalance(List<Customer> customersData)
+        private void FormHTMLForSendBalance()
         {
+            var activeCus = Customer.GetAllActiveCustomer();
+            //var allBalances = FormHTMLForSendBalance(activeCus);
             var htmlString = FileContentReader.SendBalanceHtml;
 
 
-            var data = customersData.OrderBy(o => o.Name).Select((ac, i) =>
+            var data = activeCus.OrderBy(o => o.Name).Select((ac, i) =>
                         new
                         {
                             Sno = i + 1,
@@ -645,22 +653,20 @@ namespace CenturyFinCorpApp
 
 
 
-            if (data.Count == 0) return "NO DATA";
+            if (data.Count == 0) return;
 
             StringBuilder rowData = new StringBuilder();
 
 
             data.ForEach(f =>
             {
-                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba}</td></tr>");
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForColumn}</td></tr>");
             });
-
-
-            //var fn = $"{data.Count()} {returnType.ToString()} For {currentBalanceDate.ToShortDateString()} {data.Sum(D => D.Balance)} - {data.Sum(D => D.Balance) / 100}";
 
             var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Balance Report");
 
-            return dailyCheckHTML;
+            AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, data.Count(), "Jeyam Finance Balance Report");
+
         }
 
         private void btnCheckPrivateReport_Click(object sender, EventArgs e)
