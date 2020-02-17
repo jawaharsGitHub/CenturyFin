@@ -403,9 +403,9 @@ namespace CenturyFinCorpApp
                     //ReportRun();
                     SendEmailForCrossCheck();
                     //var activeCus = Customer.GetAllActiveCustomer();
-                    FormHTMLForSendBalance();
+                    SendEmailForSendBalance();
 
-                    AppCommunication.SendBalanceEmail(allBalances, currentBalanceDate, activeCus.Count(), "Jeyam Finance Balance Report");
+                    //AppCommunication.SendBalanceEmail(allBalances, currentBalanceDate, activeCus.Count(), "Jeyam Finance Balance Report");
                     MessageBox.Show("Balance Report have been send to your email");
                 };
                 bw.RunWorkerAsync();
@@ -634,7 +634,7 @@ namespace CenturyFinCorpApp
 
         }
 
-        private void FormHTMLForSendBalance()
+        private void SendEmailForSendBalance()
         {
             var activeCus = Customer.GetAllActiveCustomer();
             //var allBalances = FormHTMLForSendBalance(activeCus);
