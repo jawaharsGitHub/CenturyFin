@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -698,11 +699,15 @@ namespace CenturyFinCorpApp
                 Graphics g = Graphics.FromImage(result);
                 g.DrawImageUnscaled(firstTxn, 0, 30);
                 g.DrawImageUnscaled(secondName, 0, 0);
-                var txnFileName = $@"E:\{customer.Name}.jpg";
-                result.Save(txnFileName);
 
-                AppCommunication.SendCustomerTxnEmail(customer.Name, DateTime.Today, txnFileName);
+                //DriveInfo di = Path.GetTempPath();
+
+                var txnFileName = $"{Path.GetTempPath()}{customer.Name}.jpg";
+                result.Save(txnFileName); // Save File
+                AppCommunication.SendCustomerTxnEmail(customer.Name, DateTime.Today, txnFileName); // Email
+                //File.Delete(txnFileName);
                 MessageBox.Show("Txn Email Send!");
+                
             };
             bw.RunWorkerAsync();
         }
