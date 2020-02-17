@@ -5,6 +5,7 @@ using DataAccess.PrimaryTypes;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -72,7 +73,7 @@ namespace CenturyFinCorpApp
             LoadTxn();
             LoadCustomerCollectionType();
 
-            
+
             lblMessage.Text = string.Empty;
 
             btnReOpen.Visible = (_balance == 0);
@@ -664,11 +665,15 @@ namespace CenturyFinCorpApp
         {
             // WhatsAppMessage.SendMsg();
 
-            if(General.CheckForInternetConnection() == false)
+            if (General.CheckForInternetConnection() == false)
             {
                 MessageBox.Show("No Internet Available, Please connect and try again!");
                 return;
             }
+
+
+            BackgroundWorker bw = new BackgroundWorker();
+            //this.Controls.Add(bw);
 
             /* 1.Transaction Image*/
             int height = dataGridView1.Height;
@@ -682,19 +687,24 @@ namespace CenturyFinCorpApp
             Bitmap bitmapName = new Bitmap(this.btnCusName.Width, this.btnCusName.Height);
             btnCusName.DrawToBitmap(bitmapName, new Rectangle(0, 0, this.btnCusName.Width, this.btnCusName.Height));
 
-            /* 3.Merge 2 images*/
-            Bitmap firstTxn = bitmapTxn;
-            Bitmap secondName = bitmapName;
+            bw.DoWork += (s, o) =>
+            {
 
-            Bitmap result = new Bitmap(Math.Max(firstTxn.Width, secondName.Width), firstTxn.Height + secondName.Height + 30);
-            Graphics g = Graphics.FromImage(result);
-            g.DrawImageUnscaled(firstTxn, 0, 30);
-            g.DrawImageUnscaled(secondName, 0, 0);
-            var txnFileName = $@"E:\{customer.Name}.jpg";
-            result.Save(txnFileName);
+                /* 3.Merge 2 images*/
+                Bitmap firstTxn = bitmapTxn;
+                Bitmap secondName = bitmapName;
 
-            AppCommunication.SendCustomerTxnEmail(customer.Name, DateTime.Today, txnFileName);
-            MessageBox.Show("Mail Send!");
+                Bitmap result = new Bitmap(Math.Max(firstTxn.Width, secondName.Width), firstTxn.Height + secondName.Height + 30);
+                Graphics g = Graphics.FromImage(result);
+                g.DrawImageUnscaled(firstTxn, 0, 30);
+                g.DrawImageUnscaled(secondName, 0, 0);
+                var txnFileName = $@"E:\{customer.Name}.jpg";
+                result.Save(txnFileName);
+
+                AppCommunication.SendCustomerTxnEmail(customer.Name, DateTime.Today, txnFileName);
+                MessageBox.Show("Txn Email Send!");
+            };
+            bw.RunWorkerAsync();
         }
 
 
