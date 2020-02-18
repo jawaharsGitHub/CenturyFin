@@ -74,6 +74,7 @@
     <Compile Include="ExtendedTypes\InterestGroup.cs" />
     <Compile Include="ExtendedTypes\ReturnTypeEnum.cs" />
     <Compile Include="ExtendedTypes\TopupCustomer.cs" />
+    <Compile Include="ExtendedTypes\TxnActualVsExpected.cs" />
     <Compile Include="PrimaryTypes\DailyCollectionDetail.cs" />
     <Compile Include="PrimaryTypes\CollectionPerDay.cs" />
     <Compile Include="PrimaryTypes\Expenditure.cs" />

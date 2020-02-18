@@ -483,7 +483,7 @@ namespace CenturyFinCorpApp
 
         private void btnCheckReport_Click(object sender, EventArgs e)
         {
-            ReportRun();
+            //ReportRun();
         }
 
         private void ReportRun(bool isPersonal = false)
@@ -511,7 +511,8 @@ namespace CenturyFinCorpApp
                             CxnAmount = c.InitialInterest,
                             ReturnType = c.ReturnType,
                             IsPersonal = c.IsPersonal,
-                            LastDate = (c.ReturnType == ReturnTypeEnum.Weekly) ? Transaction.GetTransactionSummaryForWeek(c) : Transaction.GetLastTransactionDate(c),
+                            //LastDate = (c.ReturnType == ReturnTypeEnum.Weekly) ? Transaction.GetTransactionSummaryForWeek(c.CustomerSeqNumber) : Transaction.GetLastTransactionDate(c),
+                            LastDate = Transaction.GetLastTransactionDate(c),
 
                         })
                         .OrderByDescending(t => t.LastDate)
@@ -605,6 +606,7 @@ namespace CenturyFinCorpApp
             currentBalanceDate = DailyCollectionDetail.GetLastCollectionDate();
             var htmlString = FileContentReader.SendBalanceHtml;
             StringBuilder rowData = new StringBuilder();
+            string returnTypeText = "";
 
             // Daily
             var dailyData = (data.Where(w => w.ReturnType == ReturnTypeEnum.Daily && w.Ba.Diff > 1)
@@ -625,12 +627,49 @@ namespace CenturyFinCorpApp
             {
                 rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForColumn}</td></tr>");
             });
+            returnTypeText = "Daily";
 
-            var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Daily Check");
+            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check")
+                , currentBalanceDate, dailyData.Count(), $"{ returnTypeText} Check");
+            rowData.Clear();
 
-            AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, dailyData.Count, "Daily Check");
+            // Weekly
+            var weeklyData = (customersData.Where(w => w.ReturnType == ReturnTypeEnum.Weekly)
+                    .Select((ac, i) =>
+                    new
+                    {
+                        ac.CustomerSeqNumber,
+                        ac.Name,
+                        Ba = Transaction.GetTransactionGaps(ac),
+                        ac.LoanAmount,
+                        ac.ReturnType
 
-            //return dailyCheckHTML;
+                    }))
+                    .OrderByDescending(o => o.Ba.WeekDiff)
+                    .Where(w => w.Ba.WeekDiff > 0)
+                    .Select((ac, i) =>
+                   new
+                   {
+                       Sno = i + 1,
+                       ac.CustomerSeqNumber,
+                       ac.Name,
+                       ac.Ba,
+                       ac.LoanAmount,
+                       ac.ReturnType
+
+                   })
+                    .ToList();
+
+            weeklyData.ForEach(f =>
+            {
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForCol}</td></tr>");
+            });
+
+            returnTypeText = "Weekly";
+
+            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check")
+                , currentBalanceDate, weeklyData.Count, $"{ returnTypeText} Check");
+            rowData.Clear();
 
         }
 
@@ -676,7 +715,7 @@ namespace CenturyFinCorpApp
 
         private void btnNotGiven_Click(object sender, EventArgs e)
         {
-            ReportRun();
+            //ReportRun();
         }
 
         private void btnCheckin_Click(object sender, EventArgs e)

@@ -175,7 +175,19 @@ namespace DataAccess.PrimaryTypes
                 {
                     var list = ReadFileAsObjects<Transaction>(txnFile);
                     if (list == null) return null;
-                    return list.Where(c => c.CustomerId == customer.CustomerId && c.CustomerSequenceNo == customer.CustomerSeqNumber).OrderBy(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
+                    var txns = list.Where(c => c.CustomerId == customer.CustomerId && c.CustomerSequenceNo == customer.CustomerSeqNumber).OrderBy(o => o.TxnDate.Date).ThenByDescending(t => t.Balance).ToList();
+
+                    int sNo = 1;
+
+                    txns.ForEach(f => f.SerialNo = sNo++);
+
+                    for (int i = 1; i < txns.Count; i++)
+                    {
+                        txns[i].Diff = (txns[i].TxnDate - txns[i - 1].TxnDate).Days - 1;
+                    }
+
+                    return txns;
+
                 }
 
                 return null;
@@ -361,19 +373,68 @@ namespace DataAccess.PrimaryTypes
 
         }
 
-        public static string GetTransactionSummaryForWeek(Customer customer)
+        public static string GetTransactionSummaryForWeek(Customer cus)
         {
 
             var list = ReadFileAsObjects<Transaction>(JsonFilePath);
 
-            var latestDate = (from txn in list
-                              where txn.CustomerSequenceNo == customer.CustomerSeqNumber
-                              orderby txn.TransactionId
-                              select $"{txn.TxnDate.Day}({txn.TxnDate.DayOfWeek.ToString().Substring(0, 2)})").ToList();
+            //var latestDate = from txn in list
+            //                  where txn.CustomerSequenceNo == cus.CustomerSeqNumber
+            //                  orderby txn.TransactionId
+            //                  select Transaction.GetTransactionDetails(cus); //$"{txn.TxnDate.Day}({txn.TxnDate.DayOfWeek.ToString().Substring(0, 2)})").ToList();
 
-            var result = String.Join("-", latestDate);
+            var latestDate = Transaction.GetTransactionDetails(cus);
+            var result = string.Join("-", latestDate);
 
             return result;
+
+        }
+
+        public static TxnActualVsExpected GetTransactionGaps(Customer customer)
+        {
+
+            var txns = GetTransactionDetails(customer);
+            //var cus = Customer.GetCustomerDetails(customer);
+
+            // Cross verify txn.
+            var totalReceived = txns.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
+            var lastBalance = txns.Last().Balance;
+            var expectedBalance = customer.LoanAmount - totalReceived;
+            var isCorrect = (expectedBalance == lastBalance);
+
+            //if()
+            var startDate = txns.Select(s => s.TxnDate).Min();
+            var lastDate = txns.Select(s => s.TxnDate).Max();
+            var daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
+
+            //var lastBalance = txns.Last().Balance;
+
+            //var expected = (daysTaken * (customer.LoanAmount / 100)) > customer.LoanAmount ? -1 : (daysTaken * (customer.LoanAmount / 100));
+            var expected = (daysTaken * (customer.LoanAmount / 100));
+            var actual = customer.LoanAmount - lastBalance;
+
+            List<DateTime> col = txns.Select(s => s.TxnDate.Date).ToList();
+            var _missingLastDate = (customer.IsActive == false) ? lastDate : DateTime.Today.Date;
+
+
+            var range = (Enumerable.Range(0, (int)(_missingLastDate - startDate).TotalDays + 1)
+                                  .Select(i => startDate.AddDays(i).Date)).ToList();
+
+            double perDayAmount = (customer.LoanAmount / 100);
+
+            double perDayValue = (perDayAmount / 100.0);
+
+            var missing = range.Except(col).ToList();
+
+            // lblNoOfDays.Text = $"Days taken to Return {daysTaken} (Expected {expected} ACTUAL {actual}) - MISSING DAYS: {missing.Count}";
+
+            return new TxnActualVsExpected()
+            {
+                Expected = expected,
+                Actual = actual,
+                PerDayPayment = customer.LoanAmount / 100,
+                DaysTaken = daysTaken,
+            };
 
         }
 

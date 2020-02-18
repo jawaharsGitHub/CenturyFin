@@ -215,16 +215,6 @@ namespace CenturyFinCorpApp
 
             if (txns == null || txns.Count == 0) return;
 
-            int sNo = 1;
-
-
-            txns.ToList().ForEach(f => f.SerialNo = sNo++);
-
-            for (int i = 1; i < txns.Count; i++)
-            {
-                txns[i].Diff = (txns[i].TxnDate - txns[i - 1].TxnDate).Days - 1;
-            }
-
             var dataDource = txns;
             if (byBalance)
                 dataGridView1.DataSource = dataDource.OrderBy(t => t.TransactionId).ToList();
@@ -707,7 +697,7 @@ namespace CenturyFinCorpApp
                 AppCommunication.SendCustomerTxnEmail(customer.Name, DateTime.Today, txnFileName); // Email
                 //File.Delete(txnFileName);
                 MessageBox.Show("Txn Email Send!");
-                
+
             };
             bw.RunWorkerAsync();
         }
