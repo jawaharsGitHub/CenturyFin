@@ -48,6 +48,8 @@
             this.cmdFilter = new System.Windows.Forms.ComboBox();
             this.cmbAmountFilter = new System.Windows.Forms.ComboBox();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
+            this.btnEmail = new System.Windows.Forms.Button();
+            this.chkHide = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).BeginInit();
@@ -106,7 +108,7 @@
             // chkNotGivenCustomer
             // 
             this.chkNotGivenCustomer.AutoSize = true;
-            this.chkNotGivenCustomer.Location = new System.Drawing.Point(492, 207);
+            this.chkNotGivenCustomer.Location = new System.Drawing.Point(492, 190);
             this.chkNotGivenCustomer.Name = "chkNotGivenCustomer";
             this.chkNotGivenCustomer.Size = new System.Drawing.Size(104, 17);
             this.chkNotGivenCustomer.TabIndex = 12;
@@ -202,7 +204,7 @@
             this.cmdFilter.DisplayMember = "Value";
             this.cmdFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmdFilter.FormattingEnabled = true;
-            this.cmdFilter.Location = new System.Drawing.Point(190, 218);
+            this.cmdFilter.Location = new System.Drawing.Point(182, 218);
             this.cmdFilter.Name = "cmdFilter";
             this.cmdFilter.Size = new System.Drawing.Size(121, 21);
             this.cmdFilter.TabIndex = 22;
@@ -214,7 +216,7 @@
             this.cmbAmountFilter.DisplayMember = "Value";
             this.cmbAmountFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAmountFilter.FormattingEnabled = true;
-            this.cmbAmountFilter.Location = new System.Drawing.Point(341, 216);
+            this.cmbAmountFilter.Location = new System.Drawing.Point(324, 216);
             this.cmbAmountFilter.Name = "cmbAmountFilter";
             this.cmbAmountFilter.Size = new System.Drawing.Size(102, 21);
             this.cmbAmountFilter.TabIndex = 23;
@@ -232,11 +234,34 @@
             this.cmbFilter.ValueMember = "Key";
             this.cmbFilter.SelectedIndexChanged += new System.EventHandler(this.cmbFilter_SelectedIndexChanged);
             // 
+            // btnEmail
+            // 
+            this.btnEmail.Location = new System.Drawing.Point(492, 216);
+            this.btnEmail.Name = "btnEmail";
+            this.btnEmail.Size = new System.Drawing.Size(103, 23);
+            this.btnEmail.TabIndex = 25;
+            this.btnEmail.Text = "Send Txns Email";
+            this.btnEmail.UseVisualStyleBackColor = true;
+            this.btnEmail.Click += new System.EventHandler(this.btnEmail_Click);
+            // 
+            // chkHide
+            // 
+            this.chkHide.AutoSize = true;
+            this.chkHide.Location = new System.Drawing.Point(440, 218);
+            this.chkHide.Name = "chkHide";
+            this.chkHide.Size = new System.Drawing.Size(48, 17);
+            this.chkHide.TabIndex = 26;
+            this.chkHide.Text = "Hide";
+            this.chkHide.UseVisualStyleBackColor = true;
+            this.chkHide.CheckedChanged += new System.EventHandler(this.chkHide_CheckedChanged);
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.chkHide);
+            this.Controls.Add(this.btnEmail);
             this.Controls.Add(this.cmbFilter);
             this.Controls.Add(this.cmbAmountFilter);
             this.Controls.Add(this.cmdFilter);
@@ -286,5 +311,7 @@
         private System.Windows.Forms.ComboBox cmdFilter;
         private System.Windows.Forms.ComboBox cmbAmountFilter;
         private System.Windows.Forms.ComboBox cmbFilter;
+        private System.Windows.Forms.Button btnEmail;
+        private System.Windows.Forms.CheckBox chkHide;
     }
 }

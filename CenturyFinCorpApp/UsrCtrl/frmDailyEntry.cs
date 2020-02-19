@@ -4,10 +4,15 @@ using DataAccess.ExtendedTypes;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+
+
+
+using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 
 namespace CenturyFinCorpApp
 {
@@ -85,10 +90,10 @@ namespace CenturyFinCorpApp
 
             lblMax.Text = $"Max Cxn - {max.CollectionAmount}({maxClosed.Closed}) on {max.Date}";
 
-            
+
 
             //dgvAllDailyCollection.DataSource = result;
-            
+
             // Customer Collectin Average By Day.
             var averagePerDay = (from r in CxnHistory
                                  group r by Convert.ToDateTime(r.Date).DayOfWeek into newGroup
@@ -425,6 +430,69 @@ namespace CenturyFinCorpApp
 
             dgvAllDailyCollection.Columns["New"].DefaultCellStyle.Format = "N0";
 
+        }
+
+        private void btnEmail_Click(object sender, EventArgs e)
+        {
+            // WhatsAppMessage.SendMsg();
+
+            if (General.CheckForInternetConnection() == false)
+            {
+                MessageBox.Show("No Internet Available, Please connect and try again!");
+                return;
+            }
+
+            BackgroundWorker bw = new BackgroundWorker();
+            //this.Controls.Add(bw);
+
+            /* 1.Transaction Image*/
+            int height = dataGridView1.Height;
+            dataGridView1.Height = (dataGridView1.RowCount * dataGridView1.RowTemplate.Height) + 100;
+            Bitmap bitmapTxn = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
+            dataGridView1.DrawToBitmap(bitmapTxn, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
+            //Resize DataGridView back to original height.
+            dataGridView1.Height = height;
+
+            /* 2.Name Image*/
+            //Bitmap bitmapName = new Bitmap(this.btnCusName.Width, this.btnCusName.Height);
+            //btnCusName.DrawToBitmap(bitmapName, new Rectangle(0, 0, this.btnCusName.Width, this.btnCusName.Height));
+
+            bw.DoWork += (s, o) =>
+            {
+
+                /* 3.Merge 2 images*/
+                Bitmap firstTxn = bitmapTxn;
+                //Bitmap secondName = bitmapName;
+
+                Bitmap result = new Bitmap(firstTxn.Width, firstTxn.Height + 30);
+                Graphics g = Graphics.FromImage(result);
+                g.DrawImageUnscaled(firstTxn, 0, 30);
+                //g.DrawImageUnscaled(secondName, 0, 0);
+
+                var txnFileName = $"{Path.GetTempPath()}Tuesday-Cxn.jpg";
+                result.Save(txnFileName); // Save File
+                AppCommunication.SendCustomerTxnEmail("Tuesday Cxn", DateTime.Today, txnFileName); // Email
+                //File.Delete(txnFileName);
+                MessageBox.Show("Txn Email Send!");
+
+            };
+            bw.RunWorkerAsync();
+        }
+
+        private void chkHide_CheckedChanged(object sender, EventArgs e)
+        {
+
+            dataGridView1.Columns[1].Visible = chkHide.Checked;
+            dataGridView1.Columns[2].Visible = chkHide.Checked;
+            dataGridView1.Columns[5].Visible = chkHide.Checked;
+            dataGridView1.Columns[6].Visible = chkHide.Checked;
+
+            dataGridView1.Columns[3].Visible = !chkHide.Checked;
+            dataGridView1.Columns[4].Visible = !chkHide.Checked;
+            dataGridView1.Columns[7].Visible = !chkHide.Checked;
+            dataGridView1.Columns[11].Visible = !chkHide.Checked;
+
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
     }
 
