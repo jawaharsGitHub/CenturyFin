@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Reflection;
@@ -65,6 +67,22 @@ namespace Common
 
             Process.Start(fileName);
         }
+
+
+        //public static void ConvertHtmlToImage()
+        //{
+        //    Bitmap m_Bitmap = new Bitmap(400, 600);
+        //    PointF point = new PointF(0, 0);
+        //    SizeF maxSize = new System.Drawing.SizeF(500, 500);
+        //    HtmlRender.Ren(Graphics.FromImage(m_Bitmap),
+        //                                            "<html><body><p>This is a shitty html code</p>"
+        //                                            + "<p>This is another html line</p></body>",
+        //                                             point, maxSize);
+
+        //    m_Bitmap.Save(@"C:\Test.png", ImageFormat.Png);
+        //}
+
+
 
     }
 }

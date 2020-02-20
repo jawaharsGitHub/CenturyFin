@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.ExtensionMethod;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace DataAccess.ExtendedTypes
         {
             get
             {
-                return $"{Balance} on  {LastTxnDate.ToString("dd/MM/yy")}[{Diff - 1}]";
+                return $"{Balance} on  {LastTxnDate.ddmmyyyy()}[{Diff - 1}]";
             }
 
         }

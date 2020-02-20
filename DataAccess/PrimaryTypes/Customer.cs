@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace DataAccess.PrimaryTypes
 {
@@ -543,14 +544,23 @@ namespace DataAccess.PrimaryTypes
 
         public static List<Customer> GetAllCustomer()
         {
-            try
+            var tries = 3;
+            while (true)
             {
-                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
-                return list;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+                    return list;
+                }
+                catch
+                {
+                    if (--tries == 0)
+                    {
+                        LogHelper.WriteLog($"Error while try to get Customer data try no : {tries}");
+                        throw;
+                    }
+                    Thread.Sleep(1000);
+                }
             }
         }
 

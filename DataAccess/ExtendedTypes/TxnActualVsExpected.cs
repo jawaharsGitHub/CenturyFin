@@ -1,4 +1,7 @@
-﻿namespace DataAccess.ExtendedTypes
+﻿using Common.ExtensionMethod;
+using System;
+
+namespace DataAccess.ExtendedTypes
 {
     public class TxnActualVsExpected
     {
@@ -6,6 +9,7 @@
         public int Actual { get; set; }
 
         public int DaysTaken { get; set; }
+        public string LastTxnDate { get; set; }
 
         public int PerDayPayment { get; internal set; }
 
@@ -36,9 +40,10 @@
         {
             get
             {
-                return $"{Expected}(E) Vs {Actual}(A) - {WeekDiff}";
+                return $"{Expected}(E) Vs {Actual}(A)[{WeekDiff}] - {LastTxnDate}";
             }
         }
+
 
 
     }

@@ -394,37 +394,16 @@ namespace DataAccess.PrimaryTypes
         {
 
             var txns = GetTransactionDetails(customer);
-            //var cus = Customer.GetCustomerDetails(customer);
 
             // Cross verify txn.
-            var totalReceived = txns.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
             var lastBalance = txns.Last().Balance;
-            var expectedBalance = customer.LoanAmount - totalReceived;
-            var isCorrect = (expectedBalance == lastBalance);
 
-            //if()
             var startDate = txns.Select(s => s.TxnDate).Min();
             var lastDate = txns.Select(s => s.TxnDate).Max();
             var daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Today.Subtract(startDate).Days + 2;
 
-            //var lastBalance = txns.Last().Balance;
-
-            //var expected = (daysTaken * (customer.LoanAmount / 100)) > customer.LoanAmount ? -1 : (daysTaken * (customer.LoanAmount / 100));
             var expected = (daysTaken * (customer.LoanAmount / 100));
             var actual = customer.LoanAmount - lastBalance;
-
-            List<DateTime> col = txns.Select(s => s.TxnDate.Date).ToList();
-            var _missingLastDate = (customer.IsActive == false) ? lastDate : DateTime.Today.Date;
-
-
-            var range = (Enumerable.Range(0, (int)(_missingLastDate - startDate).TotalDays + 1)
-                                  .Select(i => startDate.AddDays(i).Date)).ToList();
-
-            double perDayAmount = (customer.LoanAmount / 100);
-
-            double perDayValue = (perDayAmount / 100.0);
-
-            var missing = range.Except(col).ToList();
 
             return new TxnActualVsExpected()
             {
@@ -432,11 +411,12 @@ namespace DataAccess.PrimaryTypes
                 Actual = actual,
                 PerDayPayment = customer.LoanAmount / 100,
                 DaysTaken = daysTaken,
+                LastTxnDate = lastDate.ddmmyyyy()
             };
 
         }
 
-        public static (decimal MissedMonthCount, int MissedAmount) GetTransactionGapsMonthly(Customer customer)
+        public static (decimal MissedMonthCount, int MissedAmount, string lastTxnDate) GetTransactionGapsMonthly(Customer customer)
         {
 
             var txns = GetTransactionDetails(customer);
@@ -462,7 +442,7 @@ namespace DataAccess.PrimaryTypes
             var missedMonthCount = Math.Round((missedAmount.ToDecimal() / customer.MonthlyInterest.ToDecimal()), 1);
 
 
-            return (missedMonthCount, missedAmount);
+            return (missedMonthCount, missedAmount, lastDate.ddmmyyyy());
 
         }
 

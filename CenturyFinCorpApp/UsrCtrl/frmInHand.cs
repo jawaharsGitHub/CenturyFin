@@ -388,11 +388,11 @@ namespace CenturyFinCorpApp
             try
             {
 
-                if (General.CheckForInternetConnection() == false)
-                {
-                    MessageBox.Show("No Internet Available, Please connect and try again!");
-                    return;
-                }
+                //if (General.CheckForInternetConnection() == false)
+                //{
+                //    MessageBox.Show("No Internet Available, Please connect and try again!");
+                //    return;
+                //}
 
                 BackgroundWorker bw = new BackgroundWorker();
                 //this.Controls.Add(bw);
@@ -640,14 +640,19 @@ namespace CenturyFinCorpApp
 
             goldMonthlyData.ForEach(f =>
             {
-                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.MissedMonthCount}/{f.Ba.MissedAmount}</td></tr>");
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.MissedMonthCount}/{f.Ba.MissedAmount} - {f.Ba.lastTxnDate}</td></tr>");
             });
 
             returnTypeText = "Gold-Monthly";
 
+            // Issue: we need html not plain text to img.
+            // HTMLhelper.HtmlToImg(rowData.ToString(), $"{Path.GetTempPath()}D-{currentBalanceDate.Plainddmmyyyy()}.jpg");
+
             AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA")
                 , currentBalanceDate, $"{goldMonthlyData.Count()}/{onlyGoldMonthly.Count()}", $"{ returnTypeText} Check");
             rowData.Clear();
+
+          
 
             #endregion "Monthly-Gold Check"
 
@@ -683,7 +688,7 @@ namespace CenturyFinCorpApp
 
             monthlyData.ForEach(f =>
             {
-                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.MissedMonthCount}/{f.Ba.MissedAmount}</td></tr>");
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.MissedMonthCount}/{f.Ba.MissedAmount} - {f.Ba.lastTxnDate}</td></tr>");
             });
 
             returnTypeText = "Monthly";
@@ -726,13 +731,13 @@ namespace CenturyFinCorpApp
 
             tenMonthsData.ForEach(f =>
             {
-                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.MissedMonthCount}/{f.Ba.MissedAmount}</td></tr>");
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.MissedMonthCount}/{f.Ba.MissedAmount} - {f.Ba.lastTxnDate}</td></tr>");
             });
 
-            returnTypeText = "Monthly";
+            returnTypeText = "TenMonths";
 
             AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA")
-                , currentBalanceDate, $"{tenMonthsData.Count}/{onlyTenMonths.Count()}/", $"{ returnTypeText} Check");
+                , currentBalanceDate, $"{tenMonthsData.Count}/{onlyTenMonths.Count()}", $"{ returnTypeText} Check");
             rowData.Clear();
 
             #endregion "TenMonths Check"
@@ -806,6 +811,11 @@ namespace CenturyFinCorpApp
 
             AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "Txn Detail")
                 , currentBalanceDate, $"{dailyData.Count}/{onlyDaily.Count()}", $"{ returnTypeText} Check");
+
+           
+
+            //var txnFileName = $"{Path.GetTempPath()}{currentBalanceDate}.jpg";
+
             rowData.Clear();
 
             #endregion "Daily Check"

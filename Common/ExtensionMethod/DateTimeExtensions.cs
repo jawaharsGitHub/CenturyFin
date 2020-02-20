@@ -24,5 +24,15 @@ namespace Common.ExtensionMethod
 
             return dateFormat.Replace(dateFormat.Split(' ')[0], newDayFormat); ;
         }
+
+        public static string ddmmyyyy(this DateTime dt, string seperator = ".")
+        {
+            return dt.ToString($"dd{seperator}MM{seperator}yy");
+        }
+
+        public static string Plainddmmyyyy(this DateTime dt)
+        {
+            return dt.ToString($"ddMMyy");
+        }
     }
 }
