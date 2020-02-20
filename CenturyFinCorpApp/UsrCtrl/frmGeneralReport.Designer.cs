@@ -67,7 +67,7 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblTotal.Location = new System.Drawing.Point(146, 59);
+            this.lblTotal.Location = new System.Drawing.Point(146, 32);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(47, 13);
             this.lblTotal.TabIndex = 12;
@@ -78,20 +78,20 @@
             this.lblActual.AutoSize = true;
             this.lblActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActual.ForeColor = System.Drawing.Color.Black;
-            this.lblActual.Location = new System.Drawing.Point(146, 27);
+            this.lblActual.Location = new System.Drawing.Point(210, -2);
             this.lblActual.Name = "lblActual";
-            this.lblActual.Size = new System.Drawing.Size(37, 13);
+            this.lblActual.Size = new System.Drawing.Size(43, 13);
             this.lblActual.TabIndex = 11;
-            this.lblActual.Text = "Actual";
+            this.lblActual.Text = "[Actual]";
             // 
             // lblExpected
             // 
             this.lblExpected.AutoSize = true;
             this.lblExpected.Location = new System.Drawing.Point(146, -2);
             this.lblExpected.Name = "lblExpected";
-            this.lblExpected.Size = new System.Drawing.Size(52, 13);
+            this.lblExpected.Size = new System.Drawing.Size(58, 13);
             this.lblExpected.TabIndex = 10;
-            this.lblExpected.Text = "Expected";
+            this.lblExpected.Text = "[Expected]";
             // 
             // chkAddSalary
             // 
@@ -161,7 +161,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(579, 45);
+            this.label4.Location = new System.Drawing.Point(628, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 28;
@@ -170,7 +170,7 @@
             // lblOutStanding
             // 
             this.lblOutStanding.AutoSize = true;
-            this.lblOutStanding.Location = new System.Drawing.Point(708, 7);
+            this.lblOutStanding.Location = new System.Drawing.Point(757, 7);
             this.lblOutStanding.Name = "lblOutStanding";
             this.lblOutStanding.Size = new System.Drawing.Size(111, 13);
             this.lblOutStanding.TabIndex = 27;
@@ -179,7 +179,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(579, 7);
+            this.label5.Location = new System.Drawing.Point(628, 7);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(101, 13);
             this.label5.TabIndex = 26;
@@ -205,7 +205,7 @@
             // lblBizAsset
             // 
             this.lblBizAsset.AutoSize = true;
-            this.lblBizAsset.Location = new System.Drawing.Point(709, 26);
+            this.lblBizAsset.Location = new System.Drawing.Point(758, 26);
             this.lblBizAsset.Name = "lblBizAsset";
             this.lblBizAsset.Size = new System.Drawing.Size(53, 13);
             this.lblBizAsset.TabIndex = 33;
@@ -214,7 +214,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(580, 26);
+            this.label9.Location = new System.Drawing.Point(629, 26);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 13);
             this.label9.TabIndex = 32;
@@ -247,7 +247,7 @@
             // 
             this.lblTotalAsset.AutoSize = true;
             this.lblTotalAsset.ForeColor = System.Drawing.Color.Red;
-            this.lblTotalAsset.Location = new System.Drawing.Point(708, 45);
+            this.lblTotalAsset.Location = new System.Drawing.Point(757, 45);
             this.lblTotalAsset.Name = "lblTotalAsset";
             this.lblTotalAsset.Size = new System.Drawing.Size(63, 13);
             this.lblTotalAsset.TabIndex = 29;
