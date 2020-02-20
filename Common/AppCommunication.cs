@@ -7,7 +7,7 @@ namespace Common
     public class AppCommunication
     {
 
-        public static void SendBalanceEmail(string mailBody, DateTime collectionDate, int activeCusCount, string subject)
+        public static void SendBalanceEmail(string mailBody, DateTime collectionDate, string activeCusCount, string subject)
         {
             try
             {

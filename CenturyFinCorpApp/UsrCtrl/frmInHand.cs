@@ -608,39 +608,60 @@ namespace CenturyFinCorpApp
             StringBuilder rowData = new StringBuilder();
             string returnTypeText = "";
 
-            // Daily
-            var dailyData = (data.Where(w => w.ReturnType == ReturnTypeEnum.Daily && w.Ba.Diff > 1)
-                    .OrderByDescending(o => o.Ba.Diff).Select((ac, i) =>
-                    new
-                    {
-                        Sno = i + 1,
-                        ac.CustomerSeqNumber,
-                        ac.Name,
-                        ac.Ba,
-                        ac.LoanAmount,
-                        ac.ReturnType
+            #region Monthly Check
 
-                    }))
-                    .ToList();
+            var onlyMonthly = customersData.Where(w => w.ReturnType == ReturnTypeEnum.Monthly);
 
-            dailyData.ForEach(f =>
-            {
-                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForColumn}</td></tr>");
-            });
-            returnTypeText = "Daily";
-
-            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check")
-                , currentBalanceDate, dailyData.Count(), $"{ returnTypeText} Check");
-            rowData.Clear();
-
-            // Weekly
-            var weeklyData = (customersData.Where(w => w.ReturnType == ReturnTypeEnum.Weekly)
+            var monthlyData = (onlyMonthly
                     .Select((ac, i) =>
                     new
                     {
                         ac.CustomerSeqNumber,
                         ac.Name,
-                        Ba = Transaction.GetTransactionGaps(ac),
+                        Ba = Transaction.GetTransactionGapsMonthly(ac),
+                        ac.LoanAmount,
+                        ac.ReturnType
+
+                    }))
+                    .OrderByDescending(o => o.Ba.MissedAmount)
+                    .Where(w => w.Ba.MissedAmount > 0)
+                    .Select((ac, i) =>
+                   new
+                   {
+                       Sno = i + 1,
+                       ac.CustomerSeqNumber,
+                       ac.Name,
+                       ac.Ba,
+                       ac.LoanAmount,
+                       ac.ReturnType
+
+                   })
+                    .ToList();
+
+            monthlyData.ForEach(f =>
+            {
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.MissedMonthCount}/{f.Ba.MissedAmount}</td></tr>");
+            });
+
+            returnTypeText = "Monthly";
+
+            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA")
+                , currentBalanceDate, $"{monthlyData.Count}/{onlyMonthly.Count()}/", $"{ returnTypeText} Check");
+            rowData.Clear();
+
+            #endregion "Monthly Check"
+
+            #region "Weekly Check"
+
+
+            var onlyWeekly = customersData.Where(w => w.ReturnType == ReturnTypeEnum.Weekly);
+            var weeklyData = (onlyWeekly
+                    .Select((ac, i) =>
+                    new
+                    {
+                        ac.CustomerSeqNumber,
+                        ac.Name,
+                        Ba = Transaction.GetTransactionGapsWeekly(ac),
                         ac.LoanAmount,
                         ac.ReturnType
 
@@ -667,9 +688,43 @@ namespace CenturyFinCorpApp
 
             returnTypeText = "Weekly";
 
-            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check")
-                , currentBalanceDate, weeklyData.Count, $"{ returnTypeText} Check");
+            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "E Vs A-MW")
+                , currentBalanceDate, $"{weeklyData.Count}/{onlyWeekly.Count()}", $"{ returnTypeText} Check");
             rowData.Clear();
+
+            #endregion "Weekly Check"
+
+
+            #region "Daily Check"
+
+            var onlyDaily = data.Where(w => w.ReturnType == ReturnTypeEnum.Daily);
+
+            var dailyData = onlyDaily.Where(w => w.Ba.Diff > 1)
+                    .OrderByDescending(o => o.Ba.Diff).Select((ac, i) =>
+                    new
+                    {
+                        Sno = i + 1,
+                        ac.CustomerSeqNumber,
+                        ac.Name,
+                        ac.Ba,
+                        ac.LoanAmount,
+                        ac.ReturnType
+
+                    })
+                    .ToList();
+
+            dailyData.ForEach(f =>
+            {
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForColumn}</td></tr>");
+            });
+            returnTypeText = "Daily";
+
+            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "Txn Detail")
+                , currentBalanceDate, $"{dailyData.Count}/{onlyDaily.Count()}", $"{ returnTypeText} Check");
+            rowData.Clear();
+
+            #endregion "Daily Check"
+
 
         }
 
@@ -702,9 +757,9 @@ namespace CenturyFinCorpApp
                 rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForColumn}</td></tr>");
             });
 
-            var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Balance Report");
+            var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Balance Report").Replace("[LastCol]", "Txn Detail");
 
-            AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, data.Count(), "Jeyam Finance Balance Report");
+            AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, data.Count().ToString(), "Jeyam Finance Balance Report");
 
         }
 

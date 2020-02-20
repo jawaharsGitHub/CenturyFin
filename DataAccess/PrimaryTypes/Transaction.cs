@@ -390,7 +390,7 @@ namespace DataAccess.PrimaryTypes
 
         }
 
-        public static TxnActualVsExpected GetTransactionGaps(Customer customer)
+        public static TxnActualVsExpected GetTransactionGapsWeekly(Customer customer)
         {
 
             var txns = GetTransactionDetails(customer);
@@ -426,8 +426,6 @@ namespace DataAccess.PrimaryTypes
 
             var missing = range.Except(col).ToList();
 
-            // lblNoOfDays.Text = $"Days taken to Return {daysTaken} (Expected {expected} ACTUAL {actual}) - MISSING DAYS: {missing.Count}";
-
             return new TxnActualVsExpected()
             {
                 Expected = expected,
@@ -435,6 +433,36 @@ namespace DataAccess.PrimaryTypes
                 PerDayPayment = customer.LoanAmount / 100,
                 DaysTaken = daysTaken,
             };
+
+        }
+
+        public static (decimal MissedMonthCount, int MissedAmount) GetTransactionGapsMonthly(Customer customer)
+        {
+
+            var txns = GetTransactionDetails(customer);
+
+            var loanGivedDay = customer.AmountGivenDate.Value.Day;
+
+            // Cross verify txn.
+            var totalReceived = txns.Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
+
+            var startDate = txns.Select(s => s.TxnDate).Min();
+            var lastDate = txns.Select(s => s.TxnDate).Max();
+
+            var paymentDayCount = (from dr in DateHelper.GetDateRange(startDate, DateTime.Today)
+                                   where dr.Day == loanGivedDay && dr != customer.AmountGivenDate
+                                   select dr.Day);
+
+            var r = paymentDayCount.Count();
+
+            var expectedPaidInt = customer.MonthlyInterest * r;
+            var actualPaidInt = totalReceived;
+
+            var missedAmount = expectedPaidInt - actualPaidInt;
+            var missedMonthCount = Math.Round((missedAmount.ToDecimal() / customer.MonthlyInterest.ToDecimal()), 1);
+
+
+            return (missedMonthCount, missedAmount);
 
         }
 
