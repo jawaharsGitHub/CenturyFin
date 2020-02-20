@@ -416,7 +416,7 @@ namespace CenturyFinCorpApp
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
         }
@@ -608,6 +608,49 @@ namespace CenturyFinCorpApp
             StringBuilder rowData = new StringBuilder();
             string returnTypeText = "";
 
+            #region Monthly-Gold Check
+
+            var onlyGoldMonthly = customersData.Where(w => w.ReturnType == ReturnTypeEnum.GoldMonthly);
+
+            var goldMonthlyData = (onlyGoldMonthly
+                    .Select((ac, i) =>
+                    new
+                    {
+                        ac.CustomerSeqNumber,
+                        ac.Name,
+                        Ba = Transaction.GetTransactionGapsMonthly(ac),
+                        ac.LoanAmount,
+                        ac.ReturnType
+
+                    }))
+                    .OrderByDescending(o => o.Ba.MissedAmount)
+                    .Where(w => w.Ba.MissedAmount > 0)
+                    .Select((ac, i) =>
+                   new
+                   {
+                       Sno = i + 1,
+                       ac.CustomerSeqNumber,
+                       ac.Name,
+                       ac.Ba,
+                       ac.LoanAmount,
+                       ac.ReturnType
+
+                   })
+                    .ToList();
+
+            goldMonthlyData.ForEach(f =>
+            {
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.MissedMonthCount}/{f.Ba.MissedAmount}</td></tr>");
+            });
+
+            returnTypeText = "Gold-Monthly";
+
+            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA")
+                , currentBalanceDate, $"{goldMonthlyData.Count()}/{onlyGoldMonthly.Count()}", $"{ returnTypeText} Check");
+            rowData.Clear();
+
+            #endregion "Monthly-Gold Check"
+
             #region Monthly Check
 
             var onlyMonthly = customersData.Where(w => w.ReturnType == ReturnTypeEnum.Monthly);
@@ -646,10 +689,53 @@ namespace CenturyFinCorpApp
             returnTypeText = "Monthly";
 
             AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA")
-                , currentBalanceDate, $"{monthlyData.Count}/{onlyMonthly.Count()}/", $"{ returnTypeText} Check");
+                , currentBalanceDate, $"{monthlyData.Count}/{onlyMonthly.Count()}", $"{ returnTypeText} Check");
             rowData.Clear();
 
             #endregion "Monthly Check"
+
+            #region "TenMonths Check"
+
+            var onlyTenMonths = customersData.Where(w => w.ReturnType == ReturnTypeEnum.TenMonths);
+
+            var tenMonthsData = (onlyTenMonths
+                    .Select((ac, i) =>
+                    new
+                    {
+                        ac.CustomerSeqNumber,
+                        ac.Name,
+                        Ba = Transaction.GetTransactionGapsMonthly(ac),
+                        ac.LoanAmount,
+                        ac.ReturnType
+
+                    }))
+                    .OrderByDescending(o => o.Ba.MissedAmount)
+                    .Where(w => w.Ba.MissedAmount > 0)
+                    .Select((ac, i) =>
+                   new
+                   {
+                       Sno = i + 1,
+                       ac.CustomerSeqNumber,
+                       ac.Name,
+                       ac.Ba,
+                       ac.LoanAmount,
+                       ac.ReturnType
+
+                   })
+                    .ToList();
+
+            tenMonthsData.ForEach(f =>
+            {
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.MissedMonthCount}/{f.Ba.MissedAmount}</td></tr>");
+            });
+
+            returnTypeText = "Monthly";
+
+            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA")
+                , currentBalanceDate, $"{tenMonthsData.Count}/{onlyTenMonths.Count()}/", $"{ returnTypeText} Check");
+            rowData.Clear();
+
+            #endregion "TenMonths Check"
 
             #region "Weekly Check"
 
@@ -693,7 +779,6 @@ namespace CenturyFinCorpApp
             rowData.Clear();
 
             #endregion "Weekly Check"
-
 
             #region "Daily Check"
 
@@ -775,7 +860,7 @@ namespace CenturyFinCorpApp
 
         private void btnCheckin_Click(object sender, EventArgs e)
         {
-            GitHubClient.Commit();
+            //GitHubClient.Commit();
         }
     }
 }

@@ -32,6 +32,7 @@ namespace Common
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
 
@@ -61,6 +62,7 @@ namespace Common
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
 
@@ -92,6 +94,7 @@ namespace Common
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
 
@@ -106,6 +109,7 @@ namespace Common
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
 
@@ -118,6 +122,7 @@ namespace Common
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
     }

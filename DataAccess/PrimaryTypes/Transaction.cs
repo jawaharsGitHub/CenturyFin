@@ -405,7 +405,7 @@ namespace DataAccess.PrimaryTypes
             //if()
             var startDate = txns.Select(s => s.TxnDate).Min();
             var lastDate = txns.Select(s => s.TxnDate).Max();
-            var daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
+            var daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Today.Subtract(startDate).Days + 2;
 
             //var lastBalance = txns.Last().Balance;
 
