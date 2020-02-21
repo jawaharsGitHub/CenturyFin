@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.ExtensionMethod;
+using System;
 using System.Net;
 using System.Net.Mail;
 
@@ -17,7 +18,7 @@ namespace Common
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress(myEmail);
                 message.To.Add(new MailAddress(myEmail));
-                message.Subject = $"[{activeCusCount}] {subject} - {collectionDate.ToShortDateString()}";
+                message.Subject = $"[{activeCusCount}] {subject} - {collectionDate.Ddmmyy()}";
                 message.IsBodyHtml = true; //to make message body as html  
                 message.Body = mailBody;
                 smtp.Port = 587;
@@ -47,7 +48,7 @@ namespace Common
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress(myEmail);
                 message.To.Add(new MailAddress(myEmail));
-                message.Subject = $"{emailStructure.CollectionDate.ToShortDateString()} {emailStructure.Subject} Report";
+                message.Subject = $"{emailStructure.CollectionDate.Ddmmyy()} {emailStructure.Subject} Report";
                 message.IsBodyHtml = true; //to make message body as html  
                 message.Body = emailStructure.HtmlContent;
                 smtp.Port = 587;
@@ -77,7 +78,7 @@ namespace Common
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress(myEmail);
                 message.To.Add(new MailAddress(myEmail));
-                message.Subject = $"Transaction For {mailBody} On {collectionDate.ToShortDateString()}";
+                message.Subject = $"Transaction For {mailBody} On {collectionDate.Ddmmyy()}";
                 message.IsBodyHtml = false; //to make message body as html  
                 message.Body = mailBody;
                 smtp.Port = 587;

@@ -411,7 +411,7 @@ namespace DataAccess.PrimaryTypes
                 Actual = actual,
                 PerDayPayment = customer.LoanAmount / 100,
                 DaysTaken = daysTaken,
-                LastTxnDate = lastDate.ddmmyyyy()
+                LastTxnDate = lastDate.Ddmmyy()
             };
 
         }
@@ -442,7 +442,7 @@ namespace DataAccess.PrimaryTypes
             var missedMonthCount = Math.Round((missedAmount.ToDecimal() / customer.MonthlyInterest.ToDecimal()), 1);
 
 
-            return (missedMonthCount, missedAmount, lastDate.ddmmyyyy());
+            return (missedMonthCount, missedAmount, lastDate.Ddmmyy());
 
         }
 

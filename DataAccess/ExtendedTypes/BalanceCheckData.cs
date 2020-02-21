@@ -17,7 +17,7 @@ namespace DataAccess.ExtendedTypes
         {
             get
             {
-                return $"{Balance} on  {LastTxnDate.ddmmyyyy()}[{Diff - 1}]";
+                return $"{Balance} on  {LastTxnDate.Ddmmyy()}[{Diff - 1}]";
             }
 
         }

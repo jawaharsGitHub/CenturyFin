@@ -812,10 +812,6 @@ namespace CenturyFinCorpApp
             AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "Txn Detail")
                 , currentBalanceDate, $"{dailyData.Count}/{onlyDaily.Count()}", $"{ returnTypeText} Check");
 
-           
-
-            //var txnFileName = $"{Path.GetTempPath()}{currentBalanceDate}.jpg";
-
             rowData.Clear();
 
             #endregion "Daily Check"
@@ -826,9 +822,7 @@ namespace CenturyFinCorpApp
         private void SendEmailForSendBalance()
         {
             var activeCus = Customer.GetAllActiveCustomer();
-            //var allBalances = FormHTMLForSendBalance(activeCus);
             var htmlString = FileContentReader.SendBalanceHtml;
-
 
             var data = activeCus.OrderBy(o => o.Name).Select((ac, i) =>
                         new
@@ -854,7 +848,7 @@ namespace CenturyFinCorpApp
 
             var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Balance Report").Replace("[LastCol]", "Txn Detail");
 
-            AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, data.Count().ToString(), "Jeyam Finance Balance Report");
+            AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, data.Count().ToString(), "JF Bal.Report");
 
         }
 
