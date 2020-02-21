@@ -57,7 +57,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             var details = Transaction.GetActiveCustomersLastTransactionDetails();
 
             var combinedData = (from txns in details
-                                join cus in Customer.GetAllActiveCustomer()
+                                join cus in Customer.GetActiveCustomer()
                                 on txns.CustomerSequenceNo equals cus.CustomerSeqNumber
                                 select new
                                 {

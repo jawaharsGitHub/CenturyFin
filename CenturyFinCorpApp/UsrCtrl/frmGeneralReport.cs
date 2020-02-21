@@ -230,7 +230,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             var total = (actual + expected);
             var totalMonthly = (actualMonthly + expectedMonthly);
 
-            
+
 
             // Monthly
             //lblExpected.Text = $"1. Actual(M) : {actualMonthly.ToMoneyFormat()} (Per Month: { (actualMonthly / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
@@ -286,7 +286,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                              orderby c.AmountGivenDate
                              group c by c.AmountGivenDate.Value.ToString("Y") into newGroup
 
-                             select new
+                             select new NotesPerMonth()
                              {
                                  Month = newGroup.Key,
                                  GivenCount = newGroup.Count(),
@@ -295,18 +295,44 @@ namespace CenturyFinCorpApp.UsrCtrl
                                  FutureInterest = newGroup.Sum(s => s.Interest).ToMoneyFormat(),
                              }).Reverse().ToList();
 
+            var closedcustomers = (from c in Customer.GetClosedCustomer()
+                                       //orderby c.AmountGivenDate
+                                   group c by c.ClosedDate.Value.ToString("Y") into newGroup
+                                   select new NotesPerMonth()
+                                   {
+                                       Month = newGroup.Key,
+                                       ClosedCount = $"{newGroup.Count()} ({newGroup.Sum(s => s.Interest)})",
+                                   }).ToList();
 
-            dgvNotePerMonth.DataSource = customers;
+            var resultData = (from c in customers
+                              join cc in closedcustomers
+                              on c.Month equals cc.Month
+                              into newOuterJoinList
+                              from item in newOuterJoinList.DefaultIfEmpty(null)
+                              select new NotesPerMonth
+                              {
+                                  Month = c.Month,
+                                  GivenCount = c.GivenCount,
+                                  ClosedCount = (item == null) ? "0" : item.ClosedCount,
+                                  LoanAmount = c.LoanAmount,
+                                  GivenAmount = c.GivenAmount,
+                                  FutureInterest = c.FutureInterest,
+                              }).ToList();
 
-            var totalLoanAmount = customers.Sum(s => s.LoanAmount.ToIntMoney());
-            var totalGivenAmount = customers.Sum(s => s.GivenAmount.ToIntMoney());
+
+
+
+            dgvNotePerMonth.DataSource = resultData;
+
+            var totalLoanAmount = resultData.Sum(s => s.LoanAmount.ToIntMoney());
+            var totalGivenAmount = resultData.Sum(s => s.GivenAmount.ToIntMoney());
             var difference = totalLoanAmount - totalGivenAmount;
 
 
             label6.Text = $"LA: {totalLoanAmount.ToMoneyFormat()} {Environment.NewLine}" +
                 $"GA: {totalGivenAmount.ToMoneyFormat()} (~{difference.ToMoneyFormat()}) {Environment.NewLine}" +
-                $"FI: {customers.Sum(s => s.FutureInterest.ToIntMoney()).ToMoneyFormat()} {Environment.NewLine}" +
-                $"C: {customers.Sum(s => s.GivenCount)} {Environment.NewLine}";
+                $"FI: {resultData.Sum(s => s.FutureInterest.ToIntMoney()).ToMoneyFormat()} {Environment.NewLine}" +
+                $"C: {resultData.Sum(s => s.GivenCount)} {Environment.NewLine}";
 
         }
 

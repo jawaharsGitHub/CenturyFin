@@ -83,7 +83,7 @@ namespace CenturyFinCorpApp
 
         private void GetReturnTypeGroupedData()
         {
-            var data = (from cus in Customer.GetAllActiveCustomer()
+            var data = (from cus in Customer.GetActiveCustomer()
                         group cus by cus.ReturnType into newGroup
                         select newGroup).ToList();
 
@@ -321,7 +321,7 @@ namespace CenturyFinCorpApp
                                         CustomerId = newGroup.Key,
                                         Name = newGroup.First().Name,
                                         TotalInterest = newGroup.Sum(s => s.Interest),
-                                        TotalBalance = Customer.GetAllActiveCustomer().Where(w => w.CustomerId == newGroup.Key).Sum(s => Transaction.GetBalance(s)),
+                                        TotalBalance = Customer.GetActiveCustomer().Where(w => w.CustomerId == newGroup.Key).Sum(s => Transaction.GetBalance(s)),
                                         Count = newGroup.Count()
                                     }).OrderByDescending(o => o.TotalInterest).ToList();
 

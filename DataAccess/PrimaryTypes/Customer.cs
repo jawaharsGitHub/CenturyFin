@@ -564,11 +564,24 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static List<Customer> GetAllActiveCustomer()
+        public static List<Customer> GetActiveCustomer()
         {
             try
             {
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath).Where(w => w.IsActive).ToList();
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static List<Customer> GetClosedCustomer()
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath).Where(w => w.IsActive == false).ToList();
                 return list;
             }
             catch (Exception ex)

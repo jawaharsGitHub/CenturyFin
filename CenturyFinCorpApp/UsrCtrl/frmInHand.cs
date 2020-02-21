@@ -492,7 +492,7 @@ namespace CenturyFinCorpApp
 
             string htmlString = FileContentReader.ReportRunHtml;
 
-            var cus = Customer.GetAllActiveCustomer();
+            var cus = Customer.GetActiveCustomer();
             var txns = Transaction.GetDailyCollectionDetails_V0(currentBalanceDate);
 
             var data = (from c in cus
@@ -531,7 +531,7 @@ namespace CenturyFinCorpApp
 
         private void SendEmailForCrossCheck()
         {
-            var customersData = Customer.GetAllActiveCustomer();
+            var customersData = Customer.GetActiveCustomer();
 
             var values = Enum.GetValues(typeof(ReturnTypeEnum)).Cast<ReturnTypeEnum>().Reverse().ToList();
 
@@ -821,7 +821,7 @@ namespace CenturyFinCorpApp
 
         private void SendEmailForSendBalance()
         {
-            var activeCus = Customer.GetAllActiveCustomer();
+            var activeCus = Customer.GetActiveCustomer();
             var htmlString = FileContentReader.SendBalanceHtml;
 
             var data = activeCus.OrderBy(o => o.Name).Select((ac, i) =>

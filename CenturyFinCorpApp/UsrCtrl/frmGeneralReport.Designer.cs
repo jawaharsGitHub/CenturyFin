@@ -109,7 +109,7 @@
             this.dgvNotePerMonth.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNotePerMonth.Location = new System.Drawing.Point(592, 110);
             this.dgvNotePerMonth.Name = "dgvNotePerMonth";
-            this.dgvNotePerMonth.Size = new System.Drawing.Size(569, 405);
+            this.dgvNotePerMonth.Size = new System.Drawing.Size(665, 405);
             this.dgvNotePerMonth.TabIndex = 13;
             this.dgvNotePerMonth.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNotePerMonth_CellMouseEnter);
             // 
@@ -133,7 +133,7 @@
             // 
             // btnCustomerCount
             // 
-            this.btnCustomerCount.Location = new System.Drawing.Point(1167, 106);
+            this.btnCustomerCount.Location = new System.Drawing.Point(849, 81);
             this.btnCustomerCount.Name = "btnCustomerCount";
             this.btnCustomerCount.Size = new System.Drawing.Size(145, 23);
             this.btnCustomerCount.TabIndex = 23;

@@ -72,6 +72,7 @@
     <Compile Include="ExtendedTypes\DynamicReportNotGivenDays.cs" />
     <Compile Include="ExtendedTypes\ExtDailyTxn.cs" />
     <Compile Include="ExtendedTypes\InterestGroup.cs" />
+    <Compile Include="ExtendedTypes\NotesPerMonth.cs" />
     <Compile Include="ExtendedTypes\ReturnTypeEnum.cs" />
     <Compile Include="ExtendedTypes\TopupCustomer.cs" />
     <Compile Include="ExtendedTypes\TxnActualVsExpected.cs" />
