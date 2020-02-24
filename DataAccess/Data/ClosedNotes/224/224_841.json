@@ -1,0 +1,26 @@
+[
+  {
+    "CustomerId": 224,
+    "IsClosed": false,
+    "TransactionId": 28946,
+    "AmountReceived": 0,
+    "Balance": 20000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 841,
+    "TxnDate": "2020-01-24T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 224,
+    "IsClosed": true,
+    "TransactionId": 30796,
+    "AmountReceived": 20000,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 841,
+    "TxnDate": "2020-02-22T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  }
+]
