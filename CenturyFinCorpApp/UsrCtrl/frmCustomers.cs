@@ -353,9 +353,9 @@ namespace CenturyFinCorpApp
                 if (editJustDone)
                 {
                     editJustDone = false;
-                    dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
-                    dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
-                    this.dataGridView1.ClearSelection();
+                    //dataGridView1.CurrentCell.Style.BackColor = Color.DarkRed;
+                    //dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+                    //this.dataGridView1.ClearSelection();
                     return;
                 }
 
@@ -363,6 +363,7 @@ namespace CenturyFinCorpApp
                 {
                     dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
                     dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+                    //dataGridView1.CurrentCell.
                     this.dataGridView1.ClearSelection();
                     return;
                 }
