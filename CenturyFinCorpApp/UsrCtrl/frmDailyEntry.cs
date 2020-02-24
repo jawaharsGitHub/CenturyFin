@@ -53,11 +53,9 @@ namespace CenturyFinCorpApp
         {
             var myKeyValuePair = new List<KeyValuePair<int, string>>()
                {
-                    new KeyValuePair<int, string>(3, "ALL"),
+                   new KeyValuePair<int, string>(3, "ALL"),
                    new KeyValuePair<int, string>(1, "Given Customer"),
                    new KeyValuePair<int, string>(2, "Closed Customer")
-
-
                };
 
             return myKeyValuePair;
@@ -90,10 +88,6 @@ namespace CenturyFinCorpApp
 
             lblMax.Text = $"Max Cxn - {max.CollectionAmount}({maxClosed.Closed}) on {max.Date}";
 
-
-
-            //dgvAllDailyCollection.DataSource = result;
-
             // Customer Collectin Average By Day.
             var averagePerDay = (from r in CxnHistory
                                  group r by Convert.ToDateTime(r.Date).DayOfWeek into newGroup
@@ -107,6 +101,8 @@ namespace CenturyFinCorpApp
 
 
             dgAvgPerDay.DataSource = averagePerDay;
+
+            btnAvgPerDay.Text = averagePerDay.Average(a => a.CxnAvg).TokFormat();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -350,16 +350,8 @@ namespace CenturyFinCorpApp
         {
             if (dataGridView1.CurrentCell.OwningColumn.Name == "CollectionAmt")
             {
-                if (editJustDone)
-                {
-                    editJustDone = false;
-                    //dataGridView1.CurrentCell.Style.BackColor = Color.DarkRed;
-                    //dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
-                    //this.dataGridView1.ClearSelection();
-                    return;
-                }
 
-                if (IsEnterKey)
+                if(editJustDone || IsEnterKey)
                 {
                     dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
                     dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
@@ -367,6 +359,23 @@ namespace CenturyFinCorpApp
                     this.dataGridView1.ClearSelection();
                     return;
                 }
+                //if (editJustDone)
+                //{
+                //    editJustDone = false;
+                //    //dataGridView1.CurrentCell.Style.BackColor = Color.DarkRed;
+                //    //dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+                //    //this.dataGridView1.ClearSelection();
+                //    return;
+                //}
+
+                //else if (IsEnterKey)
+                //{
+                //    dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
+                //    dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+                //    //dataGridView1.CurrentCell.
+                //    this.dataGridView1.ClearSelection();
+                //    return;
+                //}
 
                 dataGridView1.CurrentCell.Style.BackColor = Color.White;
                 dataGridView1.CurrentCell.Value = null;

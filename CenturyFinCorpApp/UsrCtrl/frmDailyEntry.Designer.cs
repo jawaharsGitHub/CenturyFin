@@ -50,6 +50,7 @@
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.btnEmail = new System.Windows.Forms.Button();
             this.chkHide = new System.Windows.Forms.CheckBox();
+            this.btnAvgPerDay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllDailyCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAvgPerDay)).BeginInit();
@@ -255,11 +256,21 @@
             this.chkHide.UseVisualStyleBackColor = true;
             this.chkHide.CheckedChanged += new System.EventHandler(this.chkHide_CheckedChanged);
             // 
+            // btnAvgPerDay
+            // 
+            this.btnAvgPerDay.Location = new System.Drawing.Point(1198, 11);
+            this.btnAvgPerDay.Name = "btnAvgPerDay";
+            this.btnAvgPerDay.Size = new System.Drawing.Size(75, 51);
+            this.btnAvgPerDay.TabIndex = 27;
+            this.btnAvgPerDay.Text = "Avg:";
+            this.btnAvgPerDay.UseVisualStyleBackColor = true;
+            // 
             // frmDailyEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.Controls.Add(this.btnAvgPerDay);
             this.Controls.Add(this.chkHide);
             this.Controls.Add(this.btnEmail);
             this.Controls.Add(this.cmbFilter);
@@ -313,5 +324,6 @@
         private System.Windows.Forms.ComboBox cmbFilter;
         private System.Windows.Forms.Button btnEmail;
         private System.Windows.Forms.CheckBox chkHide;
+        private System.Windows.Forms.Button btnAvgPerDay;
     }
 }
