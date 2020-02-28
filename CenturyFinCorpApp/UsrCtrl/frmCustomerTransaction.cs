@@ -67,7 +67,6 @@ namespace CenturyFinCorpApp
 
 
             lblDetail.Text = $"{customer.Name} - CutomerId: {customer.CustomerId} SequenceNo: {customer.CustomerSeqNumber} {closedText} {mergedText}";
-            btnCusName.Text = customer.Name;
             txtCollectionAmount.Text = (customer.LoanAmount / 100).ToString();
 
             LoadTxn();
@@ -228,6 +227,7 @@ namespace CenturyFinCorpApp
             var lastDate = dataDource.Select(s => s.TxnDate).Max();
             daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
 
+            btnCusName.Text = $"{customer.Name}({daysTaken})";
 
             // Calculate Credit Score 
             // TODO: Need to move as a seperate method - CalculateCreditScore()
@@ -664,6 +664,8 @@ namespace CenturyFinCorpApp
 
             BackgroundWorker bw = new BackgroundWorker();
             //this.Controls.Add(bw);
+
+            dataGridView1.ClearSelection();
 
             /* 1.Transaction Image*/
             int height = dataGridView1.Height;

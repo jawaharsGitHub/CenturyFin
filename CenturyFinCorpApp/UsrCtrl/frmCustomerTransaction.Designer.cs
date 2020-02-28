@@ -533,7 +533,7 @@
             // 
             // btnCusName
             // 
-            this.btnCusName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCusName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCusName.ForeColor = System.Drawing.Color.Maroon;
             this.btnCusName.Location = new System.Drawing.Point(18, 165);
             this.btnCusName.Name = "btnCusName";
