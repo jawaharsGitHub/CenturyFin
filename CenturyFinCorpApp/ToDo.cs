@@ -29,10 +29,10 @@
 //TODO: Mobile Message Service
 //TODO: Multi Select Date Control
 //TODO: Tool - Auto Fill(all entries)
-//TODO: While Creating a customer(Existing customer) should warn for the worst customer.
+//DOne: While Creating a customer(Existing customer) should warn for the worst customer.
 //TODO: Expected Amount the given date(Future Date)
 //TODO: Tab-Order
-//TODO: While adding customer - display the customer no and sequence number eg: if 2nd time given to same customer then it should shows as 10(2nd time.)
+//Done: While adding customer - display the customer no and sequence number eg: if 2nd time given to same customer then it should shows as 10(2nd time.)
 //TODO: Enable sorting, paging for customer page.
 //TODO: change icon of the project.
 //TODO: installer for the project.
