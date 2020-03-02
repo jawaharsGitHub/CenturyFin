@@ -160,16 +160,17 @@ namespace CenturyFinCorpApp
                 Data4 = monthlyCustomers.Sum(s => s.Interest)
             };
 
-            var extra = (days - totalTxn) >= 0 ? "Shortage" : "Extra";
+            //var extra = (days - totalTxn) >= 0 ? "Shortage" : "Extra";
 
             label1.Text = $"{myData.TotalNotes} {Environment.NewLine} " +
               $"{myData.DaysToMonth} {Environment.NewLine} " +
               $"{myData.NotesPerDay} {Environment.NewLine} " +
               $"{myData.ClosedNotesPerDay} {Environment.NewLine} " +
               $"{myData.Data1}{Environment.NewLine} " +
-              $"{myData.Data2} Monthly - {myData.Data3.TokFormat()}  {Environment.NewLine}" +
-              $"  need {365 - totalTxn} in {365 - days} days [{extra}: {Math.Abs(days - totalTxn)}] {Environment.NewLine} " +
-              $"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}";
+              $"{myData.Data2} Monthly - {myData.Data3.TokFormat()}  {Environment.NewLine}"
+              //$"  need {365 - totalTxn} in {365 - days} days [{extra}: {Math.Abs(days - totalTxn)}] {Environment.NewLine} " +
+              //$"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}"
+              ;
 
 
 
