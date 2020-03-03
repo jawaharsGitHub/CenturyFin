@@ -1650,5 +1650,33 @@
     "CollectionSpotId": 99,
     "ReturnDay": null,
     "ModifiedDate": null
+  },
+  {
+    "CustomerSeqNumber": 902,
+    "MergeFromCusSeqNumber": null,
+    "CustomerId": 50,
+    "Name": "Munis Travels - Kamal",
+    "TamilName": null,
+    "AdjustedAmount": null,
+    "PhoneNumber": "",
+    "LoanAmount": 20000,
+    "Interest": 2000,
+    "InitialInterest": 2000,
+    "MonthlyInterest": 0,
+    "IsExistingCustomer": true,
+    "IsActive": true,
+    "AmountGivenDate": "2020-03-02T00:00:00",
+    "ClosedDate": null,
+    "ReturnType": 2,
+    "IsForceClosed": false,
+    "NeedInvestigation": false,
+    "GivenEligibility": true,
+    "NoteWithUs": false,
+    "IsPersonal": false,
+    "IsMerged": false,
+    "MergedDate": null,
+    "CollectionSpotId": 50,
+    "ReturnDay": 2,
+    "ModifiedDate": null
   }
 ]
