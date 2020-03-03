@@ -320,17 +320,20 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["TransactionId"].Visible = false;
             dataGridView1.Columns["Diff"].Visible = false;
 
-
             dataGridView1.Columns["SerialNo"].DisplayIndex = 1;
             dataGridView1.Columns["TxnDate"].DisplayIndex = 2;
             dataGridView1.Columns["AmountReceived"].DisplayIndex = 3;
             dataGridView1.Columns["Balance"].DisplayIndex = 4;
 
-            dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd.MM.yy";
+            dataGridView1.Columns["Balance"].DefaultCellStyle.Format = "#,##,###";
+
             dataGridView1.Columns["TxnDate"].HeaderText = "தேதி";
             dataGridView1.Columns["AmountReceived"].HeaderText = "வரவு ரூபாய்";
             dataGridView1.Columns["Balance"].HeaderText = "பாக்கி ரூபாய்";
             dataGridView1.Columns["SerialNo"].HeaderText = "வரிசை எண்";
+
+            //dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightYellow;
 
 
         }
