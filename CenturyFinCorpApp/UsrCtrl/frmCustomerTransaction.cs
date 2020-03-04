@@ -325,7 +325,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["AmountReceived"].DisplayIndex = 3;
             dataGridView1.Columns["Balance"].DisplayIndex = 4;
 
-            dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = "dd.MM.yy";
+            dataGridView1.Columns["TxnDate"].DefaultCellStyle.Format = Const.GridDateFormat;
             dataGridView1.Columns["Balance"].DefaultCellStyle.Format = "#,##,###";
 
             dataGridView1.Columns["TxnDate"].HeaderText = "தேதி";

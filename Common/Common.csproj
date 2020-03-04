@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="AppConfiguration.cs" />
     <Compile Include="BaseTypes\BaseClass.cs" />
+    <Compile Include="Const.cs" />
     <Compile Include="DataCorrector.cs" />
     <Compile Include="EmailStructure.cs" />
     <Compile Include="FileContentReader.cs" />

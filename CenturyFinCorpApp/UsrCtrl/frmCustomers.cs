@@ -187,8 +187,9 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["AmountGivenDate"].DisplayIndex = 8;
             dataGridView1.Columns["ClosedDate"].DisplayIndex = 9;
 
-            dataGridView1.Columns["AmountGivenDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
-            dataGridView1.Columns["ClosedDate"].DefaultCellStyle.Format = "dd'/'MM'/'yyyy";
+            dataGridView1.Columns["AmountGivenDate"].DefaultCellStyle.Format = Const.GridDateFormat;
+            dataGridView1.Columns["ClosedDate"].DefaultCellStyle.Format = Const.GridDateFormat;
+
             dataGridView1.Columns["Name"].Width = 250;
             dataGridView1.Columns["AdjustedAmount"].Width = 50;
             dataGridView1.Columns["LoanAmount"].Width = 50;
@@ -200,7 +201,6 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["CustomerId"].Width = 50;
             dataGridView1.Columns["NeedInvestigation"].Width = 50;
 
-            //dataGridView1.Columns["ClosedDate"].HeaderText. = 9;
         }
         private void SetColumnVisibility(bool show = false)
         {
