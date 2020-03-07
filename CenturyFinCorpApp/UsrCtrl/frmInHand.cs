@@ -383,16 +383,21 @@ namespace CenturyFinCorpApp
             //Process.Start(fileName);
         }
 
+        bool hasInternet = false;
+
         private void SendBalances()
         {
             try
             {
+                hasInternet = General.CheckForInternetConnection();
 
-                //if (General.CheckForInternetConnection() == false)
-                //{
-                //    MessageBox.Show("No Internet Available, Please connect and try again!");
-                //    return;
-                //}
+                if (hasInternet == false)
+                {
+                    if (DialogResult.Yes == MessageBox.Show("No Internet Available, Want to open the file?", "", MessageBoxButtons.YesNo))
+                        hasInternet = false;
+                    else
+                        return;
+                }
 
                 BackgroundWorker bw = new BackgroundWorker();
                 //this.Controls.Add(bw);
@@ -645,14 +650,20 @@ namespace CenturyFinCorpApp
 
             returnTypeText = "Gold-Monthly";
 
-            // Issue: we need html not plain text to img.
-            // HTMLhelper.HtmlToImg(rowData.ToString(), $"{Path.GetTempPath()}D-{currentBalanceDate.Plainddmmyyyy()}.jpg");
+            var GMhtmlStr = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA");
 
-            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA")
-                , currentBalanceDate, $"{goldMonthlyData.Count()}/{onlyGoldMonthly.Count()}", $"{ returnTypeText} Check");
+            if (hasInternet)
+            {
+                AppCommunication.SendBalanceEmail(GMhtmlStr, currentBalanceDate, $"{goldMonthlyData.Count()}/{onlyGoldMonthly.Count()}", $"{ returnTypeText} Check");
+            }
+            else
+            {
+                var fn = $"{ Path.GetTempPath() }{returnTypeText}-{currentBalanceDate.Plainddmmyyyy()}.html";
+                File.WriteAllText(fn, GMhtmlStr);
+                Process.Start(fn);
+            }
             rowData.Clear();
 
-          
 
             #endregion "Monthly-Gold Check"
 
@@ -693,8 +704,19 @@ namespace CenturyFinCorpApp
 
             returnTypeText = "Monthly";
 
-            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA")
-                , currentBalanceDate, $"{monthlyData.Count}/{onlyMonthly.Count()}", $"{ returnTypeText} Check");
+            var MhtmlStr = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA");
+
+            if (hasInternet)
+            {
+                AppCommunication.SendBalanceEmail(MhtmlStr, currentBalanceDate, $"{monthlyData.Count}/{onlyMonthly.Count()}", $"{ returnTypeText} Check");
+            }
+            else
+            {
+                var fn = $"{ Path.GetTempPath() }{returnTypeText}-{currentBalanceDate.Plainddmmyyyy()}.html";
+                File.WriteAllText(fn, MhtmlStr);
+                Process.Start(fn);
+            }
+
             rowData.Clear();
 
             #endregion "Monthly Check"
@@ -736,8 +758,18 @@ namespace CenturyFinCorpApp
 
             returnTypeText = "TenMonths";
 
-            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA")
-                , currentBalanceDate, $"{tenMonthsData.Count}/{onlyTenMonths.Count()}", $"{ returnTypeText} Check");
+            var TMhtmlStr = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "MM/MA");
+
+            if (hasInternet)
+            {
+                AppCommunication.SendBalanceEmail(TMhtmlStr, currentBalanceDate, $"{tenMonthsData.Count}/{onlyTenMonths.Count()}", $"{ returnTypeText} Check");
+            }
+            else
+            {
+                var fn = $"{ Path.GetTempPath() }{returnTypeText}-{currentBalanceDate.Plainddmmyyyy()}.html";
+                File.WriteAllText(fn, TMhtmlStr);
+                Process.Start(fn);
+            }
             rowData.Clear();
 
             #endregion "TenMonths Check"
@@ -779,8 +811,19 @@ namespace CenturyFinCorpApp
 
             returnTypeText = "Weekly";
 
-            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "E Vs A-MW")
-                , currentBalanceDate, $"{weeklyData.Count}/{onlyWeekly.Count()}", $"{ returnTypeText} Check");
+            var WhtmlStr = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "E Vs A-MW");
+
+            if (hasInternet)
+            {
+                AppCommunication.SendBalanceEmail(WhtmlStr, currentBalanceDate, $"{weeklyData.Count}/{onlyWeekly.Count()}", $"{ returnTypeText} Check");
+            }
+            else
+            {
+                var fn = $"{ Path.GetTempPath() }{returnTypeText}-{currentBalanceDate.Plainddmmyyyy()}.html";
+                File.WriteAllText(fn, WhtmlStr);
+                Process.Start(fn);
+            }
+
             rowData.Clear();
 
             #endregion "Weekly Check"
@@ -809,8 +852,18 @@ namespace CenturyFinCorpApp
             });
             returnTypeText = "Daily";
 
-            AppCommunication.SendBalanceEmail(htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "Txn Detail")
-                , currentBalanceDate, $"{dailyData.Count}/{onlyDaily.Count()}", $"{ returnTypeText} Check");
+            var DhtmlStr = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", $"{returnTypeText} Check").Replace("[LastCol]", "Txn Detail");
+
+            if (hasInternet)
+            {
+                AppCommunication.SendBalanceEmail(DhtmlStr, currentBalanceDate, $"{dailyData.Count}/{onlyDaily.Count()}", $"{ returnTypeText} Check");
+            }
+            else
+            {
+                var fn = $"{ Path.GetTempPath() }{returnTypeText}-{currentBalanceDate.Plainddmmyyyy()}.html";
+                File.WriteAllText(fn, DhtmlStr);
+                Process.Start(fn);
+            }
 
             rowData.Clear();
 
@@ -821,6 +874,7 @@ namespace CenturyFinCorpApp
 
         private void SendEmailForSendBalance()
         {
+            if (hasInternet == false) return;
             var activeCus = Customer.GetActiveCustomer();
             var htmlString = FileContentReader.SendBalanceHtml;
 
@@ -848,7 +902,8 @@ namespace CenturyFinCorpApp
 
             var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Balance Report").Replace("[LastCol]", "Txn Detail");
 
-            AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, data.Count().ToString(), "JF Bal.Report");
+            if (hasInternet)
+                AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, data.Count().ToString(), "JF Bal.Report");
 
         }
 

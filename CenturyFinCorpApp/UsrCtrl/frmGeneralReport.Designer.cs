@@ -66,7 +66,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblTotal.ForeColor = System.Drawing.Color.Yellow;
             this.lblTotal.Location = new System.Drawing.Point(146, 32);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(47, 13);
