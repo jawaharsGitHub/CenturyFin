@@ -347,49 +347,50 @@ namespace CenturyFinCorpApp
             }
         }
 
-        private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dataGridView1.CurrentCell.OwningColumn.Name == "CollectionAmt")
-            {
+        //private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (dataGridView1.CurrentCell.OwningColumn.Name == "CollectionAmt")
+        //    {
+        //        if (editJustDone)
+        //        {
+        //            editJustDone = false;
+        //            dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
+        //            dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+        //            this.dataGridView1.ClearSelection();
+        //            return;
+        //        }
 
-                //if(editJustDone || IsEnterKey)
-                //{
-                //    dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
-                //    dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
-                //    //dataGridView1.CurrentCell.
-                //    this.dataGridView1.ClearSelection();
-                //    return;
-                //}
-                if (editJustDone)
-                {
-                    editJustDone = false;
-                    dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
-                    dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
-                    this.dataGridView1.ClearSelection();
-                    return;
-                }
+        //        else if (IsEnterKey)
+        //        {
+        //            dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
+        //            dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+        //            this.dataGridView1.ClearSelection();
+        //            return;
+        //        }
 
-                else if (IsEnterKey)
-                {
-                    dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
-                    dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
-                    //dataGridView1.CurrentCell.
-                    this.dataGridView1.ClearSelection();
-                    return;
-                }
-
-                dataGridView1.CurrentCell.Style.BackColor = Color.White;
-                dataGridView1.CurrentCell.Value = null;
-            }
-        }
+        //        dataGridView1.CurrentCell.Style.BackColor = Color.White;
+        //        dataGridView1.CurrentCell.Value = null;
+        //    }
+        //}
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (IsEnterKey == false) return;
+            if (IsEnterKey == false)
+            {
+                dataGridView1.CurrentCell.Style.BackColor = Color.Red;
+                dataGridView1.CurrentCell.Value = null;
+                return;
+            }
+            else
+            {
+                dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
+                dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+                this.dataGridView1.ClearSelection();
+            }
 
-            IsEnterKey = false;
-            editJustDone = true;
+            //IsEnterKey = false;
+            //editJustDone = true;
 
 
             int existingTxnId = 0; // to  keep existing txn id.
@@ -512,9 +513,7 @@ namespace CenturyFinCorpApp
                 {
 
                     if (LastexistingTxn.AmountReceived == valCollectedAmount)
-                    {
                         return;
-                    }
 
                     if (valCollectedAmount == 0 && DialogResult.Yes == MessageBox.Show($"Are you sure you want to delete an existing transactions for {cus.Name}?", "", MessageBoxButtons.YesNo))
                     {
@@ -530,17 +529,8 @@ namespace CenturyFinCorpApp
                             existingTxnId = LastexistingTxn.TransactionId;
                             Transaction.DeleteTransactionDetails(LastexistingTxn);
                         }
-                        //existingTxnId = existingTxn.First().TransactionId;
-                        //Transaction.DeleteTransactionDetails(existingTxn.First());
                     }
-
-                    //else if (DialogResult.Yes == MessageBox.Show($"Already have txn for {cus.Name}, Do you want to continue?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                    //{
-                    //    existingTxnId = existingTxn.First().TransactionId;
-                    //    Transaction.DeleteTransactionDetails(existingTxn.First());
-                    //}
                 }
-
 
 
                 var txn = new Transaction()
