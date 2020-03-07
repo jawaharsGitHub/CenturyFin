@@ -375,17 +375,16 @@ namespace CenturyFinCorpApp
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-
             if (IsEnterKey == false)
             {
                 dataGridView1.CurrentCell.Style.BackColor = Color.Red;
-                dataGridView1.CurrentCell.Value = null;
+                dataGridView1.CurrentCell.Style.ForeColor = Color.Yellow;
                 return;
             }
             else
             {
                 dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
-                dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
+                dataGridView1.CurrentCell.Style.ForeColor = Color.White;
                 this.dataGridView1.ClearSelection();
             }
 
