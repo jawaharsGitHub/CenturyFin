@@ -104,19 +104,19 @@ namespace CenturyFinCorpApp
                     txtOtherExpenditure.Text = txtOtherInvestment.Text = txtOutMoney.Text = "0";
 
                 }
-                lblDate1.Text = lblDate2.Text = groupBox1.Text = $"{dateTimePicker1.Value.ToShortDateString()} NO DATA";
+                lblDate1.Text = groupBox1.Text = $"{dateTimePicker1.Value.ToShortDateString()} NO DATA";
                 btnAdd.Text = "ADD";
                 return;
             }
 
-            lblDate1.Text = lblDate2.Text = groupBox1.Text = $"Data For {dailyTxn.Date}";
+            lblDate1.Text = groupBox1.Text = $"Data For {dailyTxn.Date}";
             btnAdd.Text = "UPDATE";
 
 
-            txtSentFromUSA.Text = dailyTxn.SentFromUSA.ToString();
+            //txtSentFromUSA.Text = dailyTxn.SentFromUSA.ToString();
 
-            txtBankTxnOut.Text = dailyTxn.BankTxnOut.ToString();
-            txtTakenFromBank.Text = dailyTxn.TakenFromBank.ToString();
+            //txtBankTxnOut.Text = dailyTxn.BankTxnOut.ToString();
+            //txtTakenFromBank.Text = dailyTxn.TakenFromBank.ToString();
             txtCollectionAmount.Text = dailyTxn.CollectionAmount.ToString();
             txtGivenAmount.Text = dailyTxn.GivenAmount.ToString();
             txtInterest.Text = dailyTxn.Interest.ToString();
@@ -127,17 +127,17 @@ namespace CenturyFinCorpApp
             txtOtherExpenditure.Text = Convert.ToString(dailyTxn.OtherExpenditire);
             txtOtherInvestment.Text = Convert.ToString(dailyTxn.OtherInvestment);
 
-            btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.TokFormat();
+            //btnYesterdayInHand.Text = dailyTxn.YesterdayAmountInHand.TokFormat();
             btnInCompany.Text = $"C: {(dailyTxn.MamaAccount + dailyTxn.ActualInHand).TokFormat()}";
             btnInHand.Text = "IH:" + dailyTxn.ActualInHand.TokFormat();
             btnMama.Text = "M:" + dailyTxn.MamaAccount.TokFormat();
             btnInvestment.Text = "INV:" + DailyCollectionDetail.GetActualInvestmentTxnDate(dateTimePicker1.Value).ActualMoneyInBusiness.ToMoneyFormat();
 
-            lblCanGive.Text = $"Actually we can give - {(dailyTxn.TodayInHand / 4500) * 5000} {Environment.NewLine}with extra {(dailyTxn.TodayInHand % 4500)}";
-            btnInBank.Text = dailyTxn.InBank.TokFormat();
-            btnTmrWanted.Text = (dailyTxn.TomorrowDiff > 0) ? dailyTxn.TomorrowDiff.ToString() : $"0 --- (Have Extra {Math.Abs(Convert.ToInt32(dailyTxn.TomorrowDiff))} )";
-            btnTmrWanted.BackColor = (dailyTxn.TomorrowDiff > 0) ? Color.Red : Color.Green;
-            btnCanGive.Text = (dailyTxn.TodayInHand + dailyTxn.InBank).TokFormat();
+            //lblCanGive.Text = $"Actually we can give - {(dailyTxn.TodayInHand / 4500) * 5000} {Environment.NewLine}with extra {(dailyTxn.TodayInHand % 4500)}";
+            //btnInBank.Text = dailyTxn.InBank.TokFormat();
+            //btnTmrWanted.Text = (dailyTxn.TomorrowDiff > 0) ? dailyTxn.TomorrowDiff.ToString() : $"0 --- (Have Extra {Math.Abs(Convert.ToInt32(dailyTxn.TomorrowDiff))} )";
+            //btnTmrWanted.BackColor = (dailyTxn.TomorrowDiff > 0) ? Color.Red : Color.Green;
+            //btnCanGive.Text = (dailyTxn.TodayInHand + dailyTxn.InBank).TokFormat();
             txtOutMoney.Text = dailyTxn.OutUsedMoney.ToString();
 
 
@@ -182,9 +182,9 @@ namespace CenturyFinCorpApp
 
             dailyTxn.Date = dateTimePicker1.Value.ToShortDateString();
             dailyTxn.YesterdayAmountInHand = dailyTxn.TodayInHand;
-            dailyTxn.SentFromUSA = txtSentFromUSA.Text.ToDecimal();
-            dailyTxn.BankTxnOut = txtBankTxnOut.Text.ToDecimal();
-            dailyTxn.TakenFromBank = txtTakenFromBank.Text.ToInt32();
+            //dailyTxn.SentFromUSA = txtSentFromUSA.Text.ToDecimal();
+            //dailyTxn.BankTxnOut = txtBankTxnOut.Text.ToDecimal();
+            //dailyTxn.TakenFromBank = txtTakenFromBank.Text.ToInt32();
             dailyTxn.InBank = (dailyTxn.InBank + dailyTxn.SentFromUSA - dailyTxn.TakenFromBank - dailyTxn.BankTxnOut);
 
             dailyTxn.CollectionAmount = txtCollectionAmount.Text.ToInt32();

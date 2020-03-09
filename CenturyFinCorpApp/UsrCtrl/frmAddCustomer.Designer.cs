@@ -173,9 +173,9 @@
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
             this.lblMessage.Location = new System.Drawing.Point(42, 11);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(30, 31);
+            this.lblMessage.Size = new System.Drawing.Size(104, 31);
             this.lblMessage.TabIndex = 15;
-            this.lblMessage.Text = "[]";
+            this.lblMessage.Text = "[status]";
             // 
             // txtInterest
             // 
