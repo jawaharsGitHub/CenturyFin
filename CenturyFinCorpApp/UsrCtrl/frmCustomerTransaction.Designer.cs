@@ -76,6 +76,7 @@
             this.txtNewInt = new System.Windows.Forms.TextBox();
             this.btnCusName = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkTxnId = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -174,7 +175,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(18, 202);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(467, 414);
+            this.dataGridView1.Size = new System.Drawing.Size(487, 414);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
@@ -185,7 +186,7 @@
             this.lblStartDate.AutoSize = true;
             this.lblStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStartDate.ForeColor = System.Drawing.Color.Red;
-            this.lblStartDate.Location = new System.Drawing.Point(353, 120);
+            this.lblStartDate.Location = new System.Drawing.Point(372, 120);
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(69, 13);
             this.lblStartDate.TabIndex = 7;
@@ -196,7 +197,7 @@
             this.lblLastDate.AutoSize = true;
             this.lblLastDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastDate.ForeColor = System.Drawing.Color.SeaGreen;
-            this.lblLastDate.Location = new System.Drawing.Point(353, 147);
+            this.lblLastDate.Location = new System.Drawing.Point(370, 147);
             this.lblLastDate.Name = "lblLastDate";
             this.lblLastDate.Size = new System.Drawing.Size(66, 13);
             this.lblLastDate.TabIndex = 8;
@@ -537,7 +538,7 @@
             this.btnCusName.ForeColor = System.Drawing.Color.Maroon;
             this.btnCusName.Location = new System.Drawing.Point(18, 165);
             this.btnCusName.Name = "btnCusName";
-            this.btnCusName.Size = new System.Drawing.Size(467, 36);
+            this.btnCusName.Size = new System.Drawing.Size(487, 36);
             this.btnCusName.TabIndex = 29;
             this.btnCusName.Text = "button1";
             this.btnCusName.UseVisualStyleBackColor = true;
@@ -554,10 +555,23 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // chkTxnId
+            // 
+            this.chkTxnId.AutoSize = true;
+            this.chkTxnId.Location = new System.Drawing.Point(323, 143);
+            this.chkTxnId.Name = "chkTxnId";
+            this.chkTxnId.Size = new System.Drawing.Size(59, 17);
+            this.chkTxnId.TabIndex = 31;
+            this.chkTxnId.Text = "TXNID";
+            this.chkTxnId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkTxnId.UseVisualStyleBackColor = true;
+            this.chkTxnId.CheckedChanged += new System.EventHandler(this.chkTxnId_CheckedChanged);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkTxnId);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnCusName);
             this.Controls.Add(this.txtNewInt);
@@ -653,5 +667,6 @@
         private System.Windows.Forms.TextBox txtNewInt;
         private System.Windows.Forms.Button btnCusName;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkTxnId;
     }
 }

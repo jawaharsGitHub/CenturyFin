@@ -214,12 +214,18 @@ namespace CenturyFinCorpApp
             if (txns == null || txns.Count == 0) return;
 
             var dataDource = txns;
-            if (byBalance)
-                dataGridView1.DataSource = dataDource.OrderBy(t => t.TransactionId).ToList();
-            else if (isDesc)
-                dataGridView1.DataSource = dataDource.OrderByDescending(t => t.TransactionId).ToList();
+
+            //if (byBalance)
+            //    dataGridView1.DataSource = dataDource.OrderBy(t => t.TransactionId).ToList();
+            //else if (isDesc)
+            //    dataGridView1.DataSource = dataDource.OrderByDescending(t => t.TransactionId).ToList();
+            //else
+            //    dataGridView1.DataSource = dataDource.OrderBy(t => t.TransactionId).ToList();
+
+            if (isDesc)
+                dataGridView1.DataSource = dataDource.OrderByDescending(t => t.TransactionId).ThenByDescending(t => t.TxnDate).ThenByDescending(t => t.Balance).ToList();
             else
-                dataGridView1.DataSource = dataDource.OrderBy(t => t.TransactionId).ToList();
+                dataGridView1.DataSource = dataDource.OrderBy(t => t.TransactionId).ThenBy(t => t.TxnDate).ThenBy(t => t.Balance).ToList();
 
 
 
@@ -734,10 +740,11 @@ namespace CenturyFinCorpApp
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             dataGridView1.Columns["Diff"].Visible = checkBox1.Checked;
+        }
 
-
-
-
+        private void chkTxnId_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Columns["TransactionId"].Visible = chkTxnId.Checked;
         }
     }
 }
