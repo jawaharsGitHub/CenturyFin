@@ -46,9 +46,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblBizAsset = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblCloseCount = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lblTotalAsset = new System.Windows.Forms.Label();
+            this.lblCloseCount = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -220,15 +220,6 @@
             this.label9.TabIndex = 32;
             this.label9.Text = "Business Asset";
             // 
-            // lblCloseCount
-            // 
-            this.lblCloseCount.AutoSize = true;
-            this.lblCloseCount.Location = new System.Drawing.Point(15, 547);
-            this.lblCloseCount.Name = "lblCloseCount";
-            this.lblCloseCount.Size = new System.Drawing.Size(71, 13);
-            this.lblCloseCount.TabIndex = 34;
-            this.lblCloseCount.Text = "lblCloseCount";
-            // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -253,12 +244,23 @@
             this.lblTotalAsset.TabIndex = 29;
             this.lblTotalAsset.Text = "[TotalAsset]";
             // 
+            // lblCloseCount
+            // 
+            this.lblCloseCount.AutoSize = true;
+            this.lblCloseCount.Location = new System.Drawing.Point(18, 547);
+            this.lblCloseCount.Name = "lblCloseCount";
+            this.lblCloseCount.Size = new System.Drawing.Size(55, 13);
+            this.lblCloseCount.TabIndex = 37;
+            this.lblCloseCount.TabStop = true;
+            this.lblCloseCount.Text = "linkLabel1";
+            this.lblCloseCount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblCloseCount_LinkClicked);
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblCloseCount);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblBizAsset);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
@@ -307,8 +309,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblBizAsset;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblCloseCount;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lblTotalAsset;
+        private System.Windows.Forms.LinkLabel lblCloseCount;
     }
 }

@@ -20,6 +20,7 @@ namespace CenturyFinCorpApp.UsrCtrl
         List<IncomeReport> finalData;
         List<IncomeReport> filteredfinalData;
         int varActualClose;
+        List<string> moverOverList = new List<string>();
 
         public frmGeneralReport()
         {
@@ -67,7 +68,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                                        TotalInterest = newGroup.Sum(s => s.Interest),
                                        IsExpectedIncome = false,
                                        //newGroup,
-                                       Count = newGroup.Count()
+                                       Count = newGroup.Count(),
+                                       Names = newGroup.Select(s => s.NameAndSeqId)
                                    }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
             // Running Account (Expected Income)
@@ -80,7 +82,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         TotalInterest = newGroup.Sum(s => s.Interest),
                                         IsExpectedIncome = true,
                                         //newGroup,
-                                        Count = newGroup.Count()
+                                        Count = newGroup.Count(),
+                                        Names = newGroup.Select(s => s.NameAndSeqId)
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
 
 
@@ -98,6 +101,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var moveOverClosed = 0;
             var moveOverInterest = 0;
+            
 
             var ddd = 0;
             data.ForEach(f =>
@@ -134,10 +138,12 @@ namespace CenturyFinCorpApp.UsrCtrl
 
 
                 if (f.Key.IsExpectedIncome && Convert.ToDateTime(f.Key.ClosedMonth).ToString("yyyyMM").ToInt32() < DateTime.Today.ToString("yyyyMM").ToInt32())
-                //(DateTime.Today.Month > Convert.ToDateTime(f.Key.ClosedMonth).Month && DateTime.Today.Year >= Convert.ToDateTime(f.Key.ClosedMonth).Year))
                 {
                     moveOverClosed += closedData;
                     moveOverInterest += f.Sum(s => s.TotalInterest);
+                    var lst = f.SelectMany(s => s.Names);
+                    moverOverList.AddRange(lst);
+
                 }
                 else
                 {
@@ -155,7 +161,6 @@ namespace CenturyFinCorpApp.UsrCtrl
                     else
                     {
                         closedDetailForCurrentMonth.Append($" Actual Close(AC): \t\t\t\t {closedData} [{totalInt.TokFormat()}]");
-
                         varActualClose = closedData;
                     }
 
@@ -251,13 +256,9 @@ namespace CenturyFinCorpApp.UsrCtrl
 
 
             if (comboBox1.Text.ToLower() != "all" && comboBox1.Text != "")
-            {
                 filteredfinalData = finalData.Where(w => Convert.ToDateTime(w.MonthYear).Year.ToString() == comboBox1.Text).ToList();
-            }
             else
-            {
                 filteredfinalData = finalData;
-            }
 
 
 
@@ -432,6 +433,12 @@ namespace CenturyFinCorpApp.UsrCtrl
             var month = (((IEnumerable<dynamic>)neededRow).ToArray()[e.RowIndex]).Month;
 
             var givenCustomers = Transaction.GetGivenTxnForMonth(month);
+
+        }
+
+        private void lblCloseCount_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show(String.Join(Environment.NewLine, moverOverList));
 
         }
     }
