@@ -549,15 +549,16 @@ namespace DataAccess.PrimaryTypes
             {
                 try
                 {
-                    List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
-                    return list;
+                    //List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+                    //return list;
+                    return ReadFileAsObjects<Customer>(JsonFilePath);
                 }
                 catch
                 {
                     if (--tries == 0)
                     {
                         LogHelper.WriteLog($"Error while try to get Customer data try no : {tries}");
-                        throw;
+                        //throw;
                     }
                     Thread.Sleep(1000);
                 }
@@ -568,8 +569,8 @@ namespace DataAccess.PrimaryTypes
         {
             try
             {
-                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath).Where(w => w.IsActive).ToList();
-                return list;
+                return ReadFileAsObjects<Customer>(JsonFilePath).Where(w => w.IsActive).ToList();
+                //return list;
             }
             catch (Exception ex)
             {
@@ -581,8 +582,8 @@ namespace DataAccess.PrimaryTypes
         {
             try
             {
-                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath).Where(w => w.IsActive == false).ToList();
-                return list;
+                return ReadFileAsObjects<Customer>(JsonFilePath).Where(w => w.IsActive == false).ToList();
+                //return list;
             }
             catch (Exception ex)
             {
@@ -644,8 +645,6 @@ namespace DataAccess.PrimaryTypes
 
         public static CreditReport GetCreditScore(Customer customer)
         {
-
-            //var cus = Customer.GetCustomerDetails(cu);
 
             var _isClosedTx = (customer.IsActive == false);
 

@@ -122,7 +122,7 @@ namespace CenturyFinCorpApp
             txtInterest.Text = dailyTxn.Interest.ToString();
             txtClosed.Text = dailyTxn.ClosedAccounts.ToString();
             txtOpened.Text = dailyTxn.OpenedAccounts.ToString();
-            txtTmrNeeded.Text = dailyTxn.TomorrowNeed.ToString();
+            //txtTmrNeeded.Text = dailyTxn.TomorrowNeed.ToString();
 
             txtOtherExpenditure.Text = Convert.ToString(dailyTxn.OtherExpenditire);
             txtOtherInvestment.Text = Convert.ToString(dailyTxn.OtherInvestment);
@@ -192,7 +192,7 @@ namespace CenturyFinCorpApp
             dailyTxn.Interest = txtInterest.Text.ToInt32();
             dailyTxn.ClosedAccounts = txtClosed.Text.ToInt32();
             dailyTxn.OpenedAccounts = txtOpened.Text.ToInt32();
-            dailyTxn.TomorrowNeed = txtTmrNeeded.Text.ToInt32();
+            // dailyTxn.TomorrowNeed = txtTmrNeeded.Text.ToInt32();
 
             dailyTxn.OtherExpenditire = txtOtherExpenditure.Text.ToInt32();
             dailyTxn.OtherInvestment = txtOtherInvestment.Text.ToInt32();
@@ -200,7 +200,7 @@ namespace CenturyFinCorpApp
 
             dailyTxn.TodayInHand = (dailyTxn.YesterdayAmountInHand + dailyTxn.CollectionAmount + dailyTxn.TakenFromBank - dailyTxn.GivenAmount + dailyTxn.Interest + dailyTxn.OtherInvestment - dailyTxn.OtherExpenditire);
 
-            dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - Convert.ToInt32((dailyTxn.TodayInHand + dailyTxn.InBank)));
+            //dailyTxn.TomorrowDiff = (Convert.ToInt32(txtTmrNeeded.Text) - Convert.ToInt32((dailyTxn.TodayInHand + dailyTxn.InBank)));
             dailyTxn.Comments = txtComments.Text;
             dailyTxn.ActualMoneyInBusiness = (dailyTxn.ActualMoneyInBusiness + dailyTxn.OtherInvestment) - dailyTxn.OutUsedMoney;
 
@@ -393,14 +393,14 @@ namespace CenturyFinCorpApp
 
                 if (hasInternet == false)
                 {
-                    if (DialogResult.Yes == MessageBox.Show("No Internet Available, Want to open the file?", "", MessageBoxButtons.YesNo))
-                        hasInternet = false;
-                    else
+                    if (DialogResult.No == MessageBox.Show("No Internet Available, Want to open the file?", "", MessageBoxButtons.YesNo))
                         return;
+                    //    hasInternet = false;
+                    //else
+
                 }
 
                 BackgroundWorker bw = new BackgroundWorker();
-                //this.Controls.Add(bw);
                 bw.DoWork += (s, e) =>
                 {
 
@@ -832,7 +832,7 @@ namespace CenturyFinCorpApp
 
             var onlyDaily = data.Where(w => w.ReturnType == ReturnTypeEnum.Daily);
 
-            var dailyData = onlyDaily.Where(w => w.Ba.Diff > 1)
+            var dailyData = onlyDaily.Where(w => w.Ba.Diff > 2) //1)
                     .OrderByDescending(o => o.Ba.Diff).Select((ac, i) =>
                     new
                     {
