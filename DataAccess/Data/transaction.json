@@ -50350,5 +50350,29 @@
     "TxnDate": "2020-03-08T00:00:00",
     "SerialNo": 0,
     "Diff": 0
+  },
+  {
+    "CustomerId": 270,
+    "IsClosed": false,
+    "TransactionId": 31868,
+    "AmountReceived": 300,
+    "Balance": 10000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 842,
+    "TxnDate": "2020-03-09T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 175,
+    "IsClosed": false,
+    "TransactionId": 31869,
+    "AmountReceived": 1000,
+    "Balance": 1300,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 449,
+    "TxnDate": "2020-03-09T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
   }
 ]
