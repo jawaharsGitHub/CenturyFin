@@ -43,7 +43,11 @@ namespace DataAccess.PrimaryTypes
                 }
 
                 // SHOP RENT.
-                if (yearMonth >= 201903)
+                if (yearMonth > DateTime.Today.ToString("yyyyMM").ToInt32())
+                {
+                    salary += 0;
+                }
+                else if(yearMonth >= 201903)
                 {
                     salary += 2500;
                 }
