@@ -19,6 +19,7 @@ namespace DataAccess.PrimaryTypes
 
                 var year = Convert.ToDateTime(MonthYear).ToString("yyyy").ToInt32();
 
+                // SALARY VARIATIONS.
                 if (yearMonth <= 201805)
                 {
                     salary = 10000;
@@ -39,6 +40,12 @@ namespace DataAccess.PrimaryTypes
                 else //(month > 201805 && month <= DateTime.Today.ToString("yyyyMM").ToInt32())
                 {
                     salary = 12000;
+                }
+
+                // SALARY VARIATIONS.
+                if (yearMonth >= 201903)
+                {
+                    salary += 2500;
                 }
 
                 // EXTRA CONDITIONS.
