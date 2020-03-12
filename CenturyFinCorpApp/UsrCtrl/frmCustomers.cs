@@ -128,7 +128,7 @@ namespace CenturyFinCorpApp
                         .Select(s => new { Balance = Transaction.GetBalance(s), s.IsActive, s.Interest, s.LoanAmount, s.MonthlyInterest });
 
             var allGivenAmount = customers.Where(w => w.IsNotMonthly()).Sum(s => s.LoanAmount);
-            
+
             var activeTxn = customers.Count(c => c.IsActive == true && c.Interest > 0 && c.IsNotMonthly());
             var NoInterestactiveTxn = customers.Count(c => c.IsActive == true && c.Interest == 0);
             var monthlyINtTxn = customers.Count(c => c.IsActive == true && c.IsMonthly());
@@ -306,7 +306,6 @@ namespace CenturyFinCorpApp
 
 
         bool IsEnterKey = false;
-        bool editJustDone = false;
         int cellCurrentValue;
 
         private void txtSearch_Leave(object sender, EventArgs e)
@@ -350,62 +349,38 @@ namespace CenturyFinCorpApp
             }
         }
 
-        //private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    if (dataGridView1.CurrentCell.OwningColumn.Name == "CollectionAmt")
-        //    {
-        //        if (editJustDone)
-        //        {
-        //            editJustDone = false;
-        //            dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
-        //            dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
-        //            this.dataGridView1.ClearSelection();
-        //            return;
-        //        }
+        private void EditSuccess()
+        {
+            dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
+            dataGridView1.CurrentCell.Style.ForeColor = Color.White;
+            this.dataGridView1.ClearSelection();
+        }
 
-        //        else if (IsEnterKey)
-        //        {
-        //            dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
-        //            dataGridView1.CurrentCell.Style.ForeColor = Color.DarkRed;
-        //            this.dataGridView1.ClearSelection();
-        //            return;
-        //        }
-
-        //        dataGridView1.CurrentCell.Style.BackColor = Color.White;
-        //        dataGridView1.CurrentCell.Value = null;
-        //    }
-        //}
-
+        private void EditCancel()
+        {
+            dataGridView1.CurrentCell.Style.BackColor = Color.Red;
+            dataGridView1.CurrentCell.Style.ForeColor = Color.Yellow;
+        }
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (IsEnterKey == false)
             {
-                dataGridView1.CurrentCell.Style.BackColor = Color.Red;
-                dataGridView1.CurrentCell.Style.ForeColor = Color.Yellow;
+                EditCancel();
                 return;
             }
-            else
-            {
-                dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
-                dataGridView1.CurrentCell.Style.ForeColor = Color.White;
-                this.dataGridView1.ClearSelection();
-            }
-
-            //IsEnterKey = false;
-            //editJustDone = true;
-
 
             int existingTxnId = 0; // to  keep existing txn id.
+            DataGridView grid = (sender as DataGridView);
+            int rowIndex = grid.CurrentCell.RowIndex;
+            string owningColumnName = grid.CurrentCell.OwningColumn.Name;
+            string cellValue = FormGeneral.GetGridCellValue(grid, rowIndex, owningColumnName);
+            Customer cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
 
-            var grid = (sender as DataGridView);
-            var rowIndex = grid.CurrentCell.RowIndex;
-
-            var owningColumnName = grid.CurrentCell.OwningColumn.Name;
-            var cellValue = FormGeneral.GetGridCellValue(grid, rowIndex, owningColumnName);
-
-            if (cellValue == null) return;
-
-            var cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
+            if (string.IsNullOrEmpty(cellValue) || (cellValue == "0" && Transaction.GetBalance(cus) == cus.LoanAmount))
+            {
+                EditCancel();
+                return;
+            }
 
             var updatedCustomer = new Customer()
             {
@@ -415,108 +390,33 @@ namespace CenturyFinCorpApp
 
             #region "Edit mode"
 
-            if (owningColumnName == "ClosedDate" && cellValue != null)
+            if (owningColumnName == "CollectionAmt")
             {
-                updatedCustomer.ClosedDate = Convert.ToDateTime(cellValue);
-                Customer.UpdateCustomerClosedDate(updatedCustomer);
-                return;
-            }
+                int seqNo = cus.CustomerSeqNumber;
+                int customerId = cus.CustomerId;
+                int loanAmount = cus.LoanAmount;
+                int valCollectedAmount = cellValue.ToInt32();
 
-            else if (owningColumnName == "Interest")
-            {
-                updatedCustomer.Interest = cellValue.ToInt32();
-                Customer.UpdateCustomerInterest(updatedCustomer);
-                return;
-            }
-
-            else if (owningColumnName == "LoanAmount")
-            {
-                updatedCustomer.LoanAmount = cellValue.ToInt32();
-                Customer.UpdateCustomerLoan(updatedCustomer);
-                return;
-            }
-
-            else if (owningColumnName == "MonthlyInterest")
-            {
-                updatedCustomer.MonthlyInterest = cellValue.ToInt32();
-                Customer.UpdateCustomerMonthlyInterest(updatedCustomer);
-                return;
-            }
-
-            else if (owningColumnName == "Name")
-            {
-                updatedCustomer.Name = cellValue;
-                Customer.UpdateCustomerName(updatedCustomer);
-                return;
-            }
-
-            else if (owningColumnName == "AdjustedAmount")
-            {
-                updatedCustomer.AdjustedAmount = cellValue.ToInt32();
-                Customer.UpdateCustomerAdjustment(updatedCustomer);
-                return;
-            }
-
-            else if (owningColumnName == "ReturnType")
-            {
-                updatedCustomer.ReturnType = cellValue.ToEnum<ReturnTypeEnum>();
-                Customer.UpdateCustomerReturnType(updatedCustomer);
-                return;
-            }
-
-            else if (owningColumnName == "InitialInterest")
-            {
-                updatedCustomer.InitialInterest = cellValue.ToInt32();
-                Customer.UpdateInitialInterest(updatedCustomer);
-                return;
-            }
-            else if (owningColumnName == "TamilName")
-            {
-                updatedCustomer.TamilName = cellValue;
-                Customer.UpdateTamilName(updatedCustomer);
-                return;
-            }
-
-            else if (owningColumnName == "PhoneNumber")
-            {
-                updatedCustomer.PhoneNumber = cellValue;
-                Customer.UpdatePhoneNo(updatedCustomer);
-                return;
-            }
-            else if (owningColumnName == "AmountGivenDate")
-            {
-                updatedCustomer.AmountGivenDate = Convert.ToDateTime(cellValue);
-                Customer.UpdateAmountGivenDate(updatedCustomer);
-                return;
-            }
-
-            #endregion
-
-
-
-            var strCollectedAmount = FormGeneral.GetGridCellValue(grid, rowIndex, "CollectionAmt");
-
-            if (strCollectedAmount == null) return;
-
-            var seqNo = cus.CustomerSeqNumber;
-            var customerId = cus.CustomerId;
-            var loanAmount = cus.LoanAmount;
-            var valCollectedAmount = strCollectedAmount.ToInt32();
-
-            if (string.IsNullOrEmpty(strCollectedAmount) == false)
-            {
-                var existingTxns = Transaction.GetTransactionForDate(new Transaction() { CustomerId = customerId, CustomerSequenceNo = seqNo, TxnDate = dateTimePicker1.Value });
+                List<Transaction> existingTxns = Transaction.GetTransactionForDate(
+                    new Transaction()
+                    {
+                        CustomerId = customerId,
+                        CustomerSequenceNo = seqNo,
+                        TxnDate = dateTimePicker1.Value
+                    }
+                    );
 
                 Transaction LastexistingTxn = null;
 
-                if (existingTxns != null && existingTxns.Count > 0) LastexistingTxn = existingTxns.OrderBy(o => o.TransactionId).Last();
+                if (existingTxns != null && existingTxns.Count > 0) 
+                    LastexistingTxn = existingTxns.OrderBy(o => o.TransactionId).Last();
 
                 if (LastexistingTxn != null)
                 {
-
                     if (LastexistingTxn.AmountReceived == valCollectedAmount)
                         return;
 
+                    // DELETE TXN.
                     if (valCollectedAmount == 0 && DialogResult.Yes == MessageBox.Show($"Are you sure you want to delete an existing transactions for {cus.Name}?", "", MessageBoxButtons.YesNo))
                     {
                         Transaction.DeleteTransactionDetails(LastexistingTxn);
@@ -524,6 +424,7 @@ namespace CenturyFinCorpApp
                         Customer.UpdateCustomerInterest(cus);
                         return;
                     }
+                    // REPLACE/UPDATE TXN.
                     else if (LastexistingTxn.AmountReceived != valCollectedAmount)
                     {
                         if (MessageBox.Show("You want to replace existing txns?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -534,8 +435,7 @@ namespace CenturyFinCorpApp
                     }
                 }
 
-
-                var txn = new Transaction()
+                Transaction txn = new Transaction()
                 {
                     AmountReceived = valCollectedAmount,
                     CustomerId = customerId,
@@ -544,7 +444,6 @@ namespace CenturyFinCorpApp
                     Balance = (Transaction.GetBalance(cus) - valCollectedAmount),
                     TxnDate = dateTimePicker1.Value
                 };
-
 
                 if (cus.IsMonthly() && cus.LoanAmount != valCollectedAmount && txn.Balance > 0)
                 {
@@ -556,25 +455,24 @@ namespace CenturyFinCorpApp
                 if (txn.Balance < 0)
                 {
                     MessageBox.Show("Balance is less than 0. Please check your amount. Txn Aborted!", "", MessageBoxButtons.OK, icon: MessageBoxIcon.Stop);
-                    LogHelper.WriteLog($"Balance is less than 0. Please check your amount. Txn Aborted!", txn.CustomerId, txn.CustomerSequenceNo);
+                    //LogHelper.WriteLog($"Balance is less than 0. Please check your amount. Txn Aborted!", txn.CustomerId, txn.CustomerSequenceNo);
                     return;
                 }
+
                 if (txn.Balance == 0)
                 {
                     MessageBox.Show($"Good News, txn closed for [{txn.CustomerSequenceNo}]-[{cus.Name}]", "", MessageBoxButtons.OK, icon: MessageBoxIcon.Exclamation);
-                    LogHelper.WriteLog($"Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
+                    //LogHelper.WriteLog($"Good News, This txn will be closed!", txn.CustomerId, txn.CustomerSequenceNo);
                     Customer.CloseCustomerTxn(cus, false, txn.TxnDate);
                 }
 
                 txn.IsClosed = (txn.Balance == 0);
 
-
                 Transaction.AddDailyTransactions(txn);
 
-                // Update txn Closed Date
+                // UPDATE TXN CLOSED DATE
                 if (txn.IsClosed && txn.Balance == 0)
                 {
-                    // Update Closed Date
                     Customer.UpdateCustomerClosedDate(
                         new Customer()
                         {
@@ -584,6 +482,8 @@ namespace CenturyFinCorpApp
                         });
                 }
 
+                EditSuccess();
+
                 if (MessageBox.Show($"{cus.Name} - {txn.AmountReceived}. Do you want to continue with next customer?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     txtSearch.SelectAll();
@@ -592,6 +492,75 @@ namespace CenturyFinCorpApp
                 return;
             }
 
+            else if (owningColumnName == "ClosedDate")
+            {
+                updatedCustomer.ClosedDate = Convert.ToDateTime(cellValue);
+                Customer.UpdateCustomerClosedDate(updatedCustomer);
+            }
+
+            else if (owningColumnName == "Interest")
+            {
+                updatedCustomer.Interest = cellValue.ToInt32();
+                Customer.UpdateCustomerInterest(updatedCustomer);
+            }
+
+            else if (owningColumnName == "LoanAmount")
+            {
+                updatedCustomer.LoanAmount = cellValue.ToInt32();
+                Customer.UpdateCustomerLoan(updatedCustomer);
+            }
+
+            else if (owningColumnName == "MonthlyInterest")
+            {
+                updatedCustomer.MonthlyInterest = cellValue.ToInt32();
+                Customer.UpdateCustomerMonthlyInterest(updatedCustomer);
+            }
+
+            else if (owningColumnName == "Name")
+            {
+                updatedCustomer.Name = cellValue;
+                Customer.UpdateCustomerName(updatedCustomer);
+            }
+
+            else if (owningColumnName == "AdjustedAmount")
+            {
+                updatedCustomer.AdjustedAmount = cellValue.ToInt32();
+                Customer.UpdateCustomerAdjustment(updatedCustomer);
+            }
+
+            else if (owningColumnName == "ReturnType")
+            {
+                updatedCustomer.ReturnType = cellValue.ToEnum<ReturnTypeEnum>();
+                Customer.UpdateCustomerReturnType(updatedCustomer);
+            }
+
+            else if (owningColumnName == "InitialInterest")
+            {
+                updatedCustomer.InitialInterest = cellValue.ToInt32();
+                Customer.UpdateInitialInterest(updatedCustomer);
+            }
+
+            else if (owningColumnName == "TamilName")
+            {
+                updatedCustomer.TamilName = cellValue;
+                Customer.UpdateTamilName(updatedCustomer);
+            }
+
+            else if (owningColumnName == "PhoneNumber")
+            {
+                updatedCustomer.PhoneNumber = cellValue;
+                Customer.UpdatePhoneNo(updatedCustomer);
+            }
+
+            else if (owningColumnName == "AmountGivenDate")
+            {
+                updatedCustomer.AmountGivenDate = Convert.ToDateTime(cellValue);
+                Customer.UpdateAmountGivenDate(updatedCustomer);
+            }
+
+            EditSuccess();
+
+            #endregion
         }
 
         #endregion "Very sensitive - Grid cell edit functionalities..."
