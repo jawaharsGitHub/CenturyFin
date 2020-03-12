@@ -376,10 +376,10 @@ namespace CenturyFinCorpApp
                             {
                                 Date = $"{newGroup.First().Date} to {newGroup.Last().Date}",
                                 CxnCount = newGroup.Count(),
-                                Closed = newGroup.Sum(s => s.Closed),
+                                Closed = newGroup.Sum(s => s.Closed).ToMoney(),
                                 CollectionAmount = newGroup.Sum(s => s.CollectionAmount).ToMoney(),
                                 GivenAmount = newGroup.Sum(s => s.GivenAmount).ToMoney(),
-                                New = newGroup.Sum(s => s.New)
+                                New = newGroup.Sum(s => s.New).ToMoney()
 
                             }).ToList();
 
@@ -394,10 +394,10 @@ namespace CenturyFinCorpApp
                             {
                                 Date = $"{newGroup.Key.month}/{newGroup.Key.year}",
                                 CxnCount = newGroup.Count(),
-                                Closed = newGroup.Sum(s => s.Closed),
+                                Closed = newGroup.Sum(s => s.Closed).ToMoney(),
                                 CollectionAmount = newGroup.Sum(s => s.CollectionAmount).ToMoney(),
                                 GivenAmount = newGroup.Sum(s => s.GivenAmount).ToMoney(),
-                                New = newGroup.Sum(s => s.New)
+                                New = newGroup.Sum(s => s.New).ToMoney()
 
                             }).ToList();
 
@@ -413,19 +413,16 @@ namespace CenturyFinCorpApp
                             {
                                 Date = newGroup.Key,
                                 CxnCount = newGroup.Count(),
-                                Closed = newGroup.Sum(s => s.Closed),
+                                Closed = newGroup.Sum(s => s.Closed).ToMoney(),
                                 CollectionAmount = newGroup.Sum(s => s.CollectionAmount).ToMoney(),
                                 GivenAmount = newGroup.Sum(s => s.GivenAmount).ToMoney(),
-                                New = newGroup.Sum(s => s.New)
+                                New = newGroup.Sum(s => s.New).ToMoney()
 
                             }).ToList();
 
                 dgvAllDailyCollection.DataSource = data.ToList();
 
             }
-
-            dgvAllDailyCollection.Columns["New"].DefaultCellStyle.Format = "N0";
-
         }
 
         private void btnEmail_Click(object sender, EventArgs e)
