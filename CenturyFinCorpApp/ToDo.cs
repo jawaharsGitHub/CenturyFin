@@ -1,4 +1,5 @@
-﻿//Done: Auto Select Next Transaction Date and field.
+﻿
+//Done: Auto Select Next Transaction Date and field.
 //Done: Auto Populate - Daily Collection Amount
 //Done: Number of days taken to close the transaction.
 //Done: Actual Interest got from customer - eg: customer got - 10,000 and got all money from 100 days.then interest got is 100% that is 8% for 100 days.but if customer return all amount in 10 days.
@@ -24,6 +25,20 @@
 // Done: new menu - 1. Politics  2. Health
 // Done: Collection Spot
 
+//=====================================================================
+// SCENARIOS
+//=====================================================================
+
+// 1. Move just balnce from one cus to another cus. --> force close the source cus and keep the interest for destination customer. then add new topup for destimation customer with interest as this source customer interest and make sure to keep the same and correct date for this txns may be we can have a txn details like comments for this top up.)
+// 2. Move Part of balance from one Cus to another cus.
+// 3. Move all txns from one to another cus.
+// 4. insert missing or new txns inside existing txns.
+// 5. insert missing txns (by mama)
+
+
+
+
+//=====================================================================
 //=====================================================================
 
 //TODO: Mobile Message Service
@@ -64,6 +79,11 @@
 //TODO: form for Config values.
 //TODO: sometimes closed date is not updating.
 // TODO: need to give popup for duplicate entry.
+
+
+
+
+
 
 
 
