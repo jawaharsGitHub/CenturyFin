@@ -42,7 +42,7 @@ namespace DataAccess.PrimaryTypes
                     salary = 12000;
                 }
 
-                // SALARY VARIATIONS.
+                // SHOP RENT.
                 if (yearMonth >= 201903)
                 {
                     salary += 2500;
