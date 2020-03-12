@@ -30,6 +30,7 @@
 //=====================================================================
 
 // 1. Move just balnce from one cus to another cus. --> force close the source cus and keep the interest for destination customer. then add new topup for destimation customer with interest as this source customer interest and make sure to keep the same and correct date for this txns may be we can have a txn details like comments for this top up.)
+// REFER - move from one to another Bal. Commit d0941c59
 // 2. Move Part of balance from one Cus to another cus.
 // 3. Move all txns from one to another cus.
 // 4. insert missing or new txns inside existing txns.
