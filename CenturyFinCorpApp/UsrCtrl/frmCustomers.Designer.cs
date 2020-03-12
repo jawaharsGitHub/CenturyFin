@@ -59,7 +59,6 @@
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-            //this.dataGridView1.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellLeave);
             this.dataGridView1.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseEnter);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
@@ -81,7 +80,7 @@
             // rdbClosed
             // 
             this.rdbClosed.AutoSize = true;
-            this.rdbClosed.Location = new System.Drawing.Point(146, 13);
+            this.rdbClosed.Location = new System.Drawing.Point(120, 13);
             this.rdbClosed.Name = "rdbClosed";
             this.rdbClosed.Size = new System.Drawing.Size(88, 17);
             this.rdbClosed.TabIndex = 2;
@@ -93,7 +92,7 @@
             // rdbAll
             // 
             this.rdbAll.AutoSize = true;
-            this.rdbAll.Location = new System.Drawing.Point(282, 14);
+            this.rdbAll.Location = new System.Drawing.Point(214, 13);
             this.rdbAll.Name = "rdbAll";
             this.rdbAll.Size = new System.Drawing.Size(67, 17);
             this.rdbAll.TabIndex = 3;

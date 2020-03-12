@@ -128,18 +128,21 @@ namespace CenturyFinCorpApp
                         .Select(s => new { Balance = Transaction.GetBalance(s), s.IsActive, s.Interest, s.LoanAmount, s.MonthlyInterest });
 
             var allGivenAmount = customers.Where(w => w.IsNotMonthly()).Sum(s => s.LoanAmount);
-
+            
+            var activeTxn = customers.Count(c => c.IsActive == true && c.Interest > 0 && c.IsNotMonthly());
             var NoInterestactiveTxn = customers.Count(c => c.IsActive == true && c.Interest == 0);
             var monthlyINtTxn = customers.Count(c => c.IsActive == true && c.IsMonthly());
-            var activeTxn = customers.Count(c => c.IsActive == true && c.Interest > 0 && c.IsNotMonthly());
             var closedTxn = customers.Count(c => c.IsActive == false);
-            var totalTxn = activeTxn + closedTxn + monthlyINtTxn;
+            //var totalTxn = activeTxn + closedTxn + monthlyINtTxn + NoInterestactiveTxn;
+            var totalTxn = customers.Count;
+            var activeCUs = customers.Where(w => w.IsActive).Count();
+
 
             this.Text = $"WELCOME TO Running Notes: {activeTxn} Closed Notes: {closedTxn} Total Notes: {totalTxn}";
 
-            rdbActive.Text = $"RUNNING NOTES ({activeTxn + NoInterestactiveTxn + monthlyINtTxn}) {Environment.NewLine}({activeTxn}R + {NoInterestactiveTxn}NI + {monthlyINtTxn}MI)";
-            rdbClosed.Text = $"CLOSED NOTES ({closedTxn})";
-            rdbAll.Text = $"ALL NOTES ({totalTxn})";
+            rdbActive.Text = $"RUNNING ({activeCUs}) {Environment.NewLine}({activeTxn}R + {NoInterestactiveTxn}NI + {monthlyINtTxn}MI)";
+            rdbClosed.Text = $"CLOSED ({closedTxn})";
+            rdbAll.Text = $"ALL ({totalTxn})";
 
             // Customer day and count ratio.
             var days = (DateTime.Today - new DateTime(2018, 1, 25)).TotalDays;
