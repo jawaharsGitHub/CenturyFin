@@ -33,8 +33,8 @@ namespace CenturyFinCorpApp
        Random = 11
        Others = 12";
 
-            txtSearch.GotFocus += (s, e) => 
-            { 
+            txtSearch.GotFocus += (s, e) =>
+            {
                 txtSearch.BackColor = Color.Yellow;
                 txtSearch.ForeColor = Color.DarkRed;
 
@@ -121,7 +121,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(14, "Only Personal"),
                    new KeyValuePair<int, string>(15, "No Tamil Name"),
                    new KeyValuePair<int, string>(16, "Only Adj & To Be Closed."),
-                   new KeyValuePair<int, string>(17, "By Balance %")
+                   new KeyValuePair<int, string>(17, "By Balance %"),
+                   new KeyValuePair<int, string>(18, "By Interest")
 
                };
 
@@ -606,9 +607,6 @@ namespace CenturyFinCorpApp
                 int rowIndex = dataGridView1.HitTest(e.X, e.Y).RowIndex;
 
                 var seqNo = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "CustomerSeqNumber");
-                //var customerId = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "CustomerId");
-                //var isActive = FormGeneral.GetGridCellValue(dataGridView1, rowIndex, "IsActive");
-
                 var selectedCustomer = Customer.GetCustomerDetails(seqNo.ToInt32());
 
                 strip.Tag = new Customer()
@@ -632,6 +630,7 @@ namespace CenturyFinCorpApp
                     strip.Items.Add(noteWithUsText).Name = "NoteStatus";
                     strip.Items.Add("Show Only This Customer").Name = "OnlyThisCus";
                     strip.Items.Add(personalText).Name = "Personal";
+                    strip.Items.Add("Sum").Name = "Sum";
                 }
 
                 strip.Show(dataGridView1, new System.Drawing.Point(e.X, e.Y));
@@ -645,35 +644,25 @@ namespace CenturyFinCorpApp
         {
             var cus = (Customer)((ContextMenuStrip)sender).Tag;
 
-            if (e.ClickedItem.Name == "All")
+            
+            if (e.ClickedItem.Name == "Cus") Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
+
+            else if (e.ClickedItem.Name == "Txn") Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
+            
+            else if (e.ClickedItem.Name == "InvStatus") Customer.UpdateCustomerInvestigation(cus.CustomerSeqNumber);
+
+            else if (e.ClickedItem.Name == "ElgStatus") Customer.UpdateCustomerEligibility(cus.CustomerId);
+
+            else if (e.ClickedItem.Name == "NoteStatus") Customer.UpdateCustomerNoteLocation(cus.CustomerSeqNumber);
+
+            else if (e.ClickedItem.Name == "Personal") Customer.UpdateCustomerPersonalFlag(cus.CustomerSeqNumber);
+
+            else if (e.ClickedItem.Name == "All")
             {
                 Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
                 Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
             }
-            else if (e.ClickedItem.Name == "Cus")
-            {
-                Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
-            }
-            else if (e.ClickedItem.Name == "Txn")
-            {
-                Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
-            }
-            else if (e.ClickedItem.Name == "InvStatus")
-            {
-                Customer.UpdateCustomerInvestigation(cus.CustomerSeqNumber);
-            }
-            else if (e.ClickedItem.Name == "ElgStatus")
-            {
-                Customer.UpdateCustomerEligibility(cus.CustomerId);
-            }
-            else if (e.ClickedItem.Name == "NoteStatus")
-            {
-                Customer.UpdateCustomerNoteLocation(cus.CustomerSeqNumber);
-            }
-            else if (e.ClickedItem.Name == "Personal")
-            {
-                Customer.UpdateCustomerPersonalFlag(cus.CustomerSeqNumber);
-            }
+
             else if (e.ClickedItem.Name == "OnlyThisCus")
             {
                 var data = Customer.GetAllCustomer().Where(w => w.CustomerId == cus.CustomerId).OrderByDescending(o => o.IsActive).ToList();
@@ -686,13 +675,21 @@ namespace CenturyFinCorpApp
 
                 MessageBox.Show(message);
             }
+            else if (e.ClickedItem.Name == "Sum")
+            {
+                int sum = 0;
+
+                foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
+                    sum += cell.Value.ToInt32();
+
+                MessageBox.Show(sum.ToString());
+            }
 
         }
         private void frmCustomers_Load(object sender, EventArgs e)
         {
             txtSearch.Focus();
         }
-
 
         private void cmbFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -771,8 +768,10 @@ namespace CenturyFinCorpApp
             else if (value == 17)
             {
                 searchedCustomer = customers.OrderBy(o => ((Convert.ToDecimal(Transaction.GetBalance(o) / Convert.ToDecimal(o.LoanAmount))) * 100)).ToList();
-
-                //(Convert.ToDecimal(t.Balance) / Convert.ToDecimal(c.LoanAmount)) * 100
+            }
+            else if (value == 18)
+            {
+                searchedCustomer = customers.OrderBy(o => o.Interest).ToList();
             }
             else
             {
@@ -843,8 +842,12 @@ namespace CenturyFinCorpApp
         }
         private void btnLatestCollection_Click(object sender, EventArgs e)
         {
-            var collectionAmount = Transaction.GetDailyCollectionAmount(dateTimePicker1.Value);
-            btnLatestCollection.Text = collectionAmount.ToMoneyFormat();
+            // FAST
+            btnLatestCollection.Text = Transaction.GetDailyCollectionAmountQuickAndTemp(dateTimePicker1.Value);
+
+            // SLOW
+            //var collectionAmount = Transaction.GetDailyCollectionAmount(dateTimePicker1.Value);
+            //btnLatestCollection.Text = collectionAmount.ToMoneyFormat();
         }
 
         private void btnClosedTxn_Click(object sender, EventArgs e)

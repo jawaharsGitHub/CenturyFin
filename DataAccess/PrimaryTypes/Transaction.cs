@@ -716,9 +716,20 @@ namespace DataAccess.PrimaryTypes
             return fromActiveTxn;
         }
 
+        // This will be used in frmInhAnd page , it seems like all time working.
         public static int GetDailyCollectionAmount(DateTime inputDate)
         {
             return Transaction.GetDailyCollectionDetails_V0(inputDate).Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
+        }
+
+        // This will be used in Customer page for quick and that day only working logic, it seems like some issues may come.
+        public static string GetDailyCollectionAmountQuickAndTemp(DateTime inputDate)
+        {
+            //return Transaction.GetDailyCollectionDetails_V0(inputDate).Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived);
+
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+            //if (list == null) return null;
+            return list.Where(c => c.TxnDate.Date == inputDate.Date).Where(w => w.AmountReceived > 0).Sum(s => s.AmountReceived).ToMoneyFormat();
         }
 
         private static List<Transaction> ProcessDirectory(string targetDirectory, DateTime inputDate)
