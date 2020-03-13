@@ -33,6 +33,20 @@ namespace CenturyFinCorpApp
        Random = 11
        Others = 12";
 
+            txtSearch.GotFocus += (s, e) => 
+            { 
+                txtSearch.BackColor = Color.Yellow;
+                txtSearch.ForeColor = Color.DarkRed;
+
+            };
+            txtSearch.LostFocus += (s, e) =>
+            {
+                txtSearch.BackColor = Color.Gray;
+                txtSearch.ForeColor = Color.White;
+
+            };
+
+
             cmbFilters.DataSource = GetOptions();
             SetReturnTypes();
 
@@ -408,7 +422,7 @@ namespace CenturyFinCorpApp
 
                 Transaction LastexistingTxn = null;
 
-                if (existingTxns != null && existingTxns.Count > 0) 
+                if (existingTxns != null && existingTxns.Count > 0)
                     LastexistingTxn = existingTxns.OrderBy(o => o.TransactionId).Last();
 
                 if (LastexistingTxn != null)
