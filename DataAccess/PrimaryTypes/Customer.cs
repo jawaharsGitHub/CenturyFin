@@ -34,11 +34,12 @@ namespace DataAccess.PrimaryTypes
         public int MonthlyInterest { get; set; }
         public bool IsExistingCustomer { get; set; }
         public bool IsActive { get; set; }
+        public bool NeedInvestigation { get; set; }
         public DateTime? AmountGivenDate { get; set; }
         public DateTime? ClosedDate { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
         public bool IsForceClosed { get; set; }
-        public bool NeedInvestigation { get; set; }
+        
         public bool GivenEligibility { get; set; } = true;
         public bool NoteWithUs { get; set; }
         public bool IsPersonal { get; set; }
@@ -142,6 +143,22 @@ namespace DataAccess.PrimaryTypes
                 u.Interest = updatedCustomer.Interest;
                 u.LoanAmount = updatedCustomer.LoanAmount;
                 u.CustomerId = updatedCustomer.CustomerId;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void UpdateCustomerNeedInvestigation(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.NeedInvestigation = updatedCustomer.NeedInvestigation;
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
@@ -326,7 +343,7 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
-        public static void UpdateCustomerInvestigation(int cusSeqNo)
+        public static void ToggleCustomerInvestigation(int cusSeqNo)
         {
             try
             {

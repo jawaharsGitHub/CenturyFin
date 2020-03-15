@@ -237,7 +237,7 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["GivenEligibility"].Visible = false;
             dataGridView1.Columns["NoteWithUs"].Visible = false;
             dataGridView1.Columns["IsPersonal"].Visible = false;
-            dataGridView1.Columns["NeedInvestigation"].Visible = false;
+            dataGridView1.Columns["NeedInvestigation"].Visible = show;
             dataGridView1.Columns["CollectionSpotId"].Visible = show;
             dataGridView1.Columns["ReturnDay"].Visible = show;
             //dataGridView1.Columns["ReturnType"].Visible = show;
@@ -507,6 +507,12 @@ namespace CenturyFinCorpApp
                 return;
             }
 
+            else if (owningColumnName == "NeedInvestigation")
+            {
+                updatedCustomer.NeedInvestigation = Convert.ToBoolean(cellValue);
+                Customer.UpdateCustomerNeedInvestigation(updatedCustomer);
+            }
+
             else if (owningColumnName == "ClosedDate")
             {
                 updatedCustomer.ClosedDate = Convert.ToDateTime(cellValue);
@@ -649,7 +655,7 @@ namespace CenturyFinCorpApp
 
             else if (e.ClickedItem.Name == "Txn") Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
             
-            else if (e.ClickedItem.Name == "InvStatus") Customer.UpdateCustomerInvestigation(cus.CustomerSeqNumber);
+            else if (e.ClickedItem.Name == "InvStatus") Customer.ToggleCustomerInvestigation(cus.CustomerSeqNumber);
 
             else if (e.ClickedItem.Name == "ElgStatus") Customer.UpdateCustomerEligibility(cus.CustomerId);
 

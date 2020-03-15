@@ -190,7 +190,7 @@
             // chkFriends
             // 
             this.chkFriends.AutoSize = true;
-            this.chkFriends.Location = new System.Drawing.Point(578, 77);
+            this.chkFriends.Location = new System.Drawing.Point(544, 77);
             this.chkFriends.Name = "chkFriends";
             this.chkFriends.Size = new System.Drawing.Size(83, 17);
             this.chkFriends.TabIndex = 15;
@@ -210,7 +210,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(1124, 176);
+            this.textBox1.Location = new System.Drawing.Point(1156, 421);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(128, 217);
