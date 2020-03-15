@@ -443,6 +443,10 @@ namespace CenturyFinCorpApp
                             existingTxnId = LastexistingTxn.TransactionId;
                             Transaction.DeleteTransactionDetails(LastexistingTxn);
                         }
+                        else
+                        {
+                            return;
+                        }
                     }
                 }
 
@@ -646,11 +650,11 @@ namespace CenturyFinCorpApp
         {
             var cus = (Customer)((ContextMenuStrip)sender).Tag;
 
-            
+
             if (e.ClickedItem.Name == "Cus") Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
 
             else if (e.ClickedItem.Name == "Txn") Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
-            
+
             else if (e.ClickedItem.Name == "InvStatus") Customer.ToggleCustomerInvestigation(cus.CustomerSeqNumber);
 
             else if (e.ClickedItem.Name == "ElgStatus") Customer.UpdateCustomerEligibility(cus.CustomerId);
