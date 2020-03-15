@@ -48,6 +48,7 @@
             this.lblTotalAsset = new System.Windows.Forms.Label();
             this.lblCloseCount = new System.Windows.Forms.LinkLabel();
             this.lblLoss = new System.Windows.Forms.Label();
+            this.lblIntPerc = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -245,10 +246,22 @@
             this.lblLoss.TabIndex = 38;
             this.lblLoss.Text = "LOSS";
             // 
+            // lblIntPerc
+            // 
+            this.lblIntPerc.AutoSize = true;
+            this.lblIntPerc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIntPerc.ForeColor = System.Drawing.Color.Olive;
+            this.lblIntPerc.Location = new System.Drawing.Point(300, 528);
+            this.lblIntPerc.Name = "lblIntPerc";
+            this.lblIntPerc.Size = new System.Drawing.Size(39, 13);
+            this.lblIntPerc.TabIndex = 39;
+            this.lblIntPerc.Text = "LOSS";
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblIntPerc);
             this.Controls.Add(this.lblLoss);
             this.Controls.Add(this.lblCloseCount);
             this.Controls.Add(this.comboBox1);
@@ -300,5 +313,6 @@
         private System.Windows.Forms.Label lblTotalAsset;
         private System.Windows.Forms.LinkLabel lblCloseCount;
         private System.Windows.Forms.Label lblLoss;
+        private System.Windows.Forms.Label lblIntPerc;
     }
 }

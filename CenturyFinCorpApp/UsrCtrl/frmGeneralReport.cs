@@ -216,12 +216,15 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             }
 
+            
 
             // Years Expected and Actual Salary
             var actual = finalData.Sum(w => w.ActualIncome);
             var expected = finalData.Sum(w => w.ExpectedIncome);
-            var salary = finalData.Sum(w => w.MonthlySalary);
 
+            var salary = finalData.Sum(w => w.MonthlySalary);
+            lblSalary.Text = $"Salary : {salary.ToMoneyFormat()}";
+            lblSalary.Visible = considerSalary;
 
             var numberOfMonths = DateTime.Today.Subtract(new DateTime(2018, 1, 25)).Days / (365.25 / 12).ToInt32();
 
@@ -236,9 +239,6 @@ namespace CenturyFinCorpApp.UsrCtrl
             var totalMonthly = (actualMonthly + expectedMonthly);
             var actualProfit = actualMonthly + actual;
             var expectedProfit = expectedMonthly + expected;
-
-
-
 
             // PROFIT
             lblTotal.Text = $"Acutaul Profit: {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {actualProfit.ToMoneyFormat()}A (Per Month: { (actualProfit / numberOfMonths).ToMoneyFormat()}A){Environment.NewLine}" +
@@ -260,13 +260,35 @@ namespace CenturyFinCorpApp.UsrCtrl
             var actualLossPerc = actualProfit.PercentageBtwNo(actualLoss);
             var expectedLossPerc = expectedProfit.PercentageBtwNo(expectedLoss);
             var allLossPerc = allProfit.PercentageBtwNo(allLoss);
-            
+
             lblLoss.Text = $"Actual Loss: {actualLoss.ToMoneyFormat()} Vs {actualProfit.ToMoneyFormat()} ({actualLossPerc}%){Environment.NewLine}" +
                 $"Expected Loss: {expectedLoss.ToMoneyFormat()} Vs {expectedProfit.ToMoneyFormat()}  ({expectedLossPerc}%){Environment.NewLine}" +
                 $"All Loss: {allLoss.ToMoneyFormat()} Vs { allProfit.ToMoneyFormat()} ({allLossPerc}%)";
 
-            lblSalary.Text = $"Salary : {salary.ToMoneyFormat()}";
-            lblSalary.Visible = considerSalary;
+
+            // Profit Percentages.
+
+            var DCus = Customer.GetAllCustomer().Where(w => w.ReturnType == ReturnTypeEnum.Daily).Select(s => s.Interest).Sum();
+            var WCus = Customer.GetAllCustomer().Where(w => w.ReturnType == ReturnTypeEnum.Weekly).Select(s => s.Interest).Sum();
+            var TMCus = Customer.GetAllCustomer().Where(w => w.ReturnType == ReturnTypeEnum.TenMonths).Select(s => s.Interest).Sum();
+            var MCus = Customer.GetAllCustomer().Where(w => w.ReturnType == ReturnTypeEnum.Monthly).Select(s => s.Interest).Sum();
+            var oCus = Customer.GetAllCustomer().Where(
+                w => w.ReturnType != ReturnTypeEnum.Monthly &&
+                w.ReturnType != ReturnTypeEnum.TenMonths &&
+                w.ReturnType != ReturnTypeEnum.Weekly &&
+                w.ReturnType != ReturnTypeEnum.Daily
+                ).Select(s => s.Interest).Sum();
+
+            var allInt = Customer.GetAllCustomer().Select(s => s.Interest).Sum();
+
+            lblIntPerc.Text = $"Daily: {DCus.ToMoneyFormat()} Vs {allInt.ToMoneyFormat()} ({allInt.PercentageBtwNo(DCus)}%){Environment.NewLine}" +
+                $"Weekly: {WCus.ToMoneyFormat()} Vs {allInt.ToMoneyFormat()} ({allInt.PercentageBtwNo(WCus)}%){Environment.NewLine}" +
+                $"Ten Months: {WCus.ToMoneyFormat()} Vs {allInt.ToMoneyFormat()} ({allInt.PercentageBtwNo(TMCus)}%){Environment.NewLine}" +
+                $"Monthly: {MCus.ToMoneyFormat()} Vs {allInt.ToMoneyFormat()} ({allInt.PercentageBtwNo(MCus)}%){Environment.NewLine}" +
+                $"Others: {oCus.ToMoneyFormat()} Vs {allInt.ToMoneyFormat()} ({allInt.PercentageBtwNo(oCus)}%){Environment.NewLine}";
+
+
+            
 
 
             if (comboBox1.Text.ToLower() != "all" && comboBox1.Text != "")
