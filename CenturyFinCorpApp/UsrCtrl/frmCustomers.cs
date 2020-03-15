@@ -349,11 +349,6 @@ namespace CenturyFinCorpApp
             GridEdit();
         }
 
-        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
-        {
-            GridEdit();
-        }
-
         private void GridEdit()
         {
             if (dataGridView1.CurrentCell.OwningColumn.Name == "CollectionAmt")
@@ -369,6 +364,7 @@ namespace CenturyFinCorpApp
             dataGridView1.CurrentCell.Style.BackColor = Color.LightGreen;
             dataGridView1.CurrentCell.Style.ForeColor = Color.White;
             this.dataGridView1.ClearSelection();
+            IsEnterKey = false; // reset flag after ecery success edit.
         }
 
         private void EditCancel()
