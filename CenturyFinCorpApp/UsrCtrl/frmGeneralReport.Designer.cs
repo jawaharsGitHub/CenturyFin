@@ -30,8 +30,6 @@
         {
             this.dgvIncome = new System.Windows.Forms.DataGridView();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.lblActual = new System.Windows.Forms.Label();
-            this.lblExpected = new System.Windows.Forms.Label();
             this.chkAddSalary = new System.Windows.Forms.CheckBox();
             this.dgvNotePerMonth = new System.Windows.Forms.DataGridView();
             this.label3 = new System.Windows.Forms.Label();
@@ -68,31 +66,11 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.Color.Olive;
-            this.lblTotal.Location = new System.Drawing.Point(146, 32);
+            this.lblTotal.Location = new System.Drawing.Point(146, 10);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(47, 13);
             this.lblTotal.TabIndex = 12;
             this.lblTotal.Text = "TOTAL";
-            // 
-            // lblActual
-            // 
-            this.lblActual.AutoSize = true;
-            this.lblActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblActual.ForeColor = System.Drawing.Color.Black;
-            this.lblActual.Location = new System.Drawing.Point(210, -2);
-            this.lblActual.Name = "lblActual";
-            this.lblActual.Size = new System.Drawing.Size(43, 13);
-            this.lblActual.TabIndex = 11;
-            this.lblActual.Text = "[Actual]";
-            // 
-            // lblExpected
-            // 
-            this.lblExpected.AutoSize = true;
-            this.lblExpected.Location = new System.Drawing.Point(146, -2);
-            this.lblExpected.Name = "lblExpected";
-            this.lblExpected.Size = new System.Drawing.Size(58, 13);
-            this.lblExpected.TabIndex = 10;
-            this.lblExpected.Text = "[Expected]";
             // 
             // chkAddSalary
             // 
@@ -162,7 +140,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(628, 45);
+            this.label4.Location = new System.Drawing.Point(714, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 28;
@@ -171,7 +149,7 @@
             // lblOutStanding
             // 
             this.lblOutStanding.AutoSize = true;
-            this.lblOutStanding.Location = new System.Drawing.Point(757, 7);
+            this.lblOutStanding.Location = new System.Drawing.Point(843, 7);
             this.lblOutStanding.Name = "lblOutStanding";
             this.lblOutStanding.Size = new System.Drawing.Size(111, 13);
             this.lblOutStanding.TabIndex = 27;
@@ -180,7 +158,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(628, 7);
+            this.label5.Location = new System.Drawing.Point(714, 7);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(101, 13);
             this.label5.TabIndex = 26;
@@ -206,7 +184,7 @@
             // lblBizAsset
             // 
             this.lblBizAsset.AutoSize = true;
-            this.lblBizAsset.Location = new System.Drawing.Point(758, 26);
+            this.lblBizAsset.Location = new System.Drawing.Point(844, 26);
             this.lblBizAsset.Name = "lblBizAsset";
             this.lblBizAsset.Size = new System.Drawing.Size(53, 13);
             this.lblBizAsset.TabIndex = 33;
@@ -215,7 +193,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(629, 26);
+            this.label9.Location = new System.Drawing.Point(715, 26);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 13);
             this.label9.TabIndex = 32;
@@ -239,7 +217,7 @@
             // 
             this.lblTotalAsset.AutoSize = true;
             this.lblTotalAsset.ForeColor = System.Drawing.Color.Red;
-            this.lblTotalAsset.Location = new System.Drawing.Point(757, 45);
+            this.lblTotalAsset.Location = new System.Drawing.Point(843, 45);
             this.lblTotalAsset.Name = "lblTotalAsset";
             this.lblTotalAsset.Size = new System.Drawing.Size(63, 13);
             this.lblTotalAsset.TabIndex = 29;
@@ -261,7 +239,7 @@
             this.lblLoss.AutoSize = true;
             this.lblLoss.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLoss.ForeColor = System.Drawing.Color.Olive;
-            this.lblLoss.Location = new System.Drawing.Point(146, 88);
+            this.lblLoss.Location = new System.Drawing.Point(146, 68);
             this.lblLoss.Name = "lblLoss";
             this.lblLoss.Size = new System.Drawing.Size(39, 13);
             this.lblLoss.TabIndex = 38;
@@ -290,8 +268,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvNotePerMonth);
             this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.lblActual);
-            this.Controls.Add(this.lblExpected);
             this.Controls.Add(this.chkAddSalary);
             this.Name = "frmGeneralReport";
             this.Size = new System.Drawing.Size(1320, 623);
@@ -306,8 +282,6 @@
 
         private System.Windows.Forms.DataGridView dgvIncome;
         private System.Windows.Forms.Label lblTotal;
-        private System.Windows.Forms.Label lblActual;
-        private System.Windows.Forms.Label lblExpected;
         private System.Windows.Forms.CheckBox chkAddSalary;
         private System.Windows.Forms.DataGridView dgvNotePerMonth;
         private System.Windows.Forms.Label label3;

@@ -234,37 +234,37 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var total = (actual + expected);
             var totalMonthly = (actualMonthly + expectedMonthly);
-
             var actualProfit = actualMonthly + actual;
+            var expectedProfit = expectedMonthly + expected;
 
 
 
 
-            // Monthly
-            //lblExpected.Text = $"1. Actual(M) : {actualMonthly.ToMoneyFormat()} (Per Month: { (actualMonthly / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
-            //   $"2. Expected(M) : {expectedMonthly.ToMoneyFormat()} (Per Month: { (expectedMonthly / numberOfMonths).ToMoneyFormat()})";
-
-            //// Daily
-            //lblActual.Text = $"3. Actual(D) : {actual.ToMoneyFormat()} (Per Month: { (actual / numberOfMonths).ToMoneyFormat()}){Environment.NewLine}" +
-            //    $"4. Expected(D) : {expected.ToMoneyFormat()} (Per Month: { (expected / numberOfMonths).ToMoneyFormat()})";
-
-
-            lblTotal.Text = $"1. TOTAL(Actual) : {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {actualProfit.ToMoneyFormat()}A (Per Month: { ((actualMonthly + actual) / numberOfMonths).ToMoneyFormat()}A){Environment.NewLine}" +
-                $"2. TOTAL(Expected) : {expectedMonthly.ToMoneyFormat()}(M) + {expected.ToMoneyFormat()}(D) = {(expectedMonthly + expected).ToMoneyFormat()}E (Per Month: { ((expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}E){Environment.NewLine}{Environment.NewLine}" +
-            $"3. ALL TOTAL: {(actualMonthly + actual).ToMoneyFormat()}(A) + {(expectedMonthly + expected).ToMoneyFormat()}(E) = {(actualMonthly + actual + expectedMonthly + expected).ToMoneyFormat()}AE (Per Month: { ((actualMonthly + actual + expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}AE)";
+            // PROFIT
+            lblTotal.Text = $"Acutaul Profit: {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {actualProfit.ToMoneyFormat()}A (Per Month: { (actualProfit / numberOfMonths).ToMoneyFormat()}A){Environment.NewLine}" +
+                $"Expected Profit: {expectedMonthly.ToMoneyFormat()}(M) + {expected.ToMoneyFormat()}(D) = {expectedProfit.ToMoneyFormat()}E (Per Month: { (expectedProfit / numberOfMonths).ToMoneyFormat()}E){Environment.NewLine}" +
+            $"ALL Profit: {actualProfit.ToMoneyFormat()}(A) + {expectedProfit.ToMoneyFormat()}(E) = {(actualProfit + expectedProfit).ToMoneyFormat()}AE (Per Month: { ((actualMonthly + actual + expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}AE)";
             lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)} {Environment.NewLine}  {closedDetailForCurrentMonth}";
 
+
+            // LOSS
             var actualLoss = Report.GetActualLoss();
             var expectedLoss = Report.GetExpectedLoss();
+            var allLoss = actualLoss + expectedLoss;
+
+            var allProfit = actualProfit + expectedProfit;
 
             var totalIncomeWithActualLoss = (actualProfit + actualLoss);
             var totalIncomeWithAllLoss = (actualProfit + actualLoss + expectedLoss);
 
-            var actualLossPerc = totalIncomeWithActualLoss.PercentageBtwNo(actualLoss);
-            var actaulPlusExpectedLossPerc = totalIncomeWithAllLoss.PercentageBtwNo(actualLoss + expectedLoss);
+            var actualLossPerc = actualProfit.PercentageBtwNo(actualLoss);
+            var expectedLossPerc = expectedProfit.PercentageBtwNo(expectedLoss);
+            var allLossPerc = allProfit.PercentageBtwNo(allLoss);
+            
+            lblLoss.Text = $"Actual Loss: {actualLoss.ToMoneyFormat()} Vs {actualProfit.ToMoneyFormat()} ({actualLossPerc}%){Environment.NewLine}" +
+                $"Expected Loss: {expectedLoss.ToMoneyFormat()} Vs {expectedProfit.ToMoneyFormat()}  ({expectedLossPerc}%){Environment.NewLine}" +
+                $"All Loss: {allLoss.ToMoneyFormat()} Vs { allProfit.ToMoneyFormat()} ({allLossPerc}%)";
 
-
-            lblLoss.Text = $"Actual Loss: {actualLoss.ToMoneyFormat()} ({actualLossPerc}%) Expected Loss: {expectedLoss.ToMoneyFormat()} ({actaulPlusExpectedLossPerc}%)";
             lblSalary.Text = $"Salary : {salary.ToMoneyFormat()}";
             lblSalary.Visible = considerSalary;
 
