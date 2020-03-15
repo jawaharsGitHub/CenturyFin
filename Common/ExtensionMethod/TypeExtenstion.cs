@@ -100,6 +100,11 @@ namespace Common.ExtensionMethod
             return Math.Round((toPercentage / 100) * value.ToInt32()).ToString();
         }
 
+        public static int PercentageBtwNo(this int bigValue, int smallValue)
+        {
+            return Convert.ToInt32(Math.Round(Convert.ToDecimal(smallValue) / Convert.ToDecimal(bigValue) * 100));
+        }
+
 
     }
 }

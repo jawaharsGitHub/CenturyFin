@@ -49,6 +49,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.lblTotalAsset = new System.Windows.Forms.Label();
             this.lblCloseCount = new System.Windows.Forms.LinkLabel();
+            this.lblLoss = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIncome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotePerMonth)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +67,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.ForeColor = System.Drawing.Color.Yellow;
+            this.lblTotal.ForeColor = System.Drawing.Color.Olive;
             this.lblTotal.Location = new System.Drawing.Point(146, 32);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(47, 13);
@@ -255,10 +256,22 @@
             this.lblCloseCount.Text = "linkLabel1";
             this.lblCloseCount.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblCloseCount_LinkClicked);
             // 
+            // lblLoss
+            // 
+            this.lblLoss.AutoSize = true;
+            this.lblLoss.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLoss.ForeColor = System.Drawing.Color.Olive;
+            this.lblLoss.Location = new System.Drawing.Point(146, 88);
+            this.lblLoss.Name = "lblLoss";
+            this.lblLoss.Size = new System.Drawing.Size(39, 13);
+            this.lblLoss.TabIndex = 38;
+            this.lblLoss.Text = "LOSS";
+            // 
             // frmGeneralReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblLoss);
             this.Controls.Add(this.lblCloseCount);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblBizAsset);
@@ -312,5 +325,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lblTotalAsset;
         private System.Windows.Forms.LinkLabel lblCloseCount;
+        private System.Windows.Forms.Label lblLoss;
     }
 }

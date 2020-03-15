@@ -566,8 +566,6 @@ namespace DataAccess.PrimaryTypes
             {
                 try
                 {
-                    //List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
-                    //return list;
                     return ReadFileAsObjects<Customer>(JsonFilePath);
                 }
                 catch

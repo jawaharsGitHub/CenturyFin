@@ -85,6 +85,7 @@
     <Compile Include="PrimaryTypes\DetailedAmount.cs" />
     <Compile Include="PrimaryTypes\Investment.cs" />
     <Compile Include="PrimaryTypes\Petrol.cs" />
+    <Compile Include="PrimaryTypes\Report.cs" />
     <Compile Include="PrimaryTypes\Transaction.cs" />
     <Compile Include="PrimaryTypes\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

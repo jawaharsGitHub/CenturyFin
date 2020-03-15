@@ -101,7 +101,7 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             var moveOverClosed = 0;
             var moveOverInterest = 0;
-            
+
 
             var ddd = 0;
             data.ForEach(f =>
@@ -235,6 +235,9 @@ namespace CenturyFinCorpApp.UsrCtrl
             var total = (actual + expected);
             var totalMonthly = (actualMonthly + expectedMonthly);
 
+            var actualProfit = actualMonthly + actual;
+
+
 
 
             // Monthly
@@ -246,11 +249,22 @@ namespace CenturyFinCorpApp.UsrCtrl
             //    $"4. Expected(D) : {expected.ToMoneyFormat()} (Per Month: { (expected / numberOfMonths).ToMoneyFormat()})";
 
 
-            lblTotal.Text = $"1. TOTAL(Actual) : {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {(actualMonthly + actual).ToMoneyFormat()}A (Per Month: { ((actualMonthly + actual) / numberOfMonths).ToMoneyFormat()}A){Environment.NewLine}" +
+            lblTotal.Text = $"1. TOTAL(Actual) : {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {actualProfit.ToMoneyFormat()}A (Per Month: { ((actualMonthly + actual) / numberOfMonths).ToMoneyFormat()}A){Environment.NewLine}" +
                 $"2. TOTAL(Expected) : {expectedMonthly.ToMoneyFormat()}(M) + {expected.ToMoneyFormat()}(D) = {(expectedMonthly + expected).ToMoneyFormat()}E (Per Month: { ((expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}E){Environment.NewLine}{Environment.NewLine}" +
             $"3. ALL TOTAL: {(actualMonthly + actual).ToMoneyFormat()}(A) + {(expectedMonthly + expected).ToMoneyFormat()}(E) = {(actualMonthly + actual + expectedMonthly + expected).ToMoneyFormat()}AE (Per Month: { ((actualMonthly + actual + expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}AE)";
             lblCloseCount.Text = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)} {Environment.NewLine}  {closedDetailForCurrentMonth}";
 
+            var actualLoss = Report.GetActualLoss();
+            var expectedLoss = Report.GetExpectedLoss();
+
+            var totalIncomeWithActualLoss = (actualProfit + actualLoss);
+            var totalIncomeWithAllLoss = (actualProfit + actualLoss + expectedLoss);
+
+            var actualLossPerc = totalIncomeWithActualLoss.PercentageBtwNo(actualLoss);
+            var actaulPlusExpectedLossPerc = totalIncomeWithAllLoss.PercentageBtwNo(actualLoss + expectedLoss);
+
+
+            lblLoss.Text = $"Actual Loss: {actualLoss.ToMoneyFormat()} ({actualLossPerc}%) Expected Loss: {expectedLoss.ToMoneyFormat()} ({actaulPlusExpectedLossPerc}%)";
             lblSalary.Text = $"Salary : {salary.ToMoneyFormat()}";
             lblSalary.Visible = considerSalary;
 
