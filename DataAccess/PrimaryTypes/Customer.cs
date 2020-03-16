@@ -39,8 +39,11 @@ namespace DataAccess.PrimaryTypes
         public DateTime? ClosedDate { get; set; }
         public ReturnTypeEnum ReturnType { get; set; }
         public bool IsForceClosed { get; set; }
-        
+
         public bool GivenEligibility { get; set; } = true;
+
+        public int BusType { get; set; }
+
         public bool NoteWithUs { get; set; }
         public bool IsPersonal { get; set; }
 
