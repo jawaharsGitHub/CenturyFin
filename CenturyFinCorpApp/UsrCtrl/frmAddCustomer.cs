@@ -23,6 +23,9 @@ namespace CenturyFinCorpApp
             cmbExistingCustomer.AutoCompleteSource = AutoCompleteSource.ListItems;
             cmbExistingCustomer.AutoCompleteMode = AutoCompleteMode.Suggest;
 
+            //btnAdd.UpdateDefaultButton();
+
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -188,12 +191,12 @@ namespace CenturyFinCorpApp
         {
             cmbBusinessType.DataSource = BusinessType.GetBusinessTypes();
             cmbBusinessType.ValueMember = "Id";
-            cmbBusinessType.DisplayMember = "Name";
+            cmbBusinessType.DisplayMember = "IdAndName";
             cmbBusinessType.SelectedValue = 0;
 
             cmbBusTypeToAdd.DataSource = BusinessType.GetBusinessTypes();
             cmbBusTypeToAdd.ValueMember = "Id";
-            cmbBusTypeToAdd.DisplayMember = "Name";
+            cmbBusTypeToAdd.DisplayMember = "IdAndName";
             cmbBusTypeToAdd.SelectedValue = 0;
         }
 
@@ -243,6 +246,8 @@ namespace CenturyFinCorpApp
 
             var result = BusinessType.AddBusinessType(new BusinessType() { Name = txtBusType.Text });
             MessageBox.Show(result);
+            txtBusType.SelectAll();
+            txtBusType.Focus();
             //LoadBusinessType();
 
         }

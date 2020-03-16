@@ -17,6 +17,14 @@ namespace DataAccess.ExtendedTypes
 
         public string Name { get; set; }
 
+        public string IdAndName
+        {
+            get
+            {
+                return $"{Id}-{Name}";
+            }
+        }
+
         public static List<BusinessType> GetBusinessTypes()
         {
             var json = File.ReadAllText(JsonFilePath);

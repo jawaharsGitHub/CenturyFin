@@ -1,10 +1,42 @@
 [
   {
     "Id": 1,
-    "Name": "Grocery"
+    "Name": "Travels",
+    "IdAndName": "1-Travels"
   },
   {
     "Id": 2,
-    "Name": "Flower"
+    "Name": "Grocery",
+    "IdAndName": "2-Grocery"
+  },
+  {
+    "Id": 3,
+    "Name": "Watch",
+    "IdAndName": "3-Watch"
+  },
+  {
+    "Id": 4,
+    "Name": "DailyWage",
+    "IdAndName": "4-DailyWage"
+  },
+  {
+    "Id": 5,
+    "Name": "Hotel",
+    "IdAndName": "5-Hotel"
+  },
+  {
+    "Id": 6,
+    "Name": "GovtEmployee",
+    "IdAndName": "6-GovtEmployee"
+  },
+  {
+    "Id": 7,
+    "Name": "Computer",
+    "IdAndName": "7-Computer"
+  },
+  {
+    "Id": 8,
+    "Name": "marketing",
+    "IdAndName": "8-marketing"
   }
 ]

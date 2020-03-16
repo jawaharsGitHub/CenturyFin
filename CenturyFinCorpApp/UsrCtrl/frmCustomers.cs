@@ -578,6 +578,11 @@ namespace CenturyFinCorpApp
                 updatedCustomer.AmountGivenDate = Convert.ToDateTime(cellValue);
                 Customer.UpdateAmountGivenDate(updatedCustomer);
             }
+            else if (owningColumnName == "BusType")
+            {
+                updatedCustomer.BusType = cellValue.ToInt32();
+                Customer.UpdateBusinessType(updatedCustomer);
+            }
 
             EditSuccess();
 

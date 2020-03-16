@@ -523,6 +523,24 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static void UpdateBusinessType(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.BusType = updatedCustomer.BusType;
+
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static Customer GetCustomerDetails(Customer customer)
         {
             try
