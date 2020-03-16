@@ -340,7 +340,7 @@
             this.btnBTdelete.Location = new System.Drawing.Point(222, 117);
             this.btnBTdelete.Name = "btnBTdelete";
             this.btnBTdelete.Size = new System.Drawing.Size(75, 23);
-            this.btnBTdelete.TabIndex = 30;
+            this.btnBTdelete.TabIndex = 6;
             this.btnBTdelete.Text = "DELETE";
             this.btnBTdelete.UseVisualStyleBackColor = true;
             this.btnBTdelete.Click += new System.EventHandler(this.btnBTdelete_Click);
@@ -350,14 +350,14 @@
             this.txtBusType.Location = new System.Drawing.Point(49, 75);
             this.txtBusType.Name = "txtBusType";
             this.txtBusType.Size = new System.Drawing.Size(176, 20);
-            this.txtBusType.TabIndex = 29;
+            this.txtBusType.TabIndex = 3;
             // 
             // btnBTedit
             // 
             this.btnBTedit.Location = new System.Drawing.Point(130, 117);
             this.btnBTedit.Name = "btnBTedit";
             this.btnBTedit.Size = new System.Drawing.Size(75, 23);
-            this.btnBTedit.TabIndex = 28;
+            this.btnBTedit.TabIndex = 5;
             this.btnBTedit.Text = "EDIT";
             this.btnBTedit.UseVisualStyleBackColor = true;
             this.btnBTedit.Click += new System.EventHandler(this.btnBTedit_Click);
@@ -367,7 +367,7 @@
             this.btnBTadd.Location = new System.Drawing.Point(49, 117);
             this.btnBTadd.Name = "btnBTadd";
             this.btnBTadd.Size = new System.Drawing.Size(75, 23);
-            this.btnBTadd.TabIndex = 27;
+            this.btnBTadd.TabIndex = 4;
             this.btnBTadd.Text = "ADD";
             this.btnBTadd.UseVisualStyleBackColor = true;
             this.btnBTadd.Click += new System.EventHandler(this.btnBTadd_Click);
@@ -379,8 +379,7 @@
             this.cmbBusinessType.Location = new System.Drawing.Point(176, 29);
             this.cmbBusinessType.Name = "cmbBusinessType";
             this.cmbBusinessType.Size = new System.Drawing.Size(121, 21);
-            this.cmbBusinessType.TabIndex = 26;
-            //this.cmbBusinessType.SelectedIndexChanged += new System.EventHandler(this.cmbBusinessType_SelectedIndexChanged);
+            this.cmbBusinessType.TabIndex = 2;
             // 
             // label9
             // 
@@ -389,7 +388,7 @@
             this.label9.Location = new System.Drawing.Point(-1, 23);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(172, 29);
-            this.label9.TabIndex = 25;
+            this.label9.TabIndex = 1;
             this.label9.Text = "Business Type";
             // 
             // cmbBusTypeToAdd
