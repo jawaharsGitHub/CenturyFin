@@ -219,6 +219,8 @@ namespace CenturyFinCorpApp
             dataGridView1.Columns["CustomerId"].Width = 50;
             dataGridView1.Columns["NeedInvestigation"].Width = 50;
 
+            //dataGridView1.Columns["BusType"].CellType = typeof(ComboBox);
+
         }
         private void SetColumnVisibility(bool show = false)
         {
@@ -886,6 +888,26 @@ namespace CenturyFinCorpApp
         private void RefreshClosed()
         {
             btnClosedTxn.Text = $"Move Closed Txn({Transaction.GetClosedTxn()})";
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            //int existingTxnId = 0; // to  keep existing txn id.
+            //DataGridView grid = (sender as DataGridView);
+            //int rowIndex = grid.CurrentCell.RowIndex;
+            //string owningColumnName = grid.CurrentCell.OwningColumn.Name;
+            //string cellValue = FormGeneral.GetGridCellValue(grid, rowIndex, owningColumnName);
+            //Customer cus = grid.Rows[grid.CurrentCell.RowIndex].DataBoundItem as Customer;
+
+            //if(owningColumnName == "BusType")
+            //{
+            //    ComboBox cb = new ComboBox();                
+            //    var allBT = BusinessType.GetBusinessTypes();
+            //    cb.DataSource = allBT;
+            //    grid.CurrentCell. = cb;
+               
+            //}
+
         }
     }
 }
