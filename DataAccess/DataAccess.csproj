@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedTypes\BalanceCheckData.cs" />
+    <Compile Include="ExtendedTypes\BusinessType.cs" />
     <Compile Include="ExtendedTypes\CollectionStatus.cs" />
     <Compile Include="ExtendedTypes\CreditReport.cs" />
     <Compile Include="ExtendedTypes\CustomerDailyTxn.cs" />
@@ -549,6 +550,7 @@
     <None Include="Data\Investment.json" />
     <None Include="Data\PersonalOutstanding.json" />
     <None Include="Data\OldPetrol.json" />
+    <None Include="Data\BusinessTypeFile.json" />
     <None Include="Data\Petrol.json" />
     <None Include="Data\topupCustomer.json" />
     <None Include="Data\transaction.json" />
@@ -562,7 +564,6 @@
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

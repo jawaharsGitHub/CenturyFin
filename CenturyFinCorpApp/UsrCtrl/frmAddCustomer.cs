@@ -15,12 +15,13 @@ namespace CenturyFinCorpApp
             InitializeComponent();
             cmbExistingCustomer.Visible = false;
             LoadCustomerCollectionType();
+            LoadBusinessType();
+            this.cmbBusinessType.SelectedIndexChanged += new System.EventHandler(this.cmbBusinessType_SelectedIndexChanged);
             dateTimePicker1.Value = GlobalValue.CollectionDate.Value;
 
             cmbExistingCustomer.DropDownStyle = ComboBoxStyle.DropDown;
             cmbExistingCustomer.AutoCompleteSource = AutoCompleteSource.ListItems;
             cmbExistingCustomer.AutoCompleteMode = AutoCompleteMode.Suggest;
-            //cmbExistingCustomer.SelectedIndex = 0;
 
         }
 
@@ -183,6 +184,19 @@ namespace CenturyFinCorpApp
             cmbCollectionSpot.SelectedValue = 0;
         }
 
+        private void LoadBusinessType()
+        {
+            cmbBusinessType.DataSource = BusinessType.GetBusinessTypes();
+            cmbBusinessType.ValueMember = "Id";
+            cmbBusinessType.DisplayMember = "Name";
+            cmbBusinessType.SelectedValue = 0;
+
+            cmbBusTypeToAdd.DataSource = BusinessType.GetBusinessTypes();
+            cmbBusTypeToAdd.ValueMember = "Id";
+            cmbBusTypeToAdd.DisplayMember = "Name";
+            cmbBusTypeToAdd.SelectedValue = 0;
+        }
+
         private void cmbExistingCustomer_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedCustomer = cmbExistingCustomer.SelectedItem as Customer;
@@ -215,6 +229,69 @@ namespace CenturyFinCorpApp
             if ((ReturnTypeEnum)cmbReturnType.SelectedItem == ReturnTypeEnum.TenMonths)
             {
                 txtInterest.Text = txtLoan.Text.PercentageOfStr(20);
+            }
+
+        }
+
+        private void btnBTadd_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBusType.Text))
+            {
+                MessageBox.Show("please enter BT.");
+                return;
+            }
+
+            var result = BusinessType.AddBusinessType(new BusinessType() { Name = txtBusType.Text });
+            MessageBox.Show(result);
+            //LoadBusinessType();
+
+        }
+
+        private void btnBTedit_Click(object sender, EventArgs e)
+        {
+            if (cmbBusinessType.SelectedItem == null)
+            {
+                MessageBox.Show("Please select BT before edit");
+                return;
+            }
+
+            var result = BusinessType.UpdateBusinessType(new BusinessType()
+            {
+                Id = cmbBusinessType.SelectedValue.ToInt32(),
+                Name = txtBusType.Text
+            });
+
+            MessageBox.Show(result);
+            //LoadBusinessType();
+        }
+
+        private void btnBTdelete_Click(object sender, EventArgs e)
+        {
+            if (cmbBusinessType.SelectedItem == null)
+            {
+                MessageBox.Show("Please select BT before delete");
+                return;
+            }
+
+
+            var bt = (cmbBusinessType.SelectedItem as BusinessType);
+            if (DialogResult.Yes == MessageBox.Show($"Are you sure you want to delet Bt - {bt.Name}?", "", MessageBoxButtons.YesNo))
+            {
+                if (BusinessType.DeleteBusinessType(bt.Id))
+                    MessageBox.Show($"BT - {bt.Name} deleted success!");
+                else
+                    MessageBox.Show("error!");
+            }
+
+            //LoadBusinessType();
+
+        }
+
+        private void cmbBusinessType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbBusinessType.SelectedItem != null)
+            {
+                txtBusType.Text = (cmbBusinessType.SelectedItem as BusinessType).Name;
             }
 
         }

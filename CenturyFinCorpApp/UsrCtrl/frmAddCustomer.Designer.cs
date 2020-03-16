@@ -54,6 +54,16 @@
             this.cmbCollectionSpot = new System.Windows.Forms.ComboBox();
             this.txtTamilName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.grpBusinessTypes = new System.Windows.Forms.GroupBox();
+            this.btnBTdelete = new System.Windows.Forms.Button();
+            this.txtBusType = new System.Windows.Forms.TextBox();
+            this.btnBTedit = new System.Windows.Forms.Button();
+            this.btnBTadd = new System.Windows.Forms.Button();
+            this.cmbBusinessType = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmbBusTypeToAdd = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.grpBusinessTypes.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblName
@@ -116,9 +126,9 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(759, 254);
+            this.btnAdd.Location = new System.Drawing.Point(509, 344);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(202, 137);
+            this.btnAdd.Size = new System.Drawing.Size(202, 97);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Add Customer";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -197,7 +207,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(249, 347);
+            this.dateTimePicker1.Location = new System.Drawing.Point(249, 360);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 17;
@@ -207,7 +217,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(11, 341);
+            this.label2.Location = new System.Drawing.Point(11, 354);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(218, 29);
             this.label2.TabIndex = 18;
@@ -238,7 +248,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(406, 233);
+            this.label4.Location = new System.Drawing.Point(406, 223);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(145, 29);
             this.label4.TabIndex = 21;
@@ -248,7 +258,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(406, 282);
+            this.label6.Location = new System.Drawing.Point(406, 264);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 29);
             this.label6.TabIndex = 22;
@@ -258,7 +268,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(29, 398);
+            this.label7.Location = new System.Drawing.Point(29, 411);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(177, 29);
             this.label7.TabIndex = 23;
@@ -268,7 +278,7 @@
             // 
             this.cmbReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnType.FormattingEnabled = true;
-            this.cmbReturnType.Location = new System.Drawing.Point(557, 242);
+            this.cmbReturnType.Location = new System.Drawing.Point(557, 232);
             this.cmbReturnType.Name = "cmbReturnType";
             this.cmbReturnType.Size = new System.Drawing.Size(121, 21);
             this.cmbReturnType.TabIndex = 24;
@@ -278,7 +288,7 @@
             // 
             this.cmbReturnDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReturnDay.FormattingEnabled = true;
-            this.cmbReturnDay.Location = new System.Drawing.Point(557, 289);
+            this.cmbReturnDay.Location = new System.Drawing.Point(557, 271);
             this.cmbReturnDay.Name = "cmbReturnDay";
             this.cmbReturnDay.Size = new System.Drawing.Size(121, 21);
             this.cmbReturnDay.TabIndex = 25;
@@ -287,7 +297,7 @@
             // 
             this.cmbCollectionSpot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCollectionSpot.FormattingEnabled = true;
-            this.cmbCollectionSpot.Location = new System.Drawing.Point(235, 407);
+            this.cmbCollectionSpot.Location = new System.Drawing.Point(235, 420);
             this.cmbCollectionSpot.Name = "cmbCollectionSpot";
             this.cmbCollectionSpot.Size = new System.Drawing.Size(225, 21);
             this.cmbCollectionSpot.TabIndex = 26;
@@ -310,10 +320,104 @@
             this.label8.TabIndex = 28;
             this.label8.Text = "தமிழ் பெயர்";
             // 
+            // grpBusinessTypes
+            // 
+            this.grpBusinessTypes.Controls.Add(this.btnBTdelete);
+            this.grpBusinessTypes.Controls.Add(this.txtBusType);
+            this.grpBusinessTypes.Controls.Add(this.btnBTedit);
+            this.grpBusinessTypes.Controls.Add(this.btnBTadd);
+            this.grpBusinessTypes.Controls.Add(this.cmbBusinessType);
+            this.grpBusinessTypes.Controls.Add(this.label9);
+            this.grpBusinessTypes.Location = new System.Drawing.Point(794, 164);
+            this.grpBusinessTypes.Name = "grpBusinessTypes";
+            this.grpBusinessTypes.Size = new System.Drawing.Size(323, 184);
+            this.grpBusinessTypes.TabIndex = 29;
+            this.grpBusinessTypes.TabStop = false;
+            this.grpBusinessTypes.Text = "Business Types";
+            // 
+            // btnBTdelete
+            // 
+            this.btnBTdelete.Location = new System.Drawing.Point(222, 117);
+            this.btnBTdelete.Name = "btnBTdelete";
+            this.btnBTdelete.Size = new System.Drawing.Size(75, 23);
+            this.btnBTdelete.TabIndex = 30;
+            this.btnBTdelete.Text = "DELETE";
+            this.btnBTdelete.UseVisualStyleBackColor = true;
+            this.btnBTdelete.Click += new System.EventHandler(this.btnBTdelete_Click);
+            // 
+            // txtBusType
+            // 
+            this.txtBusType.Location = new System.Drawing.Point(49, 75);
+            this.txtBusType.Name = "txtBusType";
+            this.txtBusType.Size = new System.Drawing.Size(176, 20);
+            this.txtBusType.TabIndex = 29;
+            // 
+            // btnBTedit
+            // 
+            this.btnBTedit.Location = new System.Drawing.Point(130, 117);
+            this.btnBTedit.Name = "btnBTedit";
+            this.btnBTedit.Size = new System.Drawing.Size(75, 23);
+            this.btnBTedit.TabIndex = 28;
+            this.btnBTedit.Text = "EDIT";
+            this.btnBTedit.UseVisualStyleBackColor = true;
+            this.btnBTedit.Click += new System.EventHandler(this.btnBTedit_Click);
+            // 
+            // btnBTadd
+            // 
+            this.btnBTadd.Location = new System.Drawing.Point(49, 117);
+            this.btnBTadd.Name = "btnBTadd";
+            this.btnBTadd.Size = new System.Drawing.Size(75, 23);
+            this.btnBTadd.TabIndex = 27;
+            this.btnBTadd.Text = "ADD";
+            this.btnBTadd.UseVisualStyleBackColor = true;
+            this.btnBTadd.Click += new System.EventHandler(this.btnBTadd_Click);
+            // 
+            // cmbBusinessType
+            // 
+            this.cmbBusinessType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBusinessType.FormattingEnabled = true;
+            this.cmbBusinessType.Location = new System.Drawing.Point(176, 29);
+            this.cmbBusinessType.Name = "cmbBusinessType";
+            this.cmbBusinessType.Size = new System.Drawing.Size(121, 21);
+            this.cmbBusinessType.TabIndex = 26;
+            //this.cmbBusinessType.SelectedIndexChanged += new System.EventHandler(this.cmbBusinessType_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(-1, 23);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(172, 29);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Business Type";
+            // 
+            // cmbBusTypeToAdd
+            // 
+            this.cmbBusTypeToAdd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBusTypeToAdd.FormattingEnabled = true;
+            this.cmbBusTypeToAdd.Location = new System.Drawing.Point(558, 311);
+            this.cmbBusTypeToAdd.Name = "cmbBusTypeToAdd";
+            this.cmbBusTypeToAdd.Size = new System.Drawing.Size(121, 21);
+            this.cmbBusTypeToAdd.TabIndex = 31;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(407, 304);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(121, 29);
+            this.label10.TabIndex = 30;
+            this.label10.Text = "Bus. Type";
+            // 
             // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbBusTypeToAdd);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.grpBusinessTypes);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtTamilName);
             this.Controls.Add(this.cmbCollectionSpot);
@@ -342,6 +446,8 @@
             this.Controls.Add(this.lblName);
             this.Name = "frmAddCustomer";
             this.Size = new System.Drawing.Size(1224, 597);
+            this.grpBusinessTypes.ResumeLayout(false);
+            this.grpBusinessTypes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,5 +481,14 @@
         private System.Windows.Forms.ComboBox cmbCollectionSpot;
         private System.Windows.Forms.TextBox txtTamilName;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox grpBusinessTypes;
+        private System.Windows.Forms.ComboBox cmbBusinessType;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnBTedit;
+        private System.Windows.Forms.Button btnBTadd;
+        private System.Windows.Forms.TextBox txtBusType;
+        private System.Windows.Forms.Button btnBTdelete;
+        private System.Windows.Forms.ComboBox cmbBusTypeToAdd;
+        private System.Windows.Forms.Label label10;
     }
 }
