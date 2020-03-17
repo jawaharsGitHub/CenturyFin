@@ -51454,5 +51454,17 @@
     "TxnDate": "2020-03-16T00:00:00",
     "SerialNo": 0,
     "Diff": 0
+  },
+  {
+    "CustomerId": 5,
+    "IsClosed": false,
+    "TransactionId": 32400,
+    "AmountReceived": 0,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 734,
+    "TxnDate": "2020-03-16T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
   }
 ]
