@@ -351,6 +351,11 @@ namespace CenturyFinCorpApp
             GridEdit();
         }
 
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            GridEdit();
+        }
+
         private void GridEdit()
         {
             if (dataGridView1.CurrentCell.OwningColumn.Name == "CollectionAmt")
