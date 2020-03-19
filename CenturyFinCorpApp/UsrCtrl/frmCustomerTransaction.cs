@@ -317,7 +317,7 @@ namespace CenturyFinCorpApp
 
         private void FormatGridData()
         {
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dataGridView1.Columns["CustomerId"].Visible = false;
             dataGridView1.Columns["IsClosed"].Visible = false;
