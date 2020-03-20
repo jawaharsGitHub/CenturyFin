@@ -216,7 +216,20 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             }
 
-            
+            //var allTxns = Transaction.GetAlIncludeClosedTxns();
+
+            //var allCus = Customer.GetAllCustomer();
+
+            //var dddd = DateTime.Today.GetAllMonths();
+
+
+
+
+
+
+
+
+
 
             // Years Expected and Actual Salary
             var actual = finalData.Sum(w => w.ActualIncome);
@@ -279,7 +292,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                 w.ReturnType != ReturnTypeEnum.Daily
                 ).Select(s => s.Interest).Sum();
 
-            var allInt = Customer.GetAllCustomer().Select(s => s.Interest).Sum();
+            var allInt = Customer.GetAllCustomer().Where(w => w.Interest > 0).Select(s => s.Interest).Sum();
 
             lblIntPerc.Text = $"Daily: {DCus.ToMoneyFormat()} Vs {allInt.ToMoneyFormat()} ({allInt.PercentageBtwNo(DCus)}%){Environment.NewLine}" +
                 $"Weekly: {WCus.ToMoneyFormat()} Vs {allInt.ToMoneyFormat()} ({allInt.PercentageBtwNo(WCus)}%){Environment.NewLine}" +
@@ -288,7 +301,7 @@ namespace CenturyFinCorpApp.UsrCtrl
                 $"Others: {oCus.ToMoneyFormat()} Vs {allInt.ToMoneyFormat()} ({allInt.PercentageBtwNo(oCus)}%){Environment.NewLine}";
 
 
-            
+
 
 
             if (comboBox1.Text.ToLower() != "all" && comboBox1.Text != "")

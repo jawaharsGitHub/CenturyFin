@@ -478,6 +478,31 @@ namespace DataAccess.PrimaryTypes
 
         }
 
+        public static int GetBalanceForReport(Customer customer, int yyyyMMDate)
+        {
+            //if (customer.IsActive == false) return 0;
+
+            var OnTxnDate = new DateTime(yyyyMMDate.ToString().Substring(0, 4).ToInt32(), yyyyMMDate.ToString().Substring(4, 2).ToInt32(), 31);
+
+
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+            //if (list == null || list.Count == 0) return customer.LoanAmount - 0;
+
+            var customerTxns = list.Where(s => s.TxnDate <= OnTxnDate && s.CustomerSequenceNo == customer.CustomerSeqNumber && s.CustomerId == customer.CustomerId);
+
+            if (customer.ReturnType == ReturnTypeEnum.Monthly)
+            {
+                return customerTxns.OrderByDescending(m => m.TxnDate).First().Balance;
+            }
+
+            //var paidAmount = customerTxns.Sum(s => s.AmountReceived);
+
+            //var txnLoanAmount = customerTxns.First(f => f.AmountReceived == 0).Balance;
+
+            return customerTxns.OrderByDescending(m => m.TxnDate).ThenByDescending(t => t.TransactionId).First().Balance;
+
+        }
+
         public static BalanceCheckData GetBalanceAndLastDate(Customer customer)
         {
             //if (customer.IsActive == false) return (0, null);
@@ -716,6 +741,20 @@ namespace DataAccess.PrimaryTypes
             return fromActiveTxn;
         }
 
+        public static List<Transaction> GetAlIncludeClosedTxns()
+        {
+            var list = ReadFileAsObjects<Transaction>(JsonFilePath);
+            if (list == null) return null;
+            //var fromActiveTxn = list.Where(c => c.TxnDate.Date == inputDate.Date).OrderBy(o => o.TransactionId).ToList(); //  && c.AmountReceived > 0
+
+            //Get from Closed Transactions
+            var fromClosedTxn = ProcessDirectory(ClosedTxnFilePath);
+
+            list.AddRange(fromClosedTxn);
+
+            return list.OrderBy(o => o.TxnDate).ToList();
+        }
+
         // This will be used in frmInhAnd page , it seems like all time working.
         public static int GetDailyCollectionAmount(DateTime inputDate)
         {
@@ -751,6 +790,29 @@ namespace DataAccess.PrimaryTypes
             string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
             foreach (string subdirectory in subdirectoryEntries)
                 result.AddRange(ProcessDirectory(subdirectory, inputDate));
+
+            return result;
+        }
+
+        private static List<Transaction> ProcessDirectory(string targetDirectory)
+        {
+            List<Transaction> result = new List<Transaction>();
+            // Process the list of files found in the directory.
+            string[] fileEntries = Directory.GetFiles(targetDirectory);
+            foreach (string fileName in fileEntries)
+            {
+                var list = ReadFileAsObjects<Transaction>(fileName);
+                // if (list == null) return null;
+                //var data = list.Where(c => c.TxnDate.Date == inputDate.Date);
+                if (list != null && list.Count() > 0)
+                    result.AddRange(list);
+            }
+
+
+            // Recurse into subdirectories of this directory.
+            string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
+            foreach (string subdirectory in subdirectoryEntries)
+                result.AddRange(ProcessDirectory(subdirectory));
 
             return result;
         }

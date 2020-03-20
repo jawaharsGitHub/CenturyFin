@@ -75,5 +75,7 @@ namespace DataAccess.PrimaryTypes
         }
         public int CloseCount { get; set; }
 
+        public string InvAmount { get; set; }
+
     }
 }
