@@ -78,7 +78,6 @@
     <Compile Include="ExtendedTypes\TopupCustomer.cs" />
     <Compile Include="ExtendedTypes\TxnActualVsExpected.cs" />
     <Compile Include="PrimaryTypes\DailyCollectionDetail.cs" />
-    <Compile Include="PrimaryTypes\CollectionPerDay.cs" />
     <Compile Include="PrimaryTypes\IncomeHistory.cs" />
     <Compile Include="PrimaryTypes\IncomeReport.cs" />
     <Compile Include="PrimaryTypes\InHandAndBank.cs" />
