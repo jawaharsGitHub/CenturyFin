@@ -61,7 +61,7 @@ namespace CenturyFinCorpApp
             textboxColumn.Name = "CollectionAmt";
             textboxColumn.Width = 50;
 
-            dataGridView1.DataSource = customers;
+            
 
             //Add TextBoxColumn dynamically to DataGridView
             dataGridView1.Columns.Add(textboxColumn);
@@ -190,7 +190,7 @@ namespace CenturyFinCorpApp
               //$"{DateHelper.DaysToMonth(" Days Left", DateTime.Today, new DateTime(2019, 1, 24))}"
               ;
 
-
+            dataGridView1.DataSource = customers;
 
         }
         private void AdjustColumnOrder()
@@ -607,8 +607,6 @@ namespace CenturyFinCorpApp
             cmbReturnTypes.SelectedIndex = 0;
             chkFriends.Checked = false;
 
-
-
             SetCustomers();
             txtSearch.Focus();
             txtSearch.Text = string.Empty;
@@ -663,7 +661,11 @@ namespace CenturyFinCorpApp
             var cus = (Customer)((ContextMenuStrip)sender).Tag;
 
 
-            if (e.ClickedItem.Name == "Cus") Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
+            if (e.ClickedItem.Name == "Cus")
+            { 
+                Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
+                btnRefresh_Click(null, null);
+            }
 
             else if (e.ClickedItem.Name == "Txn") Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
 
@@ -679,6 +681,7 @@ namespace CenturyFinCorpApp
             {
                 Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
                 Transaction.DeleteTransactionDetails(cus.CustomerId, cus.CustomerSeqNumber);
+                btnRefresh_Click(null, null);
             }
 
             else if (e.ClickedItem.Name == "OnlyThisCus")

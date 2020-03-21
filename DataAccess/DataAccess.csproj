@@ -79,12 +79,10 @@
     <Compile Include="ExtendedTypes\TxnActualVsExpected.cs" />
     <Compile Include="PrimaryTypes\DailyCollectionDetail.cs" />
     <Compile Include="PrimaryTypes\CollectionPerDay.cs" />
-    <Compile Include="PrimaryTypes\Expenditure.cs" />
     <Compile Include="PrimaryTypes\IncomeHistory.cs" />
     <Compile Include="PrimaryTypes\IncomeReport.cs" />
     <Compile Include="PrimaryTypes\InHandAndBank.cs" />
     <Compile Include="PrimaryTypes\DetailedAmount.cs" />
-    <Compile Include="PrimaryTypes\Investment.cs" />
     <Compile Include="PrimaryTypes\Petrol.cs" />
     <Compile Include="PrimaryTypes\Report.cs" />
     <Compile Include="PrimaryTypes\Transaction.cs" />
@@ -544,10 +542,8 @@
     <None Include="Data\DailyBatchFile\31-07-2018" />
     <None Include="Data\DailyCollection.json" />
     <None Include="Data\DetailedAmount.json" />
-    <None Include="Data\Expenditure.json" />
     <None Include="Data\IncomeHistory.json" />
     <None Include="Data\InHandAndBank.json" />
-    <None Include="Data\Investment.json" />
     <None Include="Data\PersonalOutstanding.json" />
     <None Include="Data\OldPetrol.json" />
     <None Include="Data\BusinessTypeFile.json" />

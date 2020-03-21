@@ -456,6 +456,8 @@ namespace DataAccess.PrimaryTypes
 
             var customerTxns = list.Where(s => s.CustomerSequenceNo == customer.CustomerSeqNumber && s.CustomerId == customer.CustomerId);
 
+            if (customerTxns.Count() == 0) return 0;
+
             if (customer.ReturnType == ReturnTypeEnum.Monthly)
             {
                 return customerTxns.OrderByDescending(m => m.TxnDate).First().Balance;
@@ -463,7 +465,8 @@ namespace DataAccess.PrimaryTypes
 
             var paidAmount = customerTxns.Sum(s => s.AmountReceived);
 
-            var txnLoanAmount = customerTxns.First(f => f.AmountReceived == 0).Balance;
+            //if (customerTxns.FirstOrDefault(f => f.AmountReceived == 0) != null)
+            //var txnLoanAmount = customerTxns.First(f => f.AmountReceived == 0).Balance;
 
             // Scenario: 1. Balance in customer and txn differs
             // Eg: cus1 got 40k and cus2 got 30k, now cus1 balance is 35k and cus2 balance is 20k, now cus1 wants to take responsibility of cus1 balance.

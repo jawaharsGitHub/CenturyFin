@@ -117,13 +117,13 @@ namespace CenturyFinCorpApp
             Transaction.AddTransaction(txn);
 
             // Add Investment
-            Investment.AddInvestment(new Investment()
-            {
-                Amount = cus.LoanAmount,
-                Interest = Convert.ToInt16(txtInterest.Text),
-                CustomerId = cus.CustomerId,
-                CustomerSequenceNo = cus.CustomerSeqNumber
-            });
+            //Investment.AddInvestment(new Investment()
+            //{
+            //    Amount = cus.LoanAmount,
+            //    Interest = Convert.ToInt16(txtInterest.Text),
+            //    CustomerId = cus.CustomerId,
+            //    CustomerSequenceNo = cus.CustomerSeqNumber
+            //});
 
             var nthTimes = Customer.GetAllCustomer().Where(w => w.CustomerId == cus.CustomerId).Count();
 
