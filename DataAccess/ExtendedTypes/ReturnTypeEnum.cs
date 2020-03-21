@@ -15,6 +15,7 @@
         None = 9,
         Loss = 10,
         Random = 11,
-        Others = 12
+        Others = 12,
+        SameDay = 13
     }
 }
