@@ -309,12 +309,12 @@ namespace CenturyFinCorpApp
             else if (rdbClosed.Checked)
                 filteredData = data.Where(w => w.IsActive == false).ToList();
             else //(rdbAll.Checked)
-                filteredData = data.ToList(); //customers.Where(w => w.Name.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+                filteredData = data.ToList();
 
             if (chkFriends.Checked)
-                dataGridView1.DataSource = filteredData;
+                dataGridView1.DataSource = filteredData.Where(w => w.Interest == 0).ToList();
             else
-                dataGridView1.DataSource = filteredData.Where(w => w.Interest > 0).ToList();
+                dataGridView1.DataSource = filteredData;
 
             GlobalValue.SearchText = txtSearch.Text;
         }
@@ -910,7 +910,7 @@ namespace CenturyFinCorpApp
             //    var allBT = BusinessType.GetBusinessTypes();
             //    cb.DataSource = allBT;
             //    grid.CurrentCell. = cb;
-               
+
             //}
 
         }
