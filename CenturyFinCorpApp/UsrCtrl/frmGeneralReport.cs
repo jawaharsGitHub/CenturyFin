@@ -235,15 +235,12 @@ namespace CenturyFinCorpApp.UsrCtrl
             //    int bal = 0;
             //    allCus.ForEach(ac =>
             //    {
+            //        var t1 = allTxns.Where(w => w.CustomerSequenceNo == ac.CustomerSeqNumber && ac.AmountGivenDate.Value <= d.ld);
 
-            //        var ttt = allTxns.Where(w => 
-            //        ac.CustomerSeqNumber == w.CustomerSequenceNo && 
-            //        (ac.AmountGivenDate <= d.ld && ac.ClosedDate >= d.ld) &&
-            //        (w.TxnDate <= d.ld)).OrderByDescending(o => o.TxnDate);
-
-            //        if (ttt.Count() > 0)
+            //        var t2 = t1.Where(w => w.TxnDate <= d.ld);
+            //        if (t2 != null && t2.Count() > 0)
             //        {
-            //            bal += ttt.First().Balance;
+            //            bal += t2.Select(s => s.Balance).Min();
             //        }
             //    });
 
@@ -251,9 +248,6 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             //    if (ff != null)
             //        ff.InvAmount = bal.ToMoneyFormat();
-
-            //    //finalData.Where(w => w.MonthYear == )
-
             //});
 
 
@@ -346,7 +340,8 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         ExpectedIncome = s.ExpectedIncome.ToMoneyFormat(),
                                         ActualIncome = s.ActualIncome.ToMoneyFormat(),
                                         MonthlySalary = s.MonthlySalary.ToMoneyFormat(),
-                                        s.CloseCount
+                                        s.CloseCount,
+                                        s.InvAmount
                                     }).Reverse().ToList();
 
 
