@@ -172,6 +172,13 @@ namespace CenturyFinCorpApp.UsrCtrl
 
             finalData.Insert(0, new IncomeReport()
             {
+                MonthYear = "January 2018",
+                ActualIncome = 0,
+                CloseCount = 0
+            });
+
+            finalData.Insert(1, new IncomeReport()
+            {
                 MonthYear = "February 2018",
                 ActualIncome = 0,
                 CloseCount = 0
@@ -223,11 +230,31 @@ namespace CenturyFinCorpApp.UsrCtrl
             //var dddd = DateTime.Today.GetAllMonths();
 
 
+            //dddd.ForEach(d =>
+            //{
+            //    int bal = 0;
+            //    allCus.ForEach(ac =>
+            //    {
 
+            //        var ttt = allTxns.Where(w => 
+            //        ac.CustomerSeqNumber == w.CustomerSequenceNo && 
+            //        (ac.AmountGivenDate <= d.ld && ac.ClosedDate >= d.ld) &&
+            //        (w.TxnDate <= d.ld)).OrderByDescending(o => o.TxnDate);
 
+            //        if (ttt.Count() > 0)
+            //        {
+            //            bal += ttt.First().Balance;
+            //        }
+            //    });
 
+            //    var ff = finalData.Where(w => w.MonthYear == d.fd.ToString("Y")).FirstOrDefault();
 
+            //    if (ff != null)
+            //        ff.InvAmount = bal.ToMoneyFormat();
 
+            //    //finalData.Where(w => w.MonthYear == )
+
+            //});
 
 
 
