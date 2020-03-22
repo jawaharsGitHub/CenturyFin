@@ -37,6 +37,8 @@ namespace Common
 
         public static string BusinessTypeFile { get; } = GetFullPath("BusinessTypeFile");
 
+        public static string IncomeReportFile { get; } = GetFullPath("IncomeReportFile");
+
         private static string GetFullPath(string configKey)
         {
             return Path.Combine(ConfigurationManager.AppSettings["SourceFolder"], ConfigurationManager.AppSettings[configKey]);

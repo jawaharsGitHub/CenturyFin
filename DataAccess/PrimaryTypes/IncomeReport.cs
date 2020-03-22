@@ -1,10 +1,14 @@
-﻿using Common.ExtensionMethod;
+﻿using Common;
+using Common.ExtensionMethod;
 using System;
+using System.Collections.Generic;
 
 namespace DataAccess.PrimaryTypes
 {
-    public class IncomeReport
+    public class IncomeReport : BaseClass
     {
+
+        private static string JsonFilePath = AppConfiguration.IncomeReportFile;
         public string MonthYear { get; set; }
         public int ExpectedIncome { get; set; }
         public int ActualIncome { get; set; }
@@ -76,6 +80,13 @@ namespace DataAccess.PrimaryTypes
         public int CloseCount { get; set; }
 
         public string InvAmount { get; set; }
+
+
+        public static void AddIncomeReports(List<IncomeReport> irs)
+        {
+            InsertObjectsToJson(JsonFilePath, irs);
+        }
+
 
     }
 }

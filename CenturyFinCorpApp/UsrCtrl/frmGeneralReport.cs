@@ -250,6 +250,8 @@ namespace CenturyFinCorpApp.UsrCtrl
             //        ff.InvAmount = bal.ToMoneyFormat();
             //});
 
+            //IncomeReport.AddIncomeReports(finalData);
+
 
 
             // Years Expected and Actual Salary
