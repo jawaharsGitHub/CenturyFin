@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,6 +18,36 @@ namespace CenturyFinCorpApp
         public frmCustomers()
         {
             InitializeComponent();
+
+            //#region DuplicatePhoneNo
+
+            //var fpath = @"E:/ntktvdno";
+            //var text = File.ReadAllLines(fpath);
+            //var rrr = new List<string>();
+
+            //text.ToList().ForEach(f =>
+            //{
+            //    var lines = f.Split(' ').ToList();
+
+            //    lines.ForEach(fe =>
+            //    {
+            //        if (fe.Length == 10 && fe.ToInt64OrNull() != null)
+            //            rrr.Add(fe);
+            //    });
+
+            //});
+
+            //var duplicatePNo = (from p in rrr
+            //                    group p by p into newPh
+            //                    select new
+            //                    {
+            //                        newPh.Key,
+            //                        Count = newPh.Count()
+            //                    }).ToList();
+
+            //var resultPh = duplicatePNo.Where(w => w.Count > 1).ToList();
+
+            //#endregion
 
 
             textBox1.Text = @"Daily = 0,
@@ -61,7 +92,7 @@ namespace CenturyFinCorpApp
             textboxColumn.Name = "CollectionAmt";
             textboxColumn.Width = 50;
 
-            
+
 
             //Add TextBoxColumn dynamically to DataGridView
             dataGridView1.Columns.Add(textboxColumn);
@@ -662,7 +693,7 @@ namespace CenturyFinCorpApp
 
 
             if (e.ClickedItem.Name == "Cus")
-            { 
+            {
                 Customer.DeleteCustomerDetails(cus.CustomerId, cus.CustomerSeqNumber);
                 btnRefresh_Click(null, null);
             }

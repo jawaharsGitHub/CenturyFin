@@ -15,6 +15,20 @@ namespace Common.ExtensionMethod
 
         }
 
+        public static long? ToInt64OrNull(this string value)
+        {
+            if (string.IsNullOrEmpty(value)) return null;
+
+            try
+            {
+                return Convert.ToInt64(value);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public static int ToInt32(this double value)
         {
             return Convert.ToInt32(value);
