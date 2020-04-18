@@ -45,8 +45,6 @@ namespace DataAccess.PrimaryTypes
 
         public static void AddOrUpdateDaily(DailyCollectionDetail dailyCol)
         {
-
-
             var list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
             if (list != null && list.Count > 0)
             {
@@ -54,52 +52,19 @@ namespace DataAccess.PrimaryTypes
 
                 if (data != null) // Update
                 {
-                    //data.BankTxnOut = dailyCol.BankTxnOut;
-                    //data.ClosedAccounts = dailyCol.ClosedAccounts;
-                    //data.CollectionAmount = dailyCol.CollectionAmount;
                     data.Comments = dailyCol.Comments;
-                    //data.Date = dailyCol.Date;
-                    //data.GivenAmount = dailyCol.GivenAmount;
-                    //data.InBank = dailyCol.InBank;
-                    //data.Interest = dailyCol.Interest;
-                    //data.OpenedAccounts = dailyCol.OpenedAccounts;
-                    //data.OtherExpenditire = dailyCol.OtherExpenditire;
-                    //data.OtherInvestment = dailyCol.OtherInvestment;
-                    //data.SentFromUSA = dailyCol.SentFromUSA;
-                    //data.TakenFromBank = dailyCol.TakenFromBank;
-                    //data.TodayInHand = dailyCol.TodayInHand;
-                    //data.TomorrowDiff = dailyCol.TomorrowDiff;
-                    //data.TomorrowNeed = dailyCol.TomorrowNeed;
-                    //data.YesterdayAmountInHand = dailyCol.YesterdayAmountInHand;
-
                     WriteObjectsToFile(list, JsonFilePath);
                 }
                 else // New (Insert)
                 {
                     InsertSingleObjectToListJson(JsonFilePath, dailyCol);
-
-                    // Update In Hand and In Bank amount.
-                    //var inhand = new InHandAndBank()
-                    //{
-                    //    Date = dailyCol.Date,
-                    //    InBank = dailyCol.InBank.Value,
-                    //    InHandAmount = dailyCol.TodayInHand.Value
-                    //};
-
-                    //InHandAndBank.AddInHand(inhand, dailyCol.TakenFromBank);
-
                 }
-
             }
-
-
         }
 
 
         public static void UpdateVerifyDetails(DailyCollectionDetail dailyCol)
         {
-
-
             var list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
             if (list != null && list.Count > 0)
             {
@@ -165,6 +130,21 @@ namespace DataAccess.PrimaryTypes
             {
                 List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
                 var dailyTxn = list.Select(s => Convert.ToDateTime(s.Date)).Max();
+
+                return dailyTxn;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static DailyCollectionDetail GetLastCollection()
+        {
+            try
+            {
+                List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
+                var dailyTxn = list.Select(s => s).Last();
 
                 return dailyTxn;
             }

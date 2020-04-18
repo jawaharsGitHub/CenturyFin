@@ -921,5 +921,28 @@ namespace CenturyFinCorpApp
         {
             //GitHubClient.Commit();
         }
+
+        private void btnAddEmpty_Click(object sender, EventArgs e)
+        {
+            var lastEntry = DailyCollectionDetail.GetLastCollection();
+
+            lastEntry.Date = dateTimePicker1.Value.ToShortDateString();
+            lastEntry.Comments = txtComments.Text;
+            lastEntry.CollectionAmount = 0;
+            lastEntry.GivenAmount = 0;
+            lastEntry.Interest = 0;
+            lastEntry.ClosedAccounts = 0;
+            lastEntry.OpenedAccounts = 0;
+            lastEntry.OtherExpenditire = 0;
+            lastEntry.OtherInvestment = 0;
+            lastEntry.OutUsedMoney = 0;
+
+            lastEntry.InputMoney = 0;
+            lastEntry.OutGoingMoney = 0;
+            lastEntry.Difference = 0;
+
+            DailyCollectionDetail.AddOrUpdateDaily(lastEntry);
+            GetDailyTxn(dateTimePicker1.Value, false);
+        }
     }
 }

@@ -86,6 +86,7 @@
             this.btnCheckPrivateReport = new System.Windows.Forms.Button();
             this.btnNotGiven = new System.Windows.Forms.Button();
             this.btnCheckin = new System.Windows.Forms.Button();
+            this.btnAddEmpty = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -666,10 +667,21 @@
             this.btnCheckin.UseVisualStyleBackColor = true;
             this.btnCheckin.Click += new System.EventHandler(this.btnCheckin_Click);
             // 
+            // btnAddEmpty
+            // 
+            this.btnAddEmpty.Location = new System.Drawing.Point(993, 32);
+            this.btnAddEmpty.Name = "btnAddEmpty";
+            this.btnAddEmpty.Size = new System.Drawing.Size(98, 78);
+            this.btnAddEmpty.TabIndex = 54;
+            this.btnAddEmpty.Text = "ADD EMPTY  DETAILS";
+            this.btnAddEmpty.UseVisualStyleBackColor = true;
+            this.btnAddEmpty.Click += new System.EventHandler(this.btnAddEmpty_Click);
+            // 
             // frmInHand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnAddEmpty);
             this.Controls.Add(this.btnCheckin);
             this.Controls.Add(this.btnNotGiven);
             this.Controls.Add(this.btnCheckPrivateReport);
@@ -756,5 +768,6 @@
         private System.Windows.Forms.Button btnCheckPrivateReport;
         private System.Windows.Forms.Button btnNotGiven;
         private System.Windows.Forms.Button btnCheckin;
+        private System.Windows.Forms.Button btnAddEmpty;
     }
 }

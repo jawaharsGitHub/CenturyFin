@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CenturyFinCorpApp
@@ -19,36 +20,67 @@ namespace CenturyFinCorpApp
         {
             InitializeComponent();
 
-            //#region DuplicatePhoneNo
+            /*
+            #region DuplicateNames
 
-            //var fpath = @"E:/ntktvdno";
-            //var text = File.ReadAllLines(fpath);
-            //var rrr = new List<string>();
+            string thoguthiName = "tvdallnames";
 
-            //text.ToList().ForEach(f =>
-            //{
-            //    var lines = f.Split(' ').ToList();
+            var fpath = @"E:/" + thoguthiName;
+            var text = File.ReadAllLines(fpath);
+            var rrr = new List<string>();
 
-            //    lines.ForEach(fe =>
-            //    {
-            //        if (fe.Length == 10 && fe.ToInt64OrNull() != null)
-            //            rrr.Add(fe);
-            //    });
+            int gtOne = 0;
+            int gtOneElse = 0;
+            int gtOneTotal = 0;
+            text.ToList().ForEach(f =>
+            {
+                var fullName = f.Split('.').ToList();
 
-            //});
+                if (fullName.Count > 1)
+                {
+                    rrr.Add(fullName[1]);
+                    gtOne += 1;
+                    gtOneTotal += 1;
+                }
+                else
+                {
+                    rrr.Add(fullName[0]);
+                    gtOneElse += 1;
+                    gtOneTotal += 1;
+                }
 
-            //var duplicatePNo = (from p in rrr
-            //                    group p by p into newPh
-            //                    select new
-            //                    {
-            //                        newPh.Key,
-            //                        Count = newPh.Count()
-            //                    }).ToList();
+            });
 
-            //var resultPh = duplicatePNo.Where(w => w.Count > 1).ToList();
+            var duplicateNames = (from p in rrr
+                                group p by p into newPh
+                                select new
+                                {
+                                    newPh.Key,
+                                    Count = newPh.Count()
+                                }).ToList();
 
-            //#endregion
+            var resultPh = duplicateNames.Where(w => w.Count > 1).OrderByDescending(o => o.Count).ToList();
 
+            var totalRec = resultPh.Sum(s => s.Count);
+
+
+            StringBuilder resultP = new StringBuilder();
+            int index = 0;
+
+            resultPh.ForEach(rfe =>
+            {
+                index += 1;
+                resultP.AppendLine($"{index}.{rfe.Key}({rfe.Count})");
+            });
+
+            resultP.Insert(0, $"Total Records need to check is {totalRec}");
+
+
+            File.WriteAllText($"E:/{thoguthiName}-result.txt", resultP.ToString());
+            
+            #endregion
+            */
+            
 
             textBox1.Text = @"Daily = 0,
        Alternate = 1,
