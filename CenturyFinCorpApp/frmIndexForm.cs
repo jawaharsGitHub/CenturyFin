@@ -1,14 +1,8 @@
-﻿using CenturyFinCorpApp.UsrCtrl;
-using Common;
-using Common.ExtensionMethod;
-using DataAccess;
+﻿using Common.ExtensionMethod;
 using DataAccess.PrimaryTypes;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
