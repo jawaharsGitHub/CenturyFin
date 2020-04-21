@@ -101,7 +101,9 @@ namespace CenturyFinCorpApp
             //ShowInHand
             var mnuShowInHand = new ToolStripMenuItem() { Name = "InHand", Text = "INHAND-DETAILS" };
             menuStrip.Items.Add(mnuShowInHand);
-            mnuShowInHand.Click += (s, e) => ShowForm<frmInHand>(); ;
+            mnuShowInHand.Click += (s, e) => ShowForm<frmInHand>();
+
+            /*
             //General Reports
             var mnuGeneralReport = new ToolStripMenuItem() { Name = "GenReport", Text = "GENERAL-REPORT" };
             menuStrip.Items.Add(mnuGeneralReport);
@@ -138,6 +140,8 @@ namespace CenturyFinCorpApp
             var mnuPetrol = new ToolStripMenuItem() { Name = "petrol", Text = "PETROL" };
             menuStrip.Items.Add(mnuPetrol);
             mnuPetrol.Click += (s, e) => ShowForm<frmPetrol>();
+
+    */
 
             this.Controls.Add(menuStrip);
         }
