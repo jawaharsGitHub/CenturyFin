@@ -664,11 +664,11 @@ namespace CenturyFinCorpApp
         {
             // WhatsAppMessage.SendMsg();
 
-            if (General.CheckForInternetConnection() == false)
-            {
-                MessageBox.Show("No Internet Available, Please connect and try again!");
-                return;
-            }
+            //if (General.CheckForInternetConnection() == false)
+            //{
+            //    MessageBox.Show("No Internet Available, Please connect and try again!");
+            //    //return;
+            //}
 
 
             BackgroundWorker bw = new BackgroundWorker();
