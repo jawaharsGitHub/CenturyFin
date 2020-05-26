@@ -1,4 +1,5 @@
-﻿using Common.ExtensionMethod;
+﻿using CenturyFinCorpApp.UsrCtrl;
+using Common.ExtensionMethod;
 using DataAccess.PrimaryTypes;
 using System;
 using System.Configuration;
@@ -97,11 +98,12 @@ namespace CenturyFinCorpApp
             menuStrip.Items.Add(mnuShowInHand);
             mnuShowInHand.Click += (s, e) => ShowForm<frmInHand>();
 
-            /*
+            
             //General Reports
             var mnuGeneralReport = new ToolStripMenuItem() { Name = "GenReport", Text = "GENERAL-REPORT" };
             menuStrip.Items.Add(mnuGeneralReport);
             mnuGeneralReport.Click += (s, e) => ShowForm<frmGeneralReport>();
+            /*
             //Dynamic Reports
             var mnuReport = new ToolStripMenuItem() { Name = "DynReport", Text = "DYNAMIC-REPORT" };
             menuStrip.Items.Add(mnuReport);
