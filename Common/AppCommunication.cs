@@ -25,7 +25,7 @@ namespace Common
                 smtp.Host = "smtp.gmail.com"; //for gmail host  
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(myEmail, "liamg@38nainamarbus");
+                smtp.Credentials = new NetworkCredential(myEmail, "nainamarbus");
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
 
@@ -55,7 +55,7 @@ namespace Common
                 smtp.Host = "smtp.gmail.com"; //for gmail host  
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(myEmail, "liamg@38nainamarbus");
+                smtp.Credentials = new NetworkCredential(myEmail, "nainamarbus");
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
 
@@ -85,7 +85,7 @@ namespace Common
                 smtp.Host = "smtp.gmail.com"; //for gmail host  
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(myEmail, "liamg@38nainamarbus");
+                smtp.Credentials = new NetworkCredential(myEmail, "nainamarbus");
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
 
                 message.Attachments.Add(new Attachment(attachmentFilePath));
