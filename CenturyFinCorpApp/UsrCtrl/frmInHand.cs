@@ -363,12 +363,12 @@ namespace CenturyFinCorpApp
 
             /* very important*/
             var bd = new BalanceDetail();
-            var companyBalance1 = bd.GetGenReportData(false);
-            companyBalance1.BalanceDetail.AddBalanceDetails();
+            var companyBalance = bd.GetGenReportData(false);
+            companyBalance.BalanceDetail.AddBalanceDetails(dateTimePicker1.Value.ToShortDateString());
 
             if (DialogResult.Yes == MessageBox.Show("You want email?", "Email?", MessageBoxButtons.YesNoCancel))
             {
-                SendBalances(companyBalance1.BalanceDetail.Data);
+                SendBalances(companyBalance.BalanceDetail.Data);
             }
 
            

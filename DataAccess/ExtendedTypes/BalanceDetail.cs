@@ -64,21 +64,24 @@ namespace DataAccess.ExtendedTypes
         [JsonIgnore]
         public string LossPercText { get; private set; }
 
-        public void AddBalanceDetails()
+        public void AddBalanceDetails(string date)
         {
-            if (GetBalanceDetail(this) != null)
-                DeleteBalanceDetails(this);
+            this.Date = date;
 
+            if (GetBalanceDetail(date) != null)
+                DeleteBalanceDetails(date);
+
+            
             InsertSingleObjectToListJson(JsonFilePath, this);
         }
 
-        public BalanceDetail GetBalanceDetail(BalanceDetail bd)
+        public BalanceDetail GetBalanceDetail(string date)
         {
             try
             {
                 var list = ReadFileAsObjects<BalanceDetail>(JsonFilePath);
                 if (list == null) return null;
-                return list.Where(c => c.Date == bd.Date).FirstOrDefault();
+                return list.Where(c => c.Date == date).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -113,13 +116,13 @@ namespace DataAccess.ExtendedTypes
                     $"வெளியில் நிற்கும் பணம்: <b>{data.GrossAmount.ToMoneyFormat()}</b>" + "<br><br>";
         }
 
-        public void DeleteBalanceDetails(BalanceDetail bd)
+        public void DeleteBalanceDetails(string date)
         {
             try
             {
                 var list = ReadFileAsObjects<BalanceDetail>(JsonFilePath);
 
-                list.RemoveAll((c) => c.Date == bd.Date);
+                list.RemoveAll((c) => c.Date == date);
 
                 WriteObjectsToFile(list, JsonFilePath);
             }
