@@ -1,0 +1,122 @@
+[
+  {
+    "CustomerId": 223,
+    "IsClosed": false,
+    "TransactionId": 28485,
+    "AmountReceived": 0,
+    "Balance": 20000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-01-17T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 223,
+    "IsClosed": false,
+    "TransactionId": 29006,
+    "AmountReceived": 1400,
+    "Balance": 18600,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-01-25T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 223,
+    "IsClosed": false,
+    "TransactionId": 29722,
+    "AmountReceived": 1400,
+    "Balance": 17200,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-02-06T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 223,
+    "IsClosed": false,
+    "TransactionId": 30173,
+    "AmountReceived": 1400,
+    "Balance": 15800,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-02-12T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 223,
+    "IsClosed": false,
+    "TransactionId": 30642,
+    "AmountReceived": 1400,
+    "Balance": 14400,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-02-20T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 223,
+    "IsClosed": false,
+    "TransactionId": 31161,
+    "AmountReceived": 1400,
+    "Balance": 13000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-02-27T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 223,
+    "IsClosed": false,
+    "TransactionId": 31858,
+    "AmountReceived": 1400,
+    "Balance": 11600,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-03-08T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 223,
+    "IsClosed": false,
+    "TransactionId": 32296,
+    "AmountReceived": 1400,
+    "Balance": 10200,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-03-15T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 223,
+    "IsClosed": false,
+    "TransactionId": 32777,
+    "AmountReceived": 1400,
+    "Balance": 8800,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-03-23T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 223,
+    "IsClosed": true,
+    "TransactionId": 34021,
+    "AmountReceived": 8800,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 828,
+    "TxnDate": "2020-06-02T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  }
+]
