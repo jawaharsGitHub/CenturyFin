@@ -339,7 +339,7 @@
             // 
             this.cmbExistingCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbExistingCustomer.FormattingEnabled = true;
-            this.cmbExistingCustomer.Location = new System.Drawing.Point(19, 52);
+            this.cmbExistingCustomer.Location = new System.Drawing.Point(14, 21);
             this.cmbExistingCustomer.Name = "cmbExistingCustomer";
             this.cmbExistingCustomer.Size = new System.Drawing.Size(294, 24);
             this.cmbExistingCustomer.TabIndex = 24;
@@ -347,7 +347,7 @@
             // 
             // btnMerge
             // 
-            this.btnMerge.Location = new System.Drawing.Point(19, 25);
+            this.btnMerge.Location = new System.Drawing.Point(52, 51);
             this.btnMerge.Name = "btnMerge";
             this.btnMerge.Size = new System.Drawing.Size(174, 21);
             this.btnMerge.TabIndex = 0;

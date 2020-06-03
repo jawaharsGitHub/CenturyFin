@@ -325,7 +325,7 @@ namespace DataAccess.PrimaryTypes
                 u.Interest += fromCustomer.Interest;
                 Customer.UpdateCustomerLoanAndInterest(u);
 
-                ToCustomer.Name = $"{fromCustomer.Name} (M-{fromBalance}-F-{fromCustomer.CustomerSeqNumber})";
+                ToCustomer.Name = $"{ToCustomer.Name} (M-{fromBalance}-F-{fromCustomer.CustomerSeqNumber})";
                 Customer.UpdateCustomerName(ToCustomer);
 
                 //Update [From] Customer

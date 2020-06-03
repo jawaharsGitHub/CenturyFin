@@ -31,7 +31,7 @@ namespace CenturyFinCorpApp
 
         private void LoadExistingCustomers()
         {
-            cmbExistingCustomer.DataSource = Customer.GetAllCustomer(); // Customer.GetAllCustomer().(d => d.CustomerId).OrderBy(o => o.Name).ToList().Where(w => w.Name.StartsWith("Rab")).ToList();
+            cmbExistingCustomer.DataSource = Customer.GetActiveCustomer().Where(w => w.CustomerId != customer.CustomerId).ToList(); // Customer.GetAllCustomer().(d => d.CustomerId).OrderBy(o => o.Name).ToList().Where(w => w.Name.StartsWith("Rab")).ToList();
             cmbExistingCustomer.DisplayMember = "NameAndSeqId";
             cmbExistingCustomer.ValueMember = "CustomerId";
             cmbExistingCustomer.DropDownStyle = ComboBoxStyle.DropDown;
@@ -42,9 +42,10 @@ namespace CenturyFinCorpApp
         public frmCustomerTransaction(Customer _customer, Form parentForm)
         {
             InitializeComponent();
-            LoadExistingCustomers();
+            
 
             customer = _customer;
+            LoadExistingCustomers();
             _isClosedTx = (customer.IsActive == false);
 
             _balance = _isClosedTx ? 0 : Transaction.GetBalance(customer);
