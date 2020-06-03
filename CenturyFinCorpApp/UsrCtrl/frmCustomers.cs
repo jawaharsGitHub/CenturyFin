@@ -958,7 +958,7 @@ namespace CenturyFinCorpApp
 
         private void RefreshClosed()
         {
-            btnClosedTxn.Text = $"Move Closed Txn({Transaction.GetClosedTxn()})";
+            btnClosedTxn.Text = $"Closed Txn({Transaction.GetClosedTxn()})";
         }
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

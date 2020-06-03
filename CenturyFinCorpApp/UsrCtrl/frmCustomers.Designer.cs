@@ -226,7 +226,7 @@
             this.btnClosedTxn.Name = "btnClosedTxn";
             this.btnClosedTxn.Size = new System.Drawing.Size(144, 32);
             this.btnClosedTxn.TabIndex = 18;
-            this.btnClosedTxn.Text = "Run Closed Txn";
+            this.btnClosedTxn.Text = "Closed Txn";
             this.btnClosedTxn.UseVisualStyleBackColor = false;
             this.btnClosedTxn.Click += new System.EventHandler(this.btnClosedTxn_Click);
             // 
