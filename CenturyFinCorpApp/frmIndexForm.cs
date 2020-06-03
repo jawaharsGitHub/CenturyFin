@@ -103,11 +103,18 @@ namespace CenturyFinCorpApp
             var mnuGeneralReport = new ToolStripMenuItem() { Name = "GenReport", Text = "GENERAL-REPORT" };
             menuStrip.Items.Add(mnuGeneralReport);
             mnuGeneralReport.Click += (s, e) => ShowForm<frmGeneralReport>();
-            /*
+            
             //Dynamic Reports
             var mnuReport = new ToolStripMenuItem() { Name = "DynReport", Text = "DYNAMIC-REPORT" };
             menuStrip.Items.Add(mnuReport);
             mnuReport.Click += (s, e) => ShowForm<frmDynamicReport>();
+
+            //Outstanding
+            var mnuOutstanding = new ToolStripMenuItem() { Name = "Outstanding", Text = "OUTSTANDING" };
+            menuStrip.Items.Add(mnuOutstanding);
+            mnuOutstanding.Click += (s, e) => ShowForm<frmOutstanding>();
+
+            /*
             //Data Check Report
             var mnuDataCheckRpt = new ToolStripMenuItem() { Name = "dataCheckReport", Text = "DATA-CHECK-REPORT" };
             menuStrip.Items.Add(mnuDataCheckRpt);
@@ -120,10 +127,7 @@ namespace CenturyFinCorpApp
             var mnuBatch = new ToolStripMenuItem() { Name = "batch", Text = "BATCH-JOBS" };
             menuStrip.Items.Add(mnuBatch);
             mnuBatch.Click += (s, e) => ShowForm<frmBatches>();
-            //Outstanding
-            var mnuOutstanding = new ToolStripMenuItem() { Name = "Outstanding", Text = "OUTSTANDING" };
-            menuStrip.Items.Add(mnuOutstanding);
-            mnuOutstanding.Click += (s, e) => ShowForm<frmOutstanding>();
+            
             //Health
             var mnuHealth = new ToolStripMenuItem() { Name = "health", Text = "HEALTH" };
             menuStrip.Items.Add(mnuHealth);
