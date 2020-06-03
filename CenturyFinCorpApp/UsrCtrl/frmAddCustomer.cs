@@ -209,6 +209,9 @@ namespace CenturyFinCorpApp
                 MessageBox.Show($"{selectedCustomer.Name} is not eligible for loan. Sorry!!!");
                 this.Enabled = false;
             }
+
+            cmbReturnType.SelectedItem = selectedCustomer.ReturnType;
+
         }
 
         private void cmbReturnType_SelectedIndexChanged(object sender, EventArgs e)
