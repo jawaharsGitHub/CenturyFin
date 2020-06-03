@@ -81,7 +81,6 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         ClosedDate = (Convert.ToDateTime(newGroup.Key).AddDays(100)).ToShortDateString(), // TODO: it should be group by given data + 100 days not by key(July 2018)
                                         TotalInterest = newGroup.Sum(s => s.Interest),
                                         IsExpectedIncome = true,
-                                        //newGroup,
                                         Count = newGroup.Count(),
                                         Names = newGroup.Select(s => s.NameAndSeqId)
                                     }).OrderBy(o => Convert.ToDateTime(o.ClosedDate)).ToList();
@@ -346,6 +345,37 @@ namespace CenturyFinCorpApp.UsrCtrl
                                         s.InvAmount
                                     }).Reverse().ToList();
 
+            // Total Report Data
+
+            BalanceDetail.TillNowProfit = actualProfit;
+            BalanceDetail.FutureProfit = expectedProfit;
+            BalanceDetail.AllProfit = allProfit;
+
+            BalanceDetail.TillNowLoss = actualLoss;
+            BalanceDetail.FutureLoss = expectedLoss;
+            BalanceDetail.AllLoss = allLoss;
+
+
+        }
+
+        private void ShowTotalAssetMoney()
+        {
+
+            var latestDailyCxn = DailyCollectionDetail.GetActualInvestmentTxnDate();
+
+            lblTotalAsset.Visible = label4.Visible = false;
+            lblTotalAsset.Text = $"test {(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoneyFormat()} IH: {latestDailyCxn.ActualInHand.ToMoney()} MAMA: {latestDailyCxn.MamaAccount.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()})";
+            var monthlyCustomersBalance = (from c in Customer.GetAllCustomer().Where(w => w.IsActive && w.IsMonthly())
+                                           select Transaction.GetBalance(c)).Sum();
+
+            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} " +
+                $"(OS: {outstandingMoney.includesProfit.ToMoneyFormat()} + IH: {latestDailyCxn.ActualInHand.ToMoney()} + MAMA: {latestDailyCxn.MamaAccount.ToMoney()})  {Environment.NewLine} " +
+                $"Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()} {Environment.NewLine} " +
+                $"INVESTMENT: Daily:~{(latestDailyCxn.ActualMoneyInBusiness - monthlyCustomersBalance).ToMoneyFormat()} + Monthly:{monthlyCustomersBalance.ToMoneyFormat()} = {latestDailyCxn.ActualMoneyInBusiness.ToMoneyFormat()}";
+
+            BalanceDetail.GrossAmount = outstandingMoney.includesProfit;
+            BalanceDetail.ActualInHand = latestDailyCxn.ActualInHand;
+            BalanceDetail.MamaAccount = latestDailyCxn.MamaAccount;
 
         }
 
@@ -416,23 +446,7 @@ namespace CenturyFinCorpApp.UsrCtrl
             lblOutStanding.Text = outstandingMoney.includesProfit.ToMoneyFormat();
         }
 
-        private void ShowTotalAssetMoney()
-        {
-            //var inHandAndBank = InHandAndBank.GetAllhandMoney();
-            //var inHandMoney = DailyCollectionDetail.GetActualInvestmentTxnDate();
-
-            var latestDailyCxn = DailyCollectionDetail.GetActualInvestmentTxnDate();
-
-            lblTotalAsset.Visible = label4.Visible = false;
-            lblTotalAsset.Text = $"test {(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} (OS: {outstandingMoney.includesProfit.ToMoneyFormat()} IH: {latestDailyCxn.ActualInHand.ToMoney()} MAMA: {latestDailyCxn.MamaAccount.ToMoney()} Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()})";
-            var monthlyCustomersBalance = (from c in Customer.GetAllCustomer().Where(w => w.IsActive && w.IsMonthly())
-                                           select Transaction.GetBalance(c)).Sum();
-
-            lblBizAsset.Text = $"{(outstandingMoney.includesProfit + latestDailyCxn.ExpectedInHand).ToMoney()} " +
-                $"(OS: {outstandingMoney.includesProfit.ToMoneyFormat()} + IH: {latestDailyCxn.ActualInHand.ToMoney()} + MAMA: {latestDailyCxn.MamaAccount.ToMoney()})  {Environment.NewLine} " +
-                $"Actual Outstanding: {outstandingMoney.actual.ToMoneyFormat()} {Environment.NewLine} " +
-                $"INVESTMENT: Daily:~{(latestDailyCxn.ActualMoneyInBusiness - monthlyCustomersBalance).ToMoneyFormat()} + Monthly:{monthlyCustomersBalance.ToMoneyFormat()} = {latestDailyCxn.ActualMoneyInBusiness.ToMoneyFormat()}";
-        }
+        
 
         private void dgvIncome_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
