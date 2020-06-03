@@ -900,10 +900,17 @@ namespace CenturyFinCorpApp
                 rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForColumn}</td></tr>");
             });
 
-            var dailyCheckHTML = htmlString.Replace("[data]", rowData.ToString()).Replace("[title]", "Balance Report").Replace("[LastCol]", "Txn Detail");
+            var companyBalance = BalanceDetail.GetFullBalanceReport();
+            var dailyCheckHTML = htmlString
+                                .Replace("[data]", rowData.ToString())
+                                .Replace("[title]", "Balance Report")
+                                .Replace("[LastCol]", "Txn Detail")
+                                .Replace("[report]", companyBalance);
 
             if (hasInternet)
-                AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, data.Count().ToString(), "JF Bal.Report");
+            {
+                AppCommunication.SendBalanceEmail(dailyCheckHTML, currentBalanceDate, data.Count().ToString(), "JF Bal.Report", haveCC: true);
+            }
 
         }
 

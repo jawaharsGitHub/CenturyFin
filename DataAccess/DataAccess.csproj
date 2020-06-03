@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedTypes\BalanceCheckData.cs" />
+    <Compile Include="ExtendedTypes\BalanceDetail.cs" />
     <Compile Include="ExtendedTypes\BusinessType.cs" />
     <Compile Include="ExtendedTypes\CollectionStatus.cs" />
     <Compile Include="ExtendedTypes\CreditReport.cs" />

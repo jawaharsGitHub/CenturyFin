@@ -7,7 +7,7 @@ namespace Common
 {
     public class AppCommunication
     {
-        private static (MailMessage, SmtpClient) GetMailMessage(string subject, string mailBody)
+        private static (MailMessage, SmtpClient) GetMailMessage(string subject, string mailBody, bool haveCC = false)
         {
 
             var myEmail = "jawahar.subramanian83@gmail.com";
@@ -15,6 +15,8 @@ namespace Common
             SmtpClient smtp = new SmtpClient();
             message.From = new MailAddress(myEmail);
             message.To.Add(new MailAddress(myEmail));
+
+            if (haveCC) message.CC.Add(new MailAddress("jeyapriyagopal@gmail.com"));
             message.Subject = subject;
             message.IsBodyHtml = true; //to make message body as html  
             message.Body = mailBody;
@@ -29,12 +31,14 @@ namespace Common
 
 
         }
-        public static void SendBalanceEmail(string mailBody, DateTime collectionDate, string activeCusCount, string subject)
+        public static void SendBalanceEmail(string mailBody, DateTime collectionDate, string activeCusCount, string subject, bool haveCC = false)
         {
             try
             {
-                var sub = $"[{activeCusCount}] {subject} - {collectionDate.Ddmmyy()}"; ;
-                var smtp = GetMailMessage(sub, mailBody);
+
+                //BalanceDetail
+                var sub = $"[{activeCusCount}] {subject} - {collectionDate.Ddmmyy()}";
+                var smtp = GetMailMessage(sub, mailBody, haveCC);
                 smtp.Item2.Send(smtp.Item1);
             }
             catch (Exception ex)
@@ -52,7 +56,7 @@ namespace Common
                 var sub = $"{emailStructure.CollectionDate.Ddmmyy()} {emailStructure.Subject} Report";
                 var smtp = GetMailMessage(sub, emailStructure.HtmlContent);
                 smtp.Item2.Send(smtp.Item1);
-             
+
             }
             catch (Exception ex)
             {
