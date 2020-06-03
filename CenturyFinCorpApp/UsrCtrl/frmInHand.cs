@@ -351,20 +351,6 @@ namespace CenturyFinCorpApp
             DailyCollectionDetail.UpdateVerifyDetails(dailyTxn);
             UpdateVerifyDetails();
 
-            //var fileName = GetCxnFileName();
-
-            //using (TextWriter tw = new StreamWriter(fileName))
-            //{
-            //    tw.WriteLine($"@Collection Summary for {dateTimePicker1.Value.ToShortDateString()}");
-            //    tw.WriteLine($"------------------------------------------------");
-
-            //    tw.WriteLine($"Total input Money = ActualInhand inhand yesterday[{dailyTxn.YesterdayAmountInHand.TokFormat()}] + collection [{txtCollectionAmount.Text}] + interest[{txtInterest.Text}] + other investment [{txtOtherInvestment.Text}] = [{inputMoney.TokFormat()}]");
-            //    tw.WriteLine(Environment.NewLine);
-            //    tw.WriteLine($"Total out used money = given amount [{txtGivenAmount.Text}] + other expenditure [{txtOtherExpenditure.Text}] = [{outUsedMoney.TokFormat()}]");
-            //    tw.WriteLine(Environment.NewLine);
-            //    tw.WriteLine($"Expected Inhand: {dailyTxn.ExpectedInHand.TokFormat()} Actual Inhand : {dailyTxn.ActualInHand.TokFormat()} MamaAccount: {dailyTxn.MamaAccount.TokFormat()} ");
-            //}
-
             string s = txtComments.Text;
             int start = s.IndexOf("$");
             int end = s.LastIndexOf("$");
@@ -375,17 +361,25 @@ namespace CenturyFinCorpApp
 
             GetDailyTxn(dateTimePicker1.Value, false);
 
+            /* very important*/
+            var bd = new BalanceDetail();
+            var companyBalance1 = bd.GetGenReportData(false);
+            companyBalance1.BalanceDetail.AddBalanceDetails();
+
             if (DialogResult.Yes == MessageBox.Show("You want email?", "Email?", MessageBoxButtons.YesNoCancel))
             {
-                SendBalances();
+                SendBalances(companyBalance1.BalanceDetail.Data);
             }
+
+           
+
             //ReportRun();
             //Process.Start(fileName);
         }
 
         bool hasInternet = false;
 
-        private void SendBalances()
+        private void SendBalances(string bdData)
         {
             try
             {
@@ -395,9 +389,6 @@ namespace CenturyFinCorpApp
                 {
                     if (DialogResult.No == MessageBox.Show("No Internet Available, Want to open the file?", "", MessageBoxButtons.YesNo))
                         return;
-                    //    hasInternet = false;
-                    //else
-
                 }
 
                 BackgroundWorker bw = new BackgroundWorker();
@@ -407,8 +398,12 @@ namespace CenturyFinCorpApp
                     currentBalanceDate = DailyCollectionDetail.GetLastCollectionDate();
                     //ReportRun();
                     SendEmailForCrossCheck();
-                    //var activeCus = Customer.GetAllActiveCustomer();
-                    SendEmailForSendBalance();
+
+                    if(bdData == null)
+                    {
+                        bdData = BalanceDetail.GetLatestBalanceDetail();
+                    }
+                    SendEmailForSendBalance(bdData);
 
                     //AppCommunication.SendBalanceEmail(allBalances, currentBalanceDate, activeCus.Count(), "Jeyam Finance Balance Report");
                     MessageBox.Show("Balance Report have been send to your email");
@@ -483,7 +478,7 @@ namespace CenturyFinCorpApp
 
         private void btnSendBalances_Click(object sender, EventArgs e)
         {
-            SendBalances();
+            SendBalances(null);
         }
 
         private void btnCheckReport_Click(object sender, EventArgs e)
@@ -872,8 +867,9 @@ namespace CenturyFinCorpApp
 
         }
 
-        private void SendEmailForSendBalance()
+        private void SendEmailForSendBalance(string bd)
         {
+
             if (hasInternet == false) return;
             var activeCus = Customer.GetActiveCustomer();
             var htmlString = FileContentReader.SendBalanceHtml;
@@ -900,12 +896,13 @@ namespace CenturyFinCorpApp
                 rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForColumn}</td></tr>");
             });
 
-            var companyBalance = BalanceDetail.GetFullBalanceReport();
+            
+
             var dailyCheckHTML = htmlString
                                 .Replace("[data]", rowData.ToString())
                                 .Replace("[title]", "Balance Report")
                                 .Replace("[LastCol]", "Txn Detail")
-                                .Replace("[report]", companyBalance);
+                                .Replace("[report]", bd);
 
             if (hasInternet)
             {

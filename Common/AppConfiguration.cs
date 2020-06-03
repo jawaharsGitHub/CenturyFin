@@ -13,6 +13,8 @@ namespace Common
 
         public static string TransactionFile { get; } = GetFullPath("TransactionFile");
 
+        public static string BalanceDetailFile { get; } = GetFullPath("BalanceDetailFile");
+
         //public static string InvestmentFile { get; } = GetFullPath("InvestmentFile");
 
         public static string ClosedNotesFile { get; } = GetFullPath("ClosedNotesFile");
