@@ -188,6 +188,24 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static void UpdateCustomerClosedDateAndCloseIt(Customer updatedCustomer)
+        {
+            try
+            {
+                List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
+
+                var u = list.Where(c => c.CustomerId == updatedCustomer.CustomerId && c.CustomerSeqNumber == updatedCustomer.CustomerSeqNumber).FirstOrDefault();
+                u.ClosedDate = updatedCustomer.ClosedDate;
+                u.IsActive = false;
+
+                WriteObjectsToFile(list, JsonFilePath);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static void UpdateCustomerInterest(Customer updatedCustomer)
         {
             try
@@ -299,11 +317,67 @@ namespace DataAccess.PrimaryTypes
                 List<Customer> list = ReadFileAsObjects<Customer>(JsonFilePath);
 
                 var u = list.Where(c => c.CustomerId == ToCustomer.CustomerId && c.CustomerSeqNumber == ToCustomer.CustomerSeqNumber).FirstOrDefault();
+
+                var fromBalance = Transaction.GetBalance(fromCustomer);
+
+                //Update [To] Customer
                 u.LoanAmount += fromCustomer.LoanAmount;
                 u.Interest += fromCustomer.Interest;
+                Customer.UpdateCustomerLoanAndInterest(u);
+
+                ToCustomer.Name = $"{fromCustomer.Name} (M-{fromBalance}-F-{fromCustomer.CustomerSeqNumber})";
+                Customer.UpdateCustomerName(ToCustomer);
+
+                //Update [From] Customer
+                fromCustomer.Interest = 0;
+                fromCustomer.LoanAmount = 0;
+                Customer.UpdateCustomerLoanAndInterest(fromCustomer);
+
+                fromCustomer.Name = $"{fromCustomer.Name} (To {ToCustomer.CustomerSeqNumber})";
+                Customer.UpdateCustomerName(fromCustomer);
+                
+
+                // append old txns balance.
+                var mergebalance = Transaction.GetBalance(fromCustomer);
 
 
-                WriteObjectsToFile(list, JsonFilePath);
+                var data = DailyCollectionDetail.GetLastCollection();
+
+                Transaction txn = new Transaction()
+                {
+                    AmountReceived = -mergebalance,
+                    CustomerId = ToCustomer.CustomerId,
+                    CustomerSequenceNo = ToCustomer.CustomerSeqNumber,
+                    TransactionId = Transaction.GetNextTransactionId(),
+                    Balance = (Transaction.GetBalance(ToCustomer) + mergebalance),
+                    TxnDate = Convert.ToDateTime(data.Date)
+                };
+
+                Transaction.AddDailyTransactions(txn);
+
+                DailyCollectionDetail.UpdateDailyComments(data, fromCustomer, ToCustomer);
+
+                var txnToClose = new Transaction()
+                {
+                    AmountReceived = 0,
+                    CustomerId = fromCustomer.CustomerId,
+                    CustomerSequenceNo = fromCustomer.CustomerSeqNumber,
+                    TransactionId = Transaction.GetNextTransactionId(),
+                    Balance = 0,
+                    TxnDate = Convert.ToDateTime(data.Date)
+                };
+                Transaction.AddTransaction(txnToClose);
+
+                //Customer.ForceCloseCustomer(fromCustomer);
+
+                Customer.UpdateCustomerClosedDateAndCloseIt(
+                        new Customer()
+                        {
+                            CustomerId = fromCustomer.CustomerId,
+                            CustomerSeqNumber = fromCustomer.CustomerSeqNumber,
+                            ClosedDate = txnToClose.TxnDate,
+                        });
+
             }
             catch (Exception ex)
             {

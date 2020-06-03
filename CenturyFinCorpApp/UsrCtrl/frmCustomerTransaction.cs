@@ -503,8 +503,9 @@ namespace CenturyFinCorpApp
 
         private void btnMerge_Click(object sender, EventArgs e)
         {
+            var message = $"merge {this.customer.Name}  to {(cmbExistingCustomer.SelectedItem as Customer).Name}";
 
-            if (DialogResult.Yes == MessageBox.Show($"merge  {this.customer.Name}  to {(cmbExistingCustomer.SelectedItem as Customer).Name}", "confirmation", MessageBoxButtons.YesNo))
+            if (DialogResult.Yes == MessageBox.Show(message, "confirmation", MessageBoxButtons.YesNo))
             {
                 // current customer balance = interest = 0
                 // closed this customer. with force closed.
@@ -514,10 +515,11 @@ namespace CenturyFinCorpApp
                 Customer.AppendCustomerLoanAmountAndBalance(toMergeCustomer, customer);
 
                 // Delete all customer and txn details.
-                Customer.DeleteCustomerDetails(customer.CustomerId, customer.CustomerSeqNumber);
-                Transaction.DeleteTransactionDetails(customer.CustomerId, customer.CustomerSeqNumber);
+                //Customer.DeleteCustomerDetails(customer.CustomerId, customer.CustomerSeqNumber);
+                //Transaction.DeleteTransactionDetails(customer.CustomerId, customer.CustomerSeqNumber);
 
-
+                MessageBox.Show($"{message} - DONE");
+                LoadTxn();
 
             }
 

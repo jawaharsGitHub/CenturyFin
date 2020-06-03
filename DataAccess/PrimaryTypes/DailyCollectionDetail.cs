@@ -62,6 +62,25 @@ namespace DataAccess.PrimaryTypes
             }
         }
 
+        public static bool UpdateDailyComments(DailyCollectionDetail dt, Customer from, Customer To)
+        {
+            var list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
+            //var data = dt;
+            if (list != null && list.Count > 0)
+            {
+                var data = list.Where(w => w.Date == dt.Date).ToList().FirstOrDefault();
+
+                if (data != null) // Update
+                {
+                    data.Comments = (data.Comments + (Environment.NewLine + $"Merged {from.Name}({from.CustomerSeqNumber}) to {To.Name}({To.CustomerSeqNumber})"));
+                    WriteObjectsToFile(list, JsonFilePath);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
 
         public static void UpdateVerifyDetails(DailyCollectionDetail dailyCol)
         {
