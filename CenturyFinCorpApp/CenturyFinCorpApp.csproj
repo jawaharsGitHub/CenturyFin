@@ -119,11 +119,11 @@
     <Compile Include="UsrCtrl\frmGeneralReport.Designer.cs">
       <DependentUpon>frmGeneralReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsrCtrl\frmHealth.cs">
+    <Compile Include="UsrCtrl\frmBalanceDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UsrCtrl\frmHealth.Designer.cs">
-      <DependentUpon>frmHealth.cs</DependentUpon>
+    <Compile Include="UsrCtrl\frmBalanceDetail.Designer.cs">
+      <DependentUpon>frmBalanceDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="UsrCtrl\frmInHand.cs">
       <SubType>UserControl</SubType>
@@ -209,8 +209,8 @@
     <EmbeddedResource Include="UsrCtrl\frmGeneralReport.resx">
       <DependentUpon>frmGeneralReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UsrCtrl\frmHealth.resx">
-      <DependentUpon>frmHealth.cs</DependentUpon>
+    <EmbeddedResource Include="UsrCtrl\frmBalanceDetail.resx">
+      <DependentUpon>frmBalanceDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrl\frmInHand.resx">
       <DependentUpon>frmInHand.cs</DependentUpon>

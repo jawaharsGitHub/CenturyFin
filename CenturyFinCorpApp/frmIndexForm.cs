@@ -114,6 +114,11 @@ namespace CenturyFinCorpApp
             menuStrip.Items.Add(mnuOutstanding);
             mnuOutstanding.Click += (s, e) => ShowForm<frmOutstanding>();
 
+            //Balance Report
+            var mnuBR = new ToolStripMenuItem() { Name = "BalanceDetail", Text = "BALANCE-DETAIL" };
+            menuStrip.Items.Add(mnuBR);
+            mnuBR.Click += (s, e) => ShowForm<frmBalanceDetail>();
+
             /*
             //Data Check Report
             var mnuDataCheckRpt = new ToolStripMenuItem() { Name = "dataCheckReport", Text = "DATA-CHECK-REPORT" };

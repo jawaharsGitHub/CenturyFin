@@ -89,6 +89,18 @@ namespace DataAccess.ExtendedTypes
             }
         }
 
+        public static List<BalanceDetail> GetAll()
+        {
+            try
+            {
+                return ReadFileAsObjects<BalanceDetail>(JsonFilePath).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static string GetLatestBalanceDetail()
         {
             try
