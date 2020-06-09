@@ -25,7 +25,7 @@ namespace DataAccess.ExtendedTypes
 
         public int? MamaAccount { get; set; }
 
-        public int Salary { get; private set; }
+        public int Salary { get;  set; }
 
         public int TillNowProfit { get; set; }
 
@@ -39,15 +39,15 @@ namespace DataAccess.ExtendedTypes
 
         public int AllLoss { get; set; }
 
-        public int ActualLossPerc { get; private set; }
-        public int ExpectedLossPerc { get; private set; }
-        public int AllLossPerc { get; private set; }
+        public int ActualLossPerc { get; set; }
+        public int ExpectedLossPerc { get; set; }
+        public int AllLossPerc { get; set; }
 
-        public int DailyPerc { get; private set; }
-        public int WeeklyPerc { get; private set; }
-        public int TenMonthsPerc { get; private set; }
-        public int MonthlyPerc { get; private set; }
-        public int OthersPerc { get; private set; }
+        public int DailyPerc { get; set; }
+        public int WeeklyPerc { get; set; }
+        public int TenMonthsPerc { get; set; }
+        public int MonthlyPerc { get; set; }
+        public int OthersPerc { get; set; }
 
         [JsonIgnore]
         public string Data { get; set; }
@@ -71,7 +71,7 @@ namespace DataAccess.ExtendedTypes
             if (GetBalanceDetail(date) != null)
                 DeleteBalanceDetails(date);
 
-            
+
             InsertSingleObjectToListJson(JsonFilePath, this);
         }
 
@@ -371,7 +371,7 @@ namespace DataAccess.ExtendedTypes
             CloseCount = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)} {Environment.NewLine}  {closedDetailForCurrentMonth}";
 
 
-            
+
 
             LossText = $"Actual Loss: {actualLoss.ToMoneyFormat()} Vs {actualProfit.ToMoneyFormat()} ({actualLossPerc}%){Environment.NewLine}" +
                 $"Expected Loss: {expectedLoss.ToMoneyFormat()} Vs {expectedProfit.ToMoneyFormat()}  ({expectedLossPerc}%){Environment.NewLine}" +
