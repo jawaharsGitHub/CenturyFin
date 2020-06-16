@@ -46,6 +46,7 @@
             this.btnLatestCollection = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnClosedTxn = new System.Windows.Forms.Button();
+            this.btnLastCxn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -230,10 +231,21 @@
             this.btnClosedTxn.UseVisualStyleBackColor = false;
             this.btnClosedTxn.Click += new System.EventHandler(this.btnClosedTxn_Click);
             // 
+            // btnLastCxn
+            // 
+            this.btnLastCxn.Location = new System.Drawing.Point(781, 75);
+            this.btnLastCxn.Name = "btnLastCxn";
+            this.btnLastCxn.Size = new System.Drawing.Size(96, 23);
+            this.btnLastCxn.TabIndex = 19;
+            this.btnLastCxn.Text = "Last Day?";
+            this.btnLastCxn.UseVisualStyleBackColor = true;
+            this.btnLastCxn.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnLastCxn);
             this.Controls.Add(this.btnClosedTxn);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnLatestCollection);
@@ -278,5 +290,6 @@
         private System.Windows.Forms.Button btnLatestCollection;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnClosedTxn;
+        private System.Windows.Forms.Button btnLastCxn;
     }
 }

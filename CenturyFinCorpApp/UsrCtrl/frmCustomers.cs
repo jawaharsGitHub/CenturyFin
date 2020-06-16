@@ -80,7 +80,7 @@ namespace CenturyFinCorpApp
             
             #endregion
             */
-            
+
 
             textBox1.Text = @"Daily = 0,
        Alternate = 1,
@@ -979,6 +979,11 @@ namespace CenturyFinCorpApp
 
             //}
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            btnLastCxn.Text = DailyCollectionDetail.GetLastCollection().ActualInHand.TokFormat();
         }
     }
 }
