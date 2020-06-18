@@ -42,7 +42,7 @@ namespace CenturyFinCorpApp
         public frmCustomerTransaction(Customer _customer, Form parentForm)
         {
             InitializeComponent();
-            
+
 
             customer = _customer;
             LoadExistingCustomers();
@@ -191,10 +191,14 @@ namespace CenturyFinCorpApp
             lblMessage.Text = $"Txn  Added Successfully for {customer.Name}";
         }
 
+
+        // List<Transaction> Custxns = new List<Transaction>();
+
         private void LoadTxn(bool isDesc = false, bool byBalance = false)
         {
 
             txns = Transaction.GetTransactionDetails(customer);
+            //txns = Custxns;
             var cus = Customer.GetCustomerDetails(customer);
 
             // Cross verify txn.
@@ -748,6 +752,16 @@ namespace CenturyFinCorpApp
         private void chkTxnId_CheckedChanged(object sender, EventArgs e)
         {
             dataGridView1.Columns["TransactionId"].Visible = chkTxnId.Checked;
+        }
+
+        private void rdbDateAsc_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbDateAsc.Checked)
+                dataGridView1.DataSource = txns.OrderBy(o => o.TxnDate).ToList();
+            if (rdbDateDesc.Checked)
+                dataGridView1.DataSource = txns.OrderByDescending(o => o.TxnDate).ToList();
+
+            FormatGridData();
         }
     }
 }

@@ -77,6 +77,8 @@
             this.btnCusName = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.chkTxnId = new System.Windows.Forms.CheckBox();
+            this.rdbDateDesc = new System.Windows.Forms.RadioButton();
+            this.rdbDateAsc = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grpMerge.SuspendLayout();
@@ -207,23 +209,23 @@
             // 
             this.rdbAsc.AutoSize = true;
             this.rdbAsc.Checked = true;
-            this.rdbAsc.Location = new System.Drawing.Point(10, 143);
+            this.rdbAsc.Location = new System.Drawing.Point(3, 124);
             this.rdbAsc.Name = "rdbAsc";
-            this.rdbAsc.Size = new System.Drawing.Size(79, 17);
+            this.rdbAsc.Size = new System.Drawing.Size(83, 17);
             this.rdbAsc.TabIndex = 9;
             this.rdbAsc.TabStop = true;
-            this.rdbAsc.Text = "By Date (A)";
+            this.rdbAsc.Text = "By TxnId (A)";
             this.rdbAsc.UseVisualStyleBackColor = true;
             this.rdbAsc.CheckedChanged += new System.EventHandler(this.rdbAsc_CheckedChanged);
             // 
             // rdbDesc
             // 
             this.rdbDesc.AutoSize = true;
-            this.rdbDesc.Location = new System.Drawing.Point(89, 143);
+            this.rdbDesc.Location = new System.Drawing.Point(82, 124);
             this.rdbDesc.Name = "rdbDesc";
-            this.rdbDesc.Size = new System.Drawing.Size(80, 17);
+            this.rdbDesc.Size = new System.Drawing.Size(84, 17);
             this.rdbDesc.TabIndex = 10;
-            this.rdbDesc.Text = "By Date (D)";
+            this.rdbDesc.Text = "By TxnId (D)";
             this.rdbDesc.UseVisualStyleBackColor = true;
             this.rdbDesc.CheckedChanged += new System.EventHandler(this.rdbDesc_CheckedChanged);
             // 
@@ -567,10 +569,35 @@
             this.chkTxnId.UseVisualStyleBackColor = true;
             this.chkTxnId.CheckedChanged += new System.EventHandler(this.chkTxnId_CheckedChanged);
             // 
+            // rdbDateDesc
+            // 
+            this.rdbDateDesc.AutoSize = true;
+            this.rdbDateDesc.Location = new System.Drawing.Point(82, 145);
+            this.rdbDateDesc.Name = "rdbDateDesc";
+            this.rdbDateDesc.Size = new System.Drawing.Size(80, 17);
+            this.rdbDateDesc.TabIndex = 33;
+            this.rdbDateDesc.Text = "By Date (D)";
+            this.rdbDateDesc.UseVisualStyleBackColor = true;
+            // 
+            // rdbDateAsc
+            // 
+            this.rdbDateAsc.AutoSize = true;
+            this.rdbDateAsc.Checked = true;
+            this.rdbDateAsc.Location = new System.Drawing.Point(3, 145);
+            this.rdbDateAsc.Name = "rdbDateAsc";
+            this.rdbDateAsc.Size = new System.Drawing.Size(79, 17);
+            this.rdbDateAsc.TabIndex = 32;
+            this.rdbDateAsc.TabStop = true;
+            this.rdbDateAsc.Text = "By Date (A)";
+            this.rdbDateAsc.UseVisualStyleBackColor = true;
+            this.rdbDateAsc.CheckedChanged += new System.EventHandler(this.rdbDateAsc_CheckedChanged);
+            // 
             // frmCustomerTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.rdbDateDesc);
+            this.Controls.Add(this.rdbDateAsc);
             this.Controls.Add(this.chkTxnId);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnCusName);
@@ -668,5 +695,7 @@
         private System.Windows.Forms.Button btnCusName;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox chkTxnId;
+        private System.Windows.Forms.RadioButton rdbDateDesc;
+        private System.Windows.Forms.RadioButton rdbDateAsc;
     }
 }

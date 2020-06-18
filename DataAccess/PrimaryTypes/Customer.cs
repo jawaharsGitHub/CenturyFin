@@ -667,7 +667,7 @@ namespace DataAccess.PrimaryTypes
                 {
                     if (--tries == 0)
                     {
-                        LogHelper.WriteLog($"Error while try to get Customer data try no : {tries}");
+                        //LogHelper.WriteLog($"Error while try to get Customer data try no : {tries}");
                         //throw;
                     }
                     Thread.Sleep(1000);
