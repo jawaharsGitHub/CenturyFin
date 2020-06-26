@@ -21,6 +21,7 @@ namespace CenturyFinCorpApp
         private Customer customer;
         private List<Transaction> txns;
         int daysTaken = 0;
+        string cusName = null;
 
 
         public frmCustomerTransaction()
@@ -45,7 +46,13 @@ namespace CenturyFinCorpApp
 
 
             customer = _customer;
+
+            cusName = string.IsNullOrEmpty(customer.TamilName) ? customer.Name : customer.TamilName;
+
             LoadExistingCustomers();
+
+            
+
             _isClosedTx = (customer.IsActive == false);
 
             _balance = _isClosedTx ? 0 : Transaction.GetBalance(customer);
@@ -238,7 +245,8 @@ namespace CenturyFinCorpApp
             var lastDate = dataDource.Select(s => s.TxnDate).Max();
             daysTaken = (lastBalance == 0) ? lastDate.Date.Subtract(startDate).Days + 2 : DateTime.Now.Date.Subtract(startDate).Days + 2;
 
-            btnCusName.Text = $"{customer.Name}({daysTaken})";
+           
+            btnCusName.Text = $"{cusName}({daysTaken})";
 
             // Calculate Credit Score 
             // TODO: Need to move as a seperate method - CalculateCreditScore()
@@ -709,7 +717,7 @@ namespace CenturyFinCorpApp
 
                 var txnFileName = $"{Path.GetTempPath()}{customer.Name}.jpg";
                 result.Save(txnFileName); // Save File
-                AppCommunication.SendCustomerTxnEmail(customer.Name, DateTime.Today, txnFileName); // Email
+                AppCommunication.SendCustomerTxnEmail(cusName, DateTime.Today, txnFileName); // Email
                 //File.Delete(txnFileName);
                 MessageBox.Show("Txn Email Send!");
 

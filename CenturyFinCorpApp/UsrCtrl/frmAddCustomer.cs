@@ -34,6 +34,7 @@ namespace CenturyFinCorpApp
             if (ReturnTypeEnum.None == (ReturnTypeEnum)cmbReturnType.SelectedItem)
             {
                 MessageBox.Show("Please Select Return Type");
+                cmbReturnType.Focus();
                 return;
             }
 
@@ -42,6 +43,7 @@ namespace CenturyFinCorpApp
                 if (cmbReturnDay.SelectedIndex == 0)
                 {
                     MessageBox.Show("Please Select Return Day for weekly type!");
+                    cmbReturnDay.Focus();
                     return;
                 }
             }
@@ -66,6 +68,13 @@ namespace CenturyFinCorpApp
             }
             else
             {
+
+                if(string.IsNullOrEmpty(txtTamilName.Text))
+                {
+                    MessageBox.Show("தமிழ் பெயர் கட்டாயம்!");
+                    txtTamilName.Focus();
+                    return;
+                }
                 var isDuplicateName = Customer.IsDuplicateName(txtName.Text);
 
                 if (isDuplicateName)
@@ -116,15 +125,6 @@ namespace CenturyFinCorpApp
 
             Transaction.AddTransaction(txn);
 
-            // Add Investment
-            //Investment.AddInvestment(new Investment()
-            //{
-            //    Amount = cus.LoanAmount,
-            //    Interest = Convert.ToInt16(txtInterest.Text),
-            //    CustomerId = cus.CustomerId,
-            //    CustomerSequenceNo = cus.CustomerSeqNumber
-            //});
-
             var nthTimes = Customer.GetAllCustomer().Where(w => w.CustomerId == cus.CustomerId).Count();
 
             lblMessage.Text = $"Customer {cus.Name} ({nthTimes}{General.GetDaySuffix(nthTimes)} times) Added Successfully.";
@@ -132,23 +132,26 @@ namespace CenturyFinCorpApp
 
         }
 
+        private void EnableTxtBoxes(bool isEnable)
+        {
+            txtName.Enabled = txtPhone.Enabled = txtTamilName.Enabled = isEnable;
+        }
         private void chkExistingCustomer_CheckedChanged(object sender, EventArgs e)
         {
             cmbExistingCustomer.Visible = (sender as CheckBox).Checked;
 
             if ((sender as CheckBox).Checked)
             {
-
                 // load existing customer
                 cmbExistingCustomer.DataSource = Customer.GetAllCustomer(); // Customer.GetAllCustomer().(d => d.CustomerId).OrderBy(o => o.Name).ToList().Where(w => w.Name.StartsWith("Rab")).ToList();
                 cmbExistingCustomer.DisplayMember = "NameAndId";
                 cmbExistingCustomer.ValueMember = "CustomerId";
-                txtName.Enabled = txtPhone.Enabled = false;
+                EnableTxtBoxes(false);
 
             }
             else
             {
-                txtName.Enabled = txtPhone.Enabled = true;
+                EnableTxtBoxes(true);
             }
         }
 
