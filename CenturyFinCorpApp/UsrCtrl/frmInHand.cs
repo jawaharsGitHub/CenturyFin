@@ -881,7 +881,8 @@ namespace CenturyFinCorpApp
                             ac.CustomerSeqNumber,
                             ac.Name,
                             Ba = Transaction.GetBalanceAndLastDate(ac),
-                            ac.LoanAmount
+                            ac.LoanAmount,
+                            ac.ReturnType
                         }).ToList();
 
 
@@ -893,7 +894,7 @@ namespace CenturyFinCorpApp
 
             data.ForEach(f =>
             {
-                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.DataForColumn}</td></tr>");
+                rowData.Append($@"<tr><td>{f.Sno}</td><td>{f.CustomerSeqNumber}</td><td>{f.Name}</td><td>{f.LoanAmount}</td><td>{f.Ba.Balance}</td><td>{f.Ba.Diff}</td><td>{f.ReturnType}</td><td>{f.Ba.DataForColumn}</td></tr>");
             });
 
             
