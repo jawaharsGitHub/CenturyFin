@@ -332,6 +332,12 @@ namespace DataAccess.ExtendedTypes
             var expectedMonthly = monthlyTxns.Where(w => w.IsActive == true).Sum(s => s.Interest);
             var actualMonthly = monthlyTxns.Where(w => w.IsActive == false).Sum(s => s.Interest);
 
+            //other than monthly
+            var NonmonthlyTxns = Customer.GetAllCustomer().Where(w => w.IsNotMonthly()).ToList();
+
+            var NonexpectedMonthly = NonmonthlyTxns.Where(w => w.IsActive == true).Sum(s => s.Interest);
+            var NonactualMonthly = NonmonthlyTxns.Where(w => w.IsActive == false).Sum(s => s.Interest);
+
             var total = (actual + expected);
             var totalMonthly = (actualMonthly + expectedMonthly);
             var actualProfit = actualMonthly + actual;
@@ -347,9 +353,7 @@ namespace DataAccess.ExtendedTypes
             var totalIncomeWithActualLoss = (actualProfit + actualLoss);
             var totalIncomeWithAllLoss = (actualProfit + actualLoss + expectedLoss);
 
-            var actualLossPerc = actualProfit.PercentageBtwNo(actualLoss);
-            var expectedLossPerc = expectedProfit.PercentageBtwNo(expectedLoss);
-            var allLossPerc = allProfit.PercentageBtwNo(allLoss);
+           
 
             // Total Report Data
 
@@ -363,9 +367,27 @@ namespace DataAccess.ExtendedTypes
 
 
             // PROFIT
-            ProfitText = $"Acutaul Profit: {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {actualProfit.ToMoneyFormat()}A (Per Month: { (actualProfit / numberOfMonths).ToMoneyFormat()}A){Environment.NewLine}" +
-                $"Expected Profit: {expectedMonthly.ToMoneyFormat()}(M) + {expected.ToMoneyFormat()}(D) = {expectedProfit.ToMoneyFormat()}E (Per Month: { (expectedProfit / numberOfMonths).ToMoneyFormat()}E){Environment.NewLine}" +
-            $"ALL Profit: {actualProfit.ToMoneyFormat()}(A) + {expectedProfit.ToMoneyFormat()}(E) = {(actualProfit + expectedProfit).ToMoneyFormat()}AE (Per Month: { ((actualMonthly + actual + expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}AE)";
+            //ProfitText = $"Acutaul Profit: {actualMonthly.ToMoneyFormat()}(M) + {actual.ToMoneyFormat()}(D) = {actualProfit.ToMoneyFormat()}A (Per Month: { (actualProfit / numberOfMonths).ToMoneyFormat()}A){Environment.NewLine}" +
+            //$"Expected Profit: {expectedMonthly.ToMoneyFormat()}(M) + {expected.ToMoneyFormat()}(D) = {expectedProfit.ToMoneyFormat()}E (Per Month: { (expectedProfit / numberOfMonths).ToMoneyFormat()}E){Environment.NewLine}" +
+            //$"ALL Profit: {actualProfit.ToMoneyFormat()}(A) + {expectedProfit.ToMoneyFormat()}(E) = {(actualProfit + expectedProfit).ToMoneyFormat()}AE (Per Month: { ((actualMonthly + actual + expectedMonthly + expected) / numberOfMonths).ToMoneyFormat()}AE)";
+
+
+            var ap = Customer.GetClosedCustomer().Sum(s => s.Interest);
+            var ep = Customer.GetActiveCustomer().Sum(s => s.Interest);
+           
+
+            if (considerSalary) ap = ap - Salary;
+
+            var aep = ap + ep;
+
+            var actualLossPerc = ap.PercentageBtwNo(actualLoss);
+            var expectedLossPerc = ep.PercentageBtwNo(expectedLoss);
+            var allLossPerc = aep.PercentageBtwNo(allLoss);
+
+            ProfitText = $"Acutaul Profit: {ap.ToMoneyFormat()} (Per Month: { (ap / numberOfMonths).ToMoneyFormat()}A){Environment.NewLine}" +
+              $"Expected Profit: {ep.ToMoneyFormat()} (Per Month: { (ep / numberOfMonths).ToMoneyFormat()}E){Environment.NewLine}" +
+          $"ALL Profit: {aep.ToMoneyFormat()}AE (Per Month: { ((aep) / numberOfMonths).ToMoneyFormat()}AE)";
+
 
             //lblCloseCount.Text
             CloseCount = $"Sum of Close Column Count should be {finalData.Sum(w => w.CloseCount)} {Environment.NewLine}  {closedDetailForCurrentMonth}";
@@ -373,9 +395,9 @@ namespace DataAccess.ExtendedTypes
 
 
 
-            LossText = $"Actual Loss: {actualLoss.ToMoneyFormat()} Vs {actualProfit.ToMoneyFormat()} ({actualLossPerc}%){Environment.NewLine}" +
-                $"Expected Loss: {expectedLoss.ToMoneyFormat()} Vs {expectedProfit.ToMoneyFormat()}  ({expectedLossPerc}%){Environment.NewLine}" +
-               $"All Loss: {allLoss.ToMoneyFormat()} Vs { allProfit.ToMoneyFormat()} ({allLossPerc}%)";
+            LossText = $"Actual Loss: {actualLoss.ToMoneyFormat()} Vs {ap.ToMoneyFormat()} ({actualLossPerc}%){Environment.NewLine}" +
+                $"Expected Loss: {expectedLoss.ToMoneyFormat()} Vs {ep.ToMoneyFormat()}  ({expectedLossPerc}%){Environment.NewLine}" +
+               $"All Loss: {allLoss.ToMoneyFormat()} Vs { aep.ToMoneyFormat()} ({allLossPerc}%)";
 
             ActualLossPerc = actualLossPerc;
             ExpectedLossPerc = expectedLossPerc;
