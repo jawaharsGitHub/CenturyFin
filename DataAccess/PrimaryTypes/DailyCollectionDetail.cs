@@ -148,6 +148,22 @@ namespace DataAccess.PrimaryTypes
             try
             {
                 List<DailyCollectionDetail> list = ReadFileAsObjects<DailyCollectionDetail>(JsonFilePath);
+
+
+                //for (int i = 0; i < list.Count - 1; i++)
+                //{
+
+                //    try
+                //    {
+                //        var d = Convert.ToDateTime(list[i].Date);
+                //    }
+                //    catch (Exception ex1)
+                //    {
+                //        throw ex1;
+                //    }
+                //}
+
+
                 var dailyTxn = list.Select(s => Convert.ToDateTime(s.Date)).Max();
 
                 return dailyTxn;
