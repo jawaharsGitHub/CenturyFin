@@ -397,7 +397,7 @@ namespace CenturyFinCorpApp
 
                     currentBalanceDate = DailyCollectionDetail.GetLastCollectionDate();
                     //ReportRun();
-                    SendEmailForCrossCheck();
+                    //SendEmailForCrossCheck();
 
                     if(bdData == null)
                     {
