@@ -1,0 +1,98 @@
+[
+  {
+    "CustomerId": 204,
+    "IsClosed": false,
+    "TransactionId": 34223,
+    "AmountReceived": 0,
+    "Balance": 10000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 977,
+    "TxnDate": "2020-06-06T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 204,
+    "IsClosed": false,
+    "TransactionId": 34474,
+    "AmountReceived": 500,
+    "Balance": 9500,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 977,
+    "TxnDate": "2020-06-12T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 204,
+    "IsClosed": false,
+    "TransactionId": 35004,
+    "AmountReceived": 2000,
+    "Balance": 7500,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 977,
+    "TxnDate": "2020-06-23T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 204,
+    "IsClosed": false,
+    "TransactionId": 36030,
+    "AmountReceived": 1000,
+    "Balance": 6500,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 977,
+    "TxnDate": "2020-07-25T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 204,
+    "IsClosed": false,
+    "TransactionId": 36574,
+    "AmountReceived": 1000,
+    "Balance": 5500,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 977,
+    "TxnDate": "2020-08-01T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 204,
+    "IsClosed": false,
+    "TransactionId": 37446,
+    "AmountReceived": 1000,
+    "Balance": 4500,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 977,
+    "TxnDate": "2020-08-20T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 204,
+    "IsClosed": false,
+    "TransactionId": 37778,
+    "AmountReceived": 500,
+    "Balance": 4000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 977,
+    "TxnDate": "2020-08-27T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  },
+  {
+    "CustomerId": 204,
+    "IsClosed": true,
+    "TransactionId": 38142,
+    "AmountReceived": 4000,
+    "Balance": 0,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 977,
+    "TxnDate": "2020-09-03T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
+  }
+]
