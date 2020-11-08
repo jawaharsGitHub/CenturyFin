@@ -679,11 +679,11 @@ namespace CenturyFinCorpApp
         {
             // WhatsAppMessage.SendMsg();
 
-            //if (General.CheckForInternetConnection() == false)
-            //{
-            //    MessageBox.Show("No Internet Available, Please connect and try again!");
-            //    //return;
-            //}
+            if (General.CheckForInternetConnection() == false)
+            {
+                MessageBox.Show("No Internet Available, Please connect and try again!");
+                return;
+            }
 
 
             BackgroundWorker bw = new BackgroundWorker();
@@ -716,7 +716,21 @@ namespace CenturyFinCorpApp
                 g.DrawImageUnscaled(secondName, 0, 0);
 
                 var txnFileName = $"{Path.GetTempPath()}{customer.Name}.jpg";
+
+                try
+                {
+
+                
                 result.Save(txnFileName); // Save File
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+
+                //if(internet)
                 AppCommunication.SendCustomerTxnEmail(cusName, DateTime.Today, txnFileName); // Email
                 //File.Delete(txnFileName);
                 MessageBox.Show("Txn Email Send!");
