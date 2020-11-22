@@ -185,7 +185,8 @@ namespace CenturyFinCorpApp
                    new KeyValuePair<int, string>(15, "No Tamil Name"),
                    new KeyValuePair<int, string>(16, "Only Adj & To Be Closed."),
                    new KeyValuePair<int, string>(17, "By Balance %"),
-                   new KeyValuePair<int, string>(18, "By Interest")
+                   new KeyValuePair<int, string>(18, "By Interest"),
+                   new KeyValuePair<int, string>(19, "By Balance Amount")
 
                };
 
@@ -857,10 +858,16 @@ namespace CenturyFinCorpApp
             {
                 searchedCustomer = customers.OrderBy(o => o.Interest).ToList();
             }
+            else if (value == 19)
+            {
+                searchedCustomer = customers.OrderByDescending(o => Transaction.GetBalance(o)).ToList();
+            }
             else
             {
                 searchedCustomer = customers.Where(w => w.ReturnDay == DateTime.Today.AddDays(-1).DayOfWeek).ToList();
             }
+             
+
 
             if (rdbActive.Checked)
             {
