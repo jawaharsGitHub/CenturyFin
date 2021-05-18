@@ -37,11 +37,11 @@
 
             if (status == 'y') {
                 document.getElementById('trKatchi').style.display = "block";
-                candidatestatus = 1;
+                candidatestatus = 0;
             }
             else {
                 document.getElementById('trKatchi').style.display = "none";
-                candidatestatus = 0;
+                candidatestatus = 1;
             }
         }
 
@@ -99,12 +99,12 @@
             else if (relation == 'father') {
                  var gender = document.getElementById('ddlGender').value;
                 if (gender == 'f')
-                    replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மகளான');
+                    replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மகளும்');
                 else if (gender == 'm')
-                    replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மகனான');
+                    replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மகனும்');
             }
             else if (relation == 'husband') {
-                replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மனைவியுமான');
+                replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மனைவியும்');
             }
             replacedhtmlStr = replacedhtmlStr.replace("$fathername$", document.getElementById('ddlFather').value);
 
@@ -112,27 +112,52 @@
             replacedhtmlStr = replacedhtmlStr.replace("$age$", document.getElementById('txtAge').value);
             replacedhtmlStr = replacedhtmlStr.replace("$address$", document.getElementById('txtAddress').value);
 
-            if (candidatestatus = 0) {
-                replacedhtmlStr = replacedhtmlStr.replace("$partyname$", "என்னும் பெயருடைய அரசியல் கட்சியின்");
+            //alert(candidatestatus);
+            if (candidatestatus == 0) {
+
+                //alert(000);
+                //alert(txtPartyName.value);
+                replacedhtmlStr = replacedhtmlStr.replace("$partyname$", "<b>" + txtPartyName.value + "</b>" + " என்னும் பெயருடைய அரசியல் கட்சியின்");
 
             }
             else {
-                replacedhtmlStr = replacedhtmlStr.replace("$partyname$", "சுயேச்சை");
+                //alert(111);
+                //alert(txtPartyName.value);
+                replacedhtmlStr = replacedhtmlStr.replace("$partyname$", "<b>சுயேட்சை</b>");
+                
             }
+
+            replacedhtmlStr = replacedhtmlStr.replace("[partNo]", txtPartNo.value);
+            replacedhtmlStr = replacedhtmlStr.replace("[serialNo]", txtSerialNo.value);
+            replacedhtmlStr = replacedhtmlStr.replace("[mobile]", txtMobile.value);
+
+            if (txtEmail.value == "") {
+                
+                replacedhtmlStr = replacedhtmlStr.replace("மற்றும் என்னுடைய மின்னஞ்சல் முகவரி <b>[email]</b>", "");
+            }
+            else {
+                replacedhtmlStr = replacedhtmlStr.replace("[email]", txtEmail.value);
+                
+            }
+
+            if (txtSocialMedia.value == "") {
+                replacedhtmlStr = replacedhtmlStr.replace("மற்றும் எனது சமூக வலைதள கணக்குகளின் விவரம் <b>[social]</b>", "");
+            }
+            else {
+                replacedhtmlStr = replacedhtmlStr.replace("[social]", txtSocialMedia.value);
+            }
+            
+
             //alert('3');
             var htmlToPrint = replacedhtmlStr;
 
            //printJS('test.pdf');
 
-            //newWin = window.open("");
-            //newWin.document.write(htmlToPrint);
-            //newWin.print();
-            //newWin.close();
+            newWin = window.open("");
+            newWin.document.write(htmlToPrint);
+            newWin.print();
+            newWin.close();
 
-            w=window.open();
-w.document.write(htmlToPrint);
-w.print();
-w.close();
         }
 
     </script>
@@ -219,6 +244,41 @@ w.close();
         <tr name="trKatchi" id="trKatchi">
             <td>கட்சியின் பெயர்</td>
             <td><input type="text" id="txtPartyName" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <a target="_self" href="https://electoralsearch.in/">
+                    for  serial and part no
+                </a>
+            </td>
+
+        </tr>
+
+
+        <tr>
+            <td>பாகம் எண்</td>
+            <td><input type="text" id="txtPartNo" /></td>
+        </tr>
+
+        <tr>
+            <td>வரிசை எண்</td>
+            <td><input type="text" id="txtSerialNo" /></td>
+        </tr>
+
+        <tr>
+            <td>அழைபேசி எண்</td>
+            <td><input type="text" id="txtMobile" /></td>
+        </tr>
+
+        <tr>
+            <td>மின்னஞ்சல்</td>
+            <td><input type="text" id="txtEmail" /></td>
+        </tr>
+
+        <tr>
+            <td>சமூக வலைதளங்கள்</td>
+            <td><input type="text" id="txtSocialMedia" /></td>
         </tr>
 
         <tr>
