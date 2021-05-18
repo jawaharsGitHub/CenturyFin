@@ -77,6 +77,31 @@
             }
 
         }
+
+        function OnPanChange(value) {
+            var pan = document.getElementById('ddlPan').value;
+
+            if (pan == 'y') {
+                document.getElementById('trPan').style.display = "initial";
+                lblName.innerHTML = txtName.value;
+            }
+            else {
+                document.getElementById('trPan').style.display = "none";
+            }
+        }
+
+        function OnHPanChange(value) {
+            var pan = document.getElementById('ddlHPan').value;
+
+            if (pan == 'y') {
+                document.getElementById('trHPan').style.display = "initial";
+                lblName.innerHTML = txtName.value;
+            }
+            else {
+                document.getElementById('trHPan').style.display = "none";
+            }
+        }
+
         function printFunc() {
 
             
@@ -108,7 +133,7 @@
             }
             replacedhtmlStr = replacedhtmlStr.replace("$fathername$", document.getElementById('ddlFather').value);
 
-            replacedhtmlStr = replacedhtmlStr.replaceAll("ZnameZ", document.getElementById('txtName').value);
+            replacedhtmlStr = replacedhtmlStr.replaceAll("[name]", document.getElementById('txtName').value);
             replacedhtmlStr = replacedhtmlStr.replace("$age$", document.getElementById('txtAge').value);
             replacedhtmlStr = replacedhtmlStr.replace("$address$", document.getElementById('txtAddress').value);
 
@@ -146,6 +171,18 @@
             else {
                 replacedhtmlStr = replacedhtmlStr.replace("[social]", txtSocialMedia.value);
             }
+
+
+            replacedhtmlStr = replacedhtmlStr.replace("[pan]", txtPan.value);
+            replacedhtmlStr = replacedhtmlStr.replace("[panLastYear]", txtLastPanYear.value);
+            replacedhtmlStr = replacedhtmlStr.replace("[panLastFive]", txtLastFivePan.value);
+
+            replacedhtmlStr = replacedhtmlStr.replace("[hname]", txtHName.value);
+            replacedhtmlStr = replacedhtmlStr.replace("[hpan]", txtHPan.value);
+            replacedhtmlStr = replacedhtmlStr.replace("[hpanLastYear]", txtLastHPanYear.value);
+            replacedhtmlStr = replacedhtmlStr.replace("[hpanLastFive]", txtLastFiveHPan.value);
+
+            
             
 
             //alert('3');
@@ -279,6 +316,70 @@
         <tr>
             <td>சமூக வலைதளங்கள்</td>
             <td><input type="text" id="txtSocialMedia" /></td>
+        </tr>
+
+        <tr>
+            <td>வருமான வரி கட்டியதுண்டா?</td>
+            <td>
+                <select name="ddlPan" id="ddlPan" onchange="OnPanChange(this.value);">
+                    <option value="select">--Select--</option>
+                    <option value="y">ஆம்</option>
+                    <option value="n">இல்லை</option>
+                </select>
+            </td>
+        </tr>
+
+
+        <tr id="trPan">
+            <td>
+                <table>
+                    <tr>
+                        <td>பெயர்</td>
+                        <td>PAN</td>
+                        <td>தாக்கல் செய்த கடைசி ஆண்டு?</td>
+                        <td>கடைசி 5 ஆண்டு கட்டிய வருமான வரி</td>
+                    </tr>
+                    <tr>
+                        <td><label id="lblName" name="lblName"></label></td>
+                        <td><input type="text" id="txtPan" /></td>
+                        <td><input type="text" id="txtLastPanYear" /></td>
+                        <td><input type="text" id="txtLastFivePan" /></td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>வாழ்க்கை துணை - வருமான வரி கட்டியதுண்டா?</td>
+            <td>
+                <select name="ddlHPan" id="ddlHPan" onchange="OnHPanChange(this.value);">
+                    <option value="select">--Select--</option>
+                    <option value="y">ஆம்</option>
+                    <option value="n">இல்லை</option>
+                </select>
+            </td>
+        </tr>
+
+
+        <tr id="trHPan">
+            <td>
+                <table>
+                    <tr>
+                        <td>பெயர்</td>
+                        <td>PAN</td>
+                        <td>தாக்கல் செய்த கடைசி ஆண்டு?</td>
+                        <td>கடைசி 5 ஆண்டு கட்டிய வருமான வரி</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="txtHName" name="lblName"/></td>
+                        <td><input type="text" id="txtHPan" /></td>
+                        <td><input type="text" id="txtLastHPanYear" /></td>
+                        <td><input type="text" id="txtLastFiveHPan" /></td>
+                    </tr>
+
+                </table>
+            </td>
         </tr>
 
         <tr>
