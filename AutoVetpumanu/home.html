@@ -1,73 +1,233 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<title>9-திருவாடானை வேட்பு மனு  - நாம் தமிழர்-1 </title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="jquery-3.6.0.min.js" type="text/javascript"></script>
 
-<script type="text/javascript">
+    <title>9-திருவாடானை வேட்பு மனு  - நாம் தமிழர்-1 </title>
+    <script src="jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.css"></script>
 
-	var htmlText = "";
-	var replacedhtmlStr = "";
+    <script type="text/javascript">
 
-$(document).ready(function()
-{
-//alert('1');
- 
-	readTextFile('vetpumanu.html');
+        //document.red
 
-	replacedhtmlStr = htmlText;
+        var htmlText = "";
+        var replacedhtmlStr = "";
+        var candidatestatus = -1;
 
-	replacedhtmlStr = replacedhtmlStr.replace("$state$", "தமிழ்நாடு");
-	replacedhtmlStr = replacedhtmlStr.replace("$electiontype$", "சட்டமன்ற");
-	replacedhtmlStr = replacedhtmlStr.replace("$assemblyname$", "திருவாடானை");
+        function readTextFile(file) {
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
 
+            rawFile.onreadystatechange = function () {
+                if (rawFile.readyState === 4) {
+                    if (rawFile.status === 200 || rawFile.status == 0) {
+                        var allText = rawFile.responseText;
+                        htmlText = allText;
+                        //alert(htmlText);
+                        //alert(3);
+                    }
+                }
+            }
+            rawFile.send(null);
+        }
 
-	
-	
+        function OnKatchiChange(value) {
+            var status = document.getElementById('ddlKatchi').value;
 
-
-   
-   //alert('2');
-});
-
-
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-				var allText = rawFile.responseText;
-				htmlText = allText;
-                alert(htmlText);
+            if (status == 'y') {
+                document.getElementById('trKatchi').style.display = "block";
+                candidatestatus = 1;
+            }
+            else {
+                document.getElementById('trKatchi').style.display = "none";
+                candidatestatus = 0;
             }
         }
-    }
-    rawFile.send(null);
-	}
 
-	function printFunc() {
+        function OnStatusChange(value) {
+            var status = document.getElementById('ddlMariatal').value;
 
-    //var divToPrint = document.getElementById('printarea');
-    var htmlToPrint = replacedhtmlStr;
-    //htmlToPrint += divToPrint.outerHTML;
-    newWin = window.open("");
-    //newWin.document.write("<h3 align='center'>Print Page</h3>");
-    newWin.document.write(htmlToPrint);
-    newWin.print();
-    newWin.close();
-    }
+            if (status == 'y') {
+                //document.getElementById('trFather').style.display = "none";
+                document.getElementById('lblSarnthavar').innerHTML = "கணவர் பெயர்";
+            }
+            else {
+                document.getElementById('lblSarnthavar').innerHTML = "தந்தை பெயர்";
+            }
+        }
+        function OnGenderChange(value) {
 
+            var gender = document.getElementById('ddlGender').value;
+            //alert(gender);
 
-</script>
+            if (gender == 'f') {
+                document.getElementById('trMariatal').style.display = "initial";
+            }
+            else {
+                document.getElementById('trMariatal').style.display = "none";
+            }
+
+            if (gender == 'm') {
+                //document.getElementById('trFather').style.display = "none";
+                document.getElementById('lblSarnthavar').innerHTML = "தந்தை பெயர்";
+            }
+            else {
+                document.getElementById('lblSarnthavar').innerHTML = "சார்ந்தவர்";
+            }
+
+        }
+        function printFunc() {
+
+            
+            readTextFile('vetpumanu.html');
+            //alert('1');
+            replacedhtmlStr = htmlText;
+            //alert('2');
+            replacedhtmlStr = replacedhtmlStr.replace("$state$", document.getElementById('txtState').value);
+            replacedhtmlStr = replacedhtmlStr.replace("$electiontype$", "சட்டப்பேரவை");
+            replacedhtmlStr = replacedhtmlStr.replace("$assemblyname$", document.getElementById('txtAssembly').value);
+
+            replacedhtmlStr = replacedhtmlStr.replace("$fathername$", document.getElementById('txtSarnthavar').value);
+
+            var relation = document.getElementById('ddlFather').value;
+
+            if (relation == 'select') {
+                //alert('Please Select father!');
+                //return;
+            }
+            else if (relation == 'father') {
+                 var gender = document.getElementById('ddlGender').value;
+                if (gender == 'f')
+                    replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மகளான');
+                else if (gender == 'm')
+                    replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மகனான');
+            }
+            else if (relation == 'husband') {
+                replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மனைவியுமான');
+            }
+            replacedhtmlStr = replacedhtmlStr.replace("$fathername$", document.getElementById('ddlFather').value);
+
+            replacedhtmlStr = replacedhtmlStr.replaceAll("ZnameZ", document.getElementById('txtName').value);
+            replacedhtmlStr = replacedhtmlStr.replace("$age$", document.getElementById('txtAge').value);
+            replacedhtmlStr = replacedhtmlStr.replace("$address$", document.getElementById('txtAddress').value);
+
+            if (candidatestatus = 0) {
+                replacedhtmlStr = replacedhtmlStr.replace("$partyname$", "என்னும் பெயருடைய அரசியல் கட்சியின்");
+
+            }
+            else {
+                replacedhtmlStr = replacedhtmlStr.replace("$partyname$", "சுயேச்சை");
+            }
+            //alert('3');
+            var htmlToPrint = replacedhtmlStr;
+
+           //printJS('test.pdf');
+
+            //newWin = window.open("");
+            //newWin.document.write(htmlToPrint);
+            //newWin.print();
+            //newWin.close();
+
+            w=window.open();
+w.document.write(htmlToPrint);
+w.print();
+w.close();
+        }
+
+    </script>
 
 </head>
 <body>
-    <input type='button' id='btn' value='Print' onclick='printFunc();'>
+
+    <table>
+        <tr>
+            <td>மாநிலம்</td>
+            <td><input type="text" id="txtState" value="தமிழ்நாடு" readonly="readonly" /></td>
+        </tr>
+        <tr>
+            <td>தொகுதி</td>
+            <td><input type="text" id="txtAssembly" /></td>
+        </tr>
+
+
+        <tr>
+            <td>பாலினம்</td>
+            <td>
+                <select name="ddlGender" id="ddlGender" onchange="OnGenderChange(this.value);">
+                    <option value="s">--Select--</option>
+                    <option value="m">ஆண்</option>
+                    <option value="f">பெண்</option>
+                    <option value="t">மூன்றாம்</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr id="trMariatal" name="trMariatal">
+            <td>திருமணம்?</td>
+            <td>
+                <select name="ddlMariatal" id="ddlMariatal" onchange="OnStatusChange(this.value);">
+                    <option value="s">--Select--</option>
+                    <option value="y">ஆனவர் (திருமதி)</option>
+                    <option value="n">ஆகாதவர் (செல்வி)</option>
+                </select>
+            </td>
+        </tr>
+        <tr id="trFather" name="trFather">
+            <td>சார்ந்தவர் வகை</td>
+            <td>
+                <select name="ddlFather" id="ddlFather">
+                    <option value="select">--Select--</option>
+                    <option value="father">father</option>
+                    <option value="husband">husband</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td><label id="lblSarnthavar" name="lblSarnthavar" val>சார்ந்தவர்</label> </td>
+            <td><input type="text" id="txtSarnthavar" /></td>
+        </tr>
+
+        <tr>
+            <td>பெயர்</td>
+            <td><input type="text" id="txtName" /></td>
+        </tr>
+
+        <tr>
+            <td>வயது</td>
+            <td><input type="text" id="txtAge" /></td>
+        </tr>
+
+
+        <tr>
+            <td>முகவரி</td>
+            <td><input type="text" id="txtAddress" /></td>
+        </tr>
+
+        <tr>
+            <td>அரசியல் கட்சியா?</td>
+            <td>
+                <select name="ddlKatchi" id="ddlKatchi" onchange="OnKatchiChange(this.value);">
+                    <option value="select">--Select--</option>
+                    <option value="y">அரசியல் கட்சி</option>
+                    <option value="n">சுயேட்சை</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr name="trKatchi" id="trKatchi">
+            <td>கட்சியின் பெயர்</td>
+            <td><input type="text" id="txtPartyName" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type='button' id='btn' value='Print' onclick='printFunc();'>
+            </td>
+        </tr>
+    </table>
+    
 </body>
+
+</html>
