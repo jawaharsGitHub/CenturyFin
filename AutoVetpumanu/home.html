@@ -134,18 +134,11 @@
 
                 var row = tblDep.insertRow(0);
 
-                var cell11 = row.insertCell(0);
-                var cell21 = row.insertCell(1);
-                var cell31 = row.insertCell(2);
-                var cell41= row.insertCell(3);
-                var cell51 =row.insertCell(4);
-
-
-                cell11.innerHTML = i + 4;
-                cell21.innerHTML = "பெயர்";
-                cell31.innerHTML = "PAN";
-                cell41.innerHTML = "தாக்கல் செய்த கடைசி ஆண்டு?";
-                cell51.innerHTML = "கடைசி 5 ஆண்டு கட்டிய வருமான வரி";
+                row.insertCell(0).innerHTML = i + 4;
+                row.insertCell(1).innerHTML = "பெயர்";
+                row.insertCell(2).innerHTML = "PAN";
+                row.insertCell(3).innerHTML = "தாக்கல் செய்த கடைசி ஆண்டு?";
+                row.insertCell(4).innerHTML = "கடைசி 5 ஆண்டு கட்டிய வருமான வரி";
 
             for (var i = 0; i < value; i++) {
 
