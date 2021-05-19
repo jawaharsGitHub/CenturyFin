@@ -102,6 +102,56 @@
             }
         }
 
+        function OnHinduChange(value) {
+            var pan = document.getElementById('ddlHindu').value;
+
+            if (pan == 'y') {
+                document.getElementById('trHinduPan').style.display = "initial";
+                lblName.innerHTML = txtName.value;
+            }
+            else {
+                document.getElementById('trHinduPan').style.display = "none";
+            }
+        }
+
+        
+
+        function OnDependentChange(value) {
+            //var pan = document.getElementById('ddlDependent').value;
+
+            //if (pan > 0) {
+            //    document.getElementById('trDependent').style.display = "initial";
+            //    //lblName.innerHTML = txtName.value;
+            //}
+            //else {
+            //    document.getElementById('trDependent').style.display = "none";
+            //}
+
+            var tblDep = document.getElementById("tblDep");
+            while(tblDep.rows.length > 0) {
+                        tblDep.deleteRow(0);
+            }
+            for (var i = 0; i < value; i++) {
+
+                //var row = document.getElementById("myRow");
+                var row = tblDep.insertRow(i);
+
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4= row.insertCell(3);
+                var cell5 = row.insertCell(4);
+
+
+                cell1.innerHTML = i + 4;
+                cell2.innerHTML = "சார்ந்தவர் " + (i + 1);
+                cell3.innerHTML = "<input type='text' id='pan" + (i+1)  +"'/>";
+                cell4.innerHTML = "<input type='text' id='panamount" + (i+1)  +"'/>";
+                cell5.innerHTML = "<input type='text' id='panfive" + (i+1)  +"'/>";
+                
+            }
+        }
+
         function printFunc() {
 
             
@@ -172,15 +222,45 @@
                 replacedhtmlStr = replacedhtmlStr.replace("[social]", txtSocialMedia.value);
             }
 
+            var porunthaathu = "பொருந்தாது"
+            if (document.getElementById('ddlPan').value == 'y') {
+                replacedhtmlStr = replacedhtmlStr.replace("[pan]", txtPan.value);
+                replacedhtmlStr = replacedhtmlStr.replace("[panLastYear]", txtLastPanYear.value);
+                replacedhtmlStr = replacedhtmlStr.replace("[panLastFive]", txtLastFivePan.value);
+            }
+            else {
+                replacedhtmlStr = replacedhtmlStr.replace("[pan]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replace("[panLastYear]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replace("[panLastFive]", porunthaathu);
+            }
 
-            replacedhtmlStr = replacedhtmlStr.replace("[pan]", txtPan.value);
-            replacedhtmlStr = replacedhtmlStr.replace("[panLastYear]", txtLastPanYear.value);
-            replacedhtmlStr = replacedhtmlStr.replace("[panLastFive]", txtLastFivePan.value);
+            if (document.getElementById('ddlHPan').value == 'y') {
+                replacedhtmlStr = replacedhtmlStr.replace("[hname]", txtHName.value);
+                replacedhtmlStr = replacedhtmlStr.replace("[hpan]", txtHPan.value);
+                replacedhtmlStr = replacedhtmlStr.replace("[hpanLastYear]", txtLastHPanYear.value);
+                replacedhtmlStr = replacedhtmlStr.replace("[hpanLastFive]", txtLastFiveHPan.value);
+            }
+            else {
+                 replacedhtmlStr = replacedhtmlStr.replace("[hname]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replace("[hpan]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replace("[hpanLastYear]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replace("[hpanLastFive]", porunthaathu);
 
-            replacedhtmlStr = replacedhtmlStr.replace("[hname]", txtHName.value);
-            replacedhtmlStr = replacedhtmlStr.replace("[hpan]", txtHPan.value);
-            replacedhtmlStr = replacedhtmlStr.replace("[hpanLastYear]", txtLastHPanYear.value);
-            replacedhtmlStr = replacedhtmlStr.replace("[hpanLastFive]", txtLastFiveHPan.value);
+            }
+
+            if (document.getElementById('ddlHindu').value == 'y') {
+                replacedhtmlStr = replacedhtmlStr.replace("[hindupan]", txtHName.value);
+                //replacedhtmlStr = replacedhtmlStr.replace("[hpan]", txtHPan.value);
+                replacedhtmlStr = replacedhtmlStr.replace("[hindupanLastYear]", txtLastHPanYear.value);
+                replacedhtmlStr = replacedhtmlStr.replace("[hindupanLastFive]", txtLastFiveHPan.value);
+            }
+            else {
+                replacedhtmlStr = replacedhtmlStr.replace("[hindupan]", porunthaathu);
+                //replacedhtmlStr = replacedhtmlStr.replace("[hpan]", txtHPan.value);
+                replacedhtmlStr = replacedhtmlStr.replace("[hindupanLastYear]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replace("[hindupanLastFive]", porunthaathu);
+
+            }
 
             
             
@@ -202,18 +282,18 @@
 </head>
 <body>
 
-    <table>
-        <tr>
+    <table id="tblMain" name="tblMain">
+        <tr> <!--0-->
             <td>மாநிலம்</td>
             <td><input type="text" id="txtState" value="தமிழ்நாடு" readonly="readonly" /></td>
         </tr>
-        <tr>
+        <tr> <!--1-->
             <td>தொகுதி</td>
             <td><input type="text" id="txtAssembly" /></td>
         </tr>
 
 
-        <tr>
+        <tr> <!--2-->
             <td>பாலினம்</td>
             <td>
                 <select name="ddlGender" id="ddlGender" onchange="OnGenderChange(this.value);">
@@ -225,7 +305,7 @@
             </td>
         </tr>
 
-        <tr id="trMariatal" name="trMariatal">
+        <tr id="trMariatal" name="trMariatal"> <!--3-->
             <td>திருமணம்?</td>
             <td>
                 <select name="ddlMariatal" id="ddlMariatal" onchange="OnStatusChange(this.value);">
@@ -235,7 +315,7 @@
                 </select>
             </td>
         </tr>
-        <tr id="trFather" name="trFather">
+        <tr id="trFather" name="trFather"> <!--4-->
             <td>சார்ந்தவர் வகை</td>
             <td>
                 <select name="ddlFather" id="ddlFather">
@@ -246,28 +326,28 @@
             </td>
         </tr>
 
-        <tr>
+        <tr> <!--5-->
             <td><label id="lblSarnthavar" name="lblSarnthavar" val>சார்ந்தவர்</label> </td>
             <td><input type="text" id="txtSarnthavar" /></td>
         </tr>
 
-        <tr>
+        <tr> <!--6-->
             <td>பெயர்</td>
             <td><input type="text" id="txtName" /></td>
         </tr>
 
-        <tr>
+        <tr> <!--7-->
             <td>வயது</td>
             <td><input type="text" id="txtAge" /></td>
         </tr>
 
 
-        <tr>
+        <tr> <!--8-->
             <td>முகவரி</td>
             <td><input type="text" id="txtAddress" /></td>
         </tr>
 
-        <tr>
+        <tr> <!--9-->
             <td>அரசியல் கட்சியா?</td>
             <td>
                 <select name="ddlKatchi" id="ddlKatchi" onchange="OnKatchiChange(this.value);">
@@ -278,12 +358,12 @@
             </td>
         </tr>
 
-        <tr name="trKatchi" id="trKatchi">
+        <tr name="trKatchi" id="trKatchi"> <!--10-->
             <td>கட்சியின் பெயர்</td>
             <td><input type="text" id="txtPartyName" /></td>
         </tr>
 
-        <tr>
+        <tr> <!--11-->
             <td colspan="2">
                 <a target="_self" href="https://electoralsearch.in/">
                     for  serial and part no
@@ -293,32 +373,32 @@
         </tr>
 
 
-        <tr>
+        <tr> <!--12-->
             <td>பாகம் எண்</td>
             <td><input type="text" id="txtPartNo" /></td>
         </tr>
 
-        <tr>
+        <tr> <!--13-->
             <td>வரிசை எண்</td>
             <td><input type="text" id="txtSerialNo" /></td>
         </tr>
 
-        <tr>
+        <tr> <!--14-->
             <td>அழைபேசி எண்</td>
             <td><input type="text" id="txtMobile" /></td>
         </tr>
 
-        <tr>
+        <tr> <!--15-->
             <td>மின்னஞ்சல்</td>
             <td><input type="text" id="txtEmail" /></td>
         </tr>
 
-        <tr>
+        <tr> <!--16-->
             <td>சமூக வலைதளங்கள்</td>
             <td><input type="text" id="txtSocialMedia" /></td>
         </tr>
 
-        <tr>
+        <tr> <!--17-->
             <td>வருமான வரி கட்டியதுண்டா?</td>
             <td>
                 <select name="ddlPan" id="ddlPan" onchange="OnPanChange(this.value);">
@@ -330,7 +410,7 @@
         </tr>
 
 
-        <tr id="trPan">
+        <tr id="trPan"> <!--18-->
             <td>
                 <table>
                     <tr>
@@ -350,7 +430,7 @@
             </td>
         </tr>
 
-        <tr>
+        <tr> <!--19-->
             <td>வாழ்க்கை துணை - வருமான வரி கட்டியதுண்டா?</td>
             <td>
                 <select name="ddlHPan" id="ddlHPan" onchange="OnHPanChange(this.value);">
@@ -362,7 +442,7 @@
         </tr>
 
 
-        <tr id="trHPan">
+        <tr id="trHPan"> <!--20-->
             <td>
                 <table>
                     <tr>
@@ -372,7 +452,7 @@
                         <td>கடைசி 5 ஆண்டு கட்டிய வருமான வரி</td>
                     </tr>
                     <tr>
-                        <td><input type="text" id="txtHName" name="lblName"/></td>
+                        <td><input type="text" id="txtHName" name="lblName" /></td>
                         <td><input type="text" id="txtHPan" /></td>
                         <td><input type="text" id="txtLastHPanYear" /></td>
                         <td><input type="text" id="txtLastFiveHPan" /></td>
@@ -381,6 +461,62 @@
                 </table>
             </td>
         </tr>
+
+        <tr> <!--21-->
+            <td>இந்து கூட்டுக்குடும்பம்?</td>
+            <td>
+                <select name="ddlHindu" id="ddlHindu" onchange="OnHinduChange(this.value);">
+                    <option value="select">--Select--</option>
+                    <option value="y">ஆம்</option>
+                    <option value="n">இல்லை</option>
+                </select>
+            </td>
+        </tr>
+
+
+        <tr id="trHinduPan"> <!--22-->
+            <td>
+                <table>
+                    <tr>
+                        <td>பெயர்</td>
+                        <td>PAN</td>
+                        <td>தாக்கல் செய்த கடைசி ஆண்டு?</td>
+                        <td>கடைசி 5 ஆண்டு கட்டிய வருமான வரி</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="txtHinduName" name="txtHinduName" /></td>
+                        <td><input type="text" id="txtHinduPan" /></td>
+                        <td><input type="text" id="txtLastHinduPanYear" /></td>
+                        <td><input type="text" id="txtLastFiveHinduPan" /></td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+        <tr> <!--23-->
+            <td>சார்ந்தவர்?</td>
+            <td>
+                <select name="ddlDependent" id="ddlDependent" onchange="OnDependentChange(this.value);">
+                    <option value="select">--Select--</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table id="tblDep" name="tblDep">
+
+                </table>
+            </td>
+        </tr>
+       
 
         <tr>
             <td colspan="2">
