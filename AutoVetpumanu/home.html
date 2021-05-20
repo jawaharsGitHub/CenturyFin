@@ -136,12 +136,6 @@
 
                 var row = tblDep.insertRow(i+1);
 
-                //var cell1 = row.insertCell(0);
-                //var cell2 = row.insertCell(1);
-                //var cell3 = row.insertCell(2);
-                //var cell4= row.insertCell(3);
-                //var cell5 = row.insertCell(4);
-
                 row.insertCell(0).innerHTML = i + 4;
                 row.insertCell(1).innerHTML = "<input type='text' id='panName" + (i+1)  +"'/>";
                 row.insertCell(2).innerHTML = "<input type='text' id='pan" + (i+1)  +"'/>";
@@ -151,6 +145,16 @@
             }
         }
 
+
+        function OnCaseChange(value) {
+            if (value == 'y') {
+                document.getElementById('trPendingCase').style.display = "initial";
+                lblName.innerHTML = txtName.value;
+            }
+            else {
+                document.getElementById('trPendingCase').style.display = "none";
+            }
+        }
 
         var porunthaathu = "பொருந்தாது"
         var yethumillai = "ஏதும் இல்லை";
@@ -280,10 +284,18 @@
 
              if (document.getElementById('ddlCase').value == 'y') {
                 replacedhtmlStr = replacedhtmlStr.replace("[nocase]", porunthaathu);
-                replacedhtmlStr = replacedhtmlStr.replace("[yescase]", "<span font-size='20'>&#10003;</span>");
+                 replacedhtmlStr = replacedhtmlStr.replace("[yescase]", "<span font-size='20'>&#10003;</span>");
+
+                 replacedhtmlStr = replacedhtmlStr.replace("[5a]", document.getElementById('txtFir').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[5b]", document.getElementById('txtCase').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[5c]", document.getElementById('txtSec').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[5d]", document.getElementById('txtSummary').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[5e]", document.getElementById('ddlCharged').selectedOptions[0].innerHTML);
+                 replacedhtmlStr = replacedhtmlStr.replace("[5f]", document.getElementById('txtChargedDate').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[5g]", document.getElementById('ddlMelmuraiyeedu').selectedOptions[0].innerHTML);
             }
             else {
-                replacedhtmlStr = replacedhtmlStr.replace("[nocase]", "<span font-size='20'>&#10003;</span>");
+                 replacedhtmlStr = replacedhtmlStr.replace("[nocase]", "<span font-size='20'>&#10003;</span>");
                  replacedhtmlStr = replacedhtmlStr.replace("[yescase]", porunthaathu);
 
                  replacedhtmlStr = replacedhtmlStr.replace("[5a]", yethumillai);
@@ -295,6 +307,33 @@
                  replacedhtmlStr = replacedhtmlStr.replace("[5g]", yethumillai);
 
 
+            }
+
+            if (document.getElementById('ddlConfCase').value == 'y') {
+                replacedhtmlStr = replacedhtmlStr.replace("[noconfcase]", porunthaathu);
+                 replacedhtmlStr = replacedhtmlStr.replace("[yesconfcase]", "<span font-size='20'>&#10003;</span>");
+
+                 replacedhtmlStr = replacedhtmlStr.replace("[6a]", document.getElementById('txtConfFir').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6b]", document.getElementById('txtConfCase').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6c]", document.getElementById('txtConfSec').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6d]", document.getElementById('txtConfSummary').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6e]", document.getElementById('txtConfDate').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6f]", document.getElementById('txtJudgeDate').value);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6g]", document.getElementById('ddlConfMelmuraiyeedu').selectedOptions[0].innerHTML);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6h]", document.getElementById('txtConfReason').value);
+            }
+            else {
+                 replacedhtmlStr = replacedhtmlStr.replace("[noconfcase]", "<span font-size='20'>&#10003;</span>");
+                 replacedhtmlStr = replacedhtmlStr.replace("[yesconfcase]", porunthaathu);
+
+                 replacedhtmlStr = replacedhtmlStr.replace("[6a]", yethumillai);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6b]", yethumillai);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6c]", yethumillai);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6d]", yethumillai);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6e]", yethumillai);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6f]", yethumillai);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6g]", yethumillai);
+                 replacedhtmlStr = replacedhtmlStr.replace("[6h]", yethumillai);
             }
             
             var htmlToPrint = replacedhtmlStr;
@@ -573,7 +612,7 @@
             <!--9-->
             <td>குற்றவியல் வழக்கு ?</td>
             <td>
-                <select name="ddlCase" id="ddlCase">
+                <select name="ddlCase" id="ddlCase" onchange="OnCaseChange(this.value);">
                     <option value="select">--Select--</option>
                     <option value="y">ஆம்</option>
                     <option value="n">இல்லை</option>
@@ -581,7 +620,116 @@
             </td>
         </tr>
 
-        
+        <tr id="trPendingCase">
+            <!--18-->
+            <td colspan="2">
+                <table border="2px">
+                    <tr>
+                        <td valign="top">FIR No, police station Name and address</td>
+                        <td><textarea id="txtFir" name="txtFir" rows='5' cols='20'></textarea></td>
+                        <td valign="top">case no + Court Name</td>
+                        <td><textarea id="txtCase" rows='5' cols='20'></textarea></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">section no</td>
+                        <td><textarea id="txtSec" rows='5' cols='20'></textarea></td>
+                        <td valign="top">case summary</td>
+                        <td><textarea id="txtSummary" rows='5' cols='20'></textarea></td>
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top">case charged? (ஆம்/இல்லை)</td>
+                        <td>
+                            <select name="ddlCharged" id="ddlCharged">
+                                <option value="select">--Select--</option>
+                                <option value="y">ஆம்</option>
+                                <option value="n">இல்லை</option>
+                            </select>
+                        </td>
+                        <td valign="top">date charged?</td>
+                        <td><input type="text" id="txtChargedDate" /></td>
+
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top">மேல்முறையீடு?</td>
+                        <td>
+                            <select name="ddlMelmuraiyeedu" id="ddlMelmuraiyeedu">
+                                <option value="select">--Select--</option>
+                                <option value="y">ஆம்</option>
+                                <option value="n">இல்லை</option>
+                            </select>
+                        </td>
+                    </tr>
+
+
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <!--9-->
+            <td>தண்டனை பெற்ற  வழக்கு ?</td>
+            <td>
+                <select name="ddlConfCase" id="ddlConfCase" onchange="OnConfCaseChange(this.value);">
+                    <option value="select">--Select--</option>
+                    <option value="y">ஆம்</option>
+                    <option value="n">இல்லை</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr id="trConfirmedCase">
+            <!--18-->
+            <td colspan="2">
+                <table border="2px">
+                    <tr>
+                        <td valign="top">வழக்கு எண்</td>
+                        <td><textarea id="txtConfFir" name="txtFir" rows='5' cols='20'></textarea></td>
+                        <td valign="top">நீதிமன்றத்தின் பெயர்</td>
+                        <td><textarea id="txtConfCase" rows='5' cols='20'></textarea></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">பிரிவு எண்</td>
+                        <td><textarea id="txtConfSec" rows='5' cols='20'></textarea></td>
+                        <td valign="top">சுருக்க விவரம்</td>
+                        <td><textarea id="txtConfSummary" rows='5' cols='20'></textarea></td>
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top">தீர்ப்பின் தேதி</td>
+                        <td>
+                            <input type="text" id="txtConfDate" name="txtConfDate"/>
+                        </td>
+                        <td valign="top">தண்டனை?</td>
+                        <td><textarea id="txtJudgeDate" name="txtJudgeDate" rows="10" cols="10"></textarea></td>
+
+
+                    </tr>
+
+                    <tr>
+                        <td valign="top">மேல்முறையீடு?</td>
+                        <td>
+                            <select name="ddlConfMelmuraiyeedu" id="ddlConfMelmuraiyeedu">
+                                <option value="select">--Select--</option>
+                                <option value="y">ஆம்</option>
+                                <option value="n">இல்லை</option>
+                            </select>
+                        </td>
+                        <td valign="top">மேல்முறையீடு விவரம்?</td>
+                        <td>
+                            <textarea id="txtConfReason" name="txtConfReason" rows="10" cols="10"></textarea>  
+                        </td>
+                    </tr>
+
+
+                </table>
+            </td>
+        </tr>
+
 
         <tr>
             <td colspan="2">
