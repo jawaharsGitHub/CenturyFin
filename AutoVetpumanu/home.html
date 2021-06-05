@@ -4,8 +4,13 @@
 
     <title>9-திருவாடானை வேட்பு மனு  - நாம் தமிழர்-1 </title>
     <script src="jquery-3.6.0.min.js" type="text/javascript"></script>
-    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
-    <script src="https://printjs-4de6.kxcdn.com/print.min.css"></script>
+    <script src="jquery.watermark-3.1.4/jquery.watermark.min.js"></script>
+
+    <style type="text/css">
+        .watermark {
+            color: #999;
+        }
+    </style>
 
     <script type="text/javascript">
 
@@ -14,6 +19,10 @@
         var htmlText = "";
         var replacedhtmlStr = "";
         var candidatestatus = -1;
+        var basicColumnCount = 3;
+        var dependentCount = 0;
+        var porunthaathu = "பொருந்தாது"
+        var yethumillai = "ஏதும் இல்லை";
 
         function readTextFile(file) {
             var rawFile = new XMLHttpRequest();
@@ -56,6 +65,7 @@
                 document.getElementById('lblSarnthavar').innerHTML = "தந்தை பெயர்";
             }
         }
+
         function OnGenderChange(value) {
 
             //var gender = document.getElementById('ddlGender').value;
@@ -112,64 +122,145 @@
             }
         }
 
-        
-        var dependentCount = 0;
         function OnDependentChange(value) {
-            alert(value);
+            //alert(value);
             dependentCount = value;
 
             var tblDep = document.getElementById("tblDep");
 
-            while(tblDep.rows.length > 0) {
-                        tblDep.deleteRow(0);
+            while (tblDep.rows.length > 0) {
+                tblDep.deleteRow(0);
             }
 
-                var row = tblDep.insertRow(0);
+            var row = tblDep.insertRow(0);
 
-                row.insertCell(0).innerHTML = i + 4;
-                row.insertCell(1).innerHTML = "பெயர்";
-                row.insertCell(2).innerHTML = "PAN";
-                row.insertCell(3).innerHTML = "தாக்கல் செய்த கடைசி ஆண்டு?";
-                row.insertCell(4).innerHTML = "கடைசி 5 ஆண்டு கட்டிய வருமான வரி";
+            row.insertCell(0).innerHTML = i + 4;
+            row.insertCell(1).innerHTML = "பெயர்";
+            row.insertCell(2).innerHTML = "PAN";
+            row.insertCell(3).innerHTML = "தாக்கல் செய்த கடைசி ஆண்டு?";
+            row.insertCell(4).innerHTML = "கடைசி 5 ஆண்டு கட்டிய வருமான வரி";
 
             for (var i = 0; i < value; i++) {
 
-                var row = tblDep.insertRow(i+1);
+                var row = tblDep.insertRow(i + 1);
 
                 row.insertCell(0).innerHTML = i + 4;
-                row.insertCell(1).innerHTML = "<input type='text' id='panName" + (i+1)  +"'/>";
-                row.insertCell(2).innerHTML = "<input type='text' id='pan" + (i+1)  +"'/>";
-                row.insertCell(3).innerHTML = "<input type='text' id='panamount" + (i+1)  +"'/>";
-                row.insertCell(4).innerHTML = "<textarea id='panfive" + (i+1)  +"' rows='6' cols='30'/>";
-                
+                row.insertCell(1).innerHTML = "<input type='text' id='panName" + (i + 1) + "'/>";
+                row.insertCell(2).innerHTML = "<input type='text' id='pan" + (i + 1) + "'/>";
+                row.insertCell(3).innerHTML = "<input type='text' id='panamount" + (i + 1) + "'/>";
+                row.insertCell(4).innerHTML = "<textarea id='panfive" + (i + 1) + "' rows='6' cols='30'/>";
+
             }
         }
-
 
         function OnCaseChange(value) {
             if (value == 'y') {
                 document.getElementById('trPendingCase').style.display = "initial";
-                lblName.innerHTML = txtName.value;
+                //lblName.innerHTML = txtName.value;
             }
             else {
                 document.getElementById('trPendingCase').style.display = "none";
             }
         }
 
-        var porunthaathu = "பொருந்தாது"
-        var yethumillai = "ஏதும் இல்லை";
+        function OnConfCaseChange(value) {
+            if (value == 'y') {
+                document.getElementById('trConfirmedCase').style.display = "initial";
+                //lblName.innerHTML = txtName.value;
+            }
+            else {
+                document.getElementById('trConfirmedCase').style.display = "none";
+            }
+        }
+
+        function On7AiChange(value) {
+
+            if (value == 'y') {
+                document.getElementById('tr7Ai').style.display = "initial";
+
+                var row = document.getElementById('tr7Ai');
+                $('#tr7Ai > td').remove();
+
+                for (var i = 0; i < 6; i++) {
+
+                    var id = '7Ai-' + (i + 1);
+                    var idHash = '#' + id;
+                    row.insertCell(i).innerHTML = "<input type='text' title='Test' id='" + id + "' name='" + id + "'/>";
+
+                   // console.log(idHash);
+                    var watermark = '';
+
+                    if (i == 0) watermark = 'வேட்பாளர்?';
+                    if (i == 1) watermark = '?';
+                    if (i == 2) watermark = 'இந்து கூட்டு குடும்பம்?';
+                    if (i >= 3) watermark = 'சார்ந்தவர் - ' + (i-3+1);
+
+                    //alert(watermark);
+                    //alert(idHash);
+
+                    //init, set watermark text and class
+                    $(idHash).val(watermark).addClass('watermark');
+
+                    //if blur and no value inside, set watermark text and class again.
+                    $(idHash).blur(function () {
+                        var txtId = $(this).attr('id').replace('7Ai-', '');
+                        var wm = '';
+                        if (txtId == 1) wm = 'வேட்பாளர்?';
+                        if (txtId == 2) wm = 'துணை?';
+                        if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
+                        if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
+                        
+                        if ($(this).val().length == 0) {
+                            $(this).val(wm).addClass('watermark');
+                        }
+                    });
+
+                    //if focus and text is watermrk, set it to empty and remove the watermark class
+                    $(idHash).focus(function () {
+                        //console.log($(this).attr('id'));
+                        var txtId = $(this).attr('id').replace('7Ai-', '');
+
+                        var wm = '';
+                        if (txtId == 1) wm = 'வேட்பாளர்?';
+                        if (txtId == 2) wm = '?';
+                        if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
+                        if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
+
+                        //console.log('val:' + $(this).val());
+                        //console.log('wm:' + wm);
+                        //console.log('txtId:' + txtId);
+                        //console.log($(this).val() == wm);
+
+                        if ($(this).val() == wm) {
+                            console.log('yes');
+                            $(this).val('').removeClass('watermark');
+                        }
+                        //console.log(txtId);
+                        //console.log(wm);
+                    });
+                }
+
+            }
+            else {
+                document.getElementById('tr7Ai').style.display = "none";
+            }
+        }
+
+
+
+
         function printFunc() {
 
-            
+            //alert(document.getElementById('7Ai-1').value)
             readTextFile('vetpumanu.html');
             //alert('1');
             replacedhtmlStr = htmlText;
             //alert('2');
-            replacedhtmlStr = replacedhtmlStr.replace("$state$", document.getElementById('txtState').value);
-            replacedhtmlStr = replacedhtmlStr.replace("$electiontype$", "சட்டப்பேரவை");
-            replacedhtmlStr = replacedhtmlStr.replace("$assemblyname$", document.getElementById('txtAssembly').value);
+            replacedhtmlStr = replacedhtmlStr.replaceAll("[state]", document.getElementById('txtState').value);
+            replacedhtmlStr = replacedhtmlStr.replace("[electiontype]", "சட்டப்பேரவை");
+            replacedhtmlStr = replacedhtmlStr.replace("[assemblyname]", document.getElementById('txtAssembly').value);
 
-            replacedhtmlStr = replacedhtmlStr.replace("$fathername$", document.getElementById('txtSarnthavar').value);
+            replacedhtmlStr = replacedhtmlStr.replace("[fathername]", document.getElementById('txtSarnthavar').value);
 
             var relation = document.getElementById('ddlFather').value;
 
@@ -178,34 +269,34 @@
                 //return;
             }
             else if (relation == 'father') {
-                 var gender = document.getElementById('ddlGender').value;
+                var gender = document.getElementById('ddlGender').value;
                 if (gender == 'f')
-                    replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மகளும்');
+                    replacedhtmlStr = replacedhtmlStr.replace("[relation]", 'மகளும்');
                 else if (gender == 'm')
-                    replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மகனும்');
+                    replacedhtmlStr = replacedhtmlStr.replace("[relation]", 'மகனும்');
             }
             else if (relation == 'husband') {
-                replacedhtmlStr = replacedhtmlStr.replace("$relation$", 'மனைவியும்');
+                replacedhtmlStr = replacedhtmlStr.replace("[relation]", 'மனைவியும்');
             }
-            replacedhtmlStr = replacedhtmlStr.replace("$fathername$", document.getElementById('ddlFather').value);
+            replacedhtmlStr = replacedhtmlStr.replace("[fathername]", document.getElementById('ddlFather').value);
 
             replacedhtmlStr = replacedhtmlStr.replaceAll("[name]", document.getElementById('txtName').value);
-            replacedhtmlStr = replacedhtmlStr.replace("$age$", document.getElementById('txtAge').value);
-            replacedhtmlStr = replacedhtmlStr.replace("$address$", document.getElementById('txtAddress').value);
+            replacedhtmlStr = replacedhtmlStr.replace("[age]", document.getElementById('txtAge').value);
+            replacedhtmlStr = replacedhtmlStr.replace("[address]", document.getElementById('txtAddress').value);
 
             //alert(candidatestatus);
             if (candidatestatus == 0) {
 
                 //alert(000);
                 //alert(txtPartyName.value);
-                replacedhtmlStr = replacedhtmlStr.replace("$partyname$", "<b>" + txtPartyName.value + "</b>" + " என்னும் பெயருடைய அரசியல் கட்சியின்");
+                replacedhtmlStr = replacedhtmlStr.replace("[partyname]", "<b>" + txtPartyName.value + "</b>" + " என்னும் பெயருடைய அரசியல் கட்சியின்");
 
             }
             else {
                 //alert(111);
                 //alert(txtPartyName.value);
-                replacedhtmlStr = replacedhtmlStr.replace("$partyname$", "<b>சுயேட்சை</b>");
-                
+                replacedhtmlStr = replacedhtmlStr.replace("[partyname]", "<b>சுயேட்சை</b>");
+
             }
 
             replacedhtmlStr = replacedhtmlStr.replace("[partNo]", txtPartNo.value);
@@ -213,12 +304,12 @@
             replacedhtmlStr = replacedhtmlStr.replace("[mobile]", txtMobile.value);
 
             if (txtEmail.value == "") {
-                
+
                 replacedhtmlStr = replacedhtmlStr.replace("மற்றும் என்னுடைய மின்னஞ்சல் முகவரி <b>[email]</b>", "");
             }
             else {
                 replacedhtmlStr = replacedhtmlStr.replace("[email]", txtEmail.value);
-                
+
             }
 
             if (txtSocialMedia.value == "") {
@@ -228,7 +319,7 @@
                 replacedhtmlStr = replacedhtmlStr.replace("[social]", txtSocialMedia.value);
             }
 
-           
+
             if (document.getElementById('ddlPan').value == 'y') {
                 replacedhtmlStr = replacedhtmlStr.replace("[pan]", txtPan.value);
                 replacedhtmlStr = replacedhtmlStr.replace("[panLastYear]", txtLastPanYear.value);
@@ -247,7 +338,7 @@
                 replacedhtmlStr = replacedhtmlStr.replace("[hpanLastFive]", txtLastFiveHPan.value);
             }
             else {
-                 replacedhtmlStr = replacedhtmlStr.replace("[hname]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replace("[hname]", porunthaathu);
                 replacedhtmlStr = replacedhtmlStr.replace("[hpan]", porunthaathu);
                 replacedhtmlStr = replacedhtmlStr.replace("[hpanLastYear]", porunthaathu);
                 replacedhtmlStr = replacedhtmlStr.replace("[hpanLastFive]", porunthaathu);
@@ -271,71 +362,97 @@
             var depStr = ""
             for (var i = 0; i < dependentCount; i++) {
 
-                depStr+=    '<tr>' +
-                            '<td align="center">'+ (i+4) +'</td>' +
-                            '<td>' + document.getElementById("panName" + (i+1)).value  +'</br>(சார்ந்தவர்-'+ (i+1) +')</td>' +
-                            '<td>  '+ document.getElementById("pan" + (i+1)).value +' </td>' +
-                            '<td>'+ document.getElementById("panamount" + (i+1)).value +'</td>' +
-                            '<td>'+ document.getElementById("panfive" + (i+1)).value +'</td>' +
+                depStr += '<tr>' +
+                    '<td align="center">' + (i + 4) + '</td>' +
+                    '<td>' + document.getElementById("panName" + (i + 1)).value + '</br>(சார்ந்தவர்-' + (i + 1) + ')</td>' +
+                    '<td>  ' + document.getElementById("pan" + (i + 1)).value + ' </td>' +
+                    '<td>' + document.getElementById("panamount" + (i + 1)).value + '</td>' +
+                    '<td>' + document.getElementById("panfive" + (i + 1)).value + '</td>' +
                     '</tr>';
             }
 
             replacedhtmlStr = replacedhtmlStr.replace("[dependent]", depStr);
 
-             if (document.getElementById('ddlCase').value == 'y') {
+            if (document.getElementById('ddlCase').value == 'y') {
                 replacedhtmlStr = replacedhtmlStr.replace("[nocase]", porunthaathu);
-                 replacedhtmlStr = replacedhtmlStr.replace("[yescase]", "<span font-size='20'>&#10003;</span>");
+                replacedhtmlStr = replacedhtmlStr.replace("[yescase]", "<span font-size='20'>&#10003;</span>");
 
-                 replacedhtmlStr = replacedhtmlStr.replace("[5a]", document.getElementById('txtFir').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5b]", document.getElementById('txtCase').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5c]", document.getElementById('txtSec').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5d]", document.getElementById('txtSummary').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5e]", document.getElementById('ddlCharged').selectedOptions[0].innerHTML);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5f]", document.getElementById('txtChargedDate').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5g]", document.getElementById('ddlMelmuraiyeedu').selectedOptions[0].innerHTML);
+                replacedhtmlStr = replacedhtmlStr.replace("[5a]", document.getElementById('txtFir').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[5b]", document.getElementById('txtCase').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[5c]", document.getElementById('txtSec').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[5d]", document.getElementById('txtSummary').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[5e]", document.getElementById('ddlCharged').selectedOptions[0].innerHTML);
+                replacedhtmlStr = replacedhtmlStr.replace("[5f]", document.getElementById('txtChargedDate').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[5g]", document.getElementById('ddlMelmuraiyeedu').selectedOptions[0].innerHTML);
             }
             else {
-                 replacedhtmlStr = replacedhtmlStr.replace("[nocase]", "<span font-size='20'>&#10003;</span>");
-                 replacedhtmlStr = replacedhtmlStr.replace("[yescase]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replace("[nocase]", "<span font-size='20'>&#10003;</span>");
+                replacedhtmlStr = replacedhtmlStr.replace("[yescase]", porunthaathu);
 
-                 replacedhtmlStr = replacedhtmlStr.replace("[5a]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5b]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5c]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5d]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5e]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5f]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[5g]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[5a]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[5b]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[5c]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[5d]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[5e]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[5f]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[5g]", yethumillai);
 
 
             }
 
             if (document.getElementById('ddlConfCase').value == 'y') {
                 replacedhtmlStr = replacedhtmlStr.replace("[noconfcase]", porunthaathu);
-                 replacedhtmlStr = replacedhtmlStr.replace("[yesconfcase]", "<span font-size='20'>&#10003;</span>");
+                replacedhtmlStr = replacedhtmlStr.replace("[yesconfcase]", "<span font-size='20'>&#10003;</span>");
 
-                 replacedhtmlStr = replacedhtmlStr.replace("[6a]", document.getElementById('txtConfFir').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6b]", document.getElementById('txtConfCase').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6c]", document.getElementById('txtConfSec').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6d]", document.getElementById('txtConfSummary').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6e]", document.getElementById('txtConfDate').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6f]", document.getElementById('txtJudgeDate').value);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6g]", document.getElementById('ddlConfMelmuraiyeedu').selectedOptions[0].innerHTML);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6h]", document.getElementById('txtConfReason').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[6a]", document.getElementById('txtConfFir').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[6b]", document.getElementById('txtConfCase').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[6c]", document.getElementById('txtConfSec').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[6d]", document.getElementById('txtConfSummary').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[6e]", document.getElementById('txtConfDate').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[6f]", document.getElementById('txtJudgeDate').value);
+                replacedhtmlStr = replacedhtmlStr.replace("[6g]", document.getElementById('ddlConfMelmuraiyeedu').selectedOptions[0].innerHTML);
+                replacedhtmlStr = replacedhtmlStr.replace("[6h]", document.getElementById('txtConfReason').value);
             }
             else {
-                 replacedhtmlStr = replacedhtmlStr.replace("[noconfcase]", "<span font-size='20'>&#10003;</span>");
-                 replacedhtmlStr = replacedhtmlStr.replace("[yesconfcase]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replace("[noconfcase]", "<span font-size='20'>&#10003;</span>");
+                replacedhtmlStr = replacedhtmlStr.replace("[yesconfcase]", porunthaathu);
 
-                 replacedhtmlStr = replacedhtmlStr.replace("[6a]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6b]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6c]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6d]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6e]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6f]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6g]", yethumillai);
-                 replacedhtmlStr = replacedhtmlStr.replace("[6h]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[6a]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[6b]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[6c]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[6d]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[6e]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[6f]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[6g]", yethumillai);
+                replacedhtmlStr = replacedhtmlStr.replace("[6h]", yethumillai);
             }
-            
+
+            var depTd = "";
+            dependentCount = 3;
+            for (var i = 1; i <= dependentCount; i++) {
+                depTd += "<td>சார்ந்தவர்-" + i + "</td>";
+            }
+
+            replacedhtmlStr = replacedhtmlStr.replace("[7A]", depTd);
+
+            var iA7 = "";
+            for (var i = 1; i <= 6; i++) {
+
+                console.log($('#7Ai-' + i).css("color"));
+
+                if ($('#7Ai-' + i).css("color") == 'rgb(0, 0, 0)') {
+                    iA7 += "<td>" + $('#7Ai-' + i).val() + "</td>";
+                }
+                else {
+                     iA7 += "<td>" + yethumillai + "</td>";
+                }
+
+               
+            }
+            replacedhtmlStr = replacedhtmlStr.replace("[7Ai]", iA7);
+
+
+
             var htmlToPrint = replacedhtmlStr;
 
             newWin = window.open("");
@@ -702,7 +819,7 @@
                     <tr>
                         <td valign="top">தீர்ப்பின் தேதி</td>
                         <td>
-                            <input type="text" id="txtConfDate" name="txtConfDate"/>
+                            <input type="text" id="txtConfDate" name="txtConfDate" />
                         </td>
                         <td valign="top">தண்டனை?</td>
                         <td><textarea id="txtJudgeDate" name="txtJudgeDate" rows="10" cols="10"></textarea></td>
@@ -721,11 +838,31 @@
                         </td>
                         <td valign="top">மேல்முறையீடு விவரம்?</td>
                         <td>
-                            <textarea id="txtConfReason" name="txtConfReason" rows="10" cols="10"></textarea>  
+                            <textarea id="txtConfReason" name="txtConfReason" rows="10" cols="10"></textarea>
                         </td>
                     </tr>
 
 
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <!--18-->
+            <td colspan="2">
+                <table border="2px">
+                    <tr>
+                        <td valign="top">கையிலுள்ள ரொக்கம் (7Ai)</td>
+                        <td>
+                            <select name="ddl7Ai" id="ddl7Ai" onchange="On7AiChange(this.value);">
+                                <option value="select">--Select--</option>
+                                <option value="y">ஆம்</option>
+                                <option value="n">இல்லை</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr7Ai">
+                    </tr>
                 </table>
             </td>
         </tr>
@@ -737,7 +874,7 @@
             </td>
         </tr>
     </table>
-    
+
 </body>
 
 </html>

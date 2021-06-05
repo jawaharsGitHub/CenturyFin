@@ -68,6 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="jquery-3.6.0.min.js" />
+    <Content Include="jquery.watermark-3.1.4\changelog.txt" />
+    <Content Include="jquery.watermark-3.1.4\gpl2-license.txt" />
+    <Content Include="jquery.watermark-3.1.4\jquery.data.js" />
+    <Content Include="jquery.watermark-3.1.4\jquery.watermark.htm" />
+    <Content Include="jquery.watermark-3.1.4\jquery.watermark.js" />
+    <Content Include="jquery.watermark-3.1.4\jquery.watermark.min.js" />
+    <Content Include="jquery.watermark-3.1.4\mit-license.txt" />
+    <Content Include="jquery.watermark-3.1.4\readme.txt" />
     <Content Include="vetpumanu.html" />
     <Content Include="home.html" />
     <Content Include="Web.config" />
