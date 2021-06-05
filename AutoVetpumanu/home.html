@@ -14,8 +14,6 @@
 
     <script type="text/javascript">
 
-        //document.red
-
         var htmlText = "";
         var replacedhtmlStr = "";
         var candidatestatus = -1;
@@ -23,6 +21,56 @@
         var dependentCount = 0;
         var porunthaathu = "பொருந்தாது"
         var yethumillai = "ஏதும் இல்லை";
+
+        $(document).ready(function () {
+            console.log("ready!");
+
+            var rowCount = 9;
+
+            for (var i = 0; i <= rowCount; i++) {
+
+                var cars = [
+                    "கையிலுள்ள ரொக்கம் (7Ai)",
+                    "வங்கி கணக்கு",
+                    "பத்திரம்",
+                    "எல்.ஐ.சி",
+                    "நிறுவன கடன்",
+                    "வாகனம்",
+                    "ஆபரணம்",
+                    "மற்றவை"
+                ];
+
+                //var table = document.getElementById("tbl7A"); //get the table      
+                //var rowcount = table.rows.length; //get no. of rows in the table      
+                //append the controls in the row 
+
+                for (var i = 1; i <= cars.length; i++) {
+                    var id = 'ddl7A' + i;
+                    //var trId = '"' + 'tr7A-' + i + '"';
+                    //var txtId = '"' + 'txt7A-' + i + '"';
+
+                    var tblRow = "<tr>" +
+                        "<td valign='top'>" + cars[i-1] +
+                    "</td > " +
+                    "<td>" +
+                    "<select name='" + id + "' id='"+id+"' onchange='OnDynamicChange(this);'>" +
+                    "<option value'select'>--Select--</option>" +
+                    "<option value='y'>ஆம்</option>" +
+                    "<option value='n' selected>இல்லை</option>" +
+                    "</select>" +
+                    "</td>" +
+                    "</tr>" +
+                    "<tr id='"+ ("tr7A" + i) +"'>" +
+                        "</tr>";
+                    //console.log(tblRow);
+                    $("#tbl7A").append(tblRow);
+
+                }
+
+                
+
+            }
+        });
 
         function readTextFile(file) {
             var rawFile = new XMLHttpRequest();
@@ -172,7 +220,7 @@
                 document.getElementById('trConfirmedCase').style.display = "none";
             }
         }
-
+        
         function On7AiChange(value) {
 
             if (value == 'y') {
@@ -184,40 +232,36 @@
                 for (var i = 0; i < 6; i++) {
 
                     var id = '7Ai-' + (i + 1);
-                    var idHash = '#' + id;
+                    //var idHash = '#' + id;
                     row.insertCell(i).innerHTML = "<input type='text' title='Test' id='" + id + "' name='" + id + "'/>";
 
-                   // console.log(idHash);
                     var watermark = '';
 
                     if (i == 0) watermark = 'வேட்பாளர்?';
                     if (i == 1) watermark = '?';
                     if (i == 2) watermark = 'இந்து கூட்டு குடும்பம்?';
-                    if (i >= 3) watermark = 'சார்ந்தவர் - ' + (i-3+1);
-
-                    //alert(watermark);
-                    //alert(idHash);
+                    if (i >= 3) watermark = 'சார்ந்தவர் - ' + (i - 3 + 1);
 
                     //init, set watermark text and class
-                    $(idHash).val(watermark).addClass('watermark');
+                    $(id).val(watermark).addClass('watermark');
 
                     //if blur and no value inside, set watermark text and class again.
-                    $(idHash).blur(function () {
+                    $(id).blur(function () {
                         var txtId = $(this).attr('id').replace('7Ai-', '');
                         var wm = '';
                         if (txtId == 1) wm = 'வேட்பாளர்?';
                         if (txtId == 2) wm = 'துணை?';
                         if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
                         if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
-                        
+
                         if ($(this).val().length == 0) {
                             $(this).val(wm).addClass('watermark');
                         }
                     });
 
                     //if focus and text is watermrk, set it to empty and remove the watermark class
-                    $(idHash).focus(function () {
-                        //console.log($(this).attr('id'));
+                    $(id).focus(function () {
+
                         var txtId = $(this).attr('id').replace('7Ai-', '');
 
                         var wm = '';
@@ -226,17 +270,11 @@
                         if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
                         if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
 
-                        //console.log('val:' + $(this).val());
-                        //console.log('wm:' + wm);
-                        //console.log('txtId:' + txtId);
-                        //console.log($(this).val() == wm);
-
                         if ($(this).val() == wm) {
                             console.log('yes');
                             $(this).val('').removeClass('watermark');
                         }
-                        //console.log(txtId);
-                        //console.log(wm);
+                       
                     });
                 }
 
@@ -246,7 +284,88 @@
             }
         }
 
+        function OnDynamicChange(value) {
+           
+            var trName = '#tr7A-' + value.id.replace('ddl7A', '')
 
+            var txtId = 'txt7A-' + value.id.replace('ddl7A', '')
+            var txtName = '#txt7A-' + value.id.replace('ddl7A', '')
+
+
+            console.log('value.id: ' + value.id)
+            console.log('trName: ' + trName)
+            console.log('txtName: ' + txtName)
+            console.log('id:' + document.getElementById(value.id).value);
+
+            if (document.getElementById(value.id).value == 'y') {
+                console.log('hi: ' + trName)
+                //document.getElementById("'" + trName + "'").style.display = "initial";
+
+                $(trName).show();
+
+                //var row = $(trName); //document.getElementById(trName);
+                console.log('row: ' + trName);
+                //$(trName + ' > td').remove();
+
+                for (var i = 0; i < 6; i++) {
+
+                    var id = txtName; //trName + '-' + (i + 1);
+                    //var idHash = '#' + id;
+
+                    var tblCell = "<td>" + "<input type='text' id='" + txtId + i + "' name='" + txtId + i + "'/>" + "</td>"
+
+                    $(trName).append(tblCell);
+
+                    //row.insertCell(i).innerHTML = "<input type='text' title='Test' id='" + id + "' name='" + id + "'/>";
+
+                    var watermark = '';
+
+                    if (i == 0) watermark = 'வேட்பாளர்?';
+                    if (i == 1) watermark = '?';
+                    if (i == 2) watermark = 'இந்து கூட்டு குடும்பம்?';
+                    if (i >= 3) watermark = 'சார்ந்தவர் - ' + (i - 3 + 1);
+
+                    //init, set watermark text and class
+                    $(id).val(watermark).addClass('watermark');
+
+                    //if blur and no value inside, set watermark text and class again.
+                    $(id).blur(function () {
+                        var txtId = $(this).attr('id').replace(name + '-', '');
+                        var wm = '';
+                        if (txtId == 1) wm = 'வேட்பாளர்?';
+                        if (txtId == 2) wm = 'துணை?';
+                        if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
+                        if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
+
+                        if ($(this).val().length == 0) {
+                            $(this).val(wm).addClass('watermark');
+                        }
+                    });
+
+                    //if focus and text is watermrk, set it to empty and remove the watermark class
+                    $(id).focus(function () {
+
+                        var txtId = $(this).attr('id').replace(name + '-', '');
+
+                        var wm = '';
+                        if (txtId == 1) wm = 'வேட்பாளர்?';
+                        if (txtId == 2) wm = '?';
+                        if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
+                        if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
+
+                        if ($(this).val() == wm) {
+                            console.log('yes');
+                            $(this).val('').removeClass('watermark');
+                        }
+                       
+                    });
+                }
+
+            }
+            else {
+                document.getElementById(trName).style.display = "none";
+            }
+        }
 
 
         function printFunc() {
@@ -435,19 +554,16 @@
 
             replacedhtmlStr = replacedhtmlStr.replace("[7A]", depTd);
 
+
             var iA7 = "";
             for (var i = 1; i <= 6; i++) {
-
-                console.log($('#7Ai-' + i).css("color"));
-
+                //console.log($('#7Ai-' + i).css("color"));
                 if ($('#7Ai-' + i).css("color") == 'rgb(0, 0, 0)') {
                     iA7 += "<td>" + $('#7Ai-' + i).val() + "</td>";
                 }
                 else {
-                     iA7 += "<td>" + yethumillai + "</td>";
+                    iA7 += "<td>" + yethumillai + "</td>";
                 }
-
-               
             }
             replacedhtmlStr = replacedhtmlStr.replace("[7Ai]", iA7);
 
@@ -850,14 +966,14 @@
         <tr>
             <!--18-->
             <td colspan="2">
-                <table border="2px">
+                <table border="2px" id="tbl7A">
                     <tr>
                         <td valign="top">கையிலுள்ள ரொக்கம் (7Ai)</td>
                         <td>
                             <select name="ddl7Ai" id="ddl7Ai" onchange="On7AiChange(this.value);">
                                 <option value="select">--Select--</option>
                                 <option value="y">ஆம்</option>
-                                <option value="n">இல்லை</option>
+                                <option value="n" selected>இல்லை</option>
                             </select>
                         </td>
                     </tr>
