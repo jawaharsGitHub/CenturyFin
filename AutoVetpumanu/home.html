@@ -21,55 +21,123 @@
         var dependentCount = 0;
         var porunthaathu = "பொருந்தாது"
         var yethumillai = "ஏதும் இல்லை";
+        var saarnthavar = "சார்ந்தவர்-"
+        var vetpaalar = 'வேட்பாளர்';
+        var thunai = 'துணை';
+        var indhufamily = 'இந்து கூட்டு குடும்பம்';
 
         $(document).ready(function () {
-            console.log("ready!");
+            //console.log("ready!");
 
             var rowCount = 9;
 
-            for (var i = 0; i <= rowCount; i++) {
+            var movingAssets = [
+                    "1.கையிலுள்ள ரொக்கம்",
+                    "2.வங்கி கணக்கு",
+                    "3.பத்திரம்",
+                    "4.எல்.ஐ.சி",
+                    "5.நிறுவன கடன்",
+                    "6.வாகனம்",
+                    "7.ஆபரணம்",
+                    "8.மற்றவை",
+                    "9.மொத்த மதிப்பு"
+            ];
 
-                var cars = [
-                    "கையிலுள்ள ரொக்கம் (7Ai)",
-                    "வங்கி கணக்கு",
-                    "பத்திரம்",
-                    "எல்.ஐ.சி",
-                    "நிறுவன கடன்",
-                    "வாகனம்",
-                    "ஆபரணம்",
-                    "மற்றவை"
-                ];
-
-                //var table = document.getElementById("tbl7A"); //get the table      
-                //var rowcount = table.rows.length; //get no. of rows in the table      
-                //append the controls in the row 
-
-                for (var i = 1; i <= cars.length; i++) {
+                for (var i = 1; i <= movingAssets.length; i++) {
                     var id = 'ddl7A' + i;
-                    //var trId = '"' + 'tr7A-' + i + '"';
-                    //var txtId = '"' + 'txt7A-' + i + '"';
 
                     var tblRow = "<tr>" +
-                        "<td valign='top'>" + cars[i-1] +
-                    "</td > " +
-                    "<td>" +
-                    "<select name='" + id + "' id='"+id+"' onchange='OnDynamicChange(this);'>" +
-                    "<option value'select'>--Select--</option>" +
-                    "<option value='y'>ஆம்</option>" +
-                    "<option value='n' selected>இல்லை</option>" +
-                    "</select>" +
-                    "</td>" +
-                    "</tr>" +
-                    "<tr id='"+ ("tr7A" + i) +"'>" +
+                        "<td valign='top'>" + movingAssets[i - 1] +
+                        "</td > " +
+                        "<td>" +
+                        "<select name='" + id + "' id='" + id + "' onchange='OnDynamic7AChange(this);'>" +
+                        "<option value'select'>--Select--</option>" +
+                        "<option value='y'>ஆம்</option>" +
+                        "<option value='n' selected>இல்லை</option>" +
+                        "</select>" +
+                        "</td>" +
+                        "</tr>" +
+                        "<tr id='" + ("tr7A-" + i) + "'>" +
                         "</tr>";
-                    //console.log(tblRow);
                     $("#tbl7A").append(tblRow);
 
                 }
 
-                
+                //7B
+
+            var nonmovingAssets = [
+                    "1.வேளாண்மை நிலம்",
+                    "2.வேளாண்மை அல்லாத நிலம்",
+                    "3.வணிகக் கட்டடங்கள்",
+                    "4.குடியிருப்பு கட்டடங்கள்",
+                    "5.மற்றவை",
+                    "6.மொத்த மதிப்பு"
+            ];
+
+                for (var i = 1; i <= nonmovingAssets.length; i++) {
+                    var id = 'ddl7B' + i;
+
+                    var tblRow = "<tr>" +
+                        "<td valign='top'>" + nonmovingAssets[i - 1] +
+                        "</td > " +
+                        "<td>" +
+                        "<select name='" + id + "' id='" + id + "' onchange='OnDynamic7BChange(this);'>" +
+                        "<option value'select'>--Select--</option>" +
+                        "<option value='y'>ஆம்</option>" +
+                        "<option value='n' selected>இல்லை</option>" +
+                        "</select>" +
+                        "</td>" +
+                        "</tr>" +
+                        "<tr id='" + ("tr7B-" + i) + "'>" +
+                        "<td id='" + ("td7B-" + i) + "' colspan='2'>" +
+                        "<table id='" + ("tbl7B-" + i) + "'>" +
+
+                        "</table>" +
+                        "</td>" +
+                        "</tr>";
+                    //console.log(tblRow);
+                    $("#tbl7B").append(tblRow);
 
             }
+
+
+            // 8
+
+            var loans = [
+                    "1.வங்கி/நிறுவன கடன்கள்",
+                    "2.தனி நபர் கடன்கள்",
+                    "3.ஏனைய கடன்கள்",
+                    "4.மொத்த கடன்",
+                    "5.அரசுக்கு பாக்கி தொகைகள்",
+                    "6.போக்குவரத்து பாக்கி",
+                    "7.வருமான வரி பாக்கி",
+                    "8.ஜீ.எஸ்.டி பாக்கி",
+                    "9.நகராட்சி பாக்கி",
+                    "10.ஏனைய பாக்கி",
+                    "11.அரசு மொத்த பாக்கி",
+                    "12.தகராறில் உள்ள கடன்?"
+            ];
+
+                for (var i = 1; i <= loans.length; i++) {
+                    var id = 'ddl8' + i;
+
+                    var tblRow = "<tr>" +
+                        "<td valign='top'>" + loans[i - 1] +
+                        "</td > " +
+                        "<td>" +
+                        "<select name='" + id + "' id='" + id + "' onchange='OnLoanChange(this);'>" +
+                        "<option value'select'>--Select--</option>" +
+                        "<option value='y'>ஆம்</option>" +
+                        "<option value='n' selected>இல்லை</option>" +
+                        "</select>" +
+                        "</td>" +
+                        "</tr>" +
+                        "<tr id='" + ("tr8-" + i) + "'>" +
+                        "</tr>";
+                    $("#tbl8").append(tblRow);
+
+                }
+
         });
 
         function readTextFile(file) {
@@ -220,164 +288,327 @@
                 document.getElementById('trConfirmedCase').style.display = "none";
             }
         }
-        
-        function On7AiChange(value) {
+
+        function getwmText(value, eventName, txtId) {
+            var index = value.toString().split('-')[2]; //value.replace(name + '-', '');
+
+            var wm = '';
+            if (index == 1) wm = vetpaalar;
+            else if (index == 2) wm = thunai;
+            else if (index == 3) wm = indhufamily;
+            else wm = saarnthavar + (index - 3); // (index > 3)
+
+            return wm;
+        }
+
+        function getInitialwmText(i) {
+
+            var watermark = '';
+            if (i == 1) watermark = vetpaalar; 
+            else if (i == 2) watermark = thunai;  
+            else if (i == 3) watermark = indhufamily;
+            else watermark = saarnthavar + (i-3); //  (i >= 3)
+
+            return watermark;
+
+        }
+
+        function OnDynamic7AChange(value) {
+
+            
+            var isTotal = false;
+            var ddlIndex = value.id.replace('ddl7A', '');
+            var trHashId = '#tr7A-' + ddlIndex;
+
+            if (ddlIndex == 9)  // total
+            {
+                isTotal = true;
+            }
+            
+            var txtId = ''; 
+            var txtHashId = '';
+
+            if (document.getElementById(value.id).value == 'n') {
+
+                $(trHashId).hide();
+                $(trHashId).empty();
+
+                if (isTotal) {
+
+                    alert('please verify total!');
+                    return;
+                }
+            }
+            else {
+                $(trHashId).show();
+
+                for (var i = 1; i <= 6; i++) {
+                    txtId = 'txt7A-' + ddlIndex + "-" + i
+                    var txtHashId = '#' + txtId;
+                    //console.log('txtId' + txtId);
+                    //console.log('txtHashId' + txtHashId);
+                    //console.log('trHashId' + trHashId);
+
+                    var tblCell = '';
+                    if (isTotal) {
+                        var total = 0;
+
+                        for (var it = 1; it <= 9; it++) {
+                            //console.log($('#txt7A-' + it + '-' + i) + ':' + $('txt7A-' + it + '-' + i).val());
+                            var rowId = '#txt7A-' + it + '-' + i;
+                            console.log(rowId + ':' + $(rowId).val());
+
+                            if($(rowId).val() != undefined && $(rowId).css("color") == 'rgb(0, 0, 0)')
+                                total = (total +  Number($(rowId).val()));
+
+                            //console.log('total' + total);
+                        }
+                         tblCell = "<td>" + "<input type='text' value='" + total +"' id='" + (txtId) + "' name='" + (txtId) + "' disabled/>" + "</td>"
+                         //$(txtHashId).attr('disabled','disabled');
+                    }
+                    else {
+                        
+                        tblCell = "<td>" + "<textarea id='" + (txtId) + "' name='" + (txtId) + "' rows='5' cols='20'></textarea>" + "</td>"
+                    }
+
+                    $(trHashId).append(tblCell);
+
+                    if (isTotal) continue;
+
+                    //init, set watermark text and class
+                    var watermark = getInitialwmText(i); 
+                    $(txtHashId).val(watermark).addClass('watermark');
+
+                    //if blur and no value inside, set watermark text and class again.
+                    $(txtHashId).blur(function () {
+                        var wm = getwmText($(this).attr('id'), 'blur', i);
+                        //var wm = getwmText(i, 'blur', i);
+                        if ($(this).val().length == 0) {
+                            $(this).val(wm).addClass('watermark');
+                        }
+                    });
+
+                    //if focus and text is watermrk, set it to empty and remove the watermark class
+                    $(txtHashId).focus(function () {
+                        var wm = getwmText($(this).attr('id'), 'focus', i);
+                        //console.log(wm);
+                        //console.log($(this).val());
+                        //console.log(txtHashId);
+                        //console.log('--------------');
+
+                        if ($(this).val() == wm) {
+                            $(this).val('').removeClass('watermark');
+                        }
+
+                    });
+                }
+
+            }
+
+        }
+
+         function OnDynamic7BChange(value) {
+            
+            var isTotal = false;
+            var ddlIndex = value.id.replace('ddl7B', '');
+            var tblHashId = '#tbl7B-' + ddlIndex;
+
+
+            var txtId = ''; 
+             var txtHashId = '';
+             var cmbBoxId = '';
+
+             var nonmovingAssetItems  = [
+                    "1.அளவை எண்.",
+                    "2.பரப்பு",
+                    "3.பூர்விக சொத்தா ?",
+                    "4.வாங்கப்பட்ட நாள் (மேலே இல்லை என்றால்)",
+                    "5.வாங்கப்பட்ட விலை",
+                    "6.நில மேம்பாடு மதிப்பு?",
+                    "7.நடப்பு மொத்த சந்தை மதிப்பு"
+            ]; 
+
+            if (document.getElementById(value.id).value == 'n') {
+                $(tblHashId).hide();
+                $(tblHashId).empty();
+            }
+            else {
+                $(tblHashId).show();
+
+                //var tdContent = '';
+
+                for (var rowIndex = 1; rowIndex <= 7; rowIndex++) {
+
+                    var tds = "";
+
+                    for (var colIndex = 1; colIndex <= 5 + 1; colIndex++) {
+
+                        txtId = 'txt7B-' + ddlIndex + "-" + rowIndex + "-" + colIndex;
+                        cmbBoxId = 'cmb7B-' + ddlIndex + "-" + rowIndex + "-" + colIndex;
+                        var txtHashId = '#' + txtId;
+
+
+                        var txtBox = "";
+
+                        if (colIndex == 1) {
+                            txtBox = "<label>"+ nonmovingAssetItems[rowIndex-1]  +"</label>";
+                        }
+                        //else if (rowIndex == 3) {
+                        //    txtBox = "<select name='" + cmbBoxId + "' id='" + cmbBoxId + "' onchange='OnCmb7BChange(this);'>" +
+                        //"<option value'select'>--Select--</option>" +
+                        //"<option value='y'>ஆம்</option>" +
+                        //"<option value='n' selected>இல்லை</option>" +
+                        //"</select>";
+                        //}
+                         
+                        else {
+                            txtBox = "<textarea id='" + (txtId) + "' name='" + (txtId) + "' rows='5' cols='20'></textarea>";
+                        }
+                        
+
+                        var tdCol = "<td>" + txtBox + "</td>";
+
+                        tds += tdCol;                 
+
+                    //init, set watermark text and class
+                    var watermark = getInitialwmText(colIndex); 
+                    $(txtHashId).val(watermark).addClass('watermark');
+
+                    //if blur and no value inside, set watermark text and class again.
+                    $(txtHashId).blur(function () {
+                        var wm = getwmText($(this).attr('id'), 'blur', colIndex);
+                        if ($(this).val().length == 0) {
+                            $(this).val(wm).addClass('watermark');
+                        }
+                    });
+
+                    //if focus and text is watermrk, set it to empty and remove the watermark class
+                    $(txtHashId).focus(function () {
+                        var wm = getwmText($(this).attr('id'), 'focus', colIndex);
+                       
+                        if ($(this).val() == wm) {
+                            $(this).val('').removeClass('watermark');
+                        }
+
+                    });
+                    }
+
+                    $(tblHashId).append("<tr>" + tds +"</tr>")
+                }
+
+            }
+
+        }
+
+        function OnLoanChange(value) {
+
+            
+            var isTotal = false;
+            var ddlIndex = value.id.replace('ddl8', '');
+            var trHashId = '#tr8-' + ddlIndex;
+
+            if (ddlIndex == 11)  // total
+            {
+                isTotal = true;
+            }
+            
+            var txtId = ''; 
+            var txtHashId = '';
+
+            if (document.getElementById(value.id).value == 'n') {
+
+                $(trHashId).hide();
+                $(trHashId).empty();
+
+                if (isTotal) {
+                    alert('please verify total!');
+                    return;
+                }
+            }
+            else {
+                $(trHashId).show();
+
+                for (var i = 1; i <= 6; i++) {
+                    txtId = 'txt8-' + ddlIndex + "-" + i
+                    var txtHashId = '#' + txtId;
+
+                    var tblCell = '';
+                    if (isTotal) {
+                        var total = 0;
+
+                        for (var it = 1; it <= 9; it++) {
+                            //console.log($('#txt7A-' + it + '-' + i) + ':' + $('txt7A-' + it + '-' + i).val());
+                            var rowId = '#txt8-' + it + '-' + i;
+                            console.log(rowId + ':' + $(rowId).val());
+
+                            if($(rowId).val() != undefined && $(rowId).css("color") == 'rgb(0, 0, 0)')
+                                total = (total +  Number($(rowId).val()));
+
+                            //console.log('total' + total);
+                        }
+                         tblCell = "<td>" + "<input type='text' value='" + total +"' id='" + (txtId) + "' name='" + (txtId) + "' disabled/>" + "</td>"
+                         //$(txtHashId).attr('disabled','disabled');
+                    }
+                    else {
+                        
+                        tblCell = "<td>" + "<textarea id='" + (txtId) + "' name='" + (txtId) + "' rows='5' cols='20'></textarea>" + "</td>"
+                    }
+
+                    $(trHashId).append(tblCell);
+
+                    if (isTotal) continue;
+
+                    //init, set watermark text and class
+                    var watermark = getInitialwmText(i); 
+                    $(txtHashId).val(watermark).addClass('watermark');
+
+                    //if blur and no value inside, set watermark text and class again.
+                    $(txtHashId).blur(function () {
+                        var wm = getwmText($(this).attr('id'), 'blur', i);
+                        //var wm = getwmText(i, 'blur', i);
+                        if ($(this).val().length == 0) {
+                            $(this).val(wm).addClass('watermark');
+                        }
+                    });
+
+                    //if focus and text is watermrk, set it to empty and remove the watermark class
+                    $(txtHashId).focus(function () {
+                        var wm = getwmText($(this).attr('id'), 'focus', i);
+                        //console.log(wm);
+                        //console.log($(this).val());
+                        //console.log(txtHashId);
+                        //console.log('--------------');
+
+                        if ($(this).val() == wm) {
+                            $(this).val('').removeClass('watermark');
+                        }
+
+                    });
+                }
+
+            }
+
+        }
+
+        function OnAgreementChange(value) {
 
             if (value == 'y') {
-                document.getElementById('tr7Ai').style.display = "initial";
-
-                var row = document.getElementById('tr7Ai');
-                $('#tr7Ai > td').remove();
-
-                for (var i = 0; i < 6; i++) {
-
-                    var id = '7Ai-' + (i + 1);
-                    //var idHash = '#' + id;
-                    row.insertCell(i).innerHTML = "<input type='text' title='Test' id='" + id + "' name='" + id + "'/>";
-
-                    var watermark = '';
-
-                    if (i == 0) watermark = 'வேட்பாளர்?';
-                    if (i == 1) watermark = '?';
-                    if (i == 2) watermark = 'இந்து கூட்டு குடும்பம்?';
-                    if (i >= 3) watermark = 'சார்ந்தவர் - ' + (i - 3 + 1);
-
-                    //init, set watermark text and class
-                    $(id).val(watermark).addClass('watermark');
-
-                    //if blur and no value inside, set watermark text and class again.
-                    $(id).blur(function () {
-                        var txtId = $(this).attr('id').replace('7Ai-', '');
-                        var wm = '';
-                        if (txtId == 1) wm = 'வேட்பாளர்?';
-                        if (txtId == 2) wm = 'துணை?';
-                        if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
-                        if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
-
-                        if ($(this).val().length == 0) {
-                            $(this).val(wm).addClass('watermark');
-                        }
-                    });
-
-                    //if focus and text is watermrk, set it to empty and remove the watermark class
-                    $(id).focus(function () {
-
-                        var txtId = $(this).attr('id').replace('7Ai-', '');
-
-                        var wm = '';
-                        if (txtId == 1) wm = 'வேட்பாளர்?';
-                        if (txtId == 2) wm = '?';
-                        if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
-                        if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
-
-                        if ($(this).val() == wm) {
-                            console.log('yes');
-                            $(this).val('').removeClass('watermark');
-                        }
-                       
-                    });
-                }
-
+                $('#trAgreement').show();
             }
             else {
-                document.getElementById('tr7Ai').style.display = "none";
+                $('#trAgreement').hide();
             }
         }
-
-        function OnDynamicChange(value) {
-           
-            var trName = '#tr7A-' + value.id.replace('ddl7A', '')
-
-            var txtId = 'txt7A-' + value.id.replace('ddl7A', '')
-            var txtName = '#txt7A-' + value.id.replace('ddl7A', '')
-
-
-            console.log('value.id: ' + value.id)
-            console.log('trName: ' + trName)
-            console.log('txtName: ' + txtName)
-            console.log('id:' + document.getElementById(value.id).value);
-
-            if (document.getElementById(value.id).value == 'y') {
-                console.log('hi: ' + trName)
-                //document.getElementById("'" + trName + "'").style.display = "initial";
-
-                $(trName).show();
-
-                //var row = $(trName); //document.getElementById(trName);
-                console.log('row: ' + trName);
-                //$(trName + ' > td').remove();
-
-                for (var i = 0; i < 6; i++) {
-
-                    var id = txtName; //trName + '-' + (i + 1);
-                    //var idHash = '#' + id;
-
-                    var tblCell = "<td>" + "<input type='text' id='" + txtId + i + "' name='" + txtId + i + "'/>" + "</td>"
-
-                    $(trName).append(tblCell);
-
-                    //row.insertCell(i).innerHTML = "<input type='text' title='Test' id='" + id + "' name='" + id + "'/>";
-
-                    var watermark = '';
-
-                    if (i == 0) watermark = 'வேட்பாளர்?';
-                    if (i == 1) watermark = '?';
-                    if (i == 2) watermark = 'இந்து கூட்டு குடும்பம்?';
-                    if (i >= 3) watermark = 'சார்ந்தவர் - ' + (i - 3 + 1);
-
-                    //init, set watermark text and class
-                    $(id).val(watermark).addClass('watermark');
-
-                    //if blur and no value inside, set watermark text and class again.
-                    $(id).blur(function () {
-                        var txtId = $(this).attr('id').replace(name + '-', '');
-                        var wm = '';
-                        if (txtId == 1) wm = 'வேட்பாளர்?';
-                        if (txtId == 2) wm = 'துணை?';
-                        if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
-                        if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
-
-                        if ($(this).val().length == 0) {
-                            $(this).val(wm).addClass('watermark');
-                        }
-                    });
-
-                    //if focus and text is watermrk, set it to empty and remove the watermark class
-                    $(id).focus(function () {
-
-                        var txtId = $(this).attr('id').replace(name + '-', '');
-
-                        var wm = '';
-                        if (txtId == 1) wm = 'வேட்பாளர்?';
-                        if (txtId == 2) wm = '?';
-                        if (txtId == 3) wm = 'இந்து கூட்டு குடும்பம்?';
-                        if (txtId > 3) wm = 'சார்ந்தவர் - ' + (txtId - 3);
-
-                        if ($(this).val() == wm) {
-                            console.log('yes');
-                            $(this).val('').removeClass('watermark');
-                        }
-                       
-                    });
-                }
-
-            }
-            else {
-                document.getElementById(trName).style.display = "none";
-            }
-        }
-
 
         function printFunc() {
 
-            //alert(document.getElementById('7Ai-1').value)
             readTextFile('vetpumanu.html');
-            //alert('1');
+
             replacedhtmlStr = htmlText;
-            //alert('2');
+
             replacedhtmlStr = replacedhtmlStr.replaceAll("[state]", document.getElementById('txtState').value);
             replacedhtmlStr = replacedhtmlStr.replace("[electiontype]", "சட்டப்பேரவை");
-            replacedhtmlStr = replacedhtmlStr.replace("[assemblyname]", document.getElementById('txtAssembly').value);
+            replacedhtmlStr = replacedhtmlStr.replaceAll("[assemblyname]", document.getElementById('txtAssembly').value);
 
             replacedhtmlStr = replacedhtmlStr.replace("[fathername]", document.getElementById('txtSarnthavar').value);
 
@@ -401,22 +632,17 @@
 
             replacedhtmlStr = replacedhtmlStr.replaceAll("[name]", document.getElementById('txtName').value);
             replacedhtmlStr = replacedhtmlStr.replace("[age]", document.getElementById('txtAge').value);
-            replacedhtmlStr = replacedhtmlStr.replace("[address]", document.getElementById('txtAddress').value);
+            replacedhtmlStr = replacedhtmlStr.replaceAll("[address]", document.getElementById('txtAddress').value);
 
-            //alert(candidatestatus);
             if (candidatestatus == 0) {
-
-                //alert(000);
-                //alert(txtPartyName.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[partyname]", "<b>" + txtPartyName.value + "</b>" + " என்னும் பெயருடைய அரசியல் கட்சியின்");
-
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[partyname]", "<b>" + txtPartyName.value + "</b>" + " என்னும் பெயருடைய அரசியல் கட்சியின்");
             }
             else {
-                //alert(111);
-                //alert(txtPartyName.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[partyname]", "<b>சுயேட்சை</b>");
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[partyname]", "<b>சுயேட்சை</b>");
 
             }
+
+            replacedhtmlStr = replacedhtmlStr.replaceAll("[justpartyname]", txtPartyName.value); 
 
             replacedhtmlStr = replacedhtmlStr.replace("[partNo]", txtPartNo.value);
             replacedhtmlStr = replacedhtmlStr.replace("[serialNo]", txtSerialNo.value);
@@ -554,18 +780,119 @@
 
             replacedhtmlStr = replacedhtmlStr.replace("[7A]", depTd);
 
+            // [7A] - அசையும் சொத்து.
+            var A7 = "";
+            for (var rowIndex = 1; rowIndex <= 9; rowIndex++) {
 
-            var iA7 = "";
-            for (var i = 1; i <= 6; i++) {
-                //console.log($('#7Ai-' + i).css("color"));
-                if ($('#7Ai-' + i).css("color") == 'rgb(0, 0, 0)') {
-                    iA7 += "<td>" + $('#7Ai-' + i).val() + "</td>";
+                for (var colIndex = 1; colIndex <= 6; colIndex++) {
+                    //console.log($('#7Ai-' + i).css("color"));
+                    var txtId = '#txt7A-' + rowIndex + '-' + colIndex;
+                    //console.log(rowIndex + ':' +$(txtId).css("color"));
+
+                    if (rowIndex == 9) {
+                        A7 += "<td>" + $(txtId).val() + "</td>";
+                        //continue;
+                    }
+                    else if ($(txtId).css("color") == 'rgb(0, 0, 0)') {
+                        A7 += "<td>" + $(txtId).val() + "</td>";
+                    }
+                    else {
+                        A7 += "<td>" + yethumillai + "</td>";
+                    }
                 }
-                else {
-                    iA7 += "<td>" + yethumillai + "</td>";
-                }
+                replacedhtmlStr = replacedhtmlStr.replace("[7A-" + rowIndex + "]", A7);
+                A7 = '';
+
             }
-            replacedhtmlStr = replacedhtmlStr.replace("[7Ai]", iA7);
+
+            // [7B] - அசையா சொத்து.
+
+            var B7 = '';
+            for (var itemIndex = 1; itemIndex <= 6; itemIndex++) {
+
+                var txtBoxId = '';
+
+                for (var rowIndex = 1; rowIndex <= 7; rowIndex++) {
+
+
+                    for (var colIndex = 1; colIndex <= 5 + 1; colIndex++) {
+
+                        if (colIndex == 1) continue;
+
+                        txtBoxId = "#txt7B-" + itemIndex + "-" + rowIndex + "-" + colIndex;
+
+                                if ($(txtBoxId).val() != '' && $(txtBoxId).val() != undefined) {
+                                    B7 += "<td>" + $(txtBoxId).val() + "</td>";
+                                }
+                                else {
+                                    B7 += "<td>" + yethumillai + "</td>";
+                                }
+                    }
+                    replacedhtmlStr = replacedhtmlStr.replace("[7B-" +itemIndex  + "-" + rowIndex +"]", B7);
+                    B7 = '';
+
+                }
+
+            }
+
+
+            // [7] - கடன் விவரம்.
+            var eight = "";
+            for (var rowIndex = 1; rowIndex <= 12; rowIndex++) {
+
+                if (rowIndex == 5) {
+                    replacedhtmlStr = replacedhtmlStr.replace("[cs]", 5); // change
+                    continue;
+                }
+
+                for (var colIndex = 1; colIndex <= 6; colIndex++) {
+                    
+                    var txtId = '#txt8-' + rowIndex + '-' + colIndex;
+
+                    if (rowIndex == 5) { // govt side loan?
+                        eight += "<td>" + $(txtId).val() + "</td>";
+                        //continue;
+                    }
+                    else if ($(txtId).css("color") == 'rgb(0, 0, 0)') {
+                        eight += "<td>" + $(txtId).val() + "</td>";
+                    }
+                    else {
+                        eight += "<td>" + yethumillai + "</td>";
+                    }
+                }
+                replacedhtmlStr = replacedhtmlStr.replace("[8-" + rowIndex + "]", eight);
+                eight = '';
+
+            }
+
+            replacedhtmlStr = replacedhtmlStr.replace("[work]", $('#txtCanWork').val());
+            replacedhtmlStr = replacedhtmlStr.replace("[depWork]", $('#txtDepWork').val());
+            replacedhtmlStr = replacedhtmlStr.replace("[income]", $('#txtCanIncome').val());
+            replacedhtmlStr = replacedhtmlStr.replace("[depIncome]", $('#txtDepIncome').val());
+            replacedhtmlStr = replacedhtmlStr.replace("[otherIncome]", $('#txtOtherIncome').val());
+
+            // Agreement
+
+            
+            replacedhtmlStr = replacedhtmlStr.replace("[canAgreement]", $('#txtcanAgreement').val());
+            replacedhtmlStr = replacedhtmlStr.replace("[depAgreement]", $('#txtdepAgreement').val());
+            replacedhtmlStr = replacedhtmlStr.replace("[otherAgreement]", $('#txtotherAgreement').val());
+            replacedhtmlStr = replacedhtmlStr.replace("[trustAgreement]", $('#txttrustAgreement').val());
+            replacedhtmlStr = replacedhtmlStr.replace("[shareAgreement]", $('#txtshareAgreement').val());
+            replacedhtmlStr = replacedhtmlStr.replace("[privateAgreement]", $('#txtprivateAgreement').val());
+
+            // Education
+            replacedhtmlStr = replacedhtmlStr.replace("[education]", $('#txtEducation').val());
+
+            if ($('#ddlCase').val() == 'n') {
+
+                replacedhtmlStr = replacedhtmlStr.replace("[pendingCaseCount]", yethumillai);
+            }
+
+            if ($('#ddlConfCase').val() == 'n') {
+
+                replacedhtmlStr = replacedhtmlStr.replace("[confirmedCaseCount]", yethumillai);
+            }
 
 
 
@@ -964,25 +1291,134 @@
         </tr>
 
         <tr>
-            <!--18-->
             <td colspan="2">
-                <table border="2px" id="tbl7A">
-                    <tr>
-                        <td valign="top">கையிலுள்ள ரொக்கம் (7Ai)</td>
-                        <td>
-                            <select name="ddl7Ai" id="ddl7Ai" onchange="On7AiChange(this.value);">
-                                <option value="select">--Select--</option>
-                                <option value="y">ஆம்</option>
-                                <option value="n" selected>இல்லை</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr id="tr7Ai">
-                    </tr>
+                <table border="2px" id="tbl7A" name="tbl7A">
                 </table>
             </td>
         </tr>
 
+        <tr>
+            <td colspan="2">
+                <table border="2px" id="tbl7B" name="tbl7B">
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <table border="2px" id="tbl8" name="tbl8">
+                </table>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2">
+                வேட்பாளர் தொழில்
+            </td>
+
+            <td colspan="2">
+                <input type="text" id="txtCanWork" />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                வேட்பாளர் துணையின் தொழில்
+            </td>
+
+            <td colspan="2">
+                <input type="text" id="txtDepWork" />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                வேட்பாளர் வருமானம்
+            </td>
+
+            <td colspan="2">
+                <input type="text" id="txtCanIncome" />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                வேட்பாளர் துணையின் வருமானம்
+            </td>
+
+            <td colspan="2">
+                <input type="text" id="txtDepIncome" />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                சார்ந்தொர்களின் வருமானம்
+            </td>
+
+            <td colspan="2">
+                <input type="text" id="txtOtherIncome" />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                ஒப்பந்தங்களின் விவரம்
+            </td>
+
+            <td colspan="2">
+                <select name="ddlAgreement" id="ddlAgreement" onchange="OnAgreementChange(this.value);">
+                    <option value="select">--Select--</option>
+                    <option value="y">ஆம்</option>
+                    <option value="n">இல்லை</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr id="trAgreement">
+            <td>
+                <table>
+                    <tr>
+                        <td>வேட்பாளர் ஒப்பந்தங்கள்:</td>
+                        <td><textarea id="txtcanAgreement" rows='5' cols='20'></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>வாழ்க்கைத் துணை ஒப்பந்தங்கள்:</td>
+                        <td><textarea id="txtdepAgreement" rows='5' cols='20'></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>சார்ந்தோர்கள் ஒப்பந்தங்கள்:</td>
+                        <td><textarea id="txtotherAgreement" rows='5' cols='20'></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>அறக்கட்டளையால் ஒப்பந்தங்கள்:</td>
+                        <td><textarea id="txttrustAgreement" rows='5' cols='20'></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>பங்குதாரர்களாக ஒப்பந்தங்கள்:</td>
+                        <td><textarea id="txtshareAgreement" rows='5' cols='20'></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>தனியார் ஒப்பந்தங்கள்:</td>
+                        <td><textarea id="txtprivateAgreement" rows='5' cols='20'></textarea></td>
+                    </tr>
+                </table>
+            </td>
+
+
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                கல்வித் தகுதி:
+            </td>
+
+            <td colspan="2">
+            <textarea id="txtEducation" rows='5' cols='20'></textarea>
+           
+            </td>
+        </tr>
 
         <tr>
             <td colspan="2">
