@@ -18,7 +18,7 @@
         var replacedhtmlStr = "";
         var candidatestatus = -1;
         var basicColumnCount = 3;
-        var dependentCount = 0;
+        //var dependentCount = 0;
         var porunthaathu = "பொருந்தாது"
         var yethumillai = "ஏதும் இல்லை";
         var saarnthavar = "சார்ந்தவர்-"
@@ -26,8 +26,20 @@
         var thunai = 'துணை';
         var indhufamily = 'இந்து கூட்டு குடும்பம்';
 
+        var baseRowCount = 3;
+        var dependentCount = -1;
+
+        var genderPrefix = '';
+
         $(document).ready(function () {
-            //console.log("ready!");
+
+
+            $('#trPan').hide();
+            $('#trHPan').hide();
+            $('#trHinduPan').hide();
+            $('#trPendingCase').hide();
+            $('#trConfirmedCase').hide();
+            $('#trAgreement').hide();
 
             var rowCount = 9;
 
@@ -140,6 +152,14 @@
 
         });
 
+        function show(id) { $('#' + id).show() };
+
+        function hide(id) { $('#' + id).hide(); }
+
+        function enable(id) { $('#' + id).prop("disabled", false); }
+
+        function disable(id) { $('#' + id).prop("disabled", true); }
+
         function readTextFile(file) {
             var rawFile = new XMLHttpRequest();
             rawFile.open("GET", file, false);
@@ -158,40 +178,38 @@
         }
 
         function OnKatchiChange(value) {
-            //var status = document.getElementById('ddlKatchi').value;
-
             if (value == 'y') {
-                document.getElementById('trKatchi').style.display = "block";
+                show('trKatchi');
+                //document.getElementById('trKatchi').style.display = "block";
                 candidatestatus = 0;
             }
             else {
-                document.getElementById('trKatchi').style.display = "none";
+                hide('trKatchi');
+                //document.getElementById('trKatchi').style.display = "none";
                 candidatestatus = 1;
             }
         }
 
         function OnStatusChange(value) {
-            //var status = document.getElementById('ddlMariatal').value;
-
             if (value == 'y') {
-                //document.getElementById('trFather').style.display = "none";
+                genderPrefix = 'திருமதி.';
                 document.getElementById('lblSarnthavar').innerHTML = "கணவர் பெயர்";
             }
             else {
+                genderPrefix = 'செல்வி.';
                 document.getElementById('lblSarnthavar').innerHTML = "தந்தை பெயர்";
             }
         }
 
         function OnGenderChange(value) {
-
-            //var gender = document.getElementById('ddlGender').value;
-            //alert(gender);
-
             if (value == 'f') {
-                document.getElementById('trMariatal').style.display = "initial";
+                enable('ddlMariatal');
+                enable('ddlFather');
             }
             else {
-                document.getElementById('trMariatal').style.display = "none";
+                disable('ddlMariatal');
+                disable('ddlFather');
+                genderPrefix = "திரு.";
             }
 
             if (value == 'm') {
@@ -208,11 +226,15 @@
             //var pan = document.getElementById('ddlPan').value;
 
             if (value == 'y') {
-                document.getElementById('trPan').style.display = "inline";
+                //document.getElementById('trPan').style.display = "inline";
+                //$('#trPan').show();
+                show('trPan');
                 lblName.innerHTML = txtName.value;
             }
             else {
-                document.getElementById('trPan').style.display = "none";
+                //$('#trPan').hide();
+                hide('trPan');
+                //document.getElementById('trPan').style.display = "none";
             }
         }
 
@@ -220,27 +242,36 @@
             //var pan = document.getElementById('ddlHPan').value;
 
             if (value == 'y') {
-                document.getElementById('trHPan').style.display = "inline";
+                //document.getElementById('trHPan').style.display = "inline";
+                show('trHPan');
                 //lblName.innerHTML = txtName.value;
             }
             else {
-                document.getElementById('trHPan').style.display = "none";
+                //document.getElementById('trHPan').style.display = "none";
+                hide('trHPan');
             }
         }
 
         function OnHinduChange(value) {
             if (value == 'y') {
-                document.getElementById('trHinduPan').style.display = "initial";
-                lblName.innerHTML = txtName.value;
+                //document.getElementById('trHinduPan').style.display = "initial";
+                show('trHinduPan');
+                //lblName.innerHTML = txtName.value;
             }
             else {
-                document.getElementById('trHinduPan').style.display = "none";
+                //document.getElementById('trHinduPan').style.display = "none";
+                hide('trHinduPan');
             }
         }
 
         function OnDependentChange(value) {
-            //alert(value);
+            
             dependentCount = value;
+            totalRowCount = 0;
+            //alert(baseRowCount);
+            //alert(dependentCount);
+            totalRowCount = Number(baseRowCount) + Number(dependentCount);
+            //alert(totalRowCount);
 
             var tblDep = document.getElementById("tblDep");
 
@@ -253,17 +284,19 @@
             row.insertCell(0).innerHTML = i + 4;
             row.insertCell(1).innerHTML = "பெயர்";
             row.insertCell(2).innerHTML = "PAN";
-            row.insertCell(3).innerHTML = "தாக்கல் செய்த கடைசி ஆண்டு?";
-            row.insertCell(4).innerHTML = "கடைசி 5 ஆண்டு கட்டிய வருமான வரி";
+            //<td>தாக்கல் செய்த <br /> கடைசி 5 ஆண்டு?</td>
+            //<td>கடைசி 5 ஆண்டு <br /> கட்டிய வருமான வரி</td>
+            row.insertCell(3).innerHTML = "தாக்கல் செய்த <br /> கடைசி 5 ஆண்டு?";
+            row.insertCell(4).innerHTML = "கடைசி 5 ஆண்டு <br /> கட்டிய வருமான வரி";
 
             for (var i = 0; i < value; i++) {
 
                 var row = tblDep.insertRow(i + 1);
 
                 row.insertCell(0).innerHTML = i + 4;
-                row.insertCell(1).innerHTML = "<input type='text' id='panName" + (i + 1) + "'/>";
-                row.insertCell(2).innerHTML = "<input type='text' id='pan" + (i + 1) + "'/>";
-                row.insertCell(3).innerHTML = "<input type='text' id='panamount" + (i + 1) + "'/>";
+                row.insertCell(1).innerHTML = "<input  type='text' id='panName" + (i + 1) + "'/>";
+                row.insertCell(2).innerHTML = "<input  type='text' id='pan" + (i + 1) + "'/>";
+                row.insertCell(3).innerHTML = "<textarea id='panamount" + (i + 1) + "' rows='6' cols='30'/>";
                 row.insertCell(4).innerHTML = "<textarea id='panfive" + (i + 1) + "' rows='6' cols='30'/>";
 
             }
@@ -271,21 +304,25 @@
 
         function OnCaseChange(value) {
             if (value == 'y') {
-                document.getElementById('trPendingCase').style.display = "initial";
+                //document.getElementById('trPendingCase').style.display = "initial";
+                show('trPendingCase');
                 //lblName.innerHTML = txtName.value;
             }
             else {
-                document.getElementById('trPendingCase').style.display = "none";
+                hide('trPendingCase');
+                //document.getElementById('trPendingCase').style.display = "none";
             }
         }
 
         function OnConfCaseChange(value) {
             if (value == 'y') {
-                document.getElementById('trConfirmedCase').style.display = "initial";
+                // document.getElementById('trConfirmedCase').style.display = "initial";
+                show('trConfirmedCase');
                 //lblName.innerHTML = txtName.value;
             }
             else {
-                document.getElementById('trConfirmedCase').style.display = "none";
+                hide('trConfirmedCase');
+                // document.getElementById('trConfirmedCase').style.display = "none";
             }
         }
 
@@ -341,25 +378,42 @@
             }
             else {
                 $(trHashId).show();
+                $(trHashId).empty();
 
                 for (var i = 1; i <= 6; i++) {
                     txtId = 'txt7A-' + ddlIndex + "-" + i
                     var txtHashId = '#' + txtId;
-                    //console.log('txtId' + txtId);
-                    //console.log('txtHashId' + txtHashId);
-                    //console.log('trHashId' + trHashId);
 
                     var tblCell = '';
                     if (isTotal) {
-                        var total = 0;
+                        var total = Number(0);
 
                         for (var it = 1; it <= 9; it++) {
                             //console.log($('#txt7A-' + it + '-' + i) + ':' + $('txt7A-' + it + '-' + i).val());
                             var rowId = '#txt7A-' + it + '-' + i;
-                            console.log(rowId + ':' + $(rowId).val());
+                            //console.log(rowId + ':' + $(rowId).val());
 
-                            if($(rowId).val() != undefined && $(rowId).css("color") == 'rgb(0, 0, 0)')
-                                total = (total +  Number($(rowId).val()));
+                            if ($(rowId).val() != undefined && $(rowId).css("color") == 'rgb(0, 0, 0)') {
+
+                                var txtValue = $(rowId).val();
+                                console.log('txtValue' + txtValue);
+
+                                var arr = txtValue.split('[');
+
+                                for (var ii = 0; ii < arr.length; ii++) {
+                                    var arr2 = arr[ii].split(']');
+                                    if (arr2.length > 1) {
+                                                var t = Number(arr2[0]);
+                                                total = (total + t);
+                                                //console.log('total: ' + total);
+                                    }
+                                }
+                                
+                                //var values = txtValue.split('[').pop().split(']')[1];
+                                //console.log('123:' + values);
+
+                                //total = (total + Number($(rowId).val()));
+                            }
 
                             //console.log('total' + total);
                         }
@@ -407,26 +461,26 @@
 
         }
 
-         function OnDynamic7BChange(value) {
-            
+        function OnDynamic7BChange(value) {
+
             var isTotal = false;
             var ddlIndex = value.id.replace('ddl7B', '');
             var tblHashId = '#tbl7B-' + ddlIndex;
 
 
-            var txtId = ''; 
-             var txtHashId = '';
-             var cmbBoxId = '';
+            var txtId = '';
+            var txtHashId = '';
+            var cmbBoxId = '';
 
-             var nonmovingAssetItems  = [
-                    "1.அளவை எண்.",
-                    "2.பரப்பு",
-                    "3.பூர்விக சொத்தா ?",
-                    "4.வாங்கப்பட்ட நாள் (மேலே இல்லை என்றால்)",
-                    "5.வாங்கப்பட்ட விலை",
-                    "6.நில மேம்பாடு மதிப்பு?",
-                    "7.நடப்பு மொத்த சந்தை மதிப்பு"
-            ]; 
+            var nonmovingAssetItems = [
+                "1.அளவை எண்.",
+                "2.பரப்பு",
+                "3.பூர்விக சொத்தா ?",
+                "4.வாங்கப்பட்ட நாள் (மேலே இல்லை என்றால்)",
+                "5.வாங்கப்பட்ட விலை",
+                "6.நில மேம்பாடு மதிப்பு?",
+                "7.நடப்பு மொத்த சந்தை மதிப்பு"
+            ];
 
             if (document.getElementById(value.id).value == 'n') {
                 $(tblHashId).hide();
@@ -451,7 +505,7 @@
                         var txtBox = "";
 
                         if (colIndex == 1) {
-                            txtBox = "<label>"+ nonmovingAssetItems[rowIndex-1]  +"</label>";
+                            txtBox = "<label>" + nonmovingAssetItems[rowIndex - 1] + "</label>";
                         }
                         //else if (rowIndex == 3) {
                         //    txtBox = "<select name='" + cmbBoxId + "' id='" + cmbBoxId + "' onchange='OnCmb7BChange(this);'>" +
@@ -460,44 +514,43 @@
                         //"<option value='n' selected>இல்லை</option>" +
                         //"</select>";
                         //}
-                         
+
                         else {
                             txtBox = "<textarea id='" + (txtId) + "' name='" + (txtId) + "' rows='5' cols='20'></textarea>";
                         }
-                        
+
 
                         var tdCol = "<td>" + txtBox + "</td>";
 
-                        tds += tdCol;                 
+                        tds += tdCol;
 
-                    //init, set watermark text and class
-                    var watermark = getInitialwmText(colIndex); 
-                    $(txtHashId).val(watermark).addClass('watermark');
+                        //init, set watermark text and class
+                        var watermark = getInitialwmText(colIndex);
+                        $(txtHashId).val(watermark).addClass('watermark');
 
-                    //if blur and no value inside, set watermark text and class again.
-                    $(txtHashId).blur(function () {
-                        var wm = getwmText($(this).attr('id'), 'blur', colIndex);
-                        if ($(this).val().length == 0) {
-                            $(this).val(wm).addClass('watermark');
-                        }
-                    });
+                        //if blur and no value inside, set watermark text and class again.
+                        $(txtHashId).blur(function () {
+                            var wm = getwmText($(this).attr('id'), 'blur', colIndex);
+                            if ($(this).val().length == 0) {
+                                $(this).val(wm).addClass('watermark');
+                            }
+                        });
 
-                    //if focus and text is watermrk, set it to empty and remove the watermark class
-                    $(txtHashId).focus(function () {
-                        var wm = getwmText($(this).attr('id'), 'focus', colIndex);
-                       
-                        if ($(this).val() == wm) {
-                            $(this).val('').removeClass('watermark');
-                        }
+                        //if focus and text is watermrk, set it to empty and remove the watermark class
+                        $(txtHashId).focus(function () {
+                            var wm = getwmText($(this).attr('id'), 'focus', colIndex);
 
-                    });
+                            if ($(this).val() == wm) {
+                                $(this).val('').removeClass('watermark');
+                            }
+
+                        });
                     }
 
-                    $(tblHashId).append("<tr>" + tds +"</tr>")
+                    $(tblHashId).append("<tr>" + tds + "</tr>")
                 }
 
             }
-
         }
 
         function OnLoanChange(value) {
@@ -593,10 +646,12 @@
         function OnAgreementChange(value) {
 
             if (value == 'y') {
-                $('#trAgreement').show();
+                show('trAgreement');
+                //$('#trAgreement').show();
             }
             else {
-                $('#trAgreement').hide();
+                //$('#trAgreement').hide();
+                hide('trAgreement');
             }
         }
 
@@ -666,57 +721,74 @@
 
 
             if (document.getElementById('ddlPan').value == 'y') {
-                replacedhtmlStr = replacedhtmlStr.replace("[pan]", txtPan.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[panLastYear]", txtLastPanYear.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[panLastFive]", txtLastFivePan.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[pan]", txtPan.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[panLastYear]", txtLastPanYear.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[panLastFive]", txtLastFivePan.value);
             }
             else {
-                replacedhtmlStr = replacedhtmlStr.replace("[pan]", porunthaathu);
-                replacedhtmlStr = replacedhtmlStr.replace("[panLastYear]", porunthaathu);
-                replacedhtmlStr = replacedhtmlStr.replace("[panLastFive]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[pan]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[panLastYear]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[panLastFive]", porunthaathu);
             }
 
             if (document.getElementById('ddlHPan').value == 'y') {
-                replacedhtmlStr = replacedhtmlStr.replace("[hname]", txtHName.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[hpan]", txtHPan.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[hpanLastYear]", txtLastHPanYear.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[hpanLastFive]", txtLastFiveHPan.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hname]", txtHName.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hpan]", txtHPan.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hpanLastYear]", txtLastHPanYear.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hpanLastFive]", txtLastFiveHPan.value);
             }
             else {
-                replacedhtmlStr = replacedhtmlStr.replace("[hname]", porunthaathu);
-                replacedhtmlStr = replacedhtmlStr.replace("[hpan]", porunthaathu);
-                replacedhtmlStr = replacedhtmlStr.replace("[hpanLastYear]", porunthaathu);
-                replacedhtmlStr = replacedhtmlStr.replace("[hpanLastFive]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hname]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hpan]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hpanLastYear]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hpanLastFive]", porunthaathu);
 
             }
 
             if (document.getElementById('ddlHindu').value == 'y') {
-                replacedhtmlStr = replacedhtmlStr.replace("[hindupan]", txtHName.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hindupan]", txtHName.value);
                 //replacedhtmlStr = replacedhtmlStr.replace("[hpan]", txtHPan.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[hindupanLastYear]", txtLastHPanYear.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[hindupanLastFive]", txtLastFiveHPan.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hindupanLastYear]", txtLastHPanYear.value);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hindupanLastFive]", txtLastFiveHPan.value);
             }
             else {
-                replacedhtmlStr = replacedhtmlStr.replace("[hindupan]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hindupan]", porunthaathu);
                 //replacedhtmlStr = replacedhtmlStr.replace("[hpan]", txtHPan.value);
-                replacedhtmlStr = replacedhtmlStr.replace("[hindupanLastYear]", porunthaathu);
-                replacedhtmlStr = replacedhtmlStr.replace("[hindupanLastFive]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hindupanLastYear]", porunthaathu);
+                replacedhtmlStr = replacedhtmlStr.replaceAll("[hindupanLastFive]", porunthaathu);
 
             }
 
             var depStr = ""
-            for (var i = 0; i < dependentCount; i++) {
+            for (var i = 1; i <= dependentCount; i++) {
+
+                //console.log(i + ':' + document.getElementById("panName" + (i + 1)).value);
 
                 depStr += '<tr>' +
-                    '<td align="center">' + (i + 4) + '</td>' +
-                    '<td>' + document.getElementById("panName" + (i + 1)).value + '</br>(சார்ந்தவர்-' + (i + 1) + ')</td>' +
-                    '<td>  ' + document.getElementById("pan" + (i + 1)).value + ' </td>' +
-                    '<td>' + document.getElementById("panamount" + (i + 1)).value + '</td>' +
-                    '<td>' + document.getElementById("panfive" + (i + 1)).value + '</td>' +
+                    '<td align="center">' + (i + baseRowCount) + '</td>' +
+                    '<td>' + document.getElementById("panName" + (i)).value + '</br>(சார்ந்தவர்-' + (i + 1) + ')</td>' +
+                    '<td>  ' + document.getElementById("pan" + (i)).value + ' </td>' +
+                    '<td>' + document.getElementById("panamount" + (i)).value + '</td>' +
+                    '<td>' + document.getElementById("panfive" + (i)).value + '</td>' +
                     '</tr>';
             }
 
-            replacedhtmlStr = replacedhtmlStr.replace("[dependent]", depStr);
+            replacedhtmlStr = replacedhtmlStr.replaceAll("[dependent]", depStr);
+
+            //console.log(depStr);
+
+            var depv2str = depStr;
+            for (var i = 1; i <= dependentCount; i++) {
+                console.log('<td align="center">' + i + '</td>');
+                depv2str = depv2str.replace('<td align="center">' + (i + baseRowCount) + '</td>', '')
+                console.log(depv2str);
+            }
+
+            //console.log('final:' + depv2str);
+
+            replacedhtmlStr = replacedhtmlStr.replace("[dependentv2]", depv2str);
+            replacedhtmlStr = replacedhtmlStr.replaceAll("[depv2rowSpan]", (dependentCount + 3));
+            
 
             if (document.getElementById('ddlCase').value == 'y') {
                 replacedhtmlStr = replacedhtmlStr.replace("[nocase]", porunthaathu);
@@ -773,20 +845,22 @@
             }
 
             var depTd = "";
-            dependentCount = 3;
+            //dependentCount = 3;
             for (var i = 1; i <= dependentCount; i++) {
                 depTd += "<td>சார்ந்தவர்-" + i + "</td>";
             }
 
             replacedhtmlStr = replacedhtmlStr.replace("[7A]", depTd);
+            replacedhtmlStr = replacedhtmlStr.replace("[7B]", depTd);
 
             // [7A] - அசையும் சொத்து.
             var A7 = "";
             for (var rowIndex = 1; rowIndex <= 9; rowIndex++) {
 
-                for (var colIndex = 1; colIndex <= 6; colIndex++) {
-                    //console.log($('#7Ai-' + i).css("color"));
+                for (var colIndex = 1; colIndex <= totalRowCount; colIndex++) {
+
                     var txtId = '#txt7A-' + rowIndex + '-' + colIndex;
+                    //alert(totalRowCount);
                     //console.log(rowIndex + ':' +$(txtId).css("color"));
 
                     if (rowIndex == 9) {
@@ -800,7 +874,8 @@
                         A7 += "<td>" + yethumillai + "</td>";
                     }
                 }
-                replacedhtmlStr = replacedhtmlStr.replace("[7A-" + rowIndex + "]", A7);
+                replacedhtmlStr = replacedhtmlStr.replace("[7A-" + rowIndex + "]",
+                    A7.replace(new RegExp('\n', 'g'), '<br />').replaceAll('[', '').replaceAll(']', ''));
                 A7 = '';
 
             }
@@ -815,9 +890,9 @@
                 for (var rowIndex = 1; rowIndex <= 7; rowIndex++) {
 
 
-                    for (var colIndex = 1; colIndex <= 5 + 1; colIndex++) {
+                    for (var colIndex = 1; colIndex <= totalRowCount; colIndex++) {
 
-                        if (colIndex == 1) continue;
+                        //if (colIndex == 1) continue;
 
                         txtBoxId = "#txt7B-" + itemIndex + "-" + rowIndex + "-" + colIndex;
 
@@ -836,7 +911,7 @@
             }
 
 
-            // [7] - கடன் விவரம்.
+            // [8] - கடன் விவரம்.
             var eight = "";
             for (var rowIndex = 1; rowIndex <= 12; rowIndex++) {
 
@@ -845,7 +920,7 @@
                     continue;
                 }
 
-                for (var colIndex = 1; colIndex <= 6; colIndex++) {
+                for (var colIndex = 1; colIndex <= totalRowCount; colIndex++) {
                     
                     var txtId = '#txt8-' + rowIndex + '-' + colIndex;
 
@@ -940,7 +1015,7 @@
             <!--3-->
             <td>திருமணம்?</td>
             <td>
-                <select name="ddlMariatal" id="ddlMariatal" onchange="OnStatusChange(this.value);">
+                <select name="ddlMariatal" id="ddlMariatal" disabled onchange="OnStatusChange(this.value);">
                     <option value="s">--Select--</option>
                     <option value="y">ஆனவர் (திருமதி)</option>
                     <option value="n">ஆகாதவர் (செல்வி)</option>
@@ -951,7 +1026,7 @@
             <!--4-->
             <td>சார்ந்தவர் வகை</td>
             <td>
-                <select name="ddlFather" id="ddlFather">
+                <select name="ddlFather" id="ddlFather" disabled>
                     <option value="select">--Select--</option>
                     <option value="father">father</option>
                     <option value="husband">husband</option>
@@ -1063,14 +1138,14 @@
                     <tr>
                         <td>பெயர்</td>
                         <td>PAN</td>
-                        <td>தாக்கல் செய்த கடைசி ஆண்டு?</td>
-                        <td>கடைசி 5 ஆண்டு கட்டிய வருமான வரி</td>
+                        <td>தாக்கல் செய்த <br /> கடைசி 5 ஆண்டு?</td>
+                        <td>கடைசி 5 ஆண்டு <br /> கட்டிய வருமான வரி</td>
                     </tr>
                     <tr>
-                        <td><label id="lblName" name="lblName">test</label></td>
-                        <td><input type="text" id="txtPan" /></td>
-                        <td><input type="text" id="txtLastPanYear" /></td>
-                        <td><input type="text" id="txtLastFivePan" /></td>
+                        <td valign="top"><label id="lblName" name="lblName"></label></td>
+                        <td valign="top"><input type="text" id="txtPan" /></td>
+                        <td> <textarea id="txtLastPanYear" rows='5' cols='20'></textarea></td>
+                        <td><textarea id="txtLastPanYear" rows='5' cols='20' ></textarea></td>
                     </tr>
 
                 </table>
@@ -1097,14 +1172,14 @@
                     <tr>
                         <td>பெயர்</td>
                         <td>PAN</td>
-                        <td>தாக்கல் செய்த கடைசி ஆண்டு?</td>
-                        <td>கடைசி 5 ஆண்டு கட்டிய வருமான வரி</td>
+                        <td>தாக்கல் செய்த <br /> கடைசி 5 ஆண்டு?</td>
+                        <td>கடைசி 5 ஆண்டு <br /> கட்டிய வருமான வரி</td>
                     </tr>
                     <tr>
-                        <td><input type="text" id="txtHName" name="lblName" /></td>
-                        <td><input type="text" id="txtHPan" /></td>
-                        <td><input type="text" id="txtLastHPanYear" /></td>
-                        <td><input type="text" id="txtLastFiveHPan" /></td>
+                        <td valign="top"><input type="text" id="txtHName" name="lblName" /></td>
+                        <td valign="top"><input type="text" id="txtHPan" /></td>
+                        <td><textarea id="txtLastHPanYear" rows='5' cols='20'></textarea></td>
+                        <td><textarea id="txtLastFiveHPan" rows='5' cols='20'></textarea></td>
                     </tr>
 
                 </table>
@@ -1131,14 +1206,14 @@
                     <tr>
                         <td>பெயர்</td>
                         <td>PAN</td>
-                        <td>தாக்கல் செய்த கடைசி ஆண்டு?</td>
-                        <td>கடைசி 5 ஆண்டு கட்டிய வருமான வரி</td>
+                        <td>தாக்கல் செய்த <br/> கடைசி 5 ஆண்டு?</td>
+                        <td>கடைசி 5 ஆண்டு <br /> கட்டிய வருமான வரி</td>
                     </tr>
                     <tr>
-                        <td><input type="text" id="txtHinduName" name="txtHinduName" /></td>
-                        <td><input type="text" id="txtHinduPan" /></td>
-                        <td><input type="text" id="txtLastHinduPanYear" /></td>
-                        <td><input type="text" id="txtLastFiveHinduPan" /></td>
+                        <td valign="top"><input type="text" id="txtHinduName" name="txtHinduName" /></td>
+                        <td valign="top"><input type="text" id="txtHinduPan" /></td>
+                        <td><textarea id="txtLastHinduPanYear" rows='5' cols='20'></textarea></td>
+                        <td><textarea id="txtLastFiveHinduPan" rows='5' cols='20'></textarea></td>
                     </tr>
 
                 </table>

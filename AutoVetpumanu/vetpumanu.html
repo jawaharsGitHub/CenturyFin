@@ -154,7 +154,7 @@ valign:top;
 
 		<tr>
 			<td align="center">
-				<table border="1" class="tbl" cellspacing="4px" cellpadding="4px">
+				<table border="1" class="tbl" cellspacing="4" cellpadding="4" id="tblPanDetails">
 					<tr class="header">
 						<td>வ.எண்.</td>
 						<td>பெயர்கள் </td>
@@ -1204,50 +1204,82 @@ valign:top;
 
 <td align="center">
 
-<table border="1" class="tbl" cellspacing="4px" cellpadding="4px" width='100%'>
-<tr>
-<td>1.</td>
-<td width="60%">வேட்பாளர்  பெயர் </td>
-<td width="38%">[prefix] [name]</td>
-</tr>
+	<table border="1" class="tbl" cellspacing="4" cellpadding="4" width='100%'>
+		<tr>
+			<td>1.</td>
+			<td width="60%" colspan="3">வேட்பாளர்  பெயர் </td>
+			<td width="38%">[prefix] [name]</td>
+		</tr>
 
-<tr>
-<td >2.</td>
-<td>முழு  அஞ்சல் முகவரி </td>
-<td>[address]</td>
-</tr>
+		<tr>
+			<td>2.</td>
+			<td colspan="3">முழு  அஞ்சல் முகவரி </td>
+			<td>[address]</td>
+		</tr>
 
-<tr>
-<td>3.</td>
-<td>தொகுதியின்  எண்,  பெயர் மற்றும்  மாநிலம்  </td>
-<td>[assemblyname]</td>
-</tr>
+		<tr>
+			<td>3.</td>
+			<td colspan="3">தொகுதியின்  எண்,  பெயர் மற்றும்  மாநிலம்  </td>
+			<td>[assemblyname]</td>
+		</tr>
 
-<tr>
-<td>4.</td>
-<td>வேட்பாளர் சார்ந்த அரசியல் கட்சியின் பெயர் </br> (இல்லையெனில் 'சுயேச்சை' எனக் குறிப்பிடவும்) </td>
-<td>[justpartyname]</td>
-</tr>
+		<tr>
+			<td colspan="3">4.</td>
+			<td>வேட்பாளர் சார்ந்த அரசியல் கட்சியின் பெயர் </br> (இல்லையெனில் 'சுயேச்சை' எனக் குறிப்பிடவும்) </td>
+			<td>[justpartyname]</td>
+		</tr>
 
-<tr>
-<td>5.</td>
-<td>நிலுவையிலுள்ள  குற்றவியல்  வழக்குகளின்  மொத்த எண்ணிக்கை   </td>
-<td>[pendingCaseCount]</td>
-</tr>
+		<tr>
+			<td colspan="3">5.</td>
+			<td>நிலுவையிலுள்ள  குற்றவியல்  வழக்குகளின்  மொத்த எண்ணிக்கை   </td>
+			<td>[pendingCaseCount]</td>
+		</tr>
 
-<tr>
-<td>6.</td>
-<td>தண்டனை  பெற்ற வழக்குகளின் மொத்த  எண்ணிக்கை  </td>
-<td>[confirmedCaseCount]</td>
-</tr>
+		<tr>
+			<td>6.</td>
+			<td colspan="3">தண்டனை  பெற்ற வழக்குகளின் மொத்த  எண்ணிக்கை  </td>
+			<td>[confirmedCaseCount]</td>
+		</tr>
 
+		<tr>
+			<td rowspan='[depv2rowSpan]'>7.</td>
+			<td width="25%">பெயர்கள்</td>
+			<td width="15%">நிரந்தர வருமான வரிக் கணக்கு  எண் </td>
+			<td width="25%">கடைசியாக  வருமான வரிக் கணக்கு  விவர  அறிக்கை  தாக்கல் செய்யப்பட்ட  ஆண்டு  </td>
+			<td width="25%">காட்டப்பட்டுள்ள  மொத்த  வருமானம் </td>
+		</tr>
+		<tr>
 
-</table>
+			<td>[name]</td>
+			<td>[pan]</td>
+			<td>[panLastYear]</td>
+			<td>[panLastFive]</td>
+		</tr>
+
+		<tr>
+
+			<td>[hname]</td>
+			<td>[hpan]</td>
+			<td>[hpanLastYear]</td>
+			<td>[hpanLastFive]</td>
+		</tr>
+
+		<tr>
+
+			<td>
+				இந்து கூட்டுக்குடும்பம் (வேட்பாளர் குடும்ப தலைவராக / கூட்டுடைமையாளராக  இருப்பின்)
+			</td>
+			<td>[hindupan]</td>
+			<td>[hindupanLastYear]</td>
+			<td>[hindupanLastFive]</td>
+		</tr>
+
+		[dependentv2]
+
+	</table>
 
 </td>
 </tr>
-
-
 </table>
 
 <table width='100%'>
@@ -1255,44 +1287,7 @@ valign:top;
 
 <td align="center">
 
-<table border="1" class="tbl" cellspacing="4px" cellpadding="4px" width='100%'>
-<tr>
-<td rowspan='5'>7.</td>
-<td width="25%">பெயர்கள்</td>
-<td width="15%">நிரந்தர வருமான வரிக் கணக்கு  எண் </td>
-<td width="25%">கடைசியாக  வருமான வரிக் கணக்கு  விவர  அறிக்கை  தாக்கல் செய்யப்பட்ட  ஆண்டு  </td>
-<td width="25%">காட்டப்பட்டுள்ள  மொத்த  வருமானம் </td>
-</tr>
 
-<tr>
-<td>[name]</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-</table>
 
 </td>
 </tr>
