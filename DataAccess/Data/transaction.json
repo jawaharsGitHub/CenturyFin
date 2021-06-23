@@ -38494,5 +38494,17 @@
     "TxnDate": "2021-05-19T00:00:00",
     "SerialNo": 0,
     "Diff": 0
+  },
+  {
+    "CustomerId": 184,
+    "IsClosed": false,
+    "TransactionId": 44272,
+    "AmountReceived": 1000,
+    "Balance": 1000,
+    "TxnUpdatedDate": null,
+    "CustomerSequenceNo": 1050,
+    "TxnDate": "2021-05-19T00:00:00",
+    "SerialNo": 0,
+    "Diff": 0
   }
 ]
