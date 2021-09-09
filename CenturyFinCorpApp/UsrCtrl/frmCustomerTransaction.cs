@@ -678,13 +678,11 @@ namespace CenturyFinCorpApp
         private void btnCapturePic_Click(object sender, EventArgs e)
         {
             // WhatsAppMessage.SendMsg();
-
             if (General.CheckForInternetConnection() == false)
             {
                 MessageBox.Show("No Internet Available, Please connect and try again!");
                 return;
             }
-
 
             BackgroundWorker bw = new BackgroundWorker();
             //this.Controls.Add(bw);
